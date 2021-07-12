@@ -1,0 +1,158 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Dark Dwarf/Map_Sprites.png" type="Texture" id=2]
+[ext_resource path="res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "UpMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[node name="DarkDwarfRoot" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="EnemeyRoot" parent="." instance=ExtResource( 1 )]
+enemey_name = "Dark Dwarf"
+coins = 25
+monster_class = 37
+droppable_items_id = {
+}
+equips_id = [ "" ]
+effective_level = 4
+attack = 5
+defense = 8
+agility = 5
+move = 4
+HP_Current = 11
+HP_Total = 11
+action_type_chance = 100
+
+[node name="Sprite" parent="EnemeyRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 2 )
+hframes = 6
+frame = 2
+
+[node name="AnimationPlayer" parent="EnemeyRoot" index="1"]
+anims/DownMovement = SubResource( 1 )
+anims/LeftMovement = SubResource( 2 )
+anims/RightMovement = SubResource( 3 )
+anims/UpMovement = SubResource( 4 )
+
+[node name="AnimationTree" parent="EnemeyRoot" index="2"]
+parameters/playback = SubResource( 5 )
+
+[editable path="EnemeyRoot"]

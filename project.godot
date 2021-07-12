@@ -1,0 +1,171 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "CN_SF1_Item",
+"language": "GDScript",
+"path": "res://SF1/Items/Item.gd"
+}, {
+"base": "CN_SF1_Item",
+"class": "CN_SF1_Item_Armor",
+"language": "GDScript",
+"path": "res://SF1/Items/Armor.gd"
+}, {
+"base": "CN_SF1_Item",
+"class": "CN_SF1_Item_Ring",
+"language": "GDScript",
+"path": "res://SF1/Items/Ring.gd"
+}, {
+"base": "CN_SF1_Item",
+"class": "CN_SF1_Item_Usable",
+"language": "GDScript",
+"path": "res://SF1/Items/Usable.gd"
+}, {
+"base": "CN_SF1_Item",
+"class": "CN_SF1_Item_Weapon",
+"language": "GDScript",
+"path": "res://SF1/Items/Weapon.gd"
+}, {
+"base": "Resource",
+"class": "CN_SF1_Spell",
+"language": "GDScript",
+"path": "res://SF1/Spells/Spell.gd"
+}, {
+"base": "Resource",
+"class": "CN_SF1_Spell_Level",
+"language": "GDScript",
+"path": "res://SF1/Spells/SpellLevel.gd"
+}, {
+"base": "Resource",
+"class": "CN_SF_AnimationResource",
+"language": "GDScript",
+"path": "res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd"
+}, {
+"base": "Resource",
+"class": "CN_SF_TargetRange",
+"language": "GDScript",
+"path": "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_BaseClass.gd"
+}, {
+"base": "Resource",
+"class": "CN_SF_UseRange",
+"language": "GDScript",
+"path": "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_BaseClass.gd"
+} ]
+_global_script_class_icons={
+"CN_SF1_Item": "",
+"CN_SF1_Item_Armor": "",
+"CN_SF1_Item_Ring": "",
+"CN_SF1_Item_Usable": "",
+"CN_SF1_Item_Weapon": "",
+"CN_SF1_Spell": "",
+"CN_SF1_Spell_Level": "",
+"CN_SF_AnimationResource": "",
+"CN_SF_TargetRange": "",
+"CN_SF_UseRange": ""
+}
+
+[application]
+
+config/name="Shining Force Remade"
+run/main_scene="res://General/BattleBase/BattleBase.tscn"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://icon.png"
+config/Version="0.0.1"
+
+[autoload]
+
+Singleton_Dev_DevMenu="*res://General/Singletons/DevMenu/DevMenu.tscn"
+Singleton_Game_AudioManager="*res://General/Singletons/AudioManager/AudioManager.gd"
+Singleton_Game_GlobalBattleVariables="*res://General/Singletons/Globals/GlobalBattleVariables.gd"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[input]
+
+ui_plus={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":61,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_minus={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":45,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_hide={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":72,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_c_key={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_a_key={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_b_key={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_q_key={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_w_key={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+2d/snapping/use_gpu_pixel_snap=true
+environment/default_environment="res://default_env.tres"

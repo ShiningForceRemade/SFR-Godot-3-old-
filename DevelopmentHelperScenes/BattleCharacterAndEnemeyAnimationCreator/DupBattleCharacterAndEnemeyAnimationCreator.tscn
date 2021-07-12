@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Genesis 32X SCD - Shining Force - Hans.png" type="Texture" id=1]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Genesis 32X SCD - Shining Force - Goblin.png" type="Texture" id=2]
+[ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "AttackNormal"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "AttackNormal"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterWrapper/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="Dev_BattleCharacterAndEnemeyAnimationCreatorRoot" type="Node2D"]
+
+[node name="CharacterWrapper" type="Node2D" parent="."]
+
+[node name="CharacterSprite" type="Sprite" parent="CharacterWrapper"]
+texture = ExtResource( 1 )
+hframes = 4
+region_enabled = true
+region_rect = Rect2( 0, 224, 320, 112 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]
+anims/AttackNormal = SubResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="EnemeySprite" type="Sprite" parent="Node2D"]
+texture = ExtResource( 2 )
+hframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2( 0, 0, 256, 80 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+anims/AttackNormal = SubResource( 1 )
+anims/GoblinAttack = ExtResource( 3 )

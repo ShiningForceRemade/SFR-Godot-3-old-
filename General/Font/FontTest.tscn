@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://General/Font/Label.gd" type="Script" id=1]
+[ext_resource path="res://General/Font/FontMenu.res" type="BitmapFont" id=2]
+[ext_resource path="res://General/Font/FontDialogue.res" type="BitmapFont" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_right = 319.0
+margin_bottom = 286.0
+text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ
+A B C D E F G H I J K L M N O P Q 
+R S T U V W X Y Z
+abcdefghijklmnopqrstuvwxyz
+a b c d e f g h i j k l m n o
+p q r s t u v w x y z
+Hello how are YOU!
+0123456789        ,.-!?#'
+Hello, how are you? NO WAYYY! B'rah 
+You's #100 1-2
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FontMenuResTest" type="Label" parent="."]
+margin_right = 280.0
+margin_bottom = 150.0
+custom_fonts/font = ExtResource( 2 )
+text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+abcdefghijklmnopqrstuvwxyz
+
+hello how are you
+
+Hello how are YOU!
+
+0123456789        ,.-!?#'
+0 1 2 3 4 5 6 7 8 9 
+Hello, how are you? NO WAYYY! B'rah 
+You's #100 1-2
+% /"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FontDialogueResTest" type="Label" parent="."]
+visible = false
+margin_right = 298.0
+margin_bottom = 150.0
+custom_fonts/font = ExtResource( 3 )
+text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+hello how are you
+Hello how are YOU!
+0123456789        ,.-!?#'
+Hello, how are you? NO WAYYY! B'rah 
+You's #100 1-2
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}

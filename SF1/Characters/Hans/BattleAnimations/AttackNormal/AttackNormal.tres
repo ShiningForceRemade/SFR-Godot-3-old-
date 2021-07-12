@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd" type="Script" id=1]
+[ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=3]
+
+[resource]
+script = ExtResource( 1 )
+hframes = 4
+vframes = 1
+use_sub_area = true
+rect_position_x_offset = 0
+rect_position_y_offset = 224
+rect_position_x_size = 320
+rect_position_y_size = 112
+animation_res = ExtResource( 3 )

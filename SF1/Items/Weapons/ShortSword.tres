@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://SF1/Items/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://Assets/SFCD/Items/Weapons/ShortSword.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+item_name = "Short Sword"
+texture = ExtResource( 2 )
+attribute = [  ]
+attribute_bonus = [  ]
+key_item = false
+price_buy = 100
+price_sell = 0
+item_use_range_path = ""
+item_use_target_path = ""
+sell_to_deals = false
+usable = false
+chance_to_crack = false
+equippable_by = [ 0, 2, 9, 14, 15, 16, 18, 25 ]

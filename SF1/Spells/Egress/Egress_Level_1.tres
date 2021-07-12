@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://SF1/Spells/SpellLevel.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+level = 1
+mp_usage_cost = 8
+attributes = 2
+min_range = 0
+max_range = 0

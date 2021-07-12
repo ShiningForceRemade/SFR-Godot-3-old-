@@ -1,0 +1,33 @@
+[gd_scene format=2]
+
+[node name="SpellLevelBarControlRoot" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.187294
+margin_right = 0.187286
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftRightColorRect" type="ColorRect" parent="."]
+margin_right = 11.0
+margin_bottom = 4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopBottomColorRect" type="ColorRect" parent="."]
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 10.0
+margin_bottom = 5.0
+
+[node name="CenterOrangeColorRect" type="ColorRect" parent="."]
+margin_left = 0.751968
+margin_top = 0.0372047
+margin_right = 9.75197
+margin_bottom = 4.0372
+color = Color( 0.858824, 0.564706, 0.184314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

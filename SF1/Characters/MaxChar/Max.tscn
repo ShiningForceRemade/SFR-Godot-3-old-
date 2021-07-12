@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=1]
+[ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SF1/Characters/MaxChar/Max.gd" type="Script" id=3]
+[ext_resource path="res://SF1/Spells/Egress/Egress.tres" type="Resource" id=5]
+
+[node name="MaxRoot" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CharacterRoot" parent="." instance=ExtResource( 2 )]
+character_name = "Max"
+character_class = 0
+is_promoted = false
+spells_id = [ ExtResource( 5 ) ]
+level = 1
+attack = 6
+attack_growth = 3
+defense = 4
+defense_growth = 3
+agility = 4
+agility_growth = 3
+move = 6
+HP_Current = 12
+HP_Total = 12
+hp_growth = 0
+MP_Current = 8
+MP_Total = 8
+mp_growth = 3
+magic_array = [ 0 ]
+status = 0
+critical_hit_chance = 3
+critical_hit_growth = 0
+double_attack_chance = 10
+dodge_chance = 10
+ai_target_priority = 100
+movement_type = 0
+magic_resistance = 0
+slow_resistance = 0
+muddle_resistance = 0
+sleep_and_desoul_resistance = 0
+bolt_resistance = 0
+blaze_resistance = 0
+freeze_resistance = 0
+
+[node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 1 )
+hframes = 6
+region_enabled = true
+region_rect = Rect2( 0, 0, 144, 24 )
+
+[editable path="CharacterRoot"]

@@ -1,0 +1,152 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://General/Font/FontMenu.res" type="BitmapFont" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=2]
+[ext_resource path="res://General/BattleActionsMenu/InventoryMenu/InventoryMenu.gd" type="Script" id=3]
+[ext_resource path="res://Assets/SFCD/Genesis 32X SCD - Shining Force CD Sega CD - Icons.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=4]
+resource_name = "DropMenuOption"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("DropActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "EquipMenuOption"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("EquipActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "GiveMenuOption"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("GiveActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "UseMenuOption"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("UseActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[node name="BattleInventoryMenuRoot" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="UseActionSprite" type="Sprite" parent="."]
+position = Vector2( 36, 12 )
+texture = ExtResource( 4 )
+vframes = 2
+region_enabled = true
+region_rect = Rect2( 168, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GiveActionSprite" type="Sprite" parent="."]
+position = Vector2( 12, 24 )
+texture = ExtResource( 4 )
+vframes = 2
+region_enabled = true
+region_rect = Rect2( 200, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EquipActionSprite" type="Sprite" parent="."]
+position = Vector2( 60, 24 )
+texture = ExtResource( 4 )
+vframes = 2
+region_enabled = true
+region_rect = Rect2( 232, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DropActionSprite" type="Sprite" parent="."]
+position = Vector2( 36, 36 )
+texture = ExtResource( 4 )
+vframes = 2
+region_enabled = true
+region_rect = Rect2( 264, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 84.0
+margin_top = 24.0
+margin_right = 180.0
+margin_bottom = 48.0
+texture = ExtResource( 2 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 5.0
+margin_right = -4.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 1 )
+text = "TEST"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DropMenuOption = SubResource( 4 )
+anims/EquipMenuOption = SubResource( 3 )
+anims/GiveMenuOption = SubResource( 2 )
+anims/UseMenuOption = SubResource( 1 )
