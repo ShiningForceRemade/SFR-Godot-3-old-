@@ -15,6 +15,7 @@ func _ready():
 	s_hide_battle_view_selected_actor_info_menu()
 	s_hide_battle_use_menu()
 	s_hide_battle_drop_menu()
+	s_hide_battle_give_menu()
 	
 	print("Game Version - ", ProjectSettings.get_setting("application/config/Version"))
 	
@@ -255,7 +256,6 @@ func internal_tween_battle_battle_use_menu(ox, oy, nx, ny):
 
 ### Use Menu End
 
-
 ### Use Menu Start
 
 func s_hide_battle_drop_menu():
@@ -277,3 +277,25 @@ func internal_tween_battle_battle_drop_menu(ox, oy, nx, ny):
 	tween_dropMenu.start()
 
 ### Use Menu End
+
+### Give Menu Start
+
+func s_hide_battle_give_menu():
+	internal_tween_battle_battle_give_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92)
+
+func s_show_battle_give_menu():
+	internal_tween_battle_battle_give_menu(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y)
+	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuRoot.set_battle_give_menu_active()
+
+func internal_tween_battle_battle_give_menu(ox, oy, nx, ny):
+	print("Use Give tween")
+	var tween_giveMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuTween
+	print(tween_giveMenu)
+	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
+	#print(bim_rect)
+	tween_giveMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuRoot, "position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween_giveMenu.start()
+
+### Give Menu End
