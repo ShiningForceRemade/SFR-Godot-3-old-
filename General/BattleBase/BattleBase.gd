@@ -13,6 +13,7 @@ func _ready():
 	s_hide_battle_magic_menu()
 	s_hide_battle_equip_menu()
 	s_hide_battle_view_selected_actor_info_menu()
+	s_hide_battle_use_menu()
 	
 	print("Game Version - ", ProjectSettings.get_setting("application/config/Version"))
 	
@@ -230,3 +231,25 @@ func internal_tween_battle_view_selected_actor_info_menu(ox, oy, nx, ny):
 ###
 # Battle View Selected Actor Info End
 ###
+
+### Use Menu Start
+
+func s_hide_battle_use_menu():
+	internal_tween_battle_battle_use_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92)
+
+func s_show_battle_use_menu():
+	internal_tween_battle_battle_use_menu(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y)
+	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuRoot.set_battle_use_menu_active()
+
+func internal_tween_battle_battle_use_menu(ox, oy, nx, ny):
+	print("Use Menu tween")
+	var tween_useMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuTween
+	print(tween_useMenu)
+	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
+	#print(bim_rect)
+	tween_useMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuRoot, "position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween_useMenu.start()
+
+### Use Menu End

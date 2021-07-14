@@ -57,6 +57,11 @@ func _input(event):
 				get_parent().get_parent().get_parent().s_hide_battle_inventory_menu("right")
 				get_parent().get_parent().get_parent().s_show_battle_equip_menu()
 				return
+			elif currently_selected_option == e_inventory_menu_options.USE_OPTION:
+				is_battle_inventory_menu_active = false
+				get_parent().get_parent().get_parent().s_hide_battle_inventory_menu("right")
+				get_parent().get_parent().get_parent().s_show_battle_use_menu()
+				return
 			
 		if event.is_action_pressed("ui_down"):
 			print("Drop")

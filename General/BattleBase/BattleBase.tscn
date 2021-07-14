@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://General/Controls/LandEffectPopup/LandEffectPopup.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://General/BattleActionsMenu/MagicMenu/MagicMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://General/BattleActionsMenu/EquipMenu/EquipMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://General/BattleViewSelectedActorInfo/BattleViewSelectedActorInfo.tscn" type="PackedScene" id=12]
+[ext_resource path="res://General/BattleActionsMenu/UseMenu/UseMenu.tscn" type="PackedScene" id=13]
 
 [node name="BattleBaseRoot" type="Node"]
 script = ExtResource( 6 )
@@ -89,3 +90,8 @@ position = Vector2( 182, 182 )
 position = Vector2( 182, 182 )
 
 [node name="BattleEquipMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="BattleUseMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 13 )]
+position = Vector2( 182, 182 )
+
+[node name="BattleUseMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
