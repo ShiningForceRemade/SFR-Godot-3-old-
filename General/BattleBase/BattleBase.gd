@@ -14,6 +14,7 @@ func _ready():
 	s_hide_battle_equip_menu()
 	s_hide_battle_view_selected_actor_info_menu()
 	s_hide_battle_use_menu()
+	s_hide_battle_drop_menu()
 	
 	print("Game Version - ", ProjectSettings.get_setting("application/config/Version"))
 	
@@ -251,5 +252,28 @@ func internal_tween_battle_battle_use_menu(ox, oy, nx, ny):
 			Vector2(ox, oy), Vector2(nx, ny), 0.1,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween_useMenu.start()
+
+### Use Menu End
+
+
+### Use Menu Start
+
+func s_hide_battle_drop_menu():
+	internal_tween_battle_battle_drop_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92)
+
+func s_show_battle_drop_menu():
+	internal_tween_battle_battle_drop_menu(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y)
+	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuRoot.set_battle_drop_menu_active()
+
+func internal_tween_battle_battle_drop_menu(ox, oy, nx, ny):
+	print("Use Menu tween")
+	var tween_dropMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuTween
+	print(tween_dropMenu)
+	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
+	#print(bim_rect)
+	tween_dropMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuRoot, "position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween_dropMenu.start()
 
 ### Use Menu End
