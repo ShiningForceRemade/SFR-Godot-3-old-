@@ -1,14 +1,24 @@
 extends Node2D
 
+onready var redSelection = $RedSelectionBorderRoot
+
+const rs_top_pos    = Vector2(16, 0)
+const rs_left_pos   = Vector2(0, 12)
+const rs_right_pos  = Vector2(32, 12)
+const rs_bottom_pos = Vector2(16, 24)
+
 var is_battle_drop_menu_active: bool = false
 
 enum e_drop_menu_options {
-	UP_OPTION,
-	LEFT_OPTION,
-	RIGHT_OPTION,
-	DOWN_OPTION
+	UP_OPTION    = 0,
+	LEFT_OPTION  = 1,
+	RIGHT_OPTION = 2,
+	DOWN_OPTION  = 3
 }
 var currently_selected_option: int = e_drop_menu_options.UP_OPTION
+
+onready var typeLabel = $ItemInfoNinePatchRect/TypeNameLabel
+onready var nameLabel = $ItemInfoNinePatchRect/WeaponNameLabel
 
 # onready var animationPlayer = $AnimationPlayer
 
@@ -20,8 +30,11 @@ onready var right_slot_spirte = $SlotRightSprite
 onready var item_info__type_name_label = $ItemInfoNinePatchRect/TypeNameLabel
 onready var item__info__weapon_name_label = $ItemInfoNinePatchRect/WeaponNameLabel
 
+var inventory_items
+
 func _ready():
 	set_sprites_to_zero_frame()
+	redSelection.position = rs_top_pos
 	# $AnimationPlayer.playback_speed = 2
 	# animationPlayer.play("UseMenuOption")
 	# label.text = "Use"
@@ -37,7 +50,7 @@ func set_battle_drop_menu_active():
 	
 	## TODO: FIXME: temp setting inventroy to equipped idea while migrating to new structure and github
 	
-	var inventory_items = active_char_root.inventory_items_id # active_char_root.is_item_equipped
+	inventory_items = active_char_root.inventory_items_id # active_char_root.is_item_equipped
 	
 	if inventory_items.size() == 0:
 		print("No inventory items probably should print the no items skip actions imilar to magic")
@@ -47,6 +60,8 @@ func set_battle_drop_menu_active():
 		print(inventory_items[i])
 		if i == 0:
 			up_slot_spirte.texture = inventory_items[i].texture
+			nameLabel.text = inventory_items[i].item_name
+			typeLabel.text = inventory_items[i].get_item_type()
 		if i == 1:
 			left_slot_spirte.texture = inventory_items[i].texture
 		if i == 2:
@@ -76,41 +91,65 @@ func _input(event):
 			
 		if event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
-			#if currently_selected_option == e_menu_options.STAY_OPTION:
-			#	print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
-			#	Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
+			
+			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+			
+			actor.inventory_items_id.remove(currently_selected_option)
+			actor.is_item_equipped.remove(currently_selected_option)
+			
+			if currently_selected_option == 1:
+				left_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+			elif currently_selected_option == 2:
+				right_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+			elif currently_selected_option == 3:
+				down_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
 				
-			#	# emit_signal("signal_completed_turn")
-			#	is_battle_inventory_menu_active = false
-			#	get_parent().get_parent().s_hide_action_menu()
-			#	return
+			redSelection.position = rs_top_pos
+			set_sprites_to_zero_frame()
+			currently_selected_option = e_drop_menu_options.UP_OPTION
+			
+			if 0 <= inventory_items.size() - 1:
+				up_slot_spirte.texture = actor.inventory_items_id[0].texture
+				nameLabel.text = actor.inventory_items_id[0].item_name
+				typeLabel.text = actor.inventory_items_id[0].get_item_type()
+			else:
+				up_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+				nameLabel.text = "Empty"
+				typeLabel.text = ""
+				
+				#	get_parent().get_parent().s_hide_action_menu()
+				#	return
 				
 			
 		if event.is_action_pressed("ui_down"):
-			print("Unequip")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_drop_menu_options.DOWN_OPTION
-			# animationPlayer.play("DropMenuOption")
-			# label.text = "Drop"
+			if 3 <= inventory_items.size() - 1:
+				redSelection.position = rs_bottom_pos
+				set_sprites_to_zero_frame()
+				currently_selected_option = e_drop_menu_options.DOWN_OPTION
+				nameLabel.text = inventory_items[3].item_name
+				typeLabel.text = inventory_items[3].get_item_type()
 		elif event.is_action_pressed("ui_up"):
-			print("Up need to check if weapon is there or no")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_drop_menu_options.UP_OPTION
-			# animationPlayer.play("UseMenuOption")
-			#label.text = "Use"
+			if 0 <= inventory_items.size() - 1:
+				redSelection.position = rs_top_pos
+				set_sprites_to_zero_frame()
+				currently_selected_option = e_drop_menu_options.UP_OPTION
+				nameLabel.text = inventory_items[0].item_name
+				typeLabel.text = inventory_items[0].get_item_type()
 		elif event.is_action_pressed("ui_right"):
-			print("Right need to check if weapon is there or no")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_drop_menu_options.RIGHT_OPTION
-			# animationPlayer.play("EquipMenuOption")
-			#label.text = "Equip"
+			if 2 <= inventory_items.size() - 1:
+				redSelection.position = rs_right_pos
+				set_sprites_to_zero_frame()
+				currently_selected_option = e_drop_menu_options.RIGHT_OPTION
+				nameLabel.text = inventory_items[2].item_name
+				typeLabel.text = inventory_items[2].get_item_type()
 		elif event.is_action_pressed("ui_left"):
-			print("Left need to check if weapon is there or no")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_drop_menu_options.LEFT_OPTION
-			# animationPlayer.play("GiveMenuOption")
-			#label.text = "Give"
-			
+			if 1 <= inventory_items.size() - 1:
+				redSelection.position = rs_left_pos
+				set_sprites_to_zero_frame()
+				currently_selected_option = e_drop_menu_options.LEFT_OPTION
+				nameLabel.text = inventory_items[1].item_name
+				typeLabel.text = inventory_items[1].get_item_type()
+
 func set_sprites_to_zero_frame():
 	up_slot_spirte.frame = 0
 	down_slot_spirte.frame = 0

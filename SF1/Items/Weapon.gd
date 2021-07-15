@@ -20,3 +20,6 @@ export(Array, int, "Swordsman - SDMN", "Knight - KNT",
 
 func _ready():
 	pass
+
+func get_item_type() -> String:
+	return "Weapon"

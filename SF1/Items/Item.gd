@@ -76,6 +76,8 @@ export var usable: bool = false
 
 # two question makrs under item type in sf edit v3.4.4
 
-
 func _ready():
 	pass
+
+func get_item_type() -> String:
+	return "Item"
