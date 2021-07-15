@@ -9,5 +9,6 @@
 	* Menu Font - blargonarf sprites-resource
 
 ### Enemies And Bosses
-	* Golbin     - Tonberry2k sprites-resource
-	* Dark Dwarf - Tonberry2k sprites-resource
+	* Golbin      - Tonberry2k sprites-resource
+	* Dark Dwarf  - Tonberry2k sprites-resource
+	* Rune Knight - Tonberry2k sprites-resource
