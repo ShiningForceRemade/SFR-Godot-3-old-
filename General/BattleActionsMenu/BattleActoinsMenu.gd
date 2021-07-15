@@ -104,12 +104,12 @@ func setup_attack_range_and_selection():
 		if equip is CN_SF1_Item_Weapon:
 			print(equip)
 			print(equip.item_use_range_path)
-			item_use_range = load(equip.item_use_range_path)
+			item_use_range = load(equip.item_use_range_path).new()
 			print(item_use_range)
 			item_use_range._ready()
 			# TODO create cleanup function to remove the attack grid when canclled or completed
 			item_use_range.draw_use_range()
-			target_range = load(equip.item_use_target_path)
+			target_range = load(equip.item_use_target_path).new()
 			# TODO create cleanup function for this to remove the curosr
 			target_range.draw_cursor_and_get_targets("test arg 123")
 			return

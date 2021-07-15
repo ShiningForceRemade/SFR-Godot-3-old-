@@ -8,6 +8,7 @@
 script = ExtResource( 1 )
 item_name = "Wooden Arrow"
 texture = ExtResource( 2 )
+target_actor_type = 0
 attribute = [ 1 ]
 attribute_bonus = [ 8 ]
 key_item = false

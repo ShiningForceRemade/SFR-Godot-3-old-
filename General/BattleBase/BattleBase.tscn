@@ -53,8 +53,8 @@ margin_bottom = 278.0
 [node name="TargetActorMicroInfoRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 1 )]
 margin_left = 434.0
 margin_top = 186.0
-margin_right = 434.0
-margin_bottom = 186.0
+margin_right = 433.92
+margin_bottom = 185.94
 
 [node name="TargetActorMicroInfoTween" type="Tween" parent="CanvasLayerInfoControls"]
 

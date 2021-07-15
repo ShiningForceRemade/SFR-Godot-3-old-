@@ -286,8 +286,8 @@ func draw_character_movement_area():
 	vpos = get_char_tile_position()
 	
 	# Remove previous drawn grid movement if any
-	for n in self.get_children():
-		self.remove_child(n)
+	for n in $MovementTilesWrapperNode.get_children():
+		$MovementTilesWrapperNode.remove_child(n)
 		n.queue_free()
 	
 	vpos = get_char_tile_position()
@@ -433,7 +433,7 @@ func draw_character_movement_area():
 		
 	print("\n")
 
-func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int) -> void:
+func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg = null) -> void:
 	var cr = ColorRect.new()
 	cr.color = acolor
 	cr.rect_size.x = 24
@@ -443,7 +443,13 @@ func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int) -> void:
 	cr.rect_position.y = ypos
 
 	#print(cr.rect_position)
-	self.add_child(cr)
+	
+	# TODO: CLEAN: node_arg using to test having movement and use tiles on different layers to avoid redrawing
+	# just going to hide and show as needed with a fresh clean when new action or character turn for the respective layer
+	if node_arg == null:
+		$MovementTilesWrapperNode.add_child(cr)
+	else:
+		node_arg.add_child(cr)
 
 #func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int) -> void:
 #	var cr = ColorRect.new()
@@ -571,3 +577,17 @@ func sort_actors_by_agility(a, b) -> bool:
 	
 
 # Turn Order Queue End
+
+
+# Field Logic Tiles layer helper functions
+func hide_movement_tiles() -> void:
+	$MovementTilesWrapperNode.hide()
+
+func show_movement_tiles() -> void:
+	$MovementTilesWrapperNode.show()
+
+func hide_use_target_tiles() -> void:
+	$UseTargetTilesWrapperNode.hide()
+
+func show_use_target_tiles() -> void:
+	$UseTargetTilesWrapperNode.show()

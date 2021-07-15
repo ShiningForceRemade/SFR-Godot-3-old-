@@ -17,6 +17,8 @@ func _ready():
 	s_hide_battle_drop_menu()
 	s_hide_battle_give_menu()
 	
+	Singleton_Game_GlobalBattleVariables.battle_base = self
+	
 	print("Game Version - ", ProjectSettings.get_setting("application/config/Version"))
 	
 	if $BattleOneRoot.connect("signal_land_effect_under_tile", self, "s_land_effect") != OK:
@@ -299,3 +301,26 @@ func internal_tween_battle_battle_give_menu(ox, oy, nx, ny):
 	tween_giveMenu.start()
 
 ### Give Menu End
+
+
+### Target Actor Micro Info Start
+
+func s_hide_target_actor_micro():
+	internal_tween_target_actor_micro(270, 186, 434, 186)
+
+func s_show_target_actor_micro():
+	internal_tween_target_actor_micro(434, 186, 270, 186)
+	$CanvasLayerInfoControls/TargetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+
+func internal_tween_target_actor_micro(ox, oy, nx, ny):
+	print("Use Target Actor tween")
+	var tween_giveMenu = $CanvasLayerInfoControls/TargetActorMicroInfoTween
+	print(tween_giveMenu)
+	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
+	#print(bim_rect)
+	tween_giveMenu.interpolate_property($CanvasLayerInfoControls/TargetActorMicroInfoRoot, "rect_position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween_giveMenu.start()
+
+### Target Actor Micro Info End

@@ -17,6 +17,9 @@ onready var battleAttackAnimationPlayer = $BattleAttackAnimationPlayerRoot
 func _ready():
 	battleAttackAnimationPlayer.hide()
 	
+	Singleton_Game_GlobalBattleVariables.character_wrapper_node = $Characters
+	Singleton_Game_GlobalBattleVariables.enemies_wrapper_node = $Enemies
+	
 	if $FieldLogicNode.connect("signal_land_effect_under_tile", self, "s_land_effect") != OK:
 		print("Log - Error: Battle1.tscn - connect signal_land_effect_under_tile not okay")
 		

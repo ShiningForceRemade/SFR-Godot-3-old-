@@ -98,4 +98,16 @@ func update_active_info(name_arg, class_arg, level, current_hp, total_hp, curren
 	
 	$NinePatchRect/CurrentHPLabel.text = str(current_hp) + "/" + hp_spacing + str(total_hp)
 	$NinePatchRect/CurrentMPLabel.text = str(current_mp) + "/" + mp_spacing + str(total_mp)
+
+func display_micro_info_for_actor(node_arg) -> void:
+	var actor_root = node_arg.get_node("CharacterRoot")
 	
+	print(actor_root)
+	
+	update_active_info(actor_root.character_name, 
+	actor_root.cget_class(), 
+	actor_root.level, 
+	actor_root.HP_Current, 
+	actor_root.HP_Total, 
+	actor_root.MP_Current, 
+	actor_root.MP_Total)

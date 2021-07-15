@@ -6,6 +6,8 @@ export var item_name: String
 
 export var texture: Texture
 
+export(int, "None", "Characters", "Enemies", "Both") var target_actor_type
+
 # ? - attribute that isn't known in sfedit (maybe crit since this seems to be modifiy in the original sf1 chances)
 # YGRT is this yogurt?
 # NOTE: hp mp and critical are custom and not in the original SF1

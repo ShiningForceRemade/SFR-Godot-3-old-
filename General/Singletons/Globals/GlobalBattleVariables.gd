@@ -1,10 +1,14 @@
 extends Node
 
+var battle_base
+
 var currently_active_character
 
 var currently_selected_actor
 
 var field_logic_node
+var character_wrapper_node
+var enemies_wrapper_node
 
 var cursor_root_ref = null
 

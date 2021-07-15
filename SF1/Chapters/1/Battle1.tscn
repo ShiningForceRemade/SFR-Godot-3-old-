@@ -2551,6 +2551,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="MovementTilesWrapperNode" type="Node2D" parent="FieldLogicNode"]
+
+[node name="UseTargetTilesWrapperNode" type="Node2D" parent="FieldLogicNode"]
+
 [node name="TileMapTileInformation" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 24, 24 )

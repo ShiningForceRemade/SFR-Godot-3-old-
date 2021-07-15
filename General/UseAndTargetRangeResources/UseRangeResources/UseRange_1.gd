@@ -9,9 +9,10 @@ func _ready():
 
 static func draw_use_range():
 	# print("UseRange_1 - vpos - ", vposz, " FieldLogicNode - ", fieldLogicNode)
+	var uttwn = Singleton_Game_GlobalBattleVariables.field_logic_node.get_node("UseTargetTilesWrapperNode")
 	
-	for n in Singleton_Game_GlobalBattleVariables.field_logic_node.get_children():
-		Singleton_Game_GlobalBattleVariables.field_logic_node.remove_child(n)
+	for n in uttwn.get_children():
+		uttwn.remove_child(n)
 		n.queue_free()
 	
 	var vpos = Singleton_Game_GlobalBattleVariables.currently_active_character.position
@@ -22,28 +23,32 @@ static func draw_use_range():
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
 		Color.purple,
 		vpos.x,
-		vpos.y - tile_size
+		vpos.y - tile_size,
+		uttwn
 	)
 
 	# Bottom tile
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
 		Color.purple,
 		vpos.x,
-		vpos.y + tile_size
+		vpos.y + tile_size,
+		uttwn
 	)
 
 	# Left tile
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
 		Color.purple,
 		vpos.x - tile_size,
-		vpos.y
+		vpos.y,
+		uttwn
 	)
 
 	# Right tile
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
 		Color.purple,
 		vpos.x + tile_size,
-		vpos.y
+		vpos.y,
+		uttwn
 	)
 
 	# X 1 X

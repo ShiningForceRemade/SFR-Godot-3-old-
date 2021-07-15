@@ -7,12 +7,13 @@
 script = ExtResource( 1 )
 item_name = "Medical Herb"
 texture = ExtResource( 2 )
-attribute = [  ]
-attribute_bonus = [  ]
+target_actor_type = 4
+attribute = [ 6 ]
+attribute_bonus = [ 10 ]
 key_item = false
 price_buy = 100
 price_sell = 50
-item_use_range_path = ""
-item_use_target_path = ""
+item_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd"
+item_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
 sell_to_deals = false
 usable = true
