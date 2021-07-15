@@ -7,12 +7,12 @@ An original copy of each file is tracked in [Assets-Original repo](https://githu
 ## Shining force: The Legacy of great intention (SF1)
 
 ### General
-	* Cursor (Recreated)          - feldc
-	* Text Background (Recreated) - feldc
-	* Dialogue Font               - [blargonarf sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/87682/)
-	* Menu Font                   - [blargonarf sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/87682/)
+* Cursor (Recreated)          - feldc
+* Text Background (Recreated) - feldc
+* Dialogue Font               - [blargonarf sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/87682/)
+* Menu Font                   - [blargonarf sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/87682/)
 
 ### Enemies And Bosses
-	* Golbin      - [Tonberry2k sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/1894/)
-	* Dark Dwarf  - [Tonberry2k sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/1893/)
-	* Rune Knight - [Tonberry2k sprites-resource[(https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/1897/)
+* Golbin      - [Tonberry2k sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/1894/)
+* Dark Dwarf  - [Tonberry2k sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/1893/)
+* Rune Knight - [Tonberry2k sprites-resource](https://www.spriters-resource.com/genesis_32x_scd/sf1/sheet/1897/)
