@@ -6,59 +6,58 @@
 [ext_resource path="res://General/BattleViewSelectedActorInfo/Spell/SpellMicroView.gd" type="Script" id=4]
 
 [node name="SpellInfoControlRoot" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.562
+anchor_bottom = 0.278
+margin_right = 0.159988
+margin_bottom = -0.0400047
 rect_pivot_offset = Vector2( -78.1107, -51.1849 )
 script = ExtResource( 4 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="SpellTextureRect" type="TextureRect" parent="."]
-anchor_left = 0.0290587
-anchor_top = 0.0431422
-anchor_right = -0.00219125
-anchor_bottom = -0.00685778
-margin_left = -9.29879
-margin_top = -20.7656
-margin_right = 16.7012
-margin_bottom = 12.2344
+anchor_left = -0.00110236
+anchor_right = -0.00110236
+margin_top = -12.0
+margin_right = 16.0
+margin_bottom = 12.0
 rect_clip_content = true
 texture = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="SpellNameLabel" type="Label" parent="."]
-anchor_left = 0.000464374
-anchor_top = -0.00555556
-anchor_right = 0.206714
-anchor_bottom = -0.00555556
-margin_left = 16.8514
+anchor_left = -0.000347222
+anchor_right = -0.000347222
+margin_left = 20.0
 margin_top = -16.0
-margin_right = 73.8514
+margin_right = 162.0
 margin_bottom = 3.0
 custom_fonts/font = ExtResource( 1 )
 text = "Medical Herb"
 valign = 1
 autowrap = true
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 17.0
-margin_top = 5.0
-margin_right = 113.0
-margin_bottom = 13.0
+margin_left = 19.5426
+margin_top = 5.00001
+margin_right = 115.543
+margin_bottom = 12.0
 custom_constants/separation = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SpellLevelBarControlRoot" parent="HBoxContainer" instance=ExtResource( 3 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_right = 0.0
-margin_bottom = 8.0
+margin_bottom = 6.0

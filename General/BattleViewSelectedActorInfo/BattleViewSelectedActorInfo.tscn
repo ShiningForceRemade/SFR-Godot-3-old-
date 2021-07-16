@@ -300,9 +300,9 @@ __meta__ = {
 
 [node name="SpellsVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect"]
 margin_left = 8.0
-margin_top = 100.0
+margin_top = 99.0
 margin_right = 204.0
-margin_bottom = 220.0
+margin_bottom = 219.0
 rect_scale = Vector2( 0.55, 0.55 )
 custom_constants/separation = 32
 __meta__ = {
