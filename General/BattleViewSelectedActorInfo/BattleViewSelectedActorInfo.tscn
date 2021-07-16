@@ -350,7 +350,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Genesis 32X SCD - Shining Force - Portraits" type="Sprite" parent="."]
+[node name="PortraitSprite" type="Sprite" parent="."]
 position = Vector2( 26.7908, 41.5002 )
 texture = ExtResource( 6 )
 hframes = 4

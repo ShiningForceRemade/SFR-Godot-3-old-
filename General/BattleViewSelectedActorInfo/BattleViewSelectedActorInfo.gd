@@ -51,6 +51,9 @@ func _input(event):
 func display_character_info():
 	var actor = Singleton_Game_GlobalBattleVariables.selected_actor.get_node("CharacterRoot")
 	
+	$PortraitSprite.show()
+	$PortraitSprite.texture = actor.texture_protrait
+	
 	$PortraitNinePatchRect.show()
 	$GoldNinePatchRect.show()
 	
@@ -104,6 +107,9 @@ func display_character_info():
 
 func display_enemey_info():
 	var actor = Singleton_Game_GlobalBattleVariables.selected_actor.get_node("EnemeyRoot")
+	
+	# TODO: when adding boss enemeies with sprites add a check to hide or display similar to character info minus gold display
+	$PortraitSprite.hide()
 	
 	$GoldNinePatchRect.hide()
 	$PortraitNinePatchRect.hide()

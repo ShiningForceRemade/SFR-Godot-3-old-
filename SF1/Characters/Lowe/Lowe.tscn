@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=2]
 [ext_resource path="res://SF1/Characters/Lowe/Lowe.gd" type="Script" id=3]
-[ext_resource path="res://SF1/Items/Weapons/Staff.tres" type="Resource" id=4]
-[ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=5]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png" type="Texture" id=4]
 [ext_resource path="res://SF1/Spells/Heal/Heal.tres" type="Resource" id=6]
 
 [node name="LoweRoot" type="Node2D"]
@@ -14,9 +13,8 @@ script = ExtResource( 3 )
 character_name = "Lowe"
 character_class = 6
 is_promoted = false
-equips_id = [ ExtResource( 4 ) ]
-items_id = [ ExtResource( 5 ), ExtResource( 5 ) ]
 spells_id = [ ExtResource( 6 ) ]
+texture_protrait = ExtResource( 4 )
 level = 1
 attack = 6
 attack_growth = 0

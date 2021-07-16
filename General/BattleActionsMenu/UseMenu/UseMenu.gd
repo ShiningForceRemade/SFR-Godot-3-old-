@@ -57,7 +57,7 @@ func _ready():
 	# label.text = "Use"
 	pass
 
-func set_battle_use_menu_active():
+func set_battle_use_menu_active() -> void:
 	is_battle_use_menu_active = true
 	
 	var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
@@ -222,13 +222,13 @@ func _input(event):
 			# is_target_selection_active = false
 			# emit_signal("signal_completed_item_use_action")
 		
-func set_sprites_to_zero_frame():
+func set_sprites_to_zero_frame() -> void:
 	up_slot_spirte.frame = 0
 	down_slot_spirte.frame = 0
 	left_slot_spirte.frame = 0
 	right_slot_spirte.frame = 0
 
-func setup_use_range_and_target_range_selection(item_arg):
+func setup_use_range_and_target_range_selection(item_arg) -> void:
 	print(item_arg)
 	print(item_arg.item_use_range_path)
 	var item_use_range = load(item_arg.item_use_range_path).new()

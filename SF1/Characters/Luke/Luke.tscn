@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=2]
 [ext_resource path="res://SF1/Characters/Luke/Luke.gd" type="Script" id=3]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png" type="Texture" id=4]
 
 [node name="LukeRoot" type="Node2D"]
 script = ExtResource( 3 )
@@ -12,6 +13,7 @@ character_name = "Luke"
 character_class = 2
 is_promoted = false
 spells_id = [  ]
+texture_protrait = ExtResource( 4 )
 level = 1
 attack = 9
 attack_growth = 0
