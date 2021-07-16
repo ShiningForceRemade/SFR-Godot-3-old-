@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Dark Dwarf/Map_Sprites.png" type="Texture" id=2]
 [ext_resource path="res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.gd" type="Script" id=3]
+[ext_resource path="res://SF1/Items/Weapons/HandAxe.tres" type="Resource" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "DownMovement"
@@ -131,7 +132,8 @@ coins = 25
 monster_class = 37
 droppable_items_id = {
 }
-equips_id = [ "" ]
+inventory_items_id = [ ExtResource( 4 ) ]
+is_item_equipped = [ true ]
 effective_level = 4
 attack = 5
 defense = 8
@@ -144,7 +146,6 @@ action_type_chance = 100
 [node name="Sprite" parent="EnemeyRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )
 hframes = 6
-frame = 2
 
 [node name="AnimationPlayer" parent="EnemeyRoot" index="1"]
 anims/DownMovement = SubResource( 1 )

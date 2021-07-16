@@ -13,8 +13,6 @@ extents = Vector2( 16, 16 )
 script = ExtResource( 2 )
 droppable_items_id = {
 }
-HP = 0
-MP = 0
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 

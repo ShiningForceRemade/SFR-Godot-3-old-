@@ -11,23 +11,26 @@ export var monster_class: int
 ## TODO: clean me up item id and drop chance object array type
 export var droppable_items_id: Dictionary
 
+export(Array, Resource) var inventory_items_id
+export(Array, bool) var is_item_equipped
+
 # maybe I should make this associateion enum and the corresponding array a singleton for global usage
-enum weapons_and_rings { 
-	ShortSword 
-}
+# enum weapons_and_rings { 
+# 	ShortSword 
+# }
 
-const weapons_and_rings_paths = {
-	weapons_and_rings.ShortSword: "res://SF1/Items/Short Sword/ShortSword.tscn",
-}
+# const weapons_and_rings_paths = {
+# 	weapons_and_rings.ShortSword: "res://SF1/Items/Short Sword/ShortSword.tscn",
+# }
 
-export(Array, weapons_and_rings) var equips_idssss
+# export(Array, weapons_and_rings) var equips_idssss
 
 # const item_location_c
 
 ## Only the first 4 fields are valid everything after that is ignored!
-export(Array, String, "Short Sword") var equips_id
+# export(Array, String, "Short Sword") var equips_id
 ## Only the first 4 fields are valid everything after that is ignored!
-export(Array, int) var items_id
+# export(Array, int) var items_id
 ## Only the first 4 fields are valid everything after that is ignored!
 export(Array, int) var spells_id
 
@@ -107,12 +110,9 @@ export(int, 0, 100) var freeze_resistance: int = 0
 #		}
 #	]
 
-
-	
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("DownMovement")
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
