@@ -130,4 +130,35 @@ func display_enemey_info():
 	$CharacterNinePatchRect/KillsAmountLabel.text = "0" # str(actor.enemey_kills)
 	$CharacterNinePatchRect/DefeatAmountLabel.text = "0" # str(actor.times_defeated)
 	
+	print(actor)
+	var inventory_item_size = actor.inventory_items_id.size()
+	print(inventory_item_size)
+	
+	if inventory_item_size == 0:
+		$StatNinePatchRect/ItemsNothingStaticLabel.show()
+		$StatNinePatchRect/InventoryVBoxContainer.hide()
+	else:
+		$StatNinePatchRect/ItemsNothingStaticLabel.hide()
+		$StatNinePatchRect/InventoryVBoxContainer.show()
+		
+		for n in range(inventory_item_size):
+			var itemInfoN = itemInfoNode.instance()
+			itemInfoN.init_item_micro_info(actor.inventory_items_id[n].texture, actor.inventory_items_id[n].item_name, actor.is_item_equipped[n])
+			$StatNinePatchRect/InventoryVBoxContainer.add_child(itemInfoN)
+	
+	var spells_size = actor.spells_id.size()
+	print(spells_size)
+	
+	if spells_size == 0:
+		$StatNinePatchRect/MagicNothingStaticLabel.show()
+		$StatNinePatchRect/SpellsVBoxContainer.hide()
+	else:
+		$StatNinePatchRect/MagicNothingStaticLabel.hide()
+		$StatNinePatchRect/SpellsVBoxContainer.show()
+		
+		for n in range(spells_size):
+			var spellInfoN = spellInfoNode.instance()
+			spellInfoN.init_spell_micro_info(actor.spells_id[n])
+			$StatNinePatchRect/SpellsVBoxContainer.add_child(spellInfoN)
+			
 	pass
