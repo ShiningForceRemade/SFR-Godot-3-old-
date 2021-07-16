@@ -222,6 +222,16 @@ func get_character_current_pos() -> Vector2:
 	# print("here", kinematicBody)
 	return kinematicBody.position
 
+func get_attack() -> int:
+	var attack_attribute_bonus_total: int = 0
+	for i in range(inventory_items_id.size()):
+		if is_item_equipped[i]:
+			for j in (inventory_items_id[i].attribute.size()):
+				if inventory_items_id[i].attribute[j] == 1:
+					attack_attribute_bonus_total += inventory_items_id[i].attribute_bonus[j]
+	
+	return attack + attack_attribute_bonus_total
+
 func _physics_process(_delta):
 	
 	# Classic Genesis styled movement and battle movement

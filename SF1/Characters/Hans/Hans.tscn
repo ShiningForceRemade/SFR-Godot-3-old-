@@ -128,10 +128,8 @@ script = ExtResource( 3 )
 [node name="CharacterRoot" parent="." instance=ExtResource( 1 )]
 character_name = "Hans"
 character_class = 7
-is_promoted = false
 inventory_items_id = [ ExtResource( 4 ), ExtResource( 5 ) ]
 is_item_equipped = [ true, false ]
-spells_id = [  ]
 texture_protrait = ExtResource( 6 )
 level = 1
 attack = 6
@@ -144,24 +142,9 @@ move = 5
 HP_Current = 12
 HP_Total = 12
 hp_growth = 2
-MP_Current = 0
-MP_Total = 0
-mp_growth = 0
-magic_array = [  ]
-status = 0
 critical_hit_chance = 3
-critical_hit_growth = 0
-double_attack_chance = 10
-dodge_chance = 10
 ai_target_priority = 25
 movement_type = 3
-magic_resistance = 0
-slow_resistance = 0
-muddle_resistance = 0
-sleep_and_desoul_resistance = 0
-bolt_resistance = 0
-blaze_resistance = 0
-freeze_resistance = 0
 
 [node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )

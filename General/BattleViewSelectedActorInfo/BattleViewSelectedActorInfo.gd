@@ -65,7 +65,7 @@ func display_character_info():
 	$StatNinePatchRect/MPLabel.text = str(actor.MP_Current) + "/" + str(actor.MP_Total)
 	$StatNinePatchRect/ExpLabel.text = str(actor.experience_points)
 	
-	$StatNinePatchRect/AttackLabel.text = str(actor.attack)
+	$StatNinePatchRect/AttackLabel.text = str(actor.get_attack()) # str(actor.attack)
 	$StatNinePatchRect/DefenseLabel.text = str(actor.defense)
 	$StatNinePatchRect/MoveLabel.text = str(actor.move)
 	$StatNinePatchRect/AgilityLabel.text = str(actor.agility)
@@ -122,7 +122,7 @@ func display_enemey_info():
 	$StatNinePatchRect/MPLabel.text = str(actor.MP_Current) + "/" + str(actor.MP_Total)
 	$StatNinePatchRect/ExpLabel.text = "N/A" # str(actor.experience_points)
 	
-	$StatNinePatchRect/AttackLabel.text = str(actor.attack)
+	$StatNinePatchRect/AttackLabel.text = str(actor.get_attack()) # str(actor.attack)
 	$StatNinePatchRect/DefenseLabel.text = str(actor.defense)
 	$StatNinePatchRect/MoveLabel.text = str(actor.move)
 	$StatNinePatchRect/AgilityLabel.text = str(actor.agility)
