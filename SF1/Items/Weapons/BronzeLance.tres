@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://SF1/Items/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://Assets/SFCD/Items/Weapons/Brozne_Lance.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+item_name = "Bronze Lance"
+texture = ExtResource( 2 )
+target_actor_type = 3
+attribute = [ 1 ]
+attribute_bonus = [ 9 ]
+key_item = false
+price_buy = 300
+price_sell = 200
+item_use_range_path = ""
+item_use_target_path = ""
+sell_to_deals = false
+usable = false
+chance_to_crack = false
+equippable_by = [ 1, 3, 10, 17, 19, 26 ]

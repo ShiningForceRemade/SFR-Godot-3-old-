@@ -122,41 +122,6 @@ tracks/1/keys = {
 
 [node name="CharacterRoot" type="Node2D"]
 script = ExtResource( 1 )
-character_name = null
-character_class = null
-is_promoted = null
-equips_id = null
-items_id = null
-spells_id = null
-level = null
-attack = null
-attack_growth = null
-defense = null
-defense_growth = null
-agility = null
-agility_growth = null
-move = null
-HP_Current = null
-HP_Total = null
-hp_growth = null
-MP_Current = null
-MP_Total = null
-mp_growth = null
-magic_array = null
-status = null
-critical_hit_chance = null
-critical_hit_growth = null
-double_attack_chance = null
-dodge_chance = null
-ai_target_priority = null
-movement_type = null
-magic_resistance = null
-slow_resistance = null
-muddle_resistance = null
-sleep_and_desoul_resistance = null
-bolt_resistance = null
-blaze_resistance = null
-freeze_resistance = null
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 
