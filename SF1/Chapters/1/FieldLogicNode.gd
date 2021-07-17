@@ -56,6 +56,20 @@ func _ready():
 	turn_number += 1
 	pass # Replace with function body.
 
+func _input(event):
+	if event.is_action_released("ui_home"):
+		print("Set different tile map")
+		print(get_parent().get_node("TileMap").tile_set)
+		print(get_parent().get_node("TileMap").tile_set.resource_name)
+		print(get_parent().get_node("TileMap").tile_set.resource_path)
+		#get_parent().get_node("TileMap").tile_set.resource_path = "res://Assets/SF1_Reworked_IvanCal/Tilesets/0.png"
+		# get_parent().get_node("TileMap").tile_set.
+		# print(event)
+	#if event.is_action_pressed("ui_accept"):
+	#	draw_character_movement_area()
+		# get_char_tile_position()
+		
+
 func generate_and_launch_new_turn_order():
 	var camera = get_parent().get_node("Camera2D")
 	
@@ -193,13 +207,6 @@ func active_character_or_enemey_display_info():
 	mc.cget_mp_total(),
 	mc.cget_mp_current())
 	print("Character Or Enemey Info after signal\n")
-
-func _input(event):
-	# print(event)
-	#if event.is_action_pressed("ui_accept"):
-	#	draw_character_movement_area()
-		# get_char_tile_position()
-	pass
 
 func get_char_tile_position() -> Vector2:
 	var new_pos = mc.get_character_current_pos()
