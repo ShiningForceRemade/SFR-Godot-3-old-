@@ -16,6 +16,7 @@ func _ready():
 	s_hide_battle_use_menu()
 	s_hide_battle_drop_menu()
 	s_hide_battle_give_menu()
+	s_hide_micro_actor_inventory_view()
 	
 	Singleton_Game_GlobalBattleVariables.battle_base = self
 	
@@ -324,3 +325,26 @@ func internal_tween_target_actor_micro(ox, oy, nx, ny):
 	tween_giveMenu.start()
 
 ### Target Actor Micro Info End
+
+
+### Micro Actor Inventory View Start
+
+func s_hide_micro_actor_inventory_view():
+	internal_tween_micro_actor_inventory_view(370, 131, 535, 131)
+	# maybe call the microactor clean up sprites function here
+
+func s_show_micro_actor_inventory_view():
+	internal_tween_micro_actor_inventory_view(535, 131, 370, 131)
+	$CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot.show_selected_actor_inventory_items()
+
+func internal_tween_micro_actor_inventory_view(ox, oy, nx, ny):
+	var tween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewTween
+	print(tween)
+	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
+	#print(bim_rect)
+	tween.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot, "position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()
+
+### Micro Actor Inventory View End

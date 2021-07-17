@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://General/Controls/LandEffectPopup/LandEffectPopup.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://General/BattleActionsMenu/UseMenu/UseMenu.tscn" type="PackedScene" id=13]
 [ext_resource path="res://General/BattleActionsMenu/DropMenu/DropMenu.tscn" type="PackedScene" id=14]
 [ext_resource path="res://General/BattleActionsMenu/GiveMenu/GiveMenu.tscn" type="PackedScene" id=15]
+[ext_resource path="res://General/Controls/MicroActorInventoryView/MicroActorInventoryView.tscn" type="PackedScene" id=16]
 
 [node name="BattleBaseRoot" type="Node"]
 script = ExtResource( 6 )
@@ -107,3 +108,8 @@ position = Vector2( 182, 182 )
 position = Vector2( 182, 182 )
 
 [node name="BattleGiveMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="MicroActorInventoryViewRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 16 )]
+position = Vector2( 535, 131 )
+
+[node name="MicroActorInventoryViewTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]

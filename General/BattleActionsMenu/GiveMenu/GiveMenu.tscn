@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/SFCD/Items/EmptyItemSlot.png" type="Texture" id=1]
 [ext_resource path="res://General/BattleActionsMenu/GiveMenu/GiveMenu.gd" type="Script" id=2]
 [ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=3]
 [ext_resource path="res://General/Font/FontMenu.res" type="BitmapFont" id=4]
+[ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" type="PackedScene" id=5]
 
 [node name="GiveMenuRoot" type="Node2D"]
 script = ExtResource( 2 )
@@ -84,3 +85,5 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource( 5 )]
