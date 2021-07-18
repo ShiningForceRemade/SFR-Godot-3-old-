@@ -57,14 +57,27 @@ func _ready():
 	pass # Replace with function body.
 
 func _input(event):
-	if event.is_action_released("ui_home"):
-		print("Set different tile map")
-		print(get_parent().get_node("TileMap").tile_set)
-		print(get_parent().get_node("TileMap").tile_set.resource_name)
-		print(get_parent().get_node("TileMap").tile_set.resource_path)
-		#get_parent().get_node("TileMap").tile_set.resource_path = "res://Assets/SF1_Reworked_IvanCal/Tilesets/0.png"
-		# get_parent().get_node("TileMap").tile_set.
-		# print(event)
+	pass
+	
+	# TODO: ask community which software they use
+	# best option for map creation might be using tiled with layers
+	# exporting the different layers as images and hot swapping them
+	# this way original can be mainted along with all sorts of other graphics remakes
+	# as long as they follow the original structure
+	#
+	# For completely custom maps the limitation above won't exist they can simply
+	# create and export whatever they want and graphics selection can be disabled
+	# good for custom maps and custom ""mods"" build on top
+	
+	#if event.is_action_released("ui_home"):
+	#	print("Set different tile map")
+	#	print(get_parent().get_node("TileMap").tile_set)
+	#	print(get_parent().get_node("TileMap").tile_set.resource_name)
+	#	print(get_parent().get_node("TileMap").tile_set.resource_path)
+		
+	#get_parent().get_node("TileMap").tile_set.resource_path = "res://Assets/SF1_Reworked_IvanCal/Tilesets/0.png"
+	# get_parent().get_node("TileMap").tile_set.
+	# print(event)
 	#if event.is_action_pressed("ui_accept"):
 	#	draw_character_movement_area()
 		# get_char_tile_position()

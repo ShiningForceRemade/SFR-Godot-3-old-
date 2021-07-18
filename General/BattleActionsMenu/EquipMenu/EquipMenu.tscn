@@ -57,10 +57,10 @@ __meta__ = {
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 7.24965
-margin_top = 7.0
-margin_right = -7.75034
-margin_bottom = -25.0
+margin_left = 6.24965
+margin_top = 6.0
+margin_right = -6.0
+margin_bottom = -24.0
 custom_fonts/font = ExtResource( 1 )
 text = "ITEM TYPE"
 valign = 1
@@ -73,9 +73,9 @@ __meta__ = {
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 7.24965
+margin_left = 6.0
 margin_top = 17.0
-margin_right = -7.75034
+margin_right = -6.0
 margin_bottom = -15.0
 custom_fonts/font = ExtResource( 1 )
 text = "ITEM NAME"
@@ -89,16 +89,15 @@ __meta__ = {
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 8.24965
+margin_left = 7.0
 margin_top = 26.0
-margin_right = -6.75034
+margin_right = -5.75034
 margin_bottom = -6.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.913725, 0.647059, 0.231373, 1 )
 text = "EQUIPPED"
 autowrap = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
