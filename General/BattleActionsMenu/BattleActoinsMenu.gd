@@ -13,10 +13,12 @@ var currently_selected_option: int = e_menu_options.STAY_OPTION
 onready var animationPlayer = $AnimationPlayer
 onready var label = $NinePatchRect/Label
 
-onready var attack_spirte = $AttackActionSprite
-onready var magic_spirte = $MagicActionSprite
+onready var attack_spirte    = $AttackActionSprite
+onready var magic_spirte     = $MagicActionSprite
 onready var inventory_spirte = $InventoryActionSprite
-onready var stay_spirte = $StayActionSprite
+onready var stay_spirte      = $StayActionSprite
+
+onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()
@@ -24,8 +26,10 @@ func _ready():
 	animationPlayer.play("StayMenuOption")
 	label.text = "Stay"
 
-func set_menu_active():
+
+func set_menu_active() -> void:
 	is_menu_active = true
+
 
 func _input(event):
 	if is_menu_active:
@@ -54,8 +58,16 @@ func _input(event):
 				return
 			elif currently_selected_option == e_menu_options.MAGIC_OPTION:
 				is_menu_active = false
-				get_parent().get_parent().get_parent().s_hide_action_menu()
-				get_parent().get_parent().get_parent().s_show_battle_magic_menu()
+				
+				if Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").spells_id.size() == 0:
+					noValidOptionNode.set_no_maigc_text()
+					# get_parent().get_parent().get_parent().s_hide_action_menu()
+					get_parent().get_parent().get_parent().s_hide_character_action_menu()
+					get_parent().get_parent().get_parent().s_show_no_valid_option_warning_box()
+				else:
+					get_parent().get_parent().get_parent().s_hide_action_menu()
+					get_parent().get_parent().get_parent().s_show_battle_magic_menu()
+					
 				return
 			elif currently_selected_option == e_menu_options.ATTACK_OPTION:
 				is_menu_active = false
@@ -88,12 +100,14 @@ func _input(event):
 			currently_selected_option = e_menu_options.MAGIC_OPTION
 			animationPlayer.play("MagicMenuOption")
 			label.text = "Magic"
-			
-func set_sprites_to_zero_frame():
+
+
+func set_sprites_to_zero_frame() -> void:
 	attack_spirte.frame = 0
 	magic_spirte.frame = 0
 	inventory_spirte.frame = 0
 	stay_spirte.frame = 0
+
 
 func setup_attack_range_and_selection():
 	# TODO: FIXME: temp while migrating to github and setting new structure

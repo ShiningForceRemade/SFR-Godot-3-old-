@@ -17,6 +17,7 @@ func _ready():
 	s_hide_battle_drop_menu()
 	s_hide_battle_give_menu()
 	s_hide_micro_actor_inventory_view()
+	s_hide_no_valid_option_warning_box()
 	
 	Singleton_Game_GlobalBattleVariables.battle_base = self
 	
@@ -102,7 +103,7 @@ func s_show_character_action_menu():
 
 func s_hide_character_action_menu():
 	internal_tween_battle_action_menu(bmc_x, bmc_y, bmc_x, bmc_y + 80)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot.set_menu_active()
+	# $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot.set_menu_active()
 
 func s_show_battle_action_menu(tween_direction):
 	if tween_direction == "right":
@@ -343,6 +344,32 @@ func internal_tween_micro_actor_inventory_view(ox, oy, nx, ny):
 	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
 	#print(bim_rect)
 	tween.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot, "position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()
+
+### Micro Actor Inventory View End
+
+# x 160
+# y 100
+
+
+### Micro Actor Inventory View Start
+
+func s_hide_no_valid_option_warning_box():
+	internal_tween_no_valid_option_warning_box(170, 100, -90, 100)
+	# maybe call the microactor clean up sprites function here
+
+func s_show_no_valid_option_warning_box():
+	internal_tween_no_valid_option_warning_box(430, 100, 170, 100)
+	$CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxRoot.start_self_clear_timer()
+
+func internal_tween_no_valid_option_warning_box(ox, oy, nx, ny):
+	var tween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxTween
+	print(tween)
+	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
+	#print(bim_rect)
+	tween.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxRoot, "position",
 			Vector2(ox, oy), Vector2(nx, ny), 0.1,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
