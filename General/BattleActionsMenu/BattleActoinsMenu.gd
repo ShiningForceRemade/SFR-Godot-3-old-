@@ -75,7 +75,7 @@ func _input(event):
 				# get_parent().get_parent().get_parent().s_show_battle_magic_menu()
 				setup_attack_range_and_selection()
 				return
-				
+		
 		if event.is_action_pressed("ui_down"):
 			print("Down")
 			set_sprites_to_zero_frame()

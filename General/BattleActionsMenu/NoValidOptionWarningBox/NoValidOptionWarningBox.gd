@@ -7,8 +7,10 @@ const internal_cleanup_timer_name: String = "internal_cleanup_timer__no_valid_op
 
 var is_no_valid_option_active: bool = false
 
+
 func _ready():
 	pass
+
 
 func _input(event):
 	if is_no_valid_option_active:
@@ -19,11 +21,14 @@ func _input(event):
 func set_text(text_arg: String) -> void:
 	textLabel.text = text_arg
 
+
 func set_no_target_text() -> void:
 	set_text("No target.")
 
+
 func set_no_maigc_text() -> void:
 	set_text("No magic.")
+
 
 func start_self_clear_timer() -> void:
 	internal_cleanup_timer = Timer.new()
@@ -34,6 +39,7 @@ func start_self_clear_timer() -> void:
 	internal_cleanup_timer.start()
 	
 	is_no_valid_option_active = true
+
 
 func s_internal_cleanup_timer_completed() -> void:
 	internal_cleanup_timer.stop()
