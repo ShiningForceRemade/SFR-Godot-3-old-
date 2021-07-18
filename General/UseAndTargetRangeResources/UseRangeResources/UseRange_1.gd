@@ -62,3 +62,9 @@ static func draw_use_range():
 	print("\n")
 	
 
+func get_use_range_array_representation() -> Array:
+	return [
+		[null,    1, null],
+		[1,    null,    1],
+		[null,    1, null],
+	]

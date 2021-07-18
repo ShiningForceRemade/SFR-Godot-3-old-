@@ -8,14 +8,14 @@
 script = ExtResource( 2 )
 item_name = "Wooden Arrow"
 texture = ExtResource( 3 )
-target_actor_type = 0
+target_actor_type = 2
 attribute = [ 1 ]
 attribute_bonus = [ 8 ]
 key_item = false
 price_buy = 350
 price_sell = 250
 item_use_range = ExtResource( 1 )
-item_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd"
+item_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_2.gd"
 item_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
 sell_to_deals = false
 usable = false

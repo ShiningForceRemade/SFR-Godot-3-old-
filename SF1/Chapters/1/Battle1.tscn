@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://SF1/Chapters/1/Battle1_Tilemap_SF1-Original.tres" type="TileSet" id=1]
+[ext_resource path="res://SF1/Chapters/1/TargetSelectionLogicNodeRoot.gd" type="Script" id=2]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/Goblin.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn" type="PackedScene" id=4]
 [ext_resource path="res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.tscn" type="PackedScene" id=5]
@@ -267,3 +268,6 @@ visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 color = Color( 0.184314, 0.0901961, 0.0901961, 1 )
+
+[node name="TargetSelectionLogicNodeRoot" type="Node" parent="."]
+script = ExtResource( 2 )

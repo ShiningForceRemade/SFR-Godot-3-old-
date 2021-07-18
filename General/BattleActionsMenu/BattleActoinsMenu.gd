@@ -73,7 +73,12 @@ func _input(event):
 				is_menu_active = false
 				get_parent().get_parent().get_parent().s_hide_action_menu()
 				# get_parent().get_parent().get_parent().s_show_battle_magic_menu()
-				setup_attack_range_and_selection()
+				# setup_attack_range_and_selection()
+				
+				# TODO move this within the target select node itself
+				var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+				Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
+				
 				return
 		
 		if event.is_action_pressed("ui_down"):
