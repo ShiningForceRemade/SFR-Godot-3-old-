@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Map_Sprites.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://SF1/Items/Weapons/WoodenArrow.tres" type="Resource" id=4]
 [ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=5]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture" id=6]
+[ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "DownMovement"
@@ -145,6 +146,7 @@ hp_growth = 2
 critical_hit_chance = 3
 ai_target_priority = 25
 movement_type = 3
+attack_normal_animation_unpromoted = ExtResource( 7 )
 
 [node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )

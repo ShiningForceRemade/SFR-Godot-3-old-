@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://SF1/Items/Weapons/WoodenStaff.tres" type="Resource" id=4]
 [ext_resource path="res://SF1/Spells/Blaze/Blaze.tres" type="Resource" id=5]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png" type="Texture" id=6]
+[ext_resource path="res://SF1/Characters/Tao/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
 
 [node name="TaoRoot" type="Node2D"]
 script = ExtResource( 3 )
@@ -13,40 +14,23 @@ script = ExtResource( 3 )
 [node name="CharacterRoot" parent="." instance=ExtResource( 1 )]
 character_name = "Tao"
 character_class = 4
-is_promoted = false
 inventory_items_id = [ ExtResource( 4 ) ]
 is_item_equipped = [ true ]
 spells_id = [ ExtResource( 5 ) ]
 texture_protrait = ExtResource( 6 )
 level = 1
 attack = 4
-attack_growth = 0
 defense = 4
-defense_growth = 0
 agility = 6
-agility_growth = 0
 move = 5
 HP_Current = 10
 HP_Total = 10
-hp_growth = 0
 MP_Current = 7
 MP_Total = 7
 mp_growth = 3
-magic_array = [  ]
-status = 0
 critical_hit_chance = 3
-critical_hit_growth = 0
-double_attack_chance = 10
-dodge_chance = 10
 ai_target_priority = 75
-movement_type = 0
-magic_resistance = 0
-slow_resistance = 0
-muddle_resistance = 0
-sleep_and_desoul_resistance = 0
-bolt_resistance = 0
-blaze_resistance = 0
-freeze_resistance = 0
+attack_normal_animation_unpromoted = ExtResource( 7 )
 
 [node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )

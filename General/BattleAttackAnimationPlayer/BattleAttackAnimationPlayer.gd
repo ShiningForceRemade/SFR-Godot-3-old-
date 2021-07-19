@@ -38,8 +38,9 @@ func _ready():
 
 
 func setup_character_and_enemey_sprites_idle() -> void:
-	var hans_attack = load("res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres")
-	internal_init_resource_for_actor(characterSprite, hans_attack)
+	var anim_aup = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").attack_normal_animation_unpromoted
+	var attack_anim = anim_aup # load(anim_aup)
+	internal_init_resource_for_actor(characterSprite, attack_anim)
 	
 	# TODO: create function in chracter base to automatically pass back the equipped item
 	var weapon_res = load("res://SF1/Items/Weapons/WoodenArrow.tres") # Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]

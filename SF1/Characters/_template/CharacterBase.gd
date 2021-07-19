@@ -128,6 +128,8 @@ export var times_defeated: int = 0
 
 export var experience_points: int = 0
 
+export var attack_normal_animation_unpromoted: Resource
+
 # messy wait for native grouping support then subgroup
 #var test = "" # We will store the value here
 #func _get(property):
