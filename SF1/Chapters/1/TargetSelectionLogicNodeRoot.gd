@@ -63,9 +63,11 @@ func _input(event):
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 		
 		if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_left"):
-			target_selection_counter_clockwise()
+			# target_selection_counter_clockwise_quadarnt_style()
+			target_selection_clockwise__style_naive_pass_forward()
 		elif event.is_action_pressed("ui_right") or event.is_action_pressed("ui_up"):
-			target_selection_clockwise()
+			# target_selection_clockwise_quadarnt_style() 
+			target_selection_counter_clockwise__style_naive_pass_forward()
 		
 
 func setup_use_range_and_target_range_selection(item_arg) -> void:
@@ -142,7 +144,137 @@ func set_cursor_target_on_first_found_enemey() -> void:
 	
 	return
 
-func target_selection_clockwise():
+# TODO: allow for swapping to different selection methods
+# should have smarter ones than a simple select next in array layout
+# for demo and inital builds use naive pass same as SF1 for naive cases
+# 
+# smart heal ai priorty style
+# damage finish off enemey ai
+# directional based targeting (if character is looking left target left section first triangle cut square range
+# 
+# for generic target selection use shoulder buttons to swap selection logic
+# have a ui popup update as well so its clear so style is being used
+# might be nice to have a skull identifer to clearly show next target 
+# 
+
+func target_selection_clockwise__style_naive_pass_forward():
+	print("Clockwise")
+	setup_quadrant_vars()
+	print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
+	
+	if forward_pass_naive(current_selection_vec2.x, current_selection_vec2.y):
+		return
+	if forward_pass_naive(0, 0):
+		return
+	
+	print("End nothing found")
+	pass
+
+func target_selection_counter_clockwise__style_naive_pass_forward():
+	print("Clockwise")
+	setup_quadrant_vars()
+	print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
+	
+	if backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y):
+		return
+	if backwards_pass_naive(t_rows - 1, t_cols - 1):
+		return
+	
+	print("End nothing found")
+	pass
+
+func forward_pass_naive(start_row, start_col) -> bool:
+	setup_quadrant_vars()
+	
+	var r = start_row
+	var c = start_col
+	
+	print(use_range_array_rep, "\n")
+	var check_pos
+	
+	while r < t_rows:
+		while c < t_cols:
+			if use_range_array_rep[r][c] == 1:
+				if current_selection_vec2 == Vector2(r, c):
+					print("Currently Selected - Skip - ", current_selection_vec2)
+					c += 1
+					continue
+				
+				print("row ", r, " col ",  c)
+				
+				check_pos = get_tile_adjustment(r, c_row, c, c_col)
+				print(check_pos)
+				
+				for child in target_node_children:
+					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+						set_and_save_new_target_selection(r, c, child)
+						return true
+				
+			c += 1
+			
+		c = 0
+		r += 1
+	
+	print("escape")
+	return false
+
+func backwards_pass_naive(start_row, start_col) -> bool:
+	setup_quadrant_vars()
+	
+	var r = start_row
+	var c = start_col
+	
+	print(use_range_array_rep, "\n")
+	var check_pos
+	
+	while r >= 0:
+		while c >= 0:
+			if use_range_array_rep[r][c] == 1:
+				if current_selection_vec2 == Vector2(r, c):
+					print("Currently Selected - Skip - ", current_selection_vec2)
+					c -= 1
+					continue
+				
+				print("row ", r, " col ",  c)
+				
+				check_pos = get_tile_adjustment(r, c_row, c, c_col)
+				print(check_pos)
+				
+				for child in target_node_children:
+					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+						set_and_save_new_target_selection(r, c, child)
+						return true
+				
+			c -= 1
+			
+		c = t_cols - 1
+		r -= 1
+	
+	print("escape")
+	return false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func target_selection_clockwise_quadarnt_style():
 	print("Clockwise")
 	setup_quadrant_vars()
 	print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
@@ -167,7 +299,7 @@ func target_selection_clockwise():
 	print("End nothing found")
 	pass
 
-func target_selection_counter_clockwise():
+func target_selection_counter_clockwise_quadarnt_style():
 	print("Counter Clockwise")
 	setup_quadrant_vars()
 	# print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
