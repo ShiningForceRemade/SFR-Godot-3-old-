@@ -4,6 +4,8 @@ class_name CN_SF1_Item_Weapon
 
 enum character_classes {SWORDSMAN}
 
+export var battle_texture: Texture
+
 export var chance_to_crack: bool = false
 
 export(Array, int, "Swordsman - SDMN", "Knight - KNT",

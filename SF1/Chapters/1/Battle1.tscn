@@ -253,7 +253,7 @@ position = Vector2( 157, 132 )
 is_npc = true
 
 [node name="BattleAttackAnimationPlayerRoot" parent="." instance=ExtResource( 18 )]
-position = Vector2( -160, -90 )
+position = Vector2( -100, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 211, 409 )

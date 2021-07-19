@@ -24,6 +24,7 @@ var old_zoom
 var camera_active_follow: bool = true
 
 func _ready():
+	Singleton_Game_GlobalBattleVariables.camera_node = self
 	#position.x = 180
 	# position.y = 405
 	# print("Camera - playernode - ", playerNode)
@@ -63,7 +64,10 @@ func _process(_delta):
 	# 90 viewport vertical h
 	#if position.y > (720 - 90):
 	#	position.y = 720 - 90
-			
+	
+	position.x = floor(position.x)
+	position.y = floor(position.y)
+	
 	pass
 
 func zoom():
@@ -77,7 +81,7 @@ func zoom():
 
 func rotate_cam():
 	if Input.is_action_just_pressed("ui_end"):
-		rotate(90)
+		rotate(10)
 		
 func smooth_move_to_new_position(new_player_node):
 	camera_smooth_moving = true
@@ -125,17 +129,24 @@ func _physics_process(_delta):
 
 func test_an():
 	if Input.is_action_just_released("ui_q_key"):
-		print("hiohio")
-		old_pos = position
-		old_zoom = zoom
-		zoom.x = 1
-		zoom.y = 1
-		position.x = 0
-		position.y = 0
-		camera_active_follow = false
-		battleAttackAnimationPlayer.show()
+		position_camera_for_battle_scene()
 	if Input.is_action_just_released("ui_w_key"):
-		zoom = old_zoom
-		position = old_pos
-		camera_active_follow = true
-		battleAttackAnimationPlayer.hide()
+		reset_camera_for_map()
+
+
+func position_camera_for_battle_scene():
+	old_pos = position
+	old_zoom = zoom
+	zoom.x = 1
+	zoom.y = 1
+	position.x = 0
+	position.y = 0
+	camera_active_follow = false
+	battleAttackAnimationPlayer.show()
+
+
+func reset_camera_for_map():
+	zoom = old_zoom
+	position = old_pos
+	camera_active_follow = true
+	battleAttackAnimationPlayer.hide()

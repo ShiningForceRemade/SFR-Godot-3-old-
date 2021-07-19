@@ -61,6 +61,24 @@ func _input(event):
 			print("Called")
 			print("TODO: trigger battle action scene and play out the item use effect")
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
+			
+			Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
+			# Singleton_Game_GlobalBattleVariables
+			
+			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_land_effect()
+			
+			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
+			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_actor_attacking()
+			yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
+			
+			print("Complete")
+			
+			Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
+			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
+			target_range.cleanup_cursor()
+			Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
+			
+			# Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 		
 		if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_left"):
 			# target_selection_counter_clockwise_quadarnt_style()

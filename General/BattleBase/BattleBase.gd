@@ -18,6 +18,7 @@ func _ready():
 	s_hide_battle_give_menu()
 	s_hide_micro_actor_inventory_view()
 	s_hide_no_valid_option_warning_box()
+	$CanvasLayerInfoControls/ScreenFaderColorRect.hide()
 	
 	Singleton_Game_GlobalBattleVariables.battle_base = self
 	
@@ -78,6 +79,16 @@ func set_land_effect_and_active_actor_positions(active_x: int, land_x: int):
 			lep_rect, Vector2(land_x, lep_rect.y), 0.15,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween_activeActor.start()
+
+func s_hide_land_effect():
+	# set_land_effect_and_active_actor_positions(500, -90)
+	
+	var tween_landeffect = $CanvasLayerInfoControls/LandEffectPopupTween
+	var aair_rect = $CanvasLayerInfoControls/ActiveActorMicroInfoRoot.rect_position
+	tween_landeffect.interpolate_property($CanvasLayerInfoControls/ActiveActorMicroInfoRoot, "rect_position",
+			aair_rect, Vector2(500, -90), 0.15,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween_landeffect.start()
 
 # Land Effect and Active Actor Info Windows End
 

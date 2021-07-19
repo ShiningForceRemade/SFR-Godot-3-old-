@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
+[ext_resource path="res://Assets/SF1/Weapons/Wooden_Arrow.png" type="Texture" id=8]
+[ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=9]
 
 [node name="BattleAttackAnimationPlayerRoot" type="Node2D"]
 script = ExtResource( 5 )
@@ -56,7 +58,13 @@ texture = ExtResource( 3 )
 hframes = 4
 region_rect = Rect2( 0, 132, 300, 100 )
 
+[node name="WeaponSprite" type="Sprite" parent="CharacterWrapper"]
+position = Vector2( 213, 107 )
+rotation = -0.872665
+texture = ExtResource( 8 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]
+anims/AttackNormal = ExtResource( 9 )
 
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
