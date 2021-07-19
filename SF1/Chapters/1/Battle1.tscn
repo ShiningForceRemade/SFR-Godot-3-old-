@@ -184,7 +184,7 @@ __meta__ = {
 position = Vector2( 205, 420 )
 
 [node name="HansRoot" parent="Characters" instance=ExtResource( 11 )]
-position = Vector2( 181, 468 )
+position = Vector2( 181, 228 )
 
 [node name="KenRoot" parent="Characters" instance=ExtResource( 13 )]
 position = Vector2( 229, 420 )
@@ -210,6 +210,26 @@ is_npc = true
 
 [node name="GoblinRoot6" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 229, 228 )
+is_npc = true
+
+[node name="GoblinRoot7" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 205, 252 )
+is_npc = true
+
+[node name="GoblinRoot8" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 181, 276 )
+is_npc = true
+
+[node name="GoblinRoot11" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 157, 252 )
+is_npc = true
+
+[node name="GoblinRoot12" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 157, 204 )
+is_npc = true
+
+[node name="GoblinRoot13" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 133, 228 )
 is_npc = true
 
 [node name="GoblinRoot9" parent="Enemies" instance=ExtResource( 3 )]
