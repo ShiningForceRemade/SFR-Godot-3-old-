@@ -71,6 +71,8 @@ func _input(event):
 func setup_use_range_and_target_range_selection(item_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
 	
+	print("Setup")
+	
 	is_target_selection_active = true
 
 	print(item_arg)
@@ -80,6 +82,8 @@ func setup_use_range_and_target_range_selection(item_arg) -> void:
 	item_use_range._ready()
 	# TODO create cleanup function to remove the attack grid when canclled or completed
 	item_use_range.draw_use_range()
+	Singleton_Game_GlobalBattleVariables.field_logic_node.show_use_target_tiles()
+	
 	target_range = load(item_arg.item_use_target_path).new()
 	# TODO create cleanup function for this to remove the curosr
 	target_range.draw_cursor_and_get_targets("test arg 123")

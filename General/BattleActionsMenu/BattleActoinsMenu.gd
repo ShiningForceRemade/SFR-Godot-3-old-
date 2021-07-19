@@ -71,7 +71,7 @@ func _input(event):
 				return
 			elif currently_selected_option == e_menu_options.ATTACK_OPTION:
 				is_menu_active = false
-				get_parent().get_parent().get_parent().s_hide_action_menu()
+				get_parent().get_parent().get_parent().s_hide_character_action_menu()
 				# get_parent().get_parent().get_parent().s_show_battle_magic_menu()
 				# setup_attack_range_and_selection()
 				
