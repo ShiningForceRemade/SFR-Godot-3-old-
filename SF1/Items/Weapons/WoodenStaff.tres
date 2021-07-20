@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://SF1/Items/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SFCD/Items/Weapons/Wooden Staff.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=3]
 
 [resource]
 script = ExtResource( 1 )
@@ -17,5 +18,6 @@ item_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResource
 item_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
 sell_to_deals = false
 usable = false
+battle_texture = ExtResource( 3 )
 chance_to_crack = false
 equippable_by = [ 6, 4 ]

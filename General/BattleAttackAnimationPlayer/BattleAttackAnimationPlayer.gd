@@ -1,6 +1,9 @@
+tool
 extends Node2D
 
 signal signal_battle_scene_complete
+
+export var reset_scene: bool = false setget internal_reset_all_actor_sprites_back_to_default_position
 
 export var character_actor_animation_res: Resource
 export var enemey_actor_animation_res: Resource
@@ -43,7 +46,7 @@ func setup_character_and_enemey_sprites_idle() -> void:
 	internal_init_resource_for_actor(characterSprite, attack_anim)
 	
 	# TODO: create function in chracter base to automatically pass back the equipped item
-	var weapon_res = load("res://SF1/Items/Weapons/WoodenArrow.tres") # Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+	var weapon_res = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0] # load("res://SF1/Items/Weapons/WoodenArrow.tres") # Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
 	internal_init_weapon_for_actor(weaponSprite, weapon_res)
 
 
@@ -77,3 +80,11 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	# print("Animation Name - ", animation_name_arg)
 	char_animationPlayer.remove_animation(internal_animation_name)
 	emit_signal("signal_battle_scene_complete")
+
+func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
+	print("Reseting Scene")
+	get_node("CharacterWrapper").get_node("CharacterSprite").position = Vector2(240, 92)
+	get_node("CharacterWrapper").get_node("WeaponSprite").position =  Vector2(214, 108)
+	get_node("CharacterWrapper").get_node("WeaponSprite").rotation_degrees = 0
+	
+	get_node("EnemeyWrapper").get_node("EnemeySprite").position = Vector2(80, 86)

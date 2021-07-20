@@ -2,65 +2,100 @@
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Battle_Sprites.png" type="Texture" id=3]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Goblin/Battle_Sprites.png" type="Texture" id=4]
 [ext_resource path="res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
-[ext_resource path="res://Assets/SF1/Weapons/Wooden_Arrow.png" type="Texture" id=8]
-[ext_resource path="res://SF1/Characters/Tao/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=9]
+[ext_resource path="res://Assets/SF1/Weapons/Short_Sword.png" type="Texture" id=8]
+[ext_resource path="res://SF1/Characters/MaxChar/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=9]
 
 [node name="BattleAttackAnimationPlayerRoot" type="Node2D"]
 script = ExtResource( 5 )
 character_actor_animation_res = ExtResource( 6 )
 enemey_actor_animation_res = ExtResource( 7 )
 
+[node name="EditorHelperToolWrapperNode" type="Node" parent="."]
+
+[node name="TextEdit" type="TextEdit" parent="EditorHelperToolWrapperNode"]
+margin_top = -184.0
+margin_right = 319.0
+margin_bottom = -19.0
+text = "To reset the scene back to default for a new 
+animation
+
+1. Click the BattleAttackAnimationPlayerRoot to
+the left <---
+
+2. Now Click the reset scene checkbox button 
+in the inspector --> (button at the top)"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
 [node name="BackgroundBlackColorRect" type="ColorRect" parent="."]
 margin_right = 320.0
 margin_bottom = 180.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="BackgroundWrapper" type="Node2D" parent="."]
 position = Vector2( 0, -7 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CenterSprite" type="Sprite" parent="BackgroundWrapper"]
 position = Vector2( 128, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 256, 384, 256, 96 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="RightSprite" type="Sprite" parent="BackgroundWrapper"]
 position = Vector2( 384, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 256, 384, 256, 96 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="LeftSprite" type="Sprite" parent="BackgroundWrapper"]
 position = Vector2( -128, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 256, 384, 256, 96 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CharacterWrapper" type="Node2D" parent="."]
 
 [node name="GroundSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 239.316, 133.981 )
+position = Vector2( 240, 134 )
 texture = ExtResource( 2 )
 vframes = 9
 frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CharacterSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 238.332, 92.181 )
+position = Vector2( 242, 85 )
+z_index = 1
 texture = ExtResource( 3 )
-hframes = 3
-region_rect = Rect2( 0, 132, 300, 100 )
+hframes = 4
 
 [node name="WeaponSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 213, 107 )
-rotation = -0.872665
+position = Vector2( 279, 90 )
+rotation = 2.52724
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]
@@ -69,7 +104,7 @@ anims/AttackNormal = ExtResource( 9 )
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
-position = Vector2( 80.8274, 85.298 )
+position = Vector2( 80, 86 )
 texture = ExtResource( 4 )
 hframes = 4
 region_rect = Rect2( 0, 0, 260, 100 )
