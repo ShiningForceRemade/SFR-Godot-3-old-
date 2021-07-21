@@ -5,6 +5,43 @@ const bmc_x: int = 171
 const bmc_y: int = 182
 
 # onready var battleAttackAnimationPlayer = $CanvasLayerInfoControls/BattleAttackAnimationPlayer
+onready var landEffectPopupTween = $CanvasLayerInfoControls/LandEffectPopupTween
+onready var landEffectPopupRoot = $CanvasLayerInfoControls/LandEffectPopupRoot
+onready var activeActorMicroInfoTween = $CanvasLayerInfoControls/ActiveAcorMicroInfoTween
+onready var activeActorMicroInfoRoot = $CanvasLayerInfoControls/ActiveActorMicroInfoRoot	
+	
+onready var battleActionsMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuTween
+onready var battleActionsMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot
+
+onready var battleInventoryMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuTween
+onready var battleInventoryMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot
+
+onready var battleMagicMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuTween
+onready var battleMagicMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuRoot
+
+onready var battleEquipMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuTween
+onready var battleEquipMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuRoot
+
+onready var battleViewSelectedActorInfoTween = $CanvasLayerInfoControls/BattleViewSelectedActorInfoTween
+onready var battleViewSelectedActorInfoRoot = $CanvasLayerInfoControls/BattleViewSelectedActorInfoRoot
+
+onready var battleUseMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuTween
+onready var battleUseMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuRoot
+
+onready var battleDropMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuTween
+onready var battleDropMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuRoot
+
+onready var battleGiveMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuTween
+onready var battleGiveMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuRoot
+
+onready var microActorInventoryViewTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewTween
+onready var microActorInventoryViewRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot
+
+onready var noValidOptionWarningBoxTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxTween
+onready var noValidOptionWarningBoxRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxRoot
+
+onready var targetActorMicroInfoTween = $CanvasLayerInfoControls/TargetActorMicroInfoTween
+onready var targetActorMicroInfoRoot = $CanvasLayerInfoControls/TargetActorMicroInfoRoot
 
 func _ready():
 	# battleAttackAnimationPlayer.hide()
@@ -66,70 +103,58 @@ func s_show_land_effect_and_active_actor_info():
 	set_land_effect_and_active_actor_positions(270, 6)
 
 func set_land_effect_and_active_actor_positions(active_x: int, land_x: int):
-	var tween_landeffect = $CanvasLayerInfoControls/LandEffectPopupTween
-	var aair_rect = $CanvasLayerInfoControls/ActiveActorMicroInfoRoot.rect_position
-	tween_landeffect.interpolate_property($CanvasLayerInfoControls/ActiveActorMicroInfoRoot, "rect_position",
+	var aair_rect = activeActorMicroInfoRoot.rect_position
+	landEffectPopupTween.interpolate_property(activeActorMicroInfoRoot, "rect_position",
 			aair_rect, Vector2(active_x, aair_rect.y), 0.15,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_landeffect.start()
+	landEffectPopupTween.start()
 	
-	var tween_activeActor = $CanvasLayerInfoControls/ActiveAcorMicroInfoTween
-	var lep_rect = $CanvasLayerInfoControls/LandEffectPopupRoot.rect_position
-	tween_activeActor.interpolate_property($CanvasLayerInfoControls/LandEffectPopupRoot, "rect_position",
+	var lep_rect = landEffectPopupRoot.rect_position
+	activeActorMicroInfoTween.interpolate_property(landEffectPopupRoot, "rect_position",
 			lep_rect, Vector2(land_x, lep_rect.y), 0.15,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_activeActor.start()
+	activeActorMicroInfoTween.start()
 
 func s_hide_land_effect():
 	# set_land_effect_and_active_actor_positions(500, -90)
-	
-	var tween_landeffect = $CanvasLayerInfoControls/LandEffectPopupTween
-	var aair_rect = $CanvasLayerInfoControls/ActiveActorMicroInfoRoot.rect_position
-	tween_landeffect.interpolate_property($CanvasLayerInfoControls/ActiveActorMicroInfoRoot, "rect_position",
+	var aair_rect = activeActorMicroInfoRoot.rect_position
+	landEffectPopupTween.interpolate_property(activeActorMicroInfoRoot, "rect_position",
 			aair_rect, Vector2(500, -90), 0.15,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_landeffect.start()
+	landEffectPopupTween.start()
 
 # Land Effect and Active Actor Info Windows End
 
 # Action Menu
 # delete these three functions after checking over
-func s_show_action_menu():
-	set_action_menu(500)
+# TODO: rename to follow the standard naming convention of all the other menus need to clean s_hide_action_menu used in a fair few places
+# func s_show_action_menu():
+# 	set_action_menu(500)
 
 func s_hide_action_menu():
 	set_action_menu(500)
 
 func set_action_menu(xpos: int):
-	var tween_actionMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuTween
-	var bam_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot.position
-	tween_actionMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot, "position",
+	var tween_actionMenu = battleActionsMenuTween
+	var bam_rect = battleActionsMenuRoot.position
+	tween_actionMenu.interpolate_property(battleActionsMenuRoot, "position",
 			bam_rect, Vector2(xpos, bam_rect.y), 0.15,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween_actionMenu.start()
 
 func s_show_character_action_menu():
-	internal_tween_battle_action_menu(bmc_x, bmc_y + 80, bmc_x, bmc_y)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot.set_menu_active()
+	internal_tween_move_to_position(bmc_x, bmc_y + 80, bmc_x, bmc_y, battleActionsMenuTween, battleActionsMenuRoot)
+	battleActionsMenuRoot.set_menu_active()
 
 func s_hide_character_action_menu():
-	internal_tween_battle_action_menu(bmc_x, bmc_y, bmc_x, bmc_y + 80)
-	# $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot.set_menu_active()
+	internal_tween_move_to_position(bmc_x, bmc_y, bmc_x, bmc_y + 80, battleActionsMenuTween, battleActionsMenuRoot)
+	# battleActionsMenuRoot.set_menu_active()
 
 func s_show_battle_action_menu(tween_direction):
 	if tween_direction == "right":
-		internal_tween_battle_action_menu(bmc_x * 2.5, bmc_y, bmc_x, bmc_y)
+		internal_tween_move_to_position(bmc_x * 2.5, bmc_y, bmc_x, bmc_y, battleActionsMenuTween, battleActionsMenuRoot)
 	else:
-		internal_tween_battle_action_menu(bmc_x, bmc_y, bmc_x, bmc_y + 80)
-
-func internal_tween_battle_action_menu(ox, oy, nx, ny):
-	var tween_actionMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuTween
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_actionMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_actionMenu.start()	
+		internal_tween_move_to_position(bmc_x, bmc_y, bmc_x, bmc_y + 80, battleActionsMenuTween, battleActionsMenuRoot)
 
 ###
 # Battle Actions Menus Start
@@ -137,252 +162,116 @@ func internal_tween_battle_action_menu(ox, oy, nx, ny):
 
 func s_show_battle_inventory_menu(tween_direction = "not_right"):
 	if tween_direction == "right":
-		internal_tween_battle_inventory_menu(bmc_x * 2.5, bmc_y, bmc_x, bmc_y)
+		internal_tween_move_to_position(bmc_x * 2.5, bmc_y, bmc_x, bmc_y, battleInventoryMenuTween, battleInventoryMenuRoot)
 	else:
 		# var tween_inventoryMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuTween
-		#var bam_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot.position
+		#var bam_rect = battleActionsMenuRoot.position
 		#print(bam_rect)
 		#tween_inventoryMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot, "position",
 		#		Vector2(bmc_x, bmc_y), Vector2(bmc_x * 2.5, bmc_y), 0.1,
 		#		Tween.TRANS_LINEAR, Tween.EASE_OUT)
 		#tween_inventoryMenu.start()
-		internal_tween_battle_inventory_menu(bmc_x, bmc_y + 80, bmc_x, bmc_y)
+		#internal_tween_battle_inventory_menu(bmc_x, bmc_y + 80, bmc_x, bmc_y)
+		internal_tween_move_to_position(bmc_x, bmc_y + 80, bmc_x, bmc_y, battleInventoryMenuTween, battleInventoryMenuRoot)
 		
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.set_battle_inventory_menu_active()
+	battleInventoryMenuRoot.set_battle_inventory_menu_active()
 	
 	# pass
 
 func s_hide_battle_inventory_menu(tween_direction = "not_right"):
 	if tween_direction == "right":
-		internal_tween_battle_inventory_menu(bmc_x, bmc_y, bmc_x * 2.5, bmc_y)
+		internal_tween_move_to_position(bmc_x, bmc_y, bmc_x * 2.5, bmc_y, battleInventoryMenuTween, battleInventoryMenuRoot)
 	else:
-		internal_tween_battle_inventory_menu(bmc_x, bmc_y, bmc_x, bmc_y + 80)
+		internal_tween_move_to_position(bmc_x, bmc_y, bmc_x, bmc_y + 80, battleInventoryMenuTween, battleInventoryMenuRoot)
 
-func internal_tween_battle_inventory_menu(ox, oy, nx, ny):
-	var tween_inventoryMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuTween
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_inventoryMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_inventoryMenu.start()
-
-###
-# Battle Actions Menus End
-###
-
-### 
-# Battle Magic Menu Start
-###
 
 func s_hide_battle_magic_menu():
-	internal_tween_battle_magic_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 80)
+	internal_tween_move_to_position(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 80, battleMagicMenuTween, battleMagicMenuRoot)
 
 func s_show_battle_magic_menu():
-	internal_tween_battle_magic_menu(bmc_x + 11, bmc_y + 80, bmc_x + 11, bmc_y)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuRoot.set_battle_magic_menu_active()
+	internal_tween_move_to_position(bmc_x + 11, bmc_y + 80, bmc_x + 11, bmc_y, battleMagicMenuTween, battleMagicMenuRoot)
+	battleMagicMenuRoot.set_battle_magic_menu_active()
 
-func internal_tween_battle_magic_menu(ox, oy, nx, ny):
-	print("Magic Menu tween")
-	var tween_magicMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuTween
-	print(tween_magicMenu)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_magicMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_magicMenu.start()
-
-### 
-# Battle Magic Menu End
-###
-
-###
-# Battle Equip Menu Start
-###
 
 func s_hide_battle_equip_menu():
-	internal_tween_battle_equip_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92)
+	internal_tween_move_to_position(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92, battleEquipMenuTween, battleEquipMenuRoot)
 
 func s_show_battle_equip_menu():
-	internal_tween_battle_equip_menu(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuRoot.set_battle_equip_menu_active()
+	internal_tween_move_to_position(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y, battleEquipMenuTween, battleEquipMenuRoot)
+	battleEquipMenuRoot.set_battle_equip_menu_active()
 
-func internal_tween_battle_equip_menu(ox, oy, nx, ny):
-	print("Equip Menu tween")
-	var tween_equipMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuTween
-	print(tween_equipMenu)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_equipMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_equipMenu.start()
-
-###
-# Battle Equip Menu End
-###
-
-###
-# Battle View Selected Actor Info Start
-###
 
 func s_hide_battle_view_selected_actor_info_menu():
-	internal_tween_battle_view_selected_actor_info_menu(95, 33, 95, 33 - 220)
+	internal_tween_move_to_position(95, 33, 95, 33 - 220, battleViewSelectedActorInfoTween, battleViewSelectedActorInfoRoot)
 
 func s_show_battle_view_selected_actor_info_menu():
-	internal_tween_battle_view_selected_actor_info_menu(95, 33 + 220, 95, 33)
-	$CanvasLayerInfoControls/BattleViewSelectedActorInfoRoot.set_battle_view_selected_actor_info_menu_active()
+	internal_tween_move_to_position(95, 33 + 220, 95, 33, battleViewSelectedActorInfoTween, battleViewSelectedActorInfoRoot)
+	battleViewSelectedActorInfoRoot.set_battle_view_selected_actor_info_menu_active()
 
-func internal_tween_battle_view_selected_actor_info_menu(ox, oy, nx, ny):
-	print("Battle View Selected Actor Info tween")
-	var tween_equipMenu = $CanvasLayerInfoControls/BattleViewSelectedActorInfoTween
-	print(tween_equipMenu)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_equipMenu.interpolate_property($CanvasLayerInfoControls/BattleViewSelectedActorInfoRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_equipMenu.start()
-
-###
-# Battle View Selected Actor Info End
-###
-
-### Use Menu Start
 
 func s_hide_battle_use_menu():
-	internal_tween_battle_battle_use_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92)
+	internal_tween_move_to_position(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92, battleUseMenuTween, battleUseMenuRoot)
 
 func s_show_battle_use_menu():
-	internal_tween_battle_battle_use_menu(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuRoot.set_battle_use_menu_active()
+	internal_tween_move_to_position(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y, battleUseMenuTween, battleUseMenuRoot)
+	battleUseMenuRoot.set_battle_use_menu_active()
 
-func internal_tween_battle_battle_use_menu(ox, oy, nx, ny):
-	print("Use Menu tween")
-	var tween_useMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuTween
-	print(tween_useMenu)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_useMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_useMenu.start()
-
-### Use Menu End
-
-### Use Menu Start
 
 func s_hide_battle_drop_menu():
-	internal_tween_battle_battle_drop_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92)
+	internal_tween_move_to_position(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92, battleDropMenuTween, battleDropMenuRoot)
 
 func s_show_battle_drop_menu():
-	internal_tween_battle_battle_drop_menu(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuRoot.set_battle_drop_menu_active()
+	internal_tween_move_to_position(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y, battleDropMenuTween, battleDropMenuRoot)
+	battleDropMenuRoot.set_battle_drop_menu_active()
 
-func internal_tween_battle_battle_drop_menu(ox, oy, nx, ny):
-	print("Use Menu tween")
-	var tween_dropMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuTween
-	print(tween_dropMenu)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_dropMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_dropMenu.start()
-
-### Use Menu End
-
-### Give Menu Start
 
 func s_hide_battle_give_menu():
-	internal_tween_battle_battle_give_menu(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92)
+	internal_tween_move_to_position(bmc_x + 11, bmc_y, bmc_x + 11, bmc_y + 92, battleGiveMenuTween, battleGiveMenuRoot)
 
 func s_show_battle_give_menu():
-	internal_tween_battle_battle_give_menu(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuRoot.set_battle_give_menu_active()
+	internal_tween_move_to_position(bmc_x + 11, bmc_y + 92, bmc_x + 11, bmc_y, battleGiveMenuTween, battleGiveMenuRoot)
+	battleGiveMenuRoot.set_battle_give_menu_active()
 
-func internal_tween_battle_battle_give_menu(ox, oy, nx, ny):
-	print("Use Give tween")
-	var tween_giveMenu = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuTween
-	print(tween_giveMenu)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_giveMenu.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_giveMenu.start()
-
-### Give Menu End
-
-
-### Target Actor Micro Info Start
 
 func s_hide_target_actor_micro():
-	internal_tween_target_actor_micro(270, 186, 434, 186)
+	internal_tween_move_to_rect_position(270, 186, 434, 186, targetActorMicroInfoTween, targetActorMicroInfoRoot)
 
 func s_show_target_actor_micro():
-	internal_tween_target_actor_micro(434, 186, 270, 186)
-	$CanvasLayerInfoControls/TargetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	internal_tween_move_to_rect_position(434, 186, 270, 186, targetActorMicroInfoTween, targetActorMicroInfoRoot)
+	targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 
-func internal_tween_target_actor_micro(ox, oy, nx, ny):
-	print("Use Target Actor tween")
-	var tween_giveMenu = $CanvasLayerInfoControls/TargetActorMicroInfoTween
-	print(tween_giveMenu)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween_giveMenu.interpolate_property($CanvasLayerInfoControls/TargetActorMicroInfoRoot, "rect_position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_giveMenu.start()
-
-### Target Actor Micro Info End
-
-
-### Micro Actor Inventory View Start
 
 func s_hide_micro_actor_inventory_view():
-	internal_tween_micro_actor_inventory_view(370, 131, 535, 131)
+	internal_tween_move_to_position(370, 131, 535, 131, microActorInventoryViewTween, microActorInventoryViewRoot)
 	# maybe call the microactor clean up sprites function here
 
 func s_show_micro_actor_inventory_view():
-	internal_tween_micro_actor_inventory_view(535, 131, 370, 131)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot.show_selected_actor_inventory_items()
+	internal_tween_move_to_position(535, 131, 370, 131, microActorInventoryViewTween, microActorInventoryViewRoot)
+	microActorInventoryViewRoot.show_selected_actor_inventory_items()
 
-func internal_tween_micro_actor_inventory_view(ox, oy, nx, ny):
-	var tween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewTween
-	print(tween)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween.start()
-
-### Micro Actor Inventory View End
-
-# x 160
-# y 100
-
-
-### Micro Actor Inventory View Start
 
 func s_hide_no_valid_option_warning_box():
-	internal_tween_no_valid_option_warning_box(170, 100, -90, 100)
+	internal_tween_move_to_position(170, 100, -90, 100, noValidOptionWarningBoxTween, noValidOptionWarningBoxRoot)
 	# maybe call the microactor clean up sprites function here
 
 func s_show_no_valid_option_warning_box():
-	internal_tween_no_valid_option_warning_box(430, 100, 170, 100)
-	$CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxRoot.start_self_clear_timer()
+	internal_tween_move_to_position(430, 100, 170, 100, noValidOptionWarningBoxTween, noValidOptionWarningBoxRoot)
+	noValidOptionWarningBoxRoot.start_self_clear_timer()
 
-func internal_tween_no_valid_option_warning_box(ox, oy, nx, ny):
-	var tween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxTween
-	print(tween)
-	#var bim_rect = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot.position
-	#print(bim_rect)
-	tween.interpolate_property($CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxRoot, "position",
+
+### helpers
+
+func internal_tween_move_to_position(ox, oy, nx, ny, tweenNode, targetNode) -> void:
+	print(tweenNode)
+	tweenNode.interpolate_property(targetNode, "position",
 			Vector2(ox, oy), Vector2(nx, ny), 0.1,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween.start()
+	tweenNode.start()
 
-### Micro Actor Inventory View End
+
+func internal_tween_move_to_rect_position(ox, oy, nx, ny, tweenNode, targetNode) -> void:
+	print(tweenNode)
+	tweenNode.interpolate_property(targetNode, "rect_position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tweenNode.start()
