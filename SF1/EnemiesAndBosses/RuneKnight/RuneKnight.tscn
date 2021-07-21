@@ -149,7 +149,6 @@ special_attack_chance = 25
 [node name="Sprite" parent="EnemeyRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )
 hframes = 6
-frame = 1
 
 [node name="AnimationPlayer" parent="EnemeyRoot" index="1"]
 anims/DownMovement = SubResource( 1 )
