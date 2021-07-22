@@ -2,6 +2,14 @@ extends CN_SF1_Item
 
 class_name CN_SF1_Item_Weapon
 
+# TODO: target types for weapons should be cleaned up
+# doesn't make sense to have target enemeies and characters in the way its currently
+# setup since from the character actors perspective the target is enemeies
+# but from enemeies it would be characters
+# needs to be simplifed and made clearer 
+# maybe something like oppsite actor type, current actor type,  both
+# and additional field for self
+
 enum character_classes {SWORDSMAN}
 
 export var battle_texture: Texture

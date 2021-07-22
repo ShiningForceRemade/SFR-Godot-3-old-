@@ -7,14 +7,14 @@
 script = ExtResource( 1 )
 item_name = "Hand Axe"
 texture = ExtResource( 2 )
-target_actor_type = 3
+target_actor_type = 2
 attribute = [ 1 ]
 attribute_bonus = [ 7 ]
 key_item = false
 price_buy = 200
 price_sell = 150
-item_use_range_path = ""
-item_use_target_path = ""
+item_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd"
+item_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
 sell_to_deals = false
 usable = false
 chance_to_crack = false
