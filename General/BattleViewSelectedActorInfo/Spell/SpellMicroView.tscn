@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://General/Font/FontMenu.res" type="BitmapFont" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" type="Texture" id=2]
 [ext_resource path="res://General/BattleViewSelectedActorInfo/Spell/SpellLevelBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://General/BattleViewSelectedActorInfo/Spell/SpellMicroView.gd" type="Script" id=4]

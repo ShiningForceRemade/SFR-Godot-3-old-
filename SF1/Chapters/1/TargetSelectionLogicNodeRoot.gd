@@ -66,6 +66,7 @@ func _input(event):
 			# Singleton_Game_GlobalBattleVariables
 			
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_land_effect()
+			Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro_in_battle()
 			
 			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
 			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_actor_attacking()
@@ -75,6 +76,8 @@ func _input(event):
 			
 			Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
+			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
+			Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
 			target_range.cleanup_cursor()
 			Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
 			

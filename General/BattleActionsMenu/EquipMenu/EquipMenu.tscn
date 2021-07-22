@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://General/Font/FontMenu.res" type="BitmapFont" id=1]
 [ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=2]
 [ext_resource path="res://General/BattleActionsMenu/EquipMenu/EquipMenu.gd" type="Script" id=3]
 [ext_resource path="res://Assets/SFCD/Items/UnequipHand.png" type="Texture" id=4]
 [ext_resource path="res://Assets/SFCD/Items/EmptyItemSlot.png" type="Texture" id=5]
 [ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=7]
 
 [node name="BattleEquipMenuRoot" type="Node2D"]
 script = ExtResource( 3 )
@@ -61,7 +61,7 @@ margin_left = 6.24965
 margin_top = 6.0
 margin_right = -6.0
 margin_bottom = -24.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "ITEM TYPE"
 valign = 1
 __meta__ = {
@@ -77,7 +77,7 @@ margin_left = 6.0
 margin_top = 17.0
 margin_right = -6.0
 margin_bottom = -15.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "ITEM NAME"
 autowrap = true
 __meta__ = {
@@ -93,7 +93,7 @@ margin_left = 7.0
 margin_top = 26.0
 margin_right = -5.75034
 margin_bottom = -6.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.913725, 0.647059, 0.231373, 1 )
 text = "EQUIPPED"
 autowrap = true
@@ -130,7 +130,7 @@ __meta__ = {
 [node name="AttackStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
 margin_right = 56.0
 margin_bottom = 8.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "ATTACK"
 align = 2
 valign = 1
@@ -143,7 +143,7 @@ __meta__ = {
 margin_top = 19.0
 margin_right = 56.0
 margin_bottom = 27.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "DEFENSE"
 align = 2
 valign = 1
@@ -156,7 +156,7 @@ __meta__ = {
 margin_top = 38.0
 margin_right = 56.0
 margin_bottom = 46.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "MOVE"
 align = 2
 valign = 1
@@ -169,7 +169,7 @@ __meta__ = {
 margin_top = 57.0
 margin_right = 56.0
 margin_bottom = 65.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "AGILITY"
 align = 2
 valign = 1
@@ -192,7 +192,7 @@ __meta__ = {
 [node name="AttackStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
 margin_right = 32.0
 margin_bottom = 8.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "999"
 align = 2
 valign = 1
@@ -205,7 +205,7 @@ __meta__ = {
 margin_top = 19.0
 margin_right = 32.0
 margin_bottom = 27.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "999"
 align = 2
 valign = 1
@@ -218,7 +218,7 @@ __meta__ = {
 margin_top = 38.0
 margin_right = 32.0
 margin_bottom = 46.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "999"
 align = 2
 valign = 1
@@ -231,7 +231,7 @@ __meta__ = {
 margin_top = 57.0
 margin_right = 32.0
 margin_bottom = 65.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "999"
 align = 2
 valign = 1

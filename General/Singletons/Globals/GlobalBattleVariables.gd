@@ -6,6 +6,8 @@ var camera_node
 
 var battle_scene_node
 
+var dialogue_box_node
+
 var currently_active_character
 
 var currently_selected_actor

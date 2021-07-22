@@ -46,10 +46,6 @@ __meta__ = {
 }
 
 [node name="BackgroundWrapper" type="Node2D" parent="."]
-position = Vector2( 0, -7 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CenterSprite" type="Sprite" parent="BackgroundWrapper"]
 position = Vector2( 128, 90 )
@@ -78,6 +74,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="BackgroundTween" type="Tween" parent="."]
+
 [node name="CharacterWrapper" type="Node2D" parent="."]
 
 [node name="GroundSprite" type="Sprite" parent="CharacterWrapper"]
@@ -102,6 +100,8 @@ texture = ExtResource( 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]
 anims/AttackNormal = ExtResource( 9 )
 
+[node name="CharacterWrapperTween" type="Tween" parent="."]
+
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
@@ -113,3 +113,17 @@ region_rect = Rect2( 0, 0, 260, 100 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemeyWrapper"]
 anims/AttackNormal = ExtResource( 11 )
 anims/Idle = ExtResource( 4 )
+
+[node name="EnemeyWrapperTween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BlackFadeColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackFadeTween" type="Tween" parent="CanvasLayer"]

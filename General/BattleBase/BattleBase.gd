@@ -57,6 +57,8 @@ func _ready():
 	s_hide_no_valid_option_warning_box()
 	$CanvasLayerInfoControls/ScreenFaderColorRect.hide()
 	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node = $CanvasLayerInfoControls/DialogueBoxRoot
+	
 	Singleton_Game_GlobalBattleVariables.battle_base = self
 	
 	print("Game Version - ", ProjectSettings.get_setting("application/config/Version"))
@@ -118,11 +120,19 @@ func set_land_effect_and_active_actor_positions(active_x: int, land_x: int):
 func s_hide_land_effect():
 	# set_land_effect_and_active_actor_positions(500, -90)
 	var aair_rect = activeActorMicroInfoRoot.rect_position
-	landEffectPopupTween.interpolate_property(activeActorMicroInfoRoot, "rect_position",
+	landEffectPopupTween.interpolate_property(landEffectPopupRoot, "rect_position",
 			aair_rect, Vector2(500, -90), 0.15,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	landEffectPopupTween.start()
 
+func s_show_land_effect():
+	# set_land_effect_and_active_actor_positions(500, -90)
+	# var aair_rect = activeActorMicroInfoRoot.rect_position
+	landEffectPopupTween.interpolate_property(landEffectPopupRoot, "rect_position",
+			Vector2(-66, 6), Vector2(6, 6), 0.15,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	landEffectPopupTween.start()
+	
 # Land Effect and Active Actor Info Windows End
 
 # Action Menu
@@ -238,6 +248,14 @@ func s_hide_target_actor_micro():
 
 func s_show_target_actor_micro():
 	internal_tween_move_to_rect_position(434, 186, 270, 186, targetActorMicroInfoTween, targetActorMicroInfoRoot)
+	targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+
+func s_show_target_actor_micro_in_battle():
+	internal_tween_move_to_rect_position(-150, 186, 6, 186, targetActorMicroInfoTween, targetActorMicroInfoRoot)
+	targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+
+func s_hide_target_actor_micro_in_battle():
+	internal_tween_move_to_rect_position(6, 186, -150, 186, targetActorMicroInfoTween, targetActorMicroInfoRoot)
 	targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 
 

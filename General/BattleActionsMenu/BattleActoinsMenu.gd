@@ -1,6 +1,6 @@
 extends Node2D
 
-var is_menu_active: bool =  true
+var is_menu_active: bool =  false
 
 enum e_menu_options {
 	ATTACK_OPTION,
@@ -36,6 +36,7 @@ func _input(event):
 		if event.is_action_released("ui_b_key"):
 			print("Cancel Action Menu")
 			is_menu_active = false
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
 			#get_parent().get_parent().get_parent().s_hide_action_menu()
@@ -45,6 +46,8 @@ func _input(event):
 			print("Accept Action - ", currently_selected_option)
 			if currently_selected_option == e_menu_options.STAY_OPTION:
 				print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
 				
 				# emit_signal("signal_completed_turn")
@@ -53,11 +56,15 @@ func _input(event):
 				return
 			elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
 				is_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				get_parent().get_parent().get_parent().s_hide_action_menu()
 				get_parent().get_parent().get_parent().s_show_battle_inventory_menu()
 				return
 			elif currently_selected_option == e_menu_options.MAGIC_OPTION:
 				is_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				
 				if Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").spells_id.size() == 0:
 					noValidOptionNode.set_no_maigc_text()
@@ -71,6 +78,9 @@ func _input(event):
 				return
 			elif currently_selected_option == e_menu_options.ATTACK_OPTION:
 				is_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+				
 				get_parent().get_parent().get_parent().s_hide_character_action_menu()
 				# get_parent().get_parent().get_parent().s_show_battle_magic_menu()
 				# setup_attack_range_and_selection()
@@ -83,28 +93,33 @@ func _input(event):
 		
 		if event.is_action_pressed("ui_down"):
 			print("Down")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_menu_options.STAY_OPTION
 			animationPlayer.play("StayMenuOption")
 			label.text = "Stay"
 		elif event.is_action_pressed("ui_up"):
 			print("up")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_menu_options.ATTACK_OPTION
 			animationPlayer.play("AttackMenuOption")
 			label.text = "Attack"
 		elif event.is_action_pressed("ui_right"):
 			print("Right")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_menu_options.INVENTORY_OPTION
 			animationPlayer.play("InventoryMenuOption")
 			label.text = "Inventory"
 		elif event.is_action_pressed("ui_left"):
 			print("Left")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_menu_options.MAGIC_OPTION
 			animationPlayer.play("MagicMenuOption")
 			label.text = "Magic"
+			
 
 
 func set_sprites_to_zero_frame() -> void:

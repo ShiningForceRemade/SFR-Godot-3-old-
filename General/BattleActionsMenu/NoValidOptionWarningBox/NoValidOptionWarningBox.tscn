@@ -2,7 +2,7 @@
 
 [ext_resource path="res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=2]
-[ext_resource path="res://General/Font/FontMenu.res" type="BitmapFont" id=3]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=3]
 
 [node name="NoValidOptionWarningBoxRoot" type="Node2D"]
 script = ExtResource( 1 )
