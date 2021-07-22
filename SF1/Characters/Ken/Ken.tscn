@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=2]
 [ext_resource path="res://SF1/Characters/Ken/Ken.gd" type="Script" id=3]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Portraits.png" type="Texture" id=4]
 [ext_resource path="res://SF1/Items/Weapons/Spear.tres" type="Resource" id=5]
+[ext_resource path="res://SF1/Characters/Ken/BattleAnimations/BattleAnimations.tres" type="Resource" id=6]
 
 [node name="KenRoot" type="Node2D"]
 script = ExtResource( 3 )
@@ -12,40 +13,21 @@ script = ExtResource( 3 )
 [node name="CharacterRoot" parent="." instance=ExtResource( 1 )]
 character_name = "Ken"
 character_class = 1
-is_promoted = false
 inventory_items_id = [ ExtResource( 5 ) ]
 is_item_equipped = [ true ]
-spells_id = [  ]
 texture_protrait = ExtResource( 4 )
 level = 1
 attack = 7
-attack_growth = 0
 defense = 6
 defense_growth = 2
 agility = 5
-agility_growth = 0
 move = 7
 HP_Current = 8
 HP_Total = 8
 hp_growth = 1
-MP_Current = 0
-MP_Total = 0
-mp_growth = 0
-magic_array = [  ]
-status = 0
 critical_hit_chance = 3
-critical_hit_growth = 0
-double_attack_chance = 10
-dodge_chance = 10
-ai_target_priority = 0
 movement_type = 1
-magic_resistance = 0
-slow_resistance = 0
-muddle_resistance = 0
-sleep_and_desoul_resistance = 0
-bolt_resistance = 0
-blaze_resistance = 0
-freeze_resistance = 0
+battle_animation_unpromoted_resource = ExtResource( 6 )
 
 [node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )

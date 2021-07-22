@@ -89,6 +89,8 @@ export(int, 0, 100) var blaze_resistance: int = 0
 export(int, 0, 100) var freeze_resistance: int = 0
 
 
+export var battle_animation_resource: Resource
+
 # messy wait for native grouping support then subgroup
 #var test = "" # We will store the value here
 #func _get(property):

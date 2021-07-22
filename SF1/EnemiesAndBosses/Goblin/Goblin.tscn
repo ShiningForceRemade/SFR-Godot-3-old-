@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/Goblin.gd" type="Script" id=1]
 [ext_resource path="res://SF1/Items/Weapons/ShortSword.tres" type="Resource" id=2]
 [ext_resource path="res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Goblin/Map_Sprites.png" type="Texture" id=4]
+[ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/BattleAnimations.tres" type="Resource" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "DownMovement"
@@ -138,11 +139,11 @@ agility = 5
 move = 5
 HP_Current = 12
 HP_Total = 12
+battle_animation_resource = ExtResource( 5 )
 
 [node name="Sprite" parent="EnemeyRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 4 )
 hframes = 6
-frame = 1
 
 [node name="AnimationPlayer" parent="EnemeyRoot" index="1"]
 anims/DownMovement = SubResource( 1 )

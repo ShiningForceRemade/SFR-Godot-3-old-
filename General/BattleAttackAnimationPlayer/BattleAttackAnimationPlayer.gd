@@ -3,7 +3,13 @@ extends Node2D
 
 signal signal_battle_scene_complete
 
+signal signal_battle_complete_damage_step
+
+signal signal_attack_frame_reached
+
 export var reset_scene: bool = false setget internal_reset_all_actor_sprites_back_to_default_position
+
+var rng = RandomNumberGenerator.new()
 
 export var character_actor_animation_res: Resource
 export var enemey_actor_animation_res: Resource
@@ -43,7 +49,7 @@ func _ready():
 	# setup_actor_attacking()
 	
 	char_animationPlayer.connect("animation_finished", self, "s_cleanup_animation")
-	
+	self.connect("signal_attack_frame_reached", self, "s_update_ui_and_animate_damage_phase")
 	# black_fade_anim_in()
 	
 	pass
@@ -51,7 +57,7 @@ func _ready():
 
 
 func setup_character_and_enemey_sprites_idle() -> void:
-	var anim_aup = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").attack_normal_animation_unpromoted
+	var anim_aup = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").battle_animation_unpromoted_resource
 	var attack_anim = anim_aup # load(anim_aup)
 	internal_init_resource_for_actor(characterSprite, attack_anim)
 	
@@ -81,21 +87,25 @@ func internal_init_resource_for_actor(actorSprite, actor_animation_res) -> void:
 
 
 func setup_actor_attacking() -> void:
+	setup_sprite_textures()
 	black_fade_anim_out()
 	move_wrappers_into_position()
 	
-	# load text box saying x is attacking or doing y to z
+	yield(get_tree().create_timer(1), "timeout")
 	
-	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Rune Knight Attacks!")
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	# load text box saying x is attacking or doing y to z
+	print_who_is_attacking()
+	
+	yield(get_tree().create_timer(1), "timeout")
 	
 	var ani = load("res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim")
 	char_animationPlayer.add_animation(internal_animation_name, ani)
 	char_animationPlayer.play(internal_animation_name)
 	
-	
 	# on the yield end
 	# show the damage box exp and coins if eneemy killed
+	
+	
 	
 	# or whatever the appriotate message is
 	
@@ -104,21 +114,71 @@ func setup_actor_attacking() -> void:
 
 func s_cleanup_animation(animation_name_arg) -> void:
 	# print("Animation Name - ", animation_name_arg)
+	
+	yield(self, "signal_battle_complete_damage_step")
+	
 	char_animationPlayer.remove_animation(internal_animation_name)
 	
-	Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot").HP_Current = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot").HP_Current - 5
-	# Singleton_Game_GlobalBattleVariables.battle_base.
+	# yield(get_tree().create_timer(1), "timeout")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 	
-	yield(get_tree().create_timer(0.3), "timeout")
 	
-	# test_damage()
+	# print_damage_done_to(damage)
 	
+	yield(get_tree().create_timer(1), "timeout")
+	black_fade_anim_out()
+	print("Complete Battle Scene")
 	emit_signal("signal_battle_scene_complete")
 
-func test_damage() -> void:
-	pass
+func s_update_ui_and_animate_damage_phase() -> void:
+	print("\n\n\n Signal Recieved \n\n\n")
+	
+	calculate_damage_step()
+	# yield(self, "signal_battle_complete_damage_step")
+
+func calculate_damage_step() -> void:
+	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	
+	# max attack value
+	var max_damage = characterRoot.get_attack() - enemeyRoot.defense
+	if max_damage <= 0:
+		max_damage = 1
+	
+	# min attack value
+	var min_damage = floor(max_damage - floor(max_damage * 0.25))
+	
+	rng.randomize()
+	
+	var damage = rng.randi_range(max_damage, min_damage)
+	if damage <= 0:
+		damage = 1
+	
+	if enemeyRoot.HP_Current - damage <= 0:
+		enemeyRoot.HP_Current = 0
+	else:
+		enemeyRoot.HP_Current -= damage
+		
+	print(characterRoot.get_attack(), enemeyRoot.defense)
+	
+	# yield(get_tree().create_timer(1), "timeout")
+	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	print_damage_done_to(damage)
+	
+	yield(get_tree().create_timer(1), "timeout")
+	print_exp_gain(damage)
+	
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
+	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	
+	print("Complete Damage Step")
+	emit_signal("signal_battle_complete_damage_step")
+	# return damage
+
+# func calculate_damage_range():
+#	pass
+
 
 func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
 	print("Reseting Scene")
@@ -132,6 +192,89 @@ func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
 	get_node("EnemeyWrapper").position = Vector2(0, 0)
 	get_node("EnemeyWrapper").get_node("EnemeySprite").position = Vector2(80, 86)
 
+
+func setup_sprite_textures() -> void:
+	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	
+	internal_init_resource_for_actor(enemeySprite, enemeyRoot.battle_animation_resource)
+	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
+		enemey_animationPlayer.add_animation("Enemey Idle", enemeyRoot.battle_animation_resource.animation_res_idle)
+		enemey_animationPlayer.play("Enemey Idle")
+	else:
+		enemey_animationPlayer.stop()
+	
+	internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
+	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
+		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play("Character Idle")
+	else:
+		char_animationPlayer.stop()
+	
+	for i in range(characterRoot.inventory_items_id.size()):
+		if characterRoot.is_item_equipped[i]:
+			if characterRoot.inventory_items_id[i] is CN_SF1_Item_Weapon:
+				weaponSprite.texture = characterRoot.inventory_items_id[i].battle_texture
+				break
+	
+	pass
+
+
+func print_who_is_attacking() -> void:
+	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(active_actor.cget_actor_name() + " Attacks!")
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	pass
+
+
+func print_damage_done_to(damage_arg) -> void:
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		"Inflicts " + str(damage_arg) + " points of damage on the " + selected_actor.enemey_name
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	pass
+
+
+func print_exp_gain(damage_arg) -> void:
+	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
+	
+	var x = 2 * ((selected_actor.effective_level - active_actor.level) + 3)
+	var y = (x * damage_arg) / selected_actor.HP_Total
+	if y <= 1:
+		y = 1
+	elif y >= 48:
+		y = 48
+	
+	if selected_actor.HP_Current == 0:
+		x += (x * 3) + 1 # bonus exp for kill based on x max
+	
+	var exp_gain = x + y
+	if exp_gain >= 48:
+		exp_gain = 48
+	elif exp_gain <= 1:
+		exp_gain = 1
+	
+	print("EXP Gain numbers ", x, " ", y, " ", exp_gain)
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	active_actor.experience_points += exp_gain
+	if active_actor.experience_points >= 100:
+		active_actor.experience_points = 0
+		active_actor.level += 1
+		
+		print("TODO print level up and stat gain")
+	
+	pass
 
 ###
 # Black Color Fader helpers
@@ -186,3 +329,19 @@ func setup_character_wrapper_tween() -> void:
 func setup_enemey_wrapper_tween() -> void:
 	enemeyWrapperTween.interpolate_property(enemeyWrapper, "position",
 	Vector2(-40, 0), Vector2(0, 0), 0.625, Tween.TRANS_LINEAR, Tween.EASE_IN)
+
+
+func internal_signal_attack_frame_reached() -> void:
+	print("\n\n\n Signal Reached - signal_attack_frame_reached\n\n\n")
+	emit_signal("signal_attack_frame_reached")
+	
+func print_lots() -> void:
+	print("hi")
+	print("hi")
+	print("hi")
+	print("hi")
+	print("hi")
+	print("hi")
+	print("hi")
+	print("hi")
+	print("hi")

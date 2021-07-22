@@ -181,6 +181,10 @@ func set_cursor_target_on_first_found_enemey() -> void:
 func target_selection_clockwise__style_naive_pass_forward():
 	print("Clockwise")
 	setup_quadrant_vars()
+	# TODO: FIXME above when doing auto target selection and no target if not found
+	if current_selection_vec2 == null:
+		current_selection_vec2 = Vector2(0, 0)
+		
 	print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
 	
 	if forward_pass_naive(current_selection_vec2.x, current_selection_vec2.y):
@@ -194,6 +198,11 @@ func target_selection_clockwise__style_naive_pass_forward():
 func target_selection_counter_clockwise__style_naive_pass_forward():
 	print("Clockwise")
 	setup_quadrant_vars()
+	
+	# TODO: FIXME above when doing auto target selection and no target if not found
+	if current_selection_vec2 == null:
+		current_selection_vec2 = Vector2(0, 0)
+	
 	print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
 	
 	if backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y):

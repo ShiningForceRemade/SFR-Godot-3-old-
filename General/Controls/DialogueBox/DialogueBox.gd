@@ -18,6 +18,7 @@ func _ready():
 
 func battle_message_play(str_arg = "") -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+	dialogueRichTextLabel.percent_visible = 0
 	dialogueRichTextLabel.show()
 	
 	dialogueRichTextLabel.bbcode_text = str_arg
@@ -30,9 +31,9 @@ func battle_message_play(str_arg = "") -> void:
 
 func s_battle_message_complete(node_arg, property_arg) -> void: 
 	# print("Tween completed ", arg1, " ", arg2)
+	yield(get_tree().create_timer(1.5), "timeout")
+	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 262)
 	dialogueRichTextLabel.hide()
-	
-	yield(get_tree().create_timer(1.5), "timeout")
 	
 	emit_signal("signal_dialogue_completed")
