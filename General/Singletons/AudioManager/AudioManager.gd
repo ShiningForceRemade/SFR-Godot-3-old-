@@ -44,9 +44,9 @@ func play_music(sound_path) -> void:
 	queue_music_p.append(sound_path)
 
 func pause_all_music() -> void:
-	if not queue_music_p.empty() and not available_music_p.empty():
-		for a_m_p in available_music_p:
-			a_m_p.stop()
+	#f not queue_music_p.empty() and not available_music_p.empty():
+	for a_m_p in available_music_p:
+		a_m_p.stop()
 
 
 func play_sfx(sound_path) -> void:

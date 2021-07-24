@@ -114,11 +114,13 @@ func generate_and_launch_new_turn_order():
 			
 			print(a.node)
 			mc = a.node
+			mc.z_index = 1
 			active_character_or_enemey_display_info()
 			emit_signal("signal_show_land_effect_and_active_actor_info")
 			
 			a.node.play_turn()
 			yield(a.node, "signal_completed_turn")
+			mc.z_index = 0
 			print("Enemy Turn End")
 			
 #			var t = Timer.new()
@@ -177,6 +179,8 @@ func generate_and_launch_new_turn_order():
 			mc.disconnect("signal_character_moved", self, "get_tile_info_under_character")
 			mc.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
 			mc.disconnect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
+			
+			show_movement_tiles()
 			
 			yield(get_tree().create_timer(0.5), "timeout")
 			
@@ -288,27 +292,13 @@ func draw_character_movement_area():
 #	# float fly or ground type
 #	# assuming ground type for now
 #
-#	var cr = ColorRect.new()
-#	cr.color = Color.aliceblue
-#	cr.rect_size.x = 24
-#	cr.rect_size.y = 24
-#	cr.rect_position.x = mc.position.x - 12 
-#	cr.rect_position.y = mc.position.y - 12
-#	self.add_child(cr)
-#
 #	print("SSSSS -", tilemap.world_to_map(mc.position))
 #	var current_tile_pos = tilemap.get_cellv(tilemap.world_to_map(mc.position))
 #	print(current_tile_pos)
 #	print(tilemap.tile_set.tile_get_name(current_tile_pos))
 #	print("SSSSS -")
-#
-#	#current_tile_pos = (5, 30)
-#	#current_tile_pos.x = 5
-#	#current_tile_pos.y = 30
-	var vpos: Vector2
-	# vpos.x = 5
-	# vpos.y = 19
-	vpos = get_char_tile_position()
+
+	var vpos: Vector2 = get_char_tile_position()
 	
 	# Remove previous drawn grid movement if any
 	for n in $MovementTilesWrapperNode.get_children():
@@ -490,25 +480,7 @@ func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg
 	else:
 		node_arg.add_child(cr)
 
-#func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int) -> void:
-#	var cr = ColorRect.new()
-#	cr.color = Color("#9c000000")
-#	# 5f9f9f9f
-#
-#	cr.rect_size.x = 24
-#	cr.rect_size.y = 24
-#
-#	cr.rect_position.x = xpos
-#	cr.rect_position.y = ypos
-#
-#	#print(cr.rect_position)
-#	self.add_child(cr)
 
-#func tween_all_movement_squares():
-#	var twn = Tween.new()
-#	self.add_child(twn)
-
-# 
 func check_if_cell_is_navigatable(x: int, y: int, gss) -> bool:
 	#print("Cell Additions - ", x, " ", y)
 	
