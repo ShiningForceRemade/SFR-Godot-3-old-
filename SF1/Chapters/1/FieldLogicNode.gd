@@ -165,11 +165,15 @@ func generate_and_launch_new_turn_order():
 			$AnimationPlayer.play("RandomTileFlashing")
 			# play_turn will yield control until the player or enemy finishes its turn
 			
+			mc.z_index = 1
+			
 			yield(Singleton_Game_GlobalBattleVariables.self_node(), "signal_completed_turn")
 			
 			# yield(a.node, "signal_completed_turn_z")
 			
 			print("Character Turn End")
+			mc.z_index = 0
+			
 			mc.disconnect("signal_character_moved", self, "get_tile_info_under_character")
 			mc.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
 			mc.disconnect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")

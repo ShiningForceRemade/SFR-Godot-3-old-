@@ -13,6 +13,7 @@ func draw_cursor_and_get_targets(center_actor_target_selected):
 	#sprite.position.y -= 12
 	
 	bc_cursor_ref.position.x -= 24
+	# bc_cursor_ref.z_index = 1
 	
 	Singleton_Game_GlobalBattleVariables.field_logic_node.add_child(bc_cursor_ref)	
 	
