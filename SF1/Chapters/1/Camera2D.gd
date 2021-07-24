@@ -44,7 +44,7 @@ func _process(_delta):
 	
 	# print(playerNode.position)
 	position.x = playerNode.position.x 
-	position.y = playerNode.position.y - 60# + (tile_size * 12)
+	position.y = playerNode.position.y #  - 60# + (tile_size * 12)
 	
 	#displayInfoControl.rect_position.x = playerNode.position.x
 	#displayInfoControl.rect_position.y = playerNode.position.y
