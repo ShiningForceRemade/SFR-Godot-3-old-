@@ -151,6 +151,8 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
 	emit_signal("signal_battle_scene_complete")
+	
+	Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot").check_if_defeated()
 
 func s_update_ui_and_animate_damage_phase() -> void:
 	print("\n\n\n Signal Recieved \n\n\n")
@@ -225,6 +227,7 @@ func calculate_damage_step() -> void:
 	
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
+	
 	# return damage
 
 # func calculate_damage_range():

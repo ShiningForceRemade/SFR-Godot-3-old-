@@ -10,7 +10,7 @@
 [ext_resource path="res://SF1/Characters/Ken/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=8]
 [ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=10]
-[ext_resource path="res://Shaders/ShaderTextureImages/images.jpg" type="Texture" id=11]
+[ext_resource path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" type="Texture" id=11]
 [ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]

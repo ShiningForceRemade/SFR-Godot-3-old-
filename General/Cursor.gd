@@ -5,21 +5,65 @@ signal signal_selected_actor_underneath_cursor
 var active: bool = false
 
 const tile_size: int = 24
+const TILE_SIZE: int = 24
 
 onready var characters = get_parent().get_node("Characters")
 onready var enemies = get_parent().get_node("Enemies")
+
+onready var movementTween = $MovementTween
+var y_tile_move = 0
+var x_tile_move = 0
+
 
 func _ready():
 	Singleton_Game_GlobalBattleVariables.cursor_root_ref = self
 	hide()
 	pass
 
+
 func set_active():
 	print("Cursor is active")
 	position = Singleton_Game_GlobalBattleVariables.currently_active_character.position
 	show()
 	active = true
-	
+
+#func _process(delta):
+#	if active:
+#		if Input.is_action_pressed("ui_left"):
+#			position.x -= tile_size
+#		elif Input.is_action_pressed("ui_right"):
+#			position.x += tile_size
+#		elif Input.is_action_pressed("ui_up"):
+#			position.y -= tile_size
+#		elif Input.is_action_pressed("ui_down"):
+#			position.y += tile_size
+
+func _process(_delta):
+	if active:
+		if movementTween.is_active():
+			return
+		
+		y_tile_move = 0
+		x_tile_move = 0
+		
+		if Input.is_action_pressed("ui_right"):
+			x_tile_move = TILE_SIZE
+		elif Input.is_action_pressed("ui_left"):
+			x_tile_move = -TILE_SIZE
+			
+		if Input.is_action_pressed("ui_up"):
+			y_tile_move = -TILE_SIZE
+		elif Input.is_action_pressed("ui_down"):
+			y_tile_move = TILE_SIZE
+		
+		if x_tile_move != 0 || y_tile_move != 0:
+				movementTween.interpolate_property(self, 'position', self.position, 
+				Vector2(self.position.x + x_tile_move, self.position.y + y_tile_move), 
+				0.1, Tween.TRANS_LINEAR)
+		
+		movementTween.start()
+
+
 func _input(event):
 	if active:
 		if event.is_action_released("ui_b_key"):
@@ -67,12 +111,11 @@ func _input(event):
 					
 					emit_signal("signal_selected_actor_underneath_cursor")
 			
-		
-		if event.is_action_pressed("ui_left"):
-			position.x -= tile_size
-		elif event.is_action_pressed("ui_right"):
-			position.x += tile_size
-		elif event.is_action_pressed("ui_up"):
-			position.y -= tile_size
-		elif event.is_action_pressed("ui_down"):
-			position.y += tile_size
+#		if event.is_action_pressed("ui_left"):
+#			position.x -= tile_size
+#		elif event.is_action_pressed("ui_right"):
+#			position.x += tile_size
+#		elif event.is_action_pressed("ui_up"):
+#			position.y -= tile_size
+#		elif event.is_action_pressed("ui_down"):
+#			position.y += tile_size

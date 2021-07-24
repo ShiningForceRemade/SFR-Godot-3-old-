@@ -187,6 +187,7 @@ __meta__ = {
 modulate = Color( 0.750327, 0.750327, 0.750327, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="FieldLogicNode/MovementTilesWrapperNode"]
+visible = false
 margin_left = 123.0
 margin_top = 359.0
 margin_right = 251.0
@@ -197,6 +198,7 @@ __meta__ = {
 }
 
 [node name="ColorRect3" type="ColorRect" parent="FieldLogicNode/MovementTilesWrapperNode"]
+visible = false
 margin_left = 160.0
 margin_top = 372.0
 margin_right = 288.0
@@ -207,6 +209,7 @@ __meta__ = {
 }
 
 [node name="ColorRect2" type="ColorRect" parent="FieldLogicNode/MovementTilesWrapperNode"]
+visible = false
 margin_left = 106.0
 margin_top = 427.0
 margin_right = 146.0

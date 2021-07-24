@@ -129,3 +129,28 @@ func get_attack() -> int:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func check_if_defeated() -> void:
+	if HP_Current == 0:
+		print("\n\n\n\nI was defeated play death animation and update turn order array\n\n\n\n")
+		
+		yield(get_tree().create_timer(1), "timeout")
+		pseudo_death_animation(0.25)
+		pseudo_death_animation(0.1)
+		pseudo_death_animation(0.1)
+		yield(get_tree().create_timer(1), "timeout")
+		
+		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+		get_parent().hide()
+	
+	pass
+
+func pseudo_death_animation(time_arg: float) -> void:
+	$AnimationPlayer.play("RightMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
+	$AnimationPlayer.play("UpMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
+	$AnimationPlayer.play("LeftMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
+	$AnimationPlayer.play("DownMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
