@@ -44,9 +44,13 @@ func _input(event):
 			battle_view_selected_actor_info_menu_active = false
 			Singleton_Game_GlobalBattleVariables.selected_actor = null
 			Singleton_Game_GlobalBattleVariables.selected_actor_type = null
+			
+			get_parent().get_parent().s_hide_battle_view_selected_actor_info_menu()
+			
+			yield(get_tree().create_timer(0.1), "timeout")
 			# re-act cursor through global ref to it
 			Singleton_Game_GlobalBattleVariables.cursor_root_ref.active = true
-			get_parent().get_parent().s_hide_battle_view_selected_actor_info_menu()
+			
 
 func display_character_info():
 	var actor = Singleton_Game_GlobalBattleVariables.selected_actor.get_node("CharacterRoot")
