@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
@@ -10,12 +10,13 @@
 [ext_resource path="res://SF1/Characters/Ken/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=8]
 [ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=10]
-[ext_resource path="res://Shaders/ColorBlend.shader" type="Shader" id=12]
+[ext_resource path="res://Shaders/ShaderTextureImages/images.jpg" type="Texture" id=11]
+[ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 12 )
-shader_param/color_blend_target = Color( 1, 1, 1, 1 )
-shader_param/blend_strength_modifier = 0.0
+shader_param/dissolve_effect_amount = null
+shader_param/noise_texture = ExtResource( 11 )
 
 [node name="BattleAttackAnimationPlayerRoot" type="Node2D"]
 script = ExtResource( 5 )
@@ -120,6 +121,8 @@ region_rect = Rect2( 0, 0, 260, 100 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemeyWrapper"]
 anims/EnemeyShake = ExtResource( 4 )
+
+[node name="EnemeySpriteTween" type="Tween" parent="EnemeyWrapper"]
 
 [node name="EnemeyWrapperTween" type="Tween" parent="."]
 

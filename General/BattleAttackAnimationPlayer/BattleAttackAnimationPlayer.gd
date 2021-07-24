@@ -11,6 +11,11 @@ export var reset_scene: bool = false setget internal_reset_all_actor_sprites_bac
 
 var rng = RandomNumberGenerator.new()
 
+const shader_color_blend = preload("res://Shaders/ColorBlend.shader")
+
+const shader_dissolve = preload("res://Shaders/Dissolve.shader")
+const shader_texture__noise_pixelated = preload("res://Shaders/ShaderTextureImages/NoisePixelated.jpg")
+
 export var character_actor_animation_res: Resource
 export var enemey_actor_animation_res: Resource
 
@@ -179,6 +184,7 @@ func calculate_damage_step() -> void:
 	
 	# print("\n\n\n", enemeySprite.material.get_shader_param("color_blend_target"))
 	
+	enemeySprite.material.shader = shader_color_blend
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
 	
 	# TODO: generate the movement and timings randomly 
@@ -191,6 +197,10 @@ func calculate_damage_step() -> void:
 	
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
+	
+	enemey_defeated_play_dissolve_animation()
+	
+	
 	
 	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
 		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
@@ -210,6 +220,11 @@ func calculate_damage_step() -> void:
 
 # func calculate_damage_range():
 #	pass
+
+func enemey_defeated_play_dissolve_animation() -> void:
+	enemeySprite.material.shader = shader_dissolve 
+	enemeySprite.material.set_shader_param("value", 0.3)
+	enemeySprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
 
 
 func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
