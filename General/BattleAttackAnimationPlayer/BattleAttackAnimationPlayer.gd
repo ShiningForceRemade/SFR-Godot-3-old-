@@ -30,6 +30,8 @@ onready var enemeyWrapper = $EnemeyWrapper
 
 const internal_animation_name: String = "A_long_random_string_is_this_even_needed"
 
+const ani_name_enemey_idle: String = "Enemey Idle"
+
 func _ready():
 	# yield(get_tree().create_timer(1), "timeout")
 	clear_black_fade()
@@ -190,6 +192,11 @@ func calculate_damage_step() -> void:
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
 	
+	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
+		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+		enemey_animationPlayer.play(ani_name_enemey_idle)
+	# enemey_animationPlayer.play(ani_name_enemey_idle)
+	
 	yield(get_tree().create_timer(1), "timeout")
 	print_exp_gain(damage)
 	
@@ -224,8 +231,8 @@ func setup_sprite_textures() -> void:
 	
 	internal_init_resource_for_actor(enemeySprite, enemeyRoot.battle_animation_resource)
 	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
-		enemey_animationPlayer.add_animation("Enemey Idle", enemeyRoot.battle_animation_resource.animation_res_idle)
-		enemey_animationPlayer.play("Enemey Idle")
+		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+		enemey_animationPlayer.play(ani_name_enemey_idle)
 	else:
 		enemey_animationPlayer.stop()
 	

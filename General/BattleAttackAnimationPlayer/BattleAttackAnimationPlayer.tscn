@@ -93,14 +93,14 @@ __meta__ = {
 }
 
 [node name="CharacterSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 254, 100 )
+position = Vector2( 240, 92 )
 z_index = 1
 texture = ExtResource( 3 )
 hframes = 4
 frame = 2
 
 [node name="WeaponSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 89, 76 )
+position = Vector2( 214, 108 )
 z_index = 1
 texture = ExtResource( 9 )
 
