@@ -32,6 +32,7 @@ onready var enemeySprite = $EnemeyWrapper/EnemeySprite
 onready var enemey_animationPlayer = $EnemeyWrapper/AnimationPlayer
 onready var enemeyWrapperTween = $EnemeyWrapperTween
 onready var enemeyWrapper = $EnemeyWrapper
+onready var enemeySpriteTween = $EnemeyWrapper/EnemeySpriteTween
 
 const internal_animation_name: String = "A_long_random_string_is_this_even_needed"
 
@@ -60,6 +61,8 @@ func _ready():
 	
 	self.connect("signal_attack_frame_reached", self, "s_update_ui_and_animate_damage_phase")
 	# black_fade_anim_in()
+	
+	enemeySpriteTween.connect("tween_completed", self, "s_enemey_tween_completed")
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
 	
@@ -99,6 +102,8 @@ func internal_init_resource_for_actor(actorSprite, actor_animation_res) -> void:
 
 func setup_actor_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
+	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
+	enemeySprite.show()
 	
 	setup_sprite_textures()
 	black_fade_anim_out()
@@ -198,17 +203,21 @@ func calculate_damage_step() -> void:
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
 	
-	enemey_defeated_play_dissolve_animation()
-	
-	
-	
-	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
+	if enemeyRoot.HP_Current == 0:
+		enemey_defeated_play_dissolve_animation()
+		yield(get_tree().create_timer(1), "timeout")
+		print_actor_defeated()
+	elif enemeyRoot.battle_animation_resource.animation_res_idle != null:
 		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
 		enemey_animationPlayer.play(ani_name_enemey_idle)
 	# enemey_animationPlayer.play(ani_name_enemey_idle)
 	
 	yield(get_tree().create_timer(1), "timeout")
 	print_exp_gain(damage)
+	
+	if enemeyRoot.HP_Current == 0:
+		yield(get_tree().create_timer(1), "timeout")
+		print_coins_and_items_receieved() # 0 coins and no items for now
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
@@ -223,8 +232,24 @@ func calculate_damage_step() -> void:
 
 func enemey_defeated_play_dissolve_animation() -> void:
 	enemeySprite.material.shader = shader_dissolve 
-	enemeySprite.material.set_shader_param("value", 0.3)
+	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0.3)
 	enemeySprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
+	
+	enemeySpriteTween.interpolate_property(enemeySprite.material, "shader_param/dissolve_effect_amount",
+	0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	
+	enemeySpriteTween.start()
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	
+
+func s_enemey_tween_completed(arg_1, arg_2) -> void:
+	
+	# print("\n\n\n", arg_1, " ", arg_2)
+	
+	enemeySprite.hide()
+	
+	# enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 
 
 func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
@@ -339,6 +364,23 @@ func print_exp_gain(damage_arg) -> void:
 		print("TODO print level up and stat gain")
 	
 	pass
+
+func print_actor_defeated() -> void:
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		selected_actor.enemey_name + " is defeated!"
+	)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+
+func print_coins_and_items_receieved() -> void:
+	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		# active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
+		active_actor.cget_actor_name() + " gains 0 coins."
+	)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
 
 ###
 # Black Color Fader helpers

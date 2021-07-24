@@ -13,7 +13,7 @@
 [ext_resource path="res://Shaders/ShaderTextureImages/images.jpg" type="Texture" id=11]
 [ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 12 )
 shader_param/dissolve_effect_amount = null
 shader_param/noise_texture = ExtResource( 11 )
@@ -113,7 +113,7 @@ anims/AttackNormal = ExtResource( 8 )
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 position = Vector2( 80, 86 )
 texture = ExtResource( 10 )
 hframes = 4
