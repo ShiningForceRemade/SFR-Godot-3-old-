@@ -162,6 +162,7 @@ func generate_and_launch_new_turn_order():
 			mc.connect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
 			# turn_movement_init()
 			draw_character_movement_area()
+			$AnimationPlayer.play("RandomTileFlashing")
 			# play_turn will yield control until the player or enemy finishes its turn
 			
 			yield(Singleton_Game_GlobalBattleVariables.self_node(), "signal_completed_turn")
@@ -329,6 +330,20 @@ func draw_character_movement_area():
 	# 								vpos.x + 6, vpos.y + 6)
 	# print(total_sub_area)
 	
+	# if debug
+	#var center_segment = Color.purple
+	#var top_left_segment = Color.green
+	#var top_right_segment = Color.red
+	#var bottom_left_segment = Color.yellow
+	#var bottom_right_segment = Color.blue
+	# else 
+	# var tile_to_be_flashed_color = Color("7de1e1e1")
+	var center_segment = Color("7de1e1e1")
+	var top_left_segment = center_segment
+	var top_right_segment = center_segment
+	var bottom_left_segment = center_segment
+	var bottom_right_segment = center_segment
+	
 	var movement = mc.get_character_movement()
 	var mcmt = (movement * 2) + 1
 	# var ard: Array = []
@@ -353,7 +368,7 @@ func draw_character_movement_area():
 		# ard[i][mcmt / 2] = 1
 		#print("Center - ", i, " - ", mcmt / 2)
 		if check_if_cell_is_navigatable(i, mcmt / 2, e_grid_movement_subsection.CENTER):
-			draw_flashing_movement_square(Color.purple,
+			draw_flashing_movement_square(center_segment,
 			xpos_character_center_tile,  # x pos
 			(vpos.y - movement + i) * tile_size
 			# total_movement_tile_space + (i * tile_size)  + tile_size # y pos
@@ -372,7 +387,7 @@ func draw_character_movement_area():
 						var t = vpos # center character tile
 						t.x = t.x + (yy - movement)
 						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(Color.red, 
+						draw_flashing_movement_square(top_right_segment, 
 						t.x * tile_size, # x pos   # add left padding for when tilemap isnt at 0, 0
 						t.y * tile_size # y pos   # add top padding for when tilemap isnt at 0, 0
 						)
@@ -390,7 +405,7 @@ func draw_character_movement_area():
 						var t = vpos # center character tile
 						t.x = t.x - (movement - yyy)
 						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(Color.green, 
+						draw_flashing_movement_square(top_left_segment, 
 							t.x * tile_size, # x pos
 							t.y * tile_size # y pos
 						)
@@ -419,7 +434,7 @@ func draw_character_movement_area():
 						var t = vpos # center character tile
 						t.x = t.x + (yy - movement)
 						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(Color.blue, 
+						draw_flashing_movement_square(bottom_right_segment, 
 							t.x * tile_size, # x pos
 							t.y * tile_size # y pos
 						)
@@ -437,7 +452,7 @@ func draw_character_movement_area():
 						var t = vpos # center character tile
 						t.x = t.x - (movement - yyy)
 						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(Color.yellow, 
+						draw_flashing_movement_square(bottom_left_segment, 
 							t.x * tile_size, # x pos
 							t.y * tile_size  # y pos
 						)
