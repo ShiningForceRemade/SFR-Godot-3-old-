@@ -13,38 +13,34 @@ onready var enemies = get_parent().get_node("Enemies")
 onready var movementTween = $MovementTween
 var y_tile_move = 0
 var x_tile_move = 0
+var tile_move_time: float = 0.1
 
-
-func _ready():
+func _ready() -> void:
 	Singleton_Game_GlobalBattleVariables.cursor_root_ref = self
 	hide()
 	pass
 
 
-func set_active():
+func set_active() -> void:
 	print("Cursor is active")
 	position = Singleton_Game_GlobalBattleVariables.currently_active_character.position
 	show()
 	active = true
+	Singleton_Game_GlobalBattleVariables.camera_node.playerNode = self
 
-#func _process(delta):
-#	if active:
-#		if Input.is_action_pressed("ui_left"):
-#			position.x -= tile_size
-#		elif Input.is_action_pressed("ui_right"):
-#			position.x += tile_size
-#		elif Input.is_action_pressed("ui_up"):
-#			position.y -= tile_size
-#		elif Input.is_action_pressed("ui_down"):
-#			position.y += tile_size
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if active:
 		if movementTween.is_active():
 			return
 		
 		y_tile_move = 0
 		x_tile_move = 0
+		# tile_move_time = 0.1
+		# TODO: test the timing a bit more 0.1 seems fine for done
+		# half time tween seems too fast for sprint effect
+		# if Input.is_action_pressed("ui_left_shift"):
+		# 	tile_move_time = 0.075
 		
 		if Input.is_action_pressed("ui_right"):
 			x_tile_move = TILE_SIZE
@@ -59,17 +55,19 @@ func _process(_delta):
 		if x_tile_move != 0 || y_tile_move != 0:
 				movementTween.interpolate_property(self, 'position', self.position, 
 				Vector2(self.position.x + x_tile_move, self.position.y + y_tile_move), 
-				0.1, Tween.TRANS_LINEAR)
+				tile_move_time, Tween.TRANS_LINEAR)
 		
 		movementTween.start()
 
 
-func _input(event):
+func _input(event) -> void:
 	if active:
 		if event.is_action_released("ui_b_key"):
 			print("Hide")
 			active = false
 			hide()
+			
+			Singleton_Game_GlobalBattleVariables.camera_node.playerNode = Singleton_Game_GlobalBattleVariables.currently_active_character
 			
 			# so dirty really need to look into a proper method of handling these kinds of things soon
 			yield(get_tree().create_timer(0.1), "timeout")

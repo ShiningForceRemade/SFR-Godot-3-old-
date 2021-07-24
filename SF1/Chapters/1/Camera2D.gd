@@ -41,7 +41,6 @@ func _process(_delta):
 	#var p = playerNode.get_child(0).get_node("KinematicBody2D")
 	#playerNode = p
 	
-	
 	# print(playerNode.position)
 	position.x = playerNode.position.x 
 	position.y = playerNode.position.y #  - 60# + (tile_size * 12)
