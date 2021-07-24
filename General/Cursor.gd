@@ -63,6 +63,15 @@ func _process(_delta) -> void:
 func _input(event) -> void:
 	if active:
 		if event.is_action_released("ui_b_key"):
+			if position == Singleton_Game_GlobalBattleVariables.currently_active_character.position:
+				print("Same Pos")
+			
+			movementTween.interpolate_property(self, 'position', self.position, 
+				Singleton_Game_GlobalBattleVariables.currently_active_character.position, 
+				0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			
+			yield(get_tree().create_timer(0.2625), "timeout")
+			
 			print("Hide")
 			active = false
 			hide()
