@@ -2,10 +2,16 @@ extends Resource
 
 class_name CN_SF_UseRange
 
+var center_segment = Color("7de1e1e1")
+var top_left_segment = center_segment
+var top_right_segment = center_segment
+var bottom_left_segment = center_segment
+var bottom_right_segment = center_segment
+
 func _ready():
 	pass
 
-static func draw_use_range():
+func draw_use_range():
 	print("Base Class")
 	pass
 

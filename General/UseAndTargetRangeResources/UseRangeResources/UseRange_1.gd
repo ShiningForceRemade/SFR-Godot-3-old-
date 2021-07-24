@@ -7,7 +7,7 @@ func _ready():
 	print("In here not base")
 	pass
 
-static func draw_use_range():
+func draw_use_range():
 	# print("UseRange_1 - vpos - ", vposz, " FieldLogicNode - ", fieldLogicNode)
 	var uttwn = Singleton_Game_GlobalBattleVariables.field_logic_node.get_node("UseTargetTilesWrapperNode")
 	
@@ -21,7 +21,7 @@ static func draw_use_range():
 	
 	# Top tile
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x,
 		vpos.y - tile_size,
 		uttwn
@@ -29,7 +29,7 @@ static func draw_use_range():
 
 	# Bottom tile
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x,
 		vpos.y + tile_size,
 		uttwn
@@ -37,7 +37,7 @@ static func draw_use_range():
 
 	# Left tile
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x - tile_size,
 		vpos.y,
 		uttwn
@@ -45,7 +45,7 @@ static func draw_use_range():
 
 	# Right tile
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x + tile_size,
 		vpos.y,
 		uttwn

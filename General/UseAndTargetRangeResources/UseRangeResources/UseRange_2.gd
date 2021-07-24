@@ -6,7 +6,7 @@ const half_tile: int = tile_size / 2
 func _ready():
 	pass
 
-static func draw_use_range():
+func draw_use_range():
 	# print("UseRange_1 - vpos - ", vposz, " FieldLogicNode - ", fieldLogicNode)
 	var uttwn = Singleton_Game_GlobalBattleVariables.field_logic_node.get_node("UseTargetTilesWrapperNode")
 	
@@ -22,55 +22,55 @@ static func draw_use_range():
 	# shouldn't be doing this manual by hand draw for each use range for testing for now its fine
 	
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x,
 		vpos.y - (tile_size * 2),
 		uttwn
 	)
 
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x,
 		vpos.y + (tile_size * 2),
 		uttwn
 	)
 
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x - (tile_size * 2),
 		vpos.y,
 		uttwn
 	)
 
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x + (tile_size * 2),
 		vpos.y,
 		uttwn
 	)
 
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x + tile_size,
 		vpos.y - tile_size,
 		uttwn
 	)
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x - tile_size,
 		vpos.y - tile_size,
 		uttwn
 	)
 	
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x + tile_size,
 		vpos.y + tile_size,
 		uttwn
 	)
 	
 	Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(
-		Color.purple,
+		center_segment,
 		vpos.x - tile_size,
 		vpos.y + tile_size,
 		uttwn
