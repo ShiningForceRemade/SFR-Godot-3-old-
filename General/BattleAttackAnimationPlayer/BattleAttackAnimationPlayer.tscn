@@ -1,16 +1,22 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Battle_Sprites.png" type="Texture" id=3]
+[ext_resource path="res://SF1/Characters/Tao/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=3]
 [ext_resource path="res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/Idle/Idle.anim" type="Animation" id=4]
 [ext_resource path="res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
-[ext_resource path="res://Assets/SF1/Weapons/Wooden_Arrow.png" type="Texture" id=8]
-[ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=9]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" type="Texture" id=8]
+[ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=10]
 [ext_resource path="res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=11]
+[ext_resource path="res://Shaders/ColorBlend.shader" type="Shader" id=12]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 12 )
+shader_param/color_blend_target = Color( 1, 1, 1, 1 )
+shader_param/blend_strength_modifier = 0.0
 
 [node name="BattleAttackAnimationPlayerRoot" type="Node2D"]
 script = ExtResource( 5 )
@@ -90,22 +96,23 @@ __meta__ = {
 [node name="CharacterSprite" type="Sprite" parent="CharacterWrapper"]
 position = Vector2( 240, 92 )
 z_index = 1
-texture = ExtResource( 3 )
-hframes = 4
-frame = 3
+texture = ExtResource( 8 )
+hframes = 3
+frame = 1
 
 [node name="WeaponSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 102, 76 )
-texture = ExtResource( 8 )
+position = Vector2( 214, 108 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]
-anims/AttackNormal = ExtResource( 9 )
+anims/AttackNormal = ExtResource( 3 )
 
 [node name="CharacterWrapperTween" type="Tween" parent="."]
 
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
+material = SubResource( 2 )
 position = Vector2( 80, 86 )
 texture = ExtResource( 10 )
 hframes = 4

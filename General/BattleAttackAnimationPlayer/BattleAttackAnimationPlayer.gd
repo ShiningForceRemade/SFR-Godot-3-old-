@@ -49,8 +49,12 @@ func _ready():
 	# setup_actor_attacking()
 	
 	char_animationPlayer.connect("animation_finished", self, "s_cleanup_animation")
+	char_animationPlayer.remove_animation("AttackNormal")
+	
 	self.connect("signal_attack_frame_reached", self, "s_update_ui_and_animate_damage_phase")
 	# black_fade_anim_in()
+	
+	internal_reset_all_actor_sprites_back_to_default_position()
 	
 	pass
 
@@ -91,6 +95,7 @@ func setup_actor_attacking() -> void:
 	black_fade_anim_out()
 	move_wrappers_into_position()
 	
+	Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	yield(get_tree().create_timer(1), "timeout")
 	
 	# load text box saying x is attacking or doing y to z
@@ -98,9 +103,7 @@ func setup_actor_attacking() -> void:
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
-	var ani = load("res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim")
-	char_animationPlayer.add_animation(internal_animation_name, ani)
-	char_animationPlayer.play(internal_animation_name)
+	setup_attacking_animation()
 	
 	# on the yield end
 	# show the damage box exp and coins if eneemy killed
@@ -128,6 +131,9 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	yield(get_tree().create_timer(1), "timeout")
 	black_fade_anim_out()
 	print("Complete Battle Scene")
+	
+	internal_reset_all_actor_sprites_back_to_default_position()
+	
 	emit_signal("signal_battle_scene_complete")
 
 func s_update_ui_and_animate_damage_phase() -> void:
@@ -219,6 +225,16 @@ func setup_sprite_textures() -> void:
 	
 	pass
 
+func setup_attacking_animation() -> void:
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	
+	# internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
+	if characterRoot.battle_animation_unpromoted_resource.animation_res_attack != null:
+		char_animationPlayer.add_animation("Character Attack", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		char_animationPlayer.play("Character Attack")
+	else:
+		char_animationPlayer.stop()
+	
 
 func print_who_is_attacking() -> void:
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")

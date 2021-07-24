@@ -32,21 +32,33 @@ func _ready():
 		p.connect("finished", self, "_soundeffect_on_stream_finished", [p])
 		p.bus = bus_soundeffects
 
-func _music_on_stream_finished(stream):
+func _music_on_stream_finished(stream) -> void:
 	available_music_p.append(stream)
 	# stream.stop()
 	# print("Sound - ", available, idx)
 	# available[idx].stop()
-func _soundeffect_on_stream_finished(stream):
+func _soundeffect_on_stream_finished(stream) -> void:
 	available_sound_effects_p.append(stream)
 
-func play_music(sound_path):
+func play_music(sound_path) -> void:
 	queue_music_p.append(sound_path)
 
-func play_sfx(sound_path):
+func pause_all_music() -> void:
+	if not queue_music_p.empty() and not available_music_p.empty():
+		for a_m_p in available_music_p:
+			a_m_p.stop()
+
+
+func play_sfx(sound_path) -> void:
 	queue_sound_effects_p.append(sound_path)
-		
-func play(type, sound_path):
+
+func pause_all_sfx() -> void:
+	if not queue_sound_effects_p.empty() and not available_sound_effects_p.empty():
+		for a_s_e_p in available_sound_effects_p:
+			a_s_e_p.stop()
+
+
+func play(type, sound_path) -> void:
 	if type == "music":
 		queue_music_p.append(sound_path)
 	elif type == "fx":
