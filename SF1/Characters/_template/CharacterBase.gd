@@ -151,6 +151,9 @@ export var battle_animation_unpromoted_resource: Resource
 #		}
 #	]
 
+
+var movement_tween_speed = 0.1625
+
 func _ready():
 	$AnimationPlayer.play("DownMovement")
 	pass # Replace with function body.
@@ -241,6 +244,8 @@ func _physics_process(_delta):
 		if tween.is_active():
 			return
 		
+		animationPlayer.playback_speed = 1
+		
 		if Input.is_action_just_released("ui_page_down"):
 			active = !active
 			# emit_signal("signal_completed_turn")
@@ -258,25 +263,29 @@ func _physics_process(_delta):
 			animationPlayer.play("RightMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
 			if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
-				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), 0.15, Tween.TRANS_LINEAR)
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_left"):
 			animationPlayer.play("LeftMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
 			if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
-				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), 0.15, Tween.TRANS_LINEAR)
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_up"):
 			animationPlayer.play("UpMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
 			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
-				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
 		elif Input.is_action_pressed("ui_down"):
 			animationPlayer.play("DownMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
 			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
-				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
 			
 			
