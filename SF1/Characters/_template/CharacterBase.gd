@@ -33,24 +33,9 @@ export(int, "Swordsman - SDMN", "Knight - KNT",
 
 export var is_promoted: bool = false
 
-# maybe I should make this associateion enum and the corresponding array a singleton for global usage
-#enum weapons_and_rings { 
-#	ShortSword 
-#}
-
-#const weapons_and_rings_paths = {
-	#weapons_and_rings.ShortSword: "res://SF1/Items/Short Sword/ShortSword.tscn",
-#}
-
-# export(Array, weapons_and_rings) var equips_idssss
-
 # const item_location_c
 
 ## Only the first 4 fields are valid everything after that is ignored!
-## export(Array, Resource) var equips_id
-## Only the first 4 fields are valid everything after that is ignored!
-## export(Array, Resource) var items_id
-
 export(Array, Resource) var inventory_items_id
 export(Array, bool) var is_item_equipped
 
@@ -156,11 +141,7 @@ var movement_tween_speed = 0.1625
 
 func _ready():
 	$AnimationPlayer.play("DownMovement")
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	pass
 
 
 #
@@ -287,26 +268,7 @@ func _physics_process(_delta):
 				animationPlayer.playback_speed = 2
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
-			
-			
-#		if Input.is_action_pressed("ui_right"):
-#			animationPlayer.play("RightMovement")
-#			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x + TILE_SIZE, kinematicBody.position.y), 0.15, Tween.TRANS_LINEAR)
-#			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x + TILE_SIZE, kinematicBody.position.y))
-#		elif Input.is_action_pressed("ui_left"):
-#			animationPlayer.play("LeftMovement")
-#			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x - TILE_SIZE, kinematicBody.position.y), 0.15, Tween.TRANS_LINEAR)
-#			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x - TILE_SIZE, kinematicBody.position.y))
-#		elif Input.is_action_pressed("ui_up"):
-#			animationPlayer.play("UpMovement")
-#			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x, kinematicBody.position.y - TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
-#			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x, kinematicBody.position.y - TILE_SIZE))
-#		elif Input.is_action_pressed("ui_down"):
-#			animationPlayer.play("DownMovement")
-#			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x, kinematicBody.position.y + TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
-#			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x, kinematicBody.position.y + TILE_SIZE))
-#
-		#print("CharacterMoved")
+		
 		
 		tween.start()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
@@ -12,13 +12,16 @@
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=10]
 [ext_resource path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" type="Texture" id=11]
 [ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
+[ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture" id=13]
+[ext_resource path="res://SF1/Spells/Blaze/Blaze.anim" type="Animation" id=14]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 12 )
 shader_param/dissolve_effect_amount = null
 shader_param/noise_texture = ExtResource( 11 )
 
 [node name="BattleAttackAnimationPlayerRoot" type="Node2D"]
+modulate = Color( 0.968627, 0.501961, 0.501961, 1 )
 script = ExtResource( 5 )
 character_actor_animation_res = ExtResource( 6 )
 enemey_actor_animation_res = ExtResource( 7 )
@@ -82,6 +85,17 @@ __meta__ = {
 
 [node name="BackgroundTween" type="Tween" parent="."]
 
+[node name="SpellWrapper" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="SpellWrapper"]
+position = Vector2( 79, 92 )
+z_index = 1
+texture = ExtResource( 13 )
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpellWrapper"]
+anims/Blaze = ExtResource( 14 )
+
 [node name="CharacterWrapper" type="Node2D" parent="."]
 
 [node name="GroundSprite" type="Sprite" parent="CharacterWrapper"]
@@ -113,7 +127,7 @@ anims/AttackNormal = ExtResource( 8 )
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
-material = SubResource( 1 )
+material = SubResource( 2 )
 position = Vector2( 80, 86 )
 texture = ExtResource( 10 )
 hframes = 4
