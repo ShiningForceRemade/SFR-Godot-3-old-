@@ -9,6 +9,7 @@ var battle_scene_node
 var dialogue_box_node
 
 var currently_active_character
+var active_actor_movement_array
 
 var currently_selected_actor
 

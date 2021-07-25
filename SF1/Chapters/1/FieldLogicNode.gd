@@ -342,6 +342,8 @@ func draw_character_movement_area():
 	var mcmt = (movement * 2) + 1
 	# var ard: Array = []
 	
+	Singleton_Game_GlobalBattleVariables.active_actor_movement_array = []
+	
 	var squares_to_draw_in_row = 1
 	
 	var half_way_pass: bool = false
@@ -357,11 +359,16 @@ func draw_character_movement_area():
 	for i in mcmt:
 		# ard.append([])
 		# ard[i].resize(mcmt)
+		Singleton_Game_GlobalBattleVariables.active_actor_movement_array.append([])
+		Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i].resize(mcmt)
 		
 		# straight line down the middle
-		# ard[i][mcmt / 2] = 1
-		#print("Center - ", i, " - ", mcmt / 2)
+		# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][mcmt / 2] = 1
+		
 		if check_if_cell_is_navigatable(i, mcmt / 2, e_grid_movement_subsection.CENTER):
+			
+			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][mcmt / 2] = Vector2(xpos_character_center_tile, (vpos.y - movement + i) * tile_size)
+			
 			draw_flashing_movement_square(center_segment,
 			xpos_character_center_tile,  # x pos
 			(vpos.y - movement + i) * tile_size
@@ -372,12 +379,16 @@ func draw_character_movement_area():
 			for j in squares_to_draw_in_row / 2:
 				# print(j)
 				# ard[i][(mcmt / 2) + j] = 1
+				# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][(mcmt / 2) + j] = 1
 				var yy = (mcmt / 2) + (j + 1)
 				# top right side of array pyr
 				if yy < mcmt:
 					# ard[i][yy] = 1
+					
 					#print("Top Right ", i, " - ", yy)
 					if check_if_cell_is_navigatable(i, yy, e_grid_movement_subsection.TOP_RIGHT):
+						# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = 1
+						
 						var t = vpos # center character tile
 						t.x = t.x + (yy - movement)
 						t.y = (t.y - movement) + i
@@ -385,6 +396,7 @@ func draw_character_movement_area():
 						t.x * tile_size, # x pos   # add left padding for when tilemap isnt at 0, 0
 						t.y * tile_size # y pos   # add top padding for when tilemap isnt at 0, 0
 						)
+						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = Vector2(t.x * tile_size, t.y * tile_size)
 						#draw_flashing_movement_square(Color.red, 
 						#xpos_character_center_tile + (j * tile_size) + tile_size, # x pos 
 						#yy * tile_size + total_movement_tile_space - (i * tile_size) + tile_size # y pos
@@ -394,8 +406,10 @@ func draw_character_movement_area():
 				# top left side of array pyr
 				if yyy > -1:
 					# ard[i][yyy] = 1
+					
 					#print("Top Left ", i, " - ", yyy)
 					if check_if_cell_is_navigatable(i, yyy, e_grid_movement_subsection.TOP_LEFT):
+						#Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = 1
 						var t = vpos # center character tile
 						t.x = t.x - (movement - yyy)
 						t.y = (t.y - movement) + i
@@ -403,6 +417,7 @@ func draw_character_movement_area():
 							t.x * tile_size, # x pos
 							t.y * tile_size # y pos
 						)
+						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = Vector2(t.x * tile_size, t.y * tile_size)
 						#draw_flashing_movement_square(Color.green, 
 						#	xpos_character_center_tile - (j * tile_size) - tile_size, # x pos
 						#	yy * tile_size + total_movement_tile_space - (i * tile_size) + tile_size # y pos
@@ -419,12 +434,15 @@ func draw_character_movement_area():
 			for j in squares_to_draw_in_row / 2:
 				# print(j)
 				# ard[i][(mcmt / 2) + j] = 1
+				# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][(mcmt / 2) + j] = 1
 				var yy = (mcmt / 2) + (j + 1)
 				
 				# bottom right side of array pyr
 				if yy < mcmt:
 					# ard[i][yy] = 1
+					
 					if check_if_cell_is_navigatable(i, yy, e_grid_movement_subsection.BOTTOM_RIGHT):
+						#Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = 1
 						var t = vpos # center character tile
 						t.x = t.x + (yy - movement)
 						t.y = (t.y - movement) + i
@@ -432,6 +450,7 @@ func draw_character_movement_area():
 							t.x * tile_size, # x pos
 							t.y * tile_size # y pos
 						)
+						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = Vector2(t.x * tile_size, t.y * tile_size)
 						# draw_flashing_movement_square(Color.blue, 
 						#	xpos_character_center_tile + (j * tile_size) + tile_size, # x pos
 						#	i * tile_size + total_movement_tile_space + tile_size   # y pos
@@ -442,7 +461,9 @@ func draw_character_movement_area():
 				if yyy > -1:
 					# ard[i][yyy] = 1
 					
+					
 					if check_if_cell_is_navigatable(i, yyy, e_grid_movement_subsection.BOTTOM_LEFT):
+						#Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = 1
 						var t = vpos # center character tile
 						t.x = t.x - (movement - yyy)
 						t.y = (t.y - movement) + i
@@ -450,6 +471,7 @@ func draw_character_movement_area():
 							t.x * tile_size, # x pos
 							t.y * tile_size  # y pos
 						)
+						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = Vector2(t.x * tile_size, t.y * tile_size)
 						#draw_flashing_movement_square(Color.yellow, 
 						#	xpos_character_center_tile - (j * tile_size) - tile_size, # x pos
 						#	yyy * tile_size + (2 * tile_size) + (total_movement_tile_space * 2) - (i * tile_size)   # y pos
@@ -460,6 +482,17 @@ func draw_character_movement_area():
 	# 	print(a)
 	# print("End")
 		
+	
+	print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
+	var copy = Singleton_Game_GlobalBattleVariables.active_actor_movement_array.duplicate(true)
+#	for i in range(copy.size()):
+#		for j in range(copy[i].size()):
+#			if copy[i][j] == 1:
+#				copy[i][j] = "___1"
+	for a in copy:
+		print(a)
+	print("End")
+	
 	print("\n")
 
 func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg = null) -> void:

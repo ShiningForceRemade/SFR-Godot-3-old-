@@ -48,8 +48,8 @@ func _process(_delta):
 	#displayInfoControl.rect_position.x = playerNode.position.x
 	#displayInfoControl.rect_position.y = playerNode.position.y
 	
-	if position.x < 200:
-		position.x = 200
+	if position.x < 130:
+		position.x = 130
 	
 	# 1280 max size 
 	# 160 viewport horiztonal h

@@ -257,23 +257,27 @@ func _physics_process(_delta):
 		if Input.is_action_pressed("ui_right"):
 			animationPlayer.play("RightMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), 0.15, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
+			if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), 0.15, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_left"):
 			animationPlayer.play("LeftMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), 0.15, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
+			if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), 0.15, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_up"):
 			animationPlayer.play("UpMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
+			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
 		elif Input.is_action_pressed("ui_down"):
 			animationPlayer.play("DownMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
+			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), 0.15, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
 			
 			
 #		if Input.is_action_pressed("ui_right"):
@@ -296,4 +300,16 @@ func _physics_process(_delta):
 		#print("CharacterMoved")
 		
 		tween.start()
+
+func check_if_move_is_possible(new_pos_arg) -> bool:
+	var check_pos = new_pos_arg
+	check_pos.x -= 13
+	check_pos.y -= 12
+	for sub_array in Singleton_Game_GlobalBattleVariables.active_actor_movement_array:
+		for move_pos in sub_array:
+			if move_pos != null:
+				# print(new_pos_arg, " ", check_pos, " ", move_pos)
+				if check_pos == move_pos:
+					return true
 	
+	return false
