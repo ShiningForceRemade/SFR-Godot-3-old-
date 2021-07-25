@@ -43,6 +43,9 @@ func _ready():
 	# print(tilemap)
 	yield(get_tree().root, "ready")
 	
+	Singleton_Game_GlobalBattleVariables.character_nodes = characters
+	Singleton_Game_GlobalBattleVariables.enemey_nodes = enemies
+	
 	Singleton_Game_GlobalBattleVariables.field_logic_node = self
 	
 	# setup data for battle and turns
@@ -206,7 +209,7 @@ func turn_movement_init():
 #		# tile_id  = tilemap.get_cellv(cell)
 #		print(tilemap.get_cellv(cell))
 #		print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(cell)))
-
+	
 	#get_tile_info_under_character(Vector2.ZERO)
 	draw_character_movement_area()
 	# NOTE: Wait for everything to be ready otherwise signal fires before the rest of the tree is ready to catch the emit

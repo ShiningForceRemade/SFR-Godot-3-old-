@@ -11,6 +11,9 @@ var dialogue_box_node
 var currently_active_character
 var active_actor_movement_array
 
+var character_nodes
+var enemey_nodes
+
 var currently_selected_actor
 
 var field_logic_node

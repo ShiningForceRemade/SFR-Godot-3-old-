@@ -302,6 +302,11 @@ func _physics_process(_delta):
 		tween.start()
 
 func check_if_move_is_possible(new_pos_arg) -> bool:
+	var enemey_children = Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children()
+	for enemey in enemey_children:
+		if new_pos_arg == enemey.position:
+			return false
+	
 	var check_pos = new_pos_arg
 	check_pos.x -= 13
 	check_pos.y -= 12
