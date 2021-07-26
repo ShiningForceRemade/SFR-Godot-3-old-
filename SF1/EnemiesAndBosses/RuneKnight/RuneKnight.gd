@@ -17,6 +17,8 @@ var _timer = null
 
 var rng = RandomNumberGenerator.new()
 
+export var battle_logic_script: String
+
 func _ready():
 	animationPlayer.play("DownMovement")
 	
@@ -77,7 +79,16 @@ func random_move_direction(direction):
 func play_turn():
 	print("\nRune Knight Turn Start\n")
 	
-	pseudo_ai_turn_determine()
+	print("battle_logic_script ", battle_logic_script)
+	if not battle_logic_script.empty():
+		var bls = load(battle_logic_script)
+		bls = bls.new()
+		bls.play_turn(self)
+		# yield(bls, "signal_logic_completed")
+	else:
+		pseudo_ai_turn_determine()
+		
+	# pseudo_ai_turn_determine()
 	
 	# random_move_direction(3)
 	# yield(get_tree().create_timer(1.0), "timeout")
@@ -103,9 +114,15 @@ func play_turn():
 	# yield()
 	# emit_signal("completed")
 	
+	animationPlayer.play("DownMovement")
 	# yield()
 	emit_signal("signal_completed_turn")
 	print("\nRune Knight Turn End\n")
+
+func internal_call_complete() -> void:
+	animationPlayer.play("DownMovement")
+	emit_signal("signal_completed_turn")
+
 
 func pseudo_ai_turn_determine():
 	for _i in range(4):

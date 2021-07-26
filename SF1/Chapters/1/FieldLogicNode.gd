@@ -1,7 +1,7 @@
 extends Node2D
 
 var is_battle_finished: bool = false
-var turn_number: int = 1
+var turn_number: int = 0
 
 signal signal_land_effect_under_tile(land_effect)
 signal signal_active_character_or_enemey(name_arg, class_arg, level, current_hp, total_hp, current_mp, total_mp)
@@ -106,7 +106,7 @@ func generate_and_launch_new_turn_order():
 		emit_signal("signal_hide_land_effect_and_active_actor_info")
 		
 		if a.type == "enemey":
-			continue
+			# continue
 			print("Enemy Turn Start")
 			
 			# camera.smooth_move_to_new_position(a.node.get_node("EnemeyRoot/KinematicBody2D"))

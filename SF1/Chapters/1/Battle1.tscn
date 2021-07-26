@@ -270,6 +270,7 @@ position = Vector2( 229, 444 )
 [node name="GoblinRoot4" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 85, 156 )
 is_npc = true
+battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/TopLeftGoblin.gd"
 
 [node name="GoblinRoot5" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 181, 180 )
@@ -277,26 +278,6 @@ is_npc = true
 
 [node name="GoblinRoot6" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 229, 228 )
-is_npc = true
-
-[node name="GoblinRoot7" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 205, 252 )
-is_npc = true
-
-[node name="GoblinRoot8" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 181, 276 )
-is_npc = true
-
-[node name="GoblinRoot11" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 157, 252 )
-is_npc = true
-
-[node name="GoblinRoot12" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 157, 204 )
-is_npc = true
-
-[node name="GoblinRoot13" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 133, 228 )
 is_npc = true
 
 [node name="GoblinRoot9" parent="Enemies" instance=ExtResource( 3 )]
@@ -310,6 +291,7 @@ is_npc = true
 [node name="RuneKnightRoot" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 205, 204 )
 is_npc = true
+battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="DarkDwarfRoot" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 229, 132 )
@@ -320,6 +302,7 @@ position = Vector2( 157, 132 )
 is_npc = true
 
 [node name="BattleAttackAnimationPlayerRoot" parent="." instance=ExtResource( 18 )]
+visible = false
 position = Vector2( -100, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

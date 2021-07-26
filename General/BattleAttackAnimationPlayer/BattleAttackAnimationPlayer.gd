@@ -614,6 +614,9 @@ func internal_signal_switch_back_to_active_actor() -> void:
 		)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
+	active_actor.MP_Current -= active_actor.spells_id[0].levels[0].mp_usage_cost
+	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
+	
 	active_actor.experience_points += exp_gain
 	if active_actor.experience_points >= 100:
 		active_actor.experience_points = 0
@@ -627,7 +630,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	char_animationPlayer.remove_animation(internal_animation_name)
 	$CharacterTargetWrapper/AnimationPlayer.remove_animation("Target Idle")
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 	black_fade_anim_out()
 	print("Complete Battle Scene")
 	
@@ -636,4 +639,5 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
 	$SpellWrapper/AnimationPlayer.playback_speed = 1
+	
 	emit_signal("signal_battle_scene_complete")
