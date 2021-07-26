@@ -539,6 +539,7 @@ func internal_signal_spell_completed() -> void:
 	
 
 func internal_signal_switch_to_next_character_actor() -> void:
+	$SpellWrapper/AnimationPlayer.playback_speed = 1.5
 	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
 	
 	characterWrapperTween.interpolate_property(characterWrapper, "position", 
@@ -634,4 +635,5 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
+	$SpellWrapper/AnimationPlayer.playback_speed = 1
 	emit_signal("signal_battle_scene_complete")
