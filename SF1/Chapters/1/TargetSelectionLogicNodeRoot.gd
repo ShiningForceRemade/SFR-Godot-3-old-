@@ -98,10 +98,11 @@ func _input(event):
 		
 		if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_left"):
 			# target_selection_counter_clockwise_quadarnt_style()
-			target_selection_clockwise__style_naive_pass_forward()
+			target_selection_counter_clockwise__style_naive_pass_forward()
 		elif event.is_action_pressed("ui_right") or event.is_action_pressed("ui_up"):
 			# target_selection_clockwise_quadarnt_style() 
-			target_selection_counter_clockwise__style_naive_pass_forward()
+			target_selection_clockwise__style_naive_pass_forward()
+			
 		
 
 func setup_use_range_and_target_range_selection(item_arg) -> void:
