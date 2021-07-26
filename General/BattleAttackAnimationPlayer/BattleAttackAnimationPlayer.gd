@@ -38,6 +38,11 @@ const internal_animation_name: String = "A_long_random_string_is_this_even_neede
 
 const ani_name_enemey_idle: String = "Enemey Idle"
 
+var using_spell: bool = false
+
+# TODO: CLEAN: TEMP FOR DEMO
+var heal_amount = 0
+
 func _ready():
 	# yield(get_tree().create_timer(1), "timeout")
 	clear_black_fade()
@@ -101,6 +106,8 @@ func internal_init_resource_for_actor(actorSprite, actor_animation_res) -> void:
 
 
 func setup_actor_attacking() -> void:
+	using_spell = false
+	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 	enemeySprite.show()
@@ -127,6 +134,28 @@ func setup_actor_attacking() -> void:
 	# or whatever the appriotate message is
 	
 	# Singleton_Game_AudioManager.play("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+
+func setup_spell_usage() -> void:
+	using_spell = true
+	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
+	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
+	enemeySprite.show()
+	
+	setup_sprite_textures()
+	black_fade_anim_out()
+	move_wrappers_into_position()
+	
+	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	yield(get_tree().create_timer(1), "timeout")
+	
+	# load text box saying x is attacking or doing y to z
+	# print_who_is_attacking()
+	
+	print_spell_usage()
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
+	setup_spell_animation()
 
 
 func s_cleanup_animation(animation_name_arg) -> void:
@@ -165,20 +194,37 @@ func calculate_damage_step() -> void:
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	
-	# max attack value
-	var max_damage = characterRoot.get_attack() - enemeyRoot.defense
-	if max_damage <= 0:
-		max_damage = 1
+	var damage = 0
 	
-	# min attack value
-	var min_damage = floor(max_damage - floor(max_damage * 0.25))
+	if using_spell:
+		var damage_min = characterRoot.spells_id[0].levels[0].min_range
+		var damage_max = characterRoot.spells_id[0].levels[0].max_range
+		var mp_cost = characterRoot.spells_id[0].levels[0].mp_usage_cost
+		
+		rng.randomize()
 	
-	rng.randomize()
+		damage = rng.randi_range(damage_max, damage_min)
+		if damage <= 0:
+			damage = 1
+		
+		characterRoot.MP_Current -= mp_cost
+		Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
+	else:
+		# max attack value
+		var max_damage = characterRoot.get_attack() - enemeyRoot.defense
+		if max_damage <= 0:
+			max_damage = 1
 	
-	var damage = rng.randi_range(max_damage, min_damage)
-	if damage <= 0:
-		damage = 1
+		# min attack value
+		var min_damage = floor(max_damage - floor(max_damage * 0.25))
 	
+		rng.randomize()
+	
+		damage = rng.randi_range(max_damage, min_damage)
+		if damage <= 0:
+			damage = 1
+	
+		
 	if enemeyRoot.HP_Current - damage <= 0:
 		enemeyRoot.HP_Current = 0
 	else:
@@ -257,6 +303,9 @@ func s_enemey_tween_completed(arg_1, arg_2) -> void:
 
 func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
 	print("Reseting Scene")
+	self.modulate = Color("#ffffff")
+	get_node("SpellWrapper").hide()
+	
 	get_node("BackgroundWrapper").position = Vector2(0, 0)
 	
 	get_node("CharacterWrapper").position = Vector2(0, 0)
@@ -272,12 +321,16 @@ func setup_sprite_textures() -> void:
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	
-	internal_init_resource_for_actor(enemeySprite, enemeyRoot.battle_animation_resource)
-	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
-		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
-		enemey_animationPlayer.play(ani_name_enemey_idle)
+	if enemeyRoot != null:
+		enemeyWrapper.show()
+		internal_init_resource_for_actor(enemeySprite, enemeyRoot.battle_animation_resource)
+		if enemeyRoot.battle_animation_resource.animation_res_idle != null:
+			enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+			enemey_animationPlayer.play(ani_name_enemey_idle)
+		else:
+			enemey_animationPlayer.stop()
 	else:
-		enemey_animationPlayer.stop()
+		enemeyWrapper.hide()
 	
 	internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
@@ -309,6 +362,22 @@ func setup_attacking_animation() -> void:
 		char_animationPlayer.stop()
 	
 
+func setup_spell_animation() -> void:
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var sar = characterRoot.spells_id[0].spell_animation_resource
+	
+	$SpellWrapper/Sprite.texture = sar.primary_animation_texture
+	$SpellWrapper/Sprite.hframes = sar.hframes
+	$SpellWrapper.show()
+	
+	char_animationPlayer.add_animation("Character Attack", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+	char_animationPlayer.play("Character Attack")
+	
+	$SpellWrapper/AnimationPlayer.add_animation("Character Spell", sar.animation_res)
+	$SpellWrapper/AnimationPlayer.play("Character Spell")
+
+
+
 func print_who_is_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
@@ -318,6 +387,17 @@ func print_who_is_attacking() -> void:
 	
 	pass
 
+func print_spell_usage() -> void:
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(active_actor.cget_actor_name() + " Attacks!")
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		active_actor.cget_actor_name() + " casts " + active_actor.spells_id[0].name + " level 1."
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	pass
 
 func print_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
@@ -442,16 +522,116 @@ func setup_enemey_wrapper_tween() -> void:
 
 func internal_signal_attack_frame_reached() -> void:
 	print("\n\n\n Signal Reached - signal_attack_frame_reached\n\n\n")
-	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+	
+	if using_spell:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
+		char_animationPlayer.stop(false)
+	else:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+		emit_signal("signal_attack_frame_reached")
+	
+
+func internal_signal_spell_completed() -> void:
+	char_animationPlayer.play()
 	emit_signal("signal_attack_frame_reached")
 	
-func print_lots() -> void:
-	print("hi")
-	print("hi")
-	print("hi")
-	print("hi")
-	print("hi")
-	print("hi")
-	print("hi")
-	print("hi")
-	print("hi")
+	pass
+	
+
+func internal_signal_switch_to_next_character_actor() -> void:
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	
+	characterWrapperTween.interpolate_property(characterWrapper, "position", 
+	characterWrapper.position, Vector2(characterWrapper.position.x + 160, characterWrapper.position.y), 0.3, Tween.TRANS_LINEAR)
+	characterWrapperTween.start()
+	
+	$CharacterTargetWrapper/CharacterSprite.texture = selected_actor.battle_animation_unpromoted_resource.actor_animation_texture
+	$CharacterTargetWrapper/CharacterSprite.hframes = selected_actor.battle_animation_unpromoted_resource.hframes
+	
+	$CharacterTargetWrapper/WeaponSprite.texture = selected_actor.inventory_items_id[0].battle_texture
+	
+	$CharacterTargetWrapper/AnimationPlayer.add_animation("Target Idle", selected_actor.battle_animation_unpromoted_resource.animation_res_idle)
+	$CharacterTargetWrapper/AnimationPlayer.play("Target Idle")
+	
+	$CharacterTargetTween.interpolate_property($CharacterTargetWrapper, "position", 
+	$CharacterTargetWrapper.position, Vector2($CharacterTargetWrapper.position.x - 160, $CharacterTargetWrapper.position.y), 0.3, Tween.TRANS_LINEAR)
+	$CharacterTargetTween.start()
+	
+	print("Switching to next cahracter Actor")
+	
+
+func internal_signal_print_recover_amount() -> void:
+	var active_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	
+	heal_amount = 10
+	
+	if heal_amount + active_actor.HP_Current >= active_actor.HP_Total:
+		heal_amount = active_actor.HP_Total - active_actor.HP_Current
+	else:
+		heal_amount = 10
+		
+	active_actor.HP_Current += heal_amount
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	
+	# active_actor.HP_Current
+	# active_actor.HP_Total
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		# active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
+		active_actor.cget_actor_name() + " regains " + str(heal_amount) + " hit points."
+	)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	
+	print("Print Recover amount")
+
+func internal_signal_switch_back_to_active_actor() -> void:
+	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	
+	characterWrapperTween.interpolate_property(characterWrapper, "position", 
+	characterWrapper.position, Vector2(characterWrapper.position.x - 160, characterWrapper.position.y), 0.3, Tween.TRANS_LINEAR)
+	characterWrapperTween.start()
+	
+	$CharacterTargetTween.interpolate_property($CharacterTargetWrapper, "position", 
+	$CharacterTargetWrapper.position, Vector2($CharacterTargetWrapper.position.x + 160, $CharacterTargetWrapper.position.y), 0.3, Tween.TRANS_LINEAR)
+	$CharacterTargetTween.start()
+	
+	print("Go back to lowe")
+	
+	# print_exp_gain(0)
+	var exp_gain = 0
+	if heal_amount == 0:
+		exp_gain = 1
+	else:
+		exp_gain = 10
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	active_actor.experience_points += exp_gain
+	if active_actor.experience_points >= 100:
+		active_actor.experience_points = 0
+		active_actor.level += 1
+		
+		print("TODO print level up and stat gain")
+		
+		
+	print("Complete Heal Step")
+	
+	char_animationPlayer.remove_animation(internal_animation_name)
+	$CharacterTargetWrapper/AnimationPlayer.remove_animation("Target Idle")
+	
+	yield(get_tree().create_timer(1), "timeout")
+	black_fade_anim_out()
+	print("Complete Battle Scene")
+	
+	internal_reset_all_actor_sprites_back_to_default_position()
+	
+	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
+	# Singleton_Game_AudioManager.pause_all_music()
+	emit_signal("signal_battle_scene_complete")

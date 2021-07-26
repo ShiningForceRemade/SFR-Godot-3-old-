@@ -53,6 +53,9 @@ var use_range = [
 # so there isn't so much repatition in various nodes that are mostly similar
 var target_range
 
+var spell_idx: int = 0
+# var spell_level_idx
+
 func _ready():
 	redSelection.position = rs_top_pos
 	magicLevelSelectorWrapper.hide()
@@ -134,19 +137,23 @@ func _input(event):
 				currently_selected_option = e_magic_menu_options.DOWN_OPTION
 				redSelection.position = rs_bottom_pos
 				spell_name_label.text = character_spells[3].item_name
+				spell_idx = 3
 				# TODO: Create Func to show Magic Levels, and hide the extra magic level nodes
 		elif event.is_action_pressed("ui_up"):
 			if 0 <= character_spells.size() - 1:
 				currently_selected_option = e_magic_menu_options.UP_OPTION
 				redSelection.position = rs_top_pos
+				spell_idx = 0
 		elif event.is_action_pressed("ui_right"):
 			if 2 <= character_spells.size() - 1:
 				currently_selected_option = e_magic_menu_options.RIGHT_OPTION
 				redSelection.position = rs_right_pos
+				spell_idx = 2
 		elif event.is_action_pressed("ui_left"):
 			if 1 <= character_spells.size() - 1:
 				currently_selected_option = e_magic_menu_options.LEFT_OPTION
 				redSelection.position = rs_left_pos
+				spell_idx = 1
 	
 	if is_select_magic_level_active:
 		if event.is_action_released("ui_b_key"):
@@ -162,11 +169,20 @@ func _input(event):
 			is_select_magic_level_active = false
 			
 			print("TODO: Logic for target selection everything below basically")
-			return
+			# return
+			
+			get_parent().get_parent().get_parent().s_hide_battle_magic_menu()
+			
+			# var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+			# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
+				
 			
 			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 			
-			setup_use_range_and_target_range_selection(actor.inventory_items_id[currently_selected_option])
+			# setup_use_range_and_target_range_selection(actor.spells_id[currently_selected_option]) # [spell_idx]
+			
+			Singleton_Game_GlobalBattleVariables.target_selection_node.setup_magic_use_range_and_target_range_selection(actor.spells_id[currently_selected_option])
+			
 			yield(self, "signal_completed_magic_level_selection_action")
 			
 			# todo if cancelled
@@ -259,18 +275,18 @@ func select_magic_level(spell_arg):
 # TODO: convert this to use spells instead of items
 func setup_use_range_and_target_range_selection(item_arg) -> void:
 	print(item_arg)
-	print(item_arg.item_use_range_path)
-	var item_use_range = load(item_arg.item_use_range_path).new()
+	print(item_arg.spell_use_range_path)
+	var item_use_range = load(item_arg.spell_use_range_path).new()
 	print(item_use_range)
 	item_use_range._ready()
 	# TODO create cleanup function to remove the attack grid when canclled or completed
 	item_use_range.draw_use_range()
-	target_range = load(item_arg.item_use_target_path).new()
+	target_range = load(item_arg.spell_use_target_path).new()
 	# TODO create cleanup function for this to remove the curosr
 	target_range.draw_cursor_and_get_targets("test arg 123")
 	
-	print(item_arg.target_actor_type)
-	if item_arg.target_actor_type == 4:
+	print(item_arg.usable_on_actor_type)
+	if item_arg.usable_on_actor_type == 2:
 		print("Self and Characters")
 		print(Singleton_Game_GlobalBattleVariables.character_wrapper_node)
 		
@@ -283,7 +299,19 @@ func setup_use_range_and_target_range_selection(item_arg) -> void:
 		for child in target_node_children:
 			print(child)
 			print(child.position)
+	elif item_arg.usable_on_actor_type == 1:
+		print("Enemies")
+		print(Singleton_Game_GlobalBattleVariables.character_wrapper_node)
 		
+		print(Singleton_Game_GlobalBattleVariables.currently_active_character)
+		print(Singleton_Game_GlobalBattleVariables.currently_active_character.position)
+		
+		print(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+		
+		target_node_children = Singleton_Game_GlobalBattleVariables.enemies_wrapper_node.get_children()
+		for child in target_node_children:
+			print(child)
+			print(child.position)
 	#emit_signal("signal_completed_item_use_action")
 	# return
 

@@ -15,6 +15,10 @@ var target_range
 
 var item_use_range
 
+# var spell_use_range
+
+var using_spell: bool = false
+
 var current_selection_vec2
 
 	
@@ -54,7 +58,11 @@ func _input(event):
 			Singleton_Game_GlobalBattleVariables.field_logic_node.show_movement_tiles()
 			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 			target_range.cleanup_cursor()
-			Singleton_Game_GlobalBattleVariables.battle_base.s_show_character_action_menu()
+			
+			if using_spell:
+				Singleton_Game_GlobalBattleVariables.battle_base.s_show_battle_magic_menu()
+			else:
+				Singleton_Game_GlobalBattleVariables.battle_base.s_show_character_action_menu()
 		
 		if event.is_action_released("ui_a_key"):
 			is_target_selection_active = false
@@ -69,7 +77,12 @@ func _input(event):
 			Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro_in_battle()
 			
 			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
-			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_actor_attacking()
+			
+			if using_spell:
+				Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_spell_usage()
+			else:
+				Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_actor_attacking()
+			
 			yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
 			
 			print("Complete")
@@ -92,6 +105,7 @@ func _input(event):
 		
 
 func setup_use_range_and_target_range_selection(item_arg) -> void:
+	using_spell = false
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
 	
 	print("Setup")
@@ -130,6 +144,46 @@ func setup_use_range_and_target_range_selection(item_arg) -> void:
 		target_node_children = Singleton_Game_GlobalBattleVariables.enemies_wrapper_node.get_children()
 		target_node_children += Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
 		set_cursor_target_on_first_found_enemey()	
+	#emit_signal("signal_completed_item_use_action")
+	# return
+
+
+func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
+	using_spell = true
+	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
+	
+	print("Setup")
+	
+	is_target_selection_active = true
+	
+	print(spell_arg)
+	print(spell_arg.spell_use_range_path)
+	# spell_use_range = load(spell_arg.spell_use_range_path).new()
+	item_use_range = load(spell_arg.spell_use_range_path).new()
+	print(item_use_range)
+	item_use_range._ready()
+	# TODO create cleanup function to remove the attack grid when canclled or completed
+	item_use_range.draw_use_range()
+	Singleton_Game_GlobalBattleVariables.field_logic_node.show_use_target_tiles()
+	
+	target_range = load(spell_arg.spell_use_target_path).new()
+	# TODO create cleanup function for this to remove the curosr
+	target_range.draw_cursor_and_get_targets("test arg 123")
+
+	# target_range.draw_cursor_at_position(new_pos_arg: Vector2)
+	
+	print("Target Actor Type - ", spell_arg.usable_on_actor_type)
+	if spell_arg.usable_on_actor_type == 2:
+		print("Self and Characters", Singleton_Game_GlobalBattleVariables.character_wrapper_node)
+		target_node_children = Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
+		
+	elif spell_arg.usable_on_actor_type == 1: # Enemeies - TODO: add enum or consts to use instead of raw numbers
+		print("Enemies", Singleton_Game_GlobalBattleVariables.enemies_wrapper_node)
+		target_node_children = Singleton_Game_GlobalBattleVariables.enemies_wrapper_node.get_children()
+		set_cursor_target_on_first_found_enemey()
+		
+		# target_range.draw_cursor_at_position(target_node_children[0].position)
+		
 	#emit_signal("signal_completed_item_use_action")
 	# return
 

@@ -50,6 +50,11 @@ _global_script_classes=[ {
 "path": "res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd"
 }, {
 "base": "Resource",
+"class": "CN_SF_AnimationSpellResource",
+"language": "GDScript",
+"path": "res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationSpellResource.gd"
+}, {
+"base": "Resource",
 "class": "CN_SF_TargetRange",
 "language": "GDScript",
 "path": "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_BaseClass.gd"
@@ -68,6 +73,7 @@ _global_script_class_icons={
 "CN_SF1_Spell": "",
 "CN_SF1_Spell_Level": "",
 "CN_SF_AnimationResource": "",
+"CN_SF_AnimationSpellResource": "",
 "CN_SF_TargetRange": "",
 "CN_SF_UseRange": ""
 }

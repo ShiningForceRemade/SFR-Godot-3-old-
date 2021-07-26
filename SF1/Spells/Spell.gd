@@ -29,5 +29,10 @@ export(int, "None", "Fire") var element_type: int
 # TODO: check for other features in ROTDD
 # have the nagging feeling I'm missing something
 
+export var spell_use_range_path: String
+export var spell_use_target_path: String
+
+export var spell_animation_resource: Resource
+
 func _ready():
 	pass

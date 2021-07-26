@@ -11,3 +11,5 @@ spell_texture = ExtResource( 2 )
 usable_on_actor_type = 0
 levels = [ ExtResource( 3 ) ]
 element_type = 0
+spell_use_range_path = ""
+spell_use_target_path = ""
