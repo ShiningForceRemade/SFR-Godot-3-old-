@@ -201,16 +201,18 @@ func set_cursor_target_on_first_found_enemey() -> void:
 	setup_quadrant_vars()
 	
 	for child in target_node_children:
-		print(child)
+		print("Target Child", child)
 		print(child.position)
 		
-		for r in range(t_rows):
-			for c in range(t_cols):
+		for c in range(t_cols):
+			for r in range(t_rows):
 				if use_range_array_rep[r][c] != null:
 					print(use_range_array_rep[r][c])
 					
+					print(child.position, " ", Vector2(ac_pos.x + get_tile_position_adjustment(r, c_row), ac_pos.y + get_tile_position_adjustment(c, c_col)))
 					if child.position == Vector2(ac_pos.x + get_tile_position_adjustment(r, c_row), ac_pos.y + get_tile_position_adjustment(c, c_col)):
 						set_and_save_new_target_selection(r, c, child)
+						backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y)
 						# Found inital target no need to continue searching
 						return
 	
@@ -638,8 +640,7 @@ func right_side_pass_vt_old() -> bool:
 	return false
 
 func get_tile_adjustment(current_row, center_row, current_col, center_col) -> Vector2:
-	return Vector2(get_tile_position_adjustment(current_col, center_col), 
-	get_tile_position_adjustment(current_row, center_row))
+	return Vector2(get_tile_position_adjustment(current_col, center_col), get_tile_position_adjustment(current_row, center_row))
 
 func get_tile_position_adjustment(cur_rc, center_rc) -> int:
 	print(cur_rc, " ", center_rc)
@@ -671,6 +672,7 @@ func setup_quadrant_vars() -> void:
 func set_and_save_new_target_selection(current_row, current_col, child) -> void: 
 	current_selection_vec2 = Vector2(current_row, current_col)
 	print("Found - Current Select - ", current_selection_vec2)
+	print(child, "  -   ", child.position)
 	target_range.draw_cursor_at_position(child.position)
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor = child
 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro()
