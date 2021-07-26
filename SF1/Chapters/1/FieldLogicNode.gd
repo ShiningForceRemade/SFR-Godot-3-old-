@@ -108,6 +108,8 @@ func generate_and_launch_new_turn_order():
 		if previous_actor_pos == Vector2.ZERO:
 			previous_actor_pos = a.node.position
 		
+		# print("PREVIOUS ACTOR POS - ", previous_actor_pos, " ", a.node.position)
+		
 		emit_signal("signal_hide_land_effect_and_active_actor_info")
 		
 		if a.type == "enemey":
@@ -117,8 +119,14 @@ func generate_and_launch_new_turn_order():
 			# camera.smooth_move_to_new_position(a.node.get_node("EnemeyRoot/KinematicBody2D"))
 			cursor_root.show()
 			cursor_root.position = previous_actor_pos
-			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position)
-			camera.smooth_move_to_new_position(a.node)
+			var distance = a.node.position.distance_to(cursor_root.position)
+			#var distance = sqrt((a.node.position.x - cursor_root.position.x) * 2 + (a.node.position.y - cursor_root.position.y) * 2)
+			var tween_time = distance * 0.00325
+			if tween_time < 0:
+				tween_time = 0.1
+				
+			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position, tween_time)
+			camera.smooth_move_to_new_position(a.node, tween_time)
 			yield(camera, "signal_camera_move_complete")
 			cursor_root.hide()
 			
@@ -163,15 +171,27 @@ func generate_and_launch_new_turn_order():
 			mc = a.node
 			
 			# Singleton_Game_GlobalBattleVariables.currently_active_character = a.node
-			Singleton_Game_GlobalBattleVariables.set_currently_active_character(a.node)
+			
 			
 			# camera.playerNode = a.node.get_kinematic_body()
 			
+			var distance = a.node.position.distance_to(cursor_root.position)
+			# TODO: create different movement speed choices
+			# also provide a fixed time choice without the distance * speed calc
+			
+			var tween_time = distance * 0.00325
+			if tween_time < 0:
+				tween_time = 0.1
+				
+			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position, tween_time)
+			camera.smooth_move_to_new_position(a.node, tween_time)
+			yield(camera, "signal_camera_move_complete")
+			
+			Singleton_Game_GlobalBattleVariables.set_currently_active_character(a.node)
 			a.node.play_turn()
 			# mc = a.node
 			#camera.smooth_move_to_new_position(a.node.get_kinematic_body())
-			camera.smooth_move_to_new_position(a.node)
-			yield(camera, "signal_camera_move_complete")
+
 			cursor_root.hide()
 			# camera.smooth_move_to_new_position(a.node.get_kinematic_body())
 			

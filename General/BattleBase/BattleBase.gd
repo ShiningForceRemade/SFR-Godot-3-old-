@@ -244,6 +244,7 @@ func s_show_battle_give_menu():
 
 
 func s_hide_target_actor_micro():
+	# if targetActorMicroInfoRoot.position != Vector2(270, 186):
 	internal_tween_move_to_rect_position(270, 186, 434, 186, targetActorMicroInfoTween, targetActorMicroInfoRoot)
 
 func s_show_target_actor_micro():

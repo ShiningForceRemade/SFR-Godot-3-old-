@@ -217,6 +217,32 @@ func set_cursor_target_on_first_found_enemey() -> void:
 	# print no target and cancel out of attack
 	# TODO: probably should do this check much earlier
 	
+	# Singleton_Game_AudioManager.
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.set_no_target_text()
+	Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.re_show_action_menu = false
+	Singleton_Game_GlobalBattleVariables.battle_base.s_show_no_valid_option_warning_box()
+	
+	target_range.bc_cursor_ref.hide() # cleanup_cursor()
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	
+	# ui_b_key cancel
+	is_target_selection_active = false
+	# emit_signal("signal_completed_item_use_action")
+	# Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
+	Singleton_Game_GlobalBattleVariables.field_logic_node.show_movement_tiles()
+	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.re_show_action_menu = true
+	
+	# target_range.cleanup_cursor()
+			
+	# if using_spell:
+	# 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_battle_magic_menu()
+	# else:
+	# 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_character_action_menu()
+	
 	return
 
 # TODO: allow for swapping to different selection methods

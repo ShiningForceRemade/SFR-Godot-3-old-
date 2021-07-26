@@ -128,11 +128,8 @@ func _input(event) -> void:
 #			position.y += tile_size
 
 
-func move_to_new_pos_battle_scene(cur_pos: Vector2, new_pos: Vector2) -> void:
-	
-	# distance_to
-	
+func move_to_new_pos_battle_scene(cur_pos: Vector2, new_pos: Vector2, t = 0.75) -> void:
 	movementTween.interpolate_property(self, "position",
-			cur_pos, new_pos, 0.75,
+			cur_pos, new_pos, t,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	movementTween.start()

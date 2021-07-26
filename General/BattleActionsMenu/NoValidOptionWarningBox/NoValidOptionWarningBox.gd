@@ -7,6 +7,7 @@ const internal_cleanup_timer_name: String = "internal_cleanup_timer__no_valid_op
 
 var is_no_valid_option_active: bool = false
 
+var re_show_action_menu: bool = true
 
 func _ready():
 	pass
@@ -54,4 +55,5 @@ func s_internal_cleanup_timer_completed() -> void:
 	# and in the battle action menu leading to a premature closing of the menu
 	yield(get_tree().create_timer(0.1), "timeout")
 	
-	get_parent().get_parent().get_parent().s_show_character_action_menu()
+	if re_show_action_menu:
+		get_parent().get_parent().get_parent().s_show_character_action_menu()

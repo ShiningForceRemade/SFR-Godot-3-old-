@@ -82,7 +82,7 @@ func rotate_cam():
 	if Input.is_action_just_pressed("ui_end"):
 		rotate(10)
 		
-func smooth_move_to_new_position(new_player_node):
+func smooth_move_to_new_position(new_player_node, t = 0.75):
 	camera_smooth_moving = true
 	playerNode = new_player_node #.get_child(0).get_node("KinematicBody2D")
 	print(playerNode)
@@ -94,8 +94,10 @@ func smooth_move_to_new_position(new_player_node):
 	tween_camera.connect("tween_completed", self, "s_complete_smooth_move")
 	# tween_camera.connect("tween_all_completed", self, "s_complete_smooth_move")
 	
+	print("Camera pos - ", position, " new pos - ", npos)
+	
 	tween_camera.interpolate_property(self, "position",
-			position, Vector2(npos.x, npos.y), 0.75,
+			position, Vector2(npos.x, npos.y), t, # 0.75,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween_camera.start()
 	# camera_smooth_moving = false
