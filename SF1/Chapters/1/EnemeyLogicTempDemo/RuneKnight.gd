@@ -14,6 +14,7 @@ func play_turn(self_arg):
 			yield(pself.tween, "tween_completed")
 		pself.animationPlayer.play("DownMovement")
 	else:
+		yield(pself.get_tree().create_timer(0.1), "timeout")
 		pself.internal_call_complete()
 		# pseudo_ai_turn_determine()
 	

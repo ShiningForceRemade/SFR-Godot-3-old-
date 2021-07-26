@@ -155,3 +155,7 @@ func pseudo_death_animation(time_arg: float) -> void:
 	yield(get_tree().create_timer(time_arg), "timeout")
 	$AnimationPlayer.play("DownMovement")
 	yield(get_tree().create_timer(time_arg), "timeout")
+	
+	# TODO: check order array and remove if found by name
+	
+	get_parent().queue_free()

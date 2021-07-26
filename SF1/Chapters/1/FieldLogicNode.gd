@@ -123,12 +123,14 @@ func generate_and_launch_new_turn_order():
 			
 			a.node.play_turn()
 			
+			show_movement_tiles()
 			draw_character_movement_area()
 			$AnimationPlayer.play("RandomTileFlashing")
 			
 			yield(a.node, "signal_completed_turn")
 			mc.z_index = 0
 			print("Enemy Turn End")
+			hide_movement_tiles()
 			
 #			var t = Timer.new()
 #			t.set_wait_time(0.75)
@@ -170,6 +172,8 @@ func generate_and_launch_new_turn_order():
 			mc.connect("signal_show_character_action_menu", self, "s_show_character_action_menu")
 			mc.connect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
 			# turn_movement_init()
+			
+			show_movement_tiles()
 			draw_character_movement_area()
 			$AnimationPlayer.play("RandomTileFlashing")
 			# play_turn will yield control until the player or enemy finishes its turn
@@ -179,7 +183,7 @@ func generate_and_launch_new_turn_order():
 			yield(Singleton_Game_GlobalBattleVariables.self_node(), "signal_completed_turn")
 			
 			# yield(a.node, "signal_completed_turn_z")
-			
+			hide_movement_tiles()
 			print("Character Turn End")
 			mc.z_index = 0
 			
