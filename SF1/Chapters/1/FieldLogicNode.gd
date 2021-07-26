@@ -99,9 +99,14 @@ func generate_and_launch_new_turn_order():
 	t.start()
 	yield(t, "timeout")
 	
+	var previous_actor_pos = Vector2.ZERO
+	
 	# print(turn_order_array)
 	for a in turn_order_array:
 		print("\n", a)
+		
+		if previous_actor_pos == Vector2.ZERO:
+			previous_actor_pos = a.node.position
 		
 		emit_signal("signal_hide_land_effect_and_active_actor_info")
 		
@@ -110,8 +115,12 @@ func generate_and_launch_new_turn_order():
 			print("Enemy Turn Start")
 			
 			# camera.smooth_move_to_new_position(a.node.get_node("EnemeyRoot/KinematicBody2D"))
+			cursor_root.show()
+			cursor_root.position = previous_actor_pos
+			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position)
 			camera.smooth_move_to_new_position(a.node)
 			yield(camera, "signal_camera_move_complete")
+			cursor_root.hide()
 			
 			# mc.connect("signal_character_moved", self, "get_tile_info_under_character")
 			
@@ -130,6 +139,7 @@ func generate_and_launch_new_turn_order():
 			yield(a.node, "signal_completed_turn")
 			mc.z_index = 0
 			print("Enemy Turn End")
+			previous_actor_pos = a.node.position
 			hide_movement_tiles()
 			
 #			var t = Timer.new()
@@ -146,6 +156,9 @@ func generate_and_launch_new_turn_order():
 			# when would elimate the need for this as well
 			# if the above doesnt work cause of fall through a triggers menuy menu triggers stay action
 			# add a singleton when triggered set bool to triggered when released un set and check for it
+			cursor_root.show()
+			cursor_root.position = previous_actor_pos
+			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position)
 			
 			mc = a.node
 			
@@ -159,7 +172,7 @@ func generate_and_launch_new_turn_order():
 			#camera.smooth_move_to_new_position(a.node.get_kinematic_body())
 			camera.smooth_move_to_new_position(a.node)
 			yield(camera, "signal_camera_move_complete")
-			
+			cursor_root.hide()
 			# camera.smooth_move_to_new_position(a.node.get_kinematic_body())
 			
 			# camera.playerNode = a.node.get_kinematic_body()
@@ -185,6 +198,7 @@ func generate_and_launch_new_turn_order():
 			# yield(a.node, "signal_completed_turn_z")
 			hide_movement_tiles()
 			print("Character Turn End")
+			previous_actor_pos = a.node.position
 			mc.z_index = 0
 			
 			mc.disconnect("signal_character_moved", self, "get_tile_info_under_character")
