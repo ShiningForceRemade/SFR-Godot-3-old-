@@ -116,6 +116,7 @@ func _ready():
 	$AnimationPlayer.play("DownMovement")
 	pass
 
+
 func get_attack() -> int:
 	var attack_attribute_bonus_total: int = 0
 	for i in range(inventory_items_id.size()):

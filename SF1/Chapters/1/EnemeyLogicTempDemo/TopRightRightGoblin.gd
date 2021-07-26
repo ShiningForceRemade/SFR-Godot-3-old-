@@ -10,9 +10,8 @@ func play_turn(self_arg):
 	print("Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number ", Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number)
 	if Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number == 1:
 		for _i in range(4):
-			random_move_direction(2)
+			random_move_direction(1)
 			yield(pself.tween, "tween_completed")
-		pself.animationPlayer.play("DownMovement")
 	else:
 		pself.internal_call_complete()
 		# pseudo_ai_turn_determine()

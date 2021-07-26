@@ -12,7 +12,7 @@ func play_turn(self_arg):
 			random_move_direction(0)
 			yield(pself.tween, "tween_completed")
 	else:
-		pass
+		pself.internal_call_complete()
 		# pseudo_ai_turn_determine()
 	
 	pself.internal_call_complete()

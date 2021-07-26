@@ -122,6 +122,10 @@ func generate_and_launch_new_turn_order():
 			emit_signal("signal_show_land_effect_and_active_actor_info")
 			
 			a.node.play_turn()
+			
+			draw_character_movement_area()
+			$AnimationPlayer.play("RandomTileFlashing")
+			
 			yield(a.node, "signal_completed_turn")
 			mc.z_index = 0
 			print("Enemy Turn End")

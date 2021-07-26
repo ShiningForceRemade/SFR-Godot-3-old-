@@ -31,6 +31,14 @@ func _ready():
 		_timer.start()
 	
 
+func get_character_movement():
+	return $EnemeyRoot.move
+
+func get_character_current_pos() -> Vector2:
+	# print("here", kinematicBody)
+	return $EnemeyRoot.position
+
+
 func _on_Timer_timeout():
 	#print("Second")
 	rng.randomize()
