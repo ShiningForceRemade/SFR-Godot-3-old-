@@ -224,6 +224,7 @@ __meta__ = {
 anims/RandomTileFlashing = SubResource( 1 )
 
 [node name="TileMapTileInformation" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource( 2 )
 cell_size = Vector2( 24, 24 )
 format = 1

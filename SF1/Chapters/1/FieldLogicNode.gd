@@ -113,7 +113,7 @@ func generate_and_launch_new_turn_order():
 		emit_signal("signal_hide_land_effect_and_active_actor_info")
 		
 		if a.type == "enemey":
-			continue
+			# continue
 			
 			print("Enemy Turn Start")
 			
@@ -227,6 +227,7 @@ func generate_and_launch_new_turn_order():
 			# yield(a.node, "signal_completed_turn_z")
 			hide_movement_tiles()
 			print("Character Turn End")
+			
 			previous_actor_pos = a.node.position
 			mc.z_index = 0
 			
@@ -237,6 +238,7 @@ func generate_and_launch_new_turn_order():
 			show_movement_tiles()
 			
 			yield(get_tree().create_timer(0.5), "timeout")
+			Singleton_Game_GlobalBattleVariables.currently_selected_actor = null
 			
 	
 	print("\n\n\nTurn " + str(turn_number) + " Completed\n\n\n")

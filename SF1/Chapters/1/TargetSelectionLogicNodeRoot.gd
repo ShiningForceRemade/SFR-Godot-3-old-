@@ -65,6 +65,21 @@ func _input(event):
 				Singleton_Game_GlobalBattleVariables.battle_base.s_show_character_action_menu()
 		
 		if event.is_action_released("ui_a_key"):
+			if Singleton_Game_GlobalBattleVariables.currently_selected_actor == null:
+				is_target_selection_active = false
+				# emit_signal("signal_completed_item_use_action")
+				Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
+				Singleton_Game_GlobalBattleVariables.field_logic_node.show_movement_tiles()
+				Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
+				target_range.cleanup_cursor()
+				
+				if using_spell:
+					Singleton_Game_GlobalBattleVariables.battle_base.s_show_battle_magic_menu()
+				else:
+					Singleton_Game_GlobalBattleVariables.battle_base.s_show_character_action_menu()
+				
+				return
+			
 			is_target_selection_active = false
 			print("Called")
 			print("TODO: trigger battle action scene and play out the item use effect")
