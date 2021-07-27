@@ -42,7 +42,9 @@ func _input(event):
 			#get_parent().get_parent().get_parent().s_hide_action_menu()
 			return
 			
-		if event.is_action_released("ui_accept"):
+		if event.is_action_released("ui_a_key"):
+			yield(get_tree().create_timer(0.1), "timeout")
+			# event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			if currently_selected_option == e_menu_options.STAY_OPTION:
 				print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)

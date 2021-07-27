@@ -227,15 +227,23 @@ func _physics_process(_delta):
 		
 		animationPlayer.playback_speed = 1
 		
-		if Input.is_action_just_released("ui_page_down"):
+		if Input.is_action_just_released("ui_a_key"):
+			if is_character_actor_underneath():
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+				return
+				
 			active = !active
+			yield(get_tree().create_timer(0.03), "timeout")
+			
 			# emit_signal("signal_completed_turn")
 			# print("Emit signal player turn end")
 			# emit_signal("signal_completed_turn")
+			
 			emit_signal("signal_show_character_action_menu")
 		
 		if Input.is_action_just_released("ui_b_key"):
 			active = !active
+			yield(get_tree().create_timer(0.03), "timeout")
 			emit_signal("signal_switch_focus_to_cursor")
 		
 		# animationPlayer.playback_speed = 4
@@ -288,4 +296,15 @@ func check_if_move_is_possible(new_pos_arg) -> bool:
 				if check_pos == move_pos:
 					return true
 	
+	return false
+
+func is_character_actor_underneath() -> bool:
+	var character_children = Singleton_Game_GlobalBattleVariables.character_nodes.get_children()
+	for character in character_children:
+		if pnode == character:
+			continue
+		
+		if pnode.position == character.position:
+			return true
+		
 	return false
