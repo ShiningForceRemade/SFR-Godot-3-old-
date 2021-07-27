@@ -333,6 +333,7 @@ func check_if_defeated() -> void:
 		get_parent().queue_free()
 		emit_signal("signal_check_defeat_done")
 	
+	yield(get_tree().create_timer(0.1), "timeout")
 	emit_signal("signal_check_defeat_done")
 	pass
 

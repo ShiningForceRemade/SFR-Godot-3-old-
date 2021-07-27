@@ -68,3 +68,6 @@ func get_character_current_pos() -> Vector2:
 
 func get_kinematic_body():
 	return $CharacterRoot/KinematicBody2D
+
+func get_actor_root_node_internal():
+	return get_node("CharacterRoot")

@@ -150,3 +150,6 @@ func cget_hp_total() -> int: return $EnemeyRoot.HP_Total
 func cget_hp_current() -> int: return $EnemeyRoot.HP_Current
 func cget_mp_total() -> int: return $EnemeyRoot.MP_Total
 func cget_mp_current() -> int: return $EnemeyRoot.MP_Current
+
+func get_actor_root_node_internal():
+	return get_node("EnemeyRoot")

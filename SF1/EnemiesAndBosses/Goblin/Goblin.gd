@@ -1,6 +1,7 @@
 extends Node2D
 
 signal signal_completed_turn
+signal signal_move_direction_completed
 
 export var is_npc: bool = false
 
@@ -9,6 +10,7 @@ onready var tween = $EnemeyRoot/KinematicBody2D/Tween
 onready var animationPlayer = $EnemeyRoot/AnimationPlayer
 onready var animationTree = $EnemeyRoot/AnimationTree
 onready var animationTreeState = animationTree.get("parameters/playback")
+onready var enemey_actor_root = $EnemeyRoot
 
 const TILE_SIZE: int = 24
 
@@ -20,6 +22,8 @@ export var battle_logic_script: String
 
 func _ready():
 	animationPlayer.play("DownMovement")
+	
+	tween.connect("tween_completed", self, "s_tween_completed")
 	
 	if !is_npc:
 		_timer = Timer.new()
@@ -52,20 +56,47 @@ func random_move_direction(direction):
 	# print("Position", position)
 	
 	if direction == 0:
-		animationPlayer.play("RightMovement")
-		tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), 0.2, Tween.TRANS_LINEAR)
+		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x + TILE_SIZE, position.y)):
+			animationPlayer.playback_speed = 2
+			animationPlayer.play("RightMovement")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), 0.2, Tween.TRANS_LINEAR)
+			tween.start()
+			return
 	elif direction == 1:
-		animationPlayer.play("LeftMovement")
-		tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), 0.2, Tween.TRANS_LINEAR)
+		
+		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x - TILE_SIZE, position.y)):
+			animationPlayer.playback_speed = 2
+			animationPlayer.play("LeftMovement")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), 0.2, Tween.TRANS_LINEAR)
+			tween.start()
+			return
 	elif direction == 2:
-		animationPlayer.play("UpMovement")
-		tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
+		
+		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  - TILE_SIZE)):
+			animationPlayer.playback_speed = 2
+			animationPlayer.play("UpMovement")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
+			tween.start()
+			return
 	elif direction == 3:
-		animationPlayer.play("DownMovement")
-		tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
+		
+		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  + TILE_SIZE)):
+			animationPlayer.playback_speed = 2
+			animationPlayer.play("DownMovement")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
+			tween.start()
+			return
 	
-	tween.start()
+	# tween.start()
+	
+	yield(get_tree().create_timer(0.1), "timeout")
+	emit_signal("signal_move_direction_completed")
 
+func s_tween_completed(node_arg, property_arg): 
+	print(node_arg, " ", property_arg)
+	emit_signal("signal_move_direction_completed")
+	
+	
 # play_turn
 func play_turn():
 	print("\nGoblin Turn Start\n")

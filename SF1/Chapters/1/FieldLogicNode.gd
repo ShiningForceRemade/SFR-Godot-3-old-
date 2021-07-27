@@ -38,10 +38,14 @@ enum e_grid_movement_subsection {
 	BOTTOM_RIGHT
 }
 
+var camera 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# print(tilemap)
 	yield(get_tree().root, "ready")
+	
+	camera = get_parent().get_node("Camera2D")
 	
 	Singleton_Game_GlobalBattleVariables.character_nodes = characters
 	Singleton_Game_GlobalBattleVariables.enemey_nodes = enemies
@@ -87,8 +91,6 @@ func _input(event):
 		
 
 func generate_and_launch_new_turn_order():
-	var camera = get_parent().get_node("Camera2D")
-	
 	generate_actor_order_for_current_turn()
 	
 	emit_signal("signal_hide_land_effect_and_active_actor_info")
@@ -118,16 +120,8 @@ func generate_and_launch_new_turn_order():
 			print("Enemy Turn Start")
 			
 			# camera.smooth_move_to_new_position(a.node.get_node("EnemeyRoot/KinematicBody2D"))
-			cursor_root.show()
-			cursor_root.position = previous_actor_pos
-			var distance = a.node.position.distance_to(cursor_root.position)
-			#var distance = sqrt((a.node.position.x - cursor_root.position.x) * 2 + (a.node.position.y - cursor_root.position.y) * 2)
-			var tween_time = distance * 0.00325
-			if tween_time < 0:
-				tween_time = 0.1
-				
-			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position, tween_time)
-			camera.smooth_move_to_new_position(a.node, tween_time)
+			
+			cursor_move_to_next_actor(a.node, previous_actor_pos)
 			yield(camera, "signal_camera_move_complete")
 			cursor_root.hide()
 			
@@ -141,7 +135,9 @@ func generate_and_launch_new_turn_order():
 			
 			active_character_or_enemey_display_info()
 			emit_signal("signal_show_land_effect_and_active_actor_info")
+			Singleton_Game_GlobalBattleVariables.battle_base.force_show_land_effect()
 			
+			# Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
 			show_movement_tiles()
 			
 			# old
@@ -171,7 +167,7 @@ func generate_and_launch_new_turn_order():
 #			t.start()
 #			yield(t, "timeout")
 		else:
-			continue
+			# continue
 			
 			print("Character Turn Start")
 			# NOTE: TODO: BUG: more than likely signal for turn complete firing too quickly
@@ -180,28 +176,14 @@ func generate_and_launch_new_turn_order():
 			# when would elimate the need for this as well
 			# if the above doesnt work cause of fall through a triggers menuy menu triggers stay action
 			# add a singleton when triggered set bool to triggered when released un set and check for it
-			cursor_root.show()
-			cursor_root.position = previous_actor_pos
-			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position)
+			
+			
+			cursor_move_to_next_actor(a.node, previous_actor_pos)
+			yield(camera, "signal_camera_move_complete")
+			cursor_root.hide()
 			
 			mc = a.node
 			
-			# Singleton_Game_GlobalBattleVariables.currently_active_character = a.node
-			
-			
-			# camera.playerNode = a.node.get_kinematic_body()
-			
-			var distance = a.node.position.distance_to(cursor_root.position)
-			# TODO: create different movement speed choices
-			# also provide a fixed time choice without the distance * speed calc
-			
-			var tween_time = distance * 0.00325
-			if tween_time < 0:
-				tween_time = 0.1
-				
-			cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a.node.position, tween_time)
-			camera.smooth_move_to_new_position(a.node, tween_time)
-			yield(camera, "signal_camera_move_complete")
 			
 			Singleton_Game_GlobalBattleVariables.set_currently_active_character(a.node)
 			a.node.play_turn()
@@ -216,6 +198,7 @@ func generate_and_launch_new_turn_order():
 			
 			active_character_or_enemey_display_info()
 			emit_signal("signal_show_land_effect_and_active_actor_info")
+			Singleton_Game_GlobalBattleVariables.battle_base.force_show_land_effect()
 			
 			mc.connect("signal_character_moved", self, "get_tile_info_under_character")
 			mc.connect("signal_show_character_action_menu", self, "s_show_character_action_menu")
@@ -235,7 +218,6 @@ func generate_and_launch_new_turn_order():
 			# play_turn will yield control until the player or enemy finishes its turn
 			
 			mc.z_index = 1
-			
 			
 			yield(Singleton_Game_GlobalBattleVariables.self_node(), "signal_completed_turn")
 			
@@ -263,6 +245,24 @@ func generate_and_launch_new_turn_order():
 
 func s_switch_focus_to_cursor():
 	cursor_root.set_active()
+
+func cursor_move_to_next_actor(a_node, previous_actor_pos):
+	cursor_root.show()
+	cursor_root.position = previous_actor_pos
+	
+	var distance = a_node.position.distance_to(cursor_root.position)
+	#var distance = sqrt((a.node.position.x - cursor_root.position.x) * 2 + (a.node.position.y - cursor_root.position.y) * 2)
+	
+	# TODO: create different movement speed choices
+	# also provide a fixed time choice without the distance * speed calc
+	var tween_time = distance * 0.00325
+	if tween_time < 0:
+		tween_time = 0.1
+				
+	cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a_node.position, tween_time)
+	camera.smooth_move_to_new_position(a_node, tween_time)
+	
+
 
 func s_show_character_action_menu():
 	print("Show Menu")
@@ -296,10 +296,10 @@ func active_character_or_enemey_display_info():
 	mc.cget_actor_name(), # "Max",
 	mc.cget_class(), # "SWDM"
 	mc.cget_level(),
-	mc.cget_hp_total(),
 	mc.cget_hp_current(),
-	mc.cget_mp_total(),
-	mc.cget_mp_current())
+	mc.cget_hp_total(),
+	mc.cget_mp_current(),
+	mc.cget_mp_total())
 	print("Character Or Enemey Info after signal\n")
 
 func get_char_tile_position() -> Vector2:
@@ -1242,28 +1242,25 @@ func generate_actor_order_for_current_turn():
 	#print("Generate Actor Order for Turn\n", turn_order_array)
 	
 	var ordered_turn_array = turn_order_array
-	if ordered_turn_array[0].name == "GoblinRoot6":
-		return
+#	if ordered_turn_array[0].name == "GoblinRoot6":
+#		return
+#	ordered_turn_array.remove(0)
+#	ordered_turn_array.remove(0)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
+#	ordered_turn_array.remove(1)
 	
 	
-	#for n in range(ordered_turn_array.size()):
-	#	if ordered_turn_array[n].name != "GoblinRoot6":
-	#		ordered_turn_array.remove(n)
-	ordered_turn_array.remove(0)
-	ordered_turn_array.remove(0)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	ordered_turn_array.remove(1)
-	# ordered_turn_array.remove(1)
-#	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
-#	print("\nOrdered Array\n")
+	
+	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
+	print("\nOrdered Array\n")
 	for n in ordered_turn_array:
 		print(n)
 	print("\n")

@@ -135,6 +135,10 @@ func s_show_land_effect():
 	
 # Land Effect and Active Actor Info Windows End
 
+func force_show_land_effect():
+	landEffectPopupRoot.show()
+	landEffectPopupRoot.rect_position = Vector2(6, 6)
+
 # Action Menu
 # delete these three functions after checking over
 # TODO: rename to follow the standard naming convention of all the other menus need to clean s_hide_action_menu used in a fair few places

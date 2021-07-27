@@ -1,6 +1,8 @@
 tool
 extends Node2D
 
+signal signal_check_defeat_done
+
 export var enemey_name: String
 
 # group - drops
@@ -135,16 +137,21 @@ func check_if_defeated() -> void:
 	if HP_Current == 0:
 		print("\n\n\n\nI was defeated play death animation and update turn order array\n\n\n\n")
 		
-		yield(get_tree().create_timer(1), "timeout")
+		# yield(get_tree().create_timer(1), "timeout")
 		pseudo_death_animation(0.25)
 		pseudo_death_animation(0.1)
 		pseudo_death_animation(0.1)
-		yield(get_tree().create_timer(1), "timeout")
+		# yield(get_tree().create_timer(1), "timeout")
 		
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 		get_parent().hide()
+		
+		get_parent().queue_free()
+		emit_signal("signal_check_defeat_done")
 	
+	emit_signal("signal_check_defeat_done")
 	pass
+
 
 func pseudo_death_animation(time_arg: float) -> void:
 	$AnimationPlayer.play("RightMovement")
@@ -158,8 +165,30 @@ func pseudo_death_animation(time_arg: float) -> void:
 	
 	# TODO: check order array and remove if found by name
 	
-	get_parent().queue_free()
+	
+
 
 
 func cget_actor_name() -> String:
 	return enemey_name
+
+
+
+
+func check_if_move_is_possible(new_pos_arg) -> bool:
+	var character_children = Singleton_Game_GlobalBattleVariables.character_nodes.get_children()
+	for character in character_children:
+		if new_pos_arg == character.position:
+			return false
+	
+	var check_pos = new_pos_arg
+	check_pos.x -= 12
+	check_pos.y -= 12
+	for sub_array in Singleton_Game_GlobalBattleVariables.active_actor_movement_array:
+		for move_pos in sub_array:
+			if move_pos != null:
+				# print(new_pos_arg, " ", check_pos, " ", move_pos)
+				if check_pos == move_pos:
+					return true
+	
+	return false

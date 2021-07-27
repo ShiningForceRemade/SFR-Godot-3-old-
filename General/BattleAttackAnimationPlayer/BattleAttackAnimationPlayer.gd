@@ -220,9 +220,11 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
-	emit_signal("signal_battle_scene_complete")
 	
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot").check_if_defeated()
+	
+	emit_signal("signal_battle_scene_complete")
+	
 
 
 
@@ -234,10 +236,6 @@ func s_cleanup_animation_enemy(animation_name_arg) -> void:
 	char_animationPlayer.remove_animation(internal_animation_name)
 	
 	yield(get_tree().create_timer(1), "timeout")
-	
-	# print_damage_done_to(damage)
-	
-	yield(get_tree().create_timer(1), "timeout")
 	black_fade_anim_out()
 	print("Complete Battle Scene")
 	
@@ -245,12 +243,14 @@ func s_cleanup_animation_enemy(animation_name_arg) -> void:
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
-	emit_signal("signal_battle_scene_complete")
+	
+	# Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
+	
+	Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_actor_root_node_internal().check_if_defeated()
+	yield(Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_actor_root_node_internal(), "signal_check_defeat_done")
 	
 	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
-	
-	Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot").check_if_defeated()
-	yield(Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot"), "signal_check_defeat_done")
+	emit_signal("signal_battle_scene_complete")
 	
 
 
@@ -545,7 +545,7 @@ func setup_sprite_textures_enemey_attack() -> void:
 
 
 func setup_attacking_animation() -> void:
-	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_get_node("CharacterRoot")
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	
 	# internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_attack != null:

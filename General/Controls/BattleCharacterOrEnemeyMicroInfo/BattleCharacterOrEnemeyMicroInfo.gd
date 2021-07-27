@@ -19,6 +19,8 @@ func _ready():
 func calculate_hp_or_mp_bar_width_and_set(current_hp, total_hp, current_mp, total_mp):
 	# [62 * 1.2] = 74 max pixel width of bars for right now
 	
+	print(current_hp, " ", total_hp, " ", current_mp, " ",  total_mp)
+	
 	# total_hp * 1.2
 	var hp_total_width = int(total_hp * 1.2)
 	if hp_total_width > max_hp_mp_bar_width_size:

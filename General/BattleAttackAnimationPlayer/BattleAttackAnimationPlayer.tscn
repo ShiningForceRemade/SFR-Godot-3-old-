@@ -7,7 +7,7 @@
 [ext_resource path="res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
-[ext_resource path="res://SF1/Characters/Ken/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=8]
+[ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=8]
 [ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=10]
 [ext_resource path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" type="Texture" id=11]
@@ -203,11 +203,9 @@ position = Vector2( 240, 92 )
 z_index = 1
 texture = ExtResource( 3 )
 hframes = 4
-frame = 2
 
 [node name="WeaponSprite" type="Sprite" parent="CharacterWrapper"]
 position = Vector2( 214, 108 )
-z_index = 1
 texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]

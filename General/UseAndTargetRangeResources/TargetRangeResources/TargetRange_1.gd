@@ -23,4 +23,5 @@ func draw_cursor_at_position(new_pos_arg: Vector2) -> void:
 	bc_cursor_ref.position = new_pos_arg
 
 func cleanup_cursor() -> void:
+	# if bc_cursor_ref.get_ref():
 	bc_cursor_ref.queue_free()
