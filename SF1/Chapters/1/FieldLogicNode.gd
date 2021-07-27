@@ -405,9 +405,8 @@ func generate_movement_array_representation():
 	# BOTTOM LEFT QUADRANT
 	for row in range(movement - 1):
 		for col in range(1, movement):
-			# if row == 0 and col == 
-			# if col <= movement - row - 1:
-			# 	continue
+			if col <= row:
+				continue
 			
 			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
 			# print("x and y - ", col, " ", vpos.y + row + 1)
