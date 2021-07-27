@@ -431,7 +431,6 @@ func enemey_actor_attack_setup():
 	
 	# target_range.cleanup_cursor()
 	Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
-	
 	# yield(get_tree().create_timer(0.3), "timeout")
 
 

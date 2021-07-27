@@ -57,8 +57,6 @@ func _ready():
 	# start battle and turns
 	generate_and_launch_new_turn_order()
 	
-	# turn_movement_init()
-	
 	print("\n\n\nTurn " + str(turn_number) + " Completed\n\n\n")
 	turn_number += 1
 	pass # Replace with function body.
@@ -86,7 +84,6 @@ func _input(event):
 	# get_parent().get_node("TileMap").tile_set.
 	# print(event)
 	#if event.is_action_pressed("ui_accept"):
-	#	draw_character_movement_area()
 		# get_char_tile_position()
 		
 
@@ -140,12 +137,7 @@ func generate_and_launch_new_turn_order():
 			# Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
 			show_movement_tiles()
 			
-			# old
-			# draw_character_movement_area()
-			
-			# new
 			generate_enemey_movement_array_representation()
-			# generate_movement_array_representation()
 			draw_movement_tiles_from_movement_array()
 			
 			$AnimationPlayer.play("RandomTileFlashing")
@@ -203,16 +195,11 @@ func generate_and_launch_new_turn_order():
 			mc.connect("signal_character_moved", self, "get_tile_info_under_character")
 			mc.connect("signal_show_character_action_menu", self, "s_show_character_action_menu")
 			mc.connect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
-			# turn_movement_init()
 			
 			show_movement_tiles()
 			
-			# new
 			generate_movement_array_representation()
 			draw_movement_tiles_from_movement_array()
-			# old
-			# draw_character_movement_area()
-			
 			
 			$AnimationPlayer.play("RandomTileFlashing")
 			# play_turn will yield control until the player or enemy finishes its turn
@@ -267,26 +254,6 @@ func cursor_move_to_next_actor(a_node, previous_actor_pos):
 func s_show_character_action_menu():
 	print("Show Menu")
 	emit_signal("signal_show_character_action_menu")
-
-func turn_movement_init():
-	yield(get_tree().root, "ready")
-	print("here connecting")
-	mc.connect("signal_character_moved", self, "get_tile_info_under_character")
-	
-#	for cell in tilemap.get_used_cells():
-#		print(cell) 
-#		# tile_id  = tilemap.get_cellv(cell)
-#		print(tilemap.get_cellv(cell))
-#		print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(cell)))
-	
-	#get_tile_info_under_character(Vector2.ZERO)
-	draw_character_movement_area()
-	# NOTE: Wait for everything to be ready otherwise signal fires before the rest of the tree is ready to catch the emit
-	#yield(get_tree(), "idle_frame")
-	# TODO: when turn order is created pull the active character or enemuy
-	active_character_or_enemey_display_info()
-	# get_tile_info_under_character(mc.get_character_current_pos())
-	
 
 func active_character_or_enemey_display_info():
 	#emit_signal("signal_active_character_or_enemey", "name_arg", class_arg, level, current_hp, total_hp, current_mp, total_mp)
@@ -355,12 +322,6 @@ func get_tile_info_under_character(new_pos: Vector2):
 		emit_signal("signal_land_effect_under_tile", "Bug: No Info Report")
 		
 	# print("\n")
-
-
-
-
-
-
 
 
 func generate_movement_array_representation():
@@ -877,15 +838,6 @@ func generate_enemey_movement_array_representation():
 	return # move_array
 
 
-
-
-
-
-
-
-
-
-
 func new_check_tile(vpos: Vector2) -> bool:
 	var current_tile_pos = tilemap.get_cellv(vpos)
 	# print(current_tile_pos)
@@ -911,223 +863,6 @@ func new_check_tile(vpos: Vector2) -> bool:
 		return false
 
 
-
-
-
-
-
-
-func draw_character_movement_area():
-#	print("\nMC POS", mc.position)
-#	print(mc.get_character_movement())
-#
-#	# check character movement type
-#	# float fly or ground type
-#	# assuming ground type for now
-#
-#	print("SSSSS -", tilemap.world_to_map(mc.position))
-#	var current_tile_pos = tilemap.get_cellv(tilemap.world_to_map(mc.position))
-#	print(current_tile_pos)
-#	print(tilemap.tile_set.tile_get_name(current_tile_pos))
-#	print("SSSSS -")
-
-	var vpos: Vector2 = get_char_tile_position()
-	
-	# Remove previous drawn grid movement if any
-	for n in $MovementTilesWrapperNode.get_children():
-		$MovementTilesWrapperNode.remove_child(n)
-		n.queue_free()
-	
-	vpos = get_char_tile_position()
-#	print(vpos)
-#	current_tile_pos = tilemap.get_cellv(tilemap.world_to_map(vpos))
-#	print(current_tile_pos)
-#	if current_tile_pos != -1:
-#		print("", tilemap.tile_set.tile_get_name(current_tile_pos))
-#	else:
-#		print("invalid - no tile at position")
-#	print("VVVVV -")
-#
-	
-	# NOTE a probably smarter and better method would probably be to 
-	# loop through get all the titles in a 2d array
-	# then check if theirs dead paths and other special cases
-	# remove them (or set them as unusable tiles) then draw on whats left in the validated 
-	# var total_sub_area: Rect2 = Rect2(vpos.x - 6, vpos.y - 6,
-	# 								vpos.x + 6, vpos.y + 6)
-	# print(total_sub_area)
-	
-	# if debug
-	#var center_segment = Color.purple
-	#var top_left_segment = Color.green
-	#var top_right_segment = Color.red
-	#var bottom_left_segment = Color.yellow
-	#var bottom_right_segment = Color.blue
-	# else 
-	# var tile_to_be_flashed_color = Color("7de1e1e1")
-	var center_segment = Color("7de1e1e1")
-	var top_left_segment = center_segment
-	var top_right_segment = center_segment
-	var bottom_left_segment = center_segment
-	var bottom_right_segment = center_segment
-	
-	var movement = mc.get_character_movement()
-	var mcmt = (movement * 2) + 1
-	# var ard: Array = []
-	
-	Singleton_Game_GlobalBattleVariables.active_actor_movement_array = []
-	
-	var squares_to_draw_in_row = 1
-	
-	var half_way_pass: bool = false
-	
-	# NOTE: this gets the x position of the tile the character is currently standing on
-	# this assumes the map has terrain (tilemap) info from the left most and top most edges of the screen
-	# TODO: should add a way to define size paddings on the top and from the left to ensure
-	# grid movement is drawn at the right spot and not offset by the terrain tilemap position movement
-	var xpos_character_center_tile = vpos.x * tile_size
-	
-	# var total_movement_tile_space = movement * tile_size * 2
-	
-	for i in mcmt:
-		# ard.append([])
-		# ard[i].resize(mcmt)
-		Singleton_Game_GlobalBattleVariables.active_actor_movement_array.append([])
-		Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i].resize(mcmt)
-		
-		# straight line down the middle
-		# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][mcmt / 2] = 1
-		
-		if check_if_cell_is_navigatable(i, mcmt / 2, e_grid_movement_subsection.CENTER):
-			
-			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][mcmt / 2] = Vector2(xpos_character_center_tile, (vpos.y - movement + i) * tile_size)
-			
-			draw_flashing_movement_square(center_segment,
-			xpos_character_center_tile,  # x pos
-			(vpos.y - movement + i) * tile_size
-			# total_movement_tile_space + (i * tile_size)  + tile_size # y pos
-			)
-		
-		if i <= (mcmt / 2): 
-			for j in squares_to_draw_in_row / 2:
-				# print(j)
-				# ard[i][(mcmt / 2) + j] = 1
-				# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][(mcmt / 2) + j] = 1
-				var yy = (mcmt / 2) + (j + 1)
-				# top right side of array pyr
-				if yy < mcmt:
-					# ard[i][yy] = 1
-					
-					#print("Top Right ", i, " - ", yy)
-					if check_if_cell_is_navigatable(i, yy, e_grid_movement_subsection.TOP_RIGHT):
-						# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = 1
-						
-						var t = vpos # center character tile
-						t.x = t.x + (yy - movement)
-						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(top_right_segment, 
-						t.x * tile_size, # x pos   # add left padding for when tilemap isnt at 0, 0
-						t.y * tile_size # y pos   # add top padding for when tilemap isnt at 0, 0
-						)
-						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = Vector2(t.x * tile_size, t.y * tile_size)
-						#draw_flashing_movement_square(Color.red, 
-						#xpos_character_center_tile + (j * tile_size) + tile_size, # x pos 
-						#yy * tile_size + total_movement_tile_space - (i * tile_size) + tile_size # y pos
-						#)
-					
-				var yyy = (mcmt / 2) - (j + 1)
-				# top left side of array pyr
-				if yyy > -1:
-					# ard[i][yyy] = 1
-					
-					#print("Top Left ", i, " - ", yyy)
-					if check_if_cell_is_navigatable(i, yyy, e_grid_movement_subsection.TOP_LEFT):
-						#Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = 1
-						var t = vpos # center character tile
-						t.x = t.x - (movement - yyy)
-						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(top_left_segment, 
-							t.x * tile_size, # x pos
-							t.y * tile_size # y pos
-						)
-						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = Vector2(t.x * tile_size, t.y * tile_size)
-						#draw_flashing_movement_square(Color.green, 
-						#	xpos_character_center_tile - (j * tile_size) - tile_size, # x pos
-						#	yy * tile_size + total_movement_tile_space - (i * tile_size) + tile_size # y pos
-						#)
-		
-			squares_to_draw_in_row = squares_to_draw_in_row + 2
-		else:
-			if !half_way_pass:
-				half_way_pass = true
-				squares_to_draw_in_row = squares_to_draw_in_row - 2
-				
-			squares_to_draw_in_row = squares_to_draw_in_row - 2
-			# print("\n\n\n")
-			for j in squares_to_draw_in_row / 2:
-				# print(j)
-				# ard[i][(mcmt / 2) + j] = 1
-				# Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][(mcmt / 2) + j] = 1
-				var yy = (mcmt / 2) + (j + 1)
-				
-				# bottom right side of array pyr
-				if yy < mcmt:
-					# ard[i][yy] = 1
-					
-					if check_if_cell_is_navigatable(i, yy, e_grid_movement_subsection.BOTTOM_RIGHT):
-						#Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = 1
-						var t = vpos # center character tile
-						t.x = t.x + (yy - movement)
-						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(bottom_right_segment, 
-							t.x * tile_size, # x pos
-							t.y * tile_size # y pos
-						)
-						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yy] = Vector2(t.x * tile_size, t.y * tile_size)
-						# draw_flashing_movement_square(Color.blue, 
-						#	xpos_character_center_tile + (j * tile_size) + tile_size, # x pos
-						#	i * tile_size + total_movement_tile_space + tile_size   # y pos
-						# )
-				
-				# bottom left side of array pyr	
-				var yyy = (mcmt / 2) - (j + 1)
-				if yyy > -1:
-					# ard[i][yyy] = 1
-					
-					
-					if check_if_cell_is_navigatable(i, yyy, e_grid_movement_subsection.BOTTOM_LEFT):
-						#Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = 1
-						var t = vpos # center character tile
-						t.x = t.x - (movement - yyy)
-						t.y = (t.y - movement) + i
-						draw_flashing_movement_square(bottom_left_segment, 
-							t.x * tile_size, # x pos
-							t.y * tile_size  # y pos
-						)
-						Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i][yyy] = Vector2(t.x * tile_size, t.y * tile_size)
-						#draw_flashing_movement_square(Color.yellow, 
-						#	xpos_character_center_tile - (j * tile_size) - tile_size, # x pos
-						#	yyy * tile_size + (2 * tile_size) + (total_movement_tile_space * 2) - (i * tile_size)   # y pos
-						#)
-	
-	# print("Start")
-	# for a in ard:
-	# 	print(a)
-	# print("End")
-		
-	
-	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
-	var copy = Singleton_Game_GlobalBattleVariables.active_actor_movement_array.duplicate(true)
-#	for i in range(copy.size()):
-#		for j in range(copy[i].size()):
-#			if copy[i][j] == 1:
-#				copy[i][j] = "___1"
-	# for a in copy:
-	# 	print(a)
-	# print("End")
-	
-	print("\n")
-
 func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg = null) -> void:
 	var cr = ColorRect.new()
 	cr.color = acolor
@@ -1145,78 +880,6 @@ func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg
 		$MovementTilesWrapperNode.add_child(cr)
 	else:
 		node_arg.add_child(cr)
-
-
-func check_if_cell_is_navigatable(x: int, y: int, gss) -> bool:
-	#print("Cell Additions - ", x, " ", y)
-	
-	#print("SSSSS - ", tilemap.world_to_map(mc.position))
-	var current_tile_pos = tilemap.get_cellv(tilemap.world_to_map(mc.position))
-	#print(current_tile_pos)
-	#print(tilemap.tile_set.tile_get_name(current_tile_pos))
-	#print("SSSSS -")
-	
-	#current_tile_pos = tilemap.get_cell(5, 19)
-	#print("AAA tile at pos - ", current_tile_pos)
-	# print(tilemap.tile_set.tile_get_name(current_tile_pos))
-	var vpos: Vector2
-	# vpos.x = 5
-	# vpos.y = 19
-	vpos = get_char_tile_position()
-	# print("VPOS - ", vpos)
-	
-	var movement = mc.get_character_movement()
-	
-	if gss == e_grid_movement_subsection.TOP_RIGHT:
-		vpos.x = vpos.x + (y - movement)
-		vpos.y = (vpos.y - movement) + x
-	elif gss == e_grid_movement_subsection.CENTER:
-		# vpos.x = vpos.x + (y - 6)
-		vpos.y = (vpos.y - movement) + x
-	elif gss == e_grid_movement_subsection.TOP_LEFT:
-		vpos.x = vpos.x - (movement - y)
-		vpos.y = (vpos.y - movement) + x
-	elif gss == e_grid_movement_subsection.BOTTOM_RIGHT:
-		# Least tested might be bugged
-		#print("VPOS - ", vpos)
-		#print("RIGHTT - ", x, " ", y)
-		vpos.x = vpos.x - (movement - y)
-		vpos.y = (vpos.y - movement) + x
-		#print("VPOS - ", vpos, "\n")
-	elif gss == e_grid_movement_subsection.BOTTOM_LEFT:
-		# Least tested might be bugged
-		#print("VPOS - ", vpos)
-		#print("Left - ", x, " ", y)
-		vpos.x = vpos.x - (movement - y)
-		vpos.y = (vpos.y - movement) + x
-		#print("VPOS - ", vpos, "\n")
-				
-	#print("VPOS - ", vpos)
-	current_tile_pos = tilemap.get_cellv(vpos)
-	#print(current_tile_pos)
-	if current_tile_pos != tilemap.INVALID_CELL:
-		var tile_name = tilemap.tile_set.tile_get_name(current_tile_pos)
-		# print("tile_name: ", tile_name, " tile_pos - ", vpos)
-		if tile_name == "Ground30":
-			return true
-		if tile_name == "Ground15":
-			return true
-		if tile_name == "Ground0":
-			return true	
-		if tile_name == "Float0":
-			return false
-		if tile_name == "Float15":
-			return false
-		if tile_name == "Float30":
-			return false
-			
-		return true
-	else:
-		# print("invalid - no tile at position")
-		return false
-		
-	# return false
-
 
 # Turn Order Queue Start
 

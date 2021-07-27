@@ -69,4 +69,4 @@ func pseudo_ai_turn_determine():
 	
 	pself.internal_call_complete()
 	# emit_signal("signal_logic_completed")
-
+	
