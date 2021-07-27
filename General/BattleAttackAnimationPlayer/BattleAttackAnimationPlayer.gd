@@ -6,6 +6,7 @@ signal signal_battle_scene_complete
 signal signal_battle_complete_damage_step
 
 signal signal_attack_frame_reached
+signal signal_enemey_attack_frame_reached
 
 export var reset_scene: bool = false setget internal_reset_all_actor_sprites_back_to_default_position
 
@@ -64,7 +65,11 @@ func _ready():
 	char_animationPlayer.connect("animation_finished", self, "s_cleanup_animation")
 	char_animationPlayer.remove_animation("AttackNormal")
 	
+	enemey_animationPlayer.connect("animation_finished", self, "s_cleanup_animation_enemy")
+	
 	self.connect("signal_attack_frame_reached", self, "s_update_ui_and_animate_damage_phase")
+	self.connect("signal_enemey_attack_frame_reached", self, "s_update_ui_and_animate_damage_enemey_phase")
+	# internal_signal_enemey_attack_frame_reached()
 	# black_fade_anim_in()
 	
 	enemeySpriteTween.connect("tween_completed", self, "s_enemey_tween_completed")
@@ -135,6 +140,42 @@ func setup_actor_attacking() -> void:
 	
 	# Singleton_Game_AudioManager.play("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 
+
+func setup_enemey_actor_attacking() -> void:
+	using_spell = false
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
+	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	
+	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
+	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
+	enemeySprite.show()
+	
+	setup_sprite_textures_enemey_attack()
+	# setup_sprite_textures()
+	black_fade_anim_out()
+	move_wrappers_into_position()
+	
+	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	yield(get_tree().create_timer(1), "timeout")
+	
+	# load text box saying x is attacking or doing y to z
+	print_who_is_attacking()
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
+	# setup_attacking_animation()
+	setup_enemey_attacking_animation()
+	
+	# on the yield end
+	# show the damage box exp and coins if eneemy killed
+	
+	
+	
+	# or whatever the appriotate message is
+	
+
+
 func setup_spell_usage() -> void:
 	using_spell = true
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
@@ -183,10 +224,48 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot").check_if_defeated()
 
+
+
+func s_cleanup_animation_enemy(animation_name_arg) -> void:
+	# print("Animation Name - ", animation_name_arg)
+	
+	yield(self, "signal_battle_complete_damage_step")
+	
+	char_animationPlayer.remove_animation(internal_animation_name)
+	
+	yield(get_tree().create_timer(1), "timeout")
+	
+	# print_damage_done_to(damage)
+	
+	yield(get_tree().create_timer(1), "timeout")
+	black_fade_anim_out()
+	print("Complete Battle Scene")
+	
+	internal_reset_all_actor_sprites_back_to_default_position()
+	
+	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
+	# Singleton_Game_AudioManager.pause_all_music()
+	emit_signal("signal_battle_scene_complete")
+	
+	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
+	
+	Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot").check_if_defeated()
+	yield(Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot"), "signal_check_defeat_done")
+	
+
+
 func s_update_ui_and_animate_damage_phase() -> void:
 	print("\n\n\n Signal Recieved \n\n\n")
 	
 	calculate_damage_step()
+	
+	# yield(self, "signal_battle_complete_damage_step")
+
+
+func s_update_ui_and_animate_damage_enemey_phase() -> void:
+	print("\n\n\n Signal Recieved \n\n\n")
+	
+	calculate_damage_step_enemey_attacking()
 	
 	# yield(self, "signal_battle_complete_damage_step")
 
@@ -276,6 +355,83 @@ func calculate_damage_step() -> void:
 	
 	# return damage
 
+
+func calculate_damage_step_enemey_attacking() -> void:
+	# Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
+	
+	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("EnemeyRoot")
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	
+	var damage = 0
+	
+	# max attack value
+	var max_damage = enemeyRoot.get_attack() - characterRoot.defense
+	if max_damage <= 0:
+		max_damage = 1
+	
+	# min attack value
+	var min_damage = floor(max_damage - floor(max_damage * 0.25))
+	
+	rng.randomize()
+	
+	damage = rng.randi_range(max_damage, min_damage)
+	if damage <= 0:
+		damage = 1
+	
+		
+	if characterRoot.HP_Current - damage <= 0:
+		characterRoot.HP_Current = 0
+	else:
+		characterRoot.HP_Current -= damage
+		
+	print(enemeyRoot.get_attack(), characterRoot.defense)
+	
+	# yield(get_tree().create_timer(1), "timeout")
+	# Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
+	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	
+	# print("\n\n\n", enemeySprite.material.get_shader_param("color_blend_target"))
+	
+	# enemeySprite.material.shader = shader_color_blend
+	# enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
+	
+	# TODO: generate the movement and timings randomly 
+	# using fixed animation to simulate the shake for the demo
+	# enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
+	# enemey_animationPlayer.play("shake")
+	
+	yield(get_tree().create_timer(1), "timeout")	
+	print_enemey_damage_done_to(damage)
+	yield(get_tree().create_timer(1), "timeout")
+	
+	# enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
+	# enemey_animationPlayer.stop()
+	
+	if characterRoot.HP_Current == 0:
+		# enemey_defeated_play_dissolve_animation()
+		# character_defeated_play_dissolve_animation()
+		print_char_actor_defeated()
+		yield(get_tree().create_timer(1), "timeout")
+	#elif enemeyRoot.battle_animation_resource.animation_res_idle != null:
+	#	enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+	#	enemey_animationPlayer.play(ani_name_enemey_idle)
+	# enemey_animationPlayer.play(ani_name_enemey_idle)
+	
+	
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
+	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	print("Complete Damage Step")
+	emit_signal("signal_battle_complete_damage_step")
+	
+	# return damage
+
+
+
+
+
 # func calculate_damage_range():
 #	pass
 
@@ -351,8 +507,45 @@ func setup_sprite_textures() -> void:
 	
 	pass
 
+
+func setup_sprite_textures_enemey_attack() -> void:
+	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("EnemeyRoot")
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	
+	if enemeyRoot != null:
+		enemeyWrapper.show()
+		internal_init_resource_for_actor(enemeySprite, enemeyRoot.battle_animation_resource)
+		if enemeyRoot.battle_animation_resource.animation_res_idle != null:
+			enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+			enemey_animationPlayer.play(ani_name_enemey_idle)
+		else:
+			enemey_animationPlayer.stop()
+	else:
+		enemeyWrapper.hide()
+	
+	internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
+	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
+		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play("Character Idle")
+	else:
+		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		# seek first frame of attack to prevent odd positioning of other sprites
+		char_animationPlayer.play("Character Idle")
+		char_animationPlayer.seek(0.1, true)
+		char_animationPlayer.stop()
+	
+	for i in range(characterRoot.inventory_items_id.size()):
+		if characterRoot.is_item_equipped[i]:
+			if characterRoot.inventory_items_id[i] is CN_SF1_Item_Weapon:
+				weaponSprite.texture = characterRoot.inventory_items_id[i].battle_texture
+				break
+	
+	pass
+
+
+
 func setup_attacking_animation() -> void:
-	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_get_node("CharacterRoot")
 	
 	# internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_attack != null:
@@ -361,6 +554,19 @@ func setup_attacking_animation() -> void:
 	else:
 		char_animationPlayer.stop()
 	
+
+
+func setup_enemey_attacking_animation() -> void:
+	var activeActorRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal() # ENemeyRoot
+	
+	# internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
+	if activeActorRoot.battle_animation_resource.animation_res_attack != null:
+		enemey_animationPlayer.add_animation("Enemey Attack", activeActorRoot.battle_animation_resource.animation_res_attack)
+		enemey_animationPlayer.play("Enemey Attack")
+	else:
+		enemey_animationPlayer.stop()
+	
+
 
 func setup_spell_animation() -> void:
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
@@ -380,7 +586,7 @@ func setup_spell_animation() -> void:
 
 func print_who_is_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
-	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal() # get_node("CharacterRoot")
 	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(active_actor.cget_actor_name() + " Attacks!")
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
@@ -410,6 +616,17 @@ func print_damage_done_to(damage_arg) -> void:
 	
 	pass
 
+
+func print_enemey_damage_done_to(damage_arg) -> void:
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		"Inflicts " + str(damage_arg) + " points of damage to " + selected_actor.cget_actor_name() + "."
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	pass
 
 func print_exp_gain(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
@@ -452,6 +669,15 @@ func print_actor_defeated() -> void:
 	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		selected_actor.enemey_name + " is defeated!"
+	)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+
+
+func print_char_actor_defeated() -> void:
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		selected_actor.cget_actor_name() + " is defeated!"
 	)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
@@ -532,6 +758,17 @@ func internal_signal_attack_frame_reached() -> void:
 	else:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 		emit_signal("signal_attack_frame_reached")
+	
+
+func internal_signal_enemey_attack_frame_reached() -> void:
+	print("\n\n\n Signal Reached - signal_attack_frame_reached\n\n\n")
+	
+	if using_spell:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
+		char_animationPlayer.stop(false)
+	else:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+		emit_signal("signal_enemey_attack_frame_reached")
 	
 
 func internal_signal_spell_completed() -> void:

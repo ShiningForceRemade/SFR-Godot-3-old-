@@ -1,6 +1,8 @@
 # tool
 extends Node2D
 
+signal signal_check_defeat_done
+
 onready var pnode = get_parent()
 
 export var character_name: String
@@ -138,6 +140,7 @@ export var battle_animation_unpromoted_resource: Resource
 
 
 var movement_tween_speed = 0.1625
+# var movement_tween_speed = 0.2
 
 func _ready():
 	$AnimationPlayer.play("DownMovement")
@@ -250,30 +253,34 @@ func _physics_process(_delta):
 		
 		if Input.is_action_pressed("ui_right"):
 			animationPlayer.play("RightMovement")
-			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
+			
 			if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
 				animationPlayer.playback_speed = 2
+				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_left"):
 			animationPlayer.play("LeftMovement")
-			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
+			
 			if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
 				animationPlayer.playback_speed = 2
+				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_up"):
 			animationPlayer.play("UpMovement")
-			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
+			
 			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
 				animationPlayer.playback_speed = 2
+				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
 		elif Input.is_action_pressed("ui_down"):
 			animationPlayer.play("DownMovement")
-			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
+			
 			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
 				animationPlayer.playback_speed = 2
+				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
 		
@@ -308,3 +315,39 @@ func is_character_actor_underneath() -> bool:
 			return true
 		
 	return false
+
+
+func check_if_defeated() -> void:
+	if HP_Current == 0:
+		print("\n\n\n\nI was defeated play death animation and update turn order array\n\n\n\n")
+		
+		# yield(get_tree().create_timer(1), "timeout")
+		pseudo_death_animation(0.25)
+		pseudo_death_animation(0.1)
+		pseudo_death_animation(0.1)
+		# yield(get_tree().create_timer(1), "timeout")
+		
+		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+		get_parent().hide()
+		
+		get_parent().queue_free()
+		emit_signal("signal_check_defeat_done")
+	
+	emit_signal("signal_check_defeat_done")
+	pass
+
+
+func pseudo_death_animation(time_arg: float) -> void:
+	$AnimationPlayer.play("RightMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
+	$AnimationPlayer.play("UpMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
+	$AnimationPlayer.play("LeftMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
+	$AnimationPlayer.play("DownMovement")
+	yield(get_tree().create_timer(time_arg), "timeout")
+	
+	# TODO: check order array and remove if found by name
+	
+	
+

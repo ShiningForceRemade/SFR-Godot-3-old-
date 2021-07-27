@@ -219,6 +219,7 @@ __meta__ = {
 }
 
 [node name="UseTargetTilesWrapperNode" type="Node2D" parent="FieldLogicNode"]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FieldLogicNode"]
 anims/RandomTileFlashing = SubResource( 1 )
@@ -249,7 +250,7 @@ __meta__ = {
 position = Vector2( 205, 420 )
 
 [node name="HansRoot" parent="Characters" instance=ExtResource( 11 )]
-position = Vector2( 205, 180 )
+position = Vector2( 229, 276 )
 
 [node name="KenRoot" parent="Characters" instance=ExtResource( 13 )]
 position = Vector2( 229, 420 )

@@ -391,6 +391,89 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 
 
 
+func enemey_actor_attack_setup():
+	print("In Here")
+	
+	# setup_use_range_and_target_range_selection_enemey_static()
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.landEffectPopupRoot.hide()
+	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_land_effect()
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
+	
+	Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
+	# Singleton_Game_GlobalBattleVariables
+	
+	# Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	# Singleton_Game_GlobalBattleVariables.battle_base.s_show_active_actor_micro_in_battle()
+	
+	# Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
+	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro_in_battle()
+	
+	# Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
+	
+	#if using_spell:
+	#	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_spell_usage()
+	#else:
+	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_enemey_actor_attacking()
+	
+	yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
+			
+	print("Complete")
+			
+	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
+	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
+	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
+	Singleton_Game_GlobalBattleVariables.battle_base.landEffectPopupRoot.show()
+	Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
+	
+	# target_range.cleanup_cursor()
+	Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
+	
+	# yield(get_tree().create_timer(0.3), "timeout")
+
+
+func setup_use_range_and_target_range_selection_enemey_static() -> void:
+	using_spell = false
+	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
+	print("Setup Enemey Target Select")
+	
+	item_use_range = load("res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd").new()
+	print(item_use_range)
+	item_use_range._ready()
+	# TODO create cleanup function to remove the attack grid when canclled or completed
+	item_use_range.draw_use_range()
+	Singleton_Game_GlobalBattleVariables.field_logic_node.show_use_target_tiles()
+	
+	target_range = load("res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd").new()
+	# TODO create cleanup function for this to remove the curosr
+	target_range.draw_cursor_and_get_targets("test arg 123")
+	# target_range.draw_cursor_at_position(new_pos_arg: Vector2)
+	
+	# print("Target Actor Type - ", item_arg.target_actor_type)
+	# if item_arg.target_actor_type == 4:
+	#	print("Self and Characters", Singleton_Game_GlobalBattleVariables.character_wrapper_node)
+	#	target_node_children = Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
+		
+	#elif item_arg.target_actor_type == 2: # Enemeies - TODO: add enum or consts to use instead of raw numbers
+	#	print("Enemies", Singleton_Game_GlobalBattleVariables.enemies_wrapper_node)
+	#	target_node_children = Singleton_Game_GlobalBattleVariables.enemies_wrapper_node.get_children()
+	#	set_cursor_target_on_first_found_enemey()
+		
+		# target_range.draw_cursor_at_position(target_node_children[0].position)
+	
+	#elif item_arg.target_actor_type == 3: # Enemeies - TODO: add enum or consts to use instead of raw numbers
+	#	print("Both", Singleton_Game_GlobalBattleVariables.enemies_wrapper_node)
+	#	target_node_children = Singleton_Game_GlobalBattleVariables.enemies_wrapper_node.get_children()
+	#	target_node_children += Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
+	#	set_cursor_target_on_first_found_enemey()	
+	#emit_signal("signal_completed_item_use_action")
+	# return
+
+
+
 
 
 

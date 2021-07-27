@@ -136,16 +136,29 @@ func generate_and_launch_new_turn_order():
 			print(a.node)
 			mc = a.node
 			mc.z_index = 1
+			
+			Singleton_Game_GlobalBattleVariables.currently_active_character = a.node
+			
 			active_character_or_enemey_display_info()
 			emit_signal("signal_show_land_effect_and_active_actor_info")
 			
-			a.node.play_turn()
-			
 			show_movement_tiles()
-			draw_character_movement_area()
+			
+			# old
+			# draw_character_movement_area()
+			
+			# new
+			generate_enemey_movement_array_representation()
+			# generate_movement_array_representation()
+			draw_movement_tiles_from_movement_array()
+			
 			$AnimationPlayer.play("RandomTileFlashing")
 			
+			yield(get_tree().create_timer(0.3), "timeout")
+			
+			a.node.play_turn()
 			yield(a.node, "signal_completed_turn")
+			
 			mc.z_index = 0
 			print("Enemy Turn End")
 			previous_actor_pos = a.node.position
@@ -158,6 +171,8 @@ func generate_and_launch_new_turn_order():
 #			t.start()
 #			yield(t, "timeout")
 		else:
+			continue
+			
 			print("Character Turn Start")
 			# NOTE: TODO: BUG: more than likely signal for turn complete firing too quickly
 			# triggers multiple turn ends forcing wiat to test following character moves for note
@@ -243,6 +258,7 @@ func generate_and_launch_new_turn_order():
 	
 	print("\n\n\nTurn " + str(turn_number) + " Completed\n\n\n")
 	turn_number += 1
+	Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number = turn_number
 	generate_and_launch_new_turn_order()
 
 func s_switch_focus_to_cursor():
@@ -675,6 +691,201 @@ func check_if_character_or_enemey_is_on_tile(chk_pos_arg):
 	return null
 
 
+# TODO: check if refrenced calls are possible if they are
+# compress these duplicate sets into one
+
+func check_if_character_is_on_tile(chk_pos_arg):
+	for character in characters.get_children():
+		# print("POS CHECK - ", enemey.position, " ", chk_pos_arg)
+		if character.position == chk_pos_arg:
+			return { "actor": "character", "move": null }
+	
+	return null
+
+func generate_enemey_movement_array_representation():
+	print("\n\n\nGenereate Start")
+	var actor_cur_pos = mc.position
+	var vpos: Vector2 = get_char_tile_position()
+	var movement = mc.get_character_movement()
+	# Singleton_Game_GlobalBattleVariables.active_actor_movement_array = []
+	# var xpos_character_center_tile = vpos.x * tile_size
+	
+	var move_array = []
+	var total_move_array_size = (movement * 2) + 1
+	for i in range(total_move_array_size):
+		move_array.append([])
+		move_array[i].resize(total_move_array_size)
+	
+	var mid_point = movement - 1
+	
+	print(vpos)
+	# TOP LEFT QUADRANT
+	for row in range(1, movement):
+		for col in range(movement):
+			if col <= movement - row - 1:
+				continue
+			
+			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
+			if new_check_tile(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row)):
+				move_array[row][col] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
+				actor_cur_pos.y - ((movement - row) * tile_size))
+			
+				var res = check_if_character_is_on_tile(check_pos)
+				if res != null:
+					move_array[row][col] = 2 # enemey
+	
+	# TOP RIGHT QUADRANT
+	for row in range(1, movement):
+		for col in range(movement):
+			if col >= row:
+				continue
+			
+			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
+			if new_check_tile(Vector2(vpos.x + col + 1, (vpos.y - movement) + row)):
+				move_array[row][col + movement + 1] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
+				actor_cur_pos.y - ((movement - row) * tile_size))
+			
+				var res = check_if_character_is_on_tile(check_pos)
+				if res != null:
+					move_array[row][col + movement + 1] = 2 # enemey
+	
+	# BOTTOM LEFT QUADRANT
+	for row in range(movement - 1):
+		for col in range(1, movement):
+			if col <= row:
+				continue
+			
+			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
+			# print("x and y - ", col, " ", vpos.y + row + 1)
+			if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y + row + 1)):
+				move_array[row + movement + 1][col] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
+				actor_cur_pos.y + ((row + 1) * tile_size))
+			
+				var res = check_if_character_is_on_tile(check_pos)
+				if res != null:
+					move_array[row + movement + 1][col] = 2 # enemey
+	
+	
+	# BOTTOM RIGHT QUADRANT
+	for row in range(movement - 1):
+		for col in range(movement - 1):
+			# if row == 0 and col == 
+			if col >= movement - row - 1:
+				continue
+			
+			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
+			# print("x and y - ", vpos.x + col + 1, " ", vpos.y + row + 1)
+			if new_check_tile(Vector2(vpos.x + col + 1, vpos.y + row + 1)):
+				move_array[row + movement + 1][col + movement + 1] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
+				actor_cur_pos.y + ((row + 1) * tile_size))
+			
+				var res = check_if_character_is_on_tile(check_pos)
+				if res != null:
+					move_array[row + movement + 1][col + movement + 1] = 2 # enemey
+	
+	# Straight Across Left Side
+	for col in range(movement):
+		if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y)):
+			move_array[movement][col] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
+			actor_cur_pos.y)
+			
+			var res = check_if_character_is_on_tile(check_pos)
+			if res != null:
+				move_array[movement][col] = 2 # enemey
+	
+	# Straight Across Right Side
+	for col in range(movement):
+		if new_check_tile(Vector2(vpos.x + col + 1, vpos.y)):
+			move_array[movement][col + movement + 1] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
+			actor_cur_pos.y)
+			
+			var res = check_if_character_is_on_tile(check_pos)
+			if res != null:
+				move_array[movement][col + movement + 1] = 2 # enemey
+	
+	# Straight Down Top Portion
+	for row in range(movement):
+		if new_check_tile(Vector2(vpos.x, vpos.y - (movement - row))):
+			move_array[row][movement] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x,
+			actor_cur_pos.y - ((movement - row) * tile_size))
+			
+			var res = check_if_character_is_on_tile(check_pos)
+			if res != null:
+				move_array[row][movement] = 2 # enemey
+	
+	# Straight Down Bottom Portion
+	for row in range(movement):
+		if new_check_tile(Vector2(vpos.x, vpos.y + (row + 1))):
+			move_array[row + movement + 1][movement] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x,
+			actor_cur_pos.y + ((row + 1) * tile_size))
+			
+			var res = check_if_character_is_on_tile(check_pos)
+			if res != null:
+				move_array[row + movement + 1][movement] = 2 # enemey
+	
+	# Center Self Tile
+	move_array[movement][movement] = 1
+	
+	print(vpos)
+	# print(move_array)
+	print("Move Array")
+	#for i in move_array:
+	#	print(i)
+	
+	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
+	var copy = move_array.duplicate(true)
+	Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation = move_array
+	
+	for i in range(copy.size()):
+		for j in range(copy[i].size()):
+			if copy[i][j] == 1:
+				copy[i][j] = "___1"
+			elif copy[i][j] == 2:
+				copy[i][j] = "ENEM"
+			elif copy[i][j] == null:
+				copy[i][j] = "____"
+	copy[movement][movement] = "SELF"
+	for a in copy:
+		print(a)
+	print("End")
+	
+	print("Genereate End\n\n\n")
+	return # move_array
+
+
+
+
+
+
+
+
+
+
+
 func new_check_tile(vpos: Vector2) -> bool:
 	var current_tile_pos = tilemap.get_cellv(vpos)
 	# print(current_tile_pos)
@@ -1031,12 +1242,33 @@ func generate_actor_order_for_current_turn():
 	#print("Generate Actor Order for Turn\n", turn_order_array)
 	
 	var ordered_turn_array = turn_order_array
-	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
-	print("\nOrdered Array\n")
+	if ordered_turn_array[0].name == "GoblinRoot6":
+		return
+	
+	
+	#for n in range(ordered_turn_array.size()):
+	#	if ordered_turn_array[n].name != "GoblinRoot6":
+	#		ordered_turn_array.remove(n)
+	ordered_turn_array.remove(0)
+	ordered_turn_array.remove(0)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	ordered_turn_array.remove(1)
+	# ordered_turn_array.remove(1)
+#	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
+#	print("\nOrdered Array\n")
 	for n in ordered_turn_array:
 		print(n)
 	print("\n")
 	
+	turn_order_array = ordered_turn_array
 
 func sort_actors_by_agility(a, b) -> bool:
 	return a.speed > b.speed

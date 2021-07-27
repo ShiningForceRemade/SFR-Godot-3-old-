@@ -159,3 +159,7 @@ func pseudo_death_animation(time_arg: float) -> void:
 	# TODO: check order array and remove if found by name
 	
 	get_parent().queue_free()
+
+
+func cget_actor_name() -> String:
+	return enemey_name

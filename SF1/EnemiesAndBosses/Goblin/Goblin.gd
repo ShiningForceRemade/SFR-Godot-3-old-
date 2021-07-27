@@ -75,7 +75,7 @@ func play_turn():
 		var bls = load(battle_logic_script)
 		bls = bls.new()
 		bls.play_turn(self)
-		# yield(bls, "signal_logic_completed")
+		yield(bls, "signal_logic_completed")
 	else:
 		pseudo_ai_turn_determine()
 	
@@ -87,11 +87,27 @@ func internal_call_complete() -> void:
 	animationPlayer.play("DownMovement")
 	emit_signal("signal_completed_turn")
 
+
+func internal_attack_actor_found() -> void:
+	# animationPlayer.play("DownMovement")
+	#emit_signal("signal_completed_turn")
+	print("ATTTACKKKKKKKKKK")
+	# Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro()
+	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	get_parent().get_parent().get_node("TargetSelectionLogicNodeRoot").enemey_actor_attack_setup()
+
 func pseudo_ai_turn_determine():
 	for _i in range(4):
 		random_move_direction(0)
 		yield(tween, "tween_completed")
 	animationPlayer.play("DownMovement")
+	emit_signal("signal_completed_turn")
+
+func s_complete_turn():
+	print("\n" + $EnemeyRoot.enemey_name + " Turn End\n")
+	# $EnemeyRoot.animationPlayer.play("DownMovement")
 	emit_signal("signal_completed_turn")
 
 # Getters
@@ -105,3 +121,6 @@ func cget_hp_total() -> int: return $EnemeyRoot.HP_Total
 func cget_hp_current() -> int: return $EnemeyRoot.HP_Current
 func cget_mp_total() -> int: return $EnemeyRoot.MP_Total
 func cget_mp_current() -> int: return $EnemeyRoot.MP_Current
+
+func get_actor_root_node_internal():
+	return get_node("EnemeyRoot")
