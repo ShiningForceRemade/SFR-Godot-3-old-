@@ -53,6 +53,9 @@ func _input(event):
 	if is_target_selection_active:
 		if event.is_action_released("ui_b_key"):
 			is_target_selection_active = false
+			
+			Singleton_Game_GlobalBattleVariables.currently_selected_actor = null
+			
 			# emit_signal("signal_completed_item_use_action")
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 			Singleton_Game_GlobalBattleVariables.field_logic_node.show_movement_tiles()
