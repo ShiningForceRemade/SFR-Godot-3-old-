@@ -94,6 +94,7 @@ config/Version="0.0.1"
 Singleton_Dev_DevMenu="*res://General/Singletons/DevMenu/DevMenu.tscn"
 Singleton_Game_AudioManager="*res://General/Singletons/AudioManager/AudioManager.gd"
 Singleton_Game_GlobalBattleVariables="*res://General/Singletons/Globals/GlobalBattleVariables.gd"
+Singleton_Game_GlobalOverworldVariables="*res://General/Singletons/Globals/GlobalOverworldVariables.gd"
 
 [display]
 

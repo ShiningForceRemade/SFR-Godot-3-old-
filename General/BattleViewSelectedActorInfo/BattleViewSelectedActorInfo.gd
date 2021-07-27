@@ -26,6 +26,8 @@ func _ready():
 func set_battle_view_selected_actor_info_menu_active():
 	battle_view_selected_actor_info_menu_active = true
 	
+	$GoldNinePatchRect/GoldAmountLabel.text = str(Singleton_Game_GlobalOverworldVariables.coins)
+	
 	if Singleton_Game_GlobalBattleVariables.selected_actor_type == "Character":
 		display_character_info()
 	elif Singleton_Game_GlobalBattleVariables.selected_actor_type == "Enemey":

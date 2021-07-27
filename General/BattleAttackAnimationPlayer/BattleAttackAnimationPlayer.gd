@@ -458,10 +458,13 @@ func print_actor_defeated() -> void:
 
 func print_coins_and_items_receieved() -> void:
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		# active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
-		active_actor.cget_actor_name() + " gains 0 coins."
+		active_actor.cget_actor_name() + " gains " + str(selected_actor.coins) + " coins."
 	)
+	
+	Singleton_Game_GlobalOverworldVariables.coins += selected_actor.coins
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
 
