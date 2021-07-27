@@ -213,6 +213,7 @@ func set_cursor_target_on_first_found_enemey() -> void:
 					if child.position == Vector2(ac_pos.x + get_tile_position_adjustment(r, c_row), ac_pos.y + get_tile_position_adjustment(c, c_col)):
 						set_and_save_new_target_selection(r, c, child)
 						backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y)
+						forward_pass_naive(current_selection_vec2.x, current_selection_vec2.y)
 						# Found inital target no need to continue searching
 						return
 	

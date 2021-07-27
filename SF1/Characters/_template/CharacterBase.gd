@@ -243,31 +243,31 @@ func _physics_process(_delta):
 		if Input.is_action_pressed("ui_right"):
 			animationPlayer.play("RightMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			# if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
-			animationPlayer.playback_speed = 2
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
+			if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_left"):
 			animationPlayer.play("LeftMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			# if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
-			animationPlayer.playback_speed = 2
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
+			if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_up"):
 			animationPlayer.play("UpMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			# if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
-			animationPlayer.playback_speed = 2
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
+			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
 		elif Input.is_action_pressed("ui_down"):
 			animationPlayer.play("DownMovement")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/StepSound.wav")
-			# if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
-			animationPlayer.playback_speed = 2
-			tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
+			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
+				animationPlayer.playback_speed = 2
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
 		
 		
 		tween.start()
@@ -279,7 +279,7 @@ func check_if_move_is_possible(new_pos_arg) -> bool:
 			return false
 	
 	var check_pos = new_pos_arg
-	check_pos.x -= 13
+	check_pos.x -= 12
 	check_pos.y -= 12
 	for sub_array in Singleton_Game_GlobalBattleVariables.active_actor_movement_array:
 		for move_pos in sub_array:

@@ -113,7 +113,8 @@ func generate_and_launch_new_turn_order():
 		emit_signal("signal_hide_land_effect_and_active_actor_info")
 		
 		if a.type == "enemey":
-			# continue
+			continue
+			
 			print("Enemy Turn Start")
 			
 			# camera.smooth_move_to_new_position(a.node.get_node("EnemeyRoot/KinematicBody2D"))
@@ -207,11 +208,19 @@ func generate_and_launch_new_turn_order():
 			# turn_movement_init()
 			
 			show_movement_tiles()
-			draw_character_movement_area()
+			
+			# new
+			generate_movement_array_representation()
+			draw_movement_tiles_from_movement_array()
+			# old
+			# draw_character_movement_area()
+			
+			
 			$AnimationPlayer.play("RandomTileFlashing")
 			# play_turn will yield control until the player or enemy finishes its turn
 			
 			mc.z_index = 1
+			
 			
 			yield(Singleton_Game_GlobalBattleVariables.self_node(), "signal_completed_turn")
 			
@@ -328,7 +337,374 @@ func get_tile_info_under_character(new_pos: Vector2):
 		emit_signal("signal_land_effect_under_tile", "Bug: No Info Report")
 		
 	# print("\n")
+
+
+
+
+
+
+
+
+func generate_movement_array_representation():
+	print("\n\n\nGenereate Start")
+	var actor_cur_pos = mc.position
+	var vpos: Vector2 = get_char_tile_position()
+	var movement = mc.get_character_movement()
+	# Singleton_Game_GlobalBattleVariables.active_actor_movement_array = []
+	# var xpos_character_center_tile = vpos.x * tile_size
 	
+	var move_array = []
+	var total_move_array_size = (movement * 2) + 1
+	for i in range(total_move_array_size):
+		move_array.append([])
+		move_array[i].resize(total_move_array_size)
+	
+	var mid_point = movement - 1
+	
+	print(vpos)
+	# TOP LEFT QUADRANT
+	for row in range(1, movement):
+		for col in range(movement):
+			if col <= movement - row - 1:
+				continue
+			
+			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
+			if new_check_tile(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row)):
+				move_array[row][col] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
+				actor_cur_pos.y - ((movement - row) * tile_size))
+			
+				var res = check_if_character_or_enemey_is_on_tile(check_pos)
+				if res != null:
+					move_array[row][col] = 2 # enemey
+	
+	# TOP RIGHT QUADRANT
+	for row in range(1, movement):
+		for col in range(movement):
+			if col >= row:
+				continue
+			
+			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
+			if new_check_tile(Vector2(vpos.x + col + 1, (vpos.y - movement) + row)):
+				move_array[row][col + movement + 1] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
+				actor_cur_pos.y - ((movement - row) * tile_size))
+			
+				var res = check_if_character_or_enemey_is_on_tile(check_pos)
+				if res != null:
+					move_array[row][col + movement + 1] = 2 # enemey
+	
+	# BOTTOM LEFT QUADRANT
+	for row in range(movement - 1):
+		for col in range(1, movement):
+			# if row == 0 and col == 
+			# if col <= movement - row - 1:
+			# 	continue
+			
+			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
+			# print("x and y - ", col, " ", vpos.y + row + 1)
+			if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y + row + 1)):
+				move_array[row + movement + 1][col] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
+				actor_cur_pos.y + ((row + 1) * tile_size))
+			
+				var res = check_if_character_or_enemey_is_on_tile(check_pos)
+				if res != null:
+					move_array[row + movement + 1][col] = 2 # enemey
+	
+	
+	# BOTTOM RIGHT QUADRANT
+	for row in range(movement - 1):
+		for col in range(movement - 1):
+			# if row == 0 and col == 
+			if col >= movement - row - 1:
+				continue
+			
+			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
+			# print("x and y - ", vpos.x + col + 1, " ", vpos.y + row + 1)
+			if new_check_tile(Vector2(vpos.x + col + 1, vpos.y + row + 1)):
+				move_array[row + movement + 1][col + movement + 1] = 1
+			
+				# check if character or enemey actor is on this tile position
+			
+				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
+				actor_cur_pos.y + ((row + 1) * tile_size))
+			
+				var res = check_if_character_or_enemey_is_on_tile(check_pos)
+				if res != null:
+					move_array[row + movement + 1][col + movement + 1] = 2 # enemey
+	
+	# Straight Across Left Side
+	for col in range(movement):
+		if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y)):
+			move_array[movement][col] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
+			actor_cur_pos.y)
+			
+			var res = check_if_character_or_enemey_is_on_tile(check_pos)
+			if res != null:
+				move_array[movement][col] = 2 # enemey
+	
+	# Straight Across Right Side
+	for col in range(movement):
+		if new_check_tile(Vector2(vpos.x + col + 1, vpos.y)):
+			move_array[movement][col + movement + 1] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
+			actor_cur_pos.y)
+			
+			var res = check_if_character_or_enemey_is_on_tile(check_pos)
+			if res != null:
+				move_array[movement][col + movement + 1] = 2 # enemey
+	
+	# Straight Down Top Portion
+	for row in range(movement):
+		if new_check_tile(Vector2(vpos.x, vpos.y - (movement - row))):
+			move_array[row][movement] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x,
+			actor_cur_pos.y - ((movement - row) * tile_size))
+			
+			var res = check_if_character_or_enemey_is_on_tile(check_pos)
+			if res != null:
+				move_array[row][movement] = 2 # enemey
+	
+	# Straight Down Bottom Portion
+	for row in range(movement):
+		if new_check_tile(Vector2(vpos.x, vpos.y + (row + 1))):
+			move_array[row + movement + 1][movement] = 1
+			
+			var check_pos = Vector2(actor_cur_pos.x,
+			actor_cur_pos.y + ((row + 1) * tile_size))
+			
+			var res = check_if_character_or_enemey_is_on_tile(check_pos)
+			if res != null:
+				move_array[row + movement + 1][movement] = 2 # enemey
+	
+	# Center Self Tile
+	move_array[movement][movement] = 1
+	
+	print(vpos)
+	# print(move_array)
+	print("Move Array")
+	#for i in move_array:
+	#	print(i)
+	
+	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
+	var copy = move_array.duplicate(true)
+	Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation = move_array
+	
+	for i in range(copy.size()):
+		for j in range(copy[i].size()):
+			if copy[i][j] == 1:
+				copy[i][j] = "___1"
+			elif copy[i][j] == 2:
+				copy[i][j] = "ENEM"
+			elif copy[i][j] == null:
+				copy[i][j] = "____"
+	copy[movement][movement] = "SELF"
+	for a in copy:
+		print(a)
+	print("End")
+	
+	print("Genereate End\n\n\n")
+	return # move_array
+
+
+func draw_movement_tiles_from_movement_array() -> void:
+	var move_array = Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation
+	
+	for n in $MovementTilesWrapperNode.get_children():
+		$MovementTilesWrapperNode.remove_child(n)
+		n.queue_free()
+	
+	var actor_cur_pos = mc.position
+	var movement = mc.get_character_movement()
+	var mid_point = movement - 1
+	
+	var center_segment = Color("7de1e1e1")
+	
+	Singleton_Game_GlobalBattleVariables.active_actor_movement_array = []
+	var total_move_array_size = (movement * 2) + 1
+	for i in range(total_move_array_size):
+		Singleton_Game_GlobalBattleVariables.active_actor_movement_array.append([])
+		Singleton_Game_GlobalBattleVariables.active_actor_movement_array[i].resize(total_move_array_size)
+	
+	
+	# TOP LEFT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			# if col <= movement - row - 1:
+			# 	continue
+			
+			if move_array[row][col] == 1:
+				
+				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][col] = Vector2(actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2))
+				
+				draw_flashing_movement_square(center_segment,
+				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+				)
+	
+	# TOP RIGHT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			# if col <= movement - row - 1:
+			# 	continue
+			
+			if move_array[row][col + movement + 1] == 1:
+				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][col + movement + 1] = Vector2(
+				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+				)
+				
+				draw_flashing_movement_square(center_segment,
+				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+				)
+	
+	# BOTTOM LEFT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			# if col <= movement - row - 1:
+			# 	continue
+			
+			if move_array[row + movement + 1][col] == 1:
+				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][col] = Vector2(
+				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				)
+				
+				draw_flashing_movement_square(center_segment,
+				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				)
+				pass
+	
+	# BOTTOM RIGHT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			# if col <= movement - row - 1:
+			# 	continue
+			
+			if move_array[row + movement + 1][col + movement + 1] == 1:
+				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][col + movement + 1] = Vector2(
+				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				)
+				draw_flashing_movement_square(center_segment,
+				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
+				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				)
+	
+	# Straight Down Top Porition
+	for row in range(movement):
+		if move_array[row][movement] == 1:
+			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][movement] = Vector2(
+			actor_cur_pos.x - (tile_size / 2),
+			actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+			)
+			draw_flashing_movement_square(center_segment,
+			actor_cur_pos.x - (tile_size / 2),
+			actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+			)
+	
+	# Straight Down Top Porition
+	for row in range(movement):
+		if move_array[row + movement + 1][movement] == 1:
+			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][movement] = Vector2(
+			actor_cur_pos.x - (tile_size / 2),
+			actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+			)
+			draw_flashing_movement_square(center_segment,
+			actor_cur_pos.x - (tile_size / 2),
+			actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+			)
+	
+	# Straight Across Right Porition
+	for col in range(movement):
+		if move_array[movement][col] == 1:
+			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][col] = Vector2(
+			actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
+			actor_cur_pos.y - (tile_size / 2)
+			)
+			draw_flashing_movement_square(center_segment,
+			actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
+			actor_cur_pos.y - (tile_size / 2)
+			)
+	
+	# Straight Across Right Porition
+	for col in range(movement):
+		if move_array[movement][col + movement + 1] == 1:
+			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][col + movement + 1] = Vector2(
+			actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
+			actor_cur_pos.y - (tile_size / 2)
+			)
+			draw_flashing_movement_square(center_segment,
+			actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
+			actor_cur_pos.y - (tile_size / 2)
+			)
+	
+	draw_flashing_movement_square(center_segment, actor_cur_pos.x - (tile_size / 2), actor_cur_pos.y - (tile_size / 2))
+	Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][movement] = Vector2(
+			actor_cur_pos.x - (tile_size / 2), 
+			actor_cur_pos.y - (tile_size / 2)
+			)
+	
+	return
+
+
+func check_if_character_or_enemey_is_on_tile(chk_pos_arg):
+	for enemey in enemies.get_children():
+		# print("POS CHECK - ", enemey.position, " ", chk_pos_arg)
+		if enemey.position == chk_pos_arg:
+			return { "actor": "enemey", "move": null }
+	
+	return null
+
+
+func new_check_tile(vpos: Vector2) -> bool:
+	var current_tile_pos = tilemap.get_cellv(vpos)
+	# print(current_tile_pos)
+	if current_tile_pos != tilemap.INVALID_CELL:
+		var tile_name = tilemap.tile_set.tile_get_name(current_tile_pos)
+		# print("tile_name: ", tile_name, " tile_pos - ", vpos)
+		if tile_name == "Ground30":
+			return true
+		if tile_name == "Ground15":
+			return true
+		if tile_name == "Ground0":
+			return true	
+		if tile_name == "Float0":
+			return false
+		if tile_name == "Float15":
+			return false
+		if tile_name == "Float30":
+			return false
+			
+		return false
+	else:
+		# print("invalid - no tile at position")
+		return false
+
+
+
+
+
+
+
+
 func draw_character_movement_area():
 #	print("\nMC POS", mc.position)
 #	print(mc.get_character_movement())
@@ -528,15 +904,15 @@ func draw_character_movement_area():
 	# print("End")
 		
 	
-	print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
+	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
 	var copy = Singleton_Game_GlobalBattleVariables.active_actor_movement_array.duplicate(true)
 #	for i in range(copy.size()):
 #		for j in range(copy[i].size()):
 #			if copy[i][j] == 1:
 #				copy[i][j] = "___1"
-	for a in copy:
-		print(a)
-	print("End")
+	# for a in copy:
+	# 	print(a)
+	# print("End")
 	
 	print("\n")
 
