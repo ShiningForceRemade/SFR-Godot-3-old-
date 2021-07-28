@@ -26,10 +26,6 @@ const tile_size: int = 24 # 24 by 24
 
 var turn_order_array = []
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 enum e_grid_movement_subsection {
 	CENTER,
 	TOP_LEFT,
@@ -40,7 +36,7 @@ enum e_grid_movement_subsection {
 
 var camera 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	# print(tilemap)
 	yield(get_tree().root, "ready")

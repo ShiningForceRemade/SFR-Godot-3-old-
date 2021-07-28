@@ -14,6 +14,8 @@ signal signal_selected_actor_underneath_cursor
 
 onready var battleAttackAnimationPlayer = $BattleAttackAnimationPlayerRoot
 
+onready var tilemap_terrian_node = $TileMapTileInformation
+
 func _ready():
 	battleAttackAnimationPlayer.hide()
 	

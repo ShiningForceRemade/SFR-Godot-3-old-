@@ -2,6 +2,7 @@
 extends TileMap
 
 signal signal_logic_completed
+signal signal_complete_a_path_check
 
 var pself
 
@@ -34,10 +35,11 @@ func play_turn(self_arg):
 	
 	if possible_target_array[0] != null:
 		go_to_target(possible_target_array[0])
+		yield(self, "signal_complete_a_path_check")
 		
 	
-	# yield(pself.get_tree().create_timer(0.3), "timeout")
-	yield(pself.get_tree().create_timer(10.3), "timeout")
+	yield(pself.get_tree().create_timer(0.3), "timeout")
+	# yield(pself.get_tree().create_timer(10.3), "timeout")
 	
 	emit_signal("signal_logic_completed")
 	pself.internal_call_complete()
@@ -78,14 +80,15 @@ func play_turn(self_arg):
 func go_to_target(target_node_arg):
 	print(pself.position, " ", target_node_arg.position)
 	
-	astar_connect_walkable_cells()
+	astar_connect_walkable_cells(target_node_arg)
+	# yield(self, "signal_complete_a_path_check")
 	
-	if pself.position.x >= target_node_arg.position.x and pself.position.y <= target_node_arg.position.y:
+	# if pself.position.x >= target_node_arg.position.x and pself.position.y <= target_node_arg.position.y:
 		# Top Left and Left Across and Top Down
-		pself.random_move_direction(2)
-		yield(pself, "signal_move_direction_completed")
+	#	pself.random_move_direction(2)
+	#	yield(pself, "signal_move_direction_completed")
 		
-		pass
+	#	pass
 	
 	
 	pass
@@ -94,35 +97,30 @@ func go_to_target(target_node_arg):
 var astar_node
 var map_size
 
-var path_start_position = Vector2(8, 8) #  = Vector2(8* 24, 8 * 24) # world_to_map(Vector2(8, 8))
-var path_end_position = Vector2(6, 8) # = Vector2(6 * 24, 8 * 24) # world_to_map(Vector2(6, 8))
+var path_start_position
+var path_end_position
 
 var _point_path = []
 
 const BASE_LINE_WIDTH = 3.0
 const DRAW_COLOR = Color('#fff')
 
-
-	
-# Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation
-
-func astar_connect_walkable_cells(): # (points_array):
+func astar_connect_walkable_cells(target_node_arg):
 	astar_node = AStar.new()
 	
 	var mpr = Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation
 	var temp_point_index
 	
-	map_size = Vector2(13, 13) # vpos from gen move array
+	var actor_movement = pself.get_character_movement()
+	map_size = Vector2(actor_movement * 2, actor_movement * 2)
 	
 	for v in mpr:
 		temp_point_index = calculate_point_index(v)
 		astar_node.add_point(temp_point_index, Vector3(v.x, v.y, 0))
 	
-	for point in mpr: # points_array
+	for point in mpr:
 		var point_index = calculate_point_index(point)
-		# For every cell in the map, we check the one to the top, right.
-		# left and bottom of it. If it's in the map and not an obstalce,
-		# We connect the current point with it
+
 		var points_relative = PoolVector2Array([
 			Vector2(point.x + 1, point.y),
 			Vector2(point.x - 1, point.y),
@@ -135,48 +133,61 @@ func astar_connect_walkable_cells(): # (points_array):
 				continue
 			if not astar_node.has_point(point_relative_index):
 				continue
-			# Note the 3rd argument. It tells the astar_node that we want the
-			# connection to be bilateral: from point A to B and B to A
-			# If you set this value to false, it becomes a one-way path
-			# As we loop through all points we can set it to false
+			
 			astar_node.connect_points(point_index, point_relative_index, false)
 	
-	find_path(0, 0)
+	var sp = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(pself.position)
+	var ep = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(target_node_arg.position)
+	
+	find_path(sp, ep)
 	
 	pass
 
 
 func find_path(world_start, world_end):
-	# path_start_position = Vector2(path_start_position.x, path_start_position.y)# world_to_map(Vector2(8, 8))
-	# path_end_position = Vector2(path_end_position.x, path_end_position.y)# path_end_position # world_to_map(Vector2(6, 8))
-	_recalculate_path()
-
-func _recalculate_path():
-	# clear_previous_path_drawing()
-	var start_point_index = calculate_point_index(path_start_position) # / 24 # TileSize
-	var end_point_index = calculate_point_index(path_end_position) # / 24
-	# This method gives us an array of points. Note you need the start and end
-	# points' indices as input
+	path_start_position = world_start
+	path_end_position = world_end
 	
 	for p in astar_node.get_points():
 		print(p)
-	# for a in astar_node.
+		
+	# Start self tile from active actor movement grid
+	var start_point_index = calculate_point_index(path_start_position)
 	
+	# Since targets are obstacles in the path finding sense
+	# we need to check the tiles to the left right top and bottom of the target
+	# if one of those tile paths is found we have our movement path towards the target
+	# otherwise we need to pick a square further away since we can't reach or attack the actor this turn
+	# will expand on this AI logic later for demo naive reach and attack only
 	
+	var end_point_index
+	
+	# Target Actor Tile Above
+	end_point_index = calculate_point_index(Vector2(path_end_position.x, path_end_position.y - 1))
+	_point_path = astar_node.get_point_path(start_point_index, end_point_index) # astar_node.get_point_path(start_point_index, end_point_index)
+	if _point_path.size() != 0:
+		print("TOP - ", _point_path)
+		move_to_point_end_from_path(_point_path)
+	
+	# Bottom
+	end_point_index = calculate_point_index(Vector2(path_end_position.x, path_end_position.y + 1))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
-	#astar_node.get_point_path(72, 70) #
-	 
-	# Redraw the lines and circles from the start to the end point
-	_draw()
-
-
-func clear_previous_path_drawing():
-	if not _point_path:
-		return
-	var point_start = _point_path[0]
-	var point_end = _point_path[len(_point_path) - 1]
-	# set_cell(point_start.x, point_start.y, -1)
-	# set_cell(point_end.x, point_end.y, -1)
+	if _point_path.size() != 0:
+		print("Bottom - ", _point_path)
+	
+	# Left
+	end_point_index = calculate_point_index(Vector2(path_end_position.x - 1, path_end_position.y))
+	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
+	if _point_path.size() != 0:
+		print("Left - ", _point_path)
+	
+	# Right
+	end_point_index = calculate_point_index(Vector2(path_end_position.x + 1, path_end_position.y))
+	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
+	if _point_path.size() != 0:
+		print("Right - ", _point_path)
+	
+	# _draw()
 
 
 func is_outside_map_bounds(point):
@@ -185,6 +196,35 @@ func is_outside_map_bounds(point):
 
 func calculate_point_index(point):
 	return point.x + map_size.x * point.y
+
+
+func move_to_point_end_from_path(point_path_arg):
+	var current_pos = path_start_position
+	# Skipping first element since thats the current cell the actor is one
+	for idx in range(1, point_path_arg.size()):
+		if point_path_arg[idx].x < current_pos.x:
+			print("move left")
+			current_pos.x -= 1
+			pself.random_move_direction(1)
+			yield(pself, "signal_move_direction_completed")
+		elif point_path_arg[idx].x > current_pos.x:
+			print("move right")
+			current_pos.x += 1
+			pself.random_move_direction(0)
+			yield(pself, "signal_move_direction_completed")
+		elif point_path_arg[idx].y < current_pos.y:
+			print("move top")
+			current_pos.y -= 1
+			pself.random_move_direction(2)
+			yield(pself, "signal_move_direction_completed")
+		elif point_path_arg[idx].y > current_pos.y:
+			print("move bottom")
+			current_pos.y += 1
+			pself.random_move_direction(3)
+			yield(pself, "signal_move_direction_completed")
+			
+	emit_signal("signal_complete_a_path_check")
+	pass
 
 
 func _draw():
