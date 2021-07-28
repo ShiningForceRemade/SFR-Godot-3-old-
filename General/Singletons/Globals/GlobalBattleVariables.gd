@@ -11,6 +11,7 @@ var dialogue_box_node
 var currently_active_character
 var active_actor_movement_array
 var active_actor_move_array_representation
+var active_actor_move_point_representation
 
 var character_nodes
 var enemey_nodes
