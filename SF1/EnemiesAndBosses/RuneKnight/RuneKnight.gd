@@ -153,3 +153,26 @@ func cget_mp_current() -> int: return $EnemeyRoot.MP_Current
 
 func get_actor_root_node_internal():
 	return get_node("EnemeyRoot")
+
+
+
+func is_character_actor_within_attack_range():
+	for character in Singleton_Game_GlobalBattleVariables.character_nodes.get_children():
+		# print("\n", character.position, " ", Vector2(pself.position.x - 24, pself.position.y))
+		if character.position == Vector2(position.x - 24, position.y):
+			Singleton_Game_GlobalBattleVariables.currently_selected_actor = character
+			return character.position
+		# print(character.position, " ", Vector2(pself.position.x + 24, pself.position.y))
+		if character.position == Vector2(position.x + 24, position.y):
+			Singleton_Game_GlobalBattleVariables.currently_selected_actor = character
+			return character.position
+		# print(character.position, " ", Vector2(pself.position.x, pself.position.y - 24))
+		if character.position == Vector2(position.x, position.y - 24):
+			Singleton_Game_GlobalBattleVariables.currently_selected_actor = character
+			return character.position
+		# print(character.position, " ", Vector2(pself.position.x, pself.position.y + 24))
+		if character.position == Vector2(position.x, position.y + 24):
+			Singleton_Game_GlobalBattleVariables.currently_selected_actor = character
+			return character.position
+	
+	return Vector2.ZERO
