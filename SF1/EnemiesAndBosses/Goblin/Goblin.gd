@@ -36,11 +36,11 @@ func _ready():
 
 
 func get_character_movement():
-	return $EnemeyRoot.move
+	return enemey_actor_root.move
 
 func get_character_current_pos() -> Vector2:
 	# print("here", kinematicBody)
-	return $EnemeyRoot.position
+	return enemey_actor_root.position
 
 
 func _on_Timer_timeout():
@@ -99,7 +99,7 @@ func s_tween_completed(node_arg, property_arg):
 	
 # play_turn
 func play_turn():
-	print("\nGoblin Turn Start\n")
+	print("\n" + enemey_actor_root.enemey_name + " Turn Start\n")
 	
 	print("battle_logic_script ", battle_logic_script)
 	if not battle_logic_script.empty():
@@ -112,7 +112,7 @@ func play_turn():
 	
 	animationPlayer.play("DownMovement")
 	emit_signal("signal_completed_turn")
-	print("\nGoblin Turn End\n")
+	print("\n" + enemey_actor_root.enemey_name + " Turn End\n")
 
 func internal_call_complete() -> void:
 	animationPlayer.play("DownMovement")
@@ -137,21 +137,21 @@ func pseudo_ai_turn_determine():
 	emit_signal("signal_completed_turn")
 
 func s_complete_turn():
-	print("\n" + $EnemeyRoot.enemey_name + " Turn End\n")
+	print("\n" + enemey_actor_root.enemey_name + " Turn End\n")
 	# $EnemeyRoot.animationPlayer.play("DownMovement")
 	emit_signal("signal_completed_turn")
 
 # Getters
 func cget_agility() -> int:
-	return $EnemeyRoot.agility
+	return enemey_actor_root.agility
 
-func cget_actor_name() -> String: return $EnemeyRoot.enemey_name
+func cget_actor_name() -> String: return enemey_actor_root.enemey_name
 func cget_class(): return null
 func cget_level(): return null
-func cget_hp_total() -> int: return $EnemeyRoot.HP_Total
-func cget_hp_current() -> int: return $EnemeyRoot.HP_Current
-func cget_mp_total() -> int: return $EnemeyRoot.MP_Total
-func cget_mp_current() -> int: return $EnemeyRoot.MP_Current
+func cget_hp_total() -> int: return enemey_actor_root.HP_Total
+func cget_hp_current() -> int: return enemey_actor_root.HP_Current
+func cget_mp_total() -> int: return enemey_actor_root.MP_Total
+func cget_mp_current() -> int: return enemey_actor_root.MP_Current
 
 func get_actor_root_node_internal():
 	return get_node("EnemeyRoot")

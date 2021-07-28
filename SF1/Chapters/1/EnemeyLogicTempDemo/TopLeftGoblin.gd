@@ -11,7 +11,7 @@ func play_turn(self_arg):
 	if Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number == 1:
 		for _i in range(4):
 			pself.random_move_direction(0)
-			yield(pself.tween, "tween_completed")
+			yield(pself, "signal_move_direction_completed")
 		
 		emit_signal("signal_logic_completed")
 		pself.internal_call_complete()

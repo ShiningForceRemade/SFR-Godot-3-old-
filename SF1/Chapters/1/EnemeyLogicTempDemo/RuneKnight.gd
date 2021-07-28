@@ -11,7 +11,8 @@ func play_turn(self_arg):
 	if Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number == 1:
 		for _i in range(4):
 			pself.random_move_direction(2)
-			yield(pself.tween, "tween_completed")
+			yield(pself, "signal_move_direction_completed")
+			
 		pself.animationPlayer.play("DownMovement")
 		
 		emit_signal("signal_logic_completed")
