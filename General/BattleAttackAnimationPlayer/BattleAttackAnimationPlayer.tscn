@@ -241,10 +241,9 @@ anims/AttackNormal = SubResource( 1 )
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
 material = SubResource( 2 )
-position = Vector2( 79, 77 )
+position = Vector2( 80, 86 )
 texture = ExtResource( 10 )
 hframes = 4
-frame = 2
 region_rect = Rect2( 0, 0, 260, 100 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemeyWrapper"]

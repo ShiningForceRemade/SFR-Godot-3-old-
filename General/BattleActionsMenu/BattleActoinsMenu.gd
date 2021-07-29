@@ -36,6 +36,7 @@ func _input(event):
 		if event.is_action_released("ui_b_key"):
 			print("Cancel Action Menu")
 			is_menu_active = false
+			yield(get_tree().create_timer(0.02), "timeout")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			get_parent().get_parent().get_parent().s_show_battle_action_menu("down")

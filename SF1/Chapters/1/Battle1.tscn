@@ -225,6 +225,7 @@ visible = false
 anims/RandomTileFlashing = SubResource( 1 )
 
 [node name="TileMapTileInformation" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource( 2 )
 cell_size = Vector2( 24, 24 )
 format = 1
@@ -258,7 +259,7 @@ position = Vector2( 229, 420 )
 position = Vector2( 181, 444 )
 
 [node name="TaoRoot" parent="Characters" instance=ExtResource( 15 )]
-position = Vector2( 205, 444 )
+position = Vector2( 205, 252 )
 
 [node name="LoweRoot" parent="Characters" instance=ExtResource( 16 )]
 position = Vector2( 229, 444 )

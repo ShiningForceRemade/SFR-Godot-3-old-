@@ -44,14 +44,17 @@ func s_battle_message_complete(node_arg, property_arg) -> void:
 func play_message(str_arg = "") -> void:
 	dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
-	dialogueRichTextLabel.percent_visible = 0
+	dialogueRichTextLabel.percent_visible = 1
 	dialogueRichTextLabel.show()
 	
 	dialogueRichTextLabel.bbcode_text = str_arg
 	
-	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
-	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	#dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
+	#0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
-	dialogueTween.start()
+	# dialogueTween.start()
 	
-	yield(get_tree().create_timer(300), "timeout")
+	# yield(get_tree().create_timer(0.5), "timeout")
+	
+	
+	get_tree().paused = true

@@ -218,16 +218,18 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	
 	# print_damage_done_to(damage)
 	
-	yield(get_tree().create_timer(1), "timeout")
 	black_fade_anim_out()
-	yield(self, "signal_black_fade_in_out_completed")
+	yield(get_tree().create_timer(0.5), "timeout")
+	# black_fade_anim_out()
+	# yield(self, "signal_black_fade_in_out_completed")
 	print("Complete Battle Scene")
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
-	
+
+	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()	
 	emit_signal("signal_battle_scene_complete")
 	
 
@@ -240,8 +242,10 @@ func s_cleanup_animation_enemy(animation_name_arg) -> void:
 	
 	char_animationPlayer.remove_animation(internal_animation_name)
 	
-	# yield(get_tree().create_timer(1), "timeout")
 	black_fade_anim_out()
+	yield(get_tree().create_timer(0.5), "timeout")
+	# yield(get_tree().create_timer(1), "timeout")
+	# black_fade_anim_out()
 	# yield(self, "signal_black_fade_in_out_completed")
 	print("Complete Battle Scene")
 	
@@ -352,7 +356,7 @@ func calculate_damage_step() -> void:
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
-	
+	yield(get_tree().create_timer(1.5), "timeout")
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
 	
@@ -423,7 +427,7 @@ func calculate_damage_step_enemey_attacking() -> void:
 	# enemey_animationPlayer.play(ani_name_enemey_idle)
 	
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
@@ -489,7 +493,13 @@ func setup_sprite_textures() -> void:
 			enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
 			enemey_animationPlayer.play(ani_name_enemey_idle)
 		else:
-			enemey_animationPlayer.stop()
+			if enemeyRoot.battle_animation_resource.animation_res_attack != null:
+				enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+				enemey_animationPlayer.play(ani_name_enemey_idle)
+				enemey_animationPlayer.seek(0, true)
+				enemey_animationPlayer.stop()
+			else:
+				enemey_animationPlayer.stop()
 	else:
 		enemeyWrapper.hide()
 	

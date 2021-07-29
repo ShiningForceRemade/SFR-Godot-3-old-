@@ -3,15 +3,11 @@ extends Node2D
 #onready var tilemap = get_parent()
 onready var tilemap = get_parent().get_node("TileMap")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	print(tilemap)
-	pass # Replace with function body.
+	pass
+
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -31,7 +27,7 @@ func _input(event):
 				print(tilemap.get_cell(cell_pos.x, cell_pos.y))
 				
 				# Do stuff according to the above
-				#if tile_name == "white":
+				# if tile_name == "white":
 					# For example, turn the tile into a black tile when clicked
 				#	var black_tile_id = tilemap.tile_set.find_tile_by_name("black")
 				#	tilemap.set_cellv(cell_pos, black_tile_id)
