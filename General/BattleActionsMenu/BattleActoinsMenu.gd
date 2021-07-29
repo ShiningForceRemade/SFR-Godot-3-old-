@@ -90,8 +90,6 @@ func _input(event):
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				
 				get_parent().get_parent().get_parent().s_hide_character_action_menu()
-				# get_parent().get_parent().get_parent().s_show_battle_magic_menu()
-				# setup_attack_range_and_selection()
 				
 				# TODO move this within the target select node itself
 				var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
@@ -123,22 +121,3 @@ func set_sprites_to_zero_frame() -> void:
 	inventory_spirte.frame = 0
 	stay_spirte.frame = 0
 
-
-func setup_attack_range_and_selection() -> void:
-	# TODO: FIXME: temp while migrating to github and setting new structure
-	var equips = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id
-	var item_use_range
-	var target_range
-	for equip in equips:
-		if equip is CN_SF1_Item_Weapon:
-			print(equip)
-			print(equip.item_use_range_path)
-			item_use_range = load(equip.item_use_range_path).new()
-			print(item_use_range)
-			item_use_range._ready()
-			# TODO create cleanup function to remove the attack grid when canclled or completed
-			item_use_range.draw_use_range()
-			target_range = load(equip.item_use_target_path).new()
-			# TODO create cleanup function for this to remove the curosr
-			target_range.draw_cursor_and_get_targets("test arg 123")
-			return
