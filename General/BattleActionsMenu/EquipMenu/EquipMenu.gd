@@ -106,7 +106,7 @@ func _input(event):
 			# get_parent().get_node("BattleInventoryMenuRoot").set_battle_inventory_menu_active()
 			return
 			
-		if event.is_action_released("ui_accept"):
+		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			is_battle_equip_menu_active = false
 			

@@ -114,7 +114,7 @@ func _input(event):
 			# get_parent().get_node("BattleInventoryMenuRoot").set_battle_inventory_menu_active()
 			return
 			
-		if event.is_action_released("ui_accept"):
+		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			#if currently_selected_option == e_menu_options.STAY_OPTION:
 			#	print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
