@@ -106,7 +106,8 @@ func display_micro_info_for_actor(node_arg) -> void:
 	# the distinctions seem larger unneeded now
 	# probably should add a get actor type which can return character or enemey
 	# and have that as check for AI related resources but otherwise should handle them largely the same
-	if node_arg == null:
+	var wr = weakref(node_arg)
+	if (!wr.get_ref()):
 		return
 	
 	var actor_root = node_arg.get_child(0) # node_arg.get_node("CharacterRoot")

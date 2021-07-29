@@ -494,7 +494,7 @@ func setup_sprite_textures() -> void:
 			enemey_animationPlayer.play(ani_name_enemey_idle)
 		else:
 			if enemeyRoot.battle_animation_resource.animation_res_attack != null:
-				enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+				enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_attack)
 				enemey_animationPlayer.play(ani_name_enemey_idle)
 				enemey_animationPlayer.seek(0, true)
 				enemey_animationPlayer.stop()
@@ -534,7 +534,13 @@ func setup_sprite_textures_enemey_attack() -> void:
 			enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
 			enemey_animationPlayer.play(ani_name_enemey_idle)
 		else:
-			enemey_animationPlayer.stop()
+			if enemeyRoot.battle_animation_resource.animation_res_attack != null:
+				enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_attack)
+				enemey_animationPlayer.play(ani_name_enemey_idle)
+				enemey_animationPlayer.seek(0, true)
+				enemey_animationPlayer.stop()
+			else:
+				enemey_animationPlayer.stop()
 	else:
 		enemeyWrapper.hide()
 	

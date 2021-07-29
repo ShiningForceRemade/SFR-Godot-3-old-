@@ -167,6 +167,48 @@ func setup_use_range_and_target_range_selection(item_arg) -> void:
 	# return
 
 
+#func setup_use_range_and_target_range_selection_defaults(actor_type_selection) -> void:
+#	using_spell = false
+#	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
+#
+#	print("Setup")
+#
+#	is_target_selection_active = true
+#
+#	item_use_range = load(item_arg.item_use_range_path).new()
+#	print(item_use_range)
+#	item_use_range._ready()
+#	# TODO create cleanup function to remove the attack grid when canclled or completed
+#	item_use_range.draw_use_range()
+#	Singleton_Game_GlobalBattleVariables.field_logic_node.show_use_target_tiles()
+#
+#	target_range = load(item_arg.item_use_target_path).new()
+#	# TODO create cleanup function for this to remove the curosr
+#	target_range.draw_cursor_and_get_targets("test arg 123")
+#
+#	# target_range.draw_cursor_at_position(new_pos_arg: Vector2)
+#
+#	print("Target Actor Type - ", item_arg.target_actor_type)
+#	if item_arg.target_actor_type == 4:
+#		print("Self and Characters", Singleton_Game_GlobalBattleVariables.character_wrapper_node)
+#		target_node_children = Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
+#
+#	elif item_arg.target_actor_type == 2: # Enemeies - TODO: add enum or consts to use instead of raw numbers
+#		print("Enemies", Singleton_Game_GlobalBattleVariables.enemies_wrapper_node)
+#		target_node_children = Singleton_Game_GlobalBattleVariables.enemies_wrapper_node.get_children()
+#		set_cursor_target_on_first_found_enemey()
+#
+#		# target_range.draw_cursor_at_position(target_node_children[0].position)
+#
+#	elif item_arg.target_actor_type == 3: # Enemeies - TODO: add enum or consts to use instead of raw numbers
+#		print("Both", Singleton_Game_GlobalBattleVariables.enemies_wrapper_node)
+#		target_node_children = Singleton_Game_GlobalBattleVariables.enemies_wrapper_node.get_children()
+#		target_node_children += Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
+#		set_cursor_target_on_first_found_enemey()	
+#	#emit_signal("signal_completed_item_use_action")
+#	# return
+
+
 func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
 	using_spell = true
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
