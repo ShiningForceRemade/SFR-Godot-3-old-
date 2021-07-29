@@ -115,6 +115,11 @@ func _input(event):
 			# actor.inventory_items_id[currently_selected_option].item_use_range_path
 			# actor.inventory_items_id[currently_selected_option].item_use_target_path
 			
+			# var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+			# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(actor.inventory_items_id[currently_selected_option])
+			
+			# eturn
+			
 			is_battle_use_menu_active = false
 			is_target_selection_active = true
 			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()

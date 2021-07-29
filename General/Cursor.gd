@@ -66,11 +66,24 @@ func _input(event) -> void:
 			if position == Singleton_Game_GlobalBattleVariables.currently_active_character.position:
 				print("Same Pos")
 			
-			movementTween.interpolate_property(self, 'position', self.position, 
-				Singleton_Game_GlobalBattleVariables.currently_active_character.position, 
-				0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+				# cursor_root.position = previous_actor_pos
+	
+			var distance = Singleton_Game_GlobalBattleVariables.currently_active_character.position.distance_to(position)
+			#var distance = sqrt((a.node.position.x - cursor_root.position.x) * 2 + (a.node.position.y - cursor_root.position.y) * 2)
+	
+			print(distance)
+			# TODO: create different movement speed choices
+			# also provide a fixed time choice without the distance * speed calc
+			var tween_time = distance * 0.00325
+			if tween_time <= 0:
+				tween_time = 0
 			
-			yield(get_tree().create_timer(0.2625), "timeout")
+			movementTween.interpolate_property(self, 'position', self.position, 
+			Singleton_Game_GlobalBattleVariables.currently_active_character.position, 
+			tween_time, # 0.25,
+			 Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			
+			yield(get_tree().create_timer(tween_time + 0.05), "timeout")
 			
 			print("Hide")
 			active = false
