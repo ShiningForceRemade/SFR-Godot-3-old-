@@ -7,7 +7,7 @@
 [ext_resource path="res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
-[ext_resource path="res://SF1/Characters/Luke/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=8]
+[ext_resource path="res://SF1/Characters/Luke/BattleAnimations/Idle.anim" type="Animation" id=8]
 [ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=10]
 [ext_resource path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" type="Texture" id=11]
@@ -211,7 +211,7 @@ rotation = 2.52724
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]
-anims/AttackNormal = ExtResource( 8 )
+anims/Idle = ExtResource( 8 )
 
 [node name="CharacterWrapperTween" type="Tween" parent="."]
 
