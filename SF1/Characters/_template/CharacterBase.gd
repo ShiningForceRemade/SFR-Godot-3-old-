@@ -330,8 +330,11 @@ func check_if_defeated() -> void:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 		get_parent().hide()
 		
-		get_parent().queue_free()
+		
+		yield(get_tree().create_timer(0.1), "timeout")
 		emit_signal("signal_check_defeat_done")
+		get_parent().queue_free()
+		return
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	emit_signal("signal_check_defeat_done")

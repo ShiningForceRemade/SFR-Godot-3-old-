@@ -2,6 +2,7 @@ extends Node2D
 
 signal signal_completed_turn
 signal signal_move_direction_completed
+signal signal_battle_scene_animation_completed
 
 export var is_npc: bool = false
 
@@ -99,6 +100,8 @@ func s_tween_completed(node_arg, property_arg):
 	
 # play_turn
 func play_turn():
+	# Singleton_Game_GlobalBattleVariables.currently_active_character = self
+	
 	print("\n" + enemey_actor_root.enemey_name + " Turn Start\n")
 	
 	print("battle_logic_script ", battle_logic_script)

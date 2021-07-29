@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd" type="Script" id=1]
-[ext_resource path="res://General/Animations/EnemeyShake.anim" type="Animation" id=2]
+[ext_resource path="res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=2]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=3]
 [ext_resource path="res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/Idle/Idle.anim" type="Animation" id=4]
 

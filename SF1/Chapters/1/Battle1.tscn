@@ -249,7 +249,7 @@ __meta__ = {
 position = Vector2( 205, 420 )
 
 [node name="HansRoot" parent="Characters" instance=ExtResource( 11 )]
-position = Vector2( 133, 204 )
+position = Vector2( 181, 252 )
 
 [node name="KenRoot" parent="Characters" instance=ExtResource( 13 )]
 position = Vector2( 229, 420 )

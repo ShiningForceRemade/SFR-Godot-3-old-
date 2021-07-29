@@ -137,7 +137,7 @@ attack = 4
 defense = 6
 agility = 5
 move = 5
-HP_Current = 12
+HP_Current = 1
 HP_Total = 12
 battle_animation_resource = ExtResource( 5 )
 

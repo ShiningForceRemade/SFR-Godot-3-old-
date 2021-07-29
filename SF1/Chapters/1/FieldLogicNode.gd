@@ -97,12 +97,18 @@ func generate_and_launch_new_turn_order():
 	var previous_actor_pos = Vector2.ZERO
 	
 	# print(turn_order_array)
+	
+	var order_idx = 0
+	
 	for a in turn_order_array:
 		print("\n", a)
 		
-		if previous_actor_pos == Vector2.ZERO:
-			previous_actor_pos = a.node.position
-		
+					
+		if a.alive == false:
+			print("Dead Shouldn't be in tree")
+			print(Singleton_Game_GlobalBattleVariables.character_nodes.get_children())
+			continue
+				
 		# print("PREVIOUS ACTOR POS - ", previous_actor_pos, " ", a.node.position)
 		
 		emit_signal("signal_hide_land_effect_and_active_actor_info")
@@ -156,8 +162,10 @@ func generate_and_launch_new_turn_order():
 #			yield(t, "timeout")
 		else:
 			# continue
-			
 			print("Character Turn Start")
+			
+			# check if actor is defeated
+			
 			# NOTE: TODO: BUG: more than likely signal for turn complete firing too quickly
 			# triggers multiple turn ends forcing wiat to test following character moves for note
 			# when adding the action menu that would prevent is_action_just_pressed enter from being immediately called
@@ -220,11 +228,60 @@ func generate_and_launch_new_turn_order():
 			yield(get_tree().create_timer(0.5), "timeout")
 			Singleton_Game_GlobalBattleVariables.currently_selected_actor = null
 			
+		if previous_actor_pos == Vector2.ZERO:
+			previous_actor_pos = a.node.position
+			
+		for actor in turn_order_array:
+			# if actor.node == null:
+			if actor.alive:
+				if actor.node.get_actor_root_node_internal().HP_Current == 0:
+					actor.node.get_actor_root_node_internal().check_if_defeated()
+					# yield(actor.node.get_actor_root_node_internal(), "signal_check_defeat_done")
+					print("TODO Clean up logic and animation")
+					actor.node.queue_free()
+					actor.alive = false;
+					continue
+				
+			pass
+		
+		if not find_actor_by_node_name("MaxRoot", characters):
+			print_defeat_max_was_killed()
+		
+		if not find_actor_by_node_name("RuneKnightRoot", enemies):
+			print_victory_defeated_rune_knight()
+			
 	
 	print("\n\n\nTurn " + str(turn_number) + " Completed\n\n\n")
 	turn_number += 1
 	Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number = turn_number
 	generate_and_launch_new_turn_order()
+
+func find_actor_by_node_name(node_namr_arg: String, actor_wrapper_node_to_check) -> bool:
+	var found = false
+	for actor in actor_wrapper_node_to_check.get_children():
+		if actor.name == node_namr_arg:
+			found = true
+			break
+	
+	return found
+
+func print_defeat_max_was_killed() -> void:
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.play_message(
+		"Max was defeated, the shining force loses the battle to Runefaust. Restart the app to try again."
+		)
+	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+
+
+func print_victory_defeated_rune_knight() -> void:
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.play_message(
+		"You've defeated the forces of Runefaust. Restart the game to play again (try to break it and find bugs!)"
+		)
+	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+
 
 func s_switch_focus_to_cursor():
 	cursor_root.set_active()
@@ -957,18 +1014,20 @@ func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg
 func fill_turn_order_array_with_all_actors():
 	print("Turn Queue\n")
 	
+	turn_order_array = []
+	
 	# 1. Get all Enemies and Characters in the battle
 	#print("Enemies - ", enemies)
 	var enemies_c = enemies.get_children()
 	for enemey in enemies_c:
 		#print(enemey.get_name(), " - ",  enemey.cget_agility())
-		turn_order_array.append({"name": enemey.get_name(), "type": "enemey", "speed": enemey.cget_agility(), "node": enemey})
+		turn_order_array.append({"name": enemey.get_name(), "type": "enemey", "speed": enemey.cget_agility(), "node": enemey, "alive": true})
 		
 	#print("\nCharacters - ",characters)
 	var characters_c = characters.get_children()
 	for character in characters_c:
 		#print(character.get_name(), " - ",  character.cget_agility())
-		turn_order_array.append({"name": character.get_name(), "type": "character", "speed": character.cget_agility(), "node": character})
+		turn_order_array.append({"name": character.get_name(), "type": "character", "speed": character.cget_agility(), "node": character, "alive": true})
 	
 	#print(turn_order_array)
 

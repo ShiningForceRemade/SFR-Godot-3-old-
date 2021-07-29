@@ -33,13 +33,22 @@ func play_turn(self_arg):
 		print(a.name)
 	print("\nPossible Target Array End")
 	
-	if possible_target_array[0] != null:
+	if possible_target_array.size() != 0:
 		go_to_target(possible_target_array[0])
 		yield(self, "signal_complete_a_path_check")
 		
+	res = pself.is_character_actor_within_attack_range()
+	if res != Vector2.ZERO:
+		Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
+		Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.draw_cursor_at_position(res)
+		pself.internal_attack_actor_found()
+			
+		#emit_signal("signal_logic_completed")
+		#pself.internal_call_complete()
+		yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_complete_damage_step")
+	
 	
 	yield(pself.get_tree().create_timer(0.3), "timeout")
-	# yield(pself.get_tree().create_timer(10.3), "timeout")
 	
 	emit_signal("signal_logic_completed")
 	pself.internal_call_complete()
@@ -168,24 +177,31 @@ func find_path(world_start, world_end):
 	if _point_path.size() != 0:
 		print("TOP - ", _point_path)
 		move_to_point_end_from_path(_point_path)
+		return
 	
 	# Bottom
 	end_point_index = calculate_point_index(Vector2(path_end_position.x, path_end_position.y + 1))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
 	if _point_path.size() != 0:
 		print("Bottom - ", _point_path)
+		move_to_point_end_from_path(_point_path)
+		return
 	
 	# Left
 	end_point_index = calculate_point_index(Vector2(path_end_position.x - 1, path_end_position.y))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
 	if _point_path.size() != 0:
 		print("Left - ", _point_path)
+		move_to_point_end_from_path(_point_path)
+		return
 	
 	# Right
 	end_point_index = calculate_point_index(Vector2(path_end_position.x + 1, path_end_position.y))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
 	if _point_path.size() != 0:
 		print("Right - ", _point_path)
+		move_to_point_end_from_path(_point_path)
+		return
 	
 	# _draw()
 

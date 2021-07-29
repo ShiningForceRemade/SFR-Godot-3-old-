@@ -420,7 +420,7 @@ func enemey_actor_attack_setup():
 	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_enemey_actor_attacking()
 	
 	yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
-			
+	
 	print("Complete")
 			
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()

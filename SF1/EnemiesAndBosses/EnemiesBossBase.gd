@@ -147,10 +147,14 @@ func check_if_defeated() -> void:
 		get_parent().hide()
 		
 		get_parent().queue_free()
+		
+		# yield(get_tree().create_timer(0.1), "timeout")
 		emit_signal("signal_check_defeat_done")
+		return
 	
+	# yield(get_tree().create_timer(0.1), "timeout")
 	emit_signal("signal_check_defeat_done")
-	pass
+	return
 
 
 func pseudo_death_animation(time_arg: float) -> void:
