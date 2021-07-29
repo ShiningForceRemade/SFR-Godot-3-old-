@@ -3,7 +3,7 @@
 [ext_resource path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Battle_Sprites.png" type="Texture" id=2]
 [ext_resource path="res://SF1/Characters/Ken/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=3]
-[ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=4]
+[ext_resource path="res://SF1/Characters/Hans/BattleAnimations/Idle.anim" type="Animation" id=4]
 
 [resource]
 script = ExtResource( 1 )
