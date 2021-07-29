@@ -29,6 +29,11 @@ func _ready():
 
 func set_menu_active() -> void:
 	is_menu_active = true
+	
+	set_sprites_to_zero_frame()
+	currently_selected_option = e_menu_options.STAY_OPTION
+	animationPlayer.play("StayMenuOption")
+	label.text = "Stay"
 
 
 func _input(event):
