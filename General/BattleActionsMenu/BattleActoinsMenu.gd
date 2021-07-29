@@ -49,7 +49,7 @@ func _input(event):
 			return
 			
 		if event.is_action_released("ui_a_key"):
-			yield(get_tree().create_timer(0.1), "timeout")
+			yield(get_tree().create_timer(0.02), "timeout")
 			# event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			if currently_selected_option == e_menu_options.STAY_OPTION:
@@ -100,34 +100,21 @@ func _input(event):
 				return
 		
 		if event.is_action_pressed("ui_down"):
-			print("Down")
-			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_menu_options.STAY_OPTION
-			animationPlayer.play("StayMenuOption")
-			label.text = "Stay"
+			menu_option_selected(e_menu_options.STAY_OPTION, "StayMenuOption", "Stay")
 		elif event.is_action_pressed("ui_up"):
-			print("up")
-			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_menu_options.ATTACK_OPTION
-			animationPlayer.play("AttackMenuOption")
-			label.text = "Attack"
+			menu_option_selected(e_menu_options.ATTACK_OPTION, "AttackMenuOption", "Attack")
 		elif event.is_action_pressed("ui_right"):
-			print("Right")
-			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_menu_options.INVENTORY_OPTION
-			animationPlayer.play("InventoryMenuOption")
-			label.text = "Inventory"
+			menu_option_selected(e_menu_options.INVENTORY_OPTION, "InventoryMenuOption", "Inventory")
 		elif event.is_action_pressed("ui_left"):
-			print("Left")
-			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_menu_options.MAGIC_OPTION
-			animationPlayer.play("MagicMenuOption")
-			label.text = "Magic"
-			
+			menu_option_selected(e_menu_options.MAGIC_OPTION, "MagicMenuOption", "Magic")
+
+
+func menu_option_selected(e_menu_option_selected, animation_name: String, label_text: String) -> void:
+	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
+	set_sprites_to_zero_frame()
+	currently_selected_option = e_menu_option_selected
+	animationPlayer.play(animation_name)
+	label.text = label_text
 
 
 func set_sprites_to_zero_frame() -> void:
@@ -137,7 +124,7 @@ func set_sprites_to_zero_frame() -> void:
 	stay_spirte.frame = 0
 
 
-func setup_attack_range_and_selection():
+func setup_attack_range_and_selection() -> void:
 	# TODO: FIXME: temp while migrating to github and setting new structure
 	var equips = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id
 	var item_use_range
