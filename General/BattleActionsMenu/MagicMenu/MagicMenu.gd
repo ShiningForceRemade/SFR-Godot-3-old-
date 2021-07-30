@@ -107,8 +107,11 @@ func _input(event):
 			get_parent().get_node("BattleActionsMenuRoot").set_menu_active()
 			return
 			
-		if event.is_action_released("ui_accept"):
+		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
+			
+			yield(get_tree().create_timer(0.02), "timeout")
+			
 			is_select_magic_level_active = true
 			is_battle_magic_menu_active = false
 			
@@ -163,8 +166,11 @@ func _input(event):
 			magicLevelSelectorWrapper.hide()
 			return
 			
-		if event.is_action_released("ui_accept"):
+		if event.is_action_released("ui_a_key"): #event.is_action_released("ui_accept"):
 			print("Selected Magic Level - ", currently_selected_option)
+			
+			yield(get_tree().create_timer(0.02), "timeout")
+			
 			is_battle_magic_menu_active = false
 			is_select_magic_level_active = false
 			
