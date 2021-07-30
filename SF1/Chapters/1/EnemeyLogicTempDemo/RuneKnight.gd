@@ -21,6 +21,7 @@ func play_turn(self_arg):
 			
 		emit_signal("signal_logic_completed")
 		pself.internal_call_complete()
+		return
 	
 	# 204 y line
 	var possible_target_array = []
