@@ -2,13 +2,18 @@ extends Node
 
 const bus = "Master"
 const bus_music = "Music"
+const bus_alt_music = "Alt_Music"
 const bus_soundeffects = "FX"
 
-const num_players_music = 2
+const num_players_music = 1
+const num_players_alt_music = 1
 const num_players_sound_effects = 6
 
 var available_music_p = []  # The available players.
 var queue_music_p = []  # The queue of sounds to play.
+
+var available_alt_music_p = []  # The available players.
+var queue_alt_music_p = []  # The queue of sounds to play.
 
 var available_sound_effects_p = []  # The available players.
 var queue_sound_effects_p = []  # The queue of sounds to play.
@@ -24,6 +29,13 @@ func _ready():
 		available_music_p.append(p)
 		p.connect("finished", self, "_music_on_stream_finished", [p])
 		p.bus = bus_music
+	
+	for i in num_players_alt_music:
+		var p = AudioStreamPlayer.new()
+		add_child(p)
+		available_alt_music_p.append(p)
+		p.connect("finished", self, "_music_on_stream_finished", [p])
+		p.bus = bus_alt_music
 	
 	for i in num_players_sound_effects:
 		var p = AudioStreamPlayer.new()
@@ -48,6 +60,20 @@ func pause_all_music() -> void:
 	for a_m_p in available_music_p:
 		a_m_p.stop()
 
+func play_music_n(sound_path) -> void:
+	available_music_p[0].stream = load(sound_path)
+	available_music_p[0].play()
+
+func stop_music_n() -> void:
+	available_music_p[0].stop()
+
+func play_alt_music_n(sound_path) -> void:
+	available_alt_music_p[0].stream = load(sound_path)
+	available_alt_music_p[0].play()
+
+func stop_alt_music_n() -> void:
+	available_alt_music_p[0].stop()
+
 
 func play_sfx(sound_path) -> void:
 	queue_sound_effects_p.append(sound_path)
@@ -56,7 +82,6 @@ func pause_all_sfx() -> void:
 	if not queue_sound_effects_p.empty() and not available_sound_effects_p.empty():
 		for a_s_e_p in available_sound_effects_p:
 			a_s_e_p.stop()
-
 
 func play(type, sound_path) -> void:
 	if type == "music":

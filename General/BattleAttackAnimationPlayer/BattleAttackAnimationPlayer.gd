@@ -126,6 +126,8 @@ func setup_actor_attacking() -> void:
 	black_fade_anim_out()
 	move_wrappers_into_position()
 	
+	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	# yield(self, "signal_black_fade_in_out_completed")
 	
@@ -160,6 +162,8 @@ func setup_enemey_actor_attacking() -> void:
 	# setup_sprite_textures()
 	black_fade_anim_out()
 	# yield(self, "signal_black_fade_in_out_completed")
+	
+	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	move_wrappers_into_position()
 	
@@ -226,9 +230,11 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
 	
-	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
+	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	# Singleton_Game_AudioManager.pause_all_music()
-
+	
+	Singleton_Game_AudioManager.stop_alt_music_n()
+	
 	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()	
 	emit_signal("signal_battle_scene_complete")
 	
@@ -255,6 +261,8 @@ func s_cleanup_animation_enemy(animation_name_arg) -> void:
 	# Singleton_Game_AudioManager.pause_all_music()
 	
 	# Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
+	
+	Singleton_Game_AudioManager.stop_alt_music_n()
 	
 	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
 	emit_signal("signal_battle_scene_complete")
