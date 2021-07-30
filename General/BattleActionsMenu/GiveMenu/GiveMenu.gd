@@ -51,7 +51,7 @@ var use_range = [
 # so there isn't so much repatition in various nodes that are mostly similar
 var target_range
 
-var selected_item_idx
+var selected_item_idx = 0
 
 # TODO: clean this up more messy than the usual
 var cancelled_give: bool = false
@@ -102,6 +102,9 @@ func _input(event):
 		if event.is_action_released("ui_b_key"):
 			print("Cancel Use Inventory Menu")
 			is_battle_give_menu_active = false
+			
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+			
 			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
 			get_parent().get_parent().get_parent().s_hide_battle_give_menu()
@@ -116,6 +119,9 @@ func _input(event):
 			
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
+			
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+			
 			#if currently_selected_option == e_menu_options.STAY_OPTION:
 			#	print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
 			#	Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
@@ -217,6 +223,9 @@ func _input(event):
 			else:
 				# emit_signal("signal_completed_item_give_action")
 				# TODO: fully complete turn after give has been completed
+				
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				
 				Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 				Singleton_Game_GlobalBattleVariables.battle_base.s_hide_micro_actor_inventory_view()
 			
@@ -325,6 +334,14 @@ func attempt_to_give_item_to_character_actor() -> bool:
 	
 	if csa.inventory_items_id.size() < 4:
 		print("Give Item")
+		
+		print(csa.inventory_items_id)
+		for i in csa.inventory_items_id:
+			print(i)
+		print(selected_item_idx)
+		for i in cac.inventory_items_id:
+			print(i)
+		print(cac.inventory_items_id[selected_item_idx])
 		
 		csa.inventory_items_id.append(cac.inventory_items_id[selected_item_idx])
 		csa.is_item_equipped.append(false)

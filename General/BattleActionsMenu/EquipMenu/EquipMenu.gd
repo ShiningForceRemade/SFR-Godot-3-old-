@@ -93,6 +93,9 @@ func _input(event):
 		if event.is_action_released("ui_b_key"):
 			print("Cancel Equip Inventory Menu")
 			is_battle_equip_menu_active = false
+			
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+			
 			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
 			get_parent().get_parent().get_parent().s_hide_battle_equip_menu()
@@ -109,7 +112,7 @@ func _input(event):
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			is_battle_equip_menu_active = false
-			
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			update_weapon_equip()
 			
 			get_parent().get_parent().get_parent().s_hide_battle_equip_menu()

@@ -96,6 +96,7 @@ func _input(event):
 		if event.is_action_released("ui_b_key"):
 			print("Cancel Magic Inventory Menu")
 			is_battle_magic_menu_active = false
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
 			get_parent().get_parent().get_parent().s_hide_battle_magic_menu()
@@ -182,6 +183,11 @@ func _input(event):
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
+			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+			
+			if actor.spells_id[currently_selected_option].name == "Egress":
+				return
+			
 			is_battle_magic_menu_active = false
 			is_select_magic_level_active = false
 			
@@ -193,8 +199,6 @@ func _input(event):
 			# var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
 			# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
 				
-			
-			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 			
 			# setup_use_range_and_target_range_selection(actor.spells_id[currently_selected_option]) # [spell_idx]
 			
