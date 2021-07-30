@@ -28,6 +28,8 @@ var cursor_root_ref = null
 var selected_actor
 var selected_actor_type
 
+var is_currently_in_battle_scene = false
+
 signal signal_completed_turn
 
 func _ready():

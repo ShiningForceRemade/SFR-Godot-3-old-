@@ -75,6 +75,8 @@ func zoom():
 	# 1.55
 	# 1.95
 	if Input.is_action_just_released('ui_minus'):
+		if Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene:
+			return
 #		print("Zoom level - ", zoom)
 #		if zoom.x == 1.0:
 #			return
@@ -87,6 +89,8 @@ func zoom():
 		# stepify(zoom.x, 0.1)
 		# stepify(zoom.y, 0.1)
 	if Input.is_action_just_released('ui_plus'):
+		if Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene:
+			return
 #		print("Zoom level - ", zoom)
 #		if zoom.x == 1.95:
 #			return

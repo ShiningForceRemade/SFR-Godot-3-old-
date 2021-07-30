@@ -122,6 +122,8 @@ func internal_init_resource_for_actor(actorSprite, actor_animation_res) -> void:
 func setup_actor_attacking() -> void:
 	using_spell = false
 	
+	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = true
+	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 	enemeySprite.show()
@@ -159,6 +161,8 @@ func setup_actor_attacking() -> void:
 
 func setup_enemey_actor_attacking() -> void:
 	using_spell = false
+	
+	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = true
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
 	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
@@ -201,6 +205,9 @@ func setup_enemey_actor_attacking() -> void:
 
 func setup_spell_usage() -> void:
 	using_spell = true
+	
+	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = true
+	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 	enemeySprite.show()
@@ -412,6 +419,9 @@ func calculate_damage_step() -> void:
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	
+	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
+	
 	yield(get_tree().create_timer(0.65), "timeout")
 	# return damage
 
@@ -517,6 +527,9 @@ func calculate_damage_step_enemey_attacking() -> void:
 	yield(get_tree().create_timer(0.65), "timeout")
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	characterWrapper.show()
+	
+	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
+	
 	yield(get_tree().create_timer(0.65), "timeout")
 	
 	# return damage
