@@ -75,6 +75,7 @@ func _input(event):
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				
 				if Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").spells_id.size() == 0:
+					noValidOptionNode.re_show_action_menu = true
 					noValidOptionNode.set_no_maigc_text()
 					# get_parent().get_parent().get_parent().s_hide_action_menu()
 					get_parent().get_parent().get_parent().s_hide_character_action_menu()

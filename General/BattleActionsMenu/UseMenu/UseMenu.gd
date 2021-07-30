@@ -2,6 +2,8 @@ extends Node2D
 
 signal signal_completed_item_use_action
 
+onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+
 onready var redSelection = $RedSelectionBorderRoot
 
 const rs_top_pos    = Vector2(16, 0)
@@ -96,6 +98,8 @@ func _input(event):
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
 			get_parent().get_parent().get_parent().s_hide_battle_use_menu()
 			
+			noValidOptionNode.position = Vector2(-90, 100)
+			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
 			yield(get_tree().create_timer(0.1), "timeout")
@@ -106,6 +110,11 @@ func _input(event):
 			
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
+			noValidOptionNode.set_no_cant_use_text()
+			noValidOptionNode.position = Vector2(165, 100)
+			noValidOptionNode.start_self_clear_timer()
+			noValidOptionNode.re_show_action_menu = false
+			return
 			
 			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 			

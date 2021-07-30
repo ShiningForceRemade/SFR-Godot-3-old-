@@ -31,6 +31,10 @@ func set_no_maigc_text() -> void:
 	set_text("No magic.")
 
 
+func set_no_cant_use_text() -> void:
+	set_text("Can't use.")
+
+
 func start_self_clear_timer() -> void:
 	internal_cleanup_timer = Timer.new()
 	internal_cleanup_timer.set_name(internal_cleanup_timer_name)
