@@ -58,6 +58,7 @@ func random_move_direction(direction):
 	if direction == 0:
 		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x + TILE_SIZE, position.y)):
 			animationPlayer.playback_speed = 2
+			Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 			animationPlayer.play("RightMovement")
 			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), 0.2, Tween.TRANS_LINEAR)
 			tween.start()
@@ -66,6 +67,7 @@ func random_move_direction(direction):
 		
 		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x - TILE_SIZE, position.y)):
 			animationPlayer.playback_speed = 2
+			Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 			animationPlayer.play("LeftMovement")
 			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), 0.2, Tween.TRANS_LINEAR)
 			tween.start()
@@ -74,6 +76,7 @@ func random_move_direction(direction):
 		
 		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  - TILE_SIZE)):
 			animationPlayer.playback_speed = 2
+			Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 			animationPlayer.play("UpMovement")
 			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
 			tween.start()
@@ -82,6 +85,7 @@ func random_move_direction(direction):
 		
 		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  + TILE_SIZE)):
 			animationPlayer.playback_speed = 2
+			Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 			animationPlayer.play("DownMovement")
 			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
 			tween.start()

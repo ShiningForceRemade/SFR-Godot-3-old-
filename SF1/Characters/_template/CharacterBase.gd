@@ -257,7 +257,7 @@ func _physics_process(_delta):
 			
 			if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
 				animationPlayer.playback_speed = 2
-				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_left"):
@@ -265,7 +265,7 @@ func _physics_process(_delta):
 			
 			if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
 				animationPlayer.playback_speed = 2
-				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
 		elif Input.is_action_pressed("ui_up"):
@@ -273,7 +273,7 @@ func _physics_process(_delta):
 			
 			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
 				animationPlayer.playback_speed = 2
-				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
 		elif Input.is_action_pressed("ui_down"):
@@ -281,7 +281,7 @@ func _physics_process(_delta):
 			
 			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
 				animationPlayer.playback_speed = 2
-				# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
 		
