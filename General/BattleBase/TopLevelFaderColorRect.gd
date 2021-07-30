@@ -6,6 +6,11 @@ func _ready():
 	self.modulate = Color(0, 0, 0, 0)
 	pass
 
+func dim_screen() -> void:
+	modulate.a = 0.3
+	# color = Color(0, 0, 0, 1)
+	# modulate = Color(0, 0, 0, 255)
+	pass
 
 func clear_black_fade() -> void:
 	# modulate = Color(255, 255, 255, 0)

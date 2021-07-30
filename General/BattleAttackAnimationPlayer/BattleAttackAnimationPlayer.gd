@@ -204,6 +204,9 @@ func setup_spell_usage() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 	enemeySprite.show()
+	characterSprite.material.set_shader_param("dissolve_effect_amount", 0)
+	characterSprite.show()
+	characterWrapper.show()
 	
 	setup_sprite_textures()
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
