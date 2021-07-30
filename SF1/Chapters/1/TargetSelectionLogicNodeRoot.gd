@@ -86,6 +86,7 @@ func _input(event):
 			is_target_selection_active = false
 			print("Called")
 			print("TODO: trigger battle action scene and play out the item use effect")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			
 			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 			yield(get_tree().create_timer(0.35), "timeout")

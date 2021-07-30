@@ -110,7 +110,10 @@ func _input(event):
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			
-			yield(get_tree().create_timer(0.02), "timeout")
+			yield(get_tree().create_timer(0.001), "timeout")
+			
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
 			is_select_magic_level_active = true
 			is_battle_magic_menu_active = false
@@ -137,6 +140,7 @@ func _input(event):
 			
 		if event.is_action_pressed("ui_down"):
 			if 3 <= character_spells.size() - 1:
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 				currently_selected_option = e_magic_menu_options.DOWN_OPTION
 				redSelection.position = rs_bottom_pos
 				spell_name_label.text = character_spells[3].item_name
@@ -144,16 +148,20 @@ func _input(event):
 				# TODO: Create Func to show Magic Levels, and hide the extra magic level nodes
 		elif event.is_action_pressed("ui_up"):
 			if 0 <= character_spells.size() - 1:
+				if currently_selected_option != e_magic_menu_options.UP_OPTION:
+					Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 				currently_selected_option = e_magic_menu_options.UP_OPTION
 				redSelection.position = rs_top_pos
 				spell_idx = 0
 		elif event.is_action_pressed("ui_right"):
 			if 2 <= character_spells.size() - 1:
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 				currently_selected_option = e_magic_menu_options.RIGHT_OPTION
 				redSelection.position = rs_right_pos
 				spell_idx = 2
 		elif event.is_action_pressed("ui_left"):
 			if 1 <= character_spells.size() - 1:
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 				currently_selected_option = e_magic_menu_options.LEFT_OPTION
 				redSelection.position = rs_left_pos
 				spell_idx = 1
@@ -169,7 +177,10 @@ func _input(event):
 		if event.is_action_released("ui_a_key"): #event.is_action_released("ui_accept"):
 			print("Selected Magic Level - ", currently_selected_option)
 			
-			yield(get_tree().create_timer(0.02), "timeout")
+			yield(get_tree().create_timer(0.001), "timeout")
+
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
 			is_battle_magic_menu_active = false
 			is_select_magic_level_active = false
