@@ -54,45 +54,57 @@ func _input(event):
 			#	return
 			if currently_selected_option == e_inventory_menu_options.EQUIP_OPTION:
 				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				get_parent().get_parent().get_parent().s_hide_battle_inventory_menu("right")
 				get_parent().get_parent().get_parent().s_show_battle_equip_menu()
 				return
 			elif currently_selected_option == e_inventory_menu_options.USE_OPTION:
 				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				get_parent().get_parent().get_parent().s_hide_battle_inventory_menu("right")
 				get_parent().get_parent().get_parent().s_show_battle_use_menu()
 				return
 			elif currently_selected_option == e_inventory_menu_options.DROP_OPTION:
 				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				get_parent().get_parent().get_parent().s_hide_battle_inventory_menu("right")
 				get_parent().get_parent().get_parent().s_show_battle_drop_menu()
 				return
 			elif currently_selected_option == e_inventory_menu_options.GIVE_OPTION:
 				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				get_parent().get_parent().get_parent().s_hide_battle_inventory_menu("right")
 				get_parent().get_parent().get_parent().s_show_battle_give_menu()
 				return
 			
 		if event.is_action_pressed("ui_down"):
 			print("Drop")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_inventory_menu_options.DROP_OPTION
 			animationPlayer.play("DropMenuOption")
 			label.text = "Drop"
 		elif event.is_action_pressed("ui_up"):
 			print("Use")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_inventory_menu_options.USE_OPTION
 			animationPlayer.play("UseMenuOption")
 			label.text = "Use"
 		elif event.is_action_pressed("ui_right"):
 			print("Equip")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_inventory_menu_options.EQUIP_OPTION
 			animationPlayer.play("EquipMenuOption")
 			label.text = "Equip"
 		elif event.is_action_pressed("ui_left"):
 			print("Give")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
 			set_sprites_to_zero_frame()
 			currently_selected_option = e_inventory_menu_options.GIVE_OPTION
 			animationPlayer.play("GiveMenuOption")
