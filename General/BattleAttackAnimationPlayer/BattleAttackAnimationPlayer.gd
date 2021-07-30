@@ -469,9 +469,11 @@ func s_enemey_tween_completed(arg_1, arg_2) -> void:
 func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
 	print("Reseting Scene")
 	self.modulate = Color("#ffffff")
-	get_node("SpellWrapper").hide()
+	get_node("CanvasLayerSpellWrapper").get_node("SpellWrapper").hide()
 	
 	get_node("BackgroundWrapper").position = Vector2(0, 0)
+	
+	get_node("BackgroundBlackColorRect").color = Color(0, 0, 0, 255)
 	
 	get_node("CharacterWrapper").position = Vector2(0, 0)
 	get_node("CharacterWrapper").get_node("CharacterSprite").position = Vector2(240, 92)
@@ -593,15 +595,15 @@ func setup_spell_animation() -> void:
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	var sar = characterRoot.spells_id[0].spell_animation_resource
 	
-	$SpellWrapper/Sprite.texture = sar.primary_animation_texture
-	$SpellWrapper/Sprite.hframes = sar.hframes
-	$SpellWrapper.show()
+	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.texture = sar.primary_animation_texture
+	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.hframes = sar.hframes
+	$CanvasLayerSpellWrapper/SpellWrapper.show()
 	
 	char_animationPlayer.add_animation("Character Attack", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
 	char_animationPlayer.play("Character Attack")
 	
-	$SpellWrapper/AnimationPlayer.add_animation("Character Spell", sar.animation_res)
-	$SpellWrapper/AnimationPlayer.play("Character Spell")
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.add_animation("Character Spell", sar.animation_res)
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.play("Character Spell")
 
 
 
@@ -802,7 +804,7 @@ func internal_signal_spell_completed() -> void:
 	
 
 func internal_signal_switch_to_next_character_actor() -> void:
-	$SpellWrapper/AnimationPlayer.playback_speed = 1.5
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.playback_speed = 1.5
 	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
 	
 	characterWrapperTween.interpolate_property(characterWrapper, "position", 
@@ -901,6 +903,6 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
-	$SpellWrapper/AnimationPlayer.playback_speed = 1
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.playback_speed = 1
 	
 	emit_signal("signal_battle_scene_complete")
