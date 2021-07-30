@@ -743,7 +743,7 @@ func print_exp_gain(damage_arg) -> void:
 		active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
 		)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
-	yield(get_tree().create_timer(1.25), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	
 	active_actor.experience_points += exp_gain
 	if active_actor.experience_points >= 100:
@@ -754,7 +754,7 @@ func print_exp_gain(damage_arg) -> void:
 		active_actor.cget_actor_name() + "'s level increases to " + str(active_actor.level) + "!"
 		)
 		yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
-		yield(get_tree().create_timer(1.0), "timeout")
+		yield(get_tree().create_timer(1), "timeout")
 		print("TODO: generate stat gain and print based on character stat curves")
 	
 	emit_signal("signal_exp_phase_is_over")
