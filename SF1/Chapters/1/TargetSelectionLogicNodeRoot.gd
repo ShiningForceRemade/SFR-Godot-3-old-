@@ -221,10 +221,16 @@ func setup_use_range_and_target_range_selection(item_arg) -> void:
 
 
 func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
+	if spell_arg.name == "Egress":
+		yield(get_tree().create_timer(0.02), "timeout")
+		emit_signal("signal_completed_magic_level_selection_action")
+		return
+	
 	using_spell = true
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
 	
 	print("Setup")
+	
 	
 	is_target_selection_active = true
 	
