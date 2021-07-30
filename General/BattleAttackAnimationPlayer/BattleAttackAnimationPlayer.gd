@@ -29,6 +29,7 @@ onready var weaponSprite = $CharacterWrapper/WeaponSprite
 onready var char_animationPlayer = $CharacterWrapper/AnimationPlayer
 onready var characterWrapperTween = $CharacterWrapperTween
 onready var characterWrapper = $CharacterWrapper
+onready var characterSpriteTween = $CharacterWrapper/CharacterSpriteTween
 
 onready var enemeySprite = $EnemeyWrapper/EnemeySprite
 onready var enemey_animationPlayer = $EnemeyWrapper/AnimationPlayer
@@ -124,6 +125,9 @@ func setup_actor_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 	enemeySprite.show()
+	characterSprite.material.set_shader_param("dissolve_effect_amount", 0)
+	characterSprite.show()
+	characterWrapper.show()
 	
 	setup_sprite_textures()
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
@@ -162,6 +166,9 @@ func setup_enemey_actor_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 	enemeySprite.show()
+	characterSprite.material.set_shader_param("dissolve_effect_amount", 0)
+	characterSprite.show()
+	characterWrapper.show()
 	
 	setup_sprite_textures_enemey_attack()
 	# setup_sprite_textures()
@@ -462,8 +469,16 @@ func calculate_damage_step_enemey_attacking() -> void:
 	# enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
 	# enemey_animationPlayer.play("shake")
 	
-	yield(get_tree().create_timer(1), "timeout")
+	# yield(get_tree().create_timer(1), "timeout")
 	if not attack_missed:
+		characterSprite.material.shader = shader_color_blend
+		characterSprite.material.set_shader_param("blend_strength_modifier", 0.35)
+	
+		# TODO: generate the movement and timings randomly 
+		# using fixed animation to simulate the shake for the demo
+		char_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
+		char_animationPlayer.play("shake")
+		
 		if is_critical_hit:
 			print_enemey_critical_damage_done_to(damage)
 		else:
@@ -473,19 +488,17 @@ func calculate_damage_step_enemey_attacking() -> void:
 		
 	yield(get_tree().create_timer(1), "timeout")
 	
-	# enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
-	# enemey_animationPlayer.stop()
+	characterSprite.material.set_shader_param("blend_strength_modifier", 0.0)
+	char_animationPlayer.stop()
 	
 	if characterRoot.HP_Current == 0:
-		# enemey_defeated_play_dissolve_animation()
-		# character_defeated_play_dissolve_animation()
+		character_defeated_play_dissolve_animation()
 		print_char_actor_defeated()
 		yield(get_tree().create_timer(1), "timeout")
-	#elif enemeyRoot.battle_animation_resource.animation_res_idle != null:
-	#	enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
-	#	enemey_animationPlayer.play(ani_name_enemey_idle)
-	# enemey_animationPlayer.play(ani_name_enemey_idle)
-	
+		characterWrapper.hide()
+	elif characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
+		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play("Character Idle")
 	
 	yield(get_tree().create_timer(1.5), "timeout")
 	
@@ -500,6 +513,7 @@ func calculate_damage_step_enemey_attacking() -> void:
 	emit_signal("signal_battle_complete_damage_step")
 	yield(get_tree().create_timer(0.65), "timeout")
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	characterWrapper.show()
 	yield(get_tree().create_timer(0.65), "timeout")
 	
 	# return damage
@@ -522,7 +536,19 @@ func enemey_defeated_play_dissolve_animation() -> void:
 	enemeySpriteTween.start()
 	
 	yield(get_tree().create_timer(1.5), "timeout")
+
+
+func character_defeated_play_dissolve_animation() -> void:
+	characterSprite.material.shader = shader_dissolve 
+	characterSprite.material.set_shader_param("dissolve_effect_amount", 0.3)
+	characterSprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
 	
+	characterSpriteTween.interpolate_property(characterSprite.material, "shader_param/dissolve_effect_amount",
+	0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	
+	characterSpriteTween.start()
+	
+	yield(get_tree().create_timer(1.5), "timeout")
 
 func s_enemey_tween_completed(arg_1, arg_2) -> void:
 	
