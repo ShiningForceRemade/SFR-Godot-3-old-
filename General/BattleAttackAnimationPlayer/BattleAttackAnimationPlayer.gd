@@ -4,6 +4,7 @@ extends Node2D
 signal signal_battle_scene_complete
 
 signal signal_battle_complete_damage_step
+signal signal_exp_phase_is_over
 
 signal signal_attack_frame_reached
 signal signal_enemey_attack_frame_reached
@@ -368,15 +369,17 @@ func calculate_damage_step() -> void:
 	
 	yield(get_tree().create_timer(1), "timeout")
 	print_exp_gain(damage)
+	yield(self, "signal_exp_phase_is_over")
 	
 	if enemeyRoot.HP_Current == 0:
 		yield(get_tree().create_timer(1), "timeout")
 		print_coins_and_items_receieved() # 0 coins and no items for now
+		# yield(get_tree().create_timer(1.5), "timeout")
+	
+	yield(get_tree().create_timer(1.5), "timeout")
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
-	
-	yield(get_tree().create_timer(1.5), "timeout")
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
@@ -740,14 +743,21 @@ func print_exp_gain(damage_arg) -> void:
 		active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
 		)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	yield(get_tree().create_timer(1.25), "timeout")
 	
 	active_actor.experience_points += exp_gain
 	if active_actor.experience_points >= 100:
 		active_actor.experience_points = 0
 		active_actor.level += 1
 		
-		print("TODO print level up and stat gain")
+		Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		active_actor.cget_actor_name() + "'s level increases to " + str(active_actor.level) + "!"
+		)
+		yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+		yield(get_tree().create_timer(1.0), "timeout")
+		print("TODO: generate stat gain and print based on character stat curves")
 	
+	emit_signal("signal_exp_phase_is_over")
 	pass
 
 func print_actor_defeated() -> void:
