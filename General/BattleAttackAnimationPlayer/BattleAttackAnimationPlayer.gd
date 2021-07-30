@@ -200,10 +200,12 @@ func setup_spell_usage() -> void:
 	
 	setup_sprite_textures()
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	
 	move_wrappers_into_position()
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	
+	yield(get_tree().create_timer(1.0), "timeout")
 	# load text box saying x is attacking or doing y to z
 	# print_who_is_attacking()
 	
@@ -867,6 +869,7 @@ func internal_signal_attack_frame_reached() -> void:
 	print("\n\n\n Signal Reached - signal_attack_frame_reached\n\n\n")
 	
 	if using_spell:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 	#	Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
 		char_animationPlayer.stop(false)
 	else:
