@@ -1046,6 +1046,7 @@ func fill_turn_order_array_with_all_actors():
 	
 	#print(turn_order_array)
 
+var rng = RandomNumberGenerator.new()
 func generate_actor_order_for_current_turn():
 	#print("Generate Actor Order for Turn\n", turn_order_array)
 	
@@ -1066,7 +1067,7 @@ func generate_actor_order_for_current_turn():
 #	ordered_turn_array.remove(1)
 	
 	
-	
+	rng.randomize()
 	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
 	print("\nOrdered Array\n")
 	for n in ordered_turn_array:
@@ -1076,7 +1077,9 @@ func generate_actor_order_for_current_turn():
 	turn_order_array = ordered_turn_array
 
 func sort_actors_by_agility(a, b) -> bool:
-	return a.speed > b.speed
+	var ag_a = rng.randi_range(-1, 1)
+	var ag_b = rng.randi_range(-1, 1)
+	return (a.speed + ag_a) > (b.speed + ag_b)
 	
 
 # Turn Order Queue End

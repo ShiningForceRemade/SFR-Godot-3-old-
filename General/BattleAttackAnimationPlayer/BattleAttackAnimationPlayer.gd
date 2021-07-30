@@ -294,6 +294,9 @@ func calculate_damage_step() -> void:
 	if rng.randi_range(0, 99) < 10:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/CriticalSound.wav")
 		is_critical_hit = true
+		# char_animationPlayer.stop(false)
+		# yield(get_tree().create_timer(1), "timeout")
+		# char_animationPlayer.play()
 	
 	var damage = 0
 	
