@@ -2,6 +2,7 @@
 extends Node2D
 
 signal signal_check_defeat_done
+signal signal_death_animation_complete
 
 onready var pnode = get_parent()
 
@@ -323,8 +324,11 @@ func check_if_defeated() -> void:
 		
 		# yield(get_tree().create_timer(1), "timeout")
 		pseudo_death_animation(0.25)
+		yield(self, "signal_death_animation_complete")
 		pseudo_death_animation(0.1)
+		yield(self, "signal_death_animation_complete")
 		pseudo_death_animation(0.1)
+		yield(self, "signal_death_animation_complete")
 		# yield(get_tree().create_timer(1), "timeout")
 		
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
@@ -351,6 +355,7 @@ func pseudo_death_animation(time_arg: float) -> void:
 	$AnimationPlayer.play("DownMovement")
 	yield(get_tree().create_timer(time_arg), "timeout")
 	
+	emit_signal("signal_death_animation_complete")
 	# TODO: check order array and remove if found by name
 	
 	

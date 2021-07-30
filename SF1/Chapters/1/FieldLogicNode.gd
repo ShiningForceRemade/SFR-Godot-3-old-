@@ -236,19 +236,29 @@ func generate_and_launch_new_turn_order():
 			if actor.alive:
 				if actor.node.get_actor_root_node_internal().HP_Current == 0:
 					actor.node.get_actor_root_node_internal().check_if_defeated()
+					yield(actor.node.get_actor_root_node_internal(), "signal_check_defeat_done")
 					# yield(actor.node.get_actor_root_node_internal(), "signal_check_defeat_done")
 					print("TODO Clean up logic and animation")
 					actor.node.queue_free()
 					actor.alive = false;
+					
+					if actor.name == "MaxRoot":
+						yield(get_tree().create_timer(0.25), "timeout")
+						print_defeat_max_was_killed()
+					
+					if actor.name == "RuneKnightRoot":
+						yield(get_tree().create_timer(0.25), "timeout")
+						print_victory_defeated_rune_knight()
+						
 					continue
 				
 			pass
 		
-		if not find_actor_by_node_name("MaxRoot", characters):
-			print_defeat_max_was_killed()
+		# if not find_actor_by_node_name("MaxRoot", characters):
+		# 	print_defeat_max_was_killed()
 		
-		if not find_actor_by_node_name("RuneKnightRoot", enemies):
-			print_victory_defeated_rune_knight()
+		# if not find_actor_by_node_name("RuneKnightRoot", enemies):
+		#	print_victory_defeated_rune_knight()
 			
 	
 	print("\n\n\nTurn " + str(turn_number) + " Completed\n\n\n")

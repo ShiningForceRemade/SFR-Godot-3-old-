@@ -137,14 +137,13 @@ attack = 4
 defense = 6
 agility = 5
 move = 5
-HP_Current = 12
+HP_Current = 1
 HP_Total = 12
 battle_animation_resource = ExtResource( 5 )
 
 [node name="Sprite" parent="EnemeyRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 4 )
 hframes = 6
-frame = 1
 
 [node name="AnimationPlayer" parent="EnemeyRoot" index="1"]
 anims/DownMovement = SubResource( 1 )
