@@ -94,7 +94,12 @@ func generate_and_launch_new_turn_order():
 	t.start()
 	yield(t, "timeout")
 	
-	var previous_actor_pos = Vector2.ZERO
+	var previous_actor_pos
+	if Singleton_Game_GlobalBattleVariables.currently_active_character != null:
+		previous_actor_pos = Singleton_Game_GlobalBattleVariables.currently_active_character.position
+	else:
+		previous_actor_pos = Vector2(205, 204)
+	# Vector2.ZERO
 	
 	# print(turn_order_array)
 	
