@@ -86,6 +86,10 @@ func _input(event):
 			is_target_selection_active = false
 			print("Called")
 			print("TODO: trigger battle action scene and play out the item use effect")
+			
+			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+			yield(get_tree().create_timer(0.3), "timeout")
+			
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 			
 			Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
@@ -96,6 +100,8 @@ func _input(event):
 			
 			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
 			
+			Singleton_Game_AudioManager.stop_music_n()
+			
 			if using_spell:
 				Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_spell_usage()
 			else:
@@ -105,12 +111,16 @@ func _input(event):
 			
 			print("Complete")
 			
+			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+			
 			Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
 			Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
 			target_range.cleanup_cursor()
 			Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
+			
+			Singleton_Game_AudioManager.play_music_n("res://Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
 			
 			# Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 		

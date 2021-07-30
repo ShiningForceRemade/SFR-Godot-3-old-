@@ -15,7 +15,7 @@ func clear_black_fade() -> void:
 func black_fade_anim_in() -> void:
 	fadeTween.interpolate_property(self, "modulate:a",
 	0.0, 1.0, 
-	0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	0.325, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	fadeTween.start()
 
@@ -27,7 +27,7 @@ func black_fade_anim_out() -> void:
 	
 	fadeTween.interpolate_property(self, "modulate:a",
 	1.0, 0.0, 
-	0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	0.325, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	fadeTween.start()
 

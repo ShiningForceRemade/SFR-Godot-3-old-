@@ -126,6 +126,7 @@ func setup_actor_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	move_wrappers_into_position()
 	
+	yield(get_tree().create_timer(0.3), "timeout")
 	
 	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
