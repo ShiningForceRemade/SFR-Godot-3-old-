@@ -859,11 +859,15 @@ func setup_enemey_wrapper_tween() -> void:
 	Vector2(-40, 0), Vector2(0, 0), 0.625, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 
+func play_spell_cast_sound_effect() -> void:
+	if using_spell:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
+
 func internal_signal_attack_frame_reached() -> void:
 	print("\n\n\n Signal Reached - signal_attack_frame_reached\n\n\n")
 	
 	if using_spell:
-		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
+	#	Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
 		char_animationPlayer.stop(false)
 	else:
 		rng.randomize()

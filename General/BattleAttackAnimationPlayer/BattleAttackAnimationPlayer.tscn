@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
@@ -7,11 +7,10 @@
 [ext_resource path="res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
-[ext_resource path="res://SF1/Characters/Lowe/BattleAnimations/Idle.anim" type="Animation" id=8]
 [ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
+[ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture" id=10]
 [ext_resource path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" type="Texture" id=11]
 [ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
-[ext_resource path="res://Assets/SF1/Spells/Heal/Fairy.png" type="Texture" id=13]
 [ext_resource path="res://SF1/Spells/Heal/Heal.anim" type="Animation" id=14]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" type="Texture" id=15]
 [ext_resource path="res://SF1/Characters/Tao/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=16]
@@ -182,9 +181,12 @@ __meta__ = {
 visible = false
 
 [node name="Sprite" type="Sprite" parent="CanvasLayerSpellWrapper/SpellWrapper"]
-position = Vector2( -19, 79 )
-texture = ExtResource( 13 )
-hframes = 4
+position = Vector2( 79, 92 )
+scale = Vector2( -1, 1 )
+z_index = 1
+texture = ExtResource( 10 )
+hframes = 3
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayerSpellWrapper/SpellWrapper"]
 playback_speed = 1.75
@@ -203,19 +205,19 @@ __meta__ = {
 }
 
 [node name="CharacterSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 240, 92 )
+position = Vector2( 254, 83 )
 z_index = 1
 texture = ExtResource( 15 )
 hframes = 3
-frame = 1
+frame = 2
 
 [node name="WeaponSprite" type="Sprite" parent="CharacterWrapper"]
-position = Vector2( 214, 108 )
+position = Vector2( 235, 102 )
+rotation = 0.890118
 texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapper"]
 anims/AttackNormal = ExtResource( 16 )
-anims/Idle = ExtResource( 8 )
 
 [node name="CharacterWrapperTween" type="Tween" parent="."]
 
@@ -247,7 +249,7 @@ anims/AttackNormal = SubResource( 1 )
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
 material = SubResource( 2 )
-position = Vector2( 70, 78 )
+position = Vector2( 80, 86 )
 texture = ExtResource( 4 )
 hframes = 5
 region_rect = Rect2( 0, 0, 260, 100 )
