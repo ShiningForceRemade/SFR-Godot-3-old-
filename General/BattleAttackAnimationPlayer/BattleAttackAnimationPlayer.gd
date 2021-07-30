@@ -813,7 +813,7 @@ func print_actor_defeated() -> void:
 func print_char_actor_defeated() -> void:
 	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
-		selected_actor.cget_actor_name() + " is defeated!"
+		selected_actor.cget_actor_name() + " can fight no longer."
 	)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
