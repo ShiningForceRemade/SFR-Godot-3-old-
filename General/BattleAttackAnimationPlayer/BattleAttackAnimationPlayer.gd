@@ -289,6 +289,8 @@ func calculate_damage_step() -> void:
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	
+	var is_miss = false
+	
 	var is_critical_hit = false
 	rng.randomize()
 	if rng.randi_range(0, 99) < 10:
@@ -330,8 +332,12 @@ func calculate_damage_step() -> void:
 		
 		if is_critical_hit:
 			damage = floor(damage * 1.5)
-	
 		
+		if rng.randi_range(0, 99) < 10:
+			is_miss = true
+			damage = 0
+	
+	
 	if enemeyRoot.HP_Current - damage <= 0:
 		enemeyRoot.HP_Current = 0
 	else:
@@ -344,19 +350,22 @@ func calculate_damage_step() -> void:
 	
 	# print("\n\n\n", enemeySprite.material.get_shader_param("color_blend_target"))
 	
-	enemeySprite.material.shader = shader_color_blend
-	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
+	if not is_miss:
+		enemeySprite.material.shader = shader_color_blend
+		enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
 	
-	# TODO: generate the movement and timings randomly 
-	# using fixed animation to simulate the shake for the demo
-	enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
-	enemey_animationPlayer.play("shake")
+		# TODO: generate the movement and timings randomly 
+		# using fixed animation to simulate the shake for the demo
+		enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
+		enemey_animationPlayer.play("shake")
 	
-	yield(get_tree().create_timer(1), "timeout")
-	if is_critical_hit:
-		print_critical_damage_done_to(damage)
+		yield(get_tree().create_timer(1), "timeout")
+		if is_critical_hit:
+			print_critical_damage_done_to(damage)
+		else:
+			print_damage_done_to(damage)
 	else:
-		print_damage_done_to(damage)
+		print_enemey_actor_evaded()
 	
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
@@ -678,6 +687,16 @@ func print_spell_usage() -> void:
 	
 	pass
 
+
+func print_enemey_actor_evaded() -> void:
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
+	
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		selected_actor.enemey_name + " evades the attack!"
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+
 func print_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
 	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
@@ -735,6 +754,9 @@ func print_exp_gain(damage_arg) -> void:
 		x += (x * 3) + 1 # bonus exp for kill based on x max
 	
 	var exp_gain = floor(x + y)
+	if damage_arg == 0:
+		exp_gain = 1
+	
 	if exp_gain >= 48:
 		exp_gain = 48
 	elif exp_gain <= 1:
