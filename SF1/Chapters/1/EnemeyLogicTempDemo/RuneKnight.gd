@@ -178,34 +178,42 @@ func find_path(world_start, world_end):
 	end_point_index = calculate_point_index(Vector2(path_end_position.x, path_end_position.y - 1))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index) # astar_node.get_point_path(start_point_index, end_point_index)
 	if _point_path.size() != 0:
-		print("TOP - ", _point_path)
-		move_to_point_end_from_path(_point_path)
-		return
+		if not is_enemey_actor_at_end_tile(Vector2(path_end_position.x, path_end_position.y - 1)):
+			print("TOP - ", _point_path)
+			move_to_point_end_from_path(_point_path)
+			return
 	
 	# Bottom
 	end_point_index = calculate_point_index(Vector2(path_end_position.x, path_end_position.y + 1))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
 	if _point_path.size() != 0:
-		print("Bottom - ", _point_path)
-		move_to_point_end_from_path(_point_path)
-		return
+		if not is_enemey_actor_at_end_tile(Vector2(path_end_position.x, path_end_position.y + 1)):
+			print("Bottom - ", _point_path)
+			move_to_point_end_from_path(_point_path)
+			return
 	
 	# Left
 	end_point_index = calculate_point_index(Vector2(path_end_position.x - 1, path_end_position.y))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
 	if _point_path.size() != 0:
-		print("Left - ", _point_path)
-		move_to_point_end_from_path(_point_path)
-		return
+		if not is_enemey_actor_at_end_tile(Vector2(path_end_position.x - 1, path_end_position.y)):
+			print("Left - ", _point_path)
+			move_to_point_end_from_path(_point_path)
+			return
 	
 	# Right
 	end_point_index = calculate_point_index(Vector2(path_end_position.x + 1, path_end_position.y))
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
 	if _point_path.size() != 0:
-		print("Right - ", _point_path)
-		move_to_point_end_from_path(_point_path)
-		return
+		if not is_enemey_actor_at_end_tile(Vector2(path_end_position.x + 1, path_end_position.y)):
+			print("Right - ", _point_path)
+			move_to_point_end_from_path(_point_path)
+			return
 	
+	# TODO: add argument to this signal if true target was reachable and attacked
+	# if false do path finding and attack second target and so on
+	yield(pself.get_tree().create_timer(0.01), "timeout")
+	emit_signal("signal_complete_a_path_check")
 	# _draw()
 
 
@@ -244,6 +252,15 @@ func move_to_point_end_from_path(point_path_arg):
 			
 	emit_signal("signal_complete_a_path_check")
 	pass
+
+func is_enemey_actor_at_end_tile(end_point) -> bool:
+	var tile_point
+	for enemey_actor in Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children():
+		tile_point = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(enemey_actor.position)
+		if tile_point == end_point:
+			return true
+			
+	return false
 
 
 func _draw():
