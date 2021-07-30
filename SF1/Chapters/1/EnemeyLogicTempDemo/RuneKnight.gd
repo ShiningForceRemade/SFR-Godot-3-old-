@@ -37,18 +37,30 @@ func play_turn(self_arg):
 	
 	if possible_target_array.size() != 0:
 		go_to_target(possible_target_array[0])
-		yield(self, "signal_complete_a_path_check")
 		
-	res = pself.is_character_actor_within_attack_range()
-	if res != Vector2.ZERO:
-		pself.change_facing_direction(res)
-		Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
-		Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.draw_cursor_at_position(res)
-		pself.internal_attack_actor_found()
+		for i in range(possible_target_array.size()):
+			# CLEAN: TODO: REFACTOR: IMPORTANT:			
+			attempt_to_find_path(possible_target_array[i])
+			yield(self, "signal_complete_a_path_check")
+		
+			res = pself.is_character_actor_within_attack_range()
+			if res != Vector2.ZERO:
+				pself.change_facing_direction(res)
+				Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
+				Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.draw_cursor_at_position(res)
+				pself.internal_attack_actor_found()
 			
-		#emit_signal("signal_logic_completed")
-		#pself.internal_call_complete()
-		yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_complete_damage_step")
+				#emit_signal("signal_logic_completed")
+				#pself.internal_call_complete()
+				yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_complete_damage_step")
+			
+				
+				yield(pself.get_tree().create_timer(0.3), "timeout")
+	
+				emit_signal("signal_logic_completed")
+				pself.internal_call_complete()
+	
+				return
 	
 	
 	yield(pself.get_tree().create_timer(0.3), "timeout")
@@ -147,14 +159,13 @@ func astar_connect_walkable_cells(target_node_arg):
 				continue
 			
 			astar_node.connect_points(point_index, point_relative_index, false)
-	
+	pass
+
+func attempt_to_find_path(target_node_arg):
 	var sp = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(pself.position)
 	var ep = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(target_node_arg.position)
 	
 	find_path(sp, ep)
-	
-	pass
-
 
 func find_path(world_start, world_end):
 	path_start_position = world_start

@@ -70,13 +70,38 @@ func _process(_delta):
 	pass
 
 func zoom():
+	
+	# zoom 1
+	# 1.55
+	# 1.95
 	if Input.is_action_just_released('ui_minus'):
+#		print("Zoom level - ", zoom)
+#		if zoom.x == 1.0:
+#			return
+#		elif zoom.x == 1.55:
+#			zoom = Vector2(1.0, 1.0)
+#		elif zoom.x == 1.95:
+#			zoom = Vector2(1.55, 1.55)
 		zoom.x += 0.05
 		zoom.y += 0.05
+		# stepify(zoom.x, 0.1)
+		# stepify(zoom.y, 0.1)
 	if Input.is_action_just_released('ui_plus'):
+#		print("Zoom level - ", zoom)
+#		if zoom.x == 1.95:
+#			return
+#		elif zoom.x == 1.55:
+#			zoom = Vector2(1.95, 1.95)
+#		elif zoom.x == 1.0:
+#			zoom = Vector2(1.55, 1.55)
 	# if Input.is_action_just_released('ui_plus') and zoom.x > 1 and zoom.y > 1:
 		zoom.x -= 0.05
 		zoom.y -= 0.05
+		# stepify(zoom.x, 0.1)
+		# stepify(zoom.y, 0.1)
+		
+
+
 
 func rotate_cam():
 	if Input.is_action_just_pressed("ui_end"):
