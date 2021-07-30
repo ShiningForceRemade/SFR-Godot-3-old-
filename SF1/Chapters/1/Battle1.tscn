@@ -250,7 +250,7 @@ __meta__ = {
 position = Vector2( 205, 420 )
 
 [node name="HansRoot" parent="Characters" instance=ExtResource( 11 )]
-position = Vector2( 181, 252 )
+position = Vector2( 253, 204 )
 
 [node name="KenRoot" parent="Characters" instance=ExtResource( 13 )]
 position = Vector2( 229, 420 )
@@ -259,7 +259,7 @@ position = Vector2( 229, 420 )
 position = Vector2( 181, 444 )
 
 [node name="TaoRoot" parent="Characters" instance=ExtResource( 15 )]
-position = Vector2( 205, 252 )
+position = Vector2( 253, 180 )
 
 [node name="LoweRoot" parent="Characters" instance=ExtResource( 16 )]
 position = Vector2( 229, 444 )
@@ -273,6 +273,11 @@ battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/TopLeftGoblin.gd
 
 [node name="GoblinRoot5" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 181, 180 )
+is_npc = true
+battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/CenterLeftGoblin.gd"
+
+[node name="GoblinRoot7" parent="Enemies" instance=ExtResource( 3 )]
+position = Vector2( 133, 180 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/CenterLeftGoblin.gd"
 

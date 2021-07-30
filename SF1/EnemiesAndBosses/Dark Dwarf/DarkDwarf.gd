@@ -177,3 +177,13 @@ func is_character_actor_within_attack_range():
 			return character.position
 	
 	return Vector2.ZERO
+
+func change_facing_direction(current_selection_pos: Vector2) -> void:
+	if position.x < current_selection_pos.x:
+		animationPlayer.play("RightMovement")
+	elif position.x > current_selection_pos.x:
+		animationPlayer.play("LeftMovement")
+	elif position.y < current_selection_pos.y:
+		animationPlayer.play("DownMovement")
+	elif position.y > current_selection_pos.y:
+		animationPlayer.play("UpMovement")
