@@ -357,6 +357,10 @@ func calculate_damage_step() -> void:
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
 	yield(get_tree().create_timer(1.5), "timeout")
+	
+	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
+	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
+	
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
 	
@@ -431,6 +435,9 @@ func calculate_damage_step_enemey_attacking() -> void:
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	
+	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
+	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
