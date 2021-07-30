@@ -44,6 +44,8 @@ const ani_name_enemey_idle: String = "Enemey Idle"
 
 var using_spell: bool = false
 
+var attack_missed = false
+
 # TODO: CLEAN: TEMP FOR DEMO
 var heal_amount = 0
 
@@ -289,8 +291,6 @@ func calculate_damage_step() -> void:
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	
-	var is_miss = false
-	
 	var is_critical_hit = false
 	rng.randomize()
 	if rng.randi_range(0, 99) < 10:
@@ -333,8 +333,7 @@ func calculate_damage_step() -> void:
 		if is_critical_hit:
 			damage = floor(damage * 1.5)
 		
-		if rng.randi_range(0, 99) < 10:
-			is_miss = true
+		if attack_missed:
 			damage = 0
 	
 	
@@ -350,7 +349,7 @@ func calculate_damage_step() -> void:
 	
 	# print("\n\n\n", enemeySprite.material.get_shader_param("color_blend_target"))
 	
-	if not is_miss:
+	if not attack_missed:
 		enemeySprite.material.shader = shader_color_blend
 		enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
 	
@@ -407,7 +406,7 @@ func calculate_damage_step() -> void:
 
 func calculate_damage_step_enemey_attacking() -> void:
 	var is_critical_hit = false
-	var is_miss = false
+	
 	rng.randomize()
 	if rng.randi_range(0, 99) < 10:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/CriticalSound.wav")
@@ -435,8 +434,7 @@ func calculate_damage_step_enemey_attacking() -> void:
 	if is_critical_hit:
 		damage = floor(damage * 1.5)
 	
-	if rng.randi_range(0, 99) < 10:
-		is_miss = true
+	if attack_missed:
 		damage = 0
 	
 	if characterRoot.HP_Current - damage <= 0:
@@ -463,7 +461,7 @@ func calculate_damage_step_enemey_attacking() -> void:
 	# enemey_animationPlayer.play("shake")
 	
 	yield(get_tree().create_timer(1), "timeout")
-	if not is_miss:
+	if not attack_missed:
 		if is_critical_hit:
 			print_enemey_critical_damage_done_to(damage)
 		else:
@@ -868,8 +866,18 @@ func internal_signal_attack_frame_reached() -> void:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
 		char_animationPlayer.stop(false)
 	else:
-		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
-		emit_signal("signal_attack_frame_reached")
+		rng.randomize()
+		if rng.randi_range(0, 99) < 10:
+			attack_missed = true
+		else:
+			attack_missed = false
+			
+		if attack_missed:
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/DodgeSound.wav")
+			emit_signal("signal_attack_frame_reached")
+		else:
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+			emit_signal("signal_attack_frame_reached")
 	
 
 func internal_signal_enemey_attack_frame_reached() -> void:
@@ -879,8 +887,18 @@ func internal_signal_enemey_attack_frame_reached() -> void:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
 		char_animationPlayer.stop(false)
 	else:
-		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
-		emit_signal("signal_enemey_attack_frame_reached")
+		rng.randomize()
+		if rng.randi_range(0, 99) < 10:
+			attack_missed = true
+		else:
+			attack_missed = false
+		
+		if attack_missed:
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/DodgeSound.wav")
+			emit_signal("signal_enemey_attack_frame_reached")
+		else:
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+			emit_signal("signal_enemey_attack_frame_reached")
 	
 
 func internal_signal_spell_completed() -> void:
