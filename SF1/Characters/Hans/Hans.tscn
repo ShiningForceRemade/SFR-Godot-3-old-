@@ -140,13 +140,12 @@ defense_growth = 2
 agility = 6
 agility_growth = 3
 move = 5
-HP_Current = 1
+HP_Current = 12
 HP_Total = 12
 hp_growth = 2
 critical_hit_chance = 3
 ai_target_priority = 25
 movement_type = 3
-experience_points = 99
 battle_animation_unpromoted_resource = ExtResource( 7 )
 
 [node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
