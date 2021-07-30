@@ -1,8 +1,6 @@
 tool
 extends Node2D
 
-signal signal_black_fade_in_out_completed
-
 signal signal_battle_scene_complete
 
 signal signal_battle_complete_damage_step
@@ -50,7 +48,7 @@ var heal_amount = 0
 
 func _ready():
 	# yield(get_tree().create_timer(1), "timeout")
-	clear_black_fade()
+	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.clear_black_fade()
 	
 	Singleton_Game_GlobalBattleVariables.battle_scene_node = self
 	# char actor
@@ -86,6 +84,8 @@ func _ready():
 
 
 func setup_character_and_enemey_sprites_idle() -> void:
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	
 	var anim_aup = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").battle_animation_unpromoted_resource
 	var attack_anim = anim_aup # load(anim_aup)
 	internal_init_resource_for_actor(characterSprite, attack_anim)
@@ -123,13 +123,15 @@ func setup_actor_attacking() -> void:
 	enemeySprite.show()
 	
 	setup_sprite_textures()
-	black_fade_anim_out()
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	move_wrappers_into_position()
+	
 	
 	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	# yield(self, "signal_black_fade_in_out_completed")
+	
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
@@ -160,14 +162,15 @@ func setup_enemey_actor_attacking() -> void:
 	
 	setup_sprite_textures_enemey_attack()
 	# setup_sprite_textures()
-	black_fade_anim_out()
-	# yield(self, "signal_black_fade_in_out_completed")
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	
 	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	move_wrappers_into_position()
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
@@ -193,11 +196,10 @@ func setup_spell_usage() -> void:
 	enemeySprite.show()
 	
 	setup_sprite_textures()
-	black_fade_anim_out()
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	move_wrappers_into_position()
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	# yield(self, "signal_black_fade_in_out_completed")
 	
 	# load text box saying x is attacking or doing y to z
 	# print_who_is_attacking()
@@ -222,10 +224,9 @@ func s_cleanup_animation(animation_name_arg) -> void:
 	
 	# print_damage_done_to(damage)
 	
-	black_fade_anim_out()
-	yield(get_tree().create_timer(0.5), "timeout")
 	# black_fade_anim_out()
-	# yield(self, "signal_black_fade_in_out_completed")
+	# yield(get_tree().create_timer(0.5), "timeout")
+	# black_fade_anim_out()
 	print("Complete Battle Scene")
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
@@ -248,11 +249,10 @@ func s_cleanup_animation_enemy(animation_name_arg) -> void:
 	
 	char_animationPlayer.remove_animation(internal_animation_name)
 	
-	black_fade_anim_out()
-	yield(get_tree().create_timer(0.5), "timeout")
+	# black_fade_anim_out()
+	# yield(get_tree().create_timer(0.5), "timeout")
 	# yield(get_tree().create_timer(1), "timeout")
 	# black_fade_anim_out()
-	# yield(self, "signal_black_fade_in_out_completed")
 	print("Complete Battle Scene")
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
@@ -369,9 +369,12 @@ func calculate_damage_step() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	yield(get_tree().create_timer(0.65), "timeout")
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
-	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	yield(get_tree().create_timer(0.65), "timeout")
 	# return damage
 
 
@@ -447,8 +450,12 @@ func calculate_damage_step_enemey_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
+	yield(get_tree().create_timer(0.65), "timeout")
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	yield(get_tree().create_timer(0.65), "timeout")
 	
 	# return damage
 
@@ -732,34 +739,6 @@ func print_coins_and_items_receieved() -> void:
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
 
-###
-# Black Color Fader helpers
-###
-
-func clear_black_fade() -> void:
-	$CanvasLayer/BlackFadeColorRect.modulate = Color(255, 255, 255, 0)
-
-func black_fade_anim_in() -> void:
-	$CanvasLayer/BlackFadeColorRect.show()
-	
-	blackFadeTween.interpolate_property($CanvasLayer/BlackFadeColorRect, "modulate:a",
-	0.0, 1.0, 
-	0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	
-	blackFadeTween.start()
-
-
-func black_fade_anim_out() -> void:
-	$CanvasLayer/BlackFadeColorRect.show()
-	
-	blackFadeTween.interpolate_property($CanvasLayer/BlackFadeColorRect, "modulate:a",
-	1.0, 0.0, 
-	0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	
-	blackFadeTween.start()
-
-func s_cleanup_black_fade_tween():
-	emit_signal("signal_black_fade_in_out_completed")
 
 ###
 # Move wrappers into position on battle scene start 
@@ -911,7 +890,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	$CharacterTargetWrapper/AnimationPlayer.remove_animation("Target Idle")
 	
 	yield(get_tree().create_timer(1.5), "timeout")
-	black_fade_anim_out()
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	print("Complete Battle Scene")
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
