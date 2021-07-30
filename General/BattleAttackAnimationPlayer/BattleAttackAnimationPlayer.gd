@@ -731,7 +731,7 @@ func print_exp_gain(damage_arg) -> void:
 	if selected_actor.HP_Current == 0:
 		x += (x * 3) + 1 # bonus exp for kill based on x max
 	
-	var exp_gain = x + y
+	var exp_gain = floor(x + y)
 	if exp_gain >= 48:
 		exp_gain = 48
 	elif exp_gain <= 1:
