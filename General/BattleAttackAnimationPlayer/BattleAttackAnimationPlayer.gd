@@ -288,6 +288,12 @@ func calculate_damage_step() -> void:
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	
+	var is_critical_hit = false
+	rng.randomize()
+	if rng.randi_range(0, 99) < 10:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/CriticalSound.wav")
+		is_critical_hit = true
+	
 	var damage = 0
 	
 	if using_spell:
@@ -313,10 +319,13 @@ func calculate_damage_step() -> void:
 		var min_damage = floor(max_damage - floor(max_damage * 0.25))
 	
 		rng.randomize()
-	
+		
 		damage = rng.randi_range(max_damage, min_damage)
 		if damage <= 0:
 			damage = 1
+		
+		if is_critical_hit:
+			damage = floor(damage * 1.5)
 	
 		
 	if enemeyRoot.HP_Current - damage <= 0:
@@ -339,8 +348,11 @@ func calculate_damage_step() -> void:
 	enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
 	enemey_animationPlayer.play("shake")
 	
-	yield(get_tree().create_timer(1), "timeout")	
-	print_damage_done_to(damage)
+	yield(get_tree().create_timer(1), "timeout")
+	if is_critical_hit:
+		print_critical_damage_done_to(damage)
+	else:
+		print_damage_done_to(damage)
 	
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
@@ -379,6 +391,13 @@ func calculate_damage_step() -> void:
 
 
 func calculate_damage_step_enemey_attacking() -> void:
+	var is_critical_hit = false
+	rng.randomize()
+	if rng.randi_range(0, 99) < 10:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/CriticalSound.wav")
+		is_critical_hit = true
+		
+		
 	# Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
 	
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("EnemeyRoot")
@@ -394,11 +413,11 @@ func calculate_damage_step_enemey_attacking() -> void:
 	# min attack value
 	var min_damage = floor(max_damage - floor(max_damage * 0.25))
 	
-	rng.randomize()
-	
 	damage = rng.randi_range(max_damage, min_damage)
 	if damage <= 0:
 		damage = 1
+	if is_critical_hit:
+		damage = floor(damage * 1.5)
 	
 		
 	if characterRoot.HP_Current - damage <= 0:
@@ -424,8 +443,11 @@ func calculate_damage_step_enemey_attacking() -> void:
 	# enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
 	# enemey_animationPlayer.play("shake")
 	
-	yield(get_tree().create_timer(1), "timeout")	
-	print_enemey_damage_done_to(damage)
+	yield(get_tree().create_timer(1), "timeout")
+	if is_critical_hit:
+		print_enemey_critical_damage_done_to(damage)
+	else:
+		print_enemey_damage_done_to(damage)
 	yield(get_tree().create_timer(1), "timeout")
 	
 	# enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
@@ -658,8 +680,16 @@ func print_damage_done_to(damage_arg) -> void:
 		"Inflicts " + str(damage_arg) + " points of damage on the " + selected_actor.enemey_name + "."
 		)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+
+
+func print_critical_damage_done_to(damage_arg) -> void:
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
 	
-	pass
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		"A stunning attack! " + selected_actor.enemey_name + " suffers " + str(damage_arg) + " points of damage."
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 
 
 func print_enemey_damage_done_to(damage_arg) -> void:
@@ -670,8 +700,18 @@ func print_enemey_damage_done_to(damage_arg) -> void:
 		"Inflicts " + str(damage_arg) + " points of damage to " + selected_actor.cget_actor_name() + "."
 		)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+
+func print_enemey_critical_damage_done_to(damage_arg) -> void:
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
+	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
 	
-	pass
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
+		"A stunning attack! " + selected_actor.cget_actor_name() + " suffers " + str(damage_arg) + " points of damage."
+		)
+	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+
+
+
 
 func print_exp_gain(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()

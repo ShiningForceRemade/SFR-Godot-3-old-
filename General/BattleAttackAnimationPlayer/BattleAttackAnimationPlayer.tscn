@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" type="Texture" id=10]
 [ext_resource path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" type="Texture" id=11]
 [ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
-[ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture" id=13]
+[ext_resource path="res://Assets/SF1/Spells/Heal/Fairy.png" type="Texture" id=13]
 [ext_resource path="res://SF1/Spells/Heal/Heal.anim" type="Animation" id=14]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" type="Texture" id=15]
 [ext_resource path="res://SF1/Characters/Tao/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=16]
@@ -224,10 +224,9 @@ __meta__ = {
 visible = false
 
 [node name="Sprite" type="Sprite" parent="CanvasLayerSpellWrapper/SpellWrapper"]
-position = Vector2( 79, 92 )
-z_index = 1
+position = Vector2( -19, 79 )
 texture = ExtResource( 13 )
-hframes = 3
+hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayerSpellWrapper/SpellWrapper"]
 playback_speed = 1.75
