@@ -36,7 +36,8 @@ func _input(event):
 		
 		img.flip_y()
 		
-		var save_path = "res://Screenshots/" + time_string + ".png"
+		# var save_path = "res://Screenshots/" + time_string + ".png"
+		var save_path = "user://" + time_string + ".png"
 		
 		img.save_png(str(save_path))
 		
