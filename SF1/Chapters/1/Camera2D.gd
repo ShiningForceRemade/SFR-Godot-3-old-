@@ -86,6 +86,9 @@ func zoom():
 #			zoom = Vector2(1.55, 1.55)
 		zoom.x += 0.05
 		zoom.y += 0.05
+		
+		if zoom.x > 2:
+			zoom = Vector2(1.95, 1.95)
 		# stepify(zoom.x, 0.1)
 		# stepify(zoom.y, 0.1)
 	if Input.is_action_just_released('ui_plus'):
@@ -101,6 +104,9 @@ func zoom():
 	# if Input.is_action_just_released('ui_plus') and zoom.x > 1 and zoom.y > 1:
 		zoom.x -= 0.05
 		zoom.y -= 0.05
+		
+		if zoom.x < 1:
+			zoom = Vector2(1.0, 1.0)
 		# stepify(zoom.x, 0.1)
 		# stepify(zoom.y, 0.1)
 		
