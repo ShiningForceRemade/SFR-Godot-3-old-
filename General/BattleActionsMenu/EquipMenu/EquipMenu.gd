@@ -46,6 +46,7 @@ func _ready():
 	# label.text = "Use"
 	pass
 
+
 func set_battle_equip_menu_active():
 	is_battle_equip_menu_active = true
 	
@@ -191,12 +192,14 @@ func update_weapon_equip() -> void:
 			if inventory_items[i] is CN_SF1_Item_Weapon:
 				active_char_root.is_item_equipped[i] = true
 
+
 func update_attack_stat(item_arg) -> void:
 	var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	if item_arg == null:
 		stat_attack_label.text = str(actor.attack)
 	else:
 		stat_attack_label.text = str(actor.attack + item_arg.attribute_bonus[0])
+
 
 func set_sprites_to_zero_frame() -> void:
 	equip_up_slot_spirte.frame = 0
