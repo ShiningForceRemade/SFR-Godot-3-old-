@@ -15,13 +15,12 @@
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" type="Texture" id=15]
 [ext_resource path="res://SF1/Characters/Tao/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=16]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 12 )
 shader_param/dissolve_effect_amount = null
 shader_param/noise_texture = ExtResource( 11 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "AttackNormal"
+[sub_resource type="Animation" id=2]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("CharacterSprite:frame")
@@ -110,7 +109,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 12 )
 shader_param/dissolve_effect_amount = null
 shader_param/noise_texture = ExtResource( 11 )
@@ -210,7 +209,7 @@ __meta__ = {
 }
 
 [node name="CharacterSprite" type="Sprite" parent="CharacterWrapper"]
-material = SubResource( 3 )
+material = SubResource( 1 )
 position = Vector2( 240, 92 )
 z_index = 1
 texture = ExtResource( 15 )
@@ -248,14 +247,14 @@ position = Vector2( 228, 80 )
 texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterTargetWrapper"]
-anims/AttackNormal = SubResource( 1 )
+anims/AttackNormal = SubResource( 2 )
 
 [node name="CharacterTargetTween" type="Tween" parent="."]
 
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
 [node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 position = Vector2( 80, 86 )
 texture = ExtResource( 4 )
 hframes = 5

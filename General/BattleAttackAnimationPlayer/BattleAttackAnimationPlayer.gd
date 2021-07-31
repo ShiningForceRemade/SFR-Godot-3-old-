@@ -134,7 +134,7 @@ func setup_actor_attacking() -> void:
 	setup_sprite_textures()
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	move_wrappers_into_position()
-	yield(get_tree().create_timer(0.35), "timeout")
+	yield(get_tree().create_timer(0.45), "timeout")
 	
 	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
@@ -184,22 +184,16 @@ func setup_enemey_actor_attacking() -> void:
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.45), "timeout")
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
 	
 	yield(get_tree().create_timer(1.5), "timeout")
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
-	# setup_attacking_animation()
 	setup_enemey_attacking_animation()
 	
 	# on the yield end
-	# show the damage box exp and coins if eneemy killed
-	
-	
-	
-	# or whatever the appriotate message is
 	
 
 
@@ -222,7 +216,7 @@ func setup_spell_usage() -> void:
 	move_wrappers_into_position()
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(0.45), "timeout")
 	# load text box saying x is attacking or doing y to z
 	# print_who_is_attacking()
 	
@@ -296,7 +290,7 @@ func s_update_ui_and_animate_damage_phase() -> void:
 	
 	calculate_damage_step()
 	
-	# yield(self, "signal_battle_complete_damage_step")
+	yield(self, "signal_battle_complete_damage_step")
 
 
 func s_update_ui_and_animate_damage_enemey_phase() -> void:
@@ -304,7 +298,7 @@ func s_update_ui_and_animate_damage_enemey_phase() -> void:
 	
 	calculate_damage_step_enemey_attacking()
 	
-	# yield(self, "signal_battle_complete_damage_step")
+	yield(self, "signal_battle_complete_damage_step")
 
 func calculate_damage_step() -> void:
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
@@ -383,8 +377,13 @@ func calculate_damage_step() -> void:
 		else:
 			print_damage_done_to(damage)
 	else:
+		yield(get_tree().create_timer(1), "timeout")
 		print_enemey_actor_evaded()
 	
+	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
+		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play("Character Idle")
+		
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
 	
@@ -406,7 +405,7 @@ func calculate_damage_step() -> void:
 		print_coins_and_items_receieved() # 0 coins and no items for now
 		# yield(get_tree().create_timer(1.5), "timeout")
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
@@ -415,14 +414,14 @@ func calculate_damage_step() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
-	yield(get_tree().create_timer(0.65), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	
-	yield(get_tree().create_timer(0.65), "timeout")
+	yield(get_tree().create_timer(0.35), "timeout")
 	# return damage
 
 
@@ -498,9 +497,13 @@ func calculate_damage_step_enemey_attacking() -> void:
 			print_enemey_damage_done_to(damage)
 	else:
 		print_character_actor_evaded()
-		
+	
 	yield(get_tree().create_timer(1), "timeout")
 	
+	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
+		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+		enemey_animationPlayer.play(ani_name_enemey_idle)
+		
 	characterSprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	char_animationPlayer.stop()
 	
@@ -513,7 +516,7 @@ func calculate_damage_step_enemey_attacking() -> void:
 		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
 		char_animationPlayer.play("Character Idle")
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
@@ -524,13 +527,13 @@ func calculate_damage_step_enemey_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
-	yield(get_tree().create_timer(0.65), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	characterWrapper.show()
 	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	
-	yield(get_tree().create_timer(0.65), "timeout")
+	yield(get_tree().create_timer(0.35), "timeout")
 	
 	# return damage
 
@@ -916,7 +919,7 @@ func internal_signal_attack_frame_reached() -> void:
 		char_animationPlayer.stop(false)
 	else:
 		rng.randomize()
-		if rng.randi_range(0, 99) < 10:
+		if rng.randi_range(0, 99) < 5:
 			attack_missed = true
 		else:
 			attack_missed = false
@@ -937,7 +940,7 @@ func internal_signal_enemey_attack_frame_reached() -> void:
 		char_animationPlayer.stop(false)
 	else:
 		rng.randomize()
-		if rng.randi_range(0, 99) < 10:
+		if rng.randi_range(0, 99) < 5:
 			attack_missed = true
 		else:
 			attack_missed = false

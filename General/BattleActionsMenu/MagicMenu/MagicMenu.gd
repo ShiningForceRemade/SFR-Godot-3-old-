@@ -187,6 +187,9 @@ func _input(event):
 			
 			if actor.spells_id[currently_selected_option].name == "Egress":
 				return
+			if actor.spells_id[currently_selected_option].name == "Heal":
+				return
+			
 			
 			is_battle_magic_menu_active = false
 			is_select_magic_level_active = false

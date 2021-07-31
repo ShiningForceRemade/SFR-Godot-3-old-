@@ -247,10 +247,10 @@ __meta__ = {
 }
 
 [node name="MaxRoot" parent="Characters" instance=ExtResource( 19 )]
-position = Vector2( 205, 420 )
+position = Vector2( 205, 276 )
 
 [node name="HansRoot" parent="Characters" instance=ExtResource( 11 )]
-position = Vector2( 181, 468 )
+position = Vector2( 181, 276 )
 
 [node name="KenRoot" parent="Characters" instance=ExtResource( 13 )]
 position = Vector2( 229, 420 )
@@ -259,7 +259,7 @@ position = Vector2( 229, 420 )
 position = Vector2( 181, 444 )
 
 [node name="TaoRoot" parent="Characters" instance=ExtResource( 15 )]
-position = Vector2( 205, 444 )
+position = Vector2( 205, 252 )
 
 [node name="LoweRoot" parent="Characters" instance=ExtResource( 16 )]
 position = Vector2( 229, 444 )

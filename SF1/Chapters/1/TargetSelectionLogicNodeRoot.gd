@@ -225,7 +225,11 @@ func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
 		yield(get_tree().create_timer(0.02), "timeout")
 		emit_signal("signal_completed_magic_level_selection_action")
 		return
-	
+	if spell_arg.name == "Heal":
+		yield(get_tree().create_timer(0.02), "timeout")
+		emit_signal("signal_completed_magic_level_selection_action")
+		return
+		
 	using_spell = true
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
 	
@@ -254,6 +258,7 @@ func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
 	if spell_arg.usable_on_actor_type == 2:
 		print("Self and Characters", Singleton_Game_GlobalBattleVariables.character_wrapper_node)
 		target_node_children = Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
+		set_cursor_target_on_first_found_enemey()
 		
 	elif spell_arg.usable_on_actor_type == 1: # Enemeies - TODO: add enum or consts to use instead of raw numbers
 		print("Enemies", Singleton_Game_GlobalBattleVariables.enemies_wrapper_node)
@@ -453,8 +458,8 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 func enemey_actor_attack_setup():
 	print("In Here")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
-	yield(get_tree().create_timer(0.3), "timeout")
+	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	# yield(get_tree().create_timer(0.3), "timeout")
 	
 	# setup_use_range_and_target_range_selection_enemey_static()
 	
@@ -487,7 +492,7 @@ func enemey_actor_attack_setup():
 	
 	print("Complete")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
@@ -838,6 +843,7 @@ func setup_quadrant_vars() -> void:
 	row_tiles_movement = 0
 	col_tiles_movement = 0
 	
+	# current_selection_vec2 = Vector2(0, 0)
 	check_pos = Vector2(0, 0)
 
 func set_and_save_new_target_selection(current_row, current_col, child) -> void: 
