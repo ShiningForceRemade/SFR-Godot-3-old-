@@ -345,38 +345,38 @@ func set_cursor_target_on_first_found_enemey() -> void:
 # 
 
 func target_selection_clockwise__style_naive_pass_forward():
-	print("Clockwise")
+	# print("Clockwise")
 	setup_quadrant_vars()
 	# TODO: FIXME above when doing auto target selection and no target if not found
 	if current_selection_vec2 == null:
 		current_selection_vec2 = Vector2(0, 0)
 		
-	print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
+	# print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
 	
 	if forward_pass_naive(current_selection_vec2.x, current_selection_vec2.y):
 		return
 	if forward_pass_naive(0, 0):
 		return
 	
-	print("End nothing found")
+	# print("End nothing found")
 	pass
 
 func target_selection_counter_clockwise__style_naive_pass_forward():
-	print("Clockwise")
+	# print("Clockwise")
 	setup_quadrant_vars()
 	
 	# TODO: FIXME above when doing auto target selection and no target if not found
 	if current_selection_vec2 == null:
 		current_selection_vec2 = Vector2(0, 0)
 	
-	print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
+	# print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
 	
 	if backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y):
 		return
 	if backwards_pass_naive(t_rows - 1, t_cols - 1):
 		return
 	
-	print("End nothing found")
+	# print("End nothing found")
 	pass
 
 func forward_pass_naive(start_row, start_col) -> bool:
@@ -385,24 +385,24 @@ func forward_pass_naive(start_row, start_col) -> bool:
 	var r = start_row
 	var c = start_col
 	
-	print(use_range_array_rep, "\n")
+	# print(use_range_array_rep, "\n")
 	var check_pos
 	
 	while r < t_rows:
 		while c < t_cols:
 			if use_range_array_rep[r][c] == 1:
 				if current_selection_vec2 == Vector2(r, c):
-					print("Currently Selected - Skip - ", current_selection_vec2)
+					# print("Currently Selected - Skip - ", current_selection_vec2)
 					c += 1
 					continue
 				
-				print("row ", r, " col ",  c)
+				# print("row ", r, " col ",  c)
 				
 				check_pos = get_tile_adjustment(r, c_row, c, c_col)
-				print(check_pos)
+				# print(check_pos)
 				
 				for child in target_node_children:
-					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
+					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
 					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
@@ -412,7 +412,7 @@ func forward_pass_naive(start_row, start_col) -> bool:
 		c = 0
 		r += 1
 	
-	print("escape")
+	# print("escape")
 	return false
 
 func backwards_pass_naive(start_row, start_col) -> bool:
@@ -421,24 +421,24 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 	var r = start_row
 	var c = start_col
 	
-	print(use_range_array_rep, "\n")
+	# print(use_range_array_rep, "\n")
 	var check_pos
 	
 	while r >= 0:
 		while c >= 0:
 			if use_range_array_rep[r][c] == 1:
 				if current_selection_vec2 == Vector2(r, c):
-					print("Currently Selected - Skip - ", current_selection_vec2)
+					# print("Currently Selected - Skip - ", current_selection_vec2)
 					c -= 1
 					continue
 				
-				print("row ", r, " col ",  c)
+				# print("row ", r, " col ",  c)
 				
 				check_pos = get_tile_adjustment(r, c_row, c, c_col)
-				print(check_pos)
+				# print(check_pos)
 				
 				for child in target_node_children:
-					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
+					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
 					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
@@ -448,7 +448,7 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 		c = t_cols - 1
 		r -= 1
 	
-	print("escape")
+	# print("escape")
 	return false
 
 
