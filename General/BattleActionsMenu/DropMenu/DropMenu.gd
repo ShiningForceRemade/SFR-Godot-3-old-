@@ -27,18 +27,13 @@ onready var down_slot_spirte = $SlotDownSprite
 onready var left_slot_spirte = $SlotLeftSprite
 onready var right_slot_spirte = $SlotRightSprite
 
-onready var item_info__type_name_label = $ItemInfoNinePatchRect/TypeNameLabel
-onready var item__info__weapon_name_label = $ItemInfoNinePatchRect/WeaponNameLabel
-
 var inventory_items
+
 
 func _ready():
 	set_sprites_to_zero_frame()
 	redSelection.position = rs_top_pos
-	# $AnimationPlayer.playback_speed = 2
-	# animationPlayer.play("UseMenuOption")
-	# label.text = "Use"
-	pass
+
 
 func set_battle_drop_menu_active():
 	is_battle_drop_menu_active = true
@@ -62,15 +57,14 @@ func set_battle_drop_menu_active():
 			up_slot_spirte.texture = inventory_items[i].texture
 			nameLabel.text = inventory_items[i].item_name
 			typeLabel.text = inventory_items[i].get_item_type()
-		if i == 1:
+		elif i == 1:
 			left_slot_spirte.texture = inventory_items[i].texture
-		if i == 2:
+		elif i == 2:
 			right_slot_spirte.texture = inventory_items[i].texture
-		if i == 3:
+		elif i == 3:
 			down_slot_spirte.texture = inventory_items[i].texture
 		# up_slot_spirte.texture = item.texture
-		# item__info__weapon_name_label.text = item.item_name
-	
+
 
 func _input(event):
 	if is_battle_drop_menu_active:
@@ -125,35 +119,25 @@ func _input(event):
 				
 			
 		if event.is_action_pressed("ui_down"):
-			if 3 <= inventory_items.size() - 1:
-				redSelection.position = rs_bottom_pos
-				set_sprites_to_zero_frame()
-				currently_selected_option = e_drop_menu_options.DOWN_OPTION
-				nameLabel.text = inventory_items[3].item_name
-				typeLabel.text = inventory_items[3].get_item_type()
+			select_item(3, rs_bottom_pos, e_drop_menu_options.DOWN_OPTION)
 		elif event.is_action_pressed("ui_up"):
-			if 0 <= inventory_items.size() - 1:
-				redSelection.position = rs_top_pos
-				set_sprites_to_zero_frame()
-				currently_selected_option = e_drop_menu_options.UP_OPTION
-				nameLabel.text = inventory_items[0].item_name
-				typeLabel.text = inventory_items[0].get_item_type()
+			select_item(0, rs_top_pos, e_drop_menu_options.UP_OPTION)
 		elif event.is_action_pressed("ui_right"):
-			if 2 <= inventory_items.size() - 1:
-				redSelection.position = rs_right_pos
-				set_sprites_to_zero_frame()
-				currently_selected_option = e_drop_menu_options.RIGHT_OPTION
-				nameLabel.text = inventory_items[2].item_name
-				typeLabel.text = inventory_items[2].get_item_type()
+			select_item(2, rs_right_pos, e_drop_menu_options.RIGHT_OPTION)
 		elif event.is_action_pressed("ui_left"):
-			if 1 <= inventory_items.size() - 1:
-				redSelection.position = rs_left_pos
-				set_sprites_to_zero_frame()
-				currently_selected_option = e_drop_menu_options.LEFT_OPTION
-				nameLabel.text = inventory_items[1].item_name
-				typeLabel.text = inventory_items[1].get_item_type()
+			select_item(1, rs_left_pos, e_drop_menu_options.LEFT_OPTION)
 
-func set_sprites_to_zero_frame():
+
+func select_item(item_select_idx, rs_pos, drop_menu_option) -> void:
+	if item_select_idx <= inventory_items.size() - 1:
+		redSelection.position = rs_pos
+		set_sprites_to_zero_frame()
+		currently_selected_option = drop_menu_option
+		nameLabel.text = inventory_items[item_select_idx].item_name
+		typeLabel.text = inventory_items[item_select_idx].get_item_type()
+
+
+func set_sprites_to_zero_frame() -> void:
 	up_slot_spirte.frame = 0
 	down_slot_spirte.frame = 0
 	left_slot_spirte.frame = 0
