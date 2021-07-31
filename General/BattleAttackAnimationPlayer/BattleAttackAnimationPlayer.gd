@@ -405,7 +405,7 @@ func calculate_damage_step() -> void:
 		print_coins_and_items_receieved() # 0 coins and no items for now
 		# yield(get_tree().create_timer(1.5), "timeout")
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
@@ -421,7 +421,7 @@ func calculate_damage_step() -> void:
 	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	
-	yield(get_tree().create_timer(0.35), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	# return damage
 
 
@@ -526,14 +526,14 @@ func calculate_damage_step_enemey_attacking() -> void:
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 	print("Complete Damage Step")
-	emit_signal("signal_battle_complete_damage_step")
 	yield(get_tree().create_timer(0.5), "timeout")
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	emit_signal("signal_battle_complete_damage_step")
+	# yield(get_tree().create_timer(0.25), "timeout")
+	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	characterWrapper.show()
-	
+	#Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	# yield(get_tree().create_timer(0.65), "timeout")
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
-	
-	yield(get_tree().create_timer(0.35), "timeout")
 	
 	# return damage
 

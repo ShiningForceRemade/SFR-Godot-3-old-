@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Map_Sprites.png" type="Texture" id=2]
 [ext_resource path="res://SF1/Characters/Hans/Hans.gd" type="Script" id=3]
 [ext_resource path="res://SF1/Items/Weapons/WoodenArrow.tres" type="Resource" id=4]
-[ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=5]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture" id=6]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/BattleAnimations.tres" type="Resource" id=7]
 
@@ -129,8 +128,8 @@ script = ExtResource( 3 )
 [node name="CharacterRoot" parent="." instance=ExtResource( 1 )]
 character_name = "Hans"
 character_class = 7
-inventory_items_id = [ ExtResource( 4 ), ExtResource( 5 ) ]
-is_item_equipped = [ true, false ]
+inventory_items_id = [ ExtResource( 4 ) ]
+is_item_equipped = [ true ]
 texture_protrait = ExtResource( 6 )
 level = 1
 attack = 6

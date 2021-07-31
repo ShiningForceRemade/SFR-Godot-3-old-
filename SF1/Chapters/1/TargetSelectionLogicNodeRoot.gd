@@ -486,27 +486,33 @@ func enemey_actor_attack_setup():
 	#if using_spell:
 	#	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_spell_usage()
 	#else:
-	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_enemey_actor_attacking()
 	
+	Singleton_Game_AudioManager.stop_music_n()
+	
+	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_enemey_actor_attacking()
 	yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
 	
 	print("Complete")
 	
-	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
-	
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
-	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
 	Singleton_Game_GlobalBattleVariables.battle_base.landEffectPopupRoot.show()
 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	yield(get_tree().create_timer(0.45), "timeout")
+	
+	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	
+	# yield(get_tree().create_timer(0.5), "timeout")
+	
+	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 	
 	Singleton_Game_AudioManager.play_music_n("res://Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
 	
 	# target_range.cleanup_cursor()
 	Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
 	
-	
-	# yield(get_tree().create_timer(0.3), "timeout")
 
 
 func setup_use_range_and_target_range_selection_enemey_static() -> void:
