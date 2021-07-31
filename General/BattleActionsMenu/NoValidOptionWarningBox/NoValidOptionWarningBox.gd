@@ -9,6 +9,7 @@ var is_no_valid_option_active: bool = false
 
 var re_show_action_menu: bool = true
 
+
 func _ready():
 	pass
 
@@ -22,8 +23,10 @@ func _input(event):
 func set_text(text_arg: String) -> void:
 	textLabel.text = text_arg
 
+
 func set_paused_text() -> void:
 	set_text("PAUSED")
+
 
 func set_no_target_text() -> void:
 	set_text("No target.")
