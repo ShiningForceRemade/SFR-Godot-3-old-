@@ -170,7 +170,7 @@ func test_an():
 		reset_camera_for_map()
 
 
-func position_camera_for_battle_scene():
+func position_camera_for_battle_scene() -> void:
 	old_pos = position
 	old_zoom = zoom
 	zoom.x = 1
@@ -181,7 +181,7 @@ func position_camera_for_battle_scene():
 	battleAttackAnimationPlayer.show()
 
 
-func reset_camera_for_map():
+func reset_camera_for_map() -> void:
 	zoom = old_zoom
 	position = old_pos
 	camera_active_follow = true

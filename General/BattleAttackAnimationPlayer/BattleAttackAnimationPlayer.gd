@@ -39,9 +39,11 @@ onready var enemeySpriteTween = $EnemeyWrapper/EnemeySpriteTween
 
 onready var blackFadeTween = $CanvasLayer/BlackFadeTween
 
-const internal_animation_name: String = "A_long_random_string_is_this_even_needed"
-
 const ani_name_enemey_idle: String = "Enemey Idle"
+const ani_name_enemey_attack_normal: String = "Enemey Attack Normal"
+
+const ani_name_character_idle: String = "Character Idle"
+const ani_name_character_attack_normal: String = "Character Attack Normal"
 
 var using_spell: bool = false
 
@@ -57,19 +59,16 @@ func _ready():
 	Singleton_Game_GlobalBattleVariables.battle_scene_node = self
 	# char actor
 	# internal_init_resource_for_actor(characterSprite, character_actor_animation_res)
-	# char_animationPlayer.add_animation(internal_animation_name, character_actor_animation_res.animation_res)
-	# char_animationPlayer.play(internal_animation_name)
 	
 	# enemey actor
 	# internal_init_resource_for_actor(enemeySprite, enemey_actor_animation_res)
-	# enemey_animationPlayer.add_animation(internal_animation_name, enemey_actor_animation_res.animation_res)
-	# enemey_animationPlayer.play(internal_animation_name)
 	
 	# setup_character_and_enemey_sprites_idle()
 	# setup_actor_attacking()
 	
 	char_animationPlayer.connect("animation_finished", self, "s_cleanup_animation")
 	char_animationPlayer.remove_animation("AttackNormal")
+	char_animationPlayer.remove_animation("Idle")
 	
 	enemey_animationPlayer.connect("animation_finished", self, "s_cleanup_animation_enemy")
 	
@@ -88,7 +87,7 @@ func _ready():
 
 
 func setup_character_and_enemey_sprites_idle() -> void:
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 	
 	var anim_aup = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").battle_animation_unpromoted_resource
 	var attack_anim = anim_aup # load(anim_aup)
@@ -132,9 +131,13 @@ func setup_actor_attacking() -> void:
 	characterWrapper.show()
 	
 	setup_sprite_textures()
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	move_wrappers_into_position()
-	yield(get_tree().create_timer(0.45), "timeout")
+	
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	
+	yield(get_tree().create_timer(0.325), "timeout")
 	
 	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
@@ -176,15 +179,18 @@ func setup_enemey_actor_attacking() -> void:
 	
 	setup_sprite_textures_enemey_attack()
 	# setup_sprite_textures()
+	move_wrappers_into_position()
+	
+	yield(get_tree().create_timer(0.1), "timeout")
+	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	
+	yield(get_tree().create_timer(0.325), "timeout")
 	
 	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
-	move_wrappers_into_position()
-	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	
-	yield(get_tree().create_timer(0.45), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
@@ -228,53 +234,32 @@ func setup_spell_usage() -> void:
 
 
 func s_cleanup_animation(animation_name_arg) -> void:
-	# print("Animation Name - ", animation_name_arg)
-	
+	print("Animation Name - ", animation_name_arg)
 	yield(self, "signal_battle_complete_damage_step")
 	
-	char_animationPlayer.remove_animation(internal_animation_name)
+	char_animationPlayer.remove_animation(ani_name_character_attack_normal)
+	# char_animationPlayer.remove_animation(ani_name_character_idle)
 	
-	# yield(get_tree().create_timer(1), "timeout")
+	cleanup_battle_scene_completed()
+
+
+func s_cleanup_animation_enemy(animation_name_arg) -> void:
+	print("Animation Name - ", animation_name_arg)
+	yield(self, "signal_battle_complete_damage_step")
 	
+	# char_animationPlayer.remove_animation(ani_name_character_attack_normal)
+	# char_animationPlayer.remove_animation(ani_name_character_idle)
 	
-	
-	# print_damage_done_to(damage)
-	
-	# black_fade_anim_out()
-	# yield(get_tree().create_timer(0.5), "timeout")
-	# black_fade_anim_out()
+	cleanup_battle_scene_completed()
+
+
+func cleanup_battle_scene_completed() -> void:
 	print("Complete Battle Scene")
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
-	# Singleton_Game_AudioManager.pause_all_music()
-	
-	Singleton_Game_AudioManager.stop_alt_music_n()
-	
-	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()	
-	emit_signal("signal_battle_scene_complete")
-	
-
-
-
-func s_cleanup_animation_enemy(animation_name_arg) -> void:
-	# print("Animation Name - ", animation_name_arg)
-	
-	yield(self, "signal_battle_complete_damage_step")
-	
-	char_animationPlayer.remove_animation(internal_animation_name)
-	
-	# black_fade_anim_out()
-	# yield(get_tree().create_timer(0.5), "timeout")
-	# yield(get_tree().create_timer(1), "timeout")
-	# black_fade_anim_out()
-	print("Complete Battle Scene")
-	
-	internal_reset_all_actor_sprites_back_to_default_position()
-	
-	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
-	# Singleton_Game_AudioManager.pause_all_music()
+	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
 	# Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
 	
@@ -282,7 +267,6 @@ func s_cleanup_animation_enemy(animation_name_arg) -> void:
 	
 	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
 	emit_signal("signal_battle_scene_complete")
-	
 
 
 func s_update_ui_and_animate_damage_phase() -> void:
@@ -384,8 +368,8 @@ func calculate_damage_step() -> void:
 		print_enemey_actor_evaded()
 	
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
-		char_animationPlayer.play("Character Idle")
+		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play(ani_name_character_idle)
 		
 	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
@@ -516,8 +500,8 @@ func calculate_damage_step_enemey_attacking() -> void:
 		yield(get_tree().create_timer(1), "timeout")
 		characterWrapper.hide()
 	elif characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
-		char_animationPlayer.play("Character Idle")
+		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play(ani_name_character_idle)
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
@@ -622,12 +606,12 @@ func setup_sprite_textures() -> void:
 	
 	internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
-		char_animationPlayer.play("Character Idle")
+		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play(ani_name_character_idle)
 	else:
-		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
 		# seek first frame of attack to prevent odd positioning of other sprites
-		char_animationPlayer.play("Character Idle")
+		char_animationPlayer.play(ani_name_character_idle)
 		char_animationPlayer.seek(0.1, true)
 		char_animationPlayer.stop()
 	
@@ -663,12 +647,12 @@ func setup_sprite_textures_enemey_attack() -> void:
 	
 	internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
-		char_animationPlayer.play("Character Idle")
+		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.play(ani_name_character_idle)
 	else:
-		char_animationPlayer.add_animation("Character Idle", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
 		# seek first frame of attack to prevent odd positioning of other sprites
-		char_animationPlayer.play("Character Idle")
+		char_animationPlayer.play(ani_name_character_idle)
 		char_animationPlayer.seek(0.1, true)
 		char_animationPlayer.stop()
 	
@@ -687,8 +671,8 @@ func setup_attacking_animation() -> void:
 	
 	# internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_attack != null:
-		char_animationPlayer.add_animation("Character Attack", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
-		char_animationPlayer.play("Character Attack")
+		char_animationPlayer.add_animation(ani_name_character_attack_normal, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		char_animationPlayer.play(ani_name_character_attack_normal)
 	else:
 		char_animationPlayer.stop()
 	
@@ -714,8 +698,8 @@ func setup_spell_animation() -> void:
 	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.hframes = sar.hframes
 	$CanvasLayerSpellWrapper/SpellWrapper.show()
 	
-	char_animationPlayer.add_animation("Character Attack", characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
-	char_animationPlayer.play("Character Attack")
+	char_animationPlayer.add_animation(ani_name_character_attack_normal, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+	char_animationPlayer.play(ani_name_character_attack_normal)
 	
 	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.add_animation("Character Spell", sar.animation_res)
 	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.play("Character Spell")
@@ -898,15 +882,15 @@ func move_wrappers_into_position() -> void:
 
 func setup_background_wrapper_tween() -> void:
 	backgroundTween.interpolate_property(backgroundWrapper, "position",
-	Vector2(40, 0), Vector2(0, 0), 0.625, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	Vector2(40, 0), Vector2(0, 0), 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 func setup_character_wrapper_tween() -> void:
 	characterWrapperTween.interpolate_property(characterWrapper, "position",
-	Vector2(60, 0), Vector2(0, 0), 0.625, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	Vector2(60, 0), Vector2(0, 0), 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 func setup_enemey_wrapper_tween() -> void:
 	enemeyWrapperTween.interpolate_property(enemeyWrapper, "position",
-	Vector2(-40, 0), Vector2(0, 0), 0.625, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	Vector2(-40, 0), Vector2(0, 0), 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 
 func play_spell_cast_sound_effect() -> void:
@@ -1052,7 +1036,6 @@ func internal_signal_switch_back_to_active_actor() -> void:
 		
 	print("Complete Heal Step")
 	
-	char_animationPlayer.remove_animation(internal_animation_name)
 	$CharacterTargetWrapper/AnimationPlayer.remove_animation("Target Idle")
 	
 	yield(get_tree().create_timer(1.5), "timeout")

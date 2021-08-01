@@ -89,11 +89,11 @@ func _input(event):
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			
 			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
-			yield(get_tree().create_timer(0.35), "timeout")
+			yield(get_tree().create_timer(0.325), "timeout")
+			Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
 			
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 			
-			Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
 			# Singleton_Game_GlobalBattleVariables
 			
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_land_effect()
@@ -468,6 +468,8 @@ func enemey_actor_attack_setup():
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	yield(get_tree().create_timer(0.325), "timeout")
 	
 	Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
 	
@@ -498,6 +500,7 @@ func enemey_actor_attack_setup():
 	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
 	Singleton_Game_GlobalBattleVariables.battle_base.landEffectPopupRoot.show()
 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
+	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	yield(get_tree().create_timer(0.45), "timeout")
@@ -505,8 +508,6 @@ func enemey_actor_attack_setup():
 	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	
 	# yield(get_tree().create_timer(0.5), "timeout")
-	
-	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 	
 	Singleton_Game_AudioManager.play_music_n("res://Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
 	
