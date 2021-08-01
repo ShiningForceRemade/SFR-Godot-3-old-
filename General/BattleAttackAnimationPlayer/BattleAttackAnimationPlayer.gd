@@ -363,6 +363,9 @@ func calculate_damage_step() -> void:
 	# print("\n\n\n", enemeySprite.material.get_shader_param("color_blend_target"))
 	
 	if not attack_missed:
+		if using_spell:
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+		
 		enemeySprite.material.shader = shader_color_blend
 		enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
 	
@@ -914,7 +917,7 @@ func internal_signal_attack_frame_reached() -> void:
 	print("\n\n\n Signal Reached - signal_attack_frame_reached\n\n\n")
 	
 	if using_spell:
-		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
+		# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 	#	Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
 		char_animationPlayer.stop(false)
 	else:
