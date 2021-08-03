@@ -117,7 +117,7 @@ func astar_connect_walkable_cells(target_node_arg):
 	var temp_point_index
 	
 	var actor_movement = pself.get_character_movement()
-	map_size = Vector2(actor_movement * 2, actor_movement * 2)
+	map_size = Vector2(actor_movement * 2 + 1, actor_movement * 2 + 1)
 	
 	for v in mpr:
 		temp_point_index = calculate_point_index(v)
