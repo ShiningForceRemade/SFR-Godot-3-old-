@@ -108,6 +108,7 @@ func generate_and_launch_new_turn_order():
 	for a in turn_order_array:
 		print("\n", a)
 		
+		astar_node.clear()
 					
 		if a.alive == false:
 			print("Dead Shouldn't be in tree")
@@ -414,7 +415,7 @@ func generate_movement_array_representation():
 	
 	var mid_point = movement - 1
 	
-	print(vpos)
+	# print(vpos)
 	# TOP LEFT QUADRANT
 	for row in range(1, movement):
 		for col in range(movement):
@@ -435,7 +436,7 @@ func generate_movement_array_representation():
 					move_array[row][col] = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
-					print("VPOS - ", (vpos.x - movement) + col, " ", (vpos.y - movement) + row)
+					# print("VPOS - ", (vpos.x - movement) + col, " ", (vpos.y - movement) + row)
 	
 	# TOP RIGHT QUADRANT
 	for row in range(1, movement):
@@ -457,7 +458,7 @@ func generate_movement_array_representation():
 					move_array[row][col + movement + 1] = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
-					print("VPOS - ", Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
+					# print("VPOS - ", Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
 	
 	# BOTTOM LEFT QUADRANT
 	for row in range(movement - 1):
@@ -480,7 +481,7 @@ func generate_movement_array_representation():
 					move_array[row + movement + 1][col] = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, vpos.y + row + 1))
-					print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y + row + 1))
+					# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y + row + 1))
 	
 	
 	# BOTTOM RIGHT QUADRANT
@@ -505,7 +506,7 @@ func generate_movement_array_representation():
 					move_array[row + movement + 1][col + movement + 1] = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, vpos.y + row + 1))
-					print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y + row + 1))
+					# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y + row + 1))
 	
 	# Straight Across Left Side
 	for col in range(movement):
@@ -520,7 +521,7 @@ func generate_movement_array_representation():
 				move_array[movement][col] = 2 # enemey
 			else:
 				point_array.append(Vector2((vpos.x - movement) + col, vpos.y))
-				print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y))
+				# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y))
 	
 	# Straight Across Right Side
 	for col in range(movement):
@@ -535,7 +536,7 @@ func generate_movement_array_representation():
 				move_array[movement][col + movement + 1] = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x + col + 1, vpos.y))
-				print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y))
+				# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y))
 	
 	# Straight Down Top Portion
 	for row in range(movement):
@@ -550,7 +551,7 @@ func generate_movement_array_representation():
 				move_array[row][movement] = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y - (movement - row)))
-				print("VPOS - ", Vector2(vpos.x, vpos.y - (movement - row)))
+				# print("VPOS - ", Vector2(vpos.x, vpos.y - (movement - row)))
 	
 	# Straight Down Bottom Portion
 	for row in range(movement):
@@ -565,40 +566,43 @@ func generate_movement_array_representation():
 				move_array[row + movement + 1][movement] = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y + (row + 1)))
-				print("VPOS - ", Vector2(vpos.x, vpos.y + (row + 1)))
+				# print("VPOS - ", Vector2(vpos.x, vpos.y + (row + 1)))
 	
 	# Center Self Tile
 	move_array[movement][movement] = 1
 	point_array.append(vpos)
 	
-	print(vpos)
+	# print(vpos)
 	# print(move_array)
-	print("Move Array")
+	# print("Move Array")
 	#for i in move_array:
 	#	print(i)
 	
 	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
-	var copy = move_array.duplicate(true)
+#	var copy = move_array.duplicate(true)
 	Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation = move_array
+#
+#	for i in range(copy.size()):
+#		for j in range(copy[i].size()):
+#			if copy[i][j] == 1:
+#				copy[i][j] = "___1"
+#			elif copy[i][j] == 2:
+#				copy[i][j] = "ENEM"
+#			elif copy[i][j] == null:
+#				copy[i][j] = "____"
+#	copy[movement][movement] = "SELF"
+#	for a in copy:
+#		print(a)
+#	print("End")
 	
-	for i in range(copy.size()):
-		for j in range(copy[i].size()):
-			if copy[i][j] == 1:
-				copy[i][j] = "___1"
-			elif copy[i][j] == 2:
-				copy[i][j] = "ENEM"
-			elif copy[i][j] == null:
-				copy[i][j] = "____"
-	copy[movement][movement] = "SELF"
-	for a in copy:
-		print(a)
-	print("End")
-	
-	print(point_array)
+	# print(point_array)
 	Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation = point_array
 	# generate_point_array_for_a_start()
 	
 	print("Genereate End\n\n\n")
+	
+	astar_connect_walkable_cells()
+	
 	return # move_array
 
 func generate_point_array_for_a_start(): 
@@ -615,6 +619,158 @@ func generate_point_array_for_a_start():
 	print(point_array)
 	
 	pass
+
+
+
+onready var astar_node = AStar.new()
+var map_size
+
+#func astar_connect_walkable_cells() -> void:
+#	# astar_node = AStar.new()
+#	var _point_path = []
+#
+#	var mpr = Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation
+#	var temp_point_index
+#
+#	var actor_movement = mc.get_character_movement()
+#	map_size = Vector2(actor_movement * 2, actor_movement * 2)
+#
+#	for v in mpr:
+#		temp_point_index = calculate_point_index(v)
+#		astar_node.add_point(temp_point_index, Vector3(v.x, v.y, 0))
+#
+#	for point in mpr:
+#		var point_index = calculate_point_index(point)
+#
+#		var points_relative = PoolVector2Array([
+#			Vector2(point.x + 1, point.y),
+#			Vector2(point.x - 1, point.y),
+#			Vector2(point.x, point.y + 1),
+#			Vector2(point.x, point.y - 1)])
+#		for point_relative in points_relative:
+#			var point_relative_index = calculate_point_index(point_relative)
+#
+#			if is_outside_map_bounds(point_relative):
+#				continue
+#			if not astar_node.has_point(point_relative_index):
+#				continue
+#
+#			astar_node.connect_points(point_index, point_relative_index, false)
+#
+#	var path_start_position = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(mc.position)
+#
+#	for p in astar_node.get_points():
+#		print(p)
+#
+#	# Start self tile from active actor movement grid
+#	var start_point_index = calculate_point_index(path_start_position)
+#
+#	var end_point_index
+#
+#	for tpv in mpr:
+#		var path_end_position = Vector2(tpv.x * 24 + 13, tpv.y * 24 + 12)# Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(target_node_arg.position)
+#
+#		# Target Actor Tile Above
+#		end_point_index = calculate_point_index(Vector2(path_end_position.x, path_end_position.y - 1))
+#		_point_path = astar_node.get_point_path(start_point_index, end_point_index) # astar_node.get_point_path(start_point_index, end_point_index)
+#		if _point_path.size() != 0:
+#			print("Valid ", path_start_position, " ", path_end_position)
+#
+#	pass
+
+# Rename Function
+# Checks array representation paths, unreachable tiles are marked as null and not drawn as a result
+func astar_connect_walkable_cells() -> void:
+	# astar_node = AStar.new()
+	var _point_path = []
+	
+	var mar = Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation
+	var temp_point_index
+	
+	var actor_movement = mc.get_character_movement()
+	map_size = Vector2(actor_movement * 2 + 1, actor_movement * 2 + 1)
+	
+	for row in range(mar.size()):
+		for col in range(mar[0].size()):
+			if mar[row][col] == 1:
+				temp_point_index = calculate_point_index(Vector2(row, col))
+				astar_node.add_point(temp_point_index, Vector3(row, col, 0))
+	
+	for row in range(mar.size()):
+		for col in range(mar[0].size()):
+			if mar[row][col] == 1:
+				var point_index = calculate_point_index(Vector2(row, col))
+
+				var points_relative = PoolVector2Array([
+					Vector2(row + 1, col),
+					Vector2(row - 1, col),
+					Vector2(row, col + 1),
+					Vector2(row, col - 1)])
+				for point_relative in points_relative:
+					var point_relative_index = calculate_point_index(point_relative)
+
+					if is_outside_map_bounds(point_relative):
+						continue
+					if not astar_node.has_point(point_relative_index):
+						continue
+			
+					astar_node.connect_points(point_index, point_relative_index, false)
+	
+	var path_start_position = Vector2(actor_movement, actor_movement) # Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(mc.position)
+	
+	# for p in astar_node.get_points():
+	#	print(p)
+	
+	# Start self tile from active actor movement grid
+	var start_point_index = calculate_point_index(path_start_position)
+	
+	var end_point_index
+	
+	for row in range(mar.size()):
+		for col in range(mar[0].size()):
+			if mar[row][col] == 1:
+				end_point_index = calculate_point_index(Vector2(row, col))
+				_point_path = astar_node.get_point_path(start_point_index, end_point_index) # astar_node.get_point_path(start_point_index, end_point_index)
+				if _point_path.size() != 0:
+					# print("Valid - ", Vector2(row, col))
+					pass
+				else:
+					#print("Invalid - ", Vector2(row, col))
+					mar[row][col] = null
+	
+#	print("New Move Array")
+#	for a in mar:
+#		print(a)
+# For debugging
+#	var copy = mar.duplicate(true)
+#	for i in range(copy.size()):
+#		for j in range(copy[i].size()):
+#			if copy[i][j] == 1:
+#				copy[i][j] = "___1"
+#			elif copy[i][j] == 2:
+#				copy[i][j] = "ENEM"
+#			elif copy[i][j] == null:
+#				copy[i][j] = "____"
+#	copy[actor_movement][actor_movement] = "SELF"
+#	for a in copy:
+#		print(a)
+#	print("End")
+
+	Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation = mar
+	pass
+
+func is_outside_map_bounds(point) -> bool:
+	return point.x < 0 or point.y < 0 or point.x >= map_size.x or point.y >= map_size.y
+
+
+func calculate_point_index(point) -> int:
+	return point.x + map_size.x * point.y
+
+
+
+
+
+
 
 func draw_movement_tiles_from_movement_array() -> void:
 	var move_array = Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation
@@ -819,7 +975,7 @@ func generate_enemey_movement_array_representation():
 					move_array[row][col] = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
-					print("VPOS - ", Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
+					# print("VPOS - ", Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
 	
 	# TOP RIGHT QUADRANT
 	for row in range(1, movement):
@@ -841,7 +997,7 @@ func generate_enemey_movement_array_representation():
 					move_array[row][col + movement + 1] = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
-					print("VPOS - ", Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
+					# print("VPOS - ", Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
 	
 	# BOTTOM LEFT QUADRANT
 	for row in range(movement - 1):
@@ -864,7 +1020,7 @@ func generate_enemey_movement_array_representation():
 					move_array[row + movement + 1][col] = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, vpos.y + row + 1))
-					print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y + row + 1))
+					# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y + row + 1))
 	
 	
 	# BOTTOM RIGHT QUADRANT
@@ -889,7 +1045,7 @@ func generate_enemey_movement_array_representation():
 					move_array[row + movement + 1][col + movement + 1] = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, vpos.y + row + 1))
-					print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y + row + 1))
+					# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y + row + 1))
 	
 	# Straight Across Left Side
 	for col in range(movement):
@@ -904,7 +1060,7 @@ func generate_enemey_movement_array_representation():
 				move_array[movement][col] = 2 # enemey
 			else:
 				point_array.append(Vector2((vpos.x - movement) + col, vpos.y))
-				print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y))
+				# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y))
 	
 	# Straight Across Right Side
 	for col in range(movement):
@@ -919,7 +1075,7 @@ func generate_enemey_movement_array_representation():
 				move_array[movement][col + movement + 1] = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x + col + 1, vpos.y))
-				print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y))
+				# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y))
 	
 	# Straight Down Top Portion
 	for row in range(movement):
@@ -934,7 +1090,7 @@ func generate_enemey_movement_array_representation():
 				move_array[row][movement] = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y - (movement - row)))
-				print("VPOS - ", Vector2(vpos.x, vpos.y - (movement - row)))
+				# print("VPOS - ", Vector2(vpos.x, vpos.y - (movement - row)))
 	
 	# Straight Down Bottom Portion
 	for row in range(movement):
@@ -949,39 +1105,42 @@ func generate_enemey_movement_array_representation():
 				move_array[row + movement + 1][movement] = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y + (row + 1)))
-				print("VPOS - ", Vector2(vpos.x, vpos.y + (row + 1)))
+				# print("VPOS - ", Vector2(vpos.x, vpos.y + (row + 1)))
 	
 	# Center Self Tile
 	move_array[movement][movement] = 1
 	point_array.append(vpos)
 	
-	print(vpos)
+	# print(vpos)
 	# print(move_array)
-	print("Move Array")
+	# print("Move Array")
 	#for i in move_array:
 	#	print(i)
 	
 	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
-	var copy = move_array.duplicate(true)
+#	var copy = move_array.duplicate(true)
 	Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation = move_array
+# For debugging	
+#	for i in range(copy.size()):
+#		for j in range(copy[i].size()):
+#			if copy[i][j] == 1:
+#				copy[i][j] = "___1"
+#			elif copy[i][j] == 2:
+#				copy[i][j] = "ENEM"
+#			elif copy[i][j] == null:
+#				copy[i][j] = "____"
+#	copy[movement][movement] = "SELF"
+#	for a in copy:
+#		print(a)
+#	print("End")
 	
-	for i in range(copy.size()):
-		for j in range(copy[i].size()):
-			if copy[i][j] == 1:
-				copy[i][j] = "___1"
-			elif copy[i][j] == 2:
-				copy[i][j] = "ENEM"
-			elif copy[i][j] == null:
-				copy[i][j] = "____"
-	copy[movement][movement] = "SELF"
-	for a in copy:
-		print(a)
-	print("End")
-	
-	print(point_array)
+	# print(point_array)
 	Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation = point_array
 	
 	print("Genereate End\n\n\n")
+	
+	astar_connect_walkable_cells()
+	
 	return # move_array
 
 
