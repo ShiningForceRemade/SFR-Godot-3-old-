@@ -18,6 +18,7 @@ var queue_alt_music_p = []  # The queue of sounds to play.
 var available_sound_effects_p = []  # The available players.
 var queue_sound_effects_p = []  # The queue of sounds to play.
 
+
 func _ready():
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index(bus_soundeffects), true)
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index(bus_music), true)
@@ -44,6 +45,7 @@ func _ready():
 		p.connect("finished", self, "_soundeffect_on_stream_finished", [p])
 		p.bus = bus_soundeffects
 
+
 func _music_on_stream_finished(stream) -> void:
 	available_music_p.append(stream)
 	# stream.stop()
@@ -52,42 +54,82 @@ func _music_on_stream_finished(stream) -> void:
 func _soundeffect_on_stream_finished(stream) -> void:
 	available_sound_effects_p.append(stream)
 
+
 func play_music(sound_path) -> void:
 	queue_music_p.append(sound_path)
+
 
 func pause_all_music() -> void:
 	#f not queue_music_p.empty() and not available_music_p.empty():
 	for a_m_p in available_music_p:
 		a_m_p.stop()
 
+
 func play_music_n(sound_path) -> void:
-	available_music_p[0].stream = load(sound_path)
-	available_music_p[0].play()
+	# NOTE: Probably good idea to use runtime format always to avoid discrepencies between development and release builds
+	# if Singleton_Dev_Internal.is_debug_build:
+	#	# available_alt_music_p[0].stream = load(sound_path)
+	var r_stream = get_runtime_audio_file_data_for_stream(sound_path)
+	if r_stream != null:
+		available_music_p[0].stream = r_stream
+		available_music_p[0].play()
+
 
 func stop_music_n() -> void:
 	available_music_p[0].stop()
 
+
 func play_alt_music_n(sound_path) -> void:
-	available_alt_music_p[0].stream = load(sound_path)
-	available_alt_music_p[0].play()
+	# NOTE: Probably good idea to use runtime format always to avoid discrepencies between development and release builds
+	# if Singleton_Dev_Internal.is_debug_build:
+	#	# available_alt_music_p[0].stream = load(sound_path)
+	var r_stream = get_runtime_audio_file_data_for_stream(sound_path)
+	if r_stream != null:
+		available_alt_music_p[0].stream = r_stream
+		available_alt_music_p[0].play()
 
 func stop_alt_music_n() -> void:
 	available_alt_music_p[0].stop()
 
 
+func get_runtime_audio_file_data_for_stream(audio_file):
+	var file = File.new()
+	if file.file_exists(audio_file):
+		var stream
+		file.open(audio_file, file.READ)
+		var buffer = file.get_buffer(file.get_len())
+		stream = AudioStreamMP3.new()
+		
+		# IMPORTANT: NOTE:
+		# Wav file support needs to be tested if wav files are ever loaded dynamically at runtime
+		# stream = AudioStreamSample.new()
+		# stream.format = AudioStreamSample.FORMAT_16_BITS
+		# stream.stereo = true
+		
+		stream.data = buffer
+		file.close()
+		return stream
+	else:
+		return null
+
+
+# When sfx files are fixed and post processed probably should use dynamic import as well
 func play_sfx(sound_path) -> void:
 	queue_sound_effects_p.append(sound_path)
+
 
 func pause_all_sfx() -> void:
 	if not queue_sound_effects_p.empty() and not available_sound_effects_p.empty():
 		for a_s_e_p in available_sound_effects_p:
 			a_s_e_p.stop()
 
+
 func play(type, sound_path) -> void:
 	if type == "music":
 		queue_music_p.append(sound_path)
 	elif type == "fx":
 		queue_sound_effects_p.append(sound_path)
+
 
 func _process(_delta):
 	# Play a queued sound if any players are available.

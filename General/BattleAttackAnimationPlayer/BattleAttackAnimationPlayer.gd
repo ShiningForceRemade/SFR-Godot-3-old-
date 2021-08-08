@@ -139,7 +139,7 @@ func setup_actor_attacking() -> void:
 	
 	yield(get_tree().create_timer(0.325), "timeout")
 	
-	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
@@ -187,7 +187,7 @@ func setup_enemey_actor_attacking() -> void:
 	
 	yield(get_tree().create_timer(0.325), "timeout")
 	
-	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	yield(get_tree().create_timer(1), "timeout")
@@ -217,7 +217,7 @@ func setup_spell_usage() -> void:
 	
 	setup_sprite_textures()
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
-	Singleton_Game_AudioManager.play_alt_music_n("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
+	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	move_wrappers_into_position()
 	

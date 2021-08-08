@@ -92,6 +92,7 @@ config/Version="0.0.1"
 
 [autoload]
 
+Singleton_Dev_Internal="*res://General/Singletons/Globals/GlobalDevInternal.gd"
 Singleton_Dev_DevMenu="*res://General/Singletons/DevMenu/DevMenu.tscn"
 Singleton_Game_AudioManager="*res://General/Singletons/AudioManager/AudioManager.gd"
 Singleton_Game_GlobalBattleVariables="*res://General/Singletons/Globals/GlobalBattleVariables.gd"

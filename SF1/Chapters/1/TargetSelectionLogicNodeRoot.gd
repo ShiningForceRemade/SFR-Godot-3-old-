@@ -121,7 +121,7 @@ func _input(event):
 			target_range.cleanup_cursor()
 			Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
 			
-			Singleton_Game_AudioManager.play_music_n("res://Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
+			Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
 			
 			# Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 		

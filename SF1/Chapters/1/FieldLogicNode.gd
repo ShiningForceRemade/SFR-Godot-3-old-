@@ -284,7 +284,7 @@ func find_actor_by_node_name(node_namr_arg: String, actor_wrapper_node_to_check)
 func print_defeat_max_was_killed() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
 	
-	Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Max Died.mp3")
+	Singleton_Game_AudioManager.play_music(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Max Died.mp3")
 	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.play_message(
 		"Max was defeated, the shining force loses the battle to Runefaust. Restart the app to try again."
@@ -295,7 +295,7 @@ func print_defeat_max_was_killed() -> void:
 func print_victory_defeated_rune_knight() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
 	
-	Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Jingle - Comrades 1 (Happily).mp3")
+	Singleton_Game_AudioManager.play_music(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Jingle - Comrades 1 (Happily).mp3")
 	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.play_message(
 		"You've defeated the forces of Runefaust. Restart the game to play again (try to break it and find bugs!)"
