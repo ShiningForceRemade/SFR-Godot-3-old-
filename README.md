@@ -10,5 +10,8 @@ Godot version - 3.3.2
 git clone --recursive https://github.com/ShiningForceRemade/SFR-Godot
 ```
 
-### Credits
+## In Game Information and Docs
+[Controls](https://github.com/ShiningForceRemade/SFR-Godot/blob/main/Controls.md)
+
+## Credits
 [Credits.md](https://github.com/ShiningForceRemade/SFR-Godot/blob/main/Credits.md)
