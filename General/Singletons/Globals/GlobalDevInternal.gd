@@ -13,6 +13,7 @@ func _ready():
 	
 	# base_path = OS.get_executable_path().get_base_dir() + "/"
 	# base_path = "res://"
+	
 	print("Is debug build - ", is_debug_build)
 	print("BasePath - ", base_path)
 	

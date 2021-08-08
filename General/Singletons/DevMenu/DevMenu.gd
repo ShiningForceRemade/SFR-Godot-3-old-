@@ -36,8 +36,14 @@ func _input(event):
 		
 		img.flip_y()
 		
+		var d = Directory.new()
+		if !(d.dir_exists(Singleton_Dev_Internal.base_path + "Screenshots")):
+			print("Screenshots folder doesnt exist, attempt to create it.")
+			d.open(Singleton_Dev_Internal.base_path)
+			d.make_dir(Singleton_Dev_Internal.base_path + "Screenshots")
+			
 		# var save_path = "res://Screenshots/" + time_string + ".png"
-		var save_path = "user://" + time_string + ".png"
+		var save_path = Singleton_Dev_Internal.base_path + "Screenshots/" + time_string + ".png"
 		
 		img.save_png(str(save_path))
 		
