@@ -206,6 +206,8 @@ func setup_enemey_actor_attacking() -> void:
 func setup_spell_usage() -> void:
 	using_spell = true
 	
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.remove_animation("Character Spell")
+	
 	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.position = Vector2(-180, -180)
 	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = true
@@ -1006,6 +1008,8 @@ func internal_signal_print_recover_amount() -> void:
 	
 	# active_actor.HP_Current
 	# active_actor.HP_Total
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(

@@ -15,6 +15,8 @@ var target_range
 
 var item_use_range
 
+var spell_name_selected: String
+
 # var spell_use_range
 
 var using_spell: bool = false
@@ -98,6 +100,8 @@ func _input(event):
 			
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_land_effect()
 			Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro_in_battle()
+			if spell_name_selected == "Heal":
+				Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
 			
 			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
 			
@@ -143,6 +147,8 @@ func _input(event):
 		
 
 func setup_use_range_and_target_range_selection(item_arg) -> void:
+	spell_name_selected = ""
+	
 	using_spell = false
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
 	
@@ -229,11 +235,14 @@ func setup_use_range_and_target_range_selection(item_arg) -> void:
 
 
 func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
+	spell_name_selected = spell_arg.name
+	
 	if spell_arg.name == "Egress":
 		yield(get_tree().create_timer(0.02), "timeout")
 		emit_signal("signal_completed_magic_level_selection_action")
 		return
 #	if spell_arg.name == "Heal":
+#		Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
 #		yield(get_tree().create_timer(0.02), "timeout")
 #		emit_signal("signal_completed_magic_level_selection_action")
 #		return
