@@ -206,6 +206,8 @@ func setup_enemey_actor_attacking() -> void:
 func setup_spell_usage() -> void:
 	using_spell = true
 	
+	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.position = Vector2(-180, -180)
+	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = true
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
@@ -216,13 +218,18 @@ func setup_spell_usage() -> void:
 	characterWrapper.show()
 	
 	setup_sprite_textures()
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
-	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
-	
 	move_wrappers_into_position()
 	
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	
+	yield(get_tree().create_timer(0.325), "timeout")
+	
+	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
+	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	yield(get_tree().create_timer(0.45), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	# load text box saying x is attacking or doing y to z
 	# print_who_is_attacking()
 	
@@ -388,7 +395,7 @@ func calculate_damage_step() -> void:
 	yield(self, "signal_exp_phase_is_over")
 	
 	if enemeyRoot.HP_Current == 0:
-		yield(get_tree().create_timer(1), "timeout")
+		yield(get_tree().create_timer(0.5), "timeout")
 		print_coins_and_items_receieved() # 0 coins and no items for now
 		# yield(get_tree().create_timer(1.5), "timeout")
 	
@@ -948,7 +955,7 @@ func internal_signal_spell_completed() -> void:
 	
 
 func internal_signal_switch_to_next_character_actor() -> void:
-	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.playback_speed = 1.5
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.playback_speed = 2
 	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
 	
 	characterWrapperTween.interpolate_property(characterWrapper, "position", 
@@ -967,11 +974,14 @@ func internal_signal_switch_to_next_character_actor() -> void:
 	$CharacterTargetWrapper.position, Vector2($CharacterTargetWrapper.position.x - 160, $CharacterTargetWrapper.position.y), 0.3, Tween.TRANS_LINEAR)
 	$CharacterTargetTween.start()
 	
+	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
+	
 	print("Switching to next cahracter Actor")
 	
 
 func internal_signal_print_recover_amount() -> void:
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HealSound.wav")
 	
 	heal_amount = 10
 	
@@ -981,8 +991,6 @@ func internal_signal_print_recover_amount() -> void:
 		heal_amount = 10
 		
 	active_actor.HP_Current += heal_amount
-	
-	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 	
 	# active_actor.HP_Current
 	# active_actor.HP_Total
@@ -998,8 +1006,13 @@ func internal_signal_print_recover_amount() -> void:
 	print("Print Recover amount")
 
 func internal_signal_switch_back_to_active_actor() -> void:
+	# Add a bit more time to the currently heald character before swapping back
+	yield(get_tree().create_timer(0.325), "timeout")
+	
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	
+	char_animationPlayer.play(ani_name_character_idle)
 	
 	characterWrapperTween.interpolate_property(characterWrapper, "position", 
 	characterWrapper.position, Vector2(characterWrapper.position.x - 160, characterWrapper.position.y), 0.3, Tween.TRANS_LINEAR)
@@ -1008,6 +1021,8 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	$CharacterTargetTween.interpolate_property($CharacterTargetWrapper, "position", 
 	$CharacterTargetWrapper.position, Vector2($CharacterTargetWrapper.position.x + 160, $CharacterTargetWrapper.position.y), 0.3, Tween.TRANS_LINEAR)
 	$CharacterTargetTween.start()
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
 	
 	print("Go back to lowe")
 	
@@ -1024,7 +1039,6 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
 	
 	active_actor.MP_Current -= active_actor.spells_id[0].levels[0].mp_usage_cost
-	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
 	
 	active_actor.experience_points += exp_gain
 	if active_actor.experience_points >= 100:
@@ -1039,13 +1053,27 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	$CharacterTargetWrapper/AnimationPlayer.remove_animation("Target Idle")
 	
 	yield(get_tree().create_timer(1.5), "timeout")
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
-	print("Complete Battle Scene")
-	
-	internal_reset_all_actor_sprites_back_to_default_position()
-	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
 	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.playback_speed = 1
 	
+	# let the fairy fly off 
+	# TODO: redo the structure for the heal animation
+	# having different timings for the animation calls vs the function yields causes too many time differences
+	# when doing multi target selection (for blaze 2) refine these along with that development
+	yield(get_tree().create_timer(0.75), "timeout")
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	yield(get_tree().create_timer(0.5), "timeout")
+	print("Complete Battle Scene")
+	internal_reset_all_actor_sprites_back_to_default_position()
 	emit_signal("signal_battle_scene_complete")
+	Singleton_Game_AudioManager.stop_alt_music_n()
+	
+	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	
+	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
+	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle 1 (Standard).mp3")

@@ -38,6 +38,8 @@ var is_select_magic_level_active: bool = false
 var is_target_selection_active: bool = false
 var target_node_children
 
+onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+
 var spell_idx: int = 0
 # var spell_level_idx
 
@@ -127,16 +129,23 @@ func _input(event):
 			print("Selected Magic Level - ", currently_selected_option)
 			
 			yield(get_tree().create_timer(0.001), "timeout")
-
+			
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
 			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 			
+			if Singleton_Game_GlobalBattleVariables.currently_active_character.cget_mp_current() < actor.spells_id[currently_selected_option].levels[0].mp_usage_cost:
+				noValidOptionNode.set_no_cant_use_text()
+				noValidOptionNode.position = Vector2(165, 100)
+				noValidOptionNode.start_self_clear_timer()
+				noValidOptionNode.re_show_action_menu = false
+				return
+			
 			if actor.spells_id[currently_selected_option].name == "Egress":
 				return
-			if actor.spells_id[currently_selected_option].name == "Heal":
-				return
+			# if actor.spells_id[currently_selected_option].name == "Heal":
+			#	return
 			
 			is_battle_magic_menu_active = false
 			is_select_magic_level_active = false

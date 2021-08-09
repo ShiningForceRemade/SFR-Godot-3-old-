@@ -230,10 +230,10 @@ func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
 		yield(get_tree().create_timer(0.02), "timeout")
 		emit_signal("signal_completed_magic_level_selection_action")
 		return
-	if spell_arg.name == "Heal":
-		yield(get_tree().create_timer(0.02), "timeout")
-		emit_signal("signal_completed_magic_level_selection_action")
-		return
+#	if spell_arg.name == "Heal":
+#		yield(get_tree().create_timer(0.02), "timeout")
+#		emit_signal("signal_completed_magic_level_selection_action")
+#		return
 		
 	using_spell = true
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
