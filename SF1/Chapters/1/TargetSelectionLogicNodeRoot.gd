@@ -128,9 +128,14 @@ func _input(event):
 		if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_left"):
 			# target_selection_counter_clockwise_quadarnt_style()
 			target_selection_counter_clockwise__style_naive_pass_forward()
+			
+			change_direction_based_on_position()
+			
 		elif event.is_action_pressed("ui_right") or event.is_action_pressed("ui_up"):
 			# target_selection_clockwise_quadarnt_style() 
 			target_selection_clockwise__style_naive_pass_forward()
+			
+			change_direction_based_on_position()
 			
 		
 
@@ -297,6 +302,7 @@ func set_cursor_target_on_first_found_enemey() -> void:
 						backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y)
 						forward_pass_naive(current_selection_vec2.x, current_selection_vec2.y)
 						# Found inital target no need to continue searching
+						change_direction_based_on_position()
 						return
 	
 	# if reached here no enemeies
@@ -330,6 +336,26 @@ func set_cursor_target_on_first_found_enemey() -> void:
 	# 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_character_action_menu()
 	
 	return
+
+func change_direction_based_on_position() -> void:
+	var mcp = Vector2(use_range_array_rep.size() / 2, use_range_array_rep.size() / 2)
+	
+	# print(mcp, " ", current_selection_vec2)
+	
+	if(mcp.x < current_selection_vec2.y and mcp.y == current_selection_vec2.x):
+		print("Look to the Right")
+		Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().change_facing_direction("Right")
+	elif(mcp.x > current_selection_vec2.y and mcp.y == current_selection_vec2.x):
+		print("Look to the Left")
+		Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().change_facing_direction("Left")
+	elif(mcp.y > current_selection_vec2.x):
+		print("Look Up")
+		Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().change_facing_direction("Up")
+	elif(mcp.y < current_selection_vec2.x):
+		print("Look Down")
+		Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().change_facing_direction("Down")
+		
+	pass
 
 # TODO: allow for swapping to different selection methods
 # should have smarter ones than a simple select next in array layout

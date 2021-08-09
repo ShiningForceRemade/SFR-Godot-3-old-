@@ -357,6 +357,14 @@ func pseudo_death_animation(time_arg: float) -> void:
 	
 	emit_signal("signal_death_animation_complete")
 	# TODO: check order array and remove if found by name
-	
-	
 
+
+func change_facing_direction(direction) -> void:
+	if direction == "Left":
+		animationPlayer.play("LeftMovement")
+	if direction == "Right":
+		animationPlayer.play("RightMovement")
+	if direction == "Up":
+		animationPlayer.play("UpMovement")
+	if direction == "Down":
+		animationPlayer.play("DownMovement")
