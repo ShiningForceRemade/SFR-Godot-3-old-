@@ -263,6 +263,8 @@ func s_cleanup_animation_enemy(animation_name_arg) -> void:
 func cleanup_battle_scene_completed() -> void:
 	print("Complete Battle Scene")
 	
+	# Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
+	
 	internal_reset_all_actor_sprites_back_to_default_position()
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
@@ -273,6 +275,12 @@ func cleanup_battle_scene_completed() -> void:
 	Singleton_Game_AudioManager.stop_alt_music_n()
 	
 	Singleton_Game_GlobalBattleVariables.target_selection_node.target_range.cleanup_cursor()
+	
+#	Singleton_Game_GlobalBattleVariables.camera_node.camera_smooth_moving = false
+#	# Singleton_Game_GlobalBattleVariables.camera_node.playerNode = Singleton_Game_GlobalBattleVariables.currently_active_character
+#	Singleton_Game_GlobalBattleVariables.camera_node.position = Singleton_Game_GlobalBattleVariables.currently_active_character.position
+#	Singleton_Game_GlobalBattleVariables.camera_node.camera_smooth_moving = true
+	
 	emit_signal("signal_battle_scene_complete")
 
 
@@ -408,13 +416,14 @@ func calculate_damage_step() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.4), "timeout")
+	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
+	yield(get_tree().create_timer(0.25), "timeout")
+	
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
-	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
-	
 	yield(get_tree().create_timer(0.5), "timeout")
 	# return damage
 
@@ -520,7 +529,10 @@ func calculate_damage_step_enemey_attacking() -> void:
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 	print("Complete Damage Step")
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.4), "timeout")
+	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
+	yield(get_tree().create_timer(0.25), "timeout")
+	
 	emit_signal("signal_battle_complete_damage_step")
 	# yield(get_tree().create_timer(0.25), "timeout")
 	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
@@ -1064,9 +1076,13 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	yield(get_tree().create_timer(0.75), "timeout")
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.4), "timeout")
+	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
+	yield(get_tree().create_timer(0.25), "timeout")
 	print("Complete Battle Scene")
 	internal_reset_all_actor_sprites_back_to_default_position()
+	
+	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 	emit_signal("signal_battle_scene_complete")
 	Singleton_Game_AudioManager.stop_alt_music_n()
 	
@@ -1075,5 +1091,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	
 	yield(get_tree().create_timer(0.5), "timeout")
+	
+	# Singleton_Game_GlobalBattleVariables.camera_node.playerNode = Singleton_Game_GlobalBattleVariables.currently_active_character
 	
 	Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle 1 (Standard).mp3")

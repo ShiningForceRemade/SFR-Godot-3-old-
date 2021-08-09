@@ -182,7 +182,16 @@ func position_camera_for_battle_scene() -> void:
 
 
 func reset_camera_for_map() -> void:
+	camera_smooth_moving = false
+	camera_active_follow = false
 	zoom = old_zoom
 	position = old_pos
-	camera_active_follow = true
+	
 	battleAttackAnimationPlayer.hide()
+	
+	# _process(0)
+	
+	# yield(get_tree().create_timer(0.1), "timeout")
+	
+	camera_active_follow = true
+	camera_smooth_moving = true
