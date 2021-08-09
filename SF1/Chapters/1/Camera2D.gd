@@ -2,9 +2,9 @@ extends Camera2D
 
 signal signal_camera_move_complete
 
-#onready var playerNode = get_parent().get_node("Characters/MaxCharacterRoot/KinematicBody2D")
-# onready var playerNode = get_parent().get_node("Characters/PlayerCharacterRoot/MaxRoot/CharacterRoot/KinematicBody2D")
-onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/KinematicBody2D")
+# onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/KinematicBody2D")
+onready var playerNode = get_parent().get_node("Enemies/RuneKnightRoot")
+# onready var playerNode = get_parent().get_node("Characters/MaxRoot")
 
 # get_node("res://SF1/Character/SmallIsland.tscn")
 
@@ -25,8 +25,8 @@ var camera_active_follow: bool = true
 
 func _ready():
 	Singleton_Game_GlobalBattleVariables.camera_node = self
-	#position.x = 180
-	# position.y = 405
+	# position.x = 220
+	# position.y = 160
 	# print("Camera - playernode - ", playerNode)
 	pass # Replace with function body.
 

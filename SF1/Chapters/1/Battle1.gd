@@ -19,6 +19,8 @@ onready var tilemap_terrian_node = $TileMapTileInformation
 func _ready():
 	battleAttackAnimationPlayer.hide()
 	
+	# Singleton_Game_GlobalBattleVariables.camera_node.position = Vector2(240, 200)
+	
 	Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
 	
 	Singleton_Game_GlobalBattleVariables.character_wrapper_node = $Characters
