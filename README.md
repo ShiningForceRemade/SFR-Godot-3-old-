@@ -2,7 +2,7 @@
 
 ## Prerequisites
 ### Godot
-Godot version - 3.3.2
+Godot version - 3.3.3
 
 ## Getting Started
 ### Clone
