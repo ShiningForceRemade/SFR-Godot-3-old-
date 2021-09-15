@@ -38,7 +38,7 @@ func _ready():
 func set_battle_drop_menu_active():
 	is_battle_drop_menu_active = true
 	
-	var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 	
 	print("Equip Menu Current Char", active_char_root)
 	print("Equip Menu ", active_char_root.inventory_items_id)
@@ -89,7 +89,7 @@ func _input(event):
 			
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			
-			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 			
 			actor.inventory_items_id.remove(currently_selected_option)
 			actor.is_item_equipped.remove(currently_selected_option)

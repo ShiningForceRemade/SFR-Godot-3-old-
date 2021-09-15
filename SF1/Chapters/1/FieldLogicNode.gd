@@ -119,7 +119,7 @@ func generate_and_launch_new_turn_order():
 		
 		emit_signal("signal_hide_land_effect_and_active_actor_info")
 		
-		if a.type == "enemey":
+		if a.type == "enemey" && Singleton_Game_GlobalBattleVariables.control_enemies == false:
 			# continue
 			
 			print("Enemy Turn Start")
@@ -166,7 +166,7 @@ func generate_and_launch_new_turn_order():
 #			self.add_child(t)
 #			t.start()
 #			yield(t, "timeout")
-		else:
+		elif a.type == "character" || Singleton_Game_GlobalBattleVariables.control_enemies:
 			# continue
 			print("Character Turn Start")
 			
@@ -208,7 +208,11 @@ func generate_and_launch_new_turn_order():
 			
 			show_movement_tiles()
 			
-			generate_movement_array_representation()
+			if a.type == "enemey":
+				generate_enemey_movement_array_representation()
+			else:
+				generate_movement_array_representation()
+			
 			draw_movement_tiles_from_movement_array()
 			
 			$AnimationPlayer.play("RandomTileFlashing")

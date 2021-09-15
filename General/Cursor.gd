@@ -94,7 +94,7 @@ func _input(event) -> void:
 			# so dirty really need to look into a proper method of handling these kinds of things soon
 			yield(get_tree().create_timer(0.1), "timeout")
 			
-			Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
+			Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 		##elif event.is_action_released("ui_a_key"):
 		##	print("A key")
 		## a should bring up the menu

@@ -50,7 +50,7 @@ func _ready():
 func set_battle_equip_menu_active():
 	is_battle_equip_menu_active = true
 	
-	active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 	
 	print("Equip Menu Current Char", active_char_root)
 	print("Equip Menu ", active_char_root.inventory_items_id)
@@ -194,7 +194,7 @@ func update_weapon_equip() -> void:
 
 
 func update_attack_stat(item_arg) -> void:
-	var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 	if item_arg == null:
 		stat_attack_label.text = str(actor.attack)
 	else:

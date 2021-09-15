@@ -89,12 +89,14 @@ func _ready():
 func setup_character_and_enemey_sprites_idle() -> void:
 	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 	
-	var anim_aup = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").battle_animation_unpromoted_resource
+	# print(Singleton_Game_GlobalBattleVariables.currently_active_character.type)
+	
+	var anim_aup = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().battle_animation_unpromoted_resource
 	var attack_anim = anim_aup # load(anim_aup)
 	internal_init_resource_for_actor(characterSprite, attack_anim)
 	
 	# TODO: create function in chracter base to automatically pass back the equipped item
-	var weapon_res = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0] # load("res://SF1/Items/Weapons/WoodenArrow.tres") # Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+	var weapon_res = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().inventory_items_id[0] # load("res://SF1/Items/Weapons/WoodenArrow.tres") # Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
 	internal_init_weapon_for_actor(weaponSprite, weapon_res)
 
 

@@ -41,4 +41,7 @@ hframes = 6
 region_enabled = true
 region_rect = Rect2( 0, 0, 144, 24 )
 
+[node name="CollisionShape2D" parent="CharacterRoot/KinematicBody2D" index="2"]
+position = Vector2( 0, -5 )
+
 [editable path="CharacterRoot"]

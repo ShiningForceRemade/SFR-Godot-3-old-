@@ -15,6 +15,8 @@ onready var animationTree = get_child(0).get_node("CharacterRoot/AnimationTree")
 onready var animationTreeState = animationTree.get("parameters/playback")
 onready var tween = get_child(0).get_node("CharacterRoot/KinematicBody2D/Tween")
 
+onready var frontFacingRaycast = $RayCast2D
+
 var velocity: Vector2 = Vector2.ZERO
 
 const MAX_SPEED: int = 150
@@ -22,10 +24,20 @@ const ACCELERATION: int = 600
 const FRICTION: int = 10000
 const RUNNING_SPEED_RATE: float = 1.65
 
+enum E_RayCastRotationDirections {
+	Down = 0,
+	Left = 90,
+	Up = 180,
+	Right = 270
+}
+
 # TODO finish fixing this up later cause of the move from maxroot to player->maxroot
 # TODO: move this to a global settings singleton
 var GRID_BASED_MOVEMENT: bool = true
 const TILE_SIZE: int = 24
+
+const movement_tween_speed = 0.1625
+
 
 func _ready():
 	# init_player_char()
@@ -37,6 +49,8 @@ func _ready():
 	# use animation tree for freeform movement
 	# hardcoded logic for grid based 
 	# TODO: should probably pick one and unifiy
+	
+	frontFacingRaycast.add_exception(kinematicBody)
 	
 	setup_animations_types_depending_on_movement()
 
@@ -88,43 +102,68 @@ func setup_animations_types_depending_on_movement() -> void:
 	if GRID_BASED_MOVEMENT:
 		# animationTreeState.stop()
 		animationTree.active = false
+		# animationTree.active = true
 	else:
 		# $Sprite.flip_h = false
 		animationPlayer.stop()
 		animationTree.active = true
 		animationTreeState.start("Movement 4 Directions")
 
-func _physics_process(delta):
-	if !active: 
-		return
+func _process(delta):
+# func _physics_process(delta):
+	# if !active: 
+	# 	return
+	
 	#if Input.is_action_just_pressed("ui_cancel"):
 	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
 		
-		# setup_animations_types_depending_on_movement()
+		# setup_animations_types_depending_on_movement()	
 	
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
 		if tween.is_active():
 			return
 		
+		# if Input.is_action_just_pressed("ui_a_key"):
+		#	if frontFacingRaycast.is_colliding():
+		#		print(frontFacingRaycast.get_collider())
+		#		frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+			
+		# print("Here")
 		# animationPlayer.playback_speed = 4
+		
 		
 		if Input.is_action_pressed("ui_right"):
 			animationPlayer.play("RightMovement")
-			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x + TILE_SIZE, kinematicBody.position.y), 0.2, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x + TILE_SIZE, kinematicBody.position.y))
+			animationPlayer.playback_speed = 2
+			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+			
+			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
 		elif Input.is_action_pressed("ui_left"):
 			animationPlayer.play("LeftMovement")
-			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x - TILE_SIZE, kinematicBody.position.y), 0.2, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x - TILE_SIZE, kinematicBody.position.y))
+			animationPlayer.playback_speed = 2
+			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+			
+			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
 		elif Input.is_action_pressed("ui_up"):
 			animationPlayer.play("UpMovement")
-			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x, kinematicBody.position.y - TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x, kinematicBody.position.y - TILE_SIZE))
+			
+			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+			animationPlayer.playback_speed = 2
+			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+			
+			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
+			
 		elif Input.is_action_pressed("ui_down"):
 			animationPlayer.play("DownMovement")
-			tween.interpolate_property(kinematicBody, 'position', kinematicBody.position, Vector2(kinematicBody.position.x, kinematicBody.position.y + TILE_SIZE), 0.2, Tween.TRANS_LINEAR)
-			emit_signal("signal_character_moved", Vector2(kinematicBody.position.x, kinematicBody.position.y + TILE_SIZE))
+			animationPlayer.playback_speed = 2
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
 		
 		#print("CharacterMoved")
 		

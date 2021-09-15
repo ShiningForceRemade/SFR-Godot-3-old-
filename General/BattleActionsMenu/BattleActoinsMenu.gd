@@ -43,7 +43,7 @@ func _input(event):
 			is_menu_active = false
 			yield(get_tree().create_timer(0.02), "timeout")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-			Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
+			Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 			get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
 			#get_parent().get_parent().get_parent().s_hide_action_menu()
 			return
@@ -74,7 +74,7 @@ func _input(event):
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 				
-				if Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").spells_id.size() == 0:
+				if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().spells_id.size() == 0:
 					noValidOptionNode.re_show_action_menu = true
 					noValidOptionNode.set_no_maigc_text()
 					# get_parent().get_parent().get_parent().s_hide_action_menu()
@@ -93,9 +93,13 @@ func _input(event):
 				get_parent().get_parent().get_parent().s_hide_character_action_menu()
 				
 				# TODO move this within the target select node itself
-				var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+				var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().inventory_items_id[0]
 				Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
 				
+				# TODO add a selectable version of the below also need to add get actor type to the bases
+				# also really need to start cleaning up a lot of this cruft 
+				# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
+			
 				return
 		
 		if event.is_action_pressed("ui_down"):

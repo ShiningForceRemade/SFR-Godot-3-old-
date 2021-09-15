@@ -62,7 +62,7 @@ func _ready():
 func set_battle_use_menu_active() -> void:
 	is_battle_use_menu_active = true
 	
-	var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 	
 	print("Equip Menu Current Char", active_char_root)
 	print("Equip Menu ", active_char_root.inventory_items_id)

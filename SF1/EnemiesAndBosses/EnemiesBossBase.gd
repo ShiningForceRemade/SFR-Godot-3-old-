@@ -4,6 +4,8 @@ extends Node2D
 signal signal_check_defeat_done
 signal signal_death_animation_complete
 
+onready var pnode = get_parent()
+
 export var enemey_name: String
 
 # group - drops
@@ -94,6 +96,9 @@ export(int, 0, 100) var freeze_resistance: int = 0
 
 export var battle_animation_resource: Resource
 
+
+var active: bool = false
+
 # messy wait for native grouping support then subgroup
 #var test = "" # We will store the value here
 #func _get(property):
@@ -160,7 +165,6 @@ func check_if_defeated() -> void:
 	emit_signal("signal_check_defeat_done")
 	return
 
-
 func pseudo_death_animation(time_arg: float) -> void:
 	$AnimationPlayer.play("RightMovement")
 	yield(get_tree().create_timer(time_arg), "timeout")
@@ -175,8 +179,6 @@ func pseudo_death_animation(time_arg: float) -> void:
 	emit_signal("signal_death_animation_complete")
 	# TODO: check order array and remove if found by name
 	
-	
-
 
 
 func cget_actor_name() -> String:
@@ -202,3 +204,120 @@ func check_if_move_is_possible(new_pos_arg) -> bool:
 					return true
 	
 	return false
+
+
+
+func play_turn():
+	print("Inner Play turn called")
+	
+	if active:
+		active = !active
+		emit_signal("signal_completed_turn")
+	else:
+		active = !active
+		
+		
+
+signal signal_completed_turn
+signal signal_character_moved(new_pos)
+
+signal signal_show_character_action_menu
+
+signal signal_switch_focus_to_cursor
+
+onready var characterRoot = self
+onready var kinematicBody = $KinematicBody2D
+onready var animationPlayer = $AnimationPlayer
+onready var animationTree = $AnimationTree
+onready var animationTreeState = animationTree.get("parameters/playback")
+onready var tween = $KinematicBody2D/Tween
+const TILE_SIZE: int = 24
+var movement_tween_speed = 0.1625
+
+func _physics_process(_delta):
+	
+	# Classic Genesis styled movement and battle movement
+	if active:
+		if tween.is_active():
+			return
+		
+		animationPlayer.playback_speed = 1
+		
+		if Input.is_action_just_released("ui_a_key"):
+			if is_character_actor_underneath():
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+				return
+				
+			active = !active
+			yield(get_tree().create_timer(0.03), "timeout")
+			
+			# emit_signal("signal_completed_turn")
+			# print("Emit signal player turn end")
+			# emit_signal("signal_completed_turn")
+			
+			emit_signal("signal_show_character_action_menu")
+		
+		if Input.is_action_just_released("ui_b_key"):
+			active = !active
+			yield(get_tree().create_timer(0.03), "timeout")
+			emit_signal("signal_switch_focus_to_cursor")
+		
+		# animationPlayer.playback_speed = 4
+		
+		if Input.is_action_pressed("ui_right"):
+			animationPlayer.play("RightMovement")
+			
+			if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
+				animationPlayer.playback_speed = 2
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
+		elif Input.is_action_pressed("ui_left"):
+			animationPlayer.play("LeftMovement")
+			
+			if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
+				animationPlayer.playback_speed = 2
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
+		elif Input.is_action_pressed("ui_up"):
+			animationPlayer.play("UpMovement")
+			
+			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+				animationPlayer.playback_speed = 2
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
+		elif Input.is_action_pressed("ui_down"):
+			animationPlayer.play("DownMovement")
+			
+			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
+				animationPlayer.playback_speed = 2
+				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
+		
+		
+		tween.start()
+
+func is_character_actor_underneath() -> bool:
+	var character_children = Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children()
+	for character in character_children:
+		if pnode == character:
+			continue
+		
+		if pnode.position == character.position:
+			return true
+		
+	return false
+
+
+func change_facing_direction(direction) -> void:
+	if direction == "Left":
+		animationPlayer.play("LeftMovement")
+	if direction == "Right":
+		animationPlayer.play("RightMovement")
+	if direction == "Up":
+		animationPlayer.play("UpMovement")
+	if direction == "Down":
+		animationPlayer.play("DownMovement")

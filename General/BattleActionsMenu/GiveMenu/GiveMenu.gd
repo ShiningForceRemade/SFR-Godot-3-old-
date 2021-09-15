@@ -69,7 +69,7 @@ func set_battle_give_menu_active() -> void:
 	
 	set_sprites_to_zero_frame()
 	
-	var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+	var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 	
 	print("Equip Menu Current Char", active_char_root)
 	print("Equip Menu ", active_char_root.inventory_items_id)
@@ -131,7 +131,7 @@ func _input(event):
 			#	get_parent().get_parent().s_hide_action_menu()
 			#	return
 					
-			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 			
 			print(actor.inventory_items_id[currently_selected_option].item_name)
 			print(actor.is_item_equipped[currently_selected_option])
