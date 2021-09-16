@@ -1,6 +1,8 @@
 tool
 extends Node2D
 
+export var actor_type: String = "enemey"
+
 signal signal_check_defeat_done
 signal signal_death_animation_complete
 

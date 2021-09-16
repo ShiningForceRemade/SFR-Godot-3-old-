@@ -92,14 +92,25 @@ func _input(event):
 				
 				get_parent().get_parent().get_parent().s_hide_character_action_menu()
 				
-				# TODO move this within the target select node itself
-				var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().inventory_items_id[0]
-				Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
+				var caa = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
 				
-				# TODO add a selectable version of the below also need to add get actor type to the bases
-				# also really need to start cleaning up a lot of this cruft 
-				# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
-			
+				var equip_arg = caa.inventory_items_id[0]
+				
+				if caa.actor_type == "character":
+					# TODO move this within the target select node itself
+					# TODO: need to adjust this to handle attacking without a weapon equipped
+					# if caa.inventory_items_id.length > 0:	
+					Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
+				elif caa.actor_type == "enemey":
+					# TODO add a selectable version of the below also need to add get actor type to the bases
+					# also really need to start cleaning up a lot of this cruft 
+					Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg, "character")
+					# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
+				else:
+					# TODO: should add a prefix to my errors for easy filtering
+					print("FELDC - Actor doesn't have type (not character or enemey)")
+					push_error("FELDC - Actor doesn't have type (not character or enemey)")
+				
 				return
 		
 		if event.is_action_pressed("ui_down"):

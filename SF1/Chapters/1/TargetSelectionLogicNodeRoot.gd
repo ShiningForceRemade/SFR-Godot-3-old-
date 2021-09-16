@@ -110,7 +110,10 @@ func _input(event):
 			if using_spell:
 				Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_spell_usage()
 			else:
-				Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_actor_attacking()
+				if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().actor_type == "character":
+					Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_actor_attacking()
+				elif Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().actor_type == "enemey":
+					Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_enemey_actor_attacking()
 			
 			yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
 			
@@ -146,7 +149,7 @@ func _input(event):
 			
 		
 
-func setup_use_range_and_target_range_selection(item_arg) -> void:
+func setup_use_range_and_target_range_selection(item_arg, actor_target_type = "enemey") -> void:
 	spell_name_selected = ""
 	
 	using_spell = false
@@ -172,7 +175,7 @@ func setup_use_range_and_target_range_selection(item_arg) -> void:
 	# target_range.draw_cursor_at_position(new_pos_arg: Vector2)
 	
 	print("Target Actor Type - ", item_arg.target_actor_type)
-	if item_arg.target_actor_type == 4:
+	if item_arg.target_actor_type == 4 || actor_target_type == "character":
 		print("Self and Characters", Singleton_Game_GlobalBattleVariables.character_wrapper_node)
 		target_node_children = Singleton_Game_GlobalBattleVariables.character_wrapper_node.get_children()
 		

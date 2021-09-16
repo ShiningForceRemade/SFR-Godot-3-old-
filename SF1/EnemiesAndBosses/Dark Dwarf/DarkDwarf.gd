@@ -2,6 +2,7 @@ extends Node2D
 
 signal signal_completed_turn
 signal signal_move_direction_completed
+signal signal_battle_scene_animation_completed
 
 export var is_npc: bool = false
 
@@ -103,20 +104,28 @@ func s_tween_completed(node_arg, property_arg):
 	
 # play_turn
 func play_turn():
+	# Singleton_Game_GlobalBattleVariables.currently_active_character = self
+	
 	print("\n" + enemey_actor_root.enemey_name + " Turn Start\n")
 	
-	print("battle_logic_script ", battle_logic_script)
-	if not battle_logic_script.empty():
-		var bls = load(battle_logic_script)
-		bls = bls.new()
-		bls.play_turn(self)
-		yield(bls, "signal_logic_completed")
+	if Singleton_Game_GlobalBattleVariables.control_enemies:
+		play_turn_as_character()
+	# if  Control Enemies
+	# play_turn_as_character
 	else:
-		pseudo_ai_turn_determine()
+		print("battle_logic_script ", battle_logic_script)
+		if not battle_logic_script.empty():
+			var bls = load(battle_logic_script)
+			bls = bls.new()
+			bls.play_turn(self)
+			yield(bls, "signal_logic_completed")
+		else:
+			pseudo_ai_turn_determine()
 	
-	animationPlayer.play("DownMovement")
-	emit_signal("signal_completed_turn")
-	print("\n" + enemey_actor_root.enemey_name + " Turn End\n")
+		animationPlayer.play("DownMovement")
+		emit_signal("signal_completed_turn")
+		
+		print("\n" + enemey_actor_root.enemey_name + " Turn End\n")
 
 func internal_call_complete() -> void:
 	animationPlayer.play("DownMovement")
@@ -143,6 +152,10 @@ func pseudo_ai_turn_determine():
 func s_complete_turn():
 	print("\n" + enemey_actor_root.enemey_name + " Turn End\n")
 	# $EnemeyRoot.animationPlayer.play("DownMovement")
+	
+	if Singleton_Game_GlobalBattleVariables.control_enemies:
+		s_complete_turn_as_character()
+	
 	emit_signal("signal_completed_turn")
 
 # Getters
@@ -162,7 +175,7 @@ func get_actor_root_node_internal():
 
 
 func is_character_actor_within_attack_range():
-	for character in Singleton_Game_GlobalBattleVariables.character_nodes.get_children():
+	for character in Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children():
 		# print("\n", character.position, " ", Vector2(pself.position.x - 24, pself.position.y))
 		if character.position == Vector2(position.x - 24, position.y):
 			Singleton_Game_GlobalBattleVariables.currently_selected_actor = character
@@ -191,3 +204,51 @@ func change_facing_direction(current_selection_pos: Vector2) -> void:
 		animationPlayer.play("DownMovement")
 	elif position.y > current_selection_pos.y:
 		animationPlayer.play("UpMovement")
+
+
+
+# Character Func Starting merge to one actor type core
+
+signal signal_character_moved(new_pos)
+signal signal_show_character_action_menu
+signal signal_switch_focus_to_cursor
+
+# play_turn
+func play_turn_as_character():
+	print("\n" + enemey_actor_root.enemey_name + " Turn Start\n")	
+	enemey_actor_root.play_turn()
+	if enemey_actor_root.connect("signal_completed_turn", self, "s_complete_turn") != OK:
+		print(enemey_actor_root.enemey_name + " - signal_completed_turn failed to connect")
+		
+	if enemey_actor_root.connect("signal_character_moved", self, "s_char_moved")  != OK:
+		print(enemey_actor_root.enemey_name + " - signal_character_moved failed to connect")
+		
+	if enemey_actor_root.connect("signal_show_character_action_menu", self, "s_show_character_action_menu") != OK:
+		print(enemey_actor_root.enemey_name + " - signal_show_character_action_menu failed to connect")
+	# yield(self, "signal_completed_turn")
+	
+	if enemey_actor_root.connect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor") != OK:
+		print(enemey_actor_root.enemey_name + " - signal_switch_focus_to_cursor failed to connect")
+
+func s_switch_focus_to_cursor():
+	print(enemey_actor_root.enemey_name + " Switch to cursor - \'b\' was pressed\n")
+	emit_signal("signal_switch_focus_to_cursor")
+
+func s_complete_turn_as_character():
+	print("\n" + enemey_actor_root.enemey_name + " Turn End\n")
+	enemey_actor_root.animationPlayer.play("DownMovement")
+	enemey_actor_root.disconnect("signal_completed_turn", self, "s_complete_turn")
+	enemey_actor_root.disconnect("signal_character_moved", self, "s_char_moved")
+	enemey_actor_root.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
+	enemey_actor_root.disconnect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
+	emit_signal("signal_completed_turn")
+
+func s_char_moved(new_pos):
+	emit_signal("signal_character_moved", new_pos)
+
+func s_show_character_action_menu():
+	print("Show Enemey Action Menu")
+	emit_signal("signal_show_character_action_menu")
+
+func get_kinematic_body():
+	return $CharacterRoot/KinematicBody2D
