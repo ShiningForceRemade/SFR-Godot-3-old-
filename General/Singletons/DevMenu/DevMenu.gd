@@ -1,5 +1,7 @@
 extends Node2D
 
+var dev_console # gets the node from ingame developer console
+
 func _ready():
 	pass
 
@@ -14,6 +16,8 @@ func _input(event):
 			Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.set_paused_text()
 			Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.position = Vector2(165, 100)
 			
+			Singleton_Dev_DevMenu.dev_console.hide()
+			
 			get_tree().paused = !get_tree().paused
 			
 	
@@ -22,6 +26,14 @@ func _input(event):
 		OS.window_fullscreen = !OS.window_fullscreen
 	
 	# TODO: add dev menu and perform check here
+	
+	if event.is_action_pressed("ui_dev_console"):
+		if get_tree().paused:
+			Singleton_Dev_DevMenu.dev_console.hide()
+			get_tree().paused = !get_tree().paused
+		else:
+			Singleton_Dev_DevMenu.dev_console.show()
+			get_tree().paused = !get_tree().paused
 	
 	if event.is_action_pressed("ui_tilda"):
 		print("Saving Screenshot")
