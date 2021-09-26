@@ -118,52 +118,72 @@ func _process(delta):
 	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
 		
 		# setup_animations_types_depending_on_movement()	
+	animationPlayer.playback_speed = 1
 	
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
 		if tween.is_active():
 			return
 		
-		# if Input.is_action_just_pressed("ui_a_key"):
-		#	if frontFacingRaycast.is_colliding():
-		#		print(frontFacingRaycast.get_collider())
-		#		frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+		if Input.is_action_just_pressed("ui_a_key"):
+			if frontFacingRaycast.is_colliding():
+				print(frontFacingRaycast.get_collider())
+				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
 			
 		# print("Here")
 		# animationPlayer.playback_speed = 4
 		
-		
 		if Input.is_action_pressed("ui_right"):
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
 			animationPlayer.play("RightMovement")
 			animationPlayer.playback_speed = 2
+			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				print("colliding")
+				return
+			
 			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-			
 			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
-			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
 		elif Input.is_action_pressed("ui_left"):
-			animationPlayer.play("LeftMovement")
-			animationPlayer.playback_speed = 2
-			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-			
 			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
-		elif Input.is_action_pressed("ui_up"):
-			animationPlayer.play("UpMovement")
-			
-			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+			animationPlayer.play("LeftMovement")
 			animationPlayer.playback_speed = 2
-			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				print("colliding")
+				return
+			
+			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+			
+		elif Input.is_action_pressed("ui_up"):
 			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
-			
-		elif Input.is_action_pressed("ui_down"):
-			animationPlayer.play("DownMovement")
+			animationPlayer.play("UpMovement")
+			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
 			animationPlayer.playback_speed = 2
-			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				print("colliding")
+				return
+			
+			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+		elif Input.is_action_pressed("ui_down"):
 			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
+			animationPlayer.play("DownMovement")
+			animationPlayer.playback_speed = 2
+			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				print("colliding")
+				return
+			
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 		
 		#print("CharacterMoved")
 		
