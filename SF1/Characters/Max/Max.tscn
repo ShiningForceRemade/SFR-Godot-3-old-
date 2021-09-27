@@ -36,12 +36,10 @@ ai_target_priority = 100
 battle_animation_unpromoted_resource = ExtResource( 5 )
 
 [node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
+position = Vector2( 0, 0 )
 texture = ExtResource( 4 )
 hframes = 6
 region_enabled = true
 region_rect = Rect2( 0, 0, 144, 24 )
-
-[node name="CollisionShape2D" parent="CharacterRoot/KinematicBody2D" index="2"]
-position = Vector2( 0, -5 )
 
 [editable path="CharacterRoot"]

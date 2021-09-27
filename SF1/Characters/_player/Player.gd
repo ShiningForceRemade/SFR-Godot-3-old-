@@ -15,6 +15,8 @@ onready var animationTree = get_child(0).get_node("CharacterRoot/AnimationTree")
 onready var animationTreeState = animationTree.get("parameters/playback")
 onready var tween = get_child(0).get_node("CharacterRoot/KinematicBody2D/Tween")
 
+onready var colsh = get_child(0).get_node("CharacterRoot/KinematicBody2D/CollisionShape2D")
+
 onready var frontFacingRaycast = $RayCast2D
 
 var velocity: Vector2 = Vector2.ZERO
@@ -46,6 +48,8 @@ func _ready():
 	#position = position.snapped(Vector2.ONE * TILE_SIZE)
 	#position += Vector2.ONE * TILE_SIZE / 2
 	
+	tween.connect("tween_completed", self, "s_tween_completed")
+	
 	# use animation tree for freeform movement
 	# hardcoded logic for grid based 
 	# TODO: should probably pick one and unifiy
@@ -54,6 +58,11 @@ func _ready():
 	
 	setup_animations_types_depending_on_movement()
 
+
+func s_tween_completed(node_arg, property_arg): 
+	colsh.position = characterRoot.position
+
+
 #func init_player_char():
 	#print("kinematicBody - ", kinematicBody)
 	#kinematicBody.connect("signal_character_moved", self, "char_moved")
@@ -61,36 +70,11 @@ func _ready():
 func char_moved(new_pos):
 	emit_signal("signal_character_moved", new_pos)
 
-func get_character_movement():
-	return characterRoot.move
-
-func get_character_current_pos() -> Vector2:
-	# print("here", kinematicBody)
-	return kinematicBody.position
-
-
-# play_turn
-func play_turn():
-	print("\nMax Turn Start\n")	
-	characterRoot.play_turn()
-	characterRoot.connect("signal_completed_turn", self, "s_complete_turn")
-	characterRoot.connect("signal_character_moved", self, "s_char_moved")
-	
-	characterRoot.connect("signal_show_character_action_menu", self, "s_show_character_action_menu")
-	
-	# yield(self, "signal_completed_turn")
 
 func s_show_character_action_menu():
 	emit_signal("signal_show_character_action_menu")
 
-func s_complete_turn():
-	print("\nMax Turn End\n")
-	characterRoot.animationPlayer.play("DownMovement")
-	characterRoot.disconnect("signal_completed_turn", self, "s_complete_turn")
-	characterRoot.disconnect("signal_character_moved", self, "s_char_moved")
-	characterRoot.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
-	emit_signal("signal_completed_turn")
-	
+
 func s_char_moved(new_pos):
 	emit_signal("signal_character_moved", new_pos)
 
@@ -114,7 +98,7 @@ func _process(delta):
 	# if !active: 
 	# 	return
 	
-	#if Input.is_action_just_pressed("ui_cancel"):
+	# if Input.is_action_just_pressed("ui_c_key"):
 	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
 		
 		# setup_animations_types_depending_on_movement()	
@@ -127,8 +111,16 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("ui_a_key"):
 			if frontFacingRaycast.is_colliding():
-				print(frontFacingRaycast.get_collider())
-				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+				# TODO: probably should add a helper function to get the parent element
+				# where the custom logic will live instead of going up for build v0.0.2 its fine
+				# print(frontFacingRaycast.get_collider())
+				# print(frontFacingRaycast.get_collider().get_parent().get_name())
+				print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
+				
+				if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
+					frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
+				elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
+					frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
 			
 		# print("Here")
 		# animationPlayer.playback_speed = 4
@@ -140,9 +132,9 @@ func _process(delta):
 			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
-				print("colliding")
+				# print("colliding")
 				return
-			
+			colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
 			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
 		elif Input.is_action_pressed("ui_left"):
@@ -153,9 +145,10 @@ func _process(delta):
 			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
-				print("colliding")
+				# print("colliding")
 				return
 			
+			colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
 			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 			
 		elif Input.is_action_pressed("ui_up"):
@@ -167,9 +160,10 @@ func _process(delta):
 			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
-				print("colliding")
+				# print("colliding")
 				return
 			
+			colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 		elif Input.is_action_pressed("ui_down"):
@@ -180,16 +174,17 @@ func _process(delta):
 			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
-				print("colliding")
+				# print("colliding")
 				return
-			
+				
+			colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
 			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
 		
 		#print("CharacterMoved")
 		
 		tween.start()
 	
-	# ROTDD styled movement
+	# TODO: ROTDD styled movement
 	else:
 		var input_vector: Vector2 = Vector2.ZERO
 	
@@ -213,16 +208,4 @@ func _process(delta):
 	
 		velocity = kinematicBody.move_and_slide(velocity)
 
-
-# Getters
-func cget_agility() -> int:
-	return get_child(0).get_node("CharacterRoot").agility
-	
-func cget_actor_name() -> String: return characterRoot.character_name
-func cget_level() -> int: return characterRoot.level
-func cget_hp_total() -> int: return characterRoot.HP_Total
-func cget_hp_current() -> int: return characterRoot.HP_Current
-func cget_mp_total() -> int: return characterRoot.MP_Total
-func cget_mp_current() -> int: return characterRoot.MP_Current
-func cget_class() -> String: return characterRoot.cget_class()
 
