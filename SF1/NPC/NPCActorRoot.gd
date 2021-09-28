@@ -1,16 +1,31 @@
 extends Node2D
 
-signal signal_move_direction_completed
 const TILE_SIZE: int = 24
+
+signal signal_move_direction_completed
+
+# group behaviours
+export var stationary: bool
+
+# group scripts
+
+# group - textures
+export var texture_sprite_map: Texture
+export var texture_sprite_battle: Texture
+export var texture_protrait: Texture
+
+var movement_tween_speed = 0.1625
+# var movement_tween_speed = 0.2
 
 var _timer = null
 var rng = RandomNumberGenerator.new()
 
-onready var animationPlayer = $NPCBaseRoot/AnimationPlayer
-onready var tween = $NPCBaseRoot/KinematicBody2D/Tween
-onready var enemey_actor_root = $NPCBaseRoot
-onready var raycast = $NPCBaseRoot/KinematicBody2D/RayCast2D
-onready var colsh = $NPCBaseRoot/KinematicBody2D/CollisionShape2D
+onready var animationPlayer = $AnimationPlayer
+onready var tween = $KinematicBody2D/Tween
+onready var enemey_actor_root = self
+onready var raycast = $KinematicBody2D/RayCast2D
+onready var colsh = $KinematicBody2D/CollisionShape2D
+onready var kinematicBody = $KinematicBody2D
 
 var area2d
 
@@ -23,11 +38,14 @@ enum E_RayCastRotationDirections {
 	Right = 270
 }
 
+
 func _ready():
 	area2d = get_parent().get_node("Area2D")
 	
 	raycast.collide_with_areas = true
 	# Area2D.coll
+	
+	raycast.add_exception(kinematicBody)
 	
 	animationPlayer.play("DownMovement")
 	
@@ -36,9 +54,11 @@ func _ready():
 	_timer = Timer.new()
 	add_child(_timer)
 	_timer.connect("timeout", self, "_on_Timer_timeout")
-	_timer.set_wait_time(1)
-	_timer.set_one_shot(false) # Make sure it loops
-	_timer.start()
+	
+	if !stationary:
+		_timer.set_wait_time(1)
+		# _timer.set_one_shot(false) # Make sure it loops
+		_timer.start()
 	
 	# walk_around()
 	pass
@@ -62,10 +82,15 @@ func walk_around() -> void:
 
 
 func _on_Timer_timeout():
-	#print("Second")
 	rng.randomize()
+	
+	# _timer.set_wait_time(rng.randf_range(0.75, 4))
+	_timer.set_wait_time(0.15)
+	_timer.start()
+	
 	# random_move_direction(rng.randi_range(0, 3))
 	random_move_direction(rng.randi_range(0, 3))
+	# random_move_direction(3)
 
 
 func random_move_direction(direction):
@@ -74,6 +99,8 @@ func random_move_direction(direction):
 	
 	# print("Direction", direction)
 	# print("Position", position)
+	
+	print(position)
 	
 	if direction == 0:
 		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x + TILE_SIZE, position.y)):
@@ -84,7 +111,7 @@ func random_move_direction(direction):
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
 		
 		animationPlayer.play("RightMovement")
-		colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
+		colsh.position = Vector2(TILE_SIZE, 0)
 		tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), tween_animation_time, Tween.TRANS_LINEAR)
 		tween.start()
 		return
@@ -98,7 +125,7 @@ func random_move_direction(direction):
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
 		
 		animationPlayer.play("LeftMovement")
-		colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
+		colsh.position = Vector2(-TILE_SIZE, 0)
 		tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), tween_animation_time, Tween.TRANS_LINEAR)
 		tween.start()
 		return
@@ -111,7 +138,7 @@ func random_move_direction(direction):
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
 		
 		animationPlayer.play("UpMovement")
-		colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
+		colsh.position = Vector2(0, -TILE_SIZE)
 		tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), tween_animation_time, Tween.TRANS_LINEAR)
 		tween.start()
 		return
@@ -124,7 +151,7 @@ func random_move_direction(direction):
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
 		
 		animationPlayer.play("DownMovement")
-		colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
+		colsh.position = Vector2(0, TILE_SIZE)
 		tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), tween_animation_time, Tween.TRANS_LINEAR)
 		tween.start()
 		return
@@ -138,14 +165,18 @@ func random_move_direction(direction):
 func check_if_not_valid_move_in_predfined_area_or_obstacle() -> bool:
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
-		print("Test npc - collider - ", raycast.get_collider().get_name())
+		# print("Test npc - collider - ", raycast.get_collider().get_name())
+			
+		# if raycast.get_collider().get_name() == "Area2D":
+		# 	return false
+		
 		return true
 	
 	return false
 
 func s_tween_completed(node_arg, property_arg): 
-	print(node_arg, " ", property_arg)
-	colsh.position = enemey_actor_root.position
+	# print(node_arg, " ", property_arg)
+	colsh.position = Vector2(0, 0)
 	emit_signal("signal_move_direction_completed")
 
 

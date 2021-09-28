@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://SF1/NPC/NPCBase.gd" type="Script" id=1]
+[ext_resource path="res://SF1/NPC/NPCActorRoot.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 12 )
@@ -120,45 +120,60 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[node name="NPCBaseRoot" type="Node2D"]
+[node name="NPCRoot" type="Node2D"]
+
+[node name="NPCActorRoot" type="Node2D" parent="."]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="KinematicBody2D" type="StaticBody2D" parent="."]
+[node name="KinematicBody2D" type="StaticBody2D" parent="NPCActorRoot"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Tween" type="Tween" parent="KinematicBody2D"]
+[node name="Tween" type="Tween" parent="NPCActorRoot/KinematicBody2D"]
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite" type="Sprite" parent="NPCActorRoot/KinematicBody2D"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCActorRoot/KinematicBody2D"]
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StaticCollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="StaticCollisionShape2D" type="CollisionShape2D" parent="NPCActorRoot/KinematicBody2D"]
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RayCast2D" type="RayCast2D" parent="KinematicBody2D"]
+[node name="RayCast2D" type="RayCast2D" parent="NPCActorRoot/KinematicBody2D"]
 enabled = true
 cast_to = Vector2( 0, 20 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCActorRoot"]
 root_node = NodePath("../KinematicBody2D/Sprite")
 anims/DownMovement = SubResource( 2 )
 anims/LeftMovement = SubResource( 3 )
 anims/RightMovement = SubResource( 4 )
 anims/UpMovement = SubResource( 5 )
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="NPCActorRoot"]
+
+[node name="Area2D" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+__meta__ = {
+"_edit_lock_": true
+}
