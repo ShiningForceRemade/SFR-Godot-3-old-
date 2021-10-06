@@ -42,6 +42,9 @@ const movement_tween_speed = 0.1625
 
 
 func _ready():
+	
+	Singleton_Game_GlobalCommonVariables.main_character_player_node = self
+	
 	# init_player_char()
 	animationPlayer.play("DownMovement")
 	# Center within nearest tile increment
@@ -64,6 +67,11 @@ func _ready():
 func s_tween_completed(node_arg, property_arg): 
 	colsh.position = characterRoot.position
 
+
+func get_actor_name() -> String:
+	return characterRoot.cget_actor_name()
+
+# TODO pronoun he she they or it  and one for him her them
 
 #func init_player_char():
 	#print("kinematicBody - ", kinematicBody)

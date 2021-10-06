@@ -12,6 +12,8 @@ var is_currently_in_battle_scene = false
 # TODO: for selectable main character and party leader
 var main_character_resource_pck = null
 
+var main_character_player_node = null
+
 # dialog commons
 var dialogue_box_is_currently_active = false
 

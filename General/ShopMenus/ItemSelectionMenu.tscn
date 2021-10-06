@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://General/ShopMenus/ShopItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=2]
 [ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://General/ShopMenus/ItemSelectionMenu.gd" type="Script" id=4]
@@ -49,12 +48,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TestShopItemControl" parent="ShopItemsStatNinePatchRect/HBoxContainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_bottom = 8.0
-item_resource = ExtResource( 2 )
-
 [node name="ItemInfoStatNinePatchRect" type="NinePatchRect" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -81,7 +74,7 @@ margin_top = 9.66668
 margin_right = -14.3333
 margin_bottom = -17.3333
 custom_fonts/font = ExtResource( 3 )
-text = "Item Name"
+text = "Medical Herb"
 autowrap = true
 __meta__ = {
 "_edit_lock_": true,
@@ -96,7 +89,7 @@ margin_top = 32.6667
 margin_right = -8.66667
 margin_bottom = -7.33333
 custom_fonts/font = ExtResource( 3 )
-text = "0"
+text = "100"
 align = 2
 valign = 1
 __meta__ = {

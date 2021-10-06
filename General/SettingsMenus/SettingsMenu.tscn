@@ -1,0 +1,328 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/ShiningForceTextBackground.png-9ed310a4373b06707cc2cedc48b3ad37.stex"
+
+[node name="SettingsMenuRoot" type="Node2D"]
+
+[node name="SettingsMenuStatNinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 112.0
+margin_bottom = 28.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = SubResource( 1 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsStaticLabel" type="Label" parent="SettingsMenuStatNinePatchRect"]
+margin_left = 8.0
+margin_top = 6.66667
+margin_right = 88.0
+margin_bottom = 14.6667
+custom_fonts/font = ExtResource( 1 )
+text = "SETTINGS"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MenuStatNinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 16.0
+margin_top = 23.0
+margin_right = 112.0
+margin_bottom = 215.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = SubResource( 1 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStatNinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_constants/separation = 12
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GeneralStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 1 )
+text = "GENERAL"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BattleStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
+margin_top = 20.0
+margin_right = 80.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "BATTLE"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ApperanceStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
+margin_top = 40.0
+margin_right = 80.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 1 )
+text = "APPERANCE"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SoundStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
+margin_top = 60.0
+margin_right = 80.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 1 )
+text = "SOUND"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GeneralStatNinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 88.0
+margin_top = 8.0
+margin_right = 376.0
+margin_bottom = 200.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = SubResource( 1 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MessageSpeedControl" type="Control" parent="GeneralStatNinePatchRect"]
+margin_left = 7.0
+margin_top = 9.0
+margin_right = 278.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageSpeedStaticLabel" type="Label" parent="GeneralStatNinePatchRect/MessageSpeedControl"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "MESSAGE SPEED"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageSpeedInUseLabel" type="Label" parent="GeneralStatNinePatchRect/MessageSpeedControl"]
+margin_left = 165.333
+margin_top = 8.0
+margin_right = 277.333
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "FAST"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BattleStatNinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+margin_left = 88.0
+margin_top = 8.0
+margin_right = 376.0
+margin_bottom = 200.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = SubResource( 1 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ShowPreBattleMenuControl" type="Control" parent="BattleStatNinePatchRect"]
+margin_left = 7.0
+margin_top = 9.0
+margin_right = 278.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShowPreBattleMenuStaticLabel" type="Label" parent="BattleStatNinePatchRect/ShowPreBattleMenuControl"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "USE PRE BATTLE MENU"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShowPreBattleMenuLabel" type="Label" parent="BattleStatNinePatchRect/ShowPreBattleMenuControl"]
+margin_left = 165.333
+margin_top = 8.0
+margin_right = 277.333
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "YES"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ApperanceStatNinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+margin_left = 88.0
+margin_top = 8.0
+margin_right = 376.0
+margin_bottom = 200.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = SubResource( 1 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="FilterControl" type="Control" parent="ApperanceStatNinePatchRect"]
+margin_left = 7.0
+margin_top = 9.0
+margin_right = 278.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FilterStaticLabel" type="Label" parent="ApperanceStatNinePatchRect/FilterControl"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "FILTER"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FilterInUseLabel" type="Label" parent="ApperanceStatNinePatchRect/FilterControl"]
+margin_left = 165.333
+margin_top = 8.0
+margin_right = 277.333
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "NONE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraphicsControl" type="Control" parent="ApperanceStatNinePatchRect"]
+margin_left = 7.0
+margin_top = 34.3333
+margin_right = 278.0
+margin_bottom = 57.3333
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraphicsStaticLabel" type="Label" parent="ApperanceStatNinePatchRect/GraphicsControl"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "GRAPHICS"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraphicsInUseLabel" type="Label" parent="ApperanceStatNinePatchRect/GraphicsControl"]
+margin_left = 165.333
+margin_top = 8.0
+margin_right = 277.333
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "ORIGINAL"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingInfoMenuStatNinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 88.0
+margin_top = 152.0
+margin_right = 376.0
+margin_bottom = 172.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = SubResource( 1 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SettingInfoLabel" type="Label" parent="SettingInfoMenuStatNinePatchRect"]
+margin_left = 8.0
+margin_top = 6.66667
+margin_right = 88.0
+margin_bottom = 14.6667
+custom_fonts/font = ExtResource( 1 )
+text = "SETTING INFO"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}

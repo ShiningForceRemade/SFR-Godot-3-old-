@@ -147,11 +147,7 @@ func load_dialog():
 		for key in dialogue[dialogue_index]:
 			print("Inner Loop key ", key + " value is " + str(dialogue[dialogue_index][key]))
 			if key == "Text":
-				
-				# TODO
-				# process expressions in text first then dispaly
-				
-				dialogueRichTextLabel.bbcode_text = dialogue[dialogue_index][key]
+				dialogueRichTextLabel.bbcode_text = check_and_replace_text_sub_points(dialogue[dialogue_index][key])
 			elif key == "Expression":
 				var expression := Expression.new()
 				for command in dialogue[dialogue_index][key]:
@@ -194,3 +190,11 @@ func _on_Tween_tween_completed(object, key):
 	# finished = true
 	pass
 
+
+func check_and_replace_text_sub_points(str_arg: String) -> String:
+	var nstr = str_arg
+	
+	if "{main_character_name}" in nstr:
+		nstr = nstr.replace("{main_character_name}", Singleton_Game_GlobalCommonVariables.main_character_player_node.get_actor_name())
+	
+	return nstr
