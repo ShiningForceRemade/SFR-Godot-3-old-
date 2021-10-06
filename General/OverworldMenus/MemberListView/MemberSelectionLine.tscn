@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+
+[node name="MemberSelectionLineControl" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameStaticLabel" type="Label" parent="."]
+margin_left = 10.6667
+margin_top = 4.00001
+margin_right = 42.6667
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "NAME"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ClassStaticLabel" type="Label" parent="."]
+margin_left = 132.333
+margin_top = 3.66663
+margin_right = 220.333
+margin_bottom = 11.6666
+custom_fonts/font = ExtResource( 1 )
+text = "CLASS"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="LevelStaticLabel" type="Label" parent="."]
+margin_left = 333.0
+margin_top = 4.0
+margin_right = 374.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "LV"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}

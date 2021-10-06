@@ -1,0 +1,11 @@
+{
+	"script": [
+		{
+			"Text": "{main_character_name}, I'm sick of feeling helpless! I'm going to ask Varios to train me to be a fighter!"
+		},
+		
+		{
+			"Sound": "fx | res://Assets/Sounds/StepSound.wav"
+		}
+	]
+}

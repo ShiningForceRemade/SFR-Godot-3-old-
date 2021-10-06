@@ -17,6 +17,8 @@ export var texture_protrait: Texture
 var movement_tween_speed = 0.1625
 # var movement_tween_speed = 0.2
 
+var parent_node = null
+
 var _timer = null
 var rng = RandomNumberGenerator.new()
 
@@ -60,12 +62,17 @@ func _ready():
 		# _timer.set_one_shot(false) # Make sure it loops
 		_timer.start()
 	
+	parent_node = get_parent()
 	# walk_around()
 	pass
 
 func attempt_to_interact() -> void:
 	# if not moving to new square
-	attempt_to_talk()
+	
+	if parent_node.has_meta("attempt_to_interact"):
+		parent_node.attempt_to_interact()
+	else:
+		attempt_to_talk()
 
 func attempt_to_talk() -> void:
 	print("Trying to talk to test npc")
@@ -100,7 +107,7 @@ func random_move_direction(direction):
 	# print("Direction", direction)
 	# print("Position", position)
 	
-	print(position)
+	# print(position)
 	
 	if direction == 0:
 		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x + TILE_SIZE, position.y)):

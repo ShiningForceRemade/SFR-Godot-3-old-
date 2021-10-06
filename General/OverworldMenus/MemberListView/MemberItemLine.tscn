@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+
+[node name="MemberItemLineControl" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquippedStaticLabel" type="Label" parent="."]
+margin_left = -1.0
+margin_right = 7.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
+text = "E"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ItemLabel" type="Label" parent="."]
+margin_left = 11.0
+margin_right = 167.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 1 )
+text = "ITEM"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}

@@ -57,6 +57,8 @@ func _ready():
 	frontFacingRaycast.add_exception(kinematicBody)
 	
 	setup_animations_types_depending_on_movement()
+	
+	Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node = kinematicBody
 
 
 func s_tween_completed(node_arg, property_arg): 

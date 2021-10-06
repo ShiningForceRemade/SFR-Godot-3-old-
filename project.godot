@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Shining Force Remade"
-run/main_scene="res://General/BattleBase/BattleBase.tscn"
+run/main_scene="res://General/GameManagementWrapperNode/GameManagementWrapperNode.tscn"
 boot_splash/image="res://Assets/Shining Force - Splash Screen.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -97,6 +97,7 @@ Singleton_Dev_DevMenu="*res://General/Singletons/DevMenu/DevMenu.tscn"
 Singleton_Game_AudioManager="*res://General/Singletons/AudioManager/AudioManager.gd"
 Singleton_Game_GlobalBattleVariables="*res://General/Singletons/Globals/GlobalBattleVariables.gd"
 Singleton_Game_GlobalOverworldVariables="*res://General/Singletons/Globals/GlobalOverworldVariables.gd"
+Singleton_Game_GlobalCommonVariables="*res://General/Singletons/Globals/GlobalCommonVariables.gd"
 
 [debug]
 
