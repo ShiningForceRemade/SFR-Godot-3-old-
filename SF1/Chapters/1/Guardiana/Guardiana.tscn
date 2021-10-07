@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=2]
+[gd_scene load_steps=142 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -1483,44 +1483,197 @@ tracks/1/keys = {
 extents = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=54]
-extents = Vector2( 12, 48 )
+extents = Vector2( 12, 68 )
 
 [sub_resource type="RectangleShape2D" id=55]
 extents = Vector2( 24, 12 )
 
+[sub_resource type="RectangleShape2D" id=80]
+extents = Vector2( 32, 24 )
+
 [sub_resource type="RectangleShape2D" id=56]
-extents = Vector2( 12, 96 )
+extents = Vector2( 32, 12 )
 
 [sub_resource type="RectangleShape2D" id=57]
-extents = Vector2( 16, 8 )
+extents = Vector2( 12, 40 )
 
 [sub_resource type="RectangleShape2D" id=58]
-extents = Vector2( 16, 16 )
+extents = Vector2( 56, 12 )
 
 [sub_resource type="RectangleShape2D" id=59]
-extents = Vector2( 24, 24 )
+extents = Vector2( 72, 12 )
 
 [sub_resource type="RectangleShape2D" id=60]
-extents = Vector2( 24, 16 )
+extents = Vector2( 8, 32 )
 
 [sub_resource type="RectangleShape2D" id=61]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="RectangleShape2D" id=75]
+extents = Vector2( 32, 24 )
+
+[sub_resource type="RectangleShape2D" id=76]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=79]
+extents = Vector2( 12, 40 )
+
+[sub_resource type="RectangleShape2D" id=77]
+extents = Vector2( 72, 24 )
+
+[sub_resource type="RectangleShape2D" id=78]
+extents = Vector2( 12, 40 )
+
+[sub_resource type="RectangleShape2D" id=81]
+extents = Vector2( 12, 64 )
+
+[sub_resource type="RectangleShape2D" id=90]
+extents = Vector2( 16, 12 )
+
+[sub_resource type="RectangleShape2D" id=82]
+extents = Vector2( 24, 44 )
+
+[sub_resource type="RectangleShape2D" id=83]
+extents = Vector2( 40, 12 )
+
+[sub_resource type="RectangleShape2D" id=84]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="RectangleShape2D" id=85]
+extents = Vector2( 40, 12 )
+
+[sub_resource type="RectangleShape2D" id=86]
+extents = Vector2( 12, 24 )
+
+[sub_resource type="RectangleShape2D" id=103]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=87]
+extents = Vector2( 12, 72 )
+
+[sub_resource type="RectangleShape2D" id=97]
+extents = Vector2( 20, 24 )
+
+[sub_resource type="RectangleShape2D" id=99]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=89]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="RectangleShape2D" id=88]
+extents = Vector2( 48, 24 )
+
+[sub_resource type="RectangleShape2D" id=113]
+extents = Vector2( 24, 36 )
+
+[sub_resource type="RectangleShape2D" id=114]
+extents = Vector2( 96, 12 )
+
+[sub_resource type="RectangleShape2D" id=115]
+extents = Vector2( 60, 36 )
+
+[sub_resource type="RectangleShape2D" id=98]
+extents = Vector2( 12, 36 )
+
+[sub_resource type="RectangleShape2D" id=102]
+extents = Vector2( 40, 16 )
+
+[sub_resource type="RectangleShape2D" id=100]
+extents = Vector2( 12, 60 )
+
+[sub_resource type="RectangleShape2D" id=101]
+extents = Vector2( 60, 24 )
+
+[sub_resource type="RectangleShape2D" id=104]
+extents = Vector2( 12, 136 )
+
+[sub_resource type="RectangleShape2D" id=105]
+extents = Vector2( 12, 180 )
+
+[sub_resource type="RectangleShape2D" id=106]
+extents = Vector2( 60, 48 )
+
+[sub_resource type="RectangleShape2D" id=112]
+extents = Vector2( 24, 48 )
 
 [sub_resource type="RectangleShape2D" id=62]
+extents = Vector2( 12, 96 )
+
+[sub_resource type="RectangleShape2D" id=107]
+extents = Vector2( 48, 12 )
+
+[sub_resource type="RectangleShape2D" id=108]
+extents = Vector2( 156, 24 )
+
+[sub_resource type="RectangleShape2D" id=109]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=110]
+extents = Vector2( 84, 24 )
+
+[sub_resource type="RectangleShape2D" id=111]
+extents = Vector2( 12, 96 )
+
+[sub_resource type="RectangleShape2D" id=118]
+extents = Vector2( 12, 28 )
+
+[sub_resource type="RectangleShape2D" id=116]
+extents = Vector2( 44, 24 )
+
+[sub_resource type="RectangleShape2D" id=119]
+extents = Vector2( 20, 24 )
+
+[sub_resource type="RectangleShape2D" id=93]
+extents = Vector2( 36, 24 )
+
+[sub_resource type="RectangleShape2D" id=95]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="RectangleShape2D" id=94]
+extents = Vector2( 60, 24 )
+
+[sub_resource type="RectangleShape2D" id=96]
+extents = Vector2( 36, 12 )
+
+[sub_resource type="RectangleShape2D" id=91]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=92]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="RectangleShape2D" id=117]
+extents = Vector2( 84, 32 )
 
 [sub_resource type="RectangleShape2D" id=63]
+extents = Vector2( 16, 8 )
 
 [sub_resource type="RectangleShape2D" id=64]
+extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=65]
-extents = Vector2( 40, 48 )
+extents = Vector2( 24, 24 )
 
 [sub_resource type="RectangleShape2D" id=66]
-extents = Vector2( 20, 32 )
+extents = Vector2( 24, 16 )
 
 [sub_resource type="RectangleShape2D" id=67]
-extents = Vector2( 24, 8 )
 
 [sub_resource type="RectangleShape2D" id=68]
+
+[sub_resource type="RectangleShape2D" id=69]
+
+[sub_resource type="RectangleShape2D" id=70]
+
+[sub_resource type="RectangleShape2D" id=71]
+extents = Vector2( 40, 48 )
+
+[sub_resource type="RectangleShape2D" id=72]
+extents = Vector2( 20, 32 )
+
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 24, 8 )
+
+[sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 24, 8 )
 
 [node name="GuardianaRoot" type="Node2D"]
@@ -1535,7 +1688,7 @@ position = Vector2( 140, 172 )
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 392, 400 )
 
-[node name="NpcWrapperNode" type="Node" parent="."]
+[node name="NpcWrapperNode" type="Node2D" parent="."]
 
 [node name="OldManChruchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 392, 88 )
@@ -1884,15 +2037,15 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 104, 208 )
+position = Vector2( 104, 188 )
 shape = SubResource( 54 )
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 136, 256 )
+position = Vector2( 140, 256 )
 shape = SubResource( 55 )
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 184, 280 )
+position = Vector2( 188, 280 )
 shape = SubResource( 55 )
 
 [node name="CollisionShape2D376" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
@@ -1979,157 +2132,61 @@ shape = SubResource( 53 )
 position = Vector2( 464, 568 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D32" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 440, 592 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D33" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 416, 592 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D34" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 456, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D35" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 432, 640 )
-shape = SubResource( 53 )
+position = Vector2( 432, 584 )
+shape = SubResource( 80 )
 
 [node name="CollisionShape2D36" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 408, 640 )
-shape = SubResource( 53 )
+position = Vector2( 432, 640 )
+shape = SubResource( 56 )
 
 [node name="CollisionShape2D37" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 408, 664 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D38" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 432, 688 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D39" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 432, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D40" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 408, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D41" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 384, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D42" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 360, 736 )
-shape = SubResource( 53 )
+position = Vector2( 432, 688 )
+shape = SubResource( 57 )
 
 [node name="CollisionShape2D43" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 336, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D44" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D45" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D46" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D47" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D48" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 712 )
-shape = SubResource( 53 )
+position = Vector2( 376, 736 )
+shape = SubResource( 58 )
 
 [node name="CollisionShape2D49" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D50" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 688 )
-shape = SubResource( 53 )
+position = Vector2( 264, 712 )
+shape = SubResource( 59 )
 
 [node name="CollisionShape2D51" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 664 )
-shape = SubResource( 53 )
+position = Vector2( 200, 680 )
+shape = SubResource( 60 )
 
 [node name="CollisionShape2D52" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D53" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 664 )
-shape = SubResource( 53 )
+position = Vector2( 216, 640 )
+shape = SubResource( 61 )
 
 [node name="CollisionShape2D54" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 664 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D55" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 664 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D56" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 664 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D57" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 344, 664 )
-shape = SubResource( 53 )
+position = Vector2( 264, 652 )
+shape = SubResource( 75 )
 
 [node name="CollisionShape2D58" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 344, 640 )
-shape = SubResource( 53 )
+position = Vector2( 360, 656 )
+shape = SubResource( 76 )
 
 [node name="CollisionShape2D59" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 344, 616 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D60" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 640 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D61" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D62" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 368, 592 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D63" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 568 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D64" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 416, 568 )
-shape = SubResource( 53 )
+shape = SubResource( 79 )
 
 [node name="CollisionShape2D65" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 392, 544 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D66" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 344, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D67" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D68" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 544 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D69" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 544 )
-shape = SubResource( 53 )
+position = Vector2( 304, 528 )
+shape = SubResource( 77 )
 
 [node name="CollisionShape2D377" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 272, 568 )
@@ -2139,173 +2196,69 @@ shape = SubResource( 53 )
 position = Vector2( 296, 568 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D70" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D71" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 568 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D72" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 592 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D73" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D74" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D75" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D76" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D77" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 480, 664 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D78" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 480, 688 )
-shape = SubResource( 53 )
+position = Vector2( 248, 592 )
+shape = SubResource( 78 )
 
 [node name="CollisionShape2D79" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 480, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D80" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 480, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D81" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 480, 760 )
-shape = SubResource( 53 )
+shape = SubResource( 81 )
 
 [node name="CollisionShape2D82" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 504, 784 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D83" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 528, 808 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D84" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 552, 808 )
-shape = SubResource( 53 )
+position = Vector2( 532, 808 )
+shape = SubResource( 90 )
 
 [node name="CollisionShape2D85" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 560, 784 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D86" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 784 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D87" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 808 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D88" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 832 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D89" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 856 )
-shape = SubResource( 53 )
+position = Vector2( 572, 816 )
+shape = SubResource( 82 )
 
 [node name="CollisionShape2D90" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 608, 856 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D91" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 632, 832 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D92" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 656, 832 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D93" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 832 )
-shape = SubResource( 53 )
+shape = SubResource( 83 )
 
 [node name="CollisionShape2D94" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 704, 856 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D95" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 856 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D96" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 880 )
-shape = SubResource( 53 )
+position = Vector2( 720, 856 )
+shape = SubResource( 84 )
 
 [node name="CollisionShape2D97" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 776, 880 )
-shape = SubResource( 53 )
+shape = SubResource( 85 )
 
 [node name="CollisionShape2D98" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 800, 880 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D99" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 872, 880 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D100" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 896, 880 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D101" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 920, 880 )
-shape = SubResource( 53 )
+shape = SubResource( 85 )
 
 [node name="CollisionShape2D102" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 856 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D103" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 832 )
-shape = SubResource( 53 )
+position = Vector2( 944, 844 )
+shape = SubResource( 86 )
 
 [node name="CollisionShape2D104" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 968, 808 )
-shape = SubResource( 53 )
+position = Vector2( 920, 532 )
+shape = SubResource( 86 )
 
 [node name="CollisionShape2D105" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 968, 784 )
-shape = SubResource( 53 )
+position = Vector2( 968, 460 )
+shape = SubResource( 86 )
 
 [node name="CollisionShape2D106" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 992, 760 )
-shape = SubResource( 53 )
+position = Vector2( 860, 460 )
+shape = SubResource( 103 )
 
-[node name="CollisionShape2D107" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 992, 736 )
-shape = SubResource( 53 )
+[node name="CollisionShape2D103" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 968, 796 )
+shape = SubResource( 86 )
 
 [node name="CollisionShape2D108" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 992, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D109" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 992, 688 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D110" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 992, 664 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D111" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 992, 640 )
-shape = SubResource( 53 )
+position = Vector2( 992, 700 )
+shape = SubResource( 87 )
 
 [node name="CollisionShape2D112" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 616 )
@@ -2319,112 +2272,36 @@ shape = SubResource( 53 )
 position = Vector2( 944, 680 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D115" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 704 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D116" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 928, 712 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D117" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 848, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D118" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 864, 712 )
-shape = SubResource( 53 )
+position = Vector2( 856, 700 )
+shape = SubResource( 97 )
 
 [node name="CollisionShape2D119" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 864, 688 )
-shape = SubResource( 53 )
+position = Vector2( 740, 532 )
+shape = SubResource( 99 )
 
 [node name="CollisionShape2D120" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 848, 688 )
-shape = SubResource( 53 )
+position = Vector2( 836, 532 )
+shape = SubResource( 99 )
 
-[node name="CollisionShape2D121" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 928, 688 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D122" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D123" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 712 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D124" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 872, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D125" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 872, 632 )
-shape = SubResource( 53 )
+[node name="CollisionShape2D118" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 936, 700 )
+shape = SubResource( 97 )
 
 [node name="CollisionShape2D126" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 632 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D127" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D128" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 880, 608 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D129" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 880, 592 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D130" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 904, 608 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D131" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 920, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D132" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 920, 592 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D133" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 592 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D134" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 592 )
-shape = SubResource( 53 )
+position = Vector2( 884, 640 )
+shape = SubResource( 89 )
 
 [node name="CollisionShape2D135" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 616 )
-shape = SubResource( 53 )
+position = Vector2( 908, 604 )
+shape = SubResource( 88 )
 
 [node name="CollisionShape2D136" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 568 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D137" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 920, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D138" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 920, 520 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D139" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 496 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D140" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 968, 472 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D141" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 968, 448 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D142" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
@@ -2443,189 +2320,49 @@ shape = SubResource( 53 )
 position = Vector2( 968, 352 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D146" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 328 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D147" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 304 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D148" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D149" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 968, 280 )
-shape = SubResource( 53 )
+position = Vector2( 956, 304 )
+shape = SubResource( 113 )
 
 [node name="CollisionShape2D150" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 256 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D151" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 968, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D152" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 944, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D153" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 920, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D154" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 232 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D155" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 872, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D156" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 848, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D157" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 824, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D158" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 800, 232 )
-shape = SubResource( 53 )
+position = Vector2( 884, 232 )
+shape = SubResource( 114 )
 
 [node name="CollisionShape2D159" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 800, 256 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D160" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 800, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D161" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 824, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D162" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 848, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D163" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 872, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D164" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 280 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D165" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 304 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D166" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 328 )
-shape = SubResource( 53 )
+position = Vector2( 848, 304 )
+shape = SubResource( 115 )
 
 [node name="CollisionShape2D167" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 872, 352 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D168" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 376 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D169" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 896, 400 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D170" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 896, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D171" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 872, 448 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D172" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 872, 472 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D173" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 848, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D174" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 824, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D175" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 824, 520 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D176" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 848, 520 )
-shape = SubResource( 53 )
+shape = SubResource( 98 )
 
 [node name="CollisionShape2D177" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 848, 496 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D178" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 800, 504 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D179" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 776, 504 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D180" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D181" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D182" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 520 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D183" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 520 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D184" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 496 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D185" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 472 )
-shape = SubResource( 53 )
+position = Vector2( 788, 500 )
+shape = SubResource( 102 )
 
 [node name="CollisionShape2D186" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 728, 448 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D187" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D188" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 400 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D189" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 400 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D190" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 776, 400 )
-shape = SubResource( 53 )
+shape = SubResource( 100 )
 
 [node name="CollisionShape2D191" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 800, 400 )
-shape = SubResource( 53 )
+position = Vector2( 800, 412 )
+shape = SubResource( 101 )
 
 [node name="CollisionShape2D192" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 800, 376 )
@@ -2659,105 +2396,13 @@ shape = SubResource( 53 )
 position = Vector2( 704, 256 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D200" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D201" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D202" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 208 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D203" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 184 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D204" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 160 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D205" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D206" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D207" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 88 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D208" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 64 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D209" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 40 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D210" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 16 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D211" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 16 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D212" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 40 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D213" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 64 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D214" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 88 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D215" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 112 )
-shape = SubResource( 53 )
+position = Vector2( 680, 132 )
+shape = SubResource( 104 )
 
 [node name="CollisionShape2D216" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D217" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 584, 160 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D218" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 184 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D219" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 208 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D220" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D221" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D222" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D223" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 304 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D224" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 328 )
-shape = SubResource( 53 )
+shape = SubResource( 105 )
 
 [node name="CollisionShape2D225" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 560, 352 )
@@ -2775,28 +2420,8 @@ shape = SubResource( 53 )
 position = Vector2( 488, 328 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D229" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 328 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D230" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 464, 376 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D231" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 440, 328 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D232" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 416, 328 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D233" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 392, 328 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D234" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 328 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D235" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
@@ -2807,57 +2432,13 @@ shape = SubResource( 53 )
 position = Vector2( 320, 352 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D237" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 328 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D238" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 304 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D239" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D240" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 280 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D241" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 304 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D242" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 328 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D243" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 328 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D244" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 328 )
-shape = SubResource( 53 )
+position = Vector2( 272, 292 )
+shape = SubResource( 106 )
 
 [node name="CollisionShape2D245" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D246" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D247" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D248" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D249" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 256 )
-shape = SubResource( 53 )
+position = Vector2( 416, 292 )
+shape = SubResource( 106 )
 
 [node name="CollisionShape2D250" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 232 )
@@ -2867,89 +2448,21 @@ shape = SubResource( 53 )
 position = Vector2( 224, 208 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D252" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 184 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D253" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 160 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D254" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D255" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D260" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D261" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D262" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 160 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D263" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 184 )
-shape = SubResource( 53 )
+position = Vector2( 212, 148 )
+shape = SubResource( 112 )
 
 [node name="CollisionShape2D267" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 152, 96 )
-shape = SubResource( 56 )
-
-[node name="CollisionShape2D268" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 176, 56 )
-shape = SubResource( 53 )
+shape = SubResource( 62 )
 
 [node name="CollisionShape2D269" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 224, 56 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D270" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 200, 56 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D271" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 248, 56 )
-shape = SubResource( 53 )
+position = Vector2( 212, 56 )
+shape = SubResource( 107 )
 
 [node name="CollisionShape2D272" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 40 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D273" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 40 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D274" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 40 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D275" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 344, 64 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D276" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 64 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D277" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 40 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D278" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 392, 40 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D279" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 416, 40 )
-shape = SubResource( 53 )
+position = Vector2( 320, 28 )
+shape = SubResource( 108 )
 
 [node name="CollisionShape2D280" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 440, 56 )
@@ -2960,240 +2473,44 @@ position = Vector2( 415, 56 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D281" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 88 )
-shape = SubResource( 53 )
+position = Vector2( 356, 76 )
+shape = SubResource( 109 )
 
 [node name="CollisionShape2D282" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 320, 88 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D283" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D284" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 272, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D285" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D286" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 296, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D287" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D288" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 320, 136 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D289" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 344, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D290" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D291" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 392, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D292" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 416, 136 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D293" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 392, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D294" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 416, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D295" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 112 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D296" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 136 )
-shape = SubResource( 53 )
+position = Vector2( 344, 124 )
+shape = SubResource( 110 )
 
 [node name="CollisionShape2D297" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 160 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D298" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 184 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D299" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 208 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D300" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 232 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D301" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D302" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 440, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D303" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 416, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D304" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 392, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D305" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 368, 256 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D306" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 88 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D307" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 464, 64 )
-shape = SubResource( 53 )
+position = Vector2( 464, 148 )
+shape = SubResource( 111 )
 
 [node name="CollisionShape2D308" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 272, 400 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D309" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 512, 496 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D310" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 512, 520 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D311" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 512, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D312" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 512, 568 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D313" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 536, 568 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D314" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 560, 568 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D315" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 568 )
-shape = SubResource( 53 )
+position = Vector2( 512, 504 )
+shape = SubResource( 118 )
 
 [node name="CollisionShape2D316" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D317" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 560, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D318" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 536, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D319" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 568 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D320" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 632, 568 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D321" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 632, 544 )
-shape = SubResource( 53 )
+position = Vector2( 544, 556 )
+shape = SubResource( 116 )
 
 [node name="CollisionShape2D322" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 544 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D323" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 464 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D324" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 440 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D325" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D326" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 632, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D327" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 608, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D328" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D329" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 512, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D330" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 536, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D331" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 560, 424 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D332" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 512, 448 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D333" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 512, 472 )
-shape = SubResource( 53 )
+position = Vector2( 648, 556 )
+shape = SubResource( 119 )
 
 [node name="CollisionShape2D334" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 584, 496 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D342" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 568, 616 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D343" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 592, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D344" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 616, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D345" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 616, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D346" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 568, 640 )
-shape = SubResource( 53 )
+position = Vector2( 592, 628 )
+shape = SubResource( 93 )
 
 [node name="CollisionShape2D347" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 584, 664 )
@@ -3204,56 +2521,16 @@ position = Vector2( 608, 664 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D349" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 664 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D350" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 640 )
-shape = SubResource( 53 )
+position = Vector2( 668, 664 )
+shape = SubResource( 95 )
 
 [node name="CollisionShape2D351" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D352" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D353" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 704, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D354" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D355" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 616 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D356" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D357" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 640 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D358" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 664 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D359" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 688 )
-shape = SubResource( 53 )
+position = Vector2( 704, 628 )
+shape = SubResource( 94 )
 
 [node name="CollisionShape2D360" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 704, 688 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D361" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 688 )
-shape = SubResource( 53 )
+shape = SubResource( 96 )
 
 [node name="CollisionShape2D362" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 752, 664 )
@@ -3263,81 +2540,25 @@ shape = SubResource( 53 )
 position = Vector2( 752, 712 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D364" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D365" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 752, 760 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D366" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 760 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D367" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 728, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D368" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D369" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 736 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D370" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 656, 760 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D371" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 680, 760 )
-shape = SubResource( 53 )
+position = Vector2( 668, 748 )
+shape = SubResource( 91 )
+
+[node name="CollisionShape2D373" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 740, 748 )
+shape = SubResource( 91 )
 
 [node name="CollisionShape2D372" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 632, 720 )
 shape = SubResource( 53 )
 
-[node name="CollisionShape2D373" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 720 )
-shape = SubResource( 53 )
-
 [node name="CollisionShape2D374" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 560, 720 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D375" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 560, 720 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D335" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 472 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D336" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 448 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D337" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 608, 464 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D338" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 632, 464 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D339" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 560, 464 )
-shape = SubResource( 53 )
-
-[node name="CollisionShape2D340" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 536, 464 )
-shape = SubResource( 53 )
+position = Vector2( 572, 720 )
+shape = SubResource( 92 )
 
 [node name="CollisionShape2D341" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 536, 464 )
-shape = SubResource( 53 )
+position = Vector2( 584, 444 )
+shape = SubResource( 117 )
 
 [node name="WalkwayDoors" type="TileMap" parent="."]
 position = Vector2( 140, 172 )
@@ -3358,7 +2579,7 @@ cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
 tile_data = PoolIntArray( -917498, 0, 1441820, -917497, 0, 1441821, -917496, 0, 1441820, -917495, 0, 1441821, -917494, 0, 1441820, -917493, 0, 1441821, -917480, 0, 1441808, -917479, 0, 1441809, -917478, 0, 1441808, -917477, 0, 1441809, -917476, 0, 1441808, -917475, 0, 1441809, -917432, 0, 1441808, -917431, 0, 1441809, -917430, 0, 1441808, -917429, 0, 1441809, -917428, 0, 1441808, -917427, 0, 1441809, -851962, 0, 1507356, -851961, 0, 1507357, -851960, 0, 1507356, -851959, 0, 1507357, -851958, 0, 1507356, -851957, 0, 1507357, -851944, 0, 1507344, -851943, 0, 1507345, -851942, 0, 1507344, -851941, 0, 1507345, -851940, 0, 1507344, -851939, 0, 1507345, -851896, 0, 1507344, -851895, 0, 1507345, -851894, 0, 1507344, -851893, 0, 1507345, -851892, 0, 1507344, -851891, 0, 1507345, 1835055, 0, 393223, 1835056, 0, 393222, 1835057, 0, 393223, 1835058, 0, 393222, 1835059, 0, 393223, 1835060, 0, 393222, 1835061, 0, 393223, 1835062, 0, 393222, 1835200, 0, 1441808, 1835201, 0, 1441809, 1835202, 0, 1441808, 1835203, 0, 1441809, 1835204, 0, 1441808, 1835205, 0, 1441809, 1900591, 0, 458759, 1900592, 0, 458758, 1900593, 0, 458759, 1900594, 0, 458758, 1900595, 0, 458759, 1900596, 0, 458758, 1900597, 0, 458759, 1900598, 0, 458758, 1900736, 0, 1507344, 1900737, 0, 1507345, 1900738, 0, 1507344, 1900739, 0, 1507345, 1900740, 0, 1507344, 1900741, 0, 1507345, 1966127, 0, 393225, 1966128, 0, 393224, 1966129, 0, 393225, 1966130, 0, 393224, 1966131, 0, 393225, 1966132, 0, 393224, 1966133, 0, 393225, 1966134, 0, 393224, 2031663, 0, 458761, 2031664, 0, 458760, 2031665, 0, 458761, 2031666, 0, 458760, 2031667, 0, 458761, 2031668, 0, 458760, 2031669, 0, 458761, 2031670, 0, 458760, 2097199, 0, 393223, 2097200, 0, 393222, 2097201, 0, 393223, 2097202, 0, 393222, 2097203, 0, 393223, 2097204, 0, 393222, 2097205, 0, 393223, 2097206, 0, 393222, 2162735, 0, 393223, 2162736, 0, 393222, 2162737, 0, 393223, 2162738, 0, 393222, 2162739, 0, 393223, 2162740, 0, 393222, 2162741, 0, 393223, 2162742, 0, 393222, 2228271, 0, 393223, 2228272, 0, 393222, 2228273, 0, 393223, 2228274, 0, 393222, 2228275, 0, 393223, 2228276, 0, 393222, 2228277, 0, 393223, 2228278, 0, 393222, 2293807, 0, 393223, 2293808, 0, 393222, 2293809, 0, 393223, 2293810, 0, 393222, 2293811, 0, 393223, 2293812, 0, 393222, 2293813, 0, 393223, 2293814, 0, 393222, 2359343, 0, 393223, 2359344, 0, 393222, 2359345, 0, 393223, 2359346, 0, 393222, 2359347, 0, 393223, 2359348, 0, 393222, 2359349, 0, 393223, 2359350, 0, 393222, 2424879, 0, 393223, 2424880, 0, 393222, 2424881, 0, 393223, 2424882, 0, 393222, 2424883, 0, 393223, 2424884, 0, 393222, 2424885, 0, 393223, 2424886, 0, 393222, 2490415, 0, 393229, 2490416, 0, 393230, 2490417, 0, 393231, 2490418, 0, 393232, 2490419, 0, 393233, 2490420, 536870912, 393231, 2490421, 536870912, 393230, 2490422, 536870912, 393229, 2555951, 0, 458765, 2555952, 0, 458766, 2555953, 0, 458767, 2555954, 0, 458768, 2555955, 0, 458769, 2555956, 536870912, 458767, 2555957, 536870912, 458766, 2555958, 536870912, 458765, 9306250, 0, 1441808, 9306251, 0, 1441809, 9306252, 0, 1441808, 9306253, 0, 1441809, 9306254, 0, 1441808, 9306255, 0, 1441809, 9371786, 0, 1507344, 9371787, 0, 1507345, 9371788, 0, 1507344, 9371789, 0, 1507345, 9371790, 0, 1507344, 9371791, 0, 1507345 )
 
-[node name="RoofsWrapperNode" type="Node" parent="."]
+[node name="RoofsWrapperNode" type="Node2D" parent="."]
 
 [node name="GortsHouse" type="TileMap" parent="RoofsWrapperNode"]
 visible = false
@@ -3458,7 +2679,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/LeftEntranceChurchArea2D"]
 position = Vector2( 176, 104 )
-shape = SubResource( 57 )
+shape = SubResource( 63 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3471,7 +2692,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/LeftExitChurchArea2D"]
 position = Vector2( 176, 148 )
-shape = SubResource( 58 )
+shape = SubResource( 64 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3483,7 +2704,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/MainEntranceChurchArea2D"]
 position = Vector2( 344, 272 )
-shape = SubResource( 59 )
+shape = SubResource( 65 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3495,7 +2716,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/MainExitChurchArea2D"]
 position = Vector2( 344, 352 )
-shape = SubResource( 60 )
+shape = SubResource( 66 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3507,7 +2728,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/BarEntranceArea2D"]
 position = Vector2( 920, 272 )
-shape = SubResource( 61 )
+shape = SubResource( 67 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3519,7 +2740,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/BarExitArea2D"]
 position = Vector2( 920, 328 )
-shape = SubResource( 62 )
+shape = SubResource( 68 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3531,7 +2752,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/GortBasementEntranceArea2D"]
 position = Vector2( 344, 568 )
-shape = SubResource( 63 )
+shape = SubResource( 69 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3543,7 +2764,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/GortBasementExitArea2D"]
 position = Vector2( 88, 1272 )
-shape = SubResource( 64 )
+shape = SubResource( 70 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3555,7 +2776,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/KingsCastleEntranceArea2D"]
 position = Vector2( 632, 32 )
-shape = SubResource( 65 )
+shape = SubResource( 71 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3567,7 +2788,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitGuardianaArea2D"]
 position = Vector2( 836, 920 )
-shape = SubResource( 66 )
+shape = SubResource( 72 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3579,7 +2800,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ShopEntranceArea2D"]
 position = Vector2( 788, 520 )
-shape = SubResource( 67 )
+shape = SubResource( 73 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3591,7 +2812,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ShopExitArea2D"]
 position = Vector2( 788, 568 )
-shape = SubResource( 68 )
+shape = SubResource( 74 )
 __meta__ = {
 "_edit_lock_": true
 }

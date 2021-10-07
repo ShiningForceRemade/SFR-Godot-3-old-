@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://SF1/Chapters/1/Battle2/Tiled_Map/SF1-Battle2And3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SF1/Chapters/1/Battle2/ActionSpotsWrapperNode.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 12 )
@@ -111,6 +112,12 @@ extents = Vector2( 12.5244, 33.629 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 24, 47.9999 )
+
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=41]
+extents = Vector2( 16, 16 )
 
 [node name="OverworldRoot" type="Node2D"]
 
@@ -378,3 +385,38 @@ shape = SubResource( 32 )
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 264, 648 )
 shape = SubResource( 5 )
+
+[node name="ActionSpotsWrapperNode" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="AlteroneEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/AlteroneEntranceArea2D"]
+position = Vector2( 528, 144 )
+shape = SubResource( 42 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ExitGuardianaArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitGuardianaArea2D"]
+position = Vector2( 216, 528 )
+scale = Vector2( 0.95, 0.95 )
+shape = SubResource( 41 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Area2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D"]
+
+[connection signal="body_entered" from="ActionSpotsWrapperNode/AlteroneEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_AlteroneEntranceArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/ExitGuardianaArea2D" to="ActionSpotsWrapperNode" method="_on_ExitGuardianaArea2D_body_entered"]

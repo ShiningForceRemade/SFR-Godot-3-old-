@@ -80,7 +80,7 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	if cnode != null:
 		cnode.queue_free()
 	
-	var cnode = load(c.character_base_node).instance();
+	cnode = load(c.character_base_node).instance();
 	var cnode_actor = cnode.get_actor_root_node_internal()
 	# print(cnode, cnode_actor)
 	

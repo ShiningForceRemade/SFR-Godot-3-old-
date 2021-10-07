@@ -66,6 +66,7 @@ func _ready():
 
 func s_tween_completed(node_arg, property_arg): 
 	colsh.position = characterRoot.position
+	animationPlayer.playback_speed = 1
 
 
 func get_actor_name() -> String:
@@ -112,7 +113,6 @@ func _process(delta):
 	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
 		
 		# setup_animations_types_depending_on_movement()	
-	animationPlayer.playback_speed = 1
 	
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
@@ -137,7 +137,10 @@ func _process(delta):
 		
 		if Input.is_action_pressed("ui_right"):
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
-			animationPlayer.play("RightMovement")
+			
+			if animationPlayer.current_animation != "RightMovement":
+				animationPlayer.play("RightMovement")
+			
 			animationPlayer.playback_speed = 2
 			
 			frontFacingRaycast.force_raycast_update()
@@ -150,7 +153,10 @@ func _process(delta):
 		elif Input.is_action_pressed("ui_left"):
 			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
-			animationPlayer.play("LeftMovement")
+			
+			if animationPlayer.current_animation != "LeftMovement":
+				animationPlayer.play("LeftMovement")
+				
 			animationPlayer.playback_speed = 2
 			
 			frontFacingRaycast.force_raycast_update()
@@ -164,7 +170,10 @@ func _process(delta):
 		elif Input.is_action_pressed("ui_up"):
 			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
-			animationPlayer.play("UpMovement")
+			
+			if animationPlayer.current_animation != "UpMovement":
+				animationPlayer.play("UpMovement")
+			
 			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
 			animationPlayer.playback_speed = 2
 			
@@ -179,7 +188,10 @@ func _process(delta):
 		elif Input.is_action_pressed("ui_down"):
 			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
-			animationPlayer.play("DownMovement")
+			
+			if animationPlayer.current_animation != "DownMovement":
+				animationPlayer.play("DownMovement")
+			
 			animationPlayer.playback_speed = 2
 			
 			frontFacingRaycast.force_raycast_update()
