@@ -292,7 +292,7 @@ func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
 
 func get_character_at_tile_position(pos_arg):
 	for child in target_node_children:
-		if child.position == pos_arg:
+		if child.global_position == pos_arg:
 			print(child.name)
 			return child
 			
@@ -304,15 +304,15 @@ func set_cursor_target_on_first_found_enemey() -> void:
 	
 	for child in target_node_children:
 		print("Target Child", child)
-		print(child.position)
+		print(child.global_position)
 		
 		for c in range(t_cols):
 			for r in range(t_rows):
 				if use_range_array_rep[r][c] != null:
 					print(use_range_array_rep[r][c])
 					
-					print(child.position, " ", Vector2(ac_pos.x + get_tile_position_adjustment(r, c_row), ac_pos.y + get_tile_position_adjustment(c, c_col)))
-					if child.position == Vector2(ac_pos.x + get_tile_position_adjustment(r, c_row), ac_pos.y + get_tile_position_adjustment(c, c_col)):
+					print(child.global_position, " ", Vector2(ac_pos.x + get_tile_position_adjustment(r, c_row), ac_pos.y + get_tile_position_adjustment(c, c_col)))
+					if child.global_position == Vector2(ac_pos.x + get_tile_position_adjustment(r, c_row), ac_pos.y + get_tile_position_adjustment(c, c_col)):
 						set_and_save_new_target_selection(r, c, child)
 						backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y)
 						forward_pass_naive(current_selection_vec2.x, current_selection_vec2.y)
@@ -444,7 +444,7 @@ func forward_pass_naive(start_row, start_col) -> bool:
 				
 				for child in target_node_children:
 					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -480,7 +480,7 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 				
 				for child in target_node_children:
 					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -667,8 +667,8 @@ func right_side_clockwise_check():
 	pass
 
 func sort_actors_by_position(a, b) -> bool:
-	print("Sort - ", a.position < b.position)
-	if a.position < b.position:
+	print("Sort - ", a.global_position < b.global_position)
+	if a.global_position < b.global_position:
 		return true
 		
 	return false
@@ -697,7 +697,7 @@ func right_side_pass_vt(start_row, start_col) -> bool:
 				
 				for child in target_node_children:
 					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -737,7 +737,7 @@ func left_side_pass_vt(start_row, start_col) -> bool:
 				
 				for child in target_node_children:
 					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -775,7 +775,7 @@ func left_side_pass_upwards(start_row, start_col) -> bool:
 				
 				for child in target_node_children:
 					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -814,7 +814,7 @@ func right_side_pass_upwards(start_row, start_col) -> bool:
 				
 				for child in target_node_children:
 					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -851,7 +851,7 @@ func right_side_pass_vt_old() -> bool:
 				
 				for child in target_node_children:
 					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.position:
+					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -878,7 +878,7 @@ func get_tile_position_adjustment(cur_rc, center_rc) -> int:
 
 func setup_quadrant_vars() -> void:
 	use_range_array_rep = item_use_range.get_use_range_array_representation()
-	ac_pos = Singleton_Game_GlobalBattleVariables.currently_active_character.position
+	ac_pos = Singleton_Game_GlobalBattleVariables.currently_active_character.global_position
 	
 	# total rows and columns
 	t_rows = use_range_array_rep.size()
@@ -897,7 +897,7 @@ func setup_quadrant_vars() -> void:
 func set_and_save_new_target_selection(current_row, current_col, child) -> void: 
 	current_selection_vec2 = Vector2(current_row, current_col)
 	print("Found - Current Select - ", current_selection_vec2)
-	print(child, "  -   ", child.position)
-	target_range.draw_cursor_at_position(child.position)
+	print(child, "  -   ", child.global_position)
+	target_range.draw_cursor_at_position(child.global_position)
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor = child
 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro()

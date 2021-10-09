@@ -86,9 +86,7 @@ func _ready():
 		print("BattleBase - signal_selected_actor_underneath_cursor failed to connect")
 
 func s_selected_actor_underneath_cursor():
-	print("WE INNNNN")
 	s_show_battle_view_selected_actor_info_menu()
-	#print("Selected Actor under cursor")
 	#print(Singleton_Game_GlobalBattleVariables.selected_actor_type, Singleton_Game_GlobalBattleVariables.selected_actor)
 	#emit_signal("signal_selected_actor_underneath_cursor") 
 

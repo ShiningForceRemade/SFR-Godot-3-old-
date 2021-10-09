@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func set_active() -> void:
 	print("Cursor is active")
-	position = Singleton_Game_GlobalBattleVariables.currently_active_character.position
+	position = Singleton_Game_GlobalBattleVariables.currently_active_character.global_position
 	show()
 	active = true
 	Singleton_Game_GlobalBattleVariables.camera_node.playerNode = self
@@ -63,12 +63,12 @@ func _process(_delta) -> void:
 func _input(event) -> void:
 	if active:
 		if event.is_action_released("ui_b_key"):
-			if position == Singleton_Game_GlobalBattleVariables.currently_active_character.position:
+			if position == Singleton_Game_GlobalBattleVariables.currently_active_character.global_position:
 				print("Same Pos")
 			
 				# cursor_root.position = previous_actor_pos
 	
-			var distance = Singleton_Game_GlobalBattleVariables.currently_active_character.position.distance_to(position)
+			var distance = Singleton_Game_GlobalBattleVariables.currently_active_character.global_position.distance_to(position)
 			#var distance = sqrt((a.node.position.x - cursor_root.position.x) * 2 + (a.node.position.y - cursor_root.position.y) * 2)
 	
 			print(distance)
@@ -79,7 +79,7 @@ func _input(event) -> void:
 				tween_time = 0
 			
 			movementTween.interpolate_property(self, 'position', self.position, 
-			Singleton_Game_GlobalBattleVariables.currently_active_character.position, 
+			Singleton_Game_GlobalBattleVariables.currently_active_character.global_position, 
 			tween_time, # 0.25,
 			 Tween.TRANS_LINEAR, Tween.EASE_OUT)
 			
@@ -107,8 +107,8 @@ func _input(event) -> void:
 			print("\nEnemeies")
 			for enemey in enemies.get_children():
 				print(enemey.name)
-				print(enemey.position)
-				if position == enemey.position:
+				print(enemey.global_position)
+				if position == enemey.global_position:
 					print("\nFind em\n")
 					active = false
 					
@@ -122,7 +122,7 @@ func _input(event) -> void:
 				#print(character.name)
 				#print("Pos - ", character.position)
 				#print("Kin Pos - ", character.get_character_current_pos())
-				if position == character.position:
+				if position == character.global_position:
 					#print("\nFind em\n")
 					active = false
 					

@@ -96,10 +96,11 @@ func generate_and_launch_new_turn_order():
 	
 	var previous_actor_pos
 	if Singleton_Game_GlobalBattleVariables.currently_active_character != null:
-		previous_actor_pos = Singleton_Game_GlobalBattleVariables.currently_active_character.position
+		print("Cur Active Char pos - ",  Singleton_Game_GlobalBattleVariables.currently_active_character.global_position)
+		previous_actor_pos = Singleton_Game_GlobalBattleVariables.currently_active_character.global_position
 	else:
-		previous_actor_pos = Vector2(205, 204)
-	# Vector2.ZERO
+		print("MC pos - ",  mc.global_position)
+		previous_actor_pos = mc.global_position # Vector2(205, 420)
 	
 	# print(turn_order_array)
 	
@@ -157,7 +158,9 @@ func generate_and_launch_new_turn_order():
 			
 			mc.z_index = 0
 			print("Enemy Turn End")
-			previous_actor_pos = a.node.position
+			
+			print(a.node.global_position)
+			previous_actor_pos = a.node.global_position
 			hide_movement_tiles()
 			
 #			var t = Timer.new()
@@ -226,7 +229,7 @@ func generate_and_launch_new_turn_order():
 			hide_movement_tiles()
 			print("Character Turn End")
 			
-			previous_actor_pos = a.node.position
+			previous_actor_pos = a.node.global_position
 			mc.z_index = 0
 			
 			mc.disconnect("signal_character_moved", self, "get_tile_info_under_character")
@@ -239,7 +242,7 @@ func generate_and_launch_new_turn_order():
 			Singleton_Game_GlobalBattleVariables.currently_selected_actor = null
 			
 		if previous_actor_pos == Vector2.ZERO:
-			previous_actor_pos = a.node.position
+			previous_actor_pos = a.node.global_position
 			
 		for actor in turn_order_array:
 			# if actor.node == null:
@@ -308,13 +311,21 @@ func print_victory_defeated_rune_knight() -> void:
 
 
 func s_switch_focus_to_cursor():
+	
+	# print("Cursor Active - ", cursor_root.position, " ",  Singleton_Game_GlobalBattleVariables.currently_active_character.position)
+	
+	# cursor_root.position = Singleton_Game_GlobalBattleVariables.currently_active_character.position
+	
 	cursor_root.set_active()
 
 func cursor_move_to_next_actor(a_node, previous_actor_pos):
 	cursor_root.show()
+	
+	print("Cursor Pos - ", cursor_root.position, " ", previous_actor_pos)
+	
 	cursor_root.position = previous_actor_pos
 	
-	var distance = a_node.position.distance_to(cursor_root.position)
+	var distance = a_node.global_position.distance_to(cursor_root.position)
 	#var distance = sqrt((a.node.position.x - cursor_root.position.x) * 2 + (a.node.position.y - cursor_root.position.y) * 2)
 	
 	# TODO: create different movement speed choices
@@ -323,7 +334,10 @@ func cursor_move_to_next_actor(a_node, previous_actor_pos):
 	if tween_time < 0:
 		tween_time = 0.1
 				
-	cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a_node.position, tween_time)
+	cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a_node.global_position, tween_time)
+	
+	print("Camera POS - ", camera.position, " ",  a_node.global_position)
+	
 	camera.smooth_move_to_new_position(a_node, tween_time)
 	
 
@@ -347,11 +361,15 @@ func active_character_or_enemey_display_info():
 	print("Character Or Enemey Info after signal\n")
 
 func get_char_tile_position() -> Vector2:
+	# return tilemap.world_to_map(mc.global_position)
+	
 	var new_pos = mc.get_character_current_pos()
 	var mc_real_pos: Vector2 = Vector2.ZERO
 	mc_real_pos.x = mc.position.x + new_pos.x
 	mc_real_pos.y = mc.position.y + new_pos.y
 	return tilemap.world_to_map(mc_real_pos)
+	
+	
 	#print("XY pos - ", mc_real_pos)
 	#print("Tilemap Idxs - ", tilemap.world_to_map(mc_real_pos))
 	# print(tilemap.get_cellv(tilemap.world_to_map(mc_real_pos)))
@@ -403,7 +421,7 @@ func get_tile_info_under_character(new_pos: Vector2):
 
 func generate_movement_array_representation():
 	print("\n\n\nGenereate Start")
-	var actor_cur_pos = mc.position
+	var actor_cur_pos = mc.global_position
 	var vpos: Vector2 = get_char_tile_position()
 	var movement = mc.get_character_movement()
 	# Singleton_Game_GlobalBattleVariables.active_actor_movement_array = []
@@ -783,7 +801,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 		$MovementTilesWrapperNode.remove_child(n)
 		n.queue_free()
 	
-	var actor_cur_pos = mc.position
+	var actor_cur_pos = mc.global_position
 	var movement = mc.get_character_movement()
 	var mid_point = movement - 1
 	
@@ -803,6 +821,13 @@ func draw_movement_tiles_from_movement_array() -> void:
 			# 	continue
 			
 			if move_array[row][col] == 1:
+				
+				print(
+					actor_cur_pos,
+					
+					Vector2(actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
+					actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2))
+				)
 				
 				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][col] = Vector2(actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
 				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2))
@@ -923,7 +948,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 func check_if_character_or_enemey_is_on_tile(chk_pos_arg):
 	for enemey in enemies.get_children():
 		# print("POS CHECK - ", enemey.position, " ", chk_pos_arg)
-		if enemey.position == chk_pos_arg:
+		if enemey.global_position == chk_pos_arg:
 			return { "actor": "enemey", "move": null }
 	
 	return null
@@ -935,14 +960,14 @@ func check_if_character_or_enemey_is_on_tile(chk_pos_arg):
 func check_if_character_is_on_tile(chk_pos_arg):
 	for character in characters.get_children():
 		# print("POS CHECK - ", enemey.position, " ", chk_pos_arg)
-		if character.position == chk_pos_arg:
+		if character.global_position == chk_pos_arg:
 			return { "actor": "character", "move": null }
 	
 	return null
 
 func generate_enemey_movement_array_representation():
 	print("\n\n\nGenereate Start")
-	var actor_cur_pos = mc.position
+	var actor_cur_pos = mc.global_position
 	var vpos: Vector2 = get_char_tile_position()
 	var movement = mc.get_character_movement()
 	# Singleton_Game_GlobalBattleVariables.active_actor_movement_array = []
@@ -1218,22 +1243,7 @@ func generate_actor_order_for_current_turn():
 	#print("Generate Actor Order for Turn\n", turn_order_array)
 	
 	var ordered_turn_array = turn_order_array
-#	if ordered_turn_array[0].name == "GoblinRoot6":
-#		return
-#	ordered_turn_array.remove(0)
-#	ordered_turn_array.remove(0)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-#	ordered_turn_array.remove(1)
-	
-	
+		
 	rng.randomize()
 	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
 	print("\nOrdered Array\n")

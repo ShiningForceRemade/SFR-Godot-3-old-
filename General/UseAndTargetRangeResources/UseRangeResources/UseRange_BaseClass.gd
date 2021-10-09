@@ -32,7 +32,7 @@ func draw_use_range_tiles(move_array) -> void:
 		uttwn.remove_child(n)
 		n.queue_free()
 	
-	var actor_cur_pos = Singleton_Game_GlobalBattleVariables.currently_active_character.position
+	var actor_cur_pos = Singleton_Game_GlobalBattleVariables.currently_active_character.global_position
 	var movement = move_array.size() / 2
 	
 	# TOP LEFT QUADRANT

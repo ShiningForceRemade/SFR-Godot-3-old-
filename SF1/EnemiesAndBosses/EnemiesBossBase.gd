@@ -192,7 +192,7 @@ func cget_actor_name() -> String:
 func check_if_move_is_possible(new_pos_arg) -> bool:
 	var character_children = Singleton_Game_GlobalBattleVariables.character_nodes.get_children()
 	for character in character_children:
-		if new_pos_arg == character.position:
+		if new_pos_arg == character.global_position:
 			return false
 	
 	var check_pos = new_pos_arg
@@ -269,7 +269,7 @@ func _physics_process(_delta):
 		if Input.is_action_pressed("ui_right"):
 			animationPlayer.play("RightMovement")
 			
-			if check_if_move_is_possible(Vector2(pnode.position.x + TILE_SIZE, pnode.position.y)):
+			if check_if_move_is_possible(Vector2(pnode.global_position.x + TILE_SIZE, pnode.global_position.y)):
 				animationPlayer.playback_speed = 2
 				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
@@ -277,7 +277,7 @@ func _physics_process(_delta):
 		elif Input.is_action_pressed("ui_left"):
 			animationPlayer.play("LeftMovement")
 			
-			if check_if_move_is_possible(Vector2(pnode.position.x - TILE_SIZE, pnode.position.y)):
+			if check_if_move_is_possible(Vector2(pnode.global_position.x - TILE_SIZE, pnode.global_position.y)):
 				animationPlayer.playback_speed = 2
 				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
@@ -285,7 +285,7 @@ func _physics_process(_delta):
 		elif Input.is_action_pressed("ui_up"):
 			animationPlayer.play("UpMovement")
 			
-			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+			if check_if_move_is_possible(Vector2(pnode.global_position.x, pnode.global_position.y - TILE_SIZE)):
 				animationPlayer.playback_speed = 2
 				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
@@ -293,7 +293,7 @@ func _physics_process(_delta):
 		elif Input.is_action_pressed("ui_down"):
 			animationPlayer.play("DownMovement")
 			
-			if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y + TILE_SIZE)):
+			if check_if_move_is_possible(Vector2(pnode.global_position.x, pnode.global_position.y + TILE_SIZE)):
 				animationPlayer.playback_speed = 2
 				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
@@ -302,13 +302,14 @@ func _physics_process(_delta):
 		
 		tween.start()
 
+
 func is_character_actor_underneath() -> bool:
 	var character_children = Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children()
 	for character in character_children:
 		if pnode == character:
 			continue
 		
-		if pnode.position == character.position:
+		if pnode.global_position == character.global_position:
 			return true
 		
 	return false
