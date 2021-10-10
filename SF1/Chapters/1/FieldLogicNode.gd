@@ -39,7 +39,12 @@ var camera
 
 func _ready():
 	# print(tilemap)
-	yield(get_tree().root, "ready")
+	
+	yield(get_parent().get_parent(), "ready")
+	
+	# get_parent().get_parent().get_parent().connect_battle_logic_to_self()
+	
+	# yield(get_tree().root, "ready")
 	
 	camera = get_parent().get_node("Camera2D")
 	
