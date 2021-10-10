@@ -10,10 +10,24 @@ func _ready():
 func change_scene(new_scene_resource_path: String) -> void:
 	var new_scene = load(new_scene_resource_path).instance();
 	
+	call_deferred("_deferred_change_scene", new_scene)
+	
+	# for child in get_children():
+	#	child.queue_free()
+	
+	# add_child(new_scene)
+
+# TODO: need to setup deferred calls for the other types as well
+
+func _deferred_change_scene(new_scene) -> void:
+	# var new_scene = load(new_scene_resource_path).instance();
+	
 	for child in get_children():
 		child.queue_free()
 	
 	add_child(new_scene)
+
+
 
 
 func change_scene_preloaded(new_scene_preloaded) -> void:

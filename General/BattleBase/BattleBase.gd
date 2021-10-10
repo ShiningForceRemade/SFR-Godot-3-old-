@@ -57,7 +57,6 @@ func _ready():
 	s_hide_battle_give_menu()
 	s_hide_micro_actor_inventory_view()
 	s_hide_no_valid_option_warning_box()
-	$CanvasLayerInfoControls/ScreenFaderColorRect.hide()
 	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node = $CanvasLayerInfoControls/DialogueBoxRoot
 	

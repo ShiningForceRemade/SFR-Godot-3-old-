@@ -7,6 +7,8 @@ signal signal_move_direction_completed
 # group behaviours
 export var stationary: bool
 
+export(int, "Down", "Left", "Right", "Up") var default_facing_direction = 0
+
 # group scripts
 
 # group - textures
@@ -49,7 +51,8 @@ func _ready():
 	
 	raycast.add_exception(kinematicBody)
 	
-	animationPlayer.play("DownMovement")
+	# animationPlayer.play("DownMovement")
+	default_facing_direction_setup()
 	
 	tween.connect("tween_completed", self, "s_tween_completed")
 	
@@ -65,6 +68,20 @@ func _ready():
 	parent_node = get_parent()
 	# walk_around()
 	pass
+
+
+func default_facing_direction_setup() -> void:
+	if default_facing_direction == 1: # left
+		animationPlayer.play("LeftMovement")
+	elif default_facing_direction == 2: # right
+		animationPlayer.play("RightMovement")
+	elif default_facing_direction == 3: # up
+		animationPlayer.play("UpMovement")
+	else:
+		# down is default
+		animationPlayer.play("DownMovement")
+	
+
 
 func attempt_to_interact() -> void:
 	# if not moving to new square
