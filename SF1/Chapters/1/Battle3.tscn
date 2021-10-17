@@ -441,7 +441,7 @@ tracks/1/keys = {
 27/shapes = [  ]
 27/z_index = 0
 
-[node name="BattleTwoRoot" type="Node2D"]
+[node name="BattleThreeRoot" type="Node2D"]
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ],
@@ -527,69 +527,69 @@ __meta__ = {
 }
 
 [node name="RuneKnightRoot" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 420, 160 )
+position = Vector2( 420, 156 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="RuneKnightRoot3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 492, 160 )
+position = Vector2( 492, 156 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="RuneKnightRoot4" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 492, 136 )
+position = Vector2( 492, 132 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="RuneKnightRoot5" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 420, 136 )
+position = Vector2( 420, 132 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="RuneKnightRoot2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 444, 112 )
+position = Vector2( 444, 108 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="DarkDwarfRoot" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 280, 280 )
+position = Vector2( 276, 276 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RightDarkDwarf.gd"
 
 [node name="DarkDwarfRoot4" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 256, 328 )
+position = Vector2( 252, 324 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RightDarkDwarf.gd"
 
 [node name="DarkDwarfRoot5" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 232, 352 )
+position = Vector2( 228, 348 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RightDarkDwarf.gd"
 
 [node name="DarkDwarfRoot3" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 396.009, 352 )
+position = Vector2( 396, 348 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RightDarkDwarf.gd"
 
 [node name="DarkDwarfRoot2" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 328, 352 )
+position = Vector2( 324, 348 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/LeftDarkDwarf.gd"
 
 [node name="GiantBatRoot" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 232, 136 )
+position = Vector2( 228, 132 )
 
 [node name="GiantBatRoot2" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 256, 160 )
+position = Vector2( 252, 156 )
 
 [node name="GiantBatRoot3" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 516, 448 )
+position = Vector2( 516, 444 )
 
 [node name="GiantBatRoot4" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 492, 424 )
+position = Vector2( 492, 420 )
 
 [node name="GiantBatRoot5" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 208, 160 )
+position = Vector2( 204, 156 )
 
 [node name="TileMapTileInformation" type="TileMap" parent="."]
 visible = false
@@ -603,7 +603,7 @@ tile_data = PoolIntArray( 65531, 18, 0, 65532, 18, 0, 65533, 18, 0, 65534, 18, 0
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 152, 88 )
+position = Vector2( 152, 89 )
 rotating = true
 current = true
 limit_left = 0

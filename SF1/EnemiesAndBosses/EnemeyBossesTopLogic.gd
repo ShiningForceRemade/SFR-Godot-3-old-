@@ -26,13 +26,13 @@ func _ready():
 	
 	tween.connect("tween_completed", self, "s_tween_completed")
 	
-	if !is_npc:
-		_timer = Timer.new()
-		add_child(_timer)
-		_timer.connect("timeout", self, "_on_Timer_timeout")
-		_timer.set_wait_time(1.0)
-		_timer.set_one_shot(false) # Make sure it loops
-		_timer.start()
+	# if !is_npc:
+	#	_timer = Timer.new()
+	#	add_child(_timer)
+	#	_timer.connect("timeout", self, "_on_Timer_timeout")
+	#	_timer.set_wait_time(1.0)
+	#	_timer.set_one_shot(false) # Make sure it loops
+	#	_timer.start()
 	
 
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Dark Mage/Map_Sprites.png" type="Texture" id=2]
 [ext_resource path="res://SF1/Items/Weapons/WoodenStaff.tres" type="Resource" id=3]
 [ext_resource path="res://SF1/EnemiesAndBosses/EnemeyBossesTopLogic.gd" type="Script" id=4]
+[ext_resource path="res://SF1/EnemiesAndBosses/DarkMage/BattleAnimations/BattleAnimation.tres" type="Resource" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "DownMovement"
@@ -127,6 +128,7 @@ tracks/1/keys = {
 script = ExtResource( 4 )
 
 [node name="EnemeyRoot" parent="." instance=ExtResource( 1 )]
+enemey_name = "Dark Mage"
 coins = 170
 monster_class = 42
 droppable_items_id = {
@@ -146,10 +148,12 @@ action_type = 1
 action_type_chance = 75
 special_attack = 1
 special_attack_chance = 25
+battle_animation_resource = ExtResource( 5 )
 
 [node name="Sprite" parent="EnemeyRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )
 hframes = 6
+frame = 1
 
 [node name="AnimationPlayer" parent="EnemeyRoot" index="1"]
 anims/DownMovement = SubResource( 1 )
