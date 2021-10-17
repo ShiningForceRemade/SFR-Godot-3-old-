@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Dark Dwarf/Map_Sprites.png" type="Texture" id=2]
-[ext_resource path="res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.gd" type="Script" id=3]
-[ext_resource path="res://SF1/Items/Weapons/HandAxe.tres" type="Resource" id=4]
-[ext_resource path="res://SF1/EnemiesAndBosses/Dark Dwarf/BattleAnimations/BattleAnimation.tres" type="Resource" id=5]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Giant Bat/Map_Sprites.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Giant Bat/Battle_Sprites.png" type="Texture" id=3]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "DownMovement"
 length = 0.8
 loop = true
@@ -35,7 +33,65 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=4]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "RightMovement"
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
 resource_name = "UpMovement"
 length = 0.8
 loop = true
@@ -64,85 +120,28 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
-[sub_resource type="Animation" id=10]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("KinematicBody2D/Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
-
-[node name="DarkDwarfRoot" type="Node2D"]
-script = ExtResource( 3 )
+[node name="GiantBatRoot" type="Node2D"]
 
 [node name="EnemeyRoot" parent="." instance=ExtResource( 1 )]
-enemey_name = "Dark Dwarf"
-coins = 25
-monster_class = 37
+coins = 60
+monster_class = 56
 droppable_items_id = {
 }
-inventory_items_id = [ ExtResource( 4 ) ]
-is_item_equipped = [ true ]
-effective_level = 4
-attack = 5
-defense = 8
-agility = 5
-move = 4
-HP_Current = 11
-HP_Total = 11
-action_type_chance = 100
-battle_animation_resource = ExtResource( 5 )
+texture_sprite_map = ExtResource( 2 )
+texture_sprite_battle = ExtResource( 3 )
+effective_level = 5
+attack = 11
+defense = 6
+agility = 9
+move = 7
+HP_Current = 14
+HP_Total = 14
+movement_type = 5
+evasion_chance = 12.5
+special_attack = 7
+special_attack_chance = 50
 
 [node name="Sprite" parent="EnemeyRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )
@@ -150,12 +149,12 @@ hframes = 6
 frame = 1
 
 [node name="AnimationPlayer" parent="EnemeyRoot" index="1"]
-anims/DownMovement = SubResource( 7 )
-anims/LeftMovement = SubResource( 8 )
-anims/RightMovement = SubResource( 9 )
-anims/UpMovement = SubResource( 10 )
+anims/DownMovement = SubResource( 2 )
+anims/LeftMovement = SubResource( 4 )
+anims/RightMovement = SubResource( 5 )
+anims/UpMovement = SubResource( 3 )
 
 [node name="AnimationTree" parent="EnemeyRoot" index="2"]
-parameters/playback = SubResource( 6 )
+parameters/playback = SubResource( 1 )
 
 [editable path="EnemeyRoot"]

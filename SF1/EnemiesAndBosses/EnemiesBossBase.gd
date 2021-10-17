@@ -67,6 +67,9 @@ export(int, 0, 100) var dodge_chance: int = 10
 
 # group - behaviours
 export(int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
+
+export var evasion_chance: float = 1/32 * 100
+
 export var regeneration_rate: int = 0
 # NOTE: shining force editor v3.4.4 has one other behaviour type that hasn't been solved yet
 # action type and chance should be sub group
