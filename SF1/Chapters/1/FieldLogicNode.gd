@@ -1180,27 +1180,63 @@ func generate_enemey_movement_array_representation():
 
 func new_check_tile(vpos: Vector2) -> bool:
 	var current_tile_pos = tilemap.get_cellv(vpos)
+	
+	var mt = Singleton_Game_GlobalBattleVariables.currently_active_character.cget_movement_type()
+	print("Movement Type - ", mt)
+	
 	# print(current_tile_pos)
 	if current_tile_pos != tilemap.INVALID_CELL:
 		var tile_name = tilemap.tile_set.tile_get_name(current_tile_pos)
+		if mt == 5:
+			return movement_type_tile_check_flying(tile_name)
+		
+		# TODO: cleanup later disgusting
+		
 		# print("tile_name: ", tile_name, " tile_pos - ", vpos)
 		if tile_name == "Ground30":
 			return true
-		if tile_name == "Ground15":
+		elif tile_name == "Ground15":
 			return true
-		if tile_name == "Ground0":
+		elif tile_name == "Ground0":
 			return true	
-		if tile_name == "Float0":
+		elif tile_name == "Float0":
 			return false
-		if tile_name == "Float15":
+		elif tile_name == "Float15":
 			return false
-		if tile_name == "Float30":
+		elif tile_name == "Float30":
 			return false
+		elif tile_name == "Forest0":
+			return true
+		elif tile_name == "Forest15":
+			return true
+		elif tile_name == "Forest30":
+			return true
+		elif tile_name == "PathAndBridges0":
+			return true
+		elif tile_name == "PathAndBridges15":
+			return true
+		elif tile_name == "PathAndBridges30":
+			return true
+		elif tile_name == "Mountain0":
+			return true
+		elif tile_name == "Mountain15":
+			return true
+		elif tile_name == "Mountain30":
+			return true
 			
 		return false
 	else:
 		# print("invalid - no tile at position")
 		return false
+
+## TODO: IMPORTANT: REFACTOR: 
+## when godot 4 comes out and you can assign functions to vars move to assigning the 
+## movement check functions to the start of the move array representation
+#
+# export(int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
+
+func movement_type_tile_check_flying(tile_name: String) -> bool:
+	return true
 
 
 func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg = null) -> void:

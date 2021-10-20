@@ -170,6 +170,8 @@ func cget_hp_current() -> int: return enemey_actor_root.HP_Current
 func cget_mp_total() -> int: return enemey_actor_root.MP_Total
 func cget_mp_current() -> int: return enemey_actor_root.MP_Current
 
+func cget_movement_type() -> int: return enemey_actor_root.movement_type
+
 func get_actor_root_node_internal():
 	return get_node("EnemeyRoot")
 

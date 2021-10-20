@@ -22,6 +22,8 @@ func cget_mp_total() -> int: return $CharacterRoot.MP_Total
 func cget_mp_current() -> int: return $CharacterRoot.MP_Current
 func cget_class() -> String: return $CharacterRoot.cget_class()
 
+func cget_movement_type() -> int: return $CharacterRoot.movement_type
+
 # mucking around setup clean later when methods picked
 
 # play_turn
