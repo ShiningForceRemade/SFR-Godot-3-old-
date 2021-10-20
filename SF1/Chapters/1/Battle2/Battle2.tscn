@@ -496,7 +496,7 @@ visible = false
 anims/RandomTileFlashing = SubResource( 1 )
 
 [node name="CursorRoot" parent="." instance=ExtResource( 6 )]
-position = Vector2( 616, 520 )
+position = Vector2( 612, 516 )
 
 [node name="Characters" type="Node2D" parent="."]
 __meta__ = {
@@ -504,22 +504,22 @@ __meta__ = {
 }
 
 [node name="MaxRoot" parent="Characters" instance=ExtResource( 19 )]
-position = Vector2( 616, 520 )
+position = Vector2( 612, 516 )
 
 [node name="HansRoot" parent="Characters" instance=ExtResource( 11 )]
-position = Vector2( 640, 520 )
+position = Vector2( 636, 516 )
 
 [node name="KenRoot" parent="Characters" instance=ExtResource( 13 )]
-position = Vector2( 616, 568 )
+position = Vector2( 612, 564 )
 
 [node name="LukeRoot" parent="Characters" instance=ExtResource( 14 )]
-position = Vector2( 640, 568 )
+position = Vector2( 636, 564 )
 
 [node name="TaoRoot" parent="Characters" instance=ExtResource( 15 )]
-position = Vector2( 616, 544 )
+position = Vector2( 612, 540 )
 
 [node name="LoweRoot" parent="Characters" instance=ExtResource( 16 )]
-position = Vector2( 640, 544 )
+position = Vector2( 636, 540 )
 
 [node name="Enemies" type="Node2D" parent="."]
 __meta__ = {
@@ -527,61 +527,62 @@ __meta__ = {
 }
 
 [node name="GoblinRoot4" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 656, 448 )
+position = Vector2( 660, 444 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/TopLeftGoblin.gd"
 
 [node name="GoblinRoot5" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 680, 448 )
+position = Vector2( 684, 444 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/CenterLeftGoblin.gd"
 
 [node name="GoblinRoot6" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 520, 398 )
+position = Vector2( 516, 396 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/CenterRightGoblin.gd"
 
 [node name="GoblinRoot9" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 496, 398 )
+position = Vector2( 492, 396 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/TopRightLeftGoblin.gd"
 
 [node name="GoblinRoot11" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 656, 424 )
+position = Vector2( 660, 420 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/TopRightLeftGoblin.gd"
 
 [node name="GoblinRoot10" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 472, 398 )
+position = Vector2( 468, 396 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/TopRightRightGoblin.gd"
 
 [node name="RuneKnightRoot" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 400, 422.063 )
+position = Vector2( 396, 420 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="RuneKnightRoot2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 400, 398 )
+position = Vector2( 396, 396 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RuneKnight.gd"
 
 [node name="DarkDwarfRoot" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 496, 422.063 )
+position = Vector2( 492, 420 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RightDarkDwarf.gd"
 
 [node name="DarkDwarfRoot3" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 272, 544 )
+position = Vector2( 276, 540 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/RightDarkDwarf.gd"
 
 [node name="DarkDwarfRoot2" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 472, 422.063 )
+position = Vector2( 468, 420 )
 is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/EnemeyLogicTempDemo/LeftDarkDwarf.gd"
 
 [node name="TileMapTileInformation" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource( 2 )
 cell_size = Vector2( 24, 24 )
 format = 1
