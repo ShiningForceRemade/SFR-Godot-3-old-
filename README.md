@@ -1,8 +1,9 @@
 # Shining Force Remade (SFR-Godot)
 
 ## Prerequisites
-### Godot
-Godot version - 3.3.4
+[Godot version - 3.3.4](https://godotengine.org/download)
+
+[Tiled - 1.8.1](https://www.mapeditor.org) - Needed to edit the maps within the SF-Maps repo and to export them back into Godot.
 
 ## Getting Started
 
@@ -10,15 +11,21 @@ Godot version - 3.3.4
 ```
 # Assumes your base drive is C (windows)
 
-git clone --recursive https://github.com/ShiningForceRemade/SFR-Godot C:\Dev\ShiningForceRemadeRoot\ShiningForceRemade
+git clone --recursive git@github.com:ShiningForceRemade/SFR-Godot C:\Dev\ShiningForceRemadeRoot\ShiningForceRemade
 
-git clone https://github.com/ShiningForceRemade/SF-Maps C:\Dev\ShiningForceRemadeRoot\SF-Maps
+# go to ShiningForceRemadeRoot directory
 
-git clone https://github.com/ShiningForceRemade/Misc C:\Dev\ShiningForceRemadeRoot\Misc
+cd C:\Dev\ShiningForceRemadeRoot
+
+# get the rest of the repos
+
+git clone git@github.com:ShiningForceRemade/SF-Maps
+
+git clone git@github.com:ShiningForceRemade/Misc 
 
 # optional - This one is only needed if you want or need to convert some of the original assets into a modern format.
 
-git clone https://github.com/ShiningForceRemade/Assets-Original C:\Dev\ShiningForceRemadeRoot\Assets-Original
+git clone git@github.com:ShiningForceRemade/Assets-Original
 
 # Folder structure
 
@@ -33,7 +40,7 @@ git clone https://github.com/ShiningForceRemade/Assets-Original C:\Dev\ShiningFo
 
 ### Clone Project And Assets (modernized)
 ```
-git clone --recursive https://github.com/ShiningForceRemade/SFR-Godot
+git clone --recursive git@github.com:ShiningForceRemade/SFR-Godot
 ```
 
 ## In Game Information and Docs
