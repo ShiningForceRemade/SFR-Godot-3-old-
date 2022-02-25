@@ -1,0 +1,669 @@
+102b54792f6b2ef812636a2bdaeb9d34
+::res://::1645320834
+Controls.md::TextFile::-1::1645156780::0::1::::<><>::
+Credits.md::TextFile::-1::1645156780::0::1::::<><>::
+default_bus_layout.tres::AudioBusLayout::-1::1645156780::0::1::::<><>::
+default_env.tres::Environment::-1::1645156780::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1645156780::0::1::::<><>::
+README.md::TextFile::-1::1645156780::0::1::::<><>::
+::res://Assets/::1645317848
+CustomTileTerrainInformation.png::StreamTexture2D::2854130937698975719::1645156791::1645317848::1::::<><>::
+Icon.png::StreamTexture2D::7108499210935152611::1645156791::1645317848::1::::<><>::
+Shining Force - Splash Screen.png::StreamTexture2D::624760486813549848::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/::1645320851
+Font-Dialogue.png::StreamTexture2D::2854559955121554805::1645156792::1645317848::1::::<><>::
+Font-Menu.png::StreamTexture2D::1604625073723193392::1645156792::1645317848::1::::<><>::
+Genesis 32X SCD - Shining Force - Battle Backgrounds.png::StreamTexture2D::7658191090324505324::1645156792::1645317849::1::::<><>::
+Genesis 32X SCD - Shining Force - Battle Foregrounds.png::StreamTexture2D::1119123389532976224::1645156792::1645317848::1::::<><>::
+Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png::StreamTexture2D::6668796581059578382::1645156792::1645317849::1::::<><>::
+Shining-Force-Dialogue.ttf::FontData::4257582243682175598::1645156792::1645317848::1::::<><>::
+Shining-Force-Menu.ttf::FontData::5739661224374452703::1645156792::1645317848::1::::<><>::
+ShiningForceCursor.png::StreamTexture2D::46495443430983606::1645156792::1645317848::1::::<><>::
+ShiningForceDialogueFont.tres::Font::7572806472120178119::1645320851::0::1::::<><>::
+ShiningForceMenuBorder.png::StreamTexture2D::6903777277255795401::1645156792::1645317848::1::::<><>::
+ShiningForceMenuFont.tres::Font::4592840825934078285::1645320851::0::1::::<><>::
+ShiningForceTextBackground.png::StreamTexture2D::867433305595392090::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/::1645156792
+::res://Assets/SF1/EnemiesAndBosses/Dark Dwarf/::1645317848
+Battle_Sprites.png::StreamTexture2D::4398041715198610166::1645156792::1645317848::1::::<><>::
+Map_Sprites.png::StreamTexture2D::1290305916101201377::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/Dark Mage/::1645317848
+Battle_Sprites.png::StreamTexture2D::8219570531345495197::1645156792::1645317848::1::::<><>::
+Map_Sprites.png::StreamTexture2D::2906986346373742153::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/Giant Bat/::1645317848
+Battle_Sprites.png::StreamTexture2D::9199180039707774596::1645156792::1645317848::1::::<><>::
+Map_Sprites.png::StreamTexture2D::9122051332699089431::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/Goblin/::1645317848
+Battle_Sprites.png::StreamTexture2D::942145925019382291::1645156792::1645317848::1::::<><>::
+Map_Sprites.png::StreamTexture2D::2364565848053965573::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/Kane/::1645317848
+Map_Sprites.png::StreamTexture2D::6154017325153480291::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/Mishaela/::1645317849
+Map_Sprites.png::StreamTexture2D::732870444175233071::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/Rune Knight/::1645317849
+Battle_Sprites.png::StreamTexture2D::3417254842574914887::1645156792::1645317849::1::::<><>::
+Map_Sprites.png::StreamTexture2D::7523460834524251867::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/EnemiesAndBosses/Sniper/::1645317849
+Battle_Sprites.png::StreamTexture2D::6054328969445461048::1645156792::1645317849::1::::<><>::
+Map_Sprites.png::StreamTexture2D::7718291555437132551::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/NPC/::1645317849
+Adviser.png::StreamTexture2D::7435049977505989241::1645156792::1645317849::1::::<><>::
+Boken.png::StreamTexture2D::813011510997519164::1645156792::1645317849::1::::<><>::
+Cart_Trolley.png::StreamTexture2D::5114686622042103818::1645156792::1645317849::1::::<><>::
+Chancellor.png::StreamTexture2D::8823880546966009374::1645156792::1645317849::1::::<><>::
+Child_Pet.png::StreamTexture2D::4732614811725505090::1645156792::1645317849::1::::<><>::
+Dead_Spirt.png::StreamTexture2D::6464555403820766409::1645156792::1645317849::1::::<><>::
+Dog_Brown.png::StreamTexture2D::8752210111657459327::1645156792::1645317848::1::::<><>::
+Horse_Cart.png::StreamTexture2D::1673888831704819191::1645156792::1645317848::1::::<><>::
+King Guardiana.png::StreamTexture2D::4136904363746427744::1645156792::1645317848::1::::<><>::
+Lord Varios.png::StreamTexture2D::3964401468068207615::1645156792::1645317848::1::::<><>::
+Man_Blonde_Purple.png::StreamTexture2D::816701270497337020::1645156792::1645317848::1::::<><>::
+Man_Fishing.png::StreamTexture2D::7849959643871073815::1645156792::1645317848::1::::<><>::
+Man_Merchant_Blue.png::StreamTexture2D::7444569462389502490::1645156792::1645317848::1::::<><>::
+Man_Old_Bald.png::StreamTexture2D::4709996295854550737::1645156792::1645317848::1::::<><>::
+Man_Old_WhiteBeard.png::StreamTexture2D::1281054872620681124::1645156792::1645317848::1::::<><>::
+Nova.png::StreamTexture2D::7414649281633412156::1645156792::1645317848::1::::<><>::
+Priest.png::StreamTexture2D::31798255088024708::1645156792::1645317848::1::::<><>::
+Soldier.png::StreamTexture2D::7907734688219703998::1645156792::1645317848::1::::<><>::
+Soldier_Injured.png::StreamTexture2D::5474278493581448899::1645156792::1645317848::1::::<><>::
+Water_SpotActivity.png::StreamTexture2D::8660713763009126524::1645156792::1645317848::1::::<><>::
+Woman_Blonde_GreenDress.png::StreamTexture2D::6792450556090306213::1645156792::1645317848::1::::<><>::
+Woman_Blonde_PinkDress.png::StreamTexture2D::1732044215759114090::1645156792::1645317848::1::::<><>::
+Woman_Old.png::StreamTexture2D::2469793512563408244::1645156792::1645317848::1::::<><>::
+Woman_Purplette.png::StreamTexture2D::5726578664379655787::1645156792::1645317848::1::::<><>::
+Woman_Redhead.png::StreamTexture2D::8783111035544612777::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/::1645156792
+::res://Assets/SF1/PlayableCharacters/Arthur/::1645317849
+Promoted_Map_Sprites.png::StreamTexture2D::1085872568065827320::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::6172549541554691278::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Gong/::1645317849
+Unpromoted_Battle_Sprites.png::StreamTexture2D::6476380923118315124::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::2920214319854888508::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::1513119678431351444::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Gort/::1645317849
+Unpromoted_Battle_Sprites.png::StreamTexture2D::4065969891322718433::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::4640559272446155628::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::3394962886113149066::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Hans/::1645317849
+Promoted_Map_Sprites.png::StreamTexture2D::2356980490515886032::1645156792::1645317849::1::::<><>::
+Unpromoted_Battle_Sprites.png::StreamTexture2D::839959928194567583::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::2188497313146377903::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::8778983209224444210::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Jogurt/::1645317849
+Unpromoted_Map_Sprites.png::StreamTexture2D::3009837416206094251::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::3351845405922622812::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Ken/::1645317849
+Unpromoted_Battle_Spear_Sprites.png::StreamTexture2D::6990413708494316437::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::1731647407541318295::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::6916382087823381997::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Khris/::1645317849
+Unpromoted_Battle_Sprites.png::StreamTexture2D::3287252377407385720::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::4287747211288792193::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::7768419541130538674::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Lowe/::1645317849
+Unpromoted_Battle_Sprites.png::StreamTexture2D::3457204577360147616::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::2191091013874625836::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::6449927834405631374::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Luke/::1645317849
+Unpromoted_Battle_Sprites.png::StreamTexture2D::4593081476940934136::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::7866175379390824919::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::713211970993564301::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Mae/::1645317849
+Unpromoted_Battle_Sprites_Lance.png::StreamTexture2D::5429036652010056095::1645156792::1645317849::1::::<><>::
+Unpromoted_Battle_Sprites_Spear.png::StreamTexture2D::6439397623507497845::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::3056374582655618339::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::1666422586928050503::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Max/::1645317849
+Unpromoted_Battle_Sprites.png::StreamTexture2D::7141462800199207006::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::7658691839120798619::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Swimming_Sprites.png::StreamTexture2D::4301583582174039014::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::6976606894371312115::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/PlayableCharacters/Tao/::1645317849
+Unpromoted_Battle_Sprites.png::StreamTexture2D::92807496509123703::1645156792::1645317849::1::::<><>::
+Unpromoted_Map_Sprites.png::StreamTexture2D::1873018904744273558::1645156792::1645317849::1::::<><>::
+Unpromoted_Portraits.png::StreamTexture2D::4522677423966144231::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/SoundBank/::1645317848
+After City Destruction.mp3::AudioStreamMP3::2834517761677478502::1645156792::1645317848::1::::<><>::
+Ancient Castle Rises.mp3::AudioStreamMP3::1051283285016351971::1645156792::1645317848::1::::<><>::
+Armageddon (Dark Dragon).mp3::AudioStreamMP3::6444270367454377642::1645156792::1645317848::1::::<><>::
+Battle 1 (Standard).mp3::AudioStreamMP3::5223432911671426340::1645156792::1645317848::1::::<><>::
+Battle 2 (Standard).mp3::AudioStreamMP3::8974428859382117122::1645156792::1645317848::1::::<><>::
+Battle 3 (Mid Boss).mp3::AudioStreamMP3::4878513278637007884::1645156792::1645317848::1::::<><>::
+Battle 4 (Ship Deck).mp3::AudioStreamMP3::8962127225732946885::1645156792::1645317848::1::::<><>::
+Battle 5 (Darksol).mp3::AudioStreamMP3::754967818436428599::1645156792::1645317848::1::::<><>::
+Battle Encounter.mp3::AudioStreamMP3::1038063777839937574::1645156792::1645317848::1::::<><>::
+Castle (Guardiana and Others).mp3::AudioStreamMP3::542230706659440185::1645156792::1645317848::1::::<><>::
+End of Chapter.mp3::AudioStreamMP3::6809045722460421065::1645156792::1645317848::1::::<><>::
+Ending (Max and Adam's Event).mp3::AudioStreamMP3::2326496794904968349::1645156792::1645317848::1::::<><>::
+Event (Sad).mp3::AudioStreamMP3::647340764639902797::1645156792::1645317848::1::::<><>::
+Headquarters.mp3::AudioStreamMP3::3453837583155039797::1645156792::1645317848::1::::<><>::
+Jingle - Comrades 1 (Happily).mp3::AudioStreamMP3::3663806414194980794::1645156792::1645317848::1::::<><>::
+Jingle - Comrades 2 (Sad Feeling).mp3::AudioStreamMP3::2206587999273813712::1645156792::1645317848::1::::<><>::
+Jingle - Curse.mp3::AudioStreamMP3::4139256601037616823::1645156792::1645317848::1::::<><>::
+Jingle - Item Get!!.mp3::AudioStreamMP3::8376843374994285823::1645156792::1645317848::1::::<><>::
+Main Theme (Staff Roll).mp3::AudioStreamMP3::3252391126273456467::1645156792::1645317848::1::::<><>::
+Max Died.mp3::AudioStreamMP3::6036594500081375185::1645156792::1645317848::1::::<><>::
+Prologue.mp3::AudioStreamMP3::6560375469966055131::1645156792::1645317848::1::::<><>::
+Reading Girl 1 (File Loading).mp3::AudioStreamMP3::4548855574828527855::1645156792::1645317848::1::::<><>::
+Reading Girl 2 (Shutting Down - Ending Prologue).mp3::AudioStreamMP3::5957738671602145777::1645156792::1645317848::1::::<><>::
+Title Screen.mp3::AudioStreamMP3::2862117851680808982::1645156792::1645317848::1::::<><>::
+Town Theme.mp3::AudioStreamMP3::8942334487431817421::1645156792::1645317848::1::::<><>::
+World Map 1.mp3::AudioStreamMP3::6533701096922591745::1645156792::1645317848::1::::<><>::
+World Map 2.mp3::AudioStreamMP3::811481185462214607::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/Spells/::1645156792
+::res://Assets/SF1/Spells/Blaze/::1645317849
+BaseFlame.png::StreamTexture2D::7620843527098647781::1645156792::1645317849::1::::<><>::
+::res://Assets/SF1/Spells/Heal/::1645317849
+Fairy.png::StreamTexture2D::90959918989836579::1645156792::1645317849::1::::<><>::
+Sparkles.png::StreamTexture2D::4924344756565269431::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/Tilesets/::1645317848
+0.png::StreamTexture2D::1160983729310343429::1645156792::1645321347::1::::<><>::
+1.png::StreamTexture2D::4350075254456044632::1645156792::1645317848::1::::<><>::
+2.png::StreamTexture2D::2341923830346099114::1645156792::1645317848::1::::<><>::
+3.png::StreamTexture2D::5157642520396112773::1645156792::1645317848::1::::<><>::
+4.png::StreamTexture2D::7542030595622074123::1645156792::1645317848::1::::<><>::
+5.png::StreamTexture2D::3342027328610642614::1645156792::1645317848::1::::<><>::
+6.png::StreamTexture2D::6539976644156333592::1645156792::1645317848::1::::<><>::
+7.png::StreamTexture2D::5717619655665620216::1645156792::1645317848::1::::<><>::
+8.png::StreamTexture2D::2244711275231874761::1645156792::1645317848::1::::<><>::
+9.png::StreamTexture2D::2119728469778597745::1645156792::1645317848::1::::<><>::
+10.png::StreamTexture2D::8226774614480852906::1645156792::1645317848::1::::<><>::
+11.png::StreamTexture2D::3279105737852528209::1645156792::1645317848::1::::<><>::
+12.png::StreamTexture2D::6685562774961400480::1645156792::1645317848::1::::<><>::
+13.png::StreamTexture2D::415633468400990003::1645156792::1645317848::1::::<><>::
+14.png::StreamTexture2D::6320784128851256324::1645156792::1645317848::1::::<><>::
+15.png::StreamTexture2D::500801012030027033::1645156792::1645317848::1::::<><>::
+16.png::StreamTexture2D::5402437301333630823::1645156792::1645317848::1::::<><>::
+17.png::StreamTexture2D::4138914705711479942::1645156792::1645317848::1::::<><>::
+18.png::StreamTexture2D::5175036266789222598::1645156792::1645317848::1::::<><>::
+19.png::StreamTexture2D::4827632379971913107::1645156792::1645317848::1::::<><>::
+20.png::StreamTexture2D::2041099398587571490::1645156792::1645317848::1::::<><>::
+21.png::StreamTexture2D::5817619939176924050::1645156792::1645317848::1::::<><>::
+22.png::StreamTexture2D::7255728740962819070::1645156792::1645317848::1::::<><>::
+23.png::StreamTexture2D::2397100563313618965::1645156792::1645317848::1::::<><>::
+24.png::StreamTexture2D::6652019476164671979::1645156792::1645317848::1::::<><>::
+25.png::StreamTexture2D::2920707459920673824::1645156792::1645317848::1::::<><>::
+26.png::StreamTexture2D::3449838389427383232::1645156792::1645317848::1::::<><>::
+27.png::StreamTexture2D::6691004014622294110::1645156792::1645317848::1::::<><>::
+28.png::StreamTexture2D::405953342537115880::1645156792::1645317848::1::::<><>::
+29.png::StreamTexture2D::7590023610420616583::1645156792::1645317848::1::::<><>::
+30.png::StreamTexture2D::456070255003962849::1645156792::1645317848::1::::<><>::
+31.png::StreamTexture2D::4352180437238580663::1645156792::1645317848::1::::<><>::
+32.png::StreamTexture2D::3785447391589606685::1645156792::1645317848::1::::<><>::
+ColorsBattle1Fill.png::StreamTexture2D::8500407143696931774::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1/Weapons/::1645317848
+Short_Sword.png::StreamTexture2D::8218832793077993212::1645156792::1645317848::1::::<><>::
+Spear.png::StreamTexture2D::6552600975663638100::1645156792::1645317848::1::::<><>::
+Wooden_Arrow.png::StreamTexture2D::1776588529053799869::1645156792::1645317848::1::::<><>::
+Wooden_Rod.png::StreamTexture2D::6196670623274087681::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1_Reworked_IvanCal/::1645156792
+::res://Assets/SF1_Reworked_IvanCal/EnemiesAndBosses/::1645156792
+::res://Assets/SF1_Reworked_IvanCal/EnemiesAndBosses/Goblin/::1645317848
+Battle_Sprites.png::StreamTexture2D::8952132657773906808::1645156792::1645317848::1::::<><>::
+Map_Sprites.png::StreamTexture2D::8551220364417316091::1645156792::1645317848::1::::<><>::
+::res://Assets/SF1_Reworked_IvanCal/Tilesets/::1645317848
+0.png::StreamTexture2D::4804352636174682798::1645156792::1645317848::1::::<><>::
+1.png::StreamTexture2D::1502785522967617302::1645156792::1645317848::1::::<><>::
+6.png::StreamTexture2D::5500283516567153305::1645156792::1645317848::1::::<><>::
+7.png::StreamTexture2D::7140553222992089838::1645156792::1645317848::1::::<><>::
+12.png::StreamTexture2D::775822965148704526::1645156792::1645317848::1::::<><>::
+16.png::StreamTexture2D::9190975310019316189::1645156792::1645317848::1::::<><>::
+::res://Assets/SF2/::1645156792
+::res://Assets/SF2/Sounds/::1645156792
+::res://Assets/SF2/Sounds/SFX/::1645317849
+sfx_Blast_1.wav::AudioStreamSample::5420749684987261755::1645156792::1645317849::1::::<><>::
+sfx_Blast_2.wav::AudioStreamSample::1515935910891236688::1645156792::1645317849::1::::<><>::
+sfx_Bolt.wav::AudioStreamSample::3806401328782558564::1645156792::1645317849::1::::<><>::
+sfx_Boost_01.wav::AudioStreamSample::5244032468144351874::1645156792::1645317849::1::::<><>::
+sfx_Boost_02.wav::AudioStreamSample::1957957071498449051::1645156792::1645317849::1::::<><>::
+sfx_Cast_Spell.wav::AudioStreamSample::102495933646402173::1645156792::1645317849::1::::<><>::
+sfx_Critical.wav::AudioStreamSample::6144574988848690402::1645156792::1645317849::1::::<><>::
+sfx_Cure.wav::AudioStreamSample::4863705673520176182::1645156792::1645317849::1::::<><>::
+sfx_Cursed.wav::AudioStreamSample::2720104010525710118::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_01.wav::AudioStreamSample::855910607738093278::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_02.wav::AudioStreamSample::9035780636486552486::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_03.wav::AudioStreamSample::8563476191197302435::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_04.wav::AudioStreamSample::2448452902660794034::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_05.wav::AudioStreamSample::3953383022606388884::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_06.wav::AudioStreamSample::9040301673115339293::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_07.wav::AudioStreamSample::4175710885113964869::1645156792::1645317849::1::::<><>::
+sfx_Dialogue_08.wav::AudioStreamSample::4408990250466754733::1645156792::1645317849::1::::<><>::
+sfx_Error.wav::AudioStreamSample::907433212359272022::1645156792::1645317849::1::::<><>::
+sfx_Explode.wav::AudioStreamSample::2686480266692625924::1645156792::1645317849::1::::<><>::
+sfx_Fall.wav::AudioStreamSample::3648081097702898673::1645156792::1645317849::1::::<><>::
+sfx_Freeze.wav::AudioStreamSample::3572800952645734755::1645156792::1645317849::1::::<><>::
+sfx_Heal.wav::AudioStreamSample::8877942590770701630::1645156792::1645317849::1::::<><>::
+sfx_Heal_2.wav::AudioStreamSample::5461835455899181642::1645156792::1645317849::1::::<><>::
+sfx_Hit.wav::AudioStreamSample::9201617352323755358::1645156792::1645317849::1::::<><>::
+sfx_Hit_2.wav::AudioStreamSample::6467138114677137992::1645156792::1645317849::1::::<><>::
+sfx_Hit_3.wav::AudioStreamSample::2779508953250281685::1645156792::1645317849::1::::<><>::
+sfx_Jewel_Of_Light.wav::AudioStreamSample::7241760188581834354::1645156792::1645317849::1::::<><>::
+sfx_Jogurt.wav::AudioStreamSample::8277243382148301612::1645156792::1645317849::1::::<><>::
+sfx_Joined_The_Party.wav::AudioStreamSample::3432799763128959695::1645156792::1645317849::1::::<><>::
+sfx_Joined_The_Party_Sad.wav::AudioStreamSample::8584921495553194526::1645156792::1645317849::1::::<><>::
+sfx_Jump.wav::AudioStreamSample::904365673267649656::1645156792::1645317849::1::::<><>::
+sfx_Level_Up.wav::AudioStreamSample::7308956455828340054::1645156792::1645317849::1::::<><>::
+sfx_Lightning.wav::AudioStreamSample::3139697252219105004::1645156792::1645317849::1::::<><>::
+sfx_Loot_Item.wav::AudioStreamSample::3388077169462109736::1645156792::1645317849::1::::<><>::
+sfx_Machine_Gun.wav::AudioStreamSample::3592506901073578214::1645156792::1645317849::1::::<><>::
+sfx_Menu_Move.wav::AudioStreamSample::4949282515757728540::1645156792::1645317849::1::::<><>::
+sfx_Menu_Select.wav::AudioStreamSample::340162090299357014::1645156792::1645317849::1::::<><>::
+sfx_Menu_Swish.wav::AudioStreamSample::7106723763868420566::1645156792::1645317849::1::::<><>::
+sfx_Monster_Has_Appeared.wav::AudioStreamSample::7582661389247635047::1645156792::1645317849::1::::<><>::
+sfx_Promote.wav::AudioStreamSample::6920840071825927645::1645156792::1645317849::1::::<><>::
+sfx_Revive.wav::AudioStreamSample::2010605668645518043::1645156792::1645317849::1::::<><>::
+sfx_Revive_Long.wav::AudioStreamSample::5515012964054739507::1645156792::1645317849::1::::<><>::
+sfx_Rumble.wav::AudioStreamSample::5897330968054327934::1645156792::1645317849::1::::<><>::
+sfx_Save_Game.wav::AudioStreamSample::2764840478800374074::1645156792::1645317849::1::::<><>::
+sfx_Shield.wav::AudioStreamSample::4520903089774956146::1645156792::1645317849::1::::<><>::
+sfx_Shoot.wav::AudioStreamSample::2487704726662617720::1645156792::1645317849::1::::<><>::
+sfx_Spark.wav::AudioStreamSample::5633438558518786828::1645156792::1645317849::1::::<><>::
+sfx_Stairs.wav::AudioStreamSample::2910793602457029108::1645156792::1645317849::1::::<><>::
+sfx_Thunder.wav::AudioStreamSample::4834018921369676384::1645156792::1645317849::1::::<><>::
+sfx_Thunder_Distant.wav::AudioStreamSample::8077824495039607079::1645156792::1645317849::1::::<><>::
+sfx_Unknown_01.wav::AudioStreamSample::3214360205587968993::1645156792::1645317849::1::::<><>::
+sfx_Unknown_02.wav::AudioStreamSample::3641543659413096098::1645156792::1645317849::1::::<><>::
+sfx_Unknown_03.wav::AudioStreamSample::4232966485661744207::1645156792::1645317849::1::::<><>::
+sfx_Unknown_04.wav::AudioStreamSample::6240539618401809565::1645156792::1645317849::1::::<><>::
+sfx_Unknown_05.wav::AudioStreamSample::8754215650634619377::1645156792::1645317849::1::::<><>::
+sfx_Unknown_06.wav::AudioStreamSample::6492717980927599207::1645156792::1645317849::1::::<><>::
+sfx_Unknown_07.wav::AudioStreamSample::327910773757660766::1645156792::1645317849::1::::<><>::
+sfx_Unknown_08.wav::AudioStreamSample::46888680728012365::1645156792::1645317849::1::::<><>::
+sfx_Unknown_09.wav::AudioStreamSample::4561568115989671159::1645156792::1645317849::1::::<><>::
+sfx_Walk.wav::AudioStreamSample::1189924601808983879::1645156792::1645317849::1::::<><>::
+sfx_Walk_Sandals.wav::AudioStreamSample::2036948612869743317::1645156792::1645317849::1::::<><>::
+::res://Assets/SFCD/::1645317848
+Genesis 32X SCD - Shining Force CD Sega CD - Icons.png::StreamTexture2D::6986961099922727115::1645156792::1645317848::1::::<><>::
+::res://Assets/SFCD/Items/::1645317848
+EmptyItemSlot.png::StreamTexture2D::3804737342570221776::1645156792::1645317848::1::::<><>::
+UnequipHand.png::StreamTexture2D::8414929468715165756::1645156792::1645317848::1::::<><>::
+::res://Assets/SFCD/Items/Usables/::1645317848
+MedicalHerb.png::StreamTexture2D::4949641327015595251::1645156792::1645317848::1::::<><>::
+::res://Assets/SFCD/Items/Weapons/::1645317848
+Brozne_Lance.png::StreamTexture2D::8272879720987227500::1645156792::1645317848::1::::<><>::
+Hand_Axe.png::StreamTexture2D::9060228011490144099::1645156792::1645317848::1::::<><>::
+Short_Sword.png::StreamTexture2D::5648199650958684879::1645156792::1645317848::1::::<><>::
+Spear.png::StreamTexture2D::4900254894202549769::1645156792::1645317848::1::::<><>::
+Wooden Staff.png::StreamTexture2D::6318232668786513811::1645156792::1645317848::1::::<><>::
+Wooden_Arrow.png::StreamTexture2D::6396319116539470614::1645156792::1645317848::1::::<><>::
+::res://Assets/SFCD/Spells/::1645317848
+Blaze.png::StreamTexture2D::1114390665953921226::1645156792::1645317848::1::::<><>::
+Egress.png::StreamTexture2D::1168268678483724690::1645156792::1645317848::1::::<><>::
+Heal.png::StreamTexture2D::4221175309306321410::1645156792::1645317848::1::::<><>::
+::res://Assets/Sounds/::1645317849
+CriticalSound.wav::AudioStreamSample::2130405689467064081::1645156792::1645317849::1::::<><>::
+DodgeSound.wav::AudioStreamSample::3143156680999368215::1645156792::1645317849::1::::<><>::
+HealSound.wav::AudioStreamSample::8849931243591480066::1645156792::1645317849::1::::<><>::
+HitSound.wav::AudioStreamSample::5459729701759061301::1645156792::1645317849::1::::<><>::
+HitSoundCut.wav::AudioStreamSample::2065415477993732864::1645156792::1645317849::1::::<><>::
+MenuMoveSound.wav::AudioStreamSample::2209004385004283407::1645156792::1645317849::1::::<><>::
+MenuMoveSoundCut.wav::AudioStreamSample::6476218485638226127::1645156792::1645317849::1::::<><>::
+MenuPanSound.wav::AudioStreamSample::785130506328217010::1645156792::1645317849::1::::<><>::
+MenuPanSoundCut.wav::AudioStreamSample::5984383539597658089::1645156792::1645317849::1::::<><>::
+MenuSelectSound.wav::AudioStreamSample::5217886098324293110::1645156792::1645317849::1::::<><>::
+MenuSelectSoundModif.wav::AudioStreamSample::9097552486258005472::1645156792::1645317849::1::::<><>::
+StepSound.wav::AudioStreamSample::6129840507752754596::1645156792::1645317849::1::::<><>::
+::res://DevelopmentHelperScenes/::1645156780
+HansAttackNormal_Anim.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/::1645320673
+BattleAnimationResource.gd::GDScript::-1::1645319964::0::1::::CN_SF_AnimationResource<>Resource<>::
+BattleAnimationSpellResource.gd::GDScript::-1::1645320673::0::1::::CN_SF_AnimationSpellResource<>Resource<>::
+::res://General/::1645156780
+Cursor.gd::GDScript::-1::1645156780::0::1::::<><>::
+Cursor.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceCursor.png<>res://General/Cursor.gd
+StartMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::
+::res://General/Animations/::1645156780
+EnemeyShake.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://General/BattleActionsMenu/::1645317848
+BattleActoinsMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+BattleActoinsMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SFCD/Genesis 32X SCD - Shining Force CD Sega CD - Icons.png<>res://Assets/SF1/ShiningForceTextBackground.png<>res://Assets/SF1/ShiningForceMenuFont.tres<>res://General/BattleActionsMenu/BattleActoinsMenu.gd
+Genesis 32X SCD - Shining Force CD Sega CD - Icons.png::StreamTexture2D::2812176001423190091::1645156780::1645317848::1::::<><>::
+::res://General/BattleActionsMenu/DropMenu/::1645321103
+DropMenu.gd::GDScript::-1::1645320717::0::1::::<>Node2D<>::
+DropMenu.tscn::PackedScene::2297038227283616990::1645321103::0::1::::<><>::uid://buhbp6gj1joia<>res://General/BattleActionsMenu/DropMenu/DropMenu.gd<>uid://mmgq81rrp07o<>res://General/Font/FontMenu.res<>res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn
+::res://General/BattleActionsMenu/EquipMenu/::1645156780
+EquipMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+EquipMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceTextBackground.png<>res://General/BattleActionsMenu/EquipMenu/EquipMenu.gd<>res://Assets/SFCD/Items/UnequipHand.png<>res://Assets/SFCD/Items/EmptyItemSlot.png<>res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn<>res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/BattleActionsMenu/GiveMenu/::1645156780
+GiveMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+GiveMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SFCD/Items/EmptyItemSlot.png<>res://General/BattleActionsMenu/GiveMenu/GiveMenu.gd<>res://Assets/SF1/ShiningForceTextBackground.png<>res://Assets/SF1/ShiningForceMenuFont.tres<>res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn
+::res://General/BattleActionsMenu/InventoryMenu/::1645156780
+InventoryMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+InventoryMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres<>res://Assets/SF1/ShiningForceTextBackground.png<>res://General/BattleActionsMenu/InventoryMenu/InventoryMenu.gd<>res://Assets/SFCD/Genesis 32X SCD - Shining Force CD Sega CD - Icons.png
+::res://General/BattleActionsMenu/MagicMenu/::1645156780
+MagicMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+MagicMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceTextBackground.png<>res://General/BattleActionsMenu/MagicMenu/MagicMenu.gd<>res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn<>res://Assets/SFCD/Items/EmptyItemSlot.png<>res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/BattleActionsMenu/NoValidOptionWarningBox/::1645156780
+NoValidOptionWarningBox.gd::GDScript::-1::1645156780::0::1::::<><>::
+NoValidOptionWarningBox.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.gd<>res://Assets/SF1/ShiningForceTextBackground.png<>res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/BattleActionsMenu/RedSelectionBorder/::1645156780
+RedSelectionBorder.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SFCD/Items/EmptyItemSlot.png
+RedSelectionLongBorder.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SFCD/Items/EmptyItemSlot.png
+::res://General/BattleActionsMenu/UseMenu/::1645156780
+UseMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+UseMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SFCD/Items/EmptyItemSlot.png<>res://General/BattleActionsMenu/UseMenu/UseMenu.gd<>res://Assets/SF1/ShiningForceTextBackground.png<>res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn<>res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/BattleAttackAnimationPlayer/::1645156780
+BattleAttackAnimationPlayer.gd::GDScript::-1::1645156780::0::1::::<><>::
+BattleAttackAnimationPlayer.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png<>res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png<>res://SF1/Spells/Blaze/Blaze.anim<>res://SF1/EnemiesAndBosses/Sniper/BattleAnimations/AttackNormal.anim<>res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd<>res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres<>res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres<>res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png<>res://Assets/SF1/Weapons/Wooden_Rod.png<>res://Assets/SF1/Spells/Blaze/BaseFlame.png<>res://Shaders/ShaderTextureImages/NoisePixelated.jpg<>res://Shaders/Dissolve.shader<>res://SF1/Characters/Lowe/BattleAnimations/Idle.anim<>res://SF1/Spells/Heal/Heal.anim<>res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png<>res://Assets/SF1/EnemiesAndBosses/Sniper/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/GiantBat/BattleAnimations/Idle.anim
+ResetBattleAnimationSceneButton.gd::GDScript::-1::1645156780::0::1::::<><>::
+::res://General/BattleBase/::1645156780
+BattleBase-B2.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn<>res://General/Controls/LandEffectPopup/LandEffectPopup.tscn<>res://SF1/Chapters/1/Battle2/Battle2.tscn<>res://General/Controls/DialogueBox/DialogueBox.tscn<>res://General/Controls/PortraitPopup/PortraitPopup.tscn<>res://General/BattleBase/BattleBase.gd<>res://General/BattleBase/CanvasLayerInfoControls.gd<>res://General/BattleActionsMenu/BattleActoinsMenu.tscn<>res://General/BattleActionsMenu/InventoryMenu/InventoryMenu.tscn<>res://General/BattleActionsMenu/MagicMenu/MagicMenu.tscn<>res://General/BattleActionsMenu/EquipMenu/EquipMenu.tscn<>res://General/BattleViewSelectedActorInfo/BattleViewSelectedActorInfo.tscn<>res://General/BattleActionsMenu/UseMenu/UseMenu.tscn<>res://General/BattleActionsMenu/DropMenu/DropMenu.tscn<>res://General/BattleActionsMenu/GiveMenu/GiveMenu.tscn<>res://General/Controls/MicroActorInventoryView/MicroActorInventoryView.tscn<>res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn<>res://General/BattleBase/TopLevelFaderColorRect.gd
+BattleBase-B3.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn<>res://General/Controls/LandEffectPopup/LandEffectPopup.tscn<>res://SF1/Chapters/1/Battle3.tscn<>res://General/Controls/DialogueBox/DialogueBox.tscn<>res://General/Controls/PortraitPopup/PortraitPopup.tscn<>res://General/BattleBase/BattleBase.gd<>res://General/BattleBase/CanvasLayerInfoControls.gd<>res://General/BattleActionsMenu/BattleActoinsMenu.tscn<>res://General/BattleActionsMenu/InventoryMenu/InventoryMenu.tscn<>res://General/BattleActionsMenu/MagicMenu/MagicMenu.tscn<>res://General/BattleActionsMenu/EquipMenu/EquipMenu.tscn<>res://General/BattleViewSelectedActorInfo/BattleViewSelectedActorInfo.tscn<>res://General/BattleActionsMenu/UseMenu/UseMenu.tscn<>res://General/BattleActionsMenu/DropMenu/DropMenu.tscn<>res://General/BattleActionsMenu/GiveMenu/GiveMenu.tscn<>res://General/Controls/MicroActorInventoryView/MicroActorInventoryView.tscn<>res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn<>res://General/BattleBase/TopLevelFaderColorRect.gd
+BattleBase-B4.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn<>res://General/Controls/LandEffectPopup/LandEffectPopup.tscn<>res://SF1/Chapters/1/Alterone/Battle4.tscn<>res://General/Controls/DialogueBox/DialogueBox.tscn<>res://General/Controls/PortraitPopup/PortraitPopup.tscn<>res://General/BattleBase/BattleBase.gd<>res://General/BattleBase/CanvasLayerInfoControls.gd<>res://General/BattleActionsMenu/BattleActoinsMenu.tscn<>res://General/BattleActionsMenu/InventoryMenu/InventoryMenu.tscn<>res://General/BattleActionsMenu/MagicMenu/MagicMenu.tscn<>res://General/BattleActionsMenu/EquipMenu/EquipMenu.tscn<>res://General/BattleViewSelectedActorInfo/BattleViewSelectedActorInfo.tscn<>res://General/BattleActionsMenu/UseMenu/UseMenu.tscn<>res://General/BattleActionsMenu/DropMenu/DropMenu.tscn<>res://General/BattleActionsMenu/GiveMenu/GiveMenu.tscn<>res://General/Controls/MicroActorInventoryView/MicroActorInventoryView.tscn<>res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn<>res://General/BattleBase/TopLevelFaderColorRect.gd
+BattleBase.gd::GDScript::-1::1645156780::0::1::::<><>::
+BattleBase.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn<>res://General/Controls/LandEffectPopup/LandEffectPopup.tscn<>res://SF1/Chapters/1/Battle1.tscn<>res://General/Controls/DialogueBox/DialogueBox.tscn<>res://General/Controls/PortraitPopup/PortraitPopup.tscn<>res://General/BattleBase/BattleBase.gd<>res://General/BattleBase/CanvasLayerInfoControls.gd<>res://General/BattleActionsMenu/BattleActoinsMenu.tscn<>res://General/BattleActionsMenu/InventoryMenu/InventoryMenu.tscn<>res://General/BattleActionsMenu/MagicMenu/MagicMenu.tscn<>res://General/BattleActionsMenu/EquipMenu/EquipMenu.tscn<>res://General/BattleViewSelectedActorInfo/BattleViewSelectedActorInfo.tscn<>res://General/BattleActionsMenu/UseMenu/UseMenu.tscn<>res://General/BattleActionsMenu/DropMenu/DropMenu.tscn<>res://General/BattleActionsMenu/GiveMenu/GiveMenu.tscn<>res://General/Controls/MicroActorInventoryView/MicroActorInventoryView.tscn<>res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn<>res://General/BattleBase/TopLevelFaderColorRect.gd
+CanvasLayerInfoControls.gd::GDScript::-1::1645156780::0::1::::<>CanvasLayer<>::
+TopLevelFaderColorRect.gd::GDScript::-1::1645156780::0::1::::<><>::
+::res://General/BattleViewSelectedActorInfo/::1645156780
+BattleViewSelectedActorInfo.gd::GDScript::-1::1645156780::0::1::::<><>::
+BattleViewSelectedActorInfo.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceTextBackground.png<>res://Assets/SF1/ShiningForceMenuBorder.png<>res://General/BattleViewSelectedActorInfo/BattleViewSelectedActorInfo.gd<>res://Assets/SF1/ShiningForceMenuFont.tres<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png
+::res://General/BattleViewSelectedActorInfo/Item/::1645156780
+ItemMicroView.gd::GDScript::-1::1645156780::0::1::::<>Control<>::
+ItemMicroView.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres<>res://Assets/SFCD/Items/Usables/MedicalHerb.png<>res://General/BattleViewSelectedActorInfo/Item/ItemMicroView.gd
+::res://General/BattleViewSelectedActorInfo/Spell/::1645156780
+SpellLevelBar.tscn::PackedScene::-1::1645156780::0::1::::<><>::
+SpellMicroView.gd::GDScript::-1::1645156780::0::1::::<>Control<>::
+SpellMicroView.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres<>res://Assets/SFCD/Items/Usables/MedicalHerb.png<>res://General/BattleViewSelectedActorInfo/Spell/SpellLevelBar.tscn<>res://General/BattleViewSelectedActorInfo/Spell/SpellMicroView.gd
+::res://General/CardListMenu/::1645156780
+CardListMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png
+::res://General/Controls/::1645156780
+::res://General/Controls/BattleCharacterOrEnemeyMicroInfo/::1645321103
+BattleCharacterOrEnemeyMicroInfo.gd::GDScript::-1::1645156780::0::1::::<>Control<>::
+BattleCharacterOrEnemeyMicroInfo.tscn::PackedScene::2583585720245728670::1645321103::0::1::::<><>::uid://mmgq81rrp07o<>res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.gd<>uid://b6o2ogqy3x1g8
+::res://General/Controls/DialogueBox/::1645320384
+DialogueBox.gd::GDScript::-1::1645320384::0::1::::<>Control<>::
+DialogueBox.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceTextBackground.png<>res://Assets/SF1/ShiningForceDialogueFont.tres<>res://General/Controls/DialogueBox/DialogueBox.gd
+::res://General/Controls/LandEffectPopup/::1645156780
+LandEffectPopup.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceTextBackground.png<>res://General/Font/FontMenu.res<>res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/Controls/MicroActorInventoryView/::1645156780
+MicroActorInventoryView.gd::GDScript::-1::1645156780::0::1::::<><>::
+MicroActorInventoryView.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Controls/MicroActorInventoryView/MicroActorInventoryView.gd<>res://Assets/SFCD/Items/EmptyItemSlot.png
+::res://General/Controls/PortraitPopup/::1645156780
+PortraitPopup.gd::GDScript::-1::1645156780::0::1::::<>Control<>::
+PortraitPopup.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuBorder.png<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png
+::res://General/Font/::1645156780
+FontDialogue.res::Font::-1::1645156780::0::1::::<><>::res://Assets/SF1/Font-Dialogue.png
+FontMenu.res::Font::-1::1645156780::0::1::::<><>::res://Assets/SF1/Font-Menu.png
+FontTest.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Font/Label.gd<>res://General/Font/FontMenu.res<>res://General/Font/FontDialogue.res
+Label.gd::GDScript::-1::1645156780::0::1::::<>Label<>::
+::res://General/GameManagementWrapperNode/::1645321103
+GameManagementWrapperNode.tscn::PackedScene::3256955914985582613::1645321103::0::1::::<><>::uid://dcx5lswggu1vd<>res://General/Controls/DialogueBox/DialogueBox.tscn<>res://General/Controls/PortraitPopup/PortraitPopup.tscn<>res://General/InGameDeveloperConsole/InGameDeveloperConsole.tscn<>res://General/BattleBase/TopLevelFaderColorRect.gd<>res://General/Controls/PortraitPopup/PortraitPopup.gd<>uid://bc2rjq6n6d1y5<>res://General/OverworldMenus/GoldInfoBox.tscn<>res://General/OverworldMenus/MainCharacterActionsMenu/MainCharacterActionsMenu.tscn<>res://General/GameManagementWrapperNode/SceneManagerNodeRoot.gd<>res://General/OverworldMenus/MemberListView/MemberListView.tscn<>res://SF1/Characters/SF1ForceMemberList.gd
+SceneManagerNodeRoot.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+::res://General/InGameDeveloperConsole/::1645156780
+InGameDeveloperConsole.gd::GDScript::-1::1645156780::0::1::::<><>::
+InGameDeveloperConsole.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Font/FontMenu.res<>res://General/InGameDeveloperConsole/InGameDeveloperConsole.gd
+::res://General/ItemBoxMenu/::1645156780
+ItemBoxMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/OverworldMenus/::1645156780
+GoldInfoBox.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres<>res://Assets/SF1/ShiningForceTextBackground.png
+::res://General/OverworldMenus/MainCharacterActionsMenu/::1645156780
+MainCharacterActionsMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+MainCharacterActionsMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SFCD/Genesis 32X SCD - Shining Force CD Sega CD - Icons.png<>res://Assets/SF1/ShiningForceMenuFont.tres<>res://Assets/SF1/ShiningForceTextBackground.png<>res://General/OverworldMenus/MainCharacterActionsMenu/MainCharacterActionsMenu.gd
+::res://General/OverworldMenus/MemberListView/::1645156780
+MemberItemLine.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres
+MemberListView.gd::GDScript::-1::1645156780::0::1::::<><>::
+MemberListView.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuBorder.png<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png<>res://Assets/SF1/ShiningForceTextBackground.png<>res://Assets/SF1/ShiningForceMenuFont.tres<>res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionLongBorder.tscn<>res://General/OverworldMenus/MemberListView/MemberListView.gd
+MemberMagicLine.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres
+MemberSelectionLine.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/PreBattleMenusAndUI/::1645156780
+PreBattleMenuSelector.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres
+VictoryConditionsAndClearBonus.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/SettingsMenus/::1645156780
+SettingsMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/ShiningForceMenuFont.tres
+::res://General/ShopMenus/::1645156780
+ItemSelectionMenu.gd::GDScript::-1::1645156780::0::1::::<><>::
+ItemSelectionMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Items/Usables/MedicalHerb.tres<>res://Assets/SF1/ShiningForceMenuFont.tres<>res://General/ShopMenus/ItemSelectionMenu.gd<>res://SF1/Items/Weapons/ShortSword.tres<>res://SF1/Items/Weapons/BronzeLance.tres<>res://SF1/Items/Weapons/HandAxe.tres<>res://SF1/Items/Weapons/WoodenArrow.tres<>res://SF1/Items/Weapons/Spear.tres<>res://SF1/Items/Weapons/WoodenStaff.tres
+ShopItem.gd::GDScript::-1::1645156780::0::1::::<><>::
+ShopItem.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/ShopMenus/ShopItem.gd
+::res://General/Singletons/::1645156780
+::res://General/Singletons/AudioManager/::1645320616
+AudioManager.gd::GDScript::-1::1645320616::0::1::::<>Node<>::
+::res://General/Singletons/DevMenu/::1645320921
+DevMenu.gd::GDScript::-1::1645320921::0::1::::<>Node2D<>::
+DevMenu.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Singletons/DevMenu/DevMenu.gd
+::res://General/Singletons/Globals/::1645156780
+GlobalBattleVariables.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+GlobalBattleVariables.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://General/Singletons/Globals/GlobalBattleVariables.gd
+GlobalCommonVariables.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+GlobalDevInternal.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+GlobalOverworldVariables.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+::res://General/UseAndTargetRangeResources/::1645156780
+::res://General/UseAndTargetRangeResources/TargetRangeResources/::1645156780
+TargetRange_1.gd::GDScript::-1::1645156780::0::1::::<>CN_SF_TargetRange<>::
+TargetRange_BaseClass.gd::GDScript::-1::1645156780::0::1::::CN_SF_TargetRange<>Resource<>::
+::res://General/UseAndTargetRangeResources/UseRangeResources/::1645156780
+UseRange_1.gd::GDScript::-1::1645156780::0::1::::<>CN_SF_UseRange<>::
+UseRange_1_plus_Self.gd::GDScript::-1::1645156780::0::1::::<>CN_SF_UseRange<>::
+UseRange_1_to_2.gd::GDScript::-1::1645156780::0::1::::<>CN_SF_UseRange<>::
+UseRange_2.gd::GDScript::-1::1645156780::0::1::::<>CN_SF_UseRange<>::
+UseRange_2_to_3.gd::GDScript::-1::1645156780::0::1::::<>CN_SF_UseRange<>::
+UseRange_BaseClass.gd::GDScript::-1::1645156780::0::1::::CN_SF_UseRange<>Resource<>::
+::res://SF1/::1645156780
+::res://SF1/Chapters/::1645156780
+::res://SF1/Chapters/1/::1645156780
+Battle1.gd::GDScript::-1::1645156780::0::1::::<><>::
+Battle1.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Chapters/1/TargetSelectionLogicNodeRoot.gd<>res://SF1/EnemiesAndBosses/Goblin/Goblin.tscn<>res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn<>res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.tscn<>res://General/Cursor.tscn<>res://SF1/Chapters/1/Camera2D.gd<>res://Assets/CustomTileTerrainInformation.png<>res://SF1/Chapters/1/FieldLogicNode.gd<>res://SF1/Chapters/1/AncientsGate/AncientsGateTilemap.tscn<>res://SF1/Characters/Hans/Hans.tscn<>res://SF1/Chapters/1/Battle1.gd<>res://SF1/Characters/Ken/Ken.tscn<>res://SF1/Characters/Luke/Luke.tscn<>res://SF1/Characters/Tao/Tao.tscn<>res://SF1/Characters/Lowe/Lowe.tscn<>res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.tscn<>res://SF1/Characters/Max/Max.tscn<>res://SF1/TileSet_Resources/Original/12.tres
+Battle1_Tilemap_SF1-Original.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/ColorsBattle1Fill.png<>res://Assets/SF1/Tilesets/12.png<>res://Assets/SF1/Tilesets/0.png
+Battle3.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Chapters/1/Battle2/Tiled_Map/SF1-Battle2And3.tscn<>res://SF1/Chapters/1/TargetSelectionLogicNodeRoot.gd<>res://SF1/EnemiesAndBosses/GiantBat/GiantBat.tscn<>res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn<>res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.tscn<>res://General/Cursor.tscn<>res://SF1/Chapters/1/Camera2D.gd<>res://Assets/CustomTileTerrainInformation.png<>res://SF1/Chapters/1/FieldLogicNode.gd<>res://SF1/Characters/Hans/Hans.tscn<>res://SF1/Chapters/1/Battle1.gd<>res://SF1/Characters/Ken/Ken.tscn<>res://SF1/Characters/Luke/Luke.tscn<>res://SF1/Characters/Tao/Tao.tscn<>res://SF1/Characters/Lowe/Lowe.tscn<>res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.tscn<>res://SF1/Characters/Max/Max.tscn
+Camera2D.gd::GDScript::-1::1645156780::0::1::::<><>::
+FieldLogicNode.gd::GDScript::-1::1645156780::0::1::::<><>::
+TargetSelectionLogicNodeRoot.gd::GDScript::-1::1645156780::0::1::::<><>::
+::res://SF1/Chapters/1/Alterone/::1645156780
+Alterone_BattleMap.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/TileSet_Resources/Original/0.tres<>res://SF1/TileSet_Resources/Original/10.tres<>res://SF1/TileSet_Resources/Original/9.tres<>res://SF1/TileSet_Resources/Original/8.tres<>res://SF1/TileSet_Resources/Original/7.tres
+Battle4.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Chapters/1/Alterone/Alterone_BattleMap.tscn<>res://SF1/Chapters/1/TargetSelectionLogicNodeRoot.gd<>res://SF1/EnemiesAndBosses/Sniper/Sniper.tscn<>res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn<>res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.tscn<>res://General/Cursor.tscn<>res://SF1/Chapters/1/Camera2D.gd<>res://Assets/CustomTileTerrainInformation.png<>res://SF1/Chapters/1/FieldLogicNode.gd<>res://SF1/EnemiesAndBosses/DarkMage/DarkMage.tscn<>res://SF1/Characters/Hans/Hans.tscn<>res://SF1/Chapters/1/Battle1.gd<>res://SF1/Characters/Ken/Ken.tscn<>res://SF1/Characters/Luke/Luke.tscn<>res://SF1/Characters/Tao/Tao.tscn<>res://SF1/Characters/Lowe/Lowe.tscn<>res://SF1/EnemiesAndBosses/GiantBat/GiantBat.tscn<>res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.tscn<>res://SF1/Characters/Max/Max.tscn
+::res://SF1/Chapters/1/AncientsGate/::1645156780
+AncientsGateTilemap.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/TileSet_Resources/Original/0.tres<>res://SF1/TileSet_Resources/Original/12.tres
+::res://SF1/Chapters/1/Battle2/::1645156780
+ActionSpotsWrapperNode.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+Battle2.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Chapters/1/Battle2/Tiled_Map/SF1-Battle2And3.tscn<>res://SF1/Chapters/1/TargetSelectionLogicNodeRoot.gd<>res://SF1/EnemiesAndBosses/Goblin/Goblin.tscn<>res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn<>res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.tscn<>res://General/Cursor.tscn<>res://SF1/Chapters/1/Camera2D.gd<>res://Assets/CustomTileTerrainInformation.png<>res://SF1/Chapters/1/FieldLogicNode.gd<>res://SF1/Characters/Hans/Hans.tscn<>res://SF1/Chapters/1/Battle1.gd<>res://SF1/Characters/Ken/Ken.tscn<>res://SF1/Characters/Luke/Luke.tscn<>res://SF1/Characters/Tao/Tao.tscn<>res://SF1/Characters/Lowe/Lowe.tscn<>res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.tscn<>res://SF1/Characters/Max/Max.tscn
+Overworld.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Chapters/1/Battle2/Tiled_Map/SF1-Battle2And3.tscn<>res://SF1/Chapters/1/Guardiana/Camera2D.gd<>res://SF1/Characters/_player/Player.tscn<>res://SF1/Chapters/1/Battle2/ActionSpotsWrapperNode.gd
+::res://SF1/Chapters/1/Battle2/Tiled_Map/::1645156780
+1..tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/1.png
+SF1-Battle2And3.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/TileSet_Resources/Original/1.tres<>res://SF1/TileSet_Resources/Original/16.tres
+::res://SF1/Chapters/1/EnemeyLogicTempDemo/::1645156780
+CenterLeftGoblin.gd::GDScript::-1::1645156780::0::1::::<><>::
+CenterRightGoblin.gd::GDScript::-1::1645156780::0::1::::<><>::
+LeftDarkDwarf.gd::GDScript::-1::1645156780::0::1::::<><>::
+RightDarkDwarf.gd::GDScript::-1::1645156780::0::1::::<><>::
+RuneKnight.gd::GDScript::-1::1645156780::0::1::::<><>::
+TopLeftGoblin.gd::GDScript::-1::1645156780::0::1::::<><>::
+TopRightLeftGoblin.gd::GDScript::-1::1645156780::0::1::::<><>::
+TopRightRightGoblin.gd::GDScript::-1::1645156780::0::1::::<><>::
+::res://SF1/Chapters/1/GongsHouse/::1645156780
+ActionSpotsWrapperNode.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+GongsHouse.gd::GDScript::-1::1645156780::0::1::::<><>::
+GongsHouse.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_player/Player.tscn<>res://SF1/Chapters/1/GongsHouse/Gongs_House_Tilemap.tscn<>res://SF1/TileSet_Resources/Original/10.tres<>res://SF1/Chapters/1/Guardiana/Camera2D.gd<>res://Assets/SF1/PlayableCharacters/Jogurt/Unpromoted_Map_Sprites.png<>res://Assets/SF1/NPC/Man_Old_WhiteBeard.png<>res://SF1/NPC/NPCBase.tscn<>res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Map_Sprites.png<>res://SF1/Chapters/1/GongsHouse/ActionSpotsWrapperNode.gd<>res://SF1/Chapters/1/GongsHouse/GongsHouse.gd<>res://Assets/SF1/NPC/Woman_Blonde_PinkDress.png<>res://SF1/TileSet_Resources/Original/0.tres
+Gongs_House_Tilemap.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/TileSet_Resources/Original/0.tres<>res://SF1/TileSet_Resources/Original/7.tres<>res://SF1/TileSet_Resources/Original/10.tres
+::res://SF1/Chapters/1/Guardiana/::1645321104
+ActionSpotsWrapperNode.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+Camera2D.gd::GDScript::-1::1645320134::0::1::::<>Camera2D<>::
+Guardiana.gd::GDScript::-1::1645320142::0::1::::<>Node2D<>::
+Guardiana.tscn::PackedScene::7348962559902137717::1645321103::0::1::::<><>::res://SF1/Characters/_player/Player.tscn<>res://SF1/OverworldItems/Chests/Chest.tscn<>uid://b2iebwc35ybtf<>res://SF1/Chapters/1/Guardiana/Camera2D.gd<>res://SF1/Chapters/1/Guardiana/Guardiana.gd<>uid://sis10kbljioq<>res://SF1/NPC/NPCBase.tscn<>uid://dxeus5gorolyn<>uid://bwqnd3ujufvit<>uid://pnyh1v1e5fc<>uid://dkwth8vw42t7k<>uid://yxarrst43q55<>uid://dwxvve3hi8i8v<>uid://lvu7k5ry84xs<>uid://ce4ue2pt4n2u5<>uid://b8orqer7x6xjm<>uid://b8ds7lgl7581j<>uid://b7d6llg848xii<>res://SF1/NPC/WomanRedHeadChurch.gd<>res://SF1/TileSet_Resources/Original/0.tres<>res://SF1/TileSet_Resources/Original/6.tres<>res://SF1/Chapters/1/Guardiana/ActionSpotsWrapperNode.gd
+Town.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+Town.tscn::PackedScene::4298280297633963439::1645321267::0::1::::<><>::res://SF1/TileSet_Resources/Original/6.tres<>uid://dnad2sburif3u
+Town_Tileset__0.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/0.png
+Town_Tileset__0__Rework_Ivan_Cal.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1_Reworked_IvanCal/Tilesets/0.png
+Town_Tileset__6.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/6.png
+::res://SF1/Chapters/1/Guardiana/Scripts/::1645156780
+WomanRedHeadChurch.json::TextFile::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/::1645156780
+SF1ForceMemberList.gd::GDScript::-1::1645156780::0::1::::<>Node<>::
+::res://SF1/Characters/Hans/::1645156780
+Hans.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+Hans.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_template/CharacterBase.tscn<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Map_Sprites.png<>res://SF1/Characters/Hans/Hans.gd<>res://SF1/Items/Weapons/WoodenArrow.tres<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png<>res://SF1/Characters/Hans/BattleAnimations/BattleAnimations.tres
+::res://SF1/Characters/Hans/BattleAnimations/::1645156780
+BattleAnimations.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/Characters/Hans/BattleAnimations/Idle.anim<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Battle_Sprites.png<>res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Hans/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+AttackNormal.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Battle_Sprites.png<>res://SF1/Characters/Ken/BattleAnimations/Idle.anim<>res://SF1/Characters/Hans/BattleAnimations/Idle.anim
+AttackNormal_Old_Barehand.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Ken/::1645156780
+Ken.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+Ken.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_template/CharacterBase.tscn<>res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png<>res://SF1/Characters/Ken/Ken.gd<>res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Portraits.png<>res://SF1/Items/Weapons/Spear.tres<>res://SF1/Characters/Ken/BattleAnimations/BattleAnimations.tres
+::res://SF1/Characters/Ken/BattleAnimations/::1645156780
+BattleAnimations.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/Characters/Ken/BattleAnimations/AttackNormal/AttackNormal.anim<>res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Battle_Spear_Sprites.png<>res://SF1/Characters/Ken/BattleAnimations/Idle.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Ken/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Lowe/::1645156780
+Lowe.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+Lowe.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_template/CharacterBase.tscn<>res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png<>res://SF1/Characters/Lowe/Lowe.gd<>res://SF1/Items/Weapons/WoodenStaff.tres<>res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png<>res://SF1/Spells/Heal/Heal.tres<>res://SF1/Characters/Lowe/BattleAnimations/BattleAnimations.tres
+::res://SF1/Characters/Lowe/BattleAnimations/::1645156780
+BattleAnimations.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/Characters/Lowe/BattleAnimations/AttackNormal/AttackNormal.anim<>res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png<>res://SF1/Characters/Lowe/BattleAnimations/Idle.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Lowe/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Luke/::1645156780
+Luke.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+Luke.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_template/CharacterBase.tscn<>res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png<>res://SF1/Characters/Luke/Luke.gd<>res://SF1/Items/Weapons/ShortSword.tres<>res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png<>res://SF1/Characters/Luke/BattleAnimations/BattleAnimations.tres
+::res://SF1/Characters/Luke/BattleAnimations/::1645156780
+BattleAnimations.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/Characters/Luke/BattleAnimations/Idle.anim<>res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Battle_Sprites.png<>res://SF1/Characters/Luke/BattleAnimations/AttackNormal/AttackNormal.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Luke/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Max/::1645319943
+Max.gd::GDScript::-1::1645319943::0::1::::<>Node2D<>::
+Max.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_template/CharacterBase.tscn<>res://SF1/Items/Weapons/ShortSword.tres<>res://SF1/Characters/Max/Max.gd<>res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png<>res://SF1/Characters/Max/BattleAnimations/BattleAnimations.tres<>res://SF1/Spells/Egress/Egress.tres<>res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Portraits.png
+::res://SF1/Characters/Max/BattleAnimations/::1645156780
+BattleAnimations.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/Characters/Max/BattleAnimations/Idle.anim<>res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Battle_Sprites.png<>res://SF1/Characters/Max/BattleAnimations/AttackNormal/AttackNormal.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Max/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Tao/::1645156780
+Tao.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+Tao.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_template/CharacterBase.tscn<>res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png<>res://SF1/Characters/Tao/Tao.gd<>res://SF1/Items/Weapons/WoodenStaff.tres<>res://SF1/Spells/Blaze/Blaze.tres<>res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png<>res://SF1/Characters/Tao/BattleAnimations/BattleAnimations.tres
+::res://SF1/Characters/Tao/BattleAnimations/::1645156780
+BattleAnimations.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/Characters/Tao/BattleAnimations/AttackNormal/AttackNormal.anim<>res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png<>res://SF1/Characters/Tao/BattleAnimations/Idle.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/Characters/Tao/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+AttackNormal.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Characters/Ken/BattleAnimations/AttackNormal/AttackNormal.anim<>res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png<>res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd
+::res://SF1/Characters/_player/::1645320051
+Player.gd::GDScript::-1::1645320051::0::1::::<>Node2D<>::
+Player.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/Max/Max.tscn<>res://SF1/Characters/_player/Player.gd
+::res://SF1/Characters/_template/::1645319491
+CharacterBase.gd::GDScript::-1::1645319491::0::1::::<>Node2D<>::
+CharacterBase.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_template/CharacterBase.gd
+::res://SF1/EnemiesAndBosses/::1645156780
+EnemeyBossesTopLogic.gd::GDScript::-1::1645156780::0::1::::<><>::
+EnemiesBossBase.gd::GDScript::-1::1645156780::0::1::::<><>::
+EnemiesBossBase.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/EnemiesAndBosses/EnemiesBossBase.gd
+::res://SF1/EnemiesAndBosses/Dark Dwarf/::1645156780
+DarkDwarf.gd::GDScript::-1::1645156780::0::1::::<><>::
+DarkDwarf.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn<>res://Assets/SF1/EnemiesAndBosses/Dark Dwarf/Map_Sprites.png<>res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.gd<>res://SF1/Items/Weapons/HandAxe.tres<>res://SF1/EnemiesAndBosses/Dark Dwarf/BattleAnimations/BattleAnimation.tres
+::res://SF1/EnemiesAndBosses/Dark Dwarf/BattleAnimations/::1645156780
+BattleAnimation.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/EnemiesAndBosses/Dark Dwarf/BattleAnimations/AttackNormal/AttackNormal.anim<>res://Assets/SF1/EnemiesAndBosses/Dark Dwarf/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/Dark Dwarf/BattleAnimations/Idle/Idle.anim
+::res://SF1/EnemiesAndBosses/Dark Dwarf/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+AttackNormal.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://Assets/SF1/EnemiesAndBosses/Goblin/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.anim
+::res://SF1/EnemiesAndBosses/Dark Dwarf/BattleAnimations/Idle/::1645156780
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/EnemiesAndBosses/DarkMage/::1645156780
+DarkMage.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn<>res://Assets/SF1/EnemiesAndBosses/Dark Mage/Map_Sprites.png<>res://SF1/Items/Weapons/WoodenStaff.tres<>res://SF1/EnemiesAndBosses/EnemeyBossesTopLogic.gd<>res://SF1/EnemiesAndBosses/DarkMage/BattleAnimations/BattleAnimation.tres
+::res://SF1/EnemiesAndBosses/DarkMage/BattleAnimations/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+BattleAnimation.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://Assets/SF1/EnemiesAndBosses/Dark Mage/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/DarkMage/BattleAnimations/AttackNormal.anim
+::res://SF1/EnemiesAndBosses/GiantBat/::1645156780
+GiantBat.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn<>res://Assets/SF1/EnemiesAndBosses/Giant Bat/Map_Sprites.png<>res://Assets/SF1/EnemiesAndBosses/Giant Bat/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/EnemeyBossesTopLogic.gd<>res://SF1/EnemiesAndBosses/GiantBat/BattleAnimations/BattleAnimation.tres
+::res://SF1/EnemiesAndBosses/GiantBat/BattleAnimations/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+BattleAnimation.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://Assets/SF1/EnemiesAndBosses/Giant Bat/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/GiantBat/BattleAnimations/AttackNormal.anim<>res://SF1/EnemiesAndBosses/GiantBat/BattleAnimations/Idle.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/EnemiesAndBosses/Goblin/::1645156780
+Goblin.gd::GDScript::-1::1645156780::0::1::::<><>::
+Goblin.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/EnemiesAndBosses/Goblin/Goblin.gd<>res://SF1/Items/Weapons/ShortSword.tres<>res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn<>res://Assets/SF1/EnemiesAndBosses/Goblin/Map_Sprites.png<>res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/BattleAnimations.tres
+::res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/::1645156780
+BattleAnimations.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://Assets/SF1/EnemiesAndBosses/Goblin/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.anim<>res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/Idle.anim
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+AttackNormal.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/Idle.anim
+::res://SF1/EnemiesAndBosses/RuneKnight/::1645156780
+RuneKnight.gd::GDScript::-1::1645156780::0::1::::<><>::
+RuneKnight.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn<>res://Assets/SF1/EnemiesAndBosses/Rune Knight/Map_Sprites.png<>res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.gd<>res://SF1/Items/Weapons/BronzeLance.tres<>res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/BattleAnimation.tres
+::res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/::1645156780
+BattleAnimation.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/AttackNormal/AttackNormal.anim<>res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/Idle/Idle.anim
+::res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/AttackNormal/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/EnemiesAndBosses/RuneKnight/BattleAnimations/Idle/::1645156780
+Idle.anim::Animation::-1::1645156780::0::1::::<><>::
+::res://SF1/EnemiesAndBosses/Sniper/::1645156780
+Sniper.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/EnemiesAndBosses/EnemiesBossBase.tscn<>res://Assets/SF1/EnemiesAndBosses/Sniper/Map_Sprites.png<>res://SF1/Items/Weapons/WoodenArrow.tres<>res://SF1/EnemiesAndBosses/Sniper/BattleAnimations/BattleAnimation.tres<>res://SF1/EnemiesAndBosses/EnemeyBossesTopLogic.gd
+::res://SF1/EnemiesAndBosses/Sniper/BattleAnimations/::1645156780
+AttackNormal.anim::Animation::-1::1645156780::0::1::::<><>::
+BattleAnimation.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd<>res://Assets/SF1/EnemiesAndBosses/Sniper/Battle_Sprites.png<>res://SF1/EnemiesAndBosses/Sniper/BattleAnimations/AttackNormal.anim
+::res://SF1/Items/::1645320851
+Armor.gd::GDScript::-1::1645156780::0::1::::<><>::
+Item.gd::GDScript::-1::1645319825::0::1::::CN_SF1_Item<>Resource<>::
+Ring.gd::GDScript::-1::1645156780::0::1::::CN_SF1_Item_Ring<>CN_SF1_Item<>::
+Usable.gd::GDScript::-1::1645156780::0::1::::CN_SF1_Item_Usable<>CN_SF1_Item<>::
+Weapon.gd::GDScript::-1::1645320851::0::1::::CN_SF1_Item_Weapon<>CN_SF1_Item<>::
+::res://SF1/Items/Usables/::1645156780
+MedicalHerb.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Items/Usable.gd<>res://Assets/SFCD/Items/Usables/MedicalHerb.png
+::res://SF1/Items/Weapons/::1645156780
+BronzeLance.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Items/Weapon.gd<>res://Assets/SFCD/Items/Weapons/Brozne_Lance.png
+HandAxe.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Items/Weapon.gd<>res://Assets/SFCD/Items/Weapons/Hand_Axe.png
+ShortSword.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Items/Weapon.gd<>res://Assets/SFCD/Items/Weapons/Short_Sword.png<>res://Assets/SF1/Weapons/Short_Sword.png
+Spear.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Items/Weapon.gd<>res://Assets/SFCD/Items/Weapons/Spear.png<>res://Assets/SF1/Weapons/Spear.png
+WoodenArrow.tres::Resource::-1::1645156780::0::1::::<><>::res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd<>res://SF1/Items/Weapon.gd<>res://Assets/SFCD/Items/Weapons/Wooden_Arrow.png<>res://Assets/SF1/Weapons/Wooden_Arrow.png
+WoodenStaff.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Items/Weapon.gd<>res://Assets/SFCD/Items/Weapons/Wooden Staff.png<>res://Assets/SF1/Weapons/Wooden_Rod.png
+::res://SF1/NPC/::1645320210
+NPCActorRoot.gd::GDScript::-1::1645320210::0::1::::<>Node2D<>::
+NPCBase.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/NPC/NPCActorRoot.gd
+WomanRedHeadChurch.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+::res://SF1/OverworldItems/::1645156780
+::res://SF1/OverworldItems/Chests/::1645156780
+Chest.gd::GDScript::-1::1645156780::0::1::::<>Node2D<>::
+Chest.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/EnemiesAndBosses/Dark Dwarf/Map_Sprites.png<>res://SF1/OverworldItems/Chests/Chest.gd
+::res://SF1/Spells/::1645320026
+Spell.gd::GDScript::-1::1645320003::0::1::::CN_SF1_Spell<>Resource<>::
+SpellLevel.gd::GDScript::-1::1645320026::0::1::::CN_SF1_Spell_Level<>Resource<>::
+::res://SF1/Spells/Blaze/::1645156780
+Blaze.anim::Animation::-1::1645156780::0::1::::<><>::
+Blaze.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Spells/Spell.gd<>res://Assets/SFCD/Spells/Blaze.png<>res://SF1/Spells/Blaze/Blaze_Level_1.tres<>res://SF1/Spells/Blaze/BlazeAnimation.tres
+BlazeAnimation.tres::Resource::-1::1645156780::0::1::::<><>::res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationSpellResource.gd<>res://Assets/SF1/Spells/Blaze/BaseFlame.png<>res://SF1/Spells/Blaze/Blaze.anim
+Blaze_Level_1.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Spells/SpellLevel.gd
+::res://SF1/Spells/Egress/::1645156780
+Egress.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Spells/Spell.gd<>res://Assets/SFCD/Spells/Egress.png<>res://SF1/Spells/Egress/Egress_Level_1.tres
+Egress_Level_1.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Spells/SpellLevel.gd
+::res://SF1/Spells/Heal/::1645156780
+Heal.anim::Animation::-1::1645156780::0::1::::<><>::
+Heal.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Spells/Spell.gd<>res://Assets/SFCD/Spells/Heal.png<>res://SF1/Spells/Heal/Heal_Level_1.tres<>res://SF1/Spells/Heal/HealAnimation.tres
+HealAnimation.tres::Resource::-1::1645156780::0::1::::<><>::res://Assets/SF1/Spells/Heal/Sparkles.png<>res://Assets/SF1/Spells/Heal/Fairy.png<>res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationSpellResource.gd<>res://SF1/Spells/Heal/Heal.anim
+Heal_Level_1.tres::Resource::-1::1645156780::0::1::::<><>::res://SF1/Spells/SpellLevel.gd
+::res://SF1/Test_Scenes/::1645156780
+Camera2D.gd::GDScript::-1::1645156780::0::1::::<><>::
+ColorRect.gd::GDScript::-1::1645156780::0::1::::<>ColorRect<>::
+DevMouseSelection.gd::GDScript::-1::1645156780::0::1::::<><>::
+DevMouseSelection.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Test_Scenes/DevMouseSelection.gd
+omniscale.gd::GDScript::-1::1645156780::0::1::::<><>::
+SmallIsland.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://SF1/Characters/_player/Player.tscn<>res://SF1/Test_Scenes/Camera2D.gd<>res://SF1/Test_Scenes/DevMouseSelection.tscn<>res://SF1/EnemiesAndBosses/Dark Dwarf/DarkDwarf.tscn<>res://SF1/EnemiesAndBosses/Goblin/Goblin.tscn<>res://General/Cursor.tscn<>res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn<>res://Assets/SF1/Tilesets/0.png
+TopLevelScene.tscn::PackedScene::-1::1645156780::0::1::::<><>::res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png<>res://General/BattleBase/BattleBase.tscn
+ViewportContainer.gd::GDScript::-1::1645156780::0::1::::<>ViewportContainer<>::
+::res://SF1/TileSet_Resources/::1645156780
+::res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/::1645156780
+0.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1_Reworked_IvanCal/Tilesets/0.png
+6.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1_Reworked_IvanCal/Tilesets/6.png
+7.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1_Reworked_IvanCal/Tilesets/7.png
+8.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/8.png
+9.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/9.png
+10.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/10.png
+::res://SF1/TileSet_Resources/Original/::1645156780
+0.tres::TileSet::8071948333684310128::1645321267::0::1::::<><>::uid://qsnh5wil2esj
+1.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/1.png
+6.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/6.png
+7.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/7.png
+8.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/8.png
+9.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/9.png
+10.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/10.png
+12.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/12.png
+16.tres::TileSet::-1::1645156780::0::1::::<><>::res://Assets/SF1/Tilesets/16.png
+::res://Shaders/::1645156780
+PaletteSwapNoRecolor.gdshader::Shader::-1::1645156780::0::1::::<><>::
+PaletteSwapRecolor.gdshader::Shader::-1::1645156780::0::1::::<><>::
+::res://Shaders/ShaderTextureImages/::1645317848
+hq4x.png::StreamTexture2D::1368857302972681700::1645156780::1645317848::1::::<><>::
+NoisePixelated.jpg::StreamTexture2D::6868318440559902734::1645156780::1645317848::1::::<><>::
+SmoothNoise.png::StreamTexture2D::1821003130289853873::1645156780::1645317848::1::::<><>::
+white.png::StreamTexture2D::4941055704374548387::1645156780::1645317848::1::::<><>::

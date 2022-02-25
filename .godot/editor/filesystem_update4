@@ -1,0 +1,10 @@
+res://Assets/SF1/ShiningForceDialogueFont.tres
+res://Assets/SF1/ShiningForceMenuFont.tres
+res://General/BattleActionsMenu/DropMenu/DropMenu.tscn
+res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn
+res://General/GameManagementWrapperNode/GameManagementWrapperNode.tscn
+res://General/Singletons/DevMenu/DevMenu.gd
+res://SF1/Chapters/1/Guardiana/Guardiana.tscn
+res://SF1/Chapters/1/Guardiana/Town.tscn
+res://SF1/Items/Weapon.gd
+res://SF1/TileSet_Resources/Original/0.tres

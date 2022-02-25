@@ -29,6 +29,8 @@ func _on_LineEdit_text_entered(new_text):
 func changeScene(new_text_internal) -> void:
 	var splstr = new_text_internal.split(" ")
 	
+	print(splstr)
+	
 	if splstr[1] == "battle":
 		if splstr[2] == "1":
 			print("Change Scene to Battle 1")

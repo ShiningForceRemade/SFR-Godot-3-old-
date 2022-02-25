@@ -2,7 +2,7 @@
 
 ## Prerequisites
 ### Godot
-Godot version - 3.3.4
+Godot version - 3.4.3
 
 ## Getting Started
 
