@@ -40,6 +40,7 @@ const TILE_SIZE: int = 24
 
 const movement_tween_speed = 0.1625
 
+onready var CutscenePlayerTemp = get_parent().get_node("CutsceneAnimationPlayer")
 
 func _ready():
 	
@@ -109,6 +110,9 @@ func _process(delta):
 	# if !active: 
 	# 	return
 	
+	if Input.is_action_just_pressed("ui_a_key"):
+		CutscenePlayerTemp.play("Opening")
+		
 	# if Input.is_action_just_pressed("ui_c_key"):
 	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
 		

@@ -66,4 +66,10 @@ func changeScene(new_text_internal) -> void:
 		textEdit.text = str(textEdit.text, "\n", new_text_internal, "\n", "Invalid location (scene)");
 
 
+# TODO:
+# cutscene player
+# singleton value to get cutscene node and player of the current area
+# cutscene show - should list all cutscenes with a number for easy access
+# cutscene play - should start it
+# should also have an easy way to position player char at the start area of a cutscene
 

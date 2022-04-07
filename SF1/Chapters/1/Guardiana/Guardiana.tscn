@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=2]
+[gd_scene load_steps=145 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -22,6 +22,9 @@
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=20]
 [ext_resource path="res://SF1/TileSet_Resources/Original/6.tres" type="TileSet" id=21]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/ActionSpotsWrapperNode.gd" type="Script" id=22]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
+[ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/CutsceneNode.gd" type="Script" id=25]
 
 [sub_resource type="Animation" id=1]
 length = 0.8
@@ -1681,6 +1684,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="CutsceneNode" type="Node" parent="."]
+script = ExtResource( 25 )
+
+[node name="CutsceneAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Opening = ExtResource( 24 )
+script = ExtResource( 23 )
 
 [node name="TownTilemap" parent="." instance=ExtResource( 3 )]
 position = Vector2( 140, 172 )
