@@ -39,12 +39,19 @@ func set_menu_active() -> void:
 func _input(event):
 	if is_menu_active:
 		if event.is_action_released("ui_b_key"):
-			print("Cancel Action Menu")
+			print("Cancel Overworld Action Menu")
 			is_menu_active = false
-			yield(get_tree().create_timer(0.02), "timeout")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-			Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
-			get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
+			yield(get_tree().create_timer(0.02), "timeout")
+			
+			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
+			# get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
+			# TODO add animation
+			hide()
+			
+			Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
 			#get_parent().get_parent().get_parent().s_hide_action_menu()
 			return
 			
@@ -52,7 +59,7 @@ func _input(event):
 			yield(get_tree().create_timer(0.02), "timeout")
 			# event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
-			if currently_selected_option == e_menu_options.STAY_OPTION:
+			if currently_selected_option == e_menu_options.SEARCH_OPTION:
 				print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
@@ -85,32 +92,15 @@ func _input(event):
 					get_parent().get_parent().get_parent().s_show_battle_magic_menu()
 					
 				return
-			elif currently_selected_option == e_menu_options.ATTACK_OPTION:
+			elif currently_selected_option == e_menu_options.TALK_OPTION:
 				is_menu_active = false
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.interaction_attempt_to_talk()
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-				
-				get_parent().get_parent().get_parent().s_hide_character_action_menu()
-				
-				var caa = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
-				
-				var equip_arg = caa.inventory_items_id[0]
-				
-				if caa.actor_type == "character":
-					# TODO move this within the target select node itself
-					# TODO: need to adjust this to handle attacking without a weapon equipped
-					# if caa.inventory_items_id.length > 0:	
-					Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
-				elif caa.actor_type == "enemey":
-					# TODO add a selectable version of the below also need to add get actor type to the bases
-					# also really need to start cleaning up a lot of this cruft 
-					Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg, "character")
-					# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
-				else:
-					# TODO: should add a prefix to my errors for easy filtering
-					print("FELDC - Actor doesn't have type (not character or enemey)")
-					push_error("FELDC - Actor doesn't have type (not character or enemey)")
-				
+				hide()
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+				Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
 				return
 		
 		if event.is_action_pressed("ui_down"):

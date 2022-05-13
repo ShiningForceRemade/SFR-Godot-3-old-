@@ -1,0 +1,23 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Did you see Varios' face? He went pale! Something really big is happening."
+		},
+
+		{
+			"Text": "Let's split up and see if we can't find out what's going on. I'll see you later."
+		},
+
+		{
+			"Text": "NOTE: lowe leaves"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

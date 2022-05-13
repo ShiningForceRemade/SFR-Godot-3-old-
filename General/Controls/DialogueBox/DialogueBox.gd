@@ -108,8 +108,8 @@ func _process_new_resource_file():
 			dialogue = data.script
 		else:
 			print("Error: ", parsed_external_file.error)
-			print("Error Line: ", parsed_external_file.error_line)
-			print("Error String: ", parsed_external_file.error_string)
+			print("\tError Line: ", parsed_external_file.error_line)
+			print("\tError String: ", parsed_external_file.error_string)
 	
 		file.close()
 		visible = true
@@ -172,6 +172,27 @@ func load_dialog():
 				var sound_to_play = dialogue[dialogue_index][key].split(" | ")
 				# sound to play 0 is type fx for sound effect and eventually music to change background music
 				Singleton_Game_AudioManager.play_sfx(sound_to_play[1])
+				dialogue_index += 1
+				load_dialog()
+				return
+			elif key == "ShowPortrait":
+				#var portrait_args = dialogue[dialogue_index][key].split(" | ")
+				var portrait_args = dialogue[dialogue_index][key]
+				print(dialogue[dialogue_index][key])
+				
+				# sound to play 0 is type fx for sound effect and eventually music to change background music
+				var pn = get_parent().get_node("PortraitPopupRoot")
+				pn.show()
+				pn.load_portrait(portrait_args)
+				dialogue_index += 1
+				load_dialog()
+				return
+			elif key == "HidePortrait":
+				#var portrait_args = dialogue[dialogue_index][key].split(" | ")
+				
+				var pn = get_parent().get_node("PortraitPopupRoot")
+				pn.hide()
+				
 				dialogue_index += 1
 				load_dialog()
 				return

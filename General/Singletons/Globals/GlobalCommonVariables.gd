@@ -2,6 +2,7 @@ extends Node
 
 # Node refs
 var game_management_wrapper_node = null
+var menus_root_node = null
 var camera_node = null
 var dialogue_box_node = null
 var scene_manager_node = null

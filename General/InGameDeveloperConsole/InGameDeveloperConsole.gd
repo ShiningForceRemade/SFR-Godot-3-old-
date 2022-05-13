@@ -61,6 +61,9 @@ func changeScene(new_text_internal) -> void:
 		elif splstr[2] == "Gongs-House":
 			print("Change Scene to Guardiana")
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
+		elif splstr[2] == "Ancients-Gate":
+			print("Change Scene to Ancients Gate")
+			sceneManagerNode.change_scene("res://SF1/Chapters/1/AncientsGate/AncientsGate.tscn")
 	
 	else:
 		textEdit.text = str(textEdit.text, "\n", new_text_internal, "\n", "Invalid location (scene)");

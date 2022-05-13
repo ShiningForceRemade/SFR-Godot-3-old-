@@ -25,12 +25,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BorderTextureRect" type="TextureRect" parent="."]
-margin_right = 56.0
+[node name="BorderTextureRect" type="NinePatchRect" parent="."]
+margin_right = 57.0
 margin_bottom = 72.0
 texture = ExtResource( 1 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6

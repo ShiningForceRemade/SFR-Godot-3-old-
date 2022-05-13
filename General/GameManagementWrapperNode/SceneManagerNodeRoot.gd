@@ -1,8 +1,15 @@
 extends Node
 
+# TODO: add editor resource so its easy to set the default scene to start on
+# due to all the canvas, menu, and dev layers can't go through the normal godot start scene route
+# ref 1
+
 func _ready():
 	
 	Singleton_Game_GlobalCommonVariables.scene_manager_node = self
+	
+	# ref 1
+	change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
 	
 	pass
 

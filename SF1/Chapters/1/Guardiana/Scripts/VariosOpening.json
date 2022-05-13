@@ -1,0 +1,31 @@
+{
+	"script": [
+		{
+			"Text": "{main_character_name}? {main_character_name}? C'mon, kid, wake up! I didn't hit you that hard."
+		},
+
+		{
+			"Sound": "fx | res://Assets/Sounds/StepSound.wav"
+		},
+
+		{
+			"Text": "Keep your guard up, kid. Those beasts of Runefaust will tear you to pieces!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "OK, that's enough for today. You'd better take it easy for a while."
+		},
+
+		{
+			"Sound": "fx | res://Assets/Sounds/StepSound.wav"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

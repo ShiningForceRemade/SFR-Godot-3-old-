@@ -222,3 +222,6 @@ func change_facing_direction(current_selection_pos: Vector2) -> void:
 	elif position.y > current_selection_pos.y:
 		animationPlayer.play("UpMovement")
 
+
+func change_facing_direction_string(direction: String) -> void:
+	animationPlayer.play(direction)
