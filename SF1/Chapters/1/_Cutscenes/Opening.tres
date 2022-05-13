@@ -13,7 +13,7 @@ tracks/0/keys = {
 "values": [  ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("NpcWrapperNode/VariosNPCRoot")
+tracks/1/path = NodePath("PlayerCharacterRoot")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -24,7 +24,7 @@ tracks/1/keys = {
 "values": [  ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath("PlayerCharacterRoot")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -35,23 +35,12 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath(".")
+tracks/3/path = NodePath("CutsceneNode")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("CutsceneNode")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {

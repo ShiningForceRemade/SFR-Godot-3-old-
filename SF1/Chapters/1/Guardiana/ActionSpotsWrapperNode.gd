@@ -58,3 +58,4 @@ func _on_ExitGuardianaArea2D_body_entered(body) -> void:
 func _on_KingsCastleEntranceArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene Guardiana Kings Castle")
+

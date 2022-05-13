@@ -18,7 +18,7 @@ func _on_LineEdit_text_entered(new_text):
 		Singleton_Game_GlobalBattleVariables.control_enemies = !Singleton_Game_GlobalBattleVariables.control_enemies
 		new_text_internal = str(new_text_internal, " - ", str(Singleton_Game_GlobalBattleVariables.control_enemies))
 	
-	if "change-scene" in new_text_internal:
+	if "change-scene" in new_text_internal || "cs" in new_text_internal:
 		changeScene(new_text_internal)
 		return
 	
@@ -54,17 +54,20 @@ func changeScene(new_text_internal) -> void:
 			print("Change Scene to Battle 4")
 			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B4.tscn")
 		
-	elif splstr[1] == "overworld":
+	elif splstr[1] == "overworld" || splstr[1] == "ow":
 		if splstr[2] == "Guardiana":
 			print("Change Scene to Guardiana")
-			# sceneManagerNode.change_scene("res://General/BattleBase/BattleBase.tscn")
+			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/Guardiana.tscn")
 		elif splstr[2] == "Gongs-House":
 			print("Change Scene to Guardiana")
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
 		elif splstr[2] == "Ancients-Gate":
 			print("Change Scene to Ancients Gate")
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/AncientsGate/AncientsGate.tscn")
-	
+		elif splstr[2] == "Alterone":
+			print("Change Scene to Alterone")
+			sceneManagerNode.change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
+		
 	else:
 		textEdit.text = str(textEdit.text, "\n", new_text_internal, "\n", "Invalid location (scene)");
 

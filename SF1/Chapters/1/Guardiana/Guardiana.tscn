@@ -2645,6 +2645,7 @@ __meta__ = {
 }
 
 [node name="Shop" type="TileMap" parent="RoofsWrapperNode"]
+visible = false
 position = Vector2( 140, 172 )
 z_index = 1
 tile_set = ExtResource( 20 )
@@ -2657,6 +2658,7 @@ __meta__ = {
 }
 
 [node name="Bar" type="TileMap" parent="RoofsWrapperNode"]
+visible = false
 position = Vector2( 140, 172 )
 z_index = 1
 tile_set = ExtResource( 20 )
@@ -2669,6 +2671,7 @@ __meta__ = {
 }
 
 [node name="Church" type="TileMap" parent="RoofsWrapperNode"]
+visible = false
 position = Vector2( 140, 172 )
 z_index = 1
 tile_set = ExtResource( 20 )
