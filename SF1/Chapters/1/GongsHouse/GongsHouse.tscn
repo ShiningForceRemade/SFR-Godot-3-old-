@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/Chapters/1/GongsHouse/Gongs_House_Tilemap.tscn" type="PackedScene" id=2]
@@ -10,7 +10,11 @@
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Map_Sprites.png" type="Texture" id=8]
 [ext_resource path="res://SF1/Chapters/1/GongsHouse/ActionSpotsWrapperNode.gd" type="Script" id=9]
 [ext_resource path="res://SF1/Chapters/1/GongsHouse/GongsHouse.gd" type="Script" id=10]
+[ext_resource path="res://SF1/Chapters/1/GongsHouse/Gong.gd" type="Script" id=11]
 [ext_resource path="res://Assets/SF1/NPC/Woman_Blonde_PinkDress.png" type="Texture" id=12]
+[ext_resource path="res://SF1/Chapters/1/GongsHouse/Jogurt.gd" type="Script" id=13]
+[ext_resource path="res://SF1/Chapters/1/GongsHouse/WomanInCabin.gd" type="Script" id=14]
+[ext_resource path="res://SF1/Chapters/1/GongsHouse/Friar.gd" type="Script" id=15]
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=20]
 
 [sub_resource type="Animation" id=1]
@@ -394,7 +398,8 @@ __meta__ = {
 }
 
 [node name="WomanWalkingAroundNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 204, 176 )
+position = Vector2( 204, 180 )
+script = ExtResource( 14 )
 
 [node name="Sprite" parent="NpcWrapperNode/WomanWalkingAroundNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 12 )
@@ -405,7 +410,8 @@ position = Vector2( 3, -8 )
 polygon = PoolVector2Array( -16, 48, -16, 40, 36, 40, 36, 20, 57, 20, 57, -40, -16, -40, -16, -56, 80, -56, 80, 48 )
 
 [node name="OldManNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 276, 152 )
+position = Vector2( 276, 156 )
+script = ExtResource( 15 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldManNPCRoot" index="0"]
 stationary = true
@@ -421,7 +427,8 @@ anims/RightMovement = SubResource( 3 )
 anims/UpMovement = SubResource( 4 )
 
 [node name="JogurtNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 420, 324 )
+position = Vector2( 420, 323 )
+script = ExtResource( 13 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/JogurtNPCRoot" index="0"]
 stationary = true
@@ -439,6 +446,7 @@ anims/UpMovement = SubResource( 8 )
 
 [node name="GongNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 156, 204 )
+script = ExtResource( 11 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GongNPCRoot" index="0"]
 stationary = true
