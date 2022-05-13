@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=2]
+[ext_resource path="res://SF1/Characters/Gort/Gort.gd" type="Script" id=3]
+[ext_resource path="res://SF1/Items/Weapons/ShortSword.tres" type="Resource" id=4]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Portraits.png" type="Texture" id=5]
+[ext_resource path="res://SF1/Characters/Luke/BattleAnimations/BattleAnimations.tres" type="Resource" id=6]
+
+[node name="GortRoot" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CharacterRoot" parent="." instance=ExtResource( 1 )]
+character_name = "Luke"
+character_class = 2
+inventory_items_id = [ ExtResource( 4 ) ]
+is_item_equipped = [ true ]
+texture_protrait = ExtResource( 5 )
+level = 1
+attack = 9
+defense = 7
+agility = 4
+move = 6
+HP_Current = 9
+HP_Total = 9
+hp_growth = 3
+critical_hit_chance = 3
+battle_animation_unpromoted_resource = ExtResource( 6 )
+
+[node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 2 )
+hframes = 6
+region_enabled = true
+region_rect = Rect2( 0, 175, 144, 24 )
+
+[editable path="CharacterRoot"]

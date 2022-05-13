@@ -1,5 +1,6 @@
 extends Node
 
+
 func _ready():
 	Singleton_Game_GlobalCommonVariables.sf_game_data_node = self
 
@@ -10,8 +11,15 @@ enum E_SF1_FM {
 	HANS,
 	KEN,
 	LUKE,
-	LOWE
+	LOWE,
+	GONG,
+	GORT,
+	MAE,
+	KHRIS
 }
+
+# TODO: copy over the base stats 
+# https://sf1.shiningforcecentral.com/characters/shining-force/
 
 var ForceMembers = [
 	{
@@ -98,6 +106,62 @@ var ForceMembers = [
 		"class_short": "HEAL",
 		
 		"level": 1
+	},
+	
+	{
+		"character": E_SF1_FM.GONG,
+		"character_base_node": "res://SF1/Characters/Gong/Gong.tscn",
+		
+		"unlocked": false,
+		
+		"name": "Gong", # TODO: do nicknames
+		
+		"class": "Monk",
+		"class_short": "MONK",
+		
+		"level": 1
+	},
+	
+	{
+		"character": E_SF1_FM.GORT,
+		"character_base_node": "res://SF1/Characters/Gort/Gort.tscn",
+		
+		"unlocked": false,
+		
+		"name": "Gort", # TODO: do nicknames
+		
+		"class": "Warrior",
+		"class_short": "WARR",
+		
+		"level": 2
+	},
+	
+	{
+		"character": E_SF1_FM.MAE,
+		"character_base_node": "res://SF1/Characters/Mae/Mae.tscn",
+		
+		"unlocked": false,
+		
+		"name": "Mae", # TODO: do nicknames
+		
+		"class": "Knight",
+		"class_short": "KNTE",
+		
+		"level": 2
+	},
+	
+	{
+		"character": E_SF1_FM.KHRIS,
+		"character_base_node": "res://SF1/Characters/Khris/Khris.tscn",
+		
+		"unlocked": false,
+		
+		"name": "Khris", # TODO: do nicknames
+		
+		"class": "Healer",
+		"class_short": "HEAL",
+		
+		"level": 2
 	},
 ]
 

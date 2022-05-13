@@ -1,6 +1,6 @@
 extends Node2D
 
-var active: bool = false
+var active: bool = true
 
 signal signal_completed_turn
 signal signal_character_moved(new_pos)
@@ -107,35 +107,52 @@ func setup_animations_types_depending_on_movement() -> void:
 
 func _process(delta):
 # func _physics_process(delta):
-	# if !active: 
-	# 	return
+	if !active: 
+		return
 	
-	if Input.is_action_just_pressed("ui_a_key"):
-		CutscenePlayerTemp.play("Opening")
-		
+	
+	
 	# if Input.is_action_just_pressed("ui_c_key"):
 	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
 		
 		# setup_animations_types_depending_on_movement()	
+	
+	if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
+		if Input.is_action_just_pressed("ui_a_key"):
+			interaction_attempt_to_talk()
+			# if frontFacingRaycast.is_colliding():
+				# TODO: probably should add a helper function to get the parent element
+				# where the custom logic will live instead of going up for build v0.0.2 its fine
+				# print(frontFacingRaycast.get_collider())
+				# print(frontFacingRaycast.get_collider().get_parent().get_name())
+				#print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
+				
+				#if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
+				#	frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
+				#elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
+			#		frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+		
+		if Input.is_action_just_pressed("test_key_z"):
+			CutscenePlayerTemp.play("Opening")
+		
+		if Input.is_action_just_pressed("test_key_x"):
+			active = false
+			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
+		
+		if Input.is_action_just_pressed("test_key_c"):
+			active = false
+			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().set_menu_active()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().show()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().show()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().show()
+	
 	
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
 		if tween.is_active():
 			return
 		
-		if Input.is_action_just_pressed("ui_a_key"):
-			if frontFacingRaycast.is_colliding():
-				# TODO: probably should add a helper function to get the parent element
-				# where the custom logic will live instead of going up for build v0.0.2 its fine
-				# print(frontFacingRaycast.get_collider())
-				# print(frontFacingRaycast.get_collider().get_parent().get_name())
-				print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
-				
-				if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
-					frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
-				elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
-					frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
-			
 		# print("Here")
 		# animationPlayer.playback_speed = 4
 		
@@ -211,6 +228,8 @@ func _process(delta):
 		tween.start()
 	
 	# TODO: ROTDD styled movement
+	# TODO: godot 3.4.x has better movement handling code 
+	# this is grossly outdated and should be replaced 
 	else:
 		var input_vector: Vector2 = Vector2.ZERO
 	
@@ -235,3 +254,16 @@ func _process(delta):
 		velocity = kinematicBody.move_and_slide(velocity)
 
 
+func interaction_attempt_to_talk() -> void:
+	if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
+		if frontFacingRaycast.is_colliding():
+			# TODO: probably should add a helper function to get the parent element
+			# where the custom logic will live instead of going up for build v0.0.2 its fine
+			# print(frontFacingRaycast.get_collider())
+			# print(frontFacingRaycast.get_collider().get_parent().get_name())
+			print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
+			
+			if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
+				frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
+			elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
+				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
