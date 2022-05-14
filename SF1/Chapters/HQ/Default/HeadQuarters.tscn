@@ -1,0 +1,450 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Town.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Guardiana.gd" type="Script" id=5]
+[ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/SF1/NPC/Woman_Redhead.png" type="Texture" id=8]
+[ext_resource path="res://SF1/NPC/WomanRedHeadChurch.gd" type="Script" id=19]
+[ext_resource path="res://SF1/Chapters/HQ/Default/ActionSpotsWrapperNode.gd" type="Script" id=20]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
+[ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/CutsceneNode.gd" type="Script" id=25]
+[ext_resource path="res://SF1/Chapters/HQ/Default/HeadQuartersTilemap.tscn" type="PackedScene" id=26]
+
+[sub_resource type="RectangleShape2D" id=120]
+extents = Vector2( 240, 24 )
+
+[sub_resource type="RectangleShape2D" id=121]
+extents = Vector2( 12, 96 )
+
+[sub_resource type="RectangleShape2D" id=122]
+extents = Vector2( 12, 140 )
+
+[sub_resource type="RectangleShape2D" id=123]
+extents = Vector2( 36, 24 )
+
+[sub_resource type="RectangleShape2D" id=124]
+extents = Vector2( 48, 24 )
+
+[sub_resource type="RectangleShape2D" id=125]
+extents = Vector2( 12, 56 )
+
+[sub_resource type="RectangleShape2D" id=126]
+extents = Vector2( 108, 8 )
+
+[sub_resource type="RectangleShape2D" id=127]
+extents = Vector2( 13, 36 )
+
+[sub_resource type="RectangleShape2D" id=128]
+extents = Vector2( 120.5, 8 )
+
+[sub_resource type="RectangleShape2D" id=129]
+extents = Vector2( 12.25, 108 )
+
+[sub_resource type="RectangleShape2D" id=130]
+extents = Vector2( 12.25, 72 )
+
+[sub_resource type="RectangleShape2D" id=131]
+extents = Vector2( 12.25, 128 )
+
+[sub_resource type="RectangleShape2D" id=132]
+extents = Vector2( 24, 8 )
+
+[sub_resource type="RectangleShape2D" id=133]
+extents = Vector2( 108, 8 )
+
+[sub_resource type="RectangleShape2D" id=134]
+extents = Vector2( 12, 60 )
+
+[sub_resource type="RectangleShape2D" id=135]
+extents = Vector2( 12, 66 )
+
+[sub_resource type="RectangleShape2D" id=136]
+extents = Vector2( 60, 25 )
+
+[sub_resource type="RectangleShape2D" id=138]
+extents = Vector2( 12, 28.5 )
+
+[sub_resource type="RectangleShape2D" id=139]
+extents = Vector2( 12, 34.25 )
+
+[sub_resource type="RectangleShape2D" id=140]
+extents = Vector2( 12, 13.125 )
+
+[sub_resource type="RectangleShape2D" id=141]
+extents = Vector2( 36, 16.5625 )
+
+[sub_resource type="RectangleShape2D" id=142]
+extents = Vector2( 40, 24.2813 )
+
+[sub_resource type="RectangleShape2D" id=137]
+extents = Vector2( 12, 60.5 )
+
+[sub_resource type="RectangleShape2D" id=143]
+extents = Vector2( 8, 10 )
+
+[node name="GuardianaRoot" type="Node2D"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CutsceneNode" type="Node" parent="."]
+script = ExtResource( 25 )
+
+[node name="CutsceneAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Opening = ExtResource( 24 )
+script = ExtResource( 23 )
+
+[node name="TownTilemap" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 140, 172 )
+
+[node name="HeadQuartersTilemapNode2D" parent="." instance=ExtResource( 26 )]
+position = Vector2( 403, 231 )
+
+[node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
+position = Vector2( 124, 676 )
+
+[node name="NpcWrapperNode" type="Node2D" parent="."]
+
+[node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 124, 604 )
+script = ExtResource( 19 )
+
+[node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 8 )
+hframes = 6
+
+[node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/Area2D" index="0"]
+polygon = PoolVector2Array( -40, 8, -16, 8, -16, -16, 64, -16, 64, 88, 88, 88, 88, -40, -40, -40 )
+
+[node name="TestChest" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 376 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 158, 91 )
+rotating = true
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 608
+limit_bottom = 840
+smoothing_enabled = true
+smoothing_speed = 16.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TODOCOMPRESS_StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 304, 88 )
+shape = SubResource( 120 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 220, 208 )
+shape = SubResource( 121 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 76, 252 )
+shape = SubResource( 122 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 124, 184 )
+shape = SubResource( 123 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 136, 280 )
+shape = SubResource( 124 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 136, 400 )
+shape = SubResource( 124 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 112, 568 )
+shape = SubResource( 124 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 496, 520 )
+shape = SubResource( 124 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 76, 648 )
+shape = SubResource( 125 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 196, 696 )
+shape = SubResource( 126 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 291, 740 )
+shape = SubResource( 127 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 423.5, 768 )
+shape = SubResource( 128 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 531.75, 652 )
+shape = SubResource( 129 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 460, 424 )
+shape = SubResource( 130 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 532, 240 )
+shape = SubResource( 131 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 496, 360 )
+shape = SubResource( 132 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 316, 360 )
+shape = SubResource( 133 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 220, 428 )
+shape = SubResource( 134 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 196, 532 )
+shape = SubResource( 134 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 292, 532 )
+shape = SubResource( 134 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 412, 434 )
+shape = SubResource( 135 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 364, 519 )
+shape = SubResource( 136 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 244, 616 )
+shape = SubResource( 136 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 148, 619.5 )
+shape = SubResource( 138 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 100, 342.25 )
+shape = SubResource( 139 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 244, 148 )
+shape = SubResource( 139 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 100, 122.875 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 148, 124 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 148, 220 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 100, 220 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 460, 340 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 484, 340 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D34" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 484, 124 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D35" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 508, 148 )
+shape = SubResource( 140 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D36" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 292, 143.438 )
+shape = SubResource( 141 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D37" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 508, 264 )
+shape = SubResource( 141 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D38" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 412, 176 )
+shape = SubResource( 142 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D39" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 316, 272 )
+shape = SubResource( 142 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 148, 484.5 )
+shape = SubResource( 137 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ActionSpotsWrapperNode" type="Node" parent="."]
+script = ExtResource( 20 )
+
+[node name="ExitArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitArea2D"]
+position = Vector2( 76, 674 )
+shape = SubResource( 143 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitArea2D"]
+position = Vector2( 100, 700 )
+shape = SubResource( 143 )
+
+[node name="Area2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D"]
+
+[connection signal="body_entered" from="ActionSpotsWrapperNode/ExitArea2D" to="ActionSpotsWrapperNode" method="_on_ExitArea2D_body_entered"]
+
+[editable path="NpcWrapperNode/WomanRedHeadChurchNPCRoot"]

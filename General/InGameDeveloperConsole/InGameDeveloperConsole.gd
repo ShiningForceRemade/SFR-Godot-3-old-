@@ -70,6 +70,9 @@ func changeScene(new_text_internal) -> void:
 		elif splstr[2] == "Alterone":
 			print("Change Scene to Alterone")
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
+		elif splstr[2] == "HQ":
+			print("Change Scene to HQ")
+			sceneManagerNode.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
 		
 	else:
 		textEdit.text = str(textEdit.text, "\n", new_text_internal, "\n", "Invalid location (scene)");
