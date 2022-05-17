@@ -34,6 +34,7 @@ onready var kinematicBody = $KinematicBody2D
 var area2d
 
 var tween_animation_time: float = 0.5
+var tween_animation_time_speed_const: float = 0.5
 
 enum E_RayCastRotationDirections {
 	Down = 0,
@@ -60,8 +61,10 @@ func _ready():
 	add_child(_timer)
 	_timer.connect("timeout", self, "_on_Timer_timeout")
 	
+	_timer.set_wait_time(1)
+	
 	if !stationary:
-		_timer.set_wait_time(1)
+		# _timer.set_wait_time(1)
 		# _timer.set_one_shot(false) # Make sure it loops
 		_timer.start()
 	
@@ -118,6 +121,8 @@ func _on_Timer_timeout():
 
 
 func random_move_direction(direction):
+	# print("Random move was called")
+	
 	if tween.is_active():
 		return
 	
@@ -225,3 +230,56 @@ func change_facing_direction(current_selection_pos: Vector2) -> void:
 
 func change_facing_direction_string(direction: String) -> void:
 	animationPlayer.play(direction)
+
+# test func remove this later and refactor random move to be default move
+# and pass a random move to it instead as a helper func
+func tester__move_in_direction(move_arg: String) -> void:
+	if move_arg == "Right":
+		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x + TILE_SIZE, position.y)):
+		animationPlayer.playback_speed = 2
+		
+		animationPlayer.play("RightMovement")
+		colsh.position = Vector2(TILE_SIZE, 0)
+		tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), tween_animation_time, Tween.TRANS_LINEAR)
+		tween.start()
+		return
+	elif move_arg == "Left":
+		
+		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x - TILE_SIZE, position.y)):
+		animationPlayer.playback_speed = 2
+		
+		animationPlayer.play("LeftMovement")
+		colsh.position = Vector2(-TILE_SIZE, 0)
+		tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), tween_animation_time, Tween.TRANS_LINEAR)
+		tween.start()
+		return
+	elif move_arg == "Up":
+		
+		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  - TILE_SIZE)):
+		animationPlayer.playback_speed = 2
+		
+		
+		animationPlayer.play("UpMovement")
+		colsh.position = Vector2(0, -TILE_SIZE)
+		tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), tween_animation_time, Tween.TRANS_LINEAR)
+		tween.start()
+		return
+	elif move_arg == "Down":
+		
+		#if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  + TILE_SIZE)):
+		animationPlayer.playback_speed = 2
+		
+		animationPlayer.play("DownMovement")
+		colsh.position = Vector2(0, TILE_SIZE)
+		tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), tween_animation_time, Tween.TRANS_LINEAR)
+		tween.start()
+		return
+
+
+func set_movement_speed_timer(speed_arg: float) -> void:
+	# _timer.set_wait_time(speed_arg)
+	tween_animation_time = speed_arg
+
+func reset_movement_speed_timer() -> void:
+	# _timer.set_wait_time(0.15)
+	tween_animation_time = tween_animation_time_speed_const

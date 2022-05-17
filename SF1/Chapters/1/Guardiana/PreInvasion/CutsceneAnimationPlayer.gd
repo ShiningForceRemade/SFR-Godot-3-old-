@@ -1,4 +1,4 @@
-extends Node2D
+extends AnimationPlayer
 
 
 # Declare member variables here. Examples:
