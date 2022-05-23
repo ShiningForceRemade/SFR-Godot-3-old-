@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -8,14 +8,10 @@
 [ext_resource path="res://Assets/SF1/NPC/Man_Old_WhiteBeard.png" type="Texture" id=6]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/SF1/NPC/Woman_Redhead.png" type="Texture" id=8]
-[ext_resource path="res://Assets/SF1/NPC/Lord Varios.png" type="Texture" id=9]
 [ext_resource path="res://Assets/SF1/NPC/Priest.png" type="Texture" id=10]
 [ext_resource path="res://Assets/SF1/NPC/Soldier.png" type="Texture" id=11]
-[ext_resource path="res://Assets/SF1/NPC/Woman_Blonde_PinkDress.png" type="Texture" id=12]
-[ext_resource path="res://Assets/SF1/NPC/Dog_Brown.png" type="Texture" id=13]
+[ext_resource path="res://Assets/SF1/NPC/Soldier_Injured.png" type="Texture" id=12]
 [ext_resource path="res://Assets/SF1/NPC/Man_Blonde_Purple.png" type="Texture" id=14]
-[ext_resource path="res://Assets/SF1/NPC/Cart_Trolley.png" type="Texture" id=15]
-[ext_resource path="res://Assets/SF1/NPC/Child_Pet.png" type="Texture" id=16]
 [ext_resource path="res://Assets/SF1/NPC/Man_Old_Bald.png" type="Texture" id=17]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Map_Sprites.png" type="Texture" id=18]
 [ext_resource path="res://SF1/NPC/WomanRedHeadChurch.gd" type="Script" id=19]
@@ -25,118 +21,6 @@
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
 [ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/CutsceneNode.gd" type="Script" id=25]
-
-[sub_resource type="Animation" id=1]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 length = 0.8
@@ -223,118 +107,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=9]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=10]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=12]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -474,7 +246,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=120]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -502,7 +274,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=121]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -530,119 +302,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=19]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=20]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=21]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=22]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=122]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -670,7 +330,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=123]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -1370,118 +1030,6 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=49]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=50]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=51]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=52]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
 [sub_resource type="RectangleShape2D" id=53]
 extents = Vector2( 12, 12 )
 
@@ -1721,16 +1269,6 @@ hframes = 6
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -40, 8, -16, 8, -16, -16, 64, -16, 64, 88, 88, 88, 88, -40, -40, -40 )
 
-[node name="VariosNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 152, 208 )
-
-[node name="NPCActorRoot" parent="NpcWrapperNode/VariosNPCRoot" index="0"]
-stationary = true
-
-[node name="Sprite" parent="NpcWrapperNode/VariosNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 9 )
-hframes = 6
-
 [node name="PriestNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 344, 136 )
 
@@ -1742,34 +1280,14 @@ texture = ExtResource( 10 )
 hframes = 6
 
 [node name="SoliderOutsideChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 296, 376 )
+position = Vector2( 368, 376 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/SoliderOutsideChurchNPCRoot" index="0"]
+stationary = true
 
 [node name="Sprite" parent="NpcWrapperNode/SoliderOutsideChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/SoliderOutsideChurchNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( 32, -48, 64, -48, 176, -48, 176, 88, 160, 88, 160, -40, 64, -40, 64, 8, 32, 8 )
-
-[node name="GortGrandDaughterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 272, 592 )
-
-[node name="Sprite" parent="NpcWrapperNode/GortGrandDaughterNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 12 )
-hframes = 6
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/GortGrandDaughterNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( 32, 40, 32, 24, 64, 24, 64, 16, 64, 0, 32, 0, 32, -16, 64, -16, 88, -16, 88, 40, 64, 40 )
-
-[node name="DogNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 416, 688 )
-
-[node name="Sprite" parent="NpcWrapperNode/DogNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 13 )
-hframes = 6
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/DogNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -88, 8, -88, -32, -16, -32, -16, 8, -40, 8, -40, -16, -64, -16, -64, 8 )
+hframes = 2
 
 [node name="ManRunFromTrolleyNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 512, 592 )
@@ -1781,34 +1299,8 @@ stationary = true
 texture = ExtResource( 14 )
 hframes = 6
 
-[node name="TrolleyNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 584, 592 )
-
-[node name="NPCActorRoot" parent="NpcWrapperNode/TrolleyNPCRoot" index="0"]
-stationary = true
-
-[node name="Sprite" parent="NpcWrapperNode/TrolleyNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 15 )
-hframes = 2
-
-[node name="ChildNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 560, 496 )
-
-[node name="Sprite" parent="NpcWrapperNode/ChildNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 16 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/ChildNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 1 )
-anims/LeftMovement = SubResource( 2 )
-anims/RightMovement = SubResource( 3 )
-anims/UpMovement = SubResource( 4 )
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/ChildNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( 24, 40, 24, 16, 72, 16, 72, 40 )
-
 [node name="HusbandNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 608, 496 )
+position = Vector2( 584, 520 )
 
 [node name="Sprite" parent="NpcWrapperNode/HusbandNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 17 )
@@ -1822,19 +1314,6 @@ anims/UpMovement = SubResource( 8 )
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/HusbandNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( 32, 32, 32, -16, 64, -16, 64, 32 )
-
-[node name="WifeNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 632, 496 )
-
-[node name="Sprite" parent="NpcWrapperNode/WifeNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 8 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/WifeNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 9 )
-anims/LeftMovement = SubResource( 10 )
-anims/RightMovement = SubResource( 11 )
-anims/UpMovement = SubResource( 12 )
 
 [node name="InnKeeperNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 704, 664 )
@@ -1852,37 +1331,21 @@ anims/UpMovement = SubResource( 16 )
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/InnKeeperNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -8, -16, -8, -32, 32, -32, 32, -16 )
 
-[node name="TrolleyManNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 800, 664 )
-
-[node name="Sprite" parent="NpcWrapperNode/TrolleyManNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 14 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/TrolleyManNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 17 )
-anims/LeftMovement = SubResource( 18 )
-anims/RightMovement = SubResource( 19 )
-anims/UpMovement = SubResource( 20 )
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/TrolleyManNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -80, -64, -96, -64, -96, -128, 56, -128, 56, -40, 56, 56, 112, 56, 136, 56, 136, 88, 136, 152, 136, 200, 88, 200, -8, 200, -80, 200, -80, 152, -80, 104, -64, 104, -64, 160, 88, 160, 88, 136, 112, 136, 112, 88, 80, 88, 80, 64, 40, 64, 40, 56, 40, -40, 40, -112, -80, -112 )
-
 [node name="SolderInHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 920, 664 )
+position = Vector2( 920, 640 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/SolderInHouseNPCRoot" index="0"]
+stationary = true
 
 [node name="Sprite" parent="NpcWrapperNode/SolderInHouseNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
+texture = ExtResource( 12 )
+hframes = 2
 
 [node name="AnimationPlayer" parent="NpcWrapperNode/SolderInHouseNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 21 )
-anims/LeftMovement = SubResource( 22 )
-anims/RightMovement = SubResource( 23 )
-anims/UpMovement = SubResource( 24 )
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/SolderInHouseNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -48, 56, -48, 32, 16, 32, 16, -24, 32, -24, 32, 56 )
+anims/DownMovement = SubResource( 120 )
+anims/LeftMovement = SubResource( 121 )
+anims/RightMovement = SubResource( 122 )
+anims/UpMovement = SubResource( 123 )
 
 [node name="SoldierGuardLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 752, 856 )
@@ -1913,18 +1376,8 @@ anims/LeftMovement = SubResource( 30 )
 anims/RightMovement = SubResource( 31 )
 anims/UpMovement = SubResource( 32 )
 
-[node name="WomanWalkingAroundNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 608, 304 )
-
-[node name="Sprite" parent="NpcWrapperNode/WomanWalkingAroundNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 12 )
-hframes = 6
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanWalkingAroundNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -16, 40, -16, 80, -40, 80, -40, 112, 96, 112, 96, 32, 72, 32, 64, 32, 64, -64, -8, -64, -8, -88, 112, -88, 112, 128, -48, 128, -48, 40 )
-
 [node name="OldManNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 680, 424 )
+position = Vector2( 752, 568 )
 
 [node name="Sprite" parent="NpcWrapperNode/OldManNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 6 )
@@ -1994,22 +1447,6 @@ hframes = 6
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/BartenderNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -40, 8, -56, 8, -56, -48, 128, -48, 128, 8, 112, 8, 112, -16, -40, -16 )
-
-[node name="ManOutsideBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 896, 472 )
-
-[node name="Sprite" parent="NpcWrapperNode/ManOutsideBarNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 14 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/ManOutsideBarNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 49 )
-anims/LeftMovement = SubResource( 50 )
-anims/RightMovement = SubResource( 51 )
-anims/UpMovement = SubResource( 52 )
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/ManOutsideBarNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -32, 104, -32, 80, -8, 80, -8, 112, 64, 112, 64, -40, 40, -40, 40, -16, 16, -16, 16, -64, 80, -64, 80, 128, -32, 128 )
 
 [node name="TestChest" parent="." instance=ExtResource( 2 )]
 position = Vector2( 512, 376 )
@@ -2152,7 +1589,7 @@ position = Vector2( 432, 640 )
 shape = SubResource( 57 )
 
 [node name="CollisionShape2D37" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 408, 664 )
+position = Vector2( 412, 664 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D39" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
@@ -2848,25 +2285,16 @@ __meta__ = {
 
 [editable path="NpcWrapperNode/OldManChruchNPCRoot"]
 [editable path="NpcWrapperNode/WomanRedHeadChurchNPCRoot"]
-[editable path="NpcWrapperNode/VariosNPCRoot"]
 [editable path="NpcWrapperNode/PriestNPCRoot"]
 [editable path="NpcWrapperNode/SoliderOutsideChurchNPCRoot"]
-[editable path="NpcWrapperNode/GortGrandDaughterNPCRoot"]
-[editable path="NpcWrapperNode/DogNPCRoot"]
 [editable path="NpcWrapperNode/ManRunFromTrolleyNPCRoot"]
-[editable path="NpcWrapperNode/TrolleyNPCRoot"]
-[editable path="NpcWrapperNode/ChildNPCRoot"]
 [editable path="NpcWrapperNode/HusbandNPCRoot"]
-[editable path="NpcWrapperNode/WifeNPCRoot"]
 [editable path="NpcWrapperNode/InnKeeperNPCRoot"]
-[editable path="NpcWrapperNode/TrolleyManNPCRoot"]
 [editable path="NpcWrapperNode/SolderInHouseNPCRoot"]
 [editable path="NpcWrapperNode/SoldierGuardLeftNPCRoot"]
 [editable path="NpcWrapperNode/SoldierGuardRightNPCRoot"]
-[editable path="NpcWrapperNode/WomanWalkingAroundNPCRoot"]
 [editable path="NpcWrapperNode/OldManNPCRoot"]
 [editable path="NpcWrapperNode/WeaponSellerNPCRoot"]
 [editable path="NpcWrapperNode/ItemSellerNPCRoot"]
 [editable path="NpcWrapperNode/GortNPCRoot"]
 [editable path="NpcWrapperNode/BartenderNPCRoot"]
-[editable path="NpcWrapperNode/ManOutsideBarNPCRoot"]
