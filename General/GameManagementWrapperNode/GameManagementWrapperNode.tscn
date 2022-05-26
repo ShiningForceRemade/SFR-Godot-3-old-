@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Guardiana.tscn" type="PackedScene" id=1]
 [ext_resource path="res://General/Controls/DialogueBox/DialogueBox.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://General/OverworldMenus/MemberListView/MemberListView.tscn" type="PackedScene" id=11]
 [ext_resource path="res://SF1/Characters/SF1ForceMemberList.gd" type="Script" id=12]
 [ext_resource path="res://General/GameManagementWrapperNode/MenuAndUIDispatcherNode.gd" type="Script" id=13]
+[ext_resource path="res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -772,6 +773,9 @@ scale = Vector2( 0.75, 0.75 )
 [node name="MemberListViewNodeRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 11 )]
 visible = false
 position = Vector2( 8, 0 )
+
+[node name="NoValidOptionWarningBoxRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 14 )]
+visible = false
 
 [node name="BattleMenuAndUIWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
 

@@ -30,6 +30,3 @@ margin_bottom = -25.0
 custom_fonts/font = ExtResource( 3 )
 text = "No Target."
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}

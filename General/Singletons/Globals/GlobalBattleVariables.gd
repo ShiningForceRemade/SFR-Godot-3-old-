@@ -30,7 +30,7 @@ var selected_actor_type
 
 var is_currently_in_battle_scene = false
 
-var control_enemies = true
+var control_enemies = false # true
 
 signal signal_completed_turn
 

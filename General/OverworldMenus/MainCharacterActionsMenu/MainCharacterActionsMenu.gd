@@ -18,6 +18,7 @@ onready var magic_spirte     = $MagicActionSprite
 onready var inventory_spirte = $InventoryActionSprite
 onready var search_spirte      = $SearchActionSprite
 
+
 onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 func _ready():

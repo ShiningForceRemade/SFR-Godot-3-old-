@@ -31,7 +31,7 @@ func changeScene(new_text_internal) -> void:
 	
 	print(splstr)
 	
-	if splstr[1] == "battle":
+	if splstr[1] == "battle" || splstr[1] == "b":
 		if splstr[2] == "1":
 			print("Change Scene to Battle 1")
 			
@@ -71,6 +71,9 @@ func changeScene(new_text_internal) -> void:
 		elif splstr[2] == "Alterone":
 			print("Change Scene to Alterone")
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
+		elif splstr[2] == "Alterone-Castle":
+			print("Change Scene to Alterone")
+			sceneManagerNode.change_scene("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
 		elif splstr[2] == "HQ":
 			print("Change Scene to HQ")
 			sceneManagerNode.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
