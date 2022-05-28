@@ -134,7 +134,7 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 			selected_character_info_inventory_vbox.add_child(mil)
 		
 	else:
-		selected_character_info_magic_nothing.show()
-		selected_character_info_inventory_nothing.hide()
+		selected_character_info_inventory_nothing.show()
+		selected_character_info_inventory_vbox.hide()
 
 
