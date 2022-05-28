@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'm just stretching. Need to keep in tiptop form, you know."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

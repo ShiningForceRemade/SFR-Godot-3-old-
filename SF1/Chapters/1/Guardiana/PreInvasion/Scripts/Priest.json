@@ -1,0 +1,35 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Hello, {main_character_name}! I've been having the worst nightmares. Have you had any?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "I bet they're the same ones I've been having!"
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "I saw our land in ruins. Evil creatures roamed our halls! It seemed so real!"
+		},
+
+		{
+			"Text": "Varios seemed very upset when he passed this way. Perhaps you should look for him."
+		}
+	]
+}

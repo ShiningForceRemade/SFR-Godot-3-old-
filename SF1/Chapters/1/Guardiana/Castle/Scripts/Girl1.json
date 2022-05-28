@@ -1,0 +1,27 @@
+{
+	"script": [
+		{
+			"Text": "Grrr! I'm so mad! Do you want to know why?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "It's that Tao! How dare she call herself a mage? If she's a mage, I'm a footstool!"
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "Why I never! How rude!"
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"script": [
+		{
+			"Text": "Khris, where are you? Have you seen her?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "Well, then where is she?"
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "Well, don't just stand there, help me look for her."
+		}
+	]
+}

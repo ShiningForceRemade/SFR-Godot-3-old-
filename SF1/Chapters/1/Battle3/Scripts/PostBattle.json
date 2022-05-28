@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Excellent! Kane will have to do better than that to stop you. On to Alterone!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

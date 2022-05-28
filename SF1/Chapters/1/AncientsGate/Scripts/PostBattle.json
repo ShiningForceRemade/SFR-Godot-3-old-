@@ -1,0 +1,19 @@
+{
+	"script": [
+		{
+			"Text": "Fools...you have won here, but Lord Kane of Runefaust is even now attacking Guardiana!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "If that creature spoke truly, we must return to help defend Guardiana!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

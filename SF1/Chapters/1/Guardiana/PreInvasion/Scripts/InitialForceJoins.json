@@ -1,0 +1,83 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Wait, {main_character_name}! Nova sent us. We're going with you. I am Luke the warrior."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Ken the knight, at your service, {main_character_name}! I'll follow you wherever you lead."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I am Tao. I'm only an apprentice mage, but I'll do my best."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I am Hans, an elven archer. I'm coming, but don't put me in the front lines, OK?"
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"Text": "Luke, Ken, Tao and Hans join the Shining Force!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Meet us at headquarters back in the castle!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Hey {main_character_name}! Don't try to sneak out of town without me!"
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Now that you have your comrades, return to the king to hear his final commands. I'll follow your progress and offer advice as you face the vile hordes of Runefaust."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Well, that's settled. See you at headquarters!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

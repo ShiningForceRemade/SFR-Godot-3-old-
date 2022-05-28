@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'm ready, {main_character_name}. You line 'em up, and I'll chop 'em down!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

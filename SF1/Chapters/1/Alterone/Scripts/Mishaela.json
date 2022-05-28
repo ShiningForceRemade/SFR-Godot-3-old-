@@ -1,0 +1,35 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Greetings, {main_character_name}. With my powers I can see the future. Care to know your fate?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "Death lies to the north. Go back to Guardiana, for your doom awaits if you continue."
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "If you are too scared to hear my words, how can you hope to survive the trials you face?"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

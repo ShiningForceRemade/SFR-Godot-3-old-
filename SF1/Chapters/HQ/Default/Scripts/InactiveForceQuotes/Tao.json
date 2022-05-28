@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'll be ready when you need me, {main_character_name}."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

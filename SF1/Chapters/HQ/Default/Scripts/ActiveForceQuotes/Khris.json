@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I can fight and heal wounds. Lead on, and I will follow."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

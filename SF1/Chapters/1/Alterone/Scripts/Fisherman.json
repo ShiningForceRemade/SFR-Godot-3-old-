@@ -1,0 +1,31 @@
+{
+	"script": [
+		{
+			"Text": "I love to fish. Hey, a bite, I feel a bite! Don't just stand there, help me pull!"
+		},
+
+		{
+			"Text": "Wow! It must be a whale. Pull again!"
+		},
+
+		{
+			"Text": "One more time!"
+		},
+
+		{
+			"Text": "I caught it!"
+		},
+
+		{
+			"Text": "Drat! More gold coins? Shucks, I thought I had a fish. Just toss 'em back."
+		},
+
+		{
+			"Text": "Here, fishee, fishee, fishee!"
+		},
+
+		{
+			"Text": "I'm not going to give up!"
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"Text": "Who are you?"
+		},
+
+		{
+			"Text": "There's nothing here to see. Go away!"
+		},
+
+		{
+			"Text": "Get back upstairs!"
+		}
+	]
+}

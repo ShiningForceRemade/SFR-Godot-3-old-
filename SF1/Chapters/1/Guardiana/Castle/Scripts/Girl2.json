@@ -1,0 +1,27 @@
+{
+	"script": [
+		{
+			"Text": "Princess Anri is away in Manarina. Do you know about the land of Manarina?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "I see you are well-informed."
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "Manarina holds an Arcane College, where the best mages are trained."
+		}
+	]
+}

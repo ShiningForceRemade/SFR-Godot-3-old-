@@ -1,0 +1,31 @@
+{
+	"script": [
+		{
+			"Text": "There's a chain inside the head! Do you wish to pull it?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "Max pulls the chain!"
+		},
+
+		{
+			"Text": "The Legacy of the Ancients, the Door, the Key...What can it all mean? No matter what the cost, the mystery must be solved, and Runefaust's plans foiled."
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "exit"
+		}
+	]
+}

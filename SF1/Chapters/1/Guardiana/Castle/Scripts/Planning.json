@@ -1,0 +1,31 @@
+{
+	"script": [
+		{
+			"Text": "For centuries, our people have watched the Gate of the Ancients, as its guardians. Beyond that gate lies we know not what, not even if it is of the Light or the Darkness. But the Ancients knew, and they sealed it beyond the gate and set us as guards. And now we find that we may have failed in our mission, our reason for existence. Signs have been seen that forces of Runefaust are at the Gate of the Ancients! Whatever evil they are planning, we must stop it at all costs and at once!"
+		},
+
+		{
+			"Text": "But we must not panic the people. A small group of young but skilled warriors..."
+		},
+
+		{
+			"Text": "Yes! He could do it. He could leave town unnoticed and have a chance to succeed, perhaps."
+		},
+
+		{
+			"Text": "Yes, Nova, I agree. Max! Will you take the task?"
+		},
+
+		{
+			"Text": "Interaction Prompt"
+		},
+
+		{
+			"Text": "PromptNO - What? You refuse?! It seems that Varios was wrong about you, after all. Too bad."
+		},
+
+		{
+			"Text": "PromptYes - Very well! Now, return to town and gather your troops. Come back when you're ready."
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "{main_character_name}, there's no time to lose. Kane must be found and stopped at all costs. Find out all you can and be sure to talk to the king of Alterone!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

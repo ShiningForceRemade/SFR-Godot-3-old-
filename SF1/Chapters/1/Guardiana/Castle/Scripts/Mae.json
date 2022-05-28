@@ -1,0 +1,19 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Greetings, {main_character_name}. I am Mae, Varios' daughter."
+		},
+		
+		{
+			"Text": "The other knights feel that father has wasted his time on you. We shall see!"
+		},
+		
+		{
+			"HidePortrait": ""
+		}
+	]
+}

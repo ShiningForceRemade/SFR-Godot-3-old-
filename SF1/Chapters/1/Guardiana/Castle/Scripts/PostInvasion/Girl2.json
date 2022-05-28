@@ -1,0 +1,27 @@
+{
+	"script": [
+		{
+			"Text": "Will your journey take you to the town of Manarina?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "Then see Princess Anri! She can help you."
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "Oh. That's too bad...."
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "If it's healing and fighting what you need, I'm your man. I will try my best!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

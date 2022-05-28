@@ -1,0 +1,31 @@
+{
+	"script": [
+		{
+			"Text": "{main_character_name}, I wasn't myself. Kane had some power over me. Can you forgive me?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "Thank you! I want to help you. Search the dragon head to reveal a secret passage!"
+		},
+
+		{
+			"Text": "Head toward Rindo, then to Manarina. Someone there should be able to help you."
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "Oh... ...You won't forgive me? I suppose it's to be expected."
+		}
+	]
+}

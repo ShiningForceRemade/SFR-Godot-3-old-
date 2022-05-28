@@ -1,0 +1,131 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Go away, Kane! I don't understand what you are talking about!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Anyway, the treasure of Guardiana is in my hand now."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I won't let you take that! Just leave!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Sword of Darkness! Show me your power!!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Arrrghhh!"
+		},
+
+		{
+			"Text": "[Varios dies.]"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "No! Father! I... I can't believe it! I'll, I'll..."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Now, Guardiana is unworthy of my attention. Farewell, fools!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "{main_character_name}! Look to the king!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "{main_character_name}...Mae...I don't think I'll live much longer, thought Varios protected me. Listen, the gate of the Ancients is the only access to the Tower. And the gate can be opened only with the key. You must find it before it falls into the hands of evil! You should never let them open the gate! Find out why Runefaust is interested in the gate... Please..."
+		},
+
+		{
+			"Text": "Mae... Daughter of the great Varios, help {main_character_name}... Avenge your father! and be strong..."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Your majesty...."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Please tell my daughter, Anri, in Manarina...to stay strong, for her people..."
+		},
+
+		{
+			"Text": "..........."
+		},
+
+		{
+			"Text": "(The king dies.)"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Now is not the time for tears and grief. Alterone should be out next goal."
+		},
+
+		{
+			"Text": "{main_character_name}!"
+		},
+
+		{
+			"Text": "Let's go find that key! I don't want to see any more of these tradegies."
+		},
+
+		{
+			"Text": "I'll await you at headquarters. Be quick!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

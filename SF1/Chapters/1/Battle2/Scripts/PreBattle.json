@@ -1,0 +1,23 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "The earthquake blocked the road. Head north, but be ready for battle."
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"Text": "No one enters Guardiana while we live! For Darksol!"
+		},
+
+		{
+			"Text": "Death to Guardiana!"
+		}
+	]
+}

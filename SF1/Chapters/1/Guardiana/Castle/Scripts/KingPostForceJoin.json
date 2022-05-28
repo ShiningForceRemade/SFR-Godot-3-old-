@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"Text": "You have your troops, but you need supplies. Take this to purchase what you need."
+		},
+
+		{
+			"Text": "Max gains 100 coins!"
+		},
+
+		{
+			"Text": "A cart will take you to the Gate of the Ancients. Go now and carry out your task!"
+		}
+	]
+}

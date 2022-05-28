@@ -1,0 +1,27 @@
+{
+	"script": [
+		{
+			"Text": "Do you know the King's secret?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "He seems to like treasure. It is rumored he has hidden treasure here and there."
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "Oh! You don't. He! He! It may be nothing to you. Please forget it."
+		}
+	]
+}

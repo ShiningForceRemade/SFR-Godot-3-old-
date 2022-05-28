@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'm resting and practicing my healing spell."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

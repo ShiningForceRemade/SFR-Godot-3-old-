@@ -1,0 +1,47 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Lowly worms, I shall crush you beneath my heel. Attack, soldiers of Runefaust!"
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"Text": "Lord Kane, Lord Darksol commands you to return to Runefaust immediately."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Tell him I'm on my way."
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"Text": "Yes, sir."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "A shame I can't stay to watch you meet your doom! My troops can handle the likes of you."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

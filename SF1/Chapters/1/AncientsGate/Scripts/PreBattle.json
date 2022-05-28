@@ -1,0 +1,47 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "{main_character_name}! Goblins! Runefaust must be up to something!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "We can take them, Max!"
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"Text": "Move it, vermin! Find the key to this blasted door!"
+		},
+
+		{
+			"Text": "C'mon, we're almost in!"
+		},
+
+		{
+			"Text": "Where is that blasted key?"
+		},
+
+		{
+			"Text": "What? Blast it! Those fools from Guardiana are here!"
+		},
+
+		{
+			"Text": "Earthquake!"
+		},
+
+		{
+			"Text": "Attack, goblins and dwarves! Strike a blow for the honor of Runefaust!"
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"script": [
+		{
+			"Text": "Well, {main_character_name}, are you ready to face the enemy?"
+		},
+
+		{
+			"Text": "Anything else, {main_character_name}?"
+		},
+
+		{
+			"Text": "A change of heart, eh?"
+		},
+
+		{
+			"Text": "If that is all, then go now, for the hordes of Runefaust are still on the attack!"
+		},
+
+		{
+			"Text": "Who do you wish to take?"
+		}
+	]
+}

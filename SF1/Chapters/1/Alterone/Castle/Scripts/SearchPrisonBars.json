@@ -1,0 +1,35 @@
+{
+	"script": [
+		{
+			"Text": "(The bars are solid. There's no way to break them.) ...Footsteps approach!"
+		},
+
+		{
+			"Text": "The time has come to strike back at Runefaust! I'm letting you out."
+		},
+
+		{
+			"Text": "Please help me save Alterone! I'll fight alongside you. I can heal too!"
+		},
+
+		{
+			"Text": "Khris Joins the shining force TODO"
+		},
+
+		{
+			"Text": "We can't go this way, they'll spot us for sure."
+		},
+
+		{
+			"Text": "There's a secret passage. Use it to escape."
+		},
+
+		{
+			"Text": "I'll be at headquarters."
+		},
+
+		{
+			"Text": "I'll get you out of here soon."
+		}
+	]
+}

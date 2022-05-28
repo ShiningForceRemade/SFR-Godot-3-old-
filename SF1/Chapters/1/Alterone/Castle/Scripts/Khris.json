@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Be very careful when you meet the king. That's all I dare say."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I came to tell the king to fight, but Kane had already convinced him to surrender."
+		},
+
+		{
+			"Text": "Even though I am in prison, I can still perfom my duties. How can I help you?"
+		},
+
+		{
+			"Text": "Display Priest Menu"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "{main_character_name}, remember that we're here if you need us!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

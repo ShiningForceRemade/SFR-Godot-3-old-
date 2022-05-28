@@ -1,0 +1,19 @@
+{
+	"script": [
+		{
+			"Text": "Have you reconsidered? Will you go to the Gate of the Ancients and investigate?"
+		},
+
+		{
+			"Text": "Interaction Prompt"
+		},
+
+		{
+			"Text": "PromptNO - What? You refuse?! It seems that Varios was wrong about you, after all. Too bad."
+		},
+
+		{
+			"Text": "PromptYes - Very well! Now, return to town and gather your troops. Come back when you're ready."
+		}
+	]
+}

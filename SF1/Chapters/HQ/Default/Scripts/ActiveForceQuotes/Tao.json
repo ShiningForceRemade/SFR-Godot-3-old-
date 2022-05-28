@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'm eager to try my magic. Let's get out there and toast some monsters!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

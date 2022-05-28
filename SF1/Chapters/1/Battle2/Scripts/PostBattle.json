@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Well done, Shining Force! Now, enter Guardiana and find out what's happened there!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

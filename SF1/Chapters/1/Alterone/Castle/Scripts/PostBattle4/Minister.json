@@ -1,0 +1,27 @@
+{
+	"script": [
+		{
+			"Text": "Kane of Runefaust spoke of a door and a key. Has he found the key yet?"
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "Yes"
+		},
+		
+		{
+			"Text": "We're doomed! That door is said to hold back an ancient devil. All is lost!"
+		},
+
+		{
+			"InteractionAnswer": "No"
+		},
+		
+		{
+			"Text": "Then there's still time! You must hurry after him!"
+		}
+	]
+}

@@ -1,0 +1,39 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'm sorry about this, but I must protect Alterone."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Surprised, {main_character_name}? Alterone has already surrendered! Put him in a prison cell! I'll decide how to best dispose of him in a day or two."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Kane, you promised that Alterone would not be involved in any of this!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Quiet, fool! Or I'll throw you in the cell with him! Take him away."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

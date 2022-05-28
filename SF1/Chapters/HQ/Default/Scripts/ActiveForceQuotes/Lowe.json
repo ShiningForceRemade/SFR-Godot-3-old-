@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'm most useful as a healer, but I'll get in a few good whacks when I have to. I can heal wounds, but please try not to get injured, OK?"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}
