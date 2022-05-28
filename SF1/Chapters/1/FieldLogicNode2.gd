@@ -451,7 +451,14 @@ func generate_movement_array_representation():
 			
 			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
 			if new_check_tile(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row)):
-				move_array[row][col] = 1
+				# move_array[row][col] = 1 
+				
+				# valid move tile TODO: probably should create a distinction for valid tile and character (ally) under tile
+				
+				move_array[row][col] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
+				}
 				
 				# check if character or enemey actor is on this tile position
 			
@@ -460,7 +467,7 @@ func generate_movement_array_representation():
 			
 				var res = check_if_character_or_enemey_is_on_tile(check_pos)
 				if res != null:
-					move_array[row][col] = 2 # enemey
+					move_array[row][col].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
 					# print("VPOS - ", (vpos.x - movement) + col, " ", (vpos.y - movement) + row)
@@ -473,8 +480,11 @@ func generate_movement_array_representation():
 			
 			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
 			if new_check_tile(Vector2(vpos.x + col + 1, (vpos.y - movement) + row)):
-				move_array[row][col + movement + 1] = 1
-			
+				# move_array[row][col + movement + 1] = 1
+				move_array[row][col + movement + 1] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
+				}
 				# check if character or enemey actor is on this tile position
 			
 				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
@@ -482,7 +492,7 @@ func generate_movement_array_representation():
 			
 				var res = check_if_character_or_enemey_is_on_tile(check_pos)
 				if res != null:
-					move_array[row][col + movement + 1] = 2 # enemey
+					move_array[row][col + movement + 1].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
 					# print("VPOS - ", Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
@@ -496,8 +506,11 @@ func generate_movement_array_representation():
 			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
 			# print("x and y - ", col, " ", vpos.y + row + 1)
 			if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y + row + 1)):
-				move_array[row + movement + 1][col] = 1
-			
+				# move_array[row + movement + 1][col] = 1
+				move_array[row + movement + 1][col] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2((vpos.x - movement) + col, vpos.y + row + 1))
+				}
 				# check if character or enemey actor is on this tile position
 			
 				var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
@@ -505,7 +518,7 @@ func generate_movement_array_representation():
 			
 				var res = check_if_character_or_enemey_is_on_tile(check_pos)
 				if res != null:
-					move_array[row + movement + 1][col] = 2 # enemey
+					move_array[row + movement + 1][col].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, vpos.y + row + 1))
 					# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y + row + 1))
@@ -521,8 +534,12 @@ func generate_movement_array_representation():
 			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
 			# print("x and y - ", vpos.x + col + 1, " ", vpos.y + row + 1)
 			if new_check_tile(Vector2(vpos.x + col + 1, vpos.y + row + 1)):
-				move_array[row + movement + 1][col + movement + 1] = 1
-			
+				# move_array[row + movement + 1][col + movement + 1] = 1
+				move_array[row + movement + 1][col + movement + 1] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x + col + 1, vpos.y + row + 1))
+				}
+				
 				# check if character or enemey actor is on this tile position
 			
 				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
@@ -530,7 +547,7 @@ func generate_movement_array_representation():
 			
 				var res = check_if_character_or_enemey_is_on_tile(check_pos)
 				if res != null:
-					move_array[row + movement + 1][col + movement + 1] = 2 # enemey
+					move_array[row + movement + 1][col + movement + 1].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, vpos.y + row + 1))
 					# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y + row + 1))
@@ -538,14 +555,18 @@ func generate_movement_array_representation():
 	# Straight Across Left Side
 	for col in range(movement):
 		if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y)):
-			move_array[movement][col] = 1
-			
+			# move_array[movement][col] = 1
+			move_array[movement][col] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2((vpos.x - movement) + col, vpos.y))
+			}
+				
 			var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
 			actor_cur_pos.y)
 			
 			var res = check_if_character_or_enemey_is_on_tile(check_pos)
 			if res != null:
-				move_array[movement][col] = 2 # enemey
+				move_array[movement][col].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2((vpos.x - movement) + col, vpos.y))
 				# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y))
@@ -553,14 +574,18 @@ func generate_movement_array_representation():
 	# Straight Across Right Side
 	for col in range(movement):
 		if new_check_tile(Vector2(vpos.x + col + 1, vpos.y)):
-			move_array[movement][col + movement + 1] = 1
+			# move_array[movement][col + movement + 1] = 1
+			move_array[movement][col + movement + 1] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x + col + 1, vpos.y))
+			}
 			
 			var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
 			actor_cur_pos.y)
 			
 			var res = check_if_character_or_enemey_is_on_tile(check_pos)
 			if res != null:
-				move_array[movement][col + movement + 1] = 2 # enemey
+				move_array[movement][col + movement + 1].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x + col + 1, vpos.y))
 				# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y))
@@ -568,14 +593,18 @@ func generate_movement_array_representation():
 	# Straight Down Top Portion
 	for row in range(movement):
 		if new_check_tile(Vector2(vpos.x, vpos.y - (movement - row))):
-			move_array[row][movement] = 1
+			# move_array[row][movement] = 1
+			move_array[row][movement] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y - (movement - row)))
+			}
 			
 			var check_pos = Vector2(actor_cur_pos.x,
 			actor_cur_pos.y - ((movement - row) * tile_size))
 			
 			var res = check_if_character_or_enemey_is_on_tile(check_pos)
 			if res != null:
-				move_array[row][movement] = 2 # enemey
+				move_array[row][movement].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y - (movement - row)))
 				# print("VPOS - ", Vector2(vpos.x, vpos.y - (movement - row)))
@@ -583,27 +612,44 @@ func generate_movement_array_representation():
 	# Straight Down Bottom Portion
 	for row in range(movement):
 		if new_check_tile(Vector2(vpos.x, vpos.y + (row + 1))):
-			move_array[row + movement + 1][movement] = 1
+			# move_array[row + movement + 1][movement] = 1
+			move_array[row + movement + 1][movement] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y + (row + 1)))
+			}
 			
 			var check_pos = Vector2(actor_cur_pos.x,
 			actor_cur_pos.y + ((row + 1) * tile_size))
 			
 			var res = check_if_character_or_enemey_is_on_tile(check_pos)
 			if res != null:
-				move_array[row + movement + 1][movement] = 2 # enemey
+				move_array[row + movement + 1][movement].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y + (row + 1)))
 				# print("VPOS - ", Vector2(vpos.x, vpos.y + (row + 1)))
 	
 	# Center Self Tile
-	move_array[movement][movement] = 1
+	# move_array[movement][movement] = 1
+	move_array[movement][movement] = {
+		"on_tile": 1,
+		"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y))
+	}
+			
 	point_array.append(vpos)
 	
 	# print(vpos)
 	# print(move_array)
-	# print("Move Array")
-	#for i in move_array:
-	#	print(i)
+	print("Move Array")
+	for i in move_array:
+		print(i)
+	
+	var mt = Singleton_Game_GlobalBattleVariables.currently_active_character.cget_movement_type()
+	print("Movement Type - ", mt)
+	
+	# if mounted  (horses / centaurs) 2.5 / for mountain terrain
+	
+	move_array = apply_movement_cost_per_terrain(move_array)
+	
 	
 	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
 #	var copy = move_array.duplicate(true)
@@ -631,6 +677,81 @@ func generate_movement_array_representation():
 	astar_connect_walkable_cells()
 	
 	return # move_array
+
+func apply_movement_cost_per_terrain(move_array):
+	var move_array_c = move_array
+	var movement = mc.get_character_movement()
+	# if mounted  (horses / centaurs) 2.5 / for mountain terrain
+	var penalty_max = ceil(movement / 2.5)
+	# var penalty_max = ceil(movement / 2)
+	
+	var temp_penalty = penalty_max
+	
+	# center tile (self)
+	# move_array_c[movement][movement]
+	
+	# TODO: IMPORTANT: PRIORITY: really should refactor and compress these quadrant loops
+	# 8 per func x 4 functions is getting too annoying, refactor priority - don't wait for godot 4 gdscript 2
+	
+	# TODO: test me
+	# TOP LEFT QUADRANT
+	for row in range(1, movement):
+		temp_penalty -= 1
+		for col in range(movement):
+			if col <= movement - row - 1:
+				continue
+			
+			if move_array_c[row][col] != null:
+				if "Mountain" in move_array_c[row][col].terrain:
+					if row < temp_penalty:
+						move_array_c[row][col].on_tile = 3
+	
+	# TOP RIGHT QUADRANT
+	for row in range(1, movement):
+		temp_penalty -= 1
+		for col in range(movement):
+			if col >= row:
+				continue
+			
+			if move_array_c[row][col + movement + 1] != null:
+				if "Mountain" in move_array_c[row][col + movement + 1].terrain:
+					if row > temp_penalty:
+						move_array_c[row][col + movement + 1].on_tile = 3
+	
+	# move_array[row][movement] = {
+	#	"on_tile": 1,
+	#	"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y - (movement - row)))
+	#}
+	
+	# Straight Across Left Side
+	for col in range(movement):
+		if move_array_c[movement][col] != null:
+			if "Mountain" in move_array_c[movement][col].terrain:
+				if col < penalty_max:
+					move_array_c[movement][col].on_tile = 3
+	
+	# Straight Across Right Side
+	for col in range(movement):
+		if move_array_c[movement][col + movement + 1] != null:
+			if "Mountain" in move_array_c[movement][col + movement + 1].terrain:
+				if col > penalty_max:
+					move_array_c[movement][col + movement + 1].on_tile = 3
+	
+	# Straight Down Top Portion
+	for row in range(movement):
+		if move_array_c[row][movement] != null:
+			if "Mountain" in move_array_c[row][movement].terrain:
+				if row < penalty_max:
+					move_array_c[row][movement].on_tile = 3
+	
+	# Straight Down Bottom Portion
+	for row in range(movement):
+		if move_array_c[row + movement + 1][movement] != null:
+			if "Mountain" in move_array_c[row + movement + 1][movement].terrain:
+				if row > penalty_max:
+					move_array_c[row + movement + 1][movement].on_tile = 3
+	
+	return move_array_c
 
 func generate_point_array_for_a_start(): 
 	var vpos: Vector2 = get_char_tile_position()
@@ -719,13 +840,13 @@ func astar_connect_walkable_cells() -> void:
 	
 	for row in range(mar.size()):
 		for col in range(mar[0].size()):
-			if mar[row][col] == 1:
+			if mar[row][col] != null && mar[row][col].on_tile == 1:
 				temp_point_index = calculate_point_index(Vector2(row, col))
 				astar_node.add_point(temp_point_index, Vector3(row, col, 0))
 	
 	for row in range(mar.size()):
 		for col in range(mar[0].size()):
-			if mar[row][col] == 1:
+			if mar[row][col] != null && mar[row][col].on_tile == 1:
 				var point_index = calculate_point_index(Vector2(row, col))
 
 				var points_relative = PoolVector2Array([
@@ -755,7 +876,7 @@ func astar_connect_walkable_cells() -> void:
 	
 	for row in range(mar.size()):
 		for col in range(mar[0].size()):
-			if mar[row][col] == 1:
+			if mar[row][col] != null && mar[row][col].on_tile == 1:
 				end_point_index = calculate_point_index(Vector2(row, col))
 				_point_path = astar_node.get_point_path(start_point_index, end_point_index) # astar_node.get_point_path(start_point_index, end_point_index)
 				if _point_path.size() != 0:
@@ -825,7 +946,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 			# if col <= movement - row - 1:
 			# 	continue
 			
-			if move_array[row][col] == 1:
+			if move_array[row][col] != null && move_array[row][col].on_tile == 1:
 				
 				print(
 					actor_cur_pos,
@@ -848,7 +969,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 			# if col <= movement - row - 1:
 			# 	continue
 			
-			if move_array[row][col + movement + 1] == 1:
+			if move_array[row][col + movement + 1] != null && move_array[row][col + movement + 1].on_tile == 1:
 				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][col + movement + 1] = Vector2(
 				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
 				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
@@ -865,7 +986,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 			# if col <= movement - row - 1:
 			# 	continue
 			
-			if move_array[row + movement + 1][col] == 1:
+			if move_array[row + movement + 1][col] != null && move_array[row + movement + 1][col].on_tile == 1:
 				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][col] = Vector2(
 				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
 				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
@@ -883,7 +1004,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 			# if col <= movement - row - 1:
 			# 	continue
 			
-			if move_array[row + movement + 1][col + movement + 1] == 1:
+			if move_array[row + movement + 1][col + movement + 1] != null && move_array[row + movement + 1][col + movement + 1].on_tile == 1:
 				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][col + movement + 1] = Vector2(
 				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
 				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
@@ -895,7 +1016,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 	
 	# Straight Down Top Porition
 	for row in range(movement):
-		if move_array[row][movement] == 1:
+		if move_array[row][movement] != null && move_array[row][movement].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][movement] = Vector2(
 			actor_cur_pos.x - (tile_size / 2),
 			actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
@@ -907,7 +1028,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 	
 	# Straight Down Top Porition
 	for row in range(movement):
-		if move_array[row + movement + 1][movement] == 1:
+		if move_array[row + movement + 1][movement] != null && move_array[row + movement + 1][movement].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][movement] = Vector2(
 			actor_cur_pos.x - (tile_size / 2),
 			actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
@@ -919,7 +1040,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 	
 	# Straight Across Right Porition
 	for col in range(movement):
-		if move_array[movement][col] == 1:
+		if move_array[movement][col] != null && move_array[movement][col].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][col] = Vector2(
 			actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
 			actor_cur_pos.y - (tile_size / 2)
@@ -931,7 +1052,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 	
 	# Straight Across Right Porition
 	for col in range(movement):
-		if move_array[movement][col + movement + 1] == 1:
+		if move_array[movement][col + movement + 1] != null && move_array[movement][col + movement + 1].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][col + movement + 1] = Vector2(
 			actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
 			actor_cur_pos.y - (tile_size / 2)
@@ -997,8 +1118,12 @@ func generate_enemey_movement_array_representation():
 			
 			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
 			if new_check_tile(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row)):
-				move_array[row][col] = 1
-			
+				# move_array[row][col] = 1
+				move_array[row][col] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
+				}
+				
 				# check if character or enemey actor is on this tile position
 			
 				var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
@@ -1006,7 +1131,7 @@ func generate_enemey_movement_array_representation():
 			
 				var res = check_if_character_is_on_tile(check_pos)
 				if res != null:
-					move_array[row][col] = 2 # enemey
+					move_array[row][col].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
 					# print("VPOS - ", Vector2((vpos.x - movement) + col, (vpos.y - movement) + row))
@@ -1019,8 +1144,12 @@ func generate_enemey_movement_array_representation():
 			
 			# print("i and j - ", i, " asd ", j, " tile - ", (vpos.x - movement) + i, " asd ", (vpos.y - movement) + j)
 			if new_check_tile(Vector2(vpos.x + col + 1, (vpos.y - movement) + row)):
-				move_array[row][col + movement + 1] = 1
-			
+				# move_array[row][col + movement + 1] = 1
+				move_array[row][col + movement + 1] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
+				}
+				
 				# check if character or enemey actor is on this tile position
 			
 				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
@@ -1028,7 +1157,7 @@ func generate_enemey_movement_array_representation():
 			
 				var res = check_if_character_is_on_tile(check_pos)
 				if res != null:
-					move_array[row][col + movement + 1] = 2 # enemey
+					move_array[row][col + movement + 1].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
 					# print("VPOS - ", Vector2(vpos.x + col + 1, (vpos.y - movement) + row))
@@ -1042,8 +1171,12 @@ func generate_enemey_movement_array_representation():
 			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
 			# print("x and y - ", col, " ", vpos.y + row + 1)
 			if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y + row + 1)):
-				move_array[row + movement + 1][col] = 1
-			
+				# move_array[row + movement + 1][col] = 1
+				move_array[row + movement + 1][col] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2((vpos.x - movement) + col, vpos.y + row + 1))
+				}
+				
 				# check if character or enemey actor is on this tile position
 			
 				var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
@@ -1051,7 +1184,7 @@ func generate_enemey_movement_array_representation():
 			
 				var res = check_if_character_is_on_tile(check_pos)
 				if res != null:
-					move_array[row + movement + 1][col] = 2 # enemey
+					move_array[row + movement + 1][col].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2((vpos.x - movement) + col, vpos.y + row + 1))
 					# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y + row + 1))
@@ -1067,8 +1200,12 @@ func generate_enemey_movement_array_representation():
 			# print("i and j - ", row + movement + 1, " ", col + movement + 1)
 			# print("x and y - ", vpos.x + col + 1, " ", vpos.y + row + 1)
 			if new_check_tile(Vector2(vpos.x + col + 1, vpos.y + row + 1)):
-				move_array[row + movement + 1][col + movement + 1] = 1
-			
+				# move_array[row + movement + 1][col + movement + 1] = 1
+				move_array[row + movement + 1][col + movement + 1] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x + col + 1, vpos.y + row + 1))
+				}
+				
 				# check if character or enemey actor is on this tile position
 			
 				var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
@@ -1076,7 +1213,7 @@ func generate_enemey_movement_array_representation():
 			
 				var res = check_if_character_is_on_tile(check_pos)
 				if res != null:
-					move_array[row + movement + 1][col + movement + 1] = 2 # enemey
+					move_array[row + movement + 1][col + movement + 1].on_tile = 2 # enemey
 				else:
 					point_array.append(Vector2(vpos.x + col + 1, vpos.y + row + 1))
 					# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y + row + 1))
@@ -1084,14 +1221,18 @@ func generate_enemey_movement_array_representation():
 	# Straight Across Left Side
 	for col in range(movement):
 		if new_check_tile(Vector2((vpos.x - movement) + col, vpos.y)):
-			move_array[movement][col] = 1
-			
+			# move_array[movement][col] = 1
+			move_array[movement][col] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2((vpos.x - movement) + col, vpos.y))
+			}
+				
 			var check_pos = Vector2(actor_cur_pos.x - ((movement - col) * tile_size),
 			actor_cur_pos.y)
 			
 			var res = check_if_character_is_on_tile(check_pos)
 			if res != null:
-				move_array[movement][col] = 2 # enemey
+				move_array[movement][col].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2((vpos.x - movement) + col, vpos.y))
 				# print("VPOS - ", Vector2((vpos.x - movement) + col, vpos.y))
@@ -1099,14 +1240,18 @@ func generate_enemey_movement_array_representation():
 	# Straight Across Right Side
 	for col in range(movement):
 		if new_check_tile(Vector2(vpos.x + col + 1, vpos.y)):
-			move_array[movement][col + movement + 1] = 1
+			# move_array[movement][col + movement + 1] = 1
+			move_array[movement][col + movement + 1] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x + col + 1, vpos.y))
+			}
 			
 			var check_pos = Vector2(actor_cur_pos.x + ((col + 1) * tile_size),
 			actor_cur_pos.y)
 			
 			var res = check_if_character_is_on_tile(check_pos)
 			if res != null:
-				move_array[movement][col + movement + 1] = 2 # enemey
+				move_array[movement][col + movement + 1].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x + col + 1, vpos.y))
 				# print("VPOS - ", Vector2(vpos.x + col + 1, vpos.y))
@@ -1114,14 +1259,18 @@ func generate_enemey_movement_array_representation():
 	# Straight Down Top Portion
 	for row in range(movement):
 		if new_check_tile(Vector2(vpos.x, vpos.y - (movement - row))):
-			move_array[row][movement] = 1
+			# move_array[row][movement] = 1
+			move_array[row][movement] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y - (movement - row)))
+			}
 			
 			var check_pos = Vector2(actor_cur_pos.x,
 			actor_cur_pos.y - ((movement - row) * tile_size))
 			
 			var res = check_if_character_is_on_tile(check_pos)
 			if res != null:
-				move_array[row][movement] = 2 # enemey
+				move_array[row][movement].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y - (movement - row)))
 				# print("VPOS - ", Vector2(vpos.x, vpos.y - (movement - row)))
@@ -1129,20 +1278,29 @@ func generate_enemey_movement_array_representation():
 	# Straight Down Bottom Portion
 	for row in range(movement):
 		if new_check_tile(Vector2(vpos.x, vpos.y + (row + 1))):
-			move_array[row + movement + 1][movement] = 1
+			# move_array[row + movement + 1][movement] = 1
+			move_array[row + movement + 1][movement] = {
+					"on_tile": 1,
+					"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y + (row + 1)))
+			}
 			
 			var check_pos = Vector2(actor_cur_pos.x,
 			actor_cur_pos.y + ((row + 1) * tile_size))
 			
 			var res = check_if_character_is_on_tile(check_pos)
 			if res != null:
-				move_array[row + movement + 1][movement] = 2 # enemey
+				move_array[row + movement + 1][movement].on_tile = 2 # enemey
 			else:
 				point_array.append(Vector2(vpos.x, vpos.y + (row + 1)))
 				# print("VPOS - ", Vector2(vpos.x, vpos.y + (row + 1)))
 	
 	# Center Self Tile
-	move_array[movement][movement] = 1
+	# move_array[movement][movement] = 1
+	move_array[movement][movement] = {
+		"on_tile": 1,
+		"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y))
+	}
+	
 	point_array.append(vpos)
 	
 	# print(vpos)
@@ -1177,12 +1335,21 @@ func generate_enemey_movement_array_representation():
 	
 	return # move_array
 
+func get_tilename_at_pos(vpos: Vector2) -> String:
+	var current_tile_pos = tilemap.get_cellv(vpos)
+	
+	# print(current_tile_pos)
+	if current_tile_pos != tilemap.INVALID_CELL:
+		# Valid tile - Tile name
+		return tilemap.tile_set.tile_get_name(current_tile_pos)
+	
+	return "Invalid Cell"
 
 func new_check_tile(vpos: Vector2) -> bool:
 	var current_tile_pos = tilemap.get_cellv(vpos)
 	
 	var mt = Singleton_Game_GlobalBattleVariables.currently_active_character.cget_movement_type()
-	# print("Movement Type - ", mt)
+	print("Movement Type - ", mt)
 	
 	# print(current_tile_pos)
 	if current_tile_pos != tilemap.INVALID_CELL:

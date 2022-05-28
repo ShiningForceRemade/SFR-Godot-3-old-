@@ -19,7 +19,7 @@ droppable_items_id = {
 [node name="Tween" type="Tween" parent="KinematicBody2D"]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
-position = Vector2( 0, -5 )
+position = Vector2( 0, -4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 1 )

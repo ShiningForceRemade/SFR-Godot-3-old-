@@ -74,7 +74,11 @@ func _input(event) -> void:
 			print(distance)
 			# TODO: create different movement speed choices
 			# also provide a fixed time choice without the distance * speed calc
-			var tween_time = distance * 0.00325
+			
+			# TODO(feldc): re-enable for prod build
+			# var tween_time = distance * 0.00325
+			
+			var tween_time = 0.00325
 			if tween_time <= 0:
 				tween_time = 0
 			
@@ -141,7 +145,7 @@ func _input(event) -> void:
 #			position.y += tile_size
 
 
-func move_to_new_pos_battle_scene(cur_pos: Vector2, new_pos: Vector2, t = 0.75) -> void:
+func move_to_new_pos_battle_scene(cur_pos: Vector2, new_pos: Vector2, t = 0.5) -> void:
 	movementTween.interpolate_property(self, "position",
 			cur_pos, new_pos, t,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

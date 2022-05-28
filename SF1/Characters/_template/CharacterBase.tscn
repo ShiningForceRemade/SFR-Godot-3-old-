@@ -134,6 +134,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="KinematicBody2D"]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( 0, -4 )
 __meta__ = {
 "_edit_lock_": true
 }

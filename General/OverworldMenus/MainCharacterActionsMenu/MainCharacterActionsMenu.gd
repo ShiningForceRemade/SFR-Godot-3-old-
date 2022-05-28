@@ -64,7 +64,7 @@ func _input(event):
 				print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-				Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
+				# Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
 				
 				# emit_signal("signal_completed_turn")
 				is_menu_active = false
