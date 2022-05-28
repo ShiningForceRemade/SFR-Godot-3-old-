@@ -7,11 +7,11 @@ onready var TilemapOverpassSceneRoot = $OverpassLayerNode
 var using_original_tiles: bool = true
 
 # original tilesets
-var zero_tres = load("res://SF1/Chapters/1/Guardiana/Town_Tileset__0.tres")
-var seven_tres = load("res://SF1/Chapters/1/Guardiana/Town_Tileset__7.tres")
-var eight_tres = load("res://SF1/Chapters/1/Guardiana/Town_Tileset__8.tres")
-var nine_tres = load("res://SF1/Chapters/1/Guardiana/Town_Tileset__9.tres")
-var ten_tres = load("res://SF1/Chapters/1/Guardiana/Town_Tileset__10.tres")
+var zero_tres = load("res://SF1/TileSet_Resources/Original/0.tres")
+var seven_tres = load("res://SF1/TileSet_Resources/Original/7.tres")
+var eight_tres = load("res://SF1/TileSet_Resources/Original/8.tres")
+var nine_tres = load("res://SF1/TileSet_Resources/Original/9.tres")
+var ten_tres = load("res://SF1/TileSet_Resources/Original/10.tres")
 
 # upgrade Ivan Cal tilesets
 var zero_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/0.tres")

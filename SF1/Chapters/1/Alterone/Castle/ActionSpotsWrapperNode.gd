@@ -3,7 +3,7 @@ extends Node
 var roof_wrapper_node = null
 
 func _ready():
-	roof_wrapper_node = get_parent().get_node("RoofsWrapperNode")
+	# roof_wrapper_node = get_parent().get_node("RoofsWrapperNode")
 	pass
 
 

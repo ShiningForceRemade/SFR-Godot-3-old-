@@ -8,13 +8,6 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Reference" type="Node2D" parent="."]
-
-[node name="" type="Sprite" parent="Reference"]
-position = Vector2( 21.212, 54.55 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 1872, 1968 )
-
 [node name="Tile Layer 1" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 4, 4 )
