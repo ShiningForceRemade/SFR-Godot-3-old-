@@ -1,0 +1,190 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://General/OverworldMenus/MagicMenu/MagicMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=2]
+[ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/SFCD/Items/EmptyItemSlot.png" type="Texture" id=5]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=6]
+
+[node name="OverworldMagicMenuRoot" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="SpellSlotUpSprite" type="Sprite" parent="."]
+position = Vector2( 24, 12 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SpellSlotLeftSprite" type="Sprite" parent="."]
+position = Vector2( 8, 24 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SpellSlotRightSprite" type="Sprite" parent="."]
+position = Vector2( 40, 24 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SpellSlotDownSprite" type="Sprite" parent="."]
+position = Vector2( 24, 36 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 57.0
+margin_top = 6.0
+margin_right = 173.0
+margin_bottom = 48.0
+texture = ExtResource( 2 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellNameLabel" type="Label" parent="NinePatchRect"]
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 6.0
+margin_right = -4.99999
+margin_bottom = -27.0
+custom_fonts/font = ExtResource( 6 )
+text = "Name"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellLevelWrapper" type="Node2D" parent="NinePatchRect"]
+position = Vector2( 4.67892, 16.977 )
+
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
+margin_left = 2.0
+margin_right = 3.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
+margin_left = 3.0
+margin_right = 14.0
+margin_bottom = 7.0
+color = Color( 0.898039, 0.8, 0.0156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
+margin_left = 3.0
+margin_top = 7.0
+margin_right = 14.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
+margin_left = 3.0
+margin_top = -1.0
+margin_right = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
+margin_left = 13.9446
+margin_top = 0.0525551
+margin_right = 14.9446
+margin_bottom = 7.05256
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MagicLevelSelectorWrapperNode2D" type="Node2D" parent="NinePatchRect"]
+
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect/MagicLevelSelectorWrapperNode2D"]
+margin_left = 6.0
+margin_top = 14.0
+margin_right = 109.0
+margin_bottom = 15.0
+color = Color( 0.741176, 0.0862745, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="NinePatchRect/MagicLevelSelectorWrapperNode2D"]
+margin_left = 5.0
+margin_top = 15.0
+margin_right = 6.0
+margin_bottom = 26.0
+color = Color( 0.741176, 0.0862745, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="NinePatchRect/MagicLevelSelectorWrapperNode2D"]
+margin_left = 109.0
+margin_top = 15.0
+margin_right = 110.0
+margin_bottom = 26.0
+color = Color( 0.741176, 0.0862745, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="NinePatchRect/MagicLevelSelectorWrapperNode2D"]
+margin_left = 6.0
+margin_top = 26.0
+margin_right = 109.0
+margin_bottom = 27.0
+color = Color( 0.741176, 0.0862745, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MpStaticLabel" type="Label" parent="NinePatchRect"]
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 27.0
+margin_right = -80.7766
+margin_bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
+text = "MP"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MpCostLabel" type="Label" parent="NinePatchRect"]
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+margin_left = 22.2234
+margin_top = 27.0
+margin_right = -5.0
+margin_bottom = -5.0
+custom_fonts/font = ExtResource( 6 )
+text = "Cost"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource( 4 )]

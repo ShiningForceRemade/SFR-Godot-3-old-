@@ -14,6 +14,9 @@ func _ready():
 func cget_agility() -> int:
 	return $CharacterRoot.agility
 
+func cget_spells():
+	return $CharacterRoot.spells_id
+
 func cget_actor_name() -> String: return $CharacterRoot.character_name
 func cget_level() -> int: return $CharacterRoot.level
 func cget_hp_total() -> int: return $CharacterRoot.HP_Total

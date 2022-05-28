@@ -1,5 +1,11 @@
 extends Node
 
+const bmc_x: int = 171
+const bmc_y: int = 182
+
+onready var battleMagicMenuTween = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/BattleMagicMenuTween
+onready var battleMagicMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode # /OverworldMagicMenuRoot
+onready var battleMagicMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/OverworldMagicMenuRoot
 
 func _ready():
 	Singleton_Game_GlobalCommonVariables.menus_root_node = self
@@ -20,3 +26,19 @@ func character_info_box_node() -> Node:
 
 func member_list_node() -> Node:
 	return $OverworldWrapperNode/MenusNodeWrapper/MemberListViewNodeRoot
+
+
+
+func internal_tween_move_to_position(ox, oy, nx, ny, tweenNode, targetNode) -> void:
+	print(tweenNode)
+	tweenNode.interpolate_property(targetNode, "position",
+			Vector2(ox, oy), Vector2(nx, ny), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tweenNode.start()
+
+func s_hide_overworld_magic_menu():
+	internal_tween_move_to_position(139, 134, 139, 134 + 80, battleMagicMenuTween, battleMagicMenuWrapperRoot)
+
+func s_show_overworld_magic_menu():
+	internal_tween_move_to_position(139, 134 + 80, 139, 134, battleMagicMenuTween, battleMagicMenuWrapperRoot)
+	battleMagicMenuRoot.set_battle_magic_menu_active()
