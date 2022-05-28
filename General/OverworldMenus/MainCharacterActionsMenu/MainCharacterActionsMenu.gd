@@ -61,14 +61,14 @@ func _input(event):
 			# event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			if currently_selected_option == e_menu_options.SEARCH_OPTION:
-				print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
+				is_menu_active = false
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.interaction_attempt_to_search()
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-				# Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
-				
-				# emit_signal("signal_completed_turn")
-				is_menu_active = false
-				get_parent().get_parent().get_parent().s_hide_action_menu()
+				hide()
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+				Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
 				return
 			elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
 				is_menu_active = false

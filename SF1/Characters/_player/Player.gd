@@ -267,3 +267,18 @@ func interaction_attempt_to_talk() -> void:
 				frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
 			elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
 				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+
+
+func interaction_attempt_to_search() -> void:
+	# if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
+	if frontFacingRaycast.is_colliding():
+		# TODO: probably should add a helper function to get the parent element
+		# where the custom logic will live instead of going up for build v0.0.2 its fine
+		# print(frontFacingRaycast.get_collider())
+		# print(frontFacingRaycast.get_collider().get_parent().get_name())
+		print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
+		
+		if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact_search"):
+			frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
+		elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact_search"):
+			frontFacingRaycast.get_collider().get_parent().attempt_to_interact()

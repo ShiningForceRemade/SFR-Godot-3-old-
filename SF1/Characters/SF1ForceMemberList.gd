@@ -40,7 +40,7 @@ var ForceMembers = [
 		"character": E_SF1_FM.TAO,
 		"character_base_node": "res://SF1/Characters/Tao/Tao.tscn",
 		
-		"unlocked": true,
+		"unlocked": false,
 		
 		"name": "Tao", # TODO: do nicknames
 		
@@ -54,7 +54,7 @@ var ForceMembers = [
 		"character": E_SF1_FM.HANS,
 		"character_base_node": "res://SF1/Characters/Hans/Hans.tscn",
 		
-		"unlocked": true,
+		"unlocked": false,
 		
 		"name": "Hans", # TODO: do nicknames
 		
@@ -69,7 +69,7 @@ var ForceMembers = [
 		"character": E_SF1_FM.KEN,
 		"character_base_node": "res://SF1/Characters/Ken/Ken.tscn",
 		
-		"unlocked": true,
+		"unlocked": false,
 		
 		"name": "Ken", # TODO: do nicknames
 		
@@ -84,7 +84,7 @@ var ForceMembers = [
 		"character": E_SF1_FM.LUKE,
 		"character_base_node": "res://SF1/Characters/Luke/Luke.tscn",
 		
-		"unlocked": true,
+		"unlocked": false,
 		
 		"name": "Luke", # TODO: do nicknames
 		
@@ -98,7 +98,7 @@ var ForceMembers = [
 		"character": E_SF1_FM.LOWE,
 		"character_base_node": "res://SF1/Characters/Lowe/Lowe.tscn",
 		
-		"unlocked": true,
+		"unlocked": false,
 		
 		"name": "Lowe", # TODO: do nicknames
 		

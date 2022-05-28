@@ -10,6 +10,8 @@ var MemberSelectionLine = load("res://General/OverworldMenus/MemberListView/Memb
 var MemberMagicLine = load("res://General/OverworldMenus/MemberListView/MemberMagicLine.tscn")
 var MemberItemLine = load("res://General/OverworldMenus/MemberListView/MemberItemLine.tscn")
 
+onready var ScollbarContainerNode = $StatNinePatchRect2/ScrollContainer
+
 onready var portrait_sprite = $PortraitWrapperNode/PortraitSprite
 
 onready var red_selection = $RedSelectionBorderRoot
@@ -30,6 +32,12 @@ onready var flist_vbox_container = $StatNinePatchRect2/ScrollContainer/VBoxConta
 var current_selection = null
 
 func _ready():
+	# var invisible_scrollbar_theme = Theme.new()
+	# var empty_stylebox = StyleBoxEmpty.new()
+	# invisible_scrollbar_theme.set_stylebox("scroll", "VScrollBar", empty_stylebox)
+	# invisible_scrollbar_theme.set_stylebox("scroll", "HScrollBar", empty_stylebox)
+	# ScollbarContainerNode.get_v_scrollbar().theme = invisible_scrollbar_theme
+	# ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
 	
 	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
 		
@@ -46,12 +54,19 @@ func _ready():
 		CLine.get_node("LevelStaticLabel").text = str(character.level)
 		
 		flist_vbox_container.add_child(CLine)
-		
+	
+	# Remove this if Godot 4 fixes this
+	# fake last item to prevent godot clipping issues
+	var CLine = MemberSelectionLine.instance()
+	flist_vbox_container.add_child(CLine)
 	
 	pass
 
 
 func _input(event):
+	if active == false:
+		return
+	
 	if event.is_action_pressed("ui_down"):
 		print("a")
 		
@@ -63,14 +78,70 @@ func _input(event):
 				
 				if i + 1 >= fm_size:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
-					
 					red_selection.position = Vector2(10, 96)
+					scroll_container_reset_line()
 				else:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i + 1])
-					red_selection.position = Vector2(10, red_selection.position.y + 12)
+					if red_selection.position != Vector2(10, 96 + (12 * 5)):
+						red_selection.position = Vector2(10, red_selection.position.y + 12)
+					
+					if i >= 5 && i < fm_size:
+						scroll_container_move_down_line()
 				
 				break
+	
+	elif event.is_action_pressed("ui_up"):
+		print("a")
 		
+		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
+		
+		for i in fm_size:
+			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
+				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
+				
+				if i - 1 <= -1:
+					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_size - 1])
+					red_selection.position = Vector2(10, 96 + (12 * 5))
+					scroll_container_wrap_to_bottom()
+				else:
+					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i - 1])
+					if red_selection.position != Vector2(10, 96):
+						red_selection.position = Vector2(10, red_selection.position.y - 12)
+					
+					# temp not usable
+					if i < 5:
+						scroll_container_move_up_line()
+				
+				
+				break
+				
+	elif event.is_action_pressed("ui_b_key"):
+		Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+		hide()
+		active = false
+	
+	
+func scroll_container_reset_line() -> void:
+	yield(get_tree(), "idle_frame")
+	ScollbarContainerNode.set_v_scroll(-16)
+
+func scroll_container_wrap_to_bottom() -> void:
+	yield(get_tree(), "idle_frame")
+	var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
+	# NOTE due to the extra control node we need to take away 2 from the total list size to get the 
+	# visible end of list - hopefully this node gets a rework in Godot 4 and this can be cleaned and simplified
+	ScollbarContainerNode.set_v_scroll(16 * (fm_size - (fm_size - 4)))
+
+func scroll_container_move_down_line() -> void:
+	scroll_container_set_vertical_scroll(16)
+
+func scroll_container_move_up_line() -> void:
+	scroll_container_set_vertical_scroll(-16)
+
+func scroll_container_set_vertical_scroll(scroll_distance_arg: int) -> void:
+	yield(get_tree(), "idle_frame")
+	var x = ScollbarContainerNode.scroll_vertical
+	ScollbarContainerNode.set_v_scroll(x + scroll_distance_arg)
 
 
 func DisplayNewlySelectedCharacterInfo(force_member) -> void:
