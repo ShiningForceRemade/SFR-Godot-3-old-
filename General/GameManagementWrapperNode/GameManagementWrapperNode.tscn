@@ -827,9 +827,6 @@ margin_left = -14.2415
 margin_top = -8.78592
 margin_right = 22.7585
 margin_bottom = 10.2141
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CRTShader2" type="ColorRect" parent="ShadersCanvasLayer"]
 visible = false
