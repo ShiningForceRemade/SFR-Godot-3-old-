@@ -14,6 +14,7 @@ func _ready():
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node = self
 	
 	dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
+	dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
 	
 	# wait till all the children are loaded and an idle frame starts maybe not the best idea????
 	# yield(get_tree(), "idle_frame")
@@ -58,6 +59,7 @@ func s_battle_message_complete(node_arg, property_arg) -> void:
 
 func play_message(str_arg = "") -> void:
 	dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
+	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
 	dialogueRichTextLabel.percent_visible = 1
 	dialogueRichTextLabel.show()
@@ -126,7 +128,8 @@ func _process(_delta):
 		# dont process dialog if the dialog is hidden
 		return
 		
-	if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")) and !wait_for_user_input_end:
+	# if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")) and !wait_for_user_input_end:
+	if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")):
 		if finished:
 			load_dialog()
 		else:
@@ -202,6 +205,7 @@ func load_dialog():
 		dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		dialogueTween.start()
 	else:
+		finished = true
 		visible = false
 		emit_signal("signal__dialogbox__finished_dialog")
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
@@ -211,7 +215,8 @@ func load_dialog():
 
 
 func _on_Tween_tween_completed(object, key):
-	# finished = true
+	print("Tween complete Dialgoue")
+	finished = true
 	pass
 
 

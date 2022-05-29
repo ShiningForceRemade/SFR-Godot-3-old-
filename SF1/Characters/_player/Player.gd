@@ -44,9 +44,6 @@ const TILE_SIZE: int = 24
 const movement_tween_speed = 0.1625
 
 func _ready():
-	
-	print("I'm ready eddy eddy")
-	
 	Singleton_Game_GlobalCommonVariables.main_character_player_node = self
 	
 	# init_player_char()
@@ -66,6 +63,15 @@ func _ready():
 	setup_animations_types_depending_on_movement()
 	
 	Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node = kinematicBody
+
+
+func set_active(active_arg: bool) -> void:
+	active = active_arg
+
+
+func set_active_processing(active_arg: bool) -> void:
+	active = active_arg
+	set_process(active_arg)
 
 
 func s_tween_completed(node_arg, property_arg): 
@@ -122,18 +128,15 @@ func _process(delta):
 	
 	if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
 		if Input.is_action_just_pressed("ui_a_key"):
+			active = false
+			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().show()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().show()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().show()
+			yield(get_tree().create_timer(0.1), "timeout")
+			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().set_menu_active()
+		
+		if Input.is_action_just_pressed("ui_c_key"):
 			interaction_attempt_to_talk()
-			# if frontFacingRaycast.is_colliding():
-				# TODO: probably should add a helper function to get the parent element
-				# where the custom logic will live instead of going up for build v0.0.2 its fine
-				# print(frontFacingRaycast.get_collider())
-				# print(frontFacingRaycast.get_collider().get_parent().get_name())
-				#print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
-				
-				#if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
-				#	frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
-				#elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
-			#		frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
 		
 		if Input.is_action_just_pressed("test_key_z"):
 			CutscenePlayerTemp.play("Opening")
@@ -143,12 +146,6 @@ func _process(delta):
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
 		
-		if Input.is_action_just_pressed("test_key_c"):
-			active = false
-			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().set_menu_active()
-			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().show()
-			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().show()
-			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().show()
 	
 	
 	# Classic Genesis styled movement and battle movement

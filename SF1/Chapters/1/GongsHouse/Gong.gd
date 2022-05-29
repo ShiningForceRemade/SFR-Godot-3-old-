@@ -5,6 +5,7 @@ func _ready():
 
 
 func attempt_to_interact() -> void:
+	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 	var ofd = Singleton_Game_GlobalCommonVariables.main_character_player_node.GetOppositePlayerFacingDirection()
 	get_child(0).change_facing_direction_string(ofd)
 	
@@ -24,7 +25,12 @@ func interaction_completed() -> void:
 	var gong = self.get_child(0)
 	gong.set_movement_speed_timer(0.2)
 	
-	for i in 5:
+	gong.tester__move_in_direction("Down")
+	yield(gong.tween, "tween_completed")
+	
+	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
+	
+	for i in 4:
 		gong.tester__move_in_direction("Down")
 		yield(gong.tween, "tween_completed")
 	for i in 4:

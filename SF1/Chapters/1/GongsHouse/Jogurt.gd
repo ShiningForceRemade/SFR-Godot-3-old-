@@ -11,6 +11,7 @@ func _ready():
 
 
 func attempt_to_interact() -> void:
+	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 	# get facing direction prior to talk interaction
 	facing_direction = npcBaseRoot.get_facing_direction()
 	var ofd = Singleton_Game_GlobalCommonVariables.main_character_player_node.GetOppositePlayerFacingDirection()
@@ -24,6 +25,7 @@ func attempt_to_interact() -> void:
 
 
 func interaction_completed() -> void:
+	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 	npcBaseRoot.stationary = stationary
 	npcBaseRoot.change_facing_direction_string(facing_direction)
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
