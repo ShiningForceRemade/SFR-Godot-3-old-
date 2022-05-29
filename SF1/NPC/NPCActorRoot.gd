@@ -109,6 +109,9 @@ func walk_around() -> void:
 
 
 func _on_Timer_timeout():
+	if stationary:
+		return
+	
 	rng.randomize()
 	
 	# _timer.set_wait_time(rng.randf_range(0.75, 4))

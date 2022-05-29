@@ -205,6 +205,9 @@ func load_dialog():
 		visible = false
 		emit_signal("signal__dialogbox__finished_dialog")
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
+		
+		if Singleton_Game_GlobalCommonVariables.interaction_node_reference != null:
+			Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
 
 
 func _on_Tween_tween_completed(object, key):

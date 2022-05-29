@@ -282,3 +282,20 @@ func interaction_attempt_to_search() -> void:
 			frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
 		elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact_search"):
 			frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+
+
+func PlayerFacingDirection() -> String:
+	return animationPlayer.current_animation
+	
+
+func GetOppositePlayerFacingDirection() -> String:
+	var facing_direction = PlayerFacingDirection()
+	var opposite_facing_direction
+	
+	match facing_direction:
+		"UpMovement": return "DownMovement"
+		"DownMovement": return "UpMovement"
+		"LeftMovement": return "RightMovement"
+		"RightMovement": return "LeftMovement"
+		_: return "DownMovement"
+	

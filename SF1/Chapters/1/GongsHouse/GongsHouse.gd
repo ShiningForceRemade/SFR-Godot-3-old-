@@ -18,6 +18,9 @@ var ten_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/10.
 
 
 func _ready():
+	
+	Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Town Theme.mp3")
+	
 	pass
 
 

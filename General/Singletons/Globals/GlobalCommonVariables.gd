@@ -17,6 +17,8 @@ var main_character_player_node = null
 
 # dialog commons
 var dialogue_box_is_currently_active = false
+# TODO(feldc): when Godot 4 releases make this a callback instead
+var interaction_node_reference = null
 
 var main_character_active_kinematic_body_node = null
 

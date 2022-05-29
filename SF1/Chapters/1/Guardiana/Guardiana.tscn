@@ -1439,7 +1439,7 @@ anims/RightMovement = SubResource( 47 )
 anims/UpMovement = SubResource( 48 )
 
 [node name="BartenderNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 848, 208 )
+position = Vector2( 848, 204 )
 
 [node name="Sprite" parent="NpcWrapperNode/BartenderNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 17 )
