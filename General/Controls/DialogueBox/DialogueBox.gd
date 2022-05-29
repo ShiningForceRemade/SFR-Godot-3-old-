@@ -126,7 +126,7 @@ func _process(_delta):
 		# dont process dialog if the dialog is hidden
 		return
 		
-	if Input.is_action_just_pressed("ui_accept") and !wait_for_user_input_end:
+	if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")) and !wait_for_user_input_end:
 		if finished:
 			load_dialog()
 		else:

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal _ready
+
 signal signal_completed_turn
 signal signal_character_moved(new_pos)
 
@@ -8,11 +10,17 @@ signal signal_show_character_action_menu
 signal signal_switch_focus_to_cursor
 
 func _ready():
+	print("Tao is ready")
+	get_parent().RestartAfterActorChange()
+	emit_signal("_ready")
 	pass
 
 # Getters
 func cget_agility() -> int:
 	return $CharacterRoot.agility
+
+func cget_spells():
+	return $CharacterRoot.spells_id
 
 func cget_actor_name() -> String: return $CharacterRoot.character_name
 func cget_level() -> int: return $CharacterRoot.level

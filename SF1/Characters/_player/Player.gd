@@ -19,6 +19,9 @@ onready var colsh = get_child(0).get_node("CharacterRoot/KinematicBody2D/Collisi
 
 onready var frontFacingRaycast = $RayCast2D
 
+onready var CutscenePlayerTemp = get_parent().get_node("CutsceneAnimationPlayer")
+
+
 var velocity: Vector2 = Vector2.ZERO
 
 const MAX_SPEED: int = 150
@@ -40,9 +43,9 @@ const TILE_SIZE: int = 24
 
 const movement_tween_speed = 0.1625
 
-onready var CutscenePlayerTemp = get_parent().get_node("CutsceneAnimationPlayer")
-
 func _ready():
+	
+	print("I'm ready eddy eddy")
 	
 	Singleton_Game_GlobalCommonVariables.main_character_player_node = self
 	
@@ -106,7 +109,7 @@ func setup_animations_types_depending_on_movement() -> void:
 		animationTreeState.start("Movement 4 Directions")
 
 func _process(delta):
-# func _physics_process(delta):
+	# func _physics_process(delta):
 	if !active: 
 		return
 	
@@ -150,6 +153,7 @@ func _process(delta):
 	
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
+		#if is_instance_valid(tween):
 		if tween.is_active():
 			return
 		
@@ -225,6 +229,7 @@ func _process(delta):
 		
 		#print("CharacterMoved")
 		
+		#if is_instance_valid(tween):
 		tween.start()
 	
 	# TODO: ROTDD styled movement
@@ -299,3 +304,107 @@ func GetOppositePlayerFacingDirection() -> String:
 		"RightMovement": return "LeftMovement"
 		_: return "DownMovement"
 	
+
+# BROKEN fix later
+func ChangeActor(new_actor_arg) -> void:
+	set_process(false)
+	tween.remove_all()
+	tween = null
+	
+	get_child(0).call_deferred("free")
+	# get_child(0).queue_free()
+	
+	add_child(new_actor_arg)
+	yield(new_actor_arg, "_ready")
+	
+
+func RestartAfterActorChange() -> void:
+	characterRoot = get_child(0).get_node("CharacterRoot")
+	kinematicBody = get_child(0).get_node("CharacterRoot/KinematicBody2D")
+	animationPlayer = get_child(0).get_node("CharacterRoot/AnimationPlayer")
+	animationPlayer.play("DownMovement")
+	animationTree = get_child(0).get_node("CharacterRoot/AnimationTree")
+	animationTreeState = animationTree.get("parameters/playback")
+	tween = get_child(0).get_node("CharacterRoot/KinematicBody2D/Tween")
+	
+	colsh = get_child(0).get_node("CharacterRoot/KinematicBody2D/CollisionShape2D")
+	
+	frontFacingRaycast = get_parent().get_node("RayCast2D")
+	
+	CutscenePlayerTemp = get_parent().get_node("CutsceneAnimationPlayer")
+	
+	self._ready()
+	
+	set_process(true)
+
+
+func MoveInDirection(move_direction_arg: String) -> void:
+	match move_direction_arg:
+		"Right":
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
+			
+			if animationPlayer.current_animation != "RightMovement":
+				animationPlayer.play("RightMovement")
+			
+			animationPlayer.playback_speed = 2
+			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+			colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
+			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
+		"Left":
+			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
+			
+			if animationPlayer.current_animation != "LeftMovement":
+				animationPlayer.play("LeftMovement")
+				
+			animationPlayer.playback_speed = 2
+			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+			
+			colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
+			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+			
+		"Up":
+			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
+			
+			if animationPlayer.current_animation != "UpMovement":
+				animationPlayer.play("UpMovement")
+			
+			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+			animationPlayer.playback_speed = 2
+			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+			
+			colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
+			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+		"Down":
+			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
+			
+			if animationPlayer.current_animation != "DownMovement":
+				animationPlayer.play("DownMovement")
+			
+			animationPlayer.playback_speed = 2
+			
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+				
+			colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+		
+	tween.start()

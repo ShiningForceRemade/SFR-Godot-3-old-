@@ -35,6 +35,7 @@ battle_animation_unpromoted_resource = ExtResource( 7 )
 [node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 2 )
 hframes = 6
+frame = 1
 region_enabled = true
 region_rect = Rect2( 0, 300, 144, 24 )
 

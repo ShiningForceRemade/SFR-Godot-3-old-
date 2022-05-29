@@ -21,6 +21,17 @@ func _on_LineEdit_text_entered(new_text):
 	if "change-scene" in new_text_internal || "cs" in new_text_internal:
 		changeScene(new_text_internal)
 		return
+
+# Change main character broken - changing the child of a node with an active process seems to be completely broken
+# if no good solution can be found replace entire PlayerRoot and replace child then add the scene back to the current space	
+#	if "change" in new_text_internal:
+#		var splstr = new_text_internal.split(" ")
+#		if splstr[1] == "main-actor":
+#			if splstr[2] != "":
+#				print("teststestst")
+#				var new_actor = load("res://SF1/Characters/Tao/Tao.tscn").instance()
+#				Singleton_Game_GlobalCommonVariables.main_character_player_node.ChangeActor(new_actor)
+	
 	
 	textEdit.text = str(textEdit.text, "\n", new_text_internal);
 	pass 
@@ -77,7 +88,7 @@ func changeScene(new_text_internal) -> void:
 		elif splstr[2] == "HQ":
 			print("Change Scene to HQ")
 			sceneManagerNode.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
-		
+	
 	else:
 		textEdit.text = str(textEdit.text, "\n", new_text_internal, "\n", "Invalid location (scene)");
 

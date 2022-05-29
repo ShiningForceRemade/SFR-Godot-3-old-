@@ -234,6 +234,10 @@ func change_facing_direction(current_selection_pos: Vector2) -> void:
 func change_facing_direction_string(direction: String) -> void:
 	animationPlayer.play(direction)
 
+
+func get_facing_direction() -> String:
+	return animationPlayer.current_animation
+
 # test func remove this later and refactor random move to be default move
 # and pass a random move to it instead as a helper func
 func tester__move_in_direction(move_arg: String) -> void:
