@@ -15,6 +15,9 @@ var main_character_resource_pck = null
 
 var main_character_player_node = null
 
+# position location
+var position_location_st = "Overworld_Alterone_Castle" # null
+
 # dialog commons
 var dialogue_box_is_currently_active = false
 # TODO(feldc): when Godot 4 releases make this a callback instead

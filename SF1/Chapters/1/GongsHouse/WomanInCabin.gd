@@ -1,17 +1,21 @@
 extends Node2D
 
 var stationary
+var facing_direction
+
+onready var npcBaseRoot = get_child(0)
 
 func _ready():
-	stationary = get_child(0).stationary
+	stationary = npcBaseRoot.stationary
 	pass
 
 
 func attempt_to_interact() -> void:
+	# get facing direction prior to talk interaction
+	facing_direction = npcBaseRoot.get_facing_direction()
 	var ofd = Singleton_Game_GlobalCommonVariables.main_character_player_node.GetOppositePlayerFacingDirection()
-	get_child(0).change_facing_direction_string(ofd)
-	
-	get_child(0).stationary = true
+	npcBaseRoot.change_facing_direction_string(ofd)
+	npcBaseRoot.stationary = true
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 	Singleton_Game_GlobalCommonVariables.interaction_node_reference = self
 	
@@ -20,6 +24,7 @@ func attempt_to_interact() -> void:
 
 
 func interaction_completed() -> void:
-	get_child(0).stationary = stationary
+	npcBaseRoot.stationary = stationary
+	npcBaseRoot.change_facing_direction_string(facing_direction)
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 	Singleton_Game_GlobalCommonVariables.interaction_node_reference = null

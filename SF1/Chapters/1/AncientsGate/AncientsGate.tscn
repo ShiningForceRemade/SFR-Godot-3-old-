@@ -2,9 +2,9 @@
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/Chapters/1/AncientsGate/AncientsGate.gd" type="Script" id=2]
+[ext_resource path="res://SF1/Chapters/1/AncientsGate/ActionSpotsWrapperNode.gd" type="Script" id=3]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://SF1/Chapters/1/AncientsGate/AncientsGateTilemap.tscn" type="PackedScene" id=5]
-[ext_resource path="res://SF1/Chapters/1/GongsHouse/ActionSpotsWrapperNode.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 12, 104 )
@@ -183,7 +183,7 @@ position = Vector2( 217, 480 )
 shape = SubResource( 24 )
 
 [node name="ActionSpotsWrapperNode" type="Node" parent="."]
-script = ExtResource( 9 )
+script = ExtResource( 3 )
 
 [node name="ExitToOverworldArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
 position = Vector2( 0, 20 )
