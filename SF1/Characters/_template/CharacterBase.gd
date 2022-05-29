@@ -113,9 +113,6 @@ export(int, 0, 100) var bolt_resistance: int = 0
 export(int, 0, 100) var blaze_resistance: int = 0
 export(int, 0, 100) var freeze_resistance: int = 0
 
-export var enemey_kills: int = 0
-export var times_defeated: int = 0
-
 export var experience_points: int = 0
 
 export var battle_animation_unpromoted_resource: Resource
@@ -141,6 +138,15 @@ export var battle_animation_unpromoted_resource: Resource
 #		}
 #	]
 
+## Actor (unit) Performance Statistics
+var aps_enemey_kills: int = 0
+var aps_times_defeated: int = 0 # unit deaths
+var aps_dodges: int = 0 # enemey missed
+var aps_misses: int = 0 # missed enemey
+var aps_double_attacks: int = 0
+var aps_special_attack: int = 0
+var aps_critical_hits: int = 0
+##
 
 var movement_tween_speed = 0.1625
 # var movement_tween_speed = 0.2
