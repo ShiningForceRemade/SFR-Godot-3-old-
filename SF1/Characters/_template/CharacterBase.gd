@@ -299,7 +299,7 @@ func _physics_process(_delta):
 func check_if_move_is_possible(new_pos_arg) -> bool:
 	var enemey_children = Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children()
 	for enemey in enemey_children:
-		print(new_pos_arg,  enemey.global_position)
+		# print(new_pos_arg,  enemey.global_position)
 		if new_pos_arg == enemey.global_position:
 			return false
 	

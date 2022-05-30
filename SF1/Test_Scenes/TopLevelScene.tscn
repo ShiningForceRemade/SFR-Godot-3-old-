@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=1]
-[ext_resource path="res://General/BattleBase/BattleBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Guardiana.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -764,32 +764,32 @@ void fragment()
 [sub_resource type="ShaderMaterial" id=12]
 shader = SubResource( 11 )
 shader_param/overlay = true
-shader_param/scanlines_opacity = 0.0
-shader_param/scanlines_width = 0.25
-shader_param/grille_opacity = 0.3
+shader_param/scanlines_opacity = 0.034
+shader_param/scanlines_width = 0.0
+shader_param/grille_opacity = 0.15
 shader_param/resolution = Vector2( 640, 480 )
 shader_param/pixelate = false
-shader_param/roll = true
-shader_param/roll_speed = 2.017
-shader_param/roll_size = 3.542
+shader_param/roll = false
+shader_param/roll_speed = 8.0
+shader_param/roll_size = 0.0
 shader_param/roll_variation = 5.0
-shader_param/distort_intensity = 0.05
+shader_param/distort_intensity = 0.12
 shader_param/noise_opacity = 0.4
 shader_param/noise_speed = 5.0
 shader_param/static_noise_intensity = 0.06
-shader_param/aberration = 0.01
+shader_param/aberration = 0.03
 shader_param/brightness = 1.4
 shader_param/discolor = false
-shader_param/warp_amount = 0.02
-shader_param/clip_warp = false
-shader_param/vignette_intensity = 0.0
-shader_param/vignette_opacity = 0.0
+shader_param/warp_amount = 0.01
+shader_param/clip_warp = true
+shader_param/vignette_intensity = 0.1
+shader_param/vignette_opacity = 0.15
 
 [node name="Node" type="Node"]
 
 [node name="Node" type="Node" parent="."]
 
-[node name="BattleBaseRoot" parent="Node" instance=ExtResource( 2 )]
+[node name="GuardianaRoot" parent="Node" instance=ExtResource( 2 )]
 
 [node name="Sprite" type="Sprite" parent="Node"]
 visible = false
@@ -870,6 +870,3 @@ margin_left = -14.2415
 margin_top = -8.78592
 margin_right = 22.7585
 margin_bottom = 10.2141
-__meta__ = {
-"_edit_use_anchors_": false
-}
