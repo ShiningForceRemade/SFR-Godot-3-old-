@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": ""
+		},
+
+		{
+			"Text": "Well, {main_character_name}, are you ready to face the enemy?"
+		},
+
+		{
+			"ShowMenu": "HQMenu"
+		}
+	]
+}

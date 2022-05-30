@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/SFCD/Genesis 32X SCD - Shining Force CD Sega CD - Icons.png" type="Texture" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://General/HQMenus/HQMenu.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "AttackMenuOption"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("AdviceActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "InventoryMenuOption"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("InventoryActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("JoinActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "StayMenuOption"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("StatsActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[node name="HQMenuRoot" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="AdviceActionSprite" type="Sprite" parent="."]
+position = Vector2( 36, 12 )
+texture = ExtResource( 1 )
+vframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2( 360, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="JoinActionSprite" type="Sprite" parent="."]
+position = Vector2( 12, 24 )
+texture = ExtResource( 1 )
+vframes = 2
+region_enabled = true
+region_rect = Rect2( 616, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InventoryActionSprite" type="Sprite" parent="."]
+position = Vector2( 60, 24 )
+texture = ExtResource( 1 )
+vframes = 2
+region_enabled = true
+region_rect = Rect2( 72, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StatsActionSprite" type="Sprite" parent="."]
+position = Vector2( 36, 36 )
+texture = ExtResource( 1 )
+vframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2( 296, 136, 24, 48 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 84.0
+margin_top = 24.0
+margin_right = 180.0
+margin_bottom = 48.0
+texture = ExtResource( 2 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 8.0
+margin_right = -6.0
+margin_bottom = -6.0
+custom_fonts/font = ExtResource( 3 )
+text = "TEST"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AttackMenuOption = SubResource( 1 )
+anims/InventoryMenuOption = SubResource( 2 )
+anims/MagicMenuOption = SubResource( 3 )
+anims/StayMenuOption = SubResource( 4 )

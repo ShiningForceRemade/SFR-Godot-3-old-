@@ -119,12 +119,9 @@ func _process(delta):
 	if !active: 
 		return
 	
-	
-	
 	# if Input.is_action_just_pressed("ui_c_key"):
 	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
-		
-		# setup_animations_types_depending_on_movement()	
+	#	setup_animations_types_depending_on_movement()	
 	
 	if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
 		if Input.is_action_just_pressed("ui_a_key"):

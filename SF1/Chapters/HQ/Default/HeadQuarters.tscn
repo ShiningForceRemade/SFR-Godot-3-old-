@@ -1,11 +1,11 @@
 [gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SF1/Chapters/HQ/Default/Nova.gd" type="Script" id=2]
 [ext_resource path="res://SF1/Chapters/HQ/Default/HeadQuarters.gd" type="Script" id=3]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://Assets/SF1/NPC/Nova.png" type="Texture" id=5]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/SF1/NPC/Woman_Redhead.png" type="Texture" id=8]
-[ext_resource path="res://SF1/NPC/WomanRedHeadChurch.gd" type="Script" id=19]
 [ext_resource path="res://SF1/Chapters/HQ/Default/ActionSpotsWrapperNode.gd" type="Script" id=20]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
 [ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
@@ -106,16 +106,17 @@ position = Vector2( 132, 685 )
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 position = Vector2( 8, 8 )
 
-[node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+[node name="NovaNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 124, 628 )
-script = ExtResource( 19 )
+script = ExtResource( 2 )
 
-[node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 8 )
+[node name="NPCActorRoot" parent="NpcWrapperNode/NovaNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 2
+
+[node name="Sprite" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 5 )
 hframes = 6
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -40, 8, -16, 8, -16, -16, 64, -16, 64, 88, 88, 88, 88, -40, -40, -40 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
@@ -703,4 +704,4 @@ __meta__ = {
 
 [connection signal="body_entered" from="ActionSpotsWrapperNode/ExitArea2D" to="ActionSpotsWrapperNode" method="_on_ExitArea2D_body_entered"]
 
-[editable path="NpcWrapperNode/WomanRedHeadChurchNPCRoot"]
+[editable path="NpcWrapperNode/NovaNPCRoot"]

@@ -5,6 +5,8 @@ signal signal_dialogue_completed
 onready var dialogueRichTextLabel = $NinePatchRect/DialogueRichTextLabel
 onready var dialogueTween = $DialogueTween
 
+var active: bool = false
+
 func _ready():
 	
 	self.hide()
@@ -124,12 +126,16 @@ func _process_new_resource_file():
 
 
 func _process(_delta):
+	if !active:
+		return
+	
 	if visible == false:
 		# dont process dialog if the dialog is hidden
 		return
 		
 	# if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")) and !wait_for_user_input_end:
 	if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")):
+		# yield(get_tree().create_timer(0.1), "timeout")
 		if finished:
 			load_dialog()
 		else:
@@ -145,6 +151,8 @@ func _input(event):
 
 func load_dialog():
 	print("Here")
+	active = true
+	
 	if dialogue_index < dialogue.size():
 		finished = false
 		for key in dialogue[dialogue_index]:
@@ -199,6 +207,32 @@ func load_dialog():
 				dialogue_index += 1
 				load_dialog()
 				return
+			elif key == "ShowMenu":
+				
+				ShowMenu(dialogue[dialogue_index][key])
+				
+				finished = true
+				visible = false
+				active = false
+				emit_signal("signal__dialogbox__finished_dialog")
+				Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
+				
+				# if Singleton_Game_GlobalCommonVariables.interaction_node_reference != null:
+				# 	Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
+					
+				return
+			elif key == "InteractionPrompt":
+				active = false
+				Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+			
+				dialogue_index += 1
+				dialogueRichTextLabel.percent_visible = 0
+				dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				dialogueTween.start()
+				
+				return
+				# TODO complete
+				
 		
 		dialogue_index += 1
 		dialogueRichTextLabel.percent_visible = 0
@@ -207,6 +241,7 @@ func load_dialog():
 	else:
 		finished = true
 		visible = false
+		active = false
 		emit_signal("signal__dialogbox__finished_dialog")
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 		
@@ -227,3 +262,13 @@ func check_and_replace_text_sub_points(str_arg: String) -> String:
 		nstr = nstr.replace("{main_character_name}", Singleton_Game_GlobalCommonVariables.main_character_player_node.get_actor_name())
 	
 	return nstr
+
+
+func ShowMenu(string_arg: String) -> void:
+	if string_arg == "HQMenu":
+		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
+		Singleton_Game_GlobalCommonVariables.menus_root_node.HQMenuWrapperRoot.s_show_hq_menu()
+	elif  string_arg == "PriestMenu":
+		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
+		Singleton_Game_GlobalCommonVariables.menus_root_node.PriestMenuWrapperRoot.s_show_priest_menu()
+	

@@ -1,0 +1,28 @@
+{
+	"script": [
+		{
+			"Text": "Well, let's just see who needs my help."
+		},
+
+		{
+			"Text": "Hmm...everyone seems OK."
+		},
+
+		{
+			"InteractionPrompt": "YesOrNo",
+			"Text": "Can I Help in some other way?",
+
+			"yes": [
+				{
+					"ShowMenu": "PriestMenu"
+				}
+			],
+
+			"no": [
+				{				
+					"Text": "May the Powers of Light be always with you, {main_character_name}."	
+				}
+			]
+		}
+	]
+}

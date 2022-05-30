@@ -9,7 +9,7 @@
 		},
 
 		{
-			"Text": "TODO: priest menu activate"
-		},
+			"ShowMenu": "PriestMenu"
+		}
 	]
 }

@@ -7,6 +7,10 @@ onready var battleMagicMenuTween = $OverworldWrapperNode/MenusNodeWrapper/Overwo
 onready var battleMagicMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode # /OverworldMagicMenuRoot
 onready var battleMagicMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/OverworldMagicMenuRoot
 
+onready var HQMenuWrapperRoot = $HQMenusWrapperNode
+onready var PriestMenuWrapperRoot = $OverworldWrapperNode/PriestMenuWrapperNode
+onready var UserInteractionPromptsRoot = $UserInteractionPrompts
+
 func _ready():
 	Singleton_Game_GlobalCommonVariables.menus_root_node = self
 
