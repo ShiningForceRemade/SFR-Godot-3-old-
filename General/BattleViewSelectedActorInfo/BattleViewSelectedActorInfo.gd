@@ -70,8 +70,8 @@ func display_character_info() -> void:
 	$StatNinePatchRect/LevelLabel.text = str(actor.level)
 	$StatNinePatchRect/ExpLabel.text = str(actor.experience_points)
 	
-	$CharacterNinePatchRect/KillsAmountLabel.text = str(actor.enemey_kills)
-	$CharacterNinePatchRect/DefeatAmountLabel.text = str(actor.times_defeated)
+	$CharacterNinePatchRect/KillsAmountLabel.text = str(actor.aps_enemey_kills)
+	$CharacterNinePatchRect/DefeatAmountLabel.text = str(actor.aps_times_defeated)
 	
 	display_actor_info(actor)
 

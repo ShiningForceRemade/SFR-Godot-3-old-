@@ -10,9 +10,9 @@ signal signal_show_character_action_menu
 signal signal_switch_focus_to_cursor
 
 func _ready():
-	print("Tao is ready")
-	get_parent().RestartAfterActorChange()
-	emit_signal("_ready")
+	# print("Tao is ready")
+	# get_parent().RestartAfterActorChange()
+	# emit_signal("_ready")
 	pass
 
 # Getters
