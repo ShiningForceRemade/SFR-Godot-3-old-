@@ -136,7 +136,8 @@ func _process(delta):
 			interaction_attempt_to_talk()
 		
 		if Input.is_action_just_pressed("test_key_z"):
-			CutscenePlayerTemp.play("Opening")
+			# CutscenePlayerTemp.play("Opening")
+			pass
 		
 		if Input.is_action_just_pressed("test_key_x"):
 			active = false

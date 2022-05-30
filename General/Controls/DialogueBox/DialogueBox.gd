@@ -142,12 +142,14 @@ func _process(_delta):
 			dialogueTween.stop(dialogueRichTextLabel, "percent_visible")
 			dialogueRichTextLabel.percent_visible = 1
 			finished = true
-		
+
+
 func _input(event):
 	if(event.is_action_pressed("ui_hide")) and !wait_for_user_input_end:
 		if Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active:
 			visible = !dialogue_box_is_visible
 			dialogue_box_is_visible = visible
+
 
 func load_dialog():
 	print("Here")
