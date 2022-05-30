@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SF1/Characters/Mae/MaeNPC.gd" type="Script" id=2]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Map_Sprites.png" type="Texture" id=3]
+
+[node name="MaeNPCRoot" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="NPCActorRoot" parent="." index="0"]
+stationary = true
+
+[node name="Sprite" parent="NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 3 )
+hframes = 6

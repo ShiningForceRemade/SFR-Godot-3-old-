@@ -1,10 +1,8 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SF1/Chapters/1/Guardiana/Town.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SF1/Chapters/HQ/Default/HeadQuarters.gd" type="Script" id=3]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
-[ext_resource path="res://SF1/Chapters/1/Guardiana/Guardiana.gd" type="Script" id=5]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/SF1/NPC/Woman_Redhead.png" type="Texture" id=8]
 [ext_resource path="res://SF1/NPC/WomanRedHeadChurch.gd" type="Script" id=19]
@@ -86,8 +84,8 @@ extents = Vector2( 12, 60.5 )
 [sub_resource type="RectangleShape2D" id=143]
 extents = Vector2( 8, 10 )
 
-[node name="GuardianaRoot" type="Node2D"]
-script = ExtResource( 5 )
+[node name="HQDefaultRoot" type="Node2D"]
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -99,20 +97,17 @@ script = ExtResource( 25 )
 anims/Opening = ExtResource( 24 )
 script = ExtResource( 23 )
 
-[node name="TownTilemap" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 140, 172 )
-
 [node name="HeadQuartersTilemapNode2D" parent="." instance=ExtResource( 26 )]
-position = Vector2( 403, 231 )
+position = Vector2( 413, 241 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
-position = Vector2( 124, 676 )
+position = Vector2( 132, 685 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
+position = Vector2( 8, 8 )
 
 [node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 124, 604 )
+position = Vector2( 124, 628 )
 script = ExtResource( 19 )
 
 [node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
@@ -122,9 +117,6 @@ hframes = 6
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -40, 8, -16, 8, -16, -16, 64, -16, 64, 88, 88, 88, 88, -40, -40, -40 )
 
-[node name="TestChest" parent="." instance=ExtResource( 2 )]
-position = Vector2( 512, 376 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
 rotating = true
@@ -132,8 +124,8 @@ current = true
 process_mode = 0
 limit_left = 0
 limit_top = 0
-limit_right = 608
-limit_bottom = 840
+limit_right = 624
+limit_bottom = 856
 smoothing_enabled = true
 smoothing_speed = 16.0
 drag_margin_left = 0.0
@@ -148,6 +140,7 @@ __meta__ = {
 
 [node name="TODOCOMPRESS_StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
+position = Vector2( 8, 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -434,16 +427,279 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitArea2D"]
-position = Vector2( 76, 674 )
+position = Vector2( 84, 689 )
 shape = SubResource( 143 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitArea2D"]
-position = Vector2( 100, 700 )
+position = Vector2( 108, 716 )
 shape = SubResource( 143 )
 
 [node name="Area2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+position = Vector2( 8, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D"]
+
+[node name="ActiveForcePositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftTopRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 364, 605 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftTopRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 388, 605 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightTopRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 436, 605 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightTopRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 460, 605 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftMiddleRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 364, 653 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftMiddleRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 388, 653 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightMiddleRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 436, 653 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightMiddleRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 460, 653 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftBottomRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 364, 701 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftBottomRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 388, 701 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightBottomRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 436, 701 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightBottomRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+position = Vector2( 460, 701 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InactiveForcePositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopLeftRoomRight__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 172, 124 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopLeftRoomLeft__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 124, 124 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomLeftRoomRight__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 124, 224 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopLeftLongTableLeftStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 268, 172 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopLeftLongTableRightStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 292, 172 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRightLongTableTopStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 484, 244 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopLeftLongTableBehind__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 268, 124 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftBesidesArmor__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 148, 316 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRightLongTableBottomStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 484, 292 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StandingInCenter__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 413, 268 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableLeftBottomStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 364, 196 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableLeftTopStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 364, 172 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableTopLeftStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 388, 148 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableTopMiddleStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 412, 148 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableTopRightStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 436, 148 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableRightTopStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 460, 172 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableRightBottomStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 460, 196 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableBottomLeftStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 388, 220 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableBottomMiddleStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 413, 220 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopRoundTableBottomRightStool__Facing-Up__Position2D2" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 436, 220 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableLeftBottomStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 268, 292 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableLeftTopStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 268, 268 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableTopLeftStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 292, 244 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableTopMiddleStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 316, 244 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableTopRightStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 340, 244 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableRightTopStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 364, 268 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableRightBottomStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 364, 292 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableBottomLeftStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 292, 316 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableBottomMiddleStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 316, 316 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomRoundTableBottomRightStool__Facing-Up__Position2D2" type="Position2D" parent="InactiveForcePositionsNode2D"]
+position = Vector2( 340, 316 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="body_entered" from="ActionSpotsWrapperNode/ExitArea2D" to="ActionSpotsWrapperNode" method="_on_ExitArea2D_body_entered"]
 

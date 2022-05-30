@@ -21,7 +21,13 @@ func _on_LineEdit_text_entered(new_text):
 	if "change-scene" in new_text_internal || "cs" in new_text_internal:
 		changeScene(new_text_internal)
 		return
-
+	
+	if "toggle_move_rotdd" in new_text_internal:
+		Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT = !Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT
+	
+	if "modify" in new_text_internal:
+		modify(new_text_internal)
+	
 # Change main character broken - changing the child of a node with an active process seems to be completely broken
 # if no good solution can be found replace entire PlayerRoot and replace child then add the scene back to the current space	
 #	if "change" in new_text_internal:
@@ -100,3 +106,20 @@ func changeScene(new_text_internal) -> void:
 # cutscene play - should start it
 # should also have an easy way to position player char at the start area of a cutscene
 
+
+
+func modify(new_text_internal) -> void:
+	var splstr = new_text_internal.split(" ")
+	
+	print(splstr)
+	
+	if splstr[1] == "force-member" || splstr[1] == "fm":
+		# if splstr[2] == "{{force_member_name}}":
+		
+		# TODO(fledc) - add string enum to check based on fm name
+		var idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.GONG
+		
+		if splstr[3] == "active-in-force":
+			print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, " - active-in-force - ", !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force)			
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force = !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force
+			

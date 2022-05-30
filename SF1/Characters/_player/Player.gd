@@ -111,7 +111,7 @@ func setup_animations_types_depending_on_movement() -> void:
 	else:
 		# $Sprite.flip_h = false
 		animationPlayer.stop()
-		animationTree.active = true
+		animationTree.active = false
 		animationTreeState.start("Movement 4 Directions")
 
 func _process(delta):
@@ -254,6 +254,7 @@ func _process(delta):
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 		velocity = kinematicBody.move_and_slide(velocity)
+		colsh.disabled = true
 
 
 func interaction_attempt_to_talk() -> void:
