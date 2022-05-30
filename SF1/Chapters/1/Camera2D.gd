@@ -41,8 +41,9 @@ func _process(_delta):
 	# print(playerNode.position)
 	# print(playerNode.global_position)
 	
-	position.x = playerNode.global_position.x 
-	position.y = playerNode.global_position.y #  - 60# + (tile_size * 12)
+	if playerNode:
+		position.x = playerNode.global_position.x 
+		position.y = playerNode.global_position.y #  - 60# + (tile_size * 12)
 	
 	position.x = floor(position.x)
 	position.y = floor(position.y)

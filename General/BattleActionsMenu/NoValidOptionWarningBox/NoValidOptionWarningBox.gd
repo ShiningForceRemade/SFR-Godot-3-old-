@@ -43,7 +43,7 @@ func set_no_cant_use_text() -> void:
 func start_self_clear_timer() -> void:
 	internal_cleanup_timer = Timer.new()
 	internal_cleanup_timer.set_name(internal_cleanup_timer_name)
-	internal_cleanup_timer.connect("timeout", self, "s_internal_cleanup_timer_completed")
+	var _ignore = internal_cleanup_timer.connect("timeout", self, "s_internal_cleanup_timer_completed")
 	internal_cleanup_timer.set_wait_time(3)
 	add_child(internal_cleanup_timer)
 	internal_cleanup_timer.start()

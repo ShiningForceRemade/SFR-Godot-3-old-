@@ -75,7 +75,7 @@ func random_move_direction(direction):
 			return
 	elif direction == 2:
 		
-		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  - TILE_SIZE)):
+		if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y - TILE_SIZE)):
 			animationPlayer.playback_speed = 2
 			Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 			animationPlayer.play("UpMovement")

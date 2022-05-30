@@ -199,12 +199,12 @@ func check_if_move_is_possible(new_pos_arg) -> bool:
 			return false
 	
 	var check_pos = new_pos_arg
-	check_pos.x -= 12
+	check_pos.x -= 12 # FIXME why is this now +11 off?
 	check_pos.y -= 12
 	for sub_array in Singleton_Game_GlobalBattleVariables.active_actor_movement_array:
 		for move_pos in sub_array:
 			if move_pos != null:
-				# print(new_pos_arg, " ", check_pos, " ", move_pos)
+				print(new_pos_arg, " ", check_pos, " ", move_pos)
 				if check_pos == move_pos:
 					return true
 	

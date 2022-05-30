@@ -291,7 +291,6 @@ func PlayerFacingDirection() -> String:
 
 func GetOppositePlayerFacingDirection() -> String:
 	var facing_direction = PlayerFacingDirection()
-	var opposite_facing_direction
 	
 	match facing_direction:
 		"UpMovement": return "DownMovement"

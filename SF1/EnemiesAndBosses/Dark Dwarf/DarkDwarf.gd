@@ -177,7 +177,7 @@ func get_actor_root_node_internal():
 
 
 func is_character_actor_within_attack_range():
-	for character in Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children():
+	for character in Singleton_Game_GlobalBattleVariables.character_nodes.get_children():
 		# print("\n", character.position, " ", Vector2(pself.position.x - 24, pself.position.y))
 		if character.position == Vector2(position.x - 24, position.y):
 			Singleton_Game_GlobalBattleVariables.currently_selected_actor = character

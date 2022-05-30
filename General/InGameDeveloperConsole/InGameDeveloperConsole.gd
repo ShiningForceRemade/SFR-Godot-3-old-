@@ -58,7 +58,7 @@ func changeScene(new_text_internal) -> void:
 			# need to refactor battle base to be loaded by default and change its subscene battle, instead
 			# of loading entirely new battle base scenes 
 			
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase.tscn")
+			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B1.tscn")
 			
 		elif splstr[2] == "2":
 			print("Change Scene to Battle 2")

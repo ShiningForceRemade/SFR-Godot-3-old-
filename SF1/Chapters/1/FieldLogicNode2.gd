@@ -23,6 +23,7 @@ onready var characters = get_parent().get_node("Characters")
 onready var cursor_root = get_parent().get_node("CursorRoot")
 
 const tile_size: int = 24 # 24 by 24
+const half_tile_size: int = 12 # tile_size / 2 = 12 x 12
 
 var turn_order_array = []
 
@@ -64,6 +65,12 @@ func _ready():
 
 func _input(event):
 	pass
+	
+	# TODO create Singleton Event system
+	# its only purpose for now will be to propagate swap graphics to all subscribed nodes
+	# with the string of the graphics set to swap too
+	# each node can then internally track tile and sprite swapping
+	# much better than the current catch input process at the root node of the currently active scene
 	
 	# TODO: ask community which software they use
 	# best option for map creation might be using tiled with layers
@@ -440,7 +447,7 @@ func generate_movement_array_representation():
 		move_array.append([])
 		move_array[i].resize(total_move_array_size)
 	
-	var mid_point = movement - 1
+	# var mid_point = movement - 1
 	
 	# print(vpos)
 	# TOP LEFT QUADRANT
@@ -951,16 +958,16 @@ func draw_movement_tiles_from_movement_array() -> void:
 				print(
 					actor_cur_pos,
 					
-					Vector2(actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-					actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2))
+					Vector2(actor_cur_pos.x - ((movement - col) * tile_size) - half_tile_size,
+					actor_cur_pos.y - ((movement - row) * tile_size) - half_tile_size)
 				)
 				
-				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][col] = Vector2(actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2))
+				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][col] = Vector2(actor_cur_pos.x - ((movement - col) * tile_size) - half_tile_size,
+				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile_size)
 				
 				draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+				actor_cur_pos.x - ((movement - col) * tile_size) - half_tile_size,
+				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile_size
 				)
 	
 	# TOP RIGHT QUADRANT
@@ -971,13 +978,13 @@ func draw_movement_tiles_from_movement_array() -> void:
 			
 			if move_array[row][col + movement + 1] != null && move_array[row][col + movement + 1].on_tile == 1:
 				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][col + movement + 1] = Vector2(
-				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile_size,
+				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile_size
 				)
 				
 				draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile_size,
+				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile_size
 				)
 	
 	# BOTTOM LEFT QUADRANT
@@ -988,13 +995,13 @@ func draw_movement_tiles_from_movement_array() -> void:
 			
 			if move_array[row + movement + 1][col] != null && move_array[row + movement + 1][col].on_tile == 1:
 				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][col] = Vector2(
-				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				actor_cur_pos.x - ((movement - col) * tile_size) - half_tile_size,
+				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile_size
 				)
 				
 				draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				actor_cur_pos.x - ((movement - col) * tile_size) - half_tile_size,
+				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile_size
 				)
 				pass
 	
@@ -1006,66 +1013,66 @@ func draw_movement_tiles_from_movement_array() -> void:
 			
 			if move_array[row + movement + 1][col + movement + 1] != null && move_array[row + movement + 1][col + movement + 1].on_tile == 1:
 				Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][col + movement + 1] = Vector2(
-				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile_size,
+				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile_size
 				)
 				draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile_size,
+				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile_size
 				)
 	
 	# Straight Down Top Porition
 	for row in range(movement):
 		if move_array[row][movement] != null && move_array[row][movement].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row][movement] = Vector2(
-			actor_cur_pos.x - (tile_size / 2),
-			actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+			actor_cur_pos.x - half_tile_size,
+			actor_cur_pos.y - ((movement - row) * tile_size) - half_tile_size
 			)
 			draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - (tile_size / 2),
-			actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2)
+			actor_cur_pos.x - half_tile_size,
+			actor_cur_pos.y - ((movement - row) * tile_size) - half_tile_size
 			)
 	
 	# Straight Down Top Porition
 	for row in range(movement):
 		if move_array[row + movement + 1][movement] != null && move_array[row + movement + 1][movement].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[row + movement + 1][movement] = Vector2(
-			actor_cur_pos.x - (tile_size / 2),
-			actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+			actor_cur_pos.x - half_tile_size,
+			actor_cur_pos.y + ((row + 1) * tile_size) - half_tile_size
 			)
 			draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - (tile_size / 2),
-			actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2)
+			actor_cur_pos.x - half_tile_size,
+			actor_cur_pos.y + ((row + 1) * tile_size) - half_tile_size
 			)
 	
 	# Straight Across Right Porition
 	for col in range(movement):
 		if move_array[movement][col] != null && move_array[movement][col].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][col] = Vector2(
-			actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-			actor_cur_pos.y - (tile_size / 2)
+			actor_cur_pos.x - ((movement - col) * tile_size) - half_tile_size,
+			actor_cur_pos.y - half_tile_size
 			)
 			draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-			actor_cur_pos.y - (tile_size / 2)
+			actor_cur_pos.x - ((movement - col) * tile_size) - half_tile_size,
+			actor_cur_pos.y - half_tile_size
 			)
 	
 	# Straight Across Right Porition
 	for col in range(movement):
 		if move_array[movement][col + movement + 1] != null && move_array[movement][col + movement + 1].on_tile == 1:
 			Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][col + movement + 1] = Vector2(
-			actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-			actor_cur_pos.y - (tile_size / 2)
+			actor_cur_pos.x + ((col + 1) * tile_size) - half_tile_size,
+			actor_cur_pos.y - half_tile_size
 			)
 			draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-			actor_cur_pos.y - (tile_size / 2)
+			actor_cur_pos.x + ((col + 1) * tile_size) - half_tile_size,
+			actor_cur_pos.y - half_tile_size
 			)
 	
-	draw_flashing_movement_square(center_segment, actor_cur_pos.x - (tile_size / 2), actor_cur_pos.y - (tile_size / 2))
+	draw_flashing_movement_square(center_segment, actor_cur_pos.x - half_tile_size, actor_cur_pos.y - half_tile_size)
 	Singleton_Game_GlobalBattleVariables.active_actor_movement_array[movement][movement] = Vector2(
-			actor_cur_pos.x - (tile_size / 2), 
-			actor_cur_pos.y - (tile_size / 2)
+			actor_cur_pos.x - half_tile_size, 
+			actor_cur_pos.y - half_tile_size
 			)
 	
 	return
@@ -1107,7 +1114,7 @@ func generate_enemey_movement_array_representation():
 		move_array.append([])
 		move_array[i].resize(total_move_array_size)
 	
-	var mid_point = movement - 1
+	# var mid_point = movement - 1
 	
 	print(vpos)
 	# TOP LEFT QUADRANT
@@ -1349,7 +1356,7 @@ func new_check_tile(vpos: Vector2) -> bool:
 	var current_tile_pos = tilemap.get_cellv(vpos)
 	
 	var mt = Singleton_Game_GlobalBattleVariables.currently_active_character.cget_movement_type()
-	print("Movement Type - ", mt)
+	# print("Movement Type - ", mt)
 	
 	# print(current_tile_pos)
 	if current_tile_pos != tilemap.INVALID_CELL:
