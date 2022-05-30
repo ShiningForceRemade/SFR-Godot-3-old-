@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://SF1/Chapters/1/Battle2/Tiled_Map/SF1-Battle2And3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=2]
@@ -119,6 +119,12 @@ extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 4.21053, 3.10526 )
+
+[sub_resource type="RectangleShape2D" id=43]
+extents = Vector2( 6.625, 6.25 )
+
+[sub_resource type="RectangleShape2D" id=44]
+extents = Vector2( 5, 5 )
 
 [node name="OverworldRoot" type="Node2D"]
 script = ExtResource( 5 )
@@ -429,12 +435,12 @@ __meta__ = {
 position = Vector2( 528, 144 )
 shape = SubResource( 42 )
 
-[node name="ExitGuardianaArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+[node name="GuardianaEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitGuardianaArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/GuardianaEntranceArea2D"]
 position = Vector2( 216, 526.95 )
 scale = Vector2( 0.95, 0.95 )
 shape = SubResource( 41 )
@@ -442,9 +448,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Area2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+[node name="AncientsGateEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/AncientsGateEntranceArea2D"]
+position = Vector2( 660, 586 )
+shape = SubResource( 43 )
+
+[node name="CabinEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/CabinEntranceArea2D"]
+position = Vector2( 732, 586 )
+shape = SubResource( 44 )
 
 [connection signal="body_entered" from="ActionSpotsWrapperNode/AlteroneEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_AlteroneEntranceArea2D_body_entered"]
-[connection signal="body_entered" from="ActionSpotsWrapperNode/ExitGuardianaArea2D" to="ActionSpotsWrapperNode" method="_on_ExitGuardianaArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/GuardianaEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_GuardianaEntranceArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/AncientsGateEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_AncientsGateEntranceArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/CabinEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_CabinEntranceArea2D_body_entered"]
