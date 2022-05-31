@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://SF1/Chapters/1/Guardiana/Guardiana.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn" type="PackedScene" id=1]
 [ext_resource path="res://General/Controls/DialogueBox/DialogueBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://General/InGameDeveloperConsole/InGameDeveloperConsole.tscn" type="PackedScene" id=4]

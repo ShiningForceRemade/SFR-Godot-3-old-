@@ -5,6 +5,31 @@ func _ready():
 	Singleton_Game_GlobalCommonVariables.sf_game_data_node = self
 
 
+var c1 = {
+	# story flags - in order
+	"spoken_to_the_king": false,
+	"initial_force_joined": false,
+	"kings_permission": false,
+	"exited_guardiana_once": false,
+	"battle_1_complete": false,
+	"battle_2_complete": false,
+	"entered_guardiana_post_battle_2": false,
+	"kane_cutscene_guardiana_castle_played": false,
+	"battle_3_complete": false,
+	"spoken_to_guardiana_man_in_alterone_bar": false,
+	"spoken_to_alterone_king_post_guardiana_invasion": false,
+	"searched_alterone_jail_bars": false,
+	"battle_4_complete": false,
+	"spoken_to_alterone_king_post_battle_4": false,
+	"pulled_the_chain": false,
+	
+	# misc falgs
+	"guardiana_trolley_pushed": false,
+	"alterone_trolley_pushed": false,
+	"approached_alterone_rune_knights": false,
+}
+
+
 enum E_SF1_FM {
 	MAX,
 	TAO,

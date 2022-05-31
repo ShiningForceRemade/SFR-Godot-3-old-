@@ -21,7 +21,7 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 	Singleton_Game_GlobalCommonVariables.interaction_node_reference = self
 	
-	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/Scripts/WomanRedHeadChurch.json"	
+	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/WomanBlondeNearEntranceOfCastle.json"
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 
 
