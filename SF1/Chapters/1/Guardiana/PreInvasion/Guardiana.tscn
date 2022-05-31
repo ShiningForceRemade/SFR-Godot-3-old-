@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=2]
+[gd_scene load_steps=180 format=2]
 
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=1]
 [ext_resource path="res://SF1/TileSet_Resources/Original/6.tres" type="TileSet" id=2]
@@ -47,6 +47,122 @@
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/ItemSeller.gd" type="Script" id=45]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/SoldierGuardRight.gd" type="Script" id=46]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/Bartender.gd" type="Script" id=47]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Map_Sprites.png" type="Texture" id=48]
+
+[sub_resource type="Animation" id=135]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=136]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=137]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=138]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 length = 0.8
@@ -1721,6 +1837,9 @@ extents = Vector2( 24, 8 )
 
 [sub_resource type="RectangleShape2D" id=133]
 
+[sub_resource type="RectangleShape2D" id=139]
+extents = Vector2( 98, 22 )
+
 [node name="GuardianaRoot" type="Node2D"]
 script = ExtResource( 17 )
 __meta__ = {
@@ -1774,6 +1893,24 @@ stationary = true
 [node name="Sprite" parent="NpcWrapperNode/VariosNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 12 )
 hframes = 6
+
+[node name="LoweNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
+position = Vector2( 320, 64 )
+script = ExtResource( 27 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/LoweNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 3
+
+[node name="Sprite" parent="NpcWrapperNode/LoweNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 48 )
+hframes = 8
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/LoweNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 135 )
+anims/LeftMovement = SubResource( 136 )
+anims/RightMovement = SubResource( 137 )
+anims/UpMovement = SubResource( 138 )
 
 [node name="PriestNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 344, 136 )
@@ -1943,9 +2080,6 @@ polygon = PoolVector2Array( -48, 56, -48, 32, 16, 32, 16, -24, 32, -24, 32, 56 )
 position = Vector2( 752, 856 )
 script = ExtResource( 36 )
 
-[node name="NPCActorRoot" parent="NpcWrapperNode/SoldierGuardLeftNPCRoot" index="0"]
-stationary = true
-
 [node name="Sprite" parent="NpcWrapperNode/SoldierGuardLeftNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 4 )
 hframes = 6
@@ -1955,6 +2089,9 @@ anims/DownMovement = SubResource( 25 )
 anims/LeftMovement = SubResource( 26 )
 anims/RightMovement = SubResource( 27 )
 anims/UpMovement = SubResource( 28 )
+
+[node name="CollisionPolygon2D" parent="NpcWrapperNode/SoldierGuardLeftNPCRoot/Area2D" index="0"]
+polygon = PoolVector2Array( -12, -16, -12, -36, 180, -36, 180, -16 )
 
 [node name="SoldierGuardRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 920, 856 )
@@ -1969,6 +2106,9 @@ anims/DownMovement = SubResource( 29 )
 anims/LeftMovement = SubResource( 30 )
 anims/RightMovement = SubResource( 31 )
 anims/UpMovement = SubResource( 32 )
+
+[node name="CollisionPolygon2D" parent="NpcWrapperNode/SoldierGuardRightNPCRoot/Area2D" index="0"]
+polygon = PoolVector2Array( -176, -16, -176, -36, 12, -36, 12, -16 )
 
 [node name="WomanWalkingAroundNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 608, 304 )
@@ -3419,9 +3559,21 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Area2D2" type="Area2D" parent="ActionSpotsWrapperNode"]
+[node name="TownGuardExitCheckArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/TownGuardExitCheckArea2D"]
+position = Vector2( 838, 822 )
+shape = SubResource( 139 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Area2D3" type="Area2D" parent="ActionSpotsWrapperNode"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D3"]
 
 [connection signal="body_entered" from="ActionSpotsWrapperNode/LeftEntranceChurchArea2D" to="ActionSpotsWrapperNode" method="_on_LeftEntranceChurchArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/LeftExitChurchArea2D" to="ActionSpotsWrapperNode" method="_on_LeftExitChurchArea2D_body_entered"]
@@ -3442,10 +3594,12 @@ __meta__ = {
 [connection signal="body_entered" from="ActionSpotsWrapperNode/ShopEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_ShopEntranceArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/ShopExitArea2D" to="ActionSpotsWrapperNode" method="_on_ShopExitArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/TrolleyActionSpotArea2D" to="ActionSpotsWrapperNode" method="_on_TrolleyActionSpotArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/TownGuardExitCheckArea2D" to="ActionSpotsWrapperNode" method="_on_TownGuardExitCheckArea2D_body_entered"]
 
 [editable path="NpcWrapperNode/OldManChruchNPCRoot"]
 [editable path="NpcWrapperNode/WomanRedHeadChurchNPCRoot"]
 [editable path="NpcWrapperNode/VariosNPCRoot"]
+[editable path="NpcWrapperNode/LoweNPCRoot"]
 [editable path="NpcWrapperNode/PriestNPCRoot"]
 [editable path="NpcWrapperNode/SoliderOutsideChurchNPCRoot"]
 [editable path="NpcWrapperNode/GortGrandDaughterNPCRoot"]

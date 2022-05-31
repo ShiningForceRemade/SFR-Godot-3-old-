@@ -1,5 +1,8 @@
 extends Node2D
 
+onready var positionsNode = $PositionsNode2D
+onready var playerNode = $PlayerCharacterRoot
+
 onready var TilemapSceneRoot = $AlteroneCastleTilemap
 onready var TilemapOverpassSceneRoot = $Overpass
 
@@ -21,6 +24,11 @@ var nine_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/9.
 var ten_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/10.tres")
 
 func _ready():
+	match Singleton_Game_GlobalCommonVariables.position_location_st:
+		"Alterone-Castle__MainEntrance": playerNode.transform = positionsNode.get_node("CastleEntrancePosition2D").transform
+		# "Alterone-Town__HQ": playerNode.transform = positionsNode.get_node("HQEntrancePosition2D").transform
+		# "Alterone-Town__Castle": playerNode.transform = positionsNode.get_node("CabinPosition2D").transform
+	
 	pass
 
 

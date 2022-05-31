@@ -91,8 +91,10 @@ func _on_OverworldExitArea2D_body_entered(body) -> void:
 
 
 func _on_CastleEntranceArea2D_body_entered(body):
-	print("Goto Alterone Castle")
-	pass # Replace with function body.
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("Change Scene Alterone Castle")
+		Singleton_Game_GlobalCommonVariables.position_location_st = "Alterone-Castle__MainEntrance"
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
 
 
 func _on_TopRightHouseBasementEntranceArea2D_body_entered(body):

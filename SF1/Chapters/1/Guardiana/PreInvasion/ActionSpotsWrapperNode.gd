@@ -137,3 +137,9 @@ func _on_InnEntranceArea2D_body_entered(body):
 func _on_InnExitArea2D_body_entered(body):
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		roof_wrapper_node.get_node("Inn").show()
+
+
+func _on_TownGuardExitCheckArea2D_body_entered(body):
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("C1 - Kings Permission - ", Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.kings_permission)
+	

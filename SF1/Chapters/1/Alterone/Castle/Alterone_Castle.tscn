@@ -147,11 +147,45 @@ position = Vector2( 148, 928 )
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 444, 684 )
 
+[node name="PositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CastleEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 444, 684 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 156, 324 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SecretPassageEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 252, 444 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 636, 132 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 732, 372 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="NpcWrapperNode" type="Node2D" parent="."]
-visible = false
 
 [node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 272, 160 )
+position = Vector2( 564, 132 )
 script = ExtResource( 19 )
 
 [node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
@@ -187,6 +221,7 @@ __meta__ = {
 }
 
 [node name="TODOCOMPRESS_StaticBody2D" type="Node2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
