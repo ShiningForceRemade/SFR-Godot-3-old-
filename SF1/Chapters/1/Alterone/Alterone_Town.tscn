@@ -1,4 +1,4 @@
-[gd_scene load_steps=190 format=2]
+[gd_scene load_steps=191 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -2994,6 +2994,9 @@ extents = Vector2( 24, 12 )
 [sub_resource type="RectangleShape2D" id=112]
 extents = Vector2( 12, 12 )
 
+[sub_resource type="RectangleShape2D" id=274]
+extents = Vector2( 8, 8 )
+
 [node name="AlteroneRoot" type="Node2D"]
 script = ExtResource( 5 )
 __meta__ = {
@@ -3011,6 +3014,20 @@ script = ExtResource( 23 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 636, 1020 )
+
+[node name="PositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AlteroneEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 636, 1020 )
+
+[node name="HQEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 204, 780 )
+
+[node name="CabinPosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 540, 156 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 
@@ -5334,7 +5351,7 @@ __meta__ = {
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="ActionSpotsWrapperNode/HQEntranceArea2D"]
 position = Vector2( 228, 780 )
-shape = SubResource( 112 )
+shape = SubResource( 274 )
 __meta__ = {
 "_edit_lock_": true
 }

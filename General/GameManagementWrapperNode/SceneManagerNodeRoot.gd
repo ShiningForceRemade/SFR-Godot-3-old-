@@ -10,6 +10,7 @@ func _ready():
 	
 	# ref 1
 	# change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
+	change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
 	
 	pass
 

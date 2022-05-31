@@ -102,7 +102,10 @@ func _on_TopRightHouseBasementEntranceArea2D_body_entered(body):
 
 func _on_HQEntranceArea2D_body_entered(body):
 	print("Goto HQ Tunnel")
-	pass # Replace with function body.
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("Change Scene HQ")
+		Singleton_Game_GlobalCommonVariables.position_location_st = "Alterone-Town__HQ"
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
 
 
 func _on_BottomHouseBasementEntranceArea2D_body_entered(body):
