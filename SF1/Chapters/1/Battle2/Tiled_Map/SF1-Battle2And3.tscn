@@ -5,15 +5,6 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Ref" type="Node2D" parent="."]
-visible = false
-
-[node name="" type="Sprite" parent="Ref"]
-visible = false
-position = Vector2( 164.009, -91.003 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 768, 888 )
-
 [node name="Tilemap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 4, 4 )
