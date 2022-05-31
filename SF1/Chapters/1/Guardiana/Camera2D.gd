@@ -23,6 +23,7 @@ var camera_active_follow: bool = true
 
 func _ready():
 	Singleton_Game_GlobalBattleVariables.camera_node = self
+	zoom = Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom
 	# position.x = 220
 	# position.y = 160
 	# print("Camera - playernode - ", playerNode)
@@ -71,6 +72,7 @@ func zoom():
 		zoom.x += 1
 		zoom.y += 1
 		
+		Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom = zoom
 		#if zoom.x > 2:
 		#	zoom = Vector2(1.95, 1.95)
 		# stepify(zoom.x, 0.1)
@@ -79,6 +81,7 @@ func zoom():
 		zoom.x -= 1
 		zoom.y -= 1
 		
+		Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom = zoom
 		#if zoom.x < 1:
 		#	zoom = Vector2(1.0, 1.0)
 		# stepify(zoom.x, 0.1)

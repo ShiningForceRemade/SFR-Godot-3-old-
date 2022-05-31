@@ -5,6 +5,9 @@ func _ready():
 	Singleton_Game_GlobalCommonVariables.sf_game_data_node = self
 
 
+var camera_zoom: Vector2 = Vector2(1, 1)
+
+
 var c1 = {
 	# story flags - in order
 	"spoken_to_the_king": false,

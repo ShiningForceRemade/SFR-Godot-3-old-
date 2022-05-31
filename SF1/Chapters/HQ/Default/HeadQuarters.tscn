@@ -430,10 +430,16 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitArea2D"]
 position = Vector2( 84, 689 )
 shape = SubResource( 143 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitArea2D"]
 position = Vector2( 108, 716 )
 shape = SubResource( 143 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Area2D" type="Area2D" parent="ActionSpotsWrapperNode"]
 position = Vector2( 8, 8 )
