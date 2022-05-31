@@ -29,7 +29,7 @@ func _input(event):
 			TilemapSceneRoot.get_node("GroundAndSea").tile_set = zero_ic_tres
 			TilemapSceneRoot.get_node("7").tile_set = six_ic_tres
 			TilemapSceneRoot.get_node("BushesAndDecorations").tile_set = zero_ic_tres
-			TilemapSceneRoot.get_node("8").tile_set = eight_ic_tres
+			TilemapSceneRoot.get_node("8").tile_set = six_ic_tres
 			TilemapSceneRoot.get_node("NormalTown").tile_set = zero_ic_tres
 			TilemapSceneRoot.get_node("WalkwayDoors").tile_set = zero_ic_tres
 			TilemapSceneRoot.get_node("6").tile_set = six_ic_tres
@@ -51,7 +51,7 @@ func _input(event):
 			TilemapSceneRoot.get_node("GroundAndSea").tile_set = zero_tres
 			TilemapSceneRoot.get_node("7").tile_set = six_tres
 			TilemapSceneRoot.get_node("BushesAndDecorations").tile_set = zero_tres
-			TilemapSceneRoot.get_node("8").tile_set = eight_tres
+			TilemapSceneRoot.get_node("8").tile_set = six_tres
 			TilemapSceneRoot.get_node("NormalTown").tile_set = zero_tres
 			TilemapSceneRoot.get_node("WalkwayDoors").tile_set = zero_tres
 			TilemapSceneRoot.get_node("6").tile_set = six_tres
