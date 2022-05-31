@@ -1,13 +1,12 @@
-[gd_scene load_steps=141 format=2]
+[gd_scene load_steps=139 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/KingsCastleTilemap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
-[ext_resource path="res://SF1/Chapters/1/Guardiana/Guardiana.gd" type="Script" id=5]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/Castle.gd" type="Script" id=5]
 [ext_resource path="res://SF1/TileSet_Resources/Original/7.tres" type="TileSet" id=6]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/SF1/NPC/Woman_Redhead.png" type="Texture" id=8]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/NPCs/Generic.gd" type="Script" id=8]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/ActionSpotsWrapperNode.gd" type="Script" id=9]
 [ext_resource path="res://Assets/SF1/NPC/Soldier.png" type="Texture" id=10]
 [ext_resource path="res://Assets/SF1/NPC/Knight_Centaur_Generic.png" type="Texture" id=11]
@@ -18,7 +17,6 @@
 [ext_resource path="res://Assets/SF1/NPC/Nova.png" type="Texture" id=16]
 [ext_resource path="res://Assets/SF1/NPC/Chancellor.png" type="Texture" id=17]
 [ext_resource path="res://Assets/SF1/NPC/Lord_Varios.png" type="Texture" id=18]
-[ext_resource path="res://SF1/NPC/WomanRedHeadChurch.gd" type="Script" id=19]
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=20]
 [ext_resource path="res://Assets/SF1/NPC/Woman_Blonde_GreenDress.png" type="Texture" id=21]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
@@ -2330,7 +2328,7 @@ extents = Vector2( 36, 15.5 )
 [sub_resource type="RectangleShape2D" id=159]
 extents = Vector2( 10, 9.75 )
 
-[node name="GuardianaRoot" type="Node2D"]
+[node name="GuardianaCastleRoot" type="Node2D"]
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
@@ -2351,19 +2349,10 @@ position = Vector2( 636, 828 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 
-[node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 760, 800 )
-script = ExtResource( 19 )
-
-[node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 8 )
-hframes = 6
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -40, 8, -16, 8, -16, -16, 64, -16, 64, 88, 88, 88, 88, -40, -40, -40 )
-
 [node name="GuardHQNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 444, 852 )
+script = ExtResource( 8 )
+DefaultScript = "GuardNearHeadquarters.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GuardHQNPCRoot" index="0"]
 stationary = true
@@ -2375,6 +2364,8 @@ hframes = 6
 
 [node name="GuardGateLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 780 )
+script = ExtResource( 8 )
+DefaultScript = "CastleGuard1.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GuardGateLeftNPCRoot" index="0"]
 stationary = true
@@ -2391,6 +2382,8 @@ anims/UpMovement = SubResource( 163 )
 
 [node name="GuardGateRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 684, 780 )
+script = ExtResource( 8 )
+DefaultScript = "CastleGuard1.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GuardGateRightNPCRoot" index="0"]
 stationary = true
@@ -2407,6 +2400,8 @@ anims/UpMovement = SubResource( 167 )
 
 [node name="SoliderKnightTrainerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 732, 564 )
+script = ExtResource( 8 )
+DefaultScript = "GuardNearTheKnights.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderKnightTrainerNPCRoot" index="0"]
 stationary = true
@@ -2423,6 +2418,8 @@ anims/UpMovement = SubResource( 171 )
 
 [node name="Knight1NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 780, 540 )
+script = ExtResource( 8 )
+DefaultScript = "Knight1.json"
 
 [node name="Sprite" parent="NpcWrapperNode/Knight1NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2436,6 +2433,8 @@ anims/UpMovement = SubResource( 175 )
 
 [node name="Knight2NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 828, 540 )
+script = ExtResource( 8 )
+DefaultScript = "Knight2.json"
 
 [node name="Sprite" parent="NpcWrapperNode/Knight2NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2449,6 +2448,8 @@ anims/UpMovement = SubResource( 179 )
 
 [node name="Knight3NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 876, 540 )
+script = ExtResource( 8 )
+DefaultScript = "Knight3.json"
 
 [node name="Sprite" parent="NpcWrapperNode/Knight3NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2462,6 +2463,8 @@ anims/UpMovement = SubResource( 183 )
 
 [node name="Knight4NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 780, 588 )
+script = ExtResource( 8 )
+DefaultScript = "Knight4.json"
 
 [node name="Sprite" parent="NpcWrapperNode/Knight4NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2475,6 +2478,8 @@ anims/UpMovement = SubResource( 187 )
 
 [node name="Knight5NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 828, 588 )
+script = ExtResource( 8 )
+DefaultScript = "Knight5.json"
 
 [node name="Sprite" parent="NpcWrapperNode/Knight5NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2488,6 +2493,8 @@ anims/UpMovement = SubResource( 191 )
 
 [node name="Knight6NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 876, 588 )
+script = ExtResource( 8 )
+DefaultScript = "Knight6.json"
 
 [node name="Sprite" parent="NpcWrapperNode/Knight6NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2501,6 +2508,8 @@ anims/UpMovement = SubResource( 195 )
 
 [node name="MaeNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 372, 564 )
+script = ExtResource( 8 )
+DefaultScript = "Mae.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MaeNPCRoot" index="0"]
 stationary = true
@@ -2519,6 +2528,8 @@ anims/UpMovement = SubResource( 199 )
 
 [node name="ManAcrossMaeNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 420, 564 )
+script = ExtResource( 8 )
+DefaultScript = "OldMan.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ManAcrossMaeNPCRoot" index="0"]
 stationary = true
@@ -2536,6 +2547,8 @@ anims/UpMovement = SubResource( 203 )
 
 [node name="SoliderLeftTreasureNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 348, 420 )
+script = ExtResource( 8 )
+DefaultScript = "GuardNearTreasure.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderLeftTreasureNPCRoot" index="0"]
 stationary = true
@@ -2553,6 +2566,7 @@ anims/UpMovement = SubResource( 207 )
 
 [node name="KingNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 636, 440 )
+script = ExtResource( 8 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/KingNPCRoot" index="0"]
 stationary = true
@@ -2569,6 +2583,8 @@ anims/UpMovement = SubResource( 211 )
 
 [node name="NovaNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 440 )
+script = ExtResource( 8 )
+DefaultScript = "TalkToTheKing.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/NovaNPCRoot" index="0"]
 stationary = true
@@ -2585,6 +2601,8 @@ anims/UpMovement = SubResource( 215 )
 
 [node name="MinisterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 684, 440 )
+script = ExtResource( 8 )
+DefaultScript = "TalkToTheKing.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MinisterNPCRoot" index="0"]
 stationary = true
@@ -2601,6 +2619,8 @@ anims/UpMovement = SubResource( 219 )
 
 [node name="VariosNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 636, 464 )
+script = ExtResource( 8 )
+DefaultScript = "TalkToTheKing.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/VariosNPCRoot" index="0"]
 stationary = true
@@ -2618,6 +2638,8 @@ anims/UpMovement = SubResource( 223 )
 
 [node name="KnightInRoomNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 756, 372 )
+script = ExtResource( 8 )
+DefaultScript = "KnightInsideTheCastle.json"
 
 [node name="Sprite" parent="NpcWrapperNode/KnightInRoomNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2631,6 +2653,8 @@ anims/UpMovement = SubResource( 227 )
 
 [node name="WomanRightInRoomNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 276 )
+script = ExtResource( 8 )
+DefaultScript = "Girl1.json"
 
 [node name="Sprite" parent="NpcWrapperNode/WomanRightInRoomNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 21 )
@@ -2644,6 +2668,8 @@ anims/UpMovement = SubResource( 231 )
 
 [node name="WomanRightInRoomNPCRoot2" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 444, 276 )
+script = ExtResource( 8 )
+DefaultScript = "Girl2.json"
 
 [node name="Sprite" parent="NpcWrapperNode/WomanRightInRoomNPCRoot2/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 21 )
@@ -2654,9 +2680,6 @@ anims/DownMovement = SubResource( 232 )
 anims/LeftMovement = SubResource( 233 )
 anims/RightMovement = SubResource( 234 )
 anims/UpMovement = SubResource( 235 )
-
-[node name="TestChest" parent="." instance=ExtResource( 2 )]
-position = Vector2( 512, 376 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
@@ -3236,7 +3259,6 @@ __meta__ = {
 }
 
 [node name="RoofsWrapperNode" type="Node2D" parent="."]
-visible = false
 position = Vector2( 636, 952 )
 __meta__ = {
 "_edit_lock_": true
@@ -3374,7 +3396,6 @@ __meta__ = {
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HQEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_HQEntranceArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HQExitArea2D" to="ActionSpotsWrapperNode" method="_on_HQExitArea2D_body_entered"]
 
-[editable path="NpcWrapperNode/WomanRedHeadChurchNPCRoot"]
 [editable path="NpcWrapperNode/GuardHQNPCRoot"]
 [editable path="NpcWrapperNode/GuardGateLeftNPCRoot"]
 [editable path="NpcWrapperNode/GuardGateRightNPCRoot"]
