@@ -37,8 +37,5 @@ text = "Hello sfmods!
 Test - BLAZE LV 1 "
 scroll_active = false
 scroll_following = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DialogueTween" type="Tween" parent="."]
