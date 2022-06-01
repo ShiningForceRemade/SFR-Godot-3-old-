@@ -1,6 +1,6 @@
 extends Camera2D
 
-signal signal_camera_move_complete
+# signal signal_camera_move_complete
 
 # onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/KinematicBody2D")
 onready var playerNode = get_parent().get_node("PlayerCharacterRoot")

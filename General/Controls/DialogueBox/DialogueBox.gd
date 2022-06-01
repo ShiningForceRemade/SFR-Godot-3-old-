@@ -1,6 +1,7 @@
 extends Control
 
 signal signal_dialogue_completed
+signal signal__dialogbox__finished_dialog
 
 onready var dialogueRichTextLabel = $NinePatchRect/DialogueRichTextLabel
 onready var dialogueTween = $DialogueTween
@@ -48,7 +49,7 @@ func battle_message_play(str_arg = "") -> void:
 	dialogueTween.start()
 
 
-func s_battle_message_complete(node_arg, property_arg) -> void: 
+func s_battle_message_complete(_node_arg, _property_arg) -> void: 
 	# dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
 	# print("Tween completed ", node_arg, " ", property_arg)
 	# yield(get_tree().create_timer(1.5), "timeout")
@@ -62,27 +63,32 @@ func s_battle_message_complete(node_arg, property_arg) -> void:
 func play_message(str_arg = "") -> void:
 	dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
 	
-	Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
 	dialogueRichTextLabel.percent_visible = 1
-	dialogueRichTextLabel.show()
+	dialogueRichTextLabel.bbcode_text = ""
 	
+	visible = true
+	dialogue_box_is_visible = visible
+	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
+	active = true
+	
+	# dialogue_index = 999999999999
+	
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+	
+	dialogueRichTextLabel.show()
 	dialogueRichTextLabel.bbcode_text = str_arg
 	
-	#dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
-	#0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
+	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
-	# dialogueTween.start()
+	dialogueTween.start()
 	
 	# yield(get_tree().create_timer(0.5), "timeout")
-	
-	
-	get_tree().paused = true
+	# get_tree().paused = true
 
 
 
-
-
-signal signal__dialoguebox__finished_dialog
+# signal signal__dialoguebox__finished_dialog
 
 export(Dictionary) var ON_END_DICT = {}
 
@@ -251,7 +257,7 @@ func load_dialog():
 			Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
 
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	print("Tween complete Dialgoue")
 	finished = true
 	pass

@@ -206,7 +206,7 @@ func check_if_not_valid_move_in_predfined_area_or_obstacle() -> bool:
 	
 	return false
 
-func s_tween_completed(node_arg, property_arg): 
+func s_tween_completed(_node_arg, _property_arg): 
 	# print(node_arg, " ", property_arg)
 	colsh.position = Vector2(0, 0)
 	emit_signal("signal_move_direction_completed")

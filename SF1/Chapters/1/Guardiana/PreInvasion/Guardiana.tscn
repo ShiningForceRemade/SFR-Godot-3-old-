@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=2]
+[gd_scene load_steps=181 format=2]
 
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=1]
 [ext_resource path="res://SF1/TileSet_Resources/Original/6.tres" type="TileSet" id=2]
@@ -48,6 +48,7 @@
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/SoldierGuardRight.gd" type="Script" id=46]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/Bartender.gd" type="Script" id=47]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Map_Sprites.png" type="Texture" id=48]
+[ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=49]
 
 [sub_resource type="Animation" id=135]
 resource_name = "DownMovement"
@@ -1856,6 +1857,24 @@ script = ExtResource( 24 )
 [node name="TownTilemapNode2D" parent="." instance=ExtResource( 26 )]
 position = Vector2( 140, 172 )
 
+[node name="StaticObjectsNode" type="Node2D" parent="."]
+
+[node name="EmptyChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
+position = Vector2( 680, 568 )
+
+[node name="MedicalHerbChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
+position = Vector2( 728, 568 )
+item_resource = ExtResource( 49 )
+
+[node name="HiddenGoldChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
+position = Vector2( 776, 568 )
+hidden_chest = true
+gold = 100
+
+[node name="PreopenedChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
+position = Vector2( 824, 568 )
+preopend_chest = true
+
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 19 )]
 position = Vector2( 632, 592 )
 
@@ -2214,9 +2233,6 @@ anims/UpMovement = SubResource( 52 )
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/ManOutsideBarNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -32, 104, -32, 80, -8, 80, -8, 112, 64, 112, 64, -40, 40, -40, 40, -16, 16, -16, 16, -64, 80, -64, 80, 128, -32, 128 )
-
-[node name="TestChest" parent="." instance=ExtResource( 20 )]
-position = Vector2( 512, 376 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )

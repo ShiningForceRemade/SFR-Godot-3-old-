@@ -1,7 +1,7 @@
 extends Node2D
 
-signal signal_completed_magic_level_selection_action
-signal signal_completed_selected_target_action
+# signal signal_completed_magic_level_selection_action
+# signal signal_completed_selected_target_action
 
 onready var redSelection = $RedSelectionBorderRoot
 
@@ -183,5 +183,5 @@ func select_spell(spell_select_idx, rs_pos, magic_menu_option) -> void:
 
 
 # TODO: Create Func to show Magic Levels, and hide the extra magic level nodes
-func select_magic_level(spell_arg):
+func select_magic_level(_spell_arg):
 	pass

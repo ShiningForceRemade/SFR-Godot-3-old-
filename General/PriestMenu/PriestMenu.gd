@@ -19,7 +19,7 @@ onready var dead_spirte = $DeadActionSprite
 onready var promotion_spirte      = $PromotionActionSprite
 
 
-onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+# onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()

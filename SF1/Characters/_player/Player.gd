@@ -2,7 +2,8 @@ extends Node2D
 
 var active: bool = true
 
-signal signal_completed_turn
+# signal signal_completed_turn
+
 signal signal_character_moved(new_pos)
 # signal CharacterMoved(value, other_value)
 
@@ -74,7 +75,7 @@ func set_active_processing(active_arg: bool) -> void:
 	set_process(active_arg)
 
 
-func s_tween_completed(node_arg, property_arg): 
+func s_tween_completed(_node_arg, _property_arg): 
 	colsh.position = characterRoot.position
 	animationPlayer.playback_speed = 1
 
