@@ -5,6 +5,8 @@ var active = false
 
 var cnode = null
 
+var EmptyItemSlotTexture = preload("res://Assets/SFCD/Items/EmptyItemSlot.png")
+
 var MemberSelectionLine = load("res://General/OverworldMenus/MemberListView/MemberSelectionLine.tscn")
 
 var MemberMagicLine = load("res://General/OverworldMenus/MemberListView/MemberMagicLine.tscn")
@@ -17,17 +19,23 @@ onready var portrait_sprite = $PortraitWrapperNode/PortraitSprite
 onready var red_selection = $RedSelectionBorderRoot
 
 
-onready var selected_character_info_name_label = $StatNinePatchRect/NameLabel
-onready var selected_character_info_class_label = $StatNinePatchRect/ClassLabel
-onready var selected_character_info_level_label = $StatNinePatchRect/LevelLabel
+onready var selected_character_info_name_label = $StatNinePatchRect/StaticCharacterInfoControlNode/NameLabel
+onready var selected_character_info_class_label = $StatNinePatchRect/StaticCharacterInfoControlNode/ClassLabel
+onready var selected_character_info_level_label = $StatNinePatchRect/StaticCharacterInfoControlNode/LevelLabel
 
-onready var selected_character_info_magic_vbox = $StatNinePatchRect/SpellsVBoxContainer
-onready var selected_character_info_magic_nothing = $StatNinePatchRect/MagicNothingStaticLabel
+onready var selected_character_info_magic_vbox = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer
+onready var selected_character_info_magic_nothing = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/MagicNothingStaticLabel
 
-onready var selected_character_info_inventory_vbox = $StatNinePatchRect/InventoryVBoxContainer
-onready var selected_character_info_inventory_nothing = $StatNinePatchRect/ItemsNothingStaticLabel
+onready var selected_character_info_inventory_vbox = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer
+onready var selected_character_info_inventory_nothing = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/ItemsNothingStaticLabel
 
 onready var flist_vbox_container = $StatNinePatchRect2/ScrollContainer/VBoxContainer
+
+### ItemIconsControlNode
+onready var itemsViewControlNode = $StatNinePatchRect/ItemsViewControl
+onready var itemsView_itemIconsControlNode = $StatNinePatchRect/ItemsViewControl/ItemIconsControlNode
+onready var itemsView_itemNameAndEquippedControlNode = $StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode
+### ItemIconsControlNode
 
 var current_selection = null
 
@@ -40,7 +48,7 @@ func _ready():
 	# ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
 	
 	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
-		
+	
 	# Test not used node
 	# var c = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0]
 	# flist_vbox_container.get_node("CharacterWrapperNode/NameStaticLabel").text = c.name
@@ -145,6 +153,8 @@ func scroll_container_set_vertical_scroll(scroll_distance_arg: int) -> void:
 
 
 func DisplayNewlySelectedCharacterInfo(force_member) -> void:
+	DisplayItemsFullInfo(force_member)
+	
 	var c = force_member
 	current_selection = c.character
 	
@@ -209,3 +219,28 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 		selected_character_info_inventory_vbox.hide()
 
 
+func DisplayItemsFullInfo(force_member) -> void:
+	var c = force_member
+	CleanDisplayItemsFullInfoForNextDisplay()
+	
+	# itemsViewControlNode
+	
+	var i = 0
+	for item in c.inventory:
+		var irl = load(item.resource)
+		print(irl)
+		itemsView_itemIconsControlNode.get_child(i).texture = irl.texture
+		
+		itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(1).text = irl.item_name
+		if force_member.inventory[i].is_equipped:
+			itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(0).show()
+		
+		i = i + 1
+
+func CleanDisplayItemsFullInfoForNextDisplay() -> void:
+	for i in 4:
+		itemsView_itemIconsControlNode.get_child(i).texture = EmptyItemSlotTexture
+		
+		itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(1).text = ""
+		itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(0).hide()
+	

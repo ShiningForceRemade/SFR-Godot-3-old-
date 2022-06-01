@@ -54,19 +54,48 @@ func _input(event):
 			
 			if currently_selected_option == e_inventory_menu_options.EQUIP_OPTION:
 				# cleanup_for_sub_menu_navigation()
-				Singleton_Game_GlobalBattleVariables.battle_base.s_show_battle_equip_menu()
+				
+				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+				Singleton_Game_GlobalCommonVariables.menus_root_node.s_hide_overworld_inventory_menu()
+				
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
+				
 				return
 			elif currently_selected_option == e_inventory_menu_options.USE_OPTION:
 				# cleanup_for_sub_menu_navigation()
-				Singleton_Game_GlobalBattleVariables.battle_base.s_show_battle_use_menu()
+				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+				Singleton_Game_GlobalCommonVariables.menus_root_node.s_hide_overworld_inventory_menu()
+				
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
+				
 				return
 			elif currently_selected_option == e_inventory_menu_options.DROP_OPTION:
 				# cleanup_for_sub_menu_navigation()
-				Singleton_Game_GlobalBattleVariables.battle_base.s_show_battle_drop_menu()
+				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+				Singleton_Game_GlobalCommonVariables.menus_root_node.s_hide_overworld_inventory_menu()
+				
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
+				
 				return
 			elif currently_selected_option == e_inventory_menu_options.GIVE_OPTION:
 				# cleanup_for_sub_menu_navigation()
-				Singleton_Game_GlobalBattleVariables.battle_base.s_show_battle_give_menu()
+				is_battle_inventory_menu_active = false
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+				Singleton_Game_GlobalCommonVariables.menus_root_node.s_hide_overworld_inventory_menu()
+				
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
+				
 				return
 			
 		if event.is_action_pressed("ui_down"):

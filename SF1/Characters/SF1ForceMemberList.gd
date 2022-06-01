@@ -30,6 +30,8 @@ var c1 = {
 	"guardiana_trolley_pushed": false,
 	"alterone_trolley_pushed": false,
 	"approached_alterone_rune_knights": false,
+	
+	# TODO: chest flags? where would it be best to track this
 }
 
 
@@ -165,10 +167,29 @@ var ForceMembers = [
 		"experience": 0,
 		
 		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/Spear.tres",
+				"is_equipped": false
+			},
+			
+			# Left
 			{
 				"resource": "res://SF1/Items/Weapons/ShortSword.tres",
+				"is_equipped": true
+			},
+			
+			# Right
+			{
+				"resource": "res://SF1/Items/Usables/MedicalHerb.tres",
 				"is_equipped": false
-			}
+			},
+			
+			# Down
+			{
+				"resource": "res://SF1/Items/Weapons/BronzeLance.tres",
+				"is_equipped": false
+			},
 		],
 		
 		"spells": [
@@ -183,6 +204,7 @@ var ForceMembers = [
 		]
 	},
 	
+	# Tao
 	{
 		"character": E_SF1_FM.TAO,
 		"leader": false,
@@ -200,6 +222,20 @@ var ForceMembers = [
 		"class_short": "MAGE",
 		
 		"level": 1,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/WoodenStaff.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
 		
 		"spells": [
 			{
@@ -252,6 +288,21 @@ var ForceMembers = [
 		"class_short": "ARCH",
 		
 		"level": 1,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/WoodenArrow.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
 		"spells": []
 	},
 	
@@ -273,6 +324,21 @@ var ForceMembers = [
 		"class_short": "KNHT",
 		
 		"level": 1,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/Spear.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
 		"spells": []
 	},
 	
@@ -294,6 +360,21 @@ var ForceMembers = [
 		"class_short": "WARR",
 		
 		"level": 1,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/ShortSword.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
 		"spells": []
 	},
 	
@@ -314,6 +395,20 @@ var ForceMembers = [
 		"class_short": "HEAL",
 		
 		"level": 1,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/WoodenStaff.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
 		
 		"spells": [
 			{
@@ -368,6 +463,17 @@ var ForceMembers = [
 		"class_short": "MONK",
 		
 		"level": 1,
+		
+		"inventory": [
+			# Up
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
 		"spells": [
 			{
 				"name": "Heal",
@@ -405,6 +511,21 @@ var ForceMembers = [
 		"class_short": "WARR",
 		
 		"level": 2,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/HandAxe.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
 		"spells": []
 	},
 	
@@ -425,6 +546,21 @@ var ForceMembers = [
 		"class_short": "KNTE",
 		
 		"level": 2,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/BronzeLance.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
 		"spells": []
 	},
 	
@@ -445,6 +581,21 @@ var ForceMembers = [
 		"class_short": "HEAL",
 		
 		"level": 2,
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/WoodenStaff.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
 		"spells": [
 			{
 				"name": "Heal",

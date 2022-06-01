@@ -55,7 +55,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NameLabel" type="Label" parent="StatNinePatchRect"]
+[node name="StaticCharacterInfoControlNode" type="Control" parent="StatNinePatchRect"]
+margin_right = 344.0
+margin_bottom = 19.0
+
+[node name="NameLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
 margin_left = 8.0
 margin_top = 7.0
 margin_right = 40.0
@@ -68,7 +72,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ClassLabel" type="Label" parent="StatNinePatchRect"]
+[node name="ClassLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
 margin_left = 133.333
 margin_top = 7.0
 margin_right = 173.333
@@ -81,7 +85,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect"]
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
 margin_left = 303.333
 margin_top = 7.0
 margin_right = 319.333
@@ -94,7 +98,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelLabel" type="Label" parent="StatNinePatchRect"]
+[node name="LevelLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
 margin_left = 295.0
 margin_top = 7.0
 margin_right = 344.0
@@ -108,7 +112,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MagicStaticLabel" type="Label" parent="StatNinePatchRect"]
+[node name="OverviewMagicAndInventoryControlNode" type="Control" parent="StatNinePatchRect"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="MagicStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
 margin_left = 8.0
 margin_top = 21.3333
 margin_right = 48.0
@@ -121,8 +130,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MagicNothingStaticLabel" type="Label" parent="StatNinePatchRect"]
-visible = false
+[node name="MagicNothingStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
 margin_left = 8.0
 margin_top = 34.6667
 margin_right = 64.0
@@ -136,7 +144,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpellsVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect"]
+[node name="SpellsVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
 margin_left = 8.0
 margin_top = 35.0
 margin_right = 171.0
@@ -147,11 +155,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/SpellsVBoxContainer"]
+[node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer"]
 visible = false
 margin_right = 163.0
 
-[node name="SpellLabel" type="Label" parent="StatNinePatchRect/SpellsVBoxContainer/Test_DONT_USE_Control"]
+[node name="SpellLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
 margin_right = 109.0
 margin_bottom = 8.0
 custom_fonts/font = ExtResource( 4 )
@@ -162,7 +170,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect/SpellsVBoxContainer/Test_DONT_USE_Control"]
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
 margin_left = 119.989
 margin_top = -0.328068
 margin_right = 135.989
@@ -175,7 +183,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelLabel" type="Label" parent="StatNinePatchRect/SpellsVBoxContainer/Test_DONT_USE_Control"]
+[node name="LevelLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
 margin_left = 131.0
 margin_right = 152.0
 margin_bottom = 8.0
@@ -188,7 +196,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemsStaticLabel" type="Label" parent="StatNinePatchRect"]
+[node name="ItemsStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
 margin_left = 173.0
 margin_top = 21.3333
 margin_right = 213.0
@@ -201,7 +209,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemsNothingStaticLabel" type="Label" parent="StatNinePatchRect"]
+[node name="ItemsNothingStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
 visible = false
 margin_left = 174.333
 margin_top = 34.6667
@@ -216,21 +224,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InventoryVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect"]
+[node name="InventoryVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
 margin_left = 175.0
 margin_top = 35.0
 margin_right = 342.0
 margin_bottom = 88.0
 custom_constants/separation = 15
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/InventoryVBoxContainer"]
+[node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer"]
 visible = false
 margin_right = 167.0
 
-[node name="EquippedStaticLabel" type="Label" parent="StatNinePatchRect/InventoryVBoxContainer/Test_DONT_USE_Control"]
+[node name="EquippedStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer/Test_DONT_USE_Control"]
 margin_left = -1.0
 margin_right = 7.0
 margin_bottom = 8.0
@@ -243,7 +248,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemLabel" type="Label" parent="StatNinePatchRect/InventoryVBoxContainer/Test_DONT_USE_Control"]
+[node name="ItemLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer/Test_DONT_USE_Control"]
 margin_left = 11.0
 margin_right = 167.0
 margin_bottom = 8.0
@@ -252,6 +257,206 @@ text = "ITEM"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="ItemsViewControl" type="Control" parent="StatNinePatchRect"]
+margin_left = 5.0
+margin_top = 19.0
+margin_right = 347.0
+margin_bottom = 93.0
+
+[node name="ItemsDashStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl"]
+margin_left = 29.6667
+margin_top = 2.33333
+margin_right = 101.667
+margin_bottom = 10.3333
+custom_fonts/font = ExtResource( 4 )
+text = "- ITEMS -"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ItemIconsControlNode" type="Control" parent="StatNinePatchRect/ItemsViewControl"]
+margin_left = 3.0
+margin_top = 13.0
+margin_right = 139.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UpTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+margin_left = 53.6667
+margin_top = 1.0
+margin_right = 72.6667
+margin_bottom = 20.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+margin_left = 28.3334
+margin_top = 17.0001
+margin_right = 47.3334
+margin_bottom = 36.0001
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+margin_left = 81.6666
+margin_top = 17.0
+margin_right = 100.667
+margin_bottom = 36.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DownTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+margin_left = 53.6666
+margin_top = 34.3334
+margin_right = 72.6666
+margin_bottom = 53.3334
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ItemNameAndEquippedControlNode" type="Control" parent="StatNinePatchRect/ItemsViewControl"]
+margin_left = 147.0
+margin_top = 10.0
+margin_right = 339.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UpItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+margin_right = 192.0
+margin_bottom = 11.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UpItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/UpItemControl"]
+visible = false
+margin_left = -1.33334
+margin_top = 3.00001
+margin_right = 6.66666
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "E"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="UpItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/UpItemControl"]
+margin_left = 13.0
+margin_top = 3.33334
+margin_right = 162.0
+margin_bottom = 11.3333
+custom_fonts/font = ExtResource( 4 )
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+margin_right = 195.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/LeftItemControl"]
+visible = false
+margin_left = -1.33334
+margin_top = 17.6667
+margin_right = 6.66666
+margin_bottom = 25.6667
+custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "E"
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/LeftItemControl"]
+margin_left = 13.0
+margin_top = 18.0
+margin_right = 162.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 4 )
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+margin_right = 195.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/RightItemControl"]
+visible = false
+margin_left = -1.33334
+margin_top = 33.6667
+margin_right = 6.66666
+margin_bottom = 41.6667
+custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "E"
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/RightItemControl"]
+margin_left = 13.0
+margin_top = 34.0
+margin_right = 162.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 4 )
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DownItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+margin_top = 48.0
+margin_right = 195.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DownItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/DownItemControl"]
+visible = false
+margin_right = 8.0
+margin_bottom = 8.0
+custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "E"
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DownItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/DownItemControl"]
+margin_left = 13.3333
+margin_right = 185.333
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 4 )
+valign = 1
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="StatNinePatchRect2" type="NinePatchRect" parent="."]
