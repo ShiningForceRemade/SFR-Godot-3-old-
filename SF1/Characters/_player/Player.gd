@@ -143,6 +143,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("test_key_x"):
 			active = false
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().set_overvview_view_active()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
 		
 	

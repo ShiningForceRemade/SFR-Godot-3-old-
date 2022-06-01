@@ -23,6 +23,8 @@ onready var selected_character_info_name_label = $StatNinePatchRect/StaticCharac
 onready var selected_character_info_class_label = $StatNinePatchRect/StaticCharacterInfoControlNode/ClassLabel
 onready var selected_character_info_level_label = $StatNinePatchRect/StaticCharacterInfoControlNode/LevelLabel
 
+onready var overview_mangic_and_inventory_control_node = $StatNinePatchRect/OverviewMagicAndInventoryControlNode
+
 onready var selected_character_info_magic_vbox = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer
 onready var selected_character_info_magic_nothing = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/MagicNothingStaticLabel
 
@@ -69,6 +71,16 @@ func _ready():
 	flist_vbox_container.add_child(CLine)
 	
 	pass
+
+
+func set_items_view_active():
+	overview_mangic_and_inventory_control_node.hide()
+	itemsViewControlNode.show()
+
+
+func set_overvview_view_active():
+	itemsViewControlNode.hide()
+	overview_mangic_and_inventory_control_node.show()
 
 
 func _input(event):
@@ -122,7 +134,23 @@ func _input(event):
 				
 				
 				break
-				
+	
+	elif event.is_action_pressed("ui_a_key"):
+		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
+		
+		for i in fm_size:
+			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
+				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
+				Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
+			
+				# active = false
+				yield(get_tree().create_timer(0.1), "timeout")
+				itemsViewControlNode.set_item_selection_menu_active()
+			
+		# hide()
+		# active = false
+		return
+		
 	elif event.is_action_pressed("ui_b_key"):
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 		hide()
