@@ -7,6 +7,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_released("ui_cancel"):
+		#TODO: fixme this doesnt work in the overworld only in battles
+		
 		if get_tree().paused:
 			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.clear_black_fade()
 			Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.position = Vector2(-90, 100)

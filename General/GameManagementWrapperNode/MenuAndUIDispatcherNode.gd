@@ -3,9 +3,15 @@ extends Node
 const bmc_x: int = 171
 const bmc_y: int = 182
 
+onready var OverworldActionMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldActionsMenuRoot
+
 onready var battleMagicMenuTween = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/BattleMagicMenuTween
 onready var battleMagicMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode # /OverworldMagicMenuRoot
 onready var battleMagicMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/OverworldMagicMenuRoot
+
+onready var OverworldInventoryMenuTween = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode/InventoryMenuTween
+onready var OverworldInventoryMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode
+onready var OverworldInventoryMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode/InventoryMenuRoot
 
 onready var HQMenuWrapperRoot = $HQMenusWrapperNode
 onready var PriestMenuWrapperRoot = $OverworldWrapperNode/PriestMenuWrapperNode
@@ -46,3 +52,12 @@ func s_hide_overworld_magic_menu():
 func s_show_overworld_magic_menu():
 	internal_tween_move_to_position(139, 134 + 80, 139, 134, battleMagicMenuTween, battleMagicMenuWrapperRoot)
 	battleMagicMenuRoot.set_battle_magic_menu_active()
+
+
+func s_hide_overworld_inventory_menu():
+	internal_tween_move_to_position(139, 134, 139, 134 + 80, OverworldInventoryMenuTween, OverworldInventoryMenuRoot)
+
+func s_show_overworld_inventory_menu():
+	internal_tween_move_to_position(139, 134 + 80, 139, 134, OverworldInventoryMenuTween, OverworldInventoryMenuRoot)
+	OverworldInventoryMenuRoot.set_overworld_inventory_menu_active()
+

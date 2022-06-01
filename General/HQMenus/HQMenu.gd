@@ -18,7 +18,7 @@ onready var join_spirte     = $JoinActionSprite
 onready var inventory_spirte = $InventoryActionSprite
 onready var stats_spirte      = $StatsActionSprite
 
-onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+onready var noValidOptionNode = get_parent().get_parent().get_node("OverworldWrapperNode/MenusNodeWrapper/NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()

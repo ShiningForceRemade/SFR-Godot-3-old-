@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn" type="PackedScene" id=1]
 [ext_resource path="res://General/Controls/DialogueBox/DialogueBox.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://General/GameManagementWrapperNode/PriestMenuWrapperNode.gd" type="Script" id=19]
 [ext_resource path="res://General/UserInteractionPrompts/YesOrNo/YesOrNoPrompt.tscn" type="PackedScene" id=20]
 [ext_resource path="res://General/GameManagementWrapperNode/UserInteractionPrompts.gd" type="Script" id=21]
+[ext_resource path="res://General/OverworldMenus/InventoryMenu/InventoryMenu.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -794,6 +795,14 @@ __meta__ = {
 scale = Vector2( 0.825, 0.825 )
 
 [node name="BattleMagicMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode"]
+
+[node name="OverworldInventoryMenuNode" type="Node2D" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper"]
+
+[node name="InventoryMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode" instance=ExtResource( 22 )]
+position = Vector2( 130, 214 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="InventoryMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode"]
 
 [node name="PriestMenuWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode"]
 script = ExtResource( 19 )

@@ -61,7 +61,7 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 
 
 func play_message(str_arg = "") -> void:
-	dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
+	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
 	
 	dialogueRichTextLabel.percent_visible = 1
 	dialogueRichTextLabel.bbcode_text = ""

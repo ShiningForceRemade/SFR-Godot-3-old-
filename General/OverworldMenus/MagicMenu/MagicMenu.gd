@@ -1,7 +1,7 @@
 extends Node2D
 
-# signal signal_completed_magic_level_selection_action
-# signal signal_completed_selected_target_action
+signal signal_completed_magic_level_selection_action
+signal signal_completed_selected_target_action
 
 onready var redSelection = $RedSelectionBorderRoot
 
@@ -38,7 +38,7 @@ var is_select_magic_level_active: bool = false
 var is_target_selection_active: bool = false
 var target_node_children
 
-onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+onready var noValidOptionNode = get_parent().get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 var spell_idx: int = 0
 # var spell_level_idx
@@ -78,6 +78,7 @@ func _input(event):
 			Singleton_Game_GlobalCommonVariables.menus_root_node.s_hide_overworld_magic_menu()
 			
 			yield(get_tree().create_timer(0.1), "timeout")
+			Singleton_Game_GlobalCommonVariables.menus_root_node.OverworldActionMenuRoot.show()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().set_menu_active()
 			
 #			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true

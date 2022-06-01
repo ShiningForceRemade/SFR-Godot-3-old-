@@ -35,10 +35,10 @@ var c1 = {
 
 enum E_SF1_FM {
 	MAX,
+	LUKE,
+	KEN,
 	TAO,
 	HANS,
-	KEN,
-	LUKE,
 	LOWE,
 	GONG,
 	GORT,
@@ -52,10 +52,31 @@ enum E_SF1_FM {
 # TODO: create character profile resources
 # and apply the resource instead - probably a better way to handle this kind of thing
 
+
+##########
+########## TODO: IMPORTANT:
+##########
+# Seriously rethink the structure of the forcemembers data
+# it might be best to have the characters use a resource for editor editability
+# then link the resource need here within the force that includes none character battle data
+# like rename, leader, unlocked, active_in_force etc, 
+# spells especially - need better handling 
+# using ForceMembers for certain values then loading the node for character stats
+# then reusing forcemembers for latest is awful I nener should have allowed it to get to this point
+###########
+
+
 var ForceMembers = [
+	# Max
 	{
 		"character": E_SF1_FM.MAX,
 		"leader": true,
+		
+		# CRITICAL: IMPORTANT: FIXME: TODO: 
+		# is_promoted should be here for easy checking of with sprites to use
+		# espeically for overworld cutscenes and the like instead of needing to load the 
+		# node or the character resource file
+		# "is_promoted"
 		
 		# TODO: create a base path for characters and use in a similar fashion to the soundback
 		# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
@@ -76,9 +97,85 @@ var ForceMembers = [
 		
 		"level": 1,
 		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 25,
+		
+		"movement_type": "Standard",
+		
+		"stats": {
+			"attack": 14,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 4,
+			"defense_boost": 0,
+			
+			"agility": 4,
+			"agility_boost": 0,
+			
+			"move": 6,
+			"move_boost": 0,
+			
+			"hp": 12,
+			"hp_boost": 0,
+			
+			"mp": 8,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 2,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 10,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
+		
+		"inventory": [
+			{
+				"resource": "res://SF1/Items/Weapons/ShortSword.tres",
+				"is_equipped": false
+			}
+		],
+		
 		"spells": [
 			{
-				"name": "Egress",
+				# "name": "Egress",
+				# Egress
+				"resource": "res://SF1/Spells/Egress/Egress.tres",
 				"levels": [
 					1,
 				]
