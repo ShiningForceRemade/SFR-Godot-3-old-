@@ -63,6 +63,12 @@ func _ready():
 	
 	for character in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
 		var CLine = MemberSelectionLine.instance()
+		
+		if character.active_in_force:
+			CLine.get_node("ActiveForceStaticLabel").show()
+		else:
+			CLine.get_node("ActiveForceStaticLabel").hide()
+		
 		CLine.get_node("NameStaticLabel").text = character.name
 		CLine.get_node("ClassStaticLabel").text = character.class
 		CLine.get_node("LevelStaticLabel").text = str(character.level)
@@ -102,12 +108,12 @@ func _input(event):
 				
 				if i + 1 >= fm_size:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
-					red_selection.position = Vector2(10, 96)
+					red_selection.position = Vector2(21, 96)
 					scroll_container_reset_line()
 				else:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i + 1])
-					if red_selection.position != Vector2(10, 96 + (12 * 5)):
-						red_selection.position = Vector2(10, red_selection.position.y + 12)
+					if red_selection.position != Vector2(21, 96 + (12 * 5)):
+						red_selection.position = Vector2(21, red_selection.position.y + 12)
 					
 					if i >= 5 && i < fm_size:
 						scroll_container_move_down_line()
@@ -125,12 +131,12 @@ func _input(event):
 				
 				if i - 1 <= -1:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_size - 1])
-					red_selection.position = Vector2(10, 96 + (12 * 5))
+					red_selection.position = Vector2(21, 96 + (12 * 5))
 					scroll_container_wrap_to_bottom()
 				else:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i - 1])
-					if red_selection.position != Vector2(10, 96):
-						red_selection.position = Vector2(10, red_selection.position.y - 12)
+					if red_selection.position != Vector2(21, 96):
+						red_selection.position = Vector2(21, red_selection.position.y - 12)
 					
 					# temp not usable
 					if i < 5:

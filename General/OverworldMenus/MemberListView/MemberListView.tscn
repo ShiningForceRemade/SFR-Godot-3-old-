@@ -121,7 +121,6 @@ __meta__ = {
 }
 
 [node name="OverviewMagicAndInventoryControlNode" type="Control" parent="StatNinePatchRect"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -878,36 +877,34 @@ __meta__ = {
 }
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 18.6667
-margin_top = 9.33332
-margin_right = 50.6667
-margin_bottom = 17.3333
+margin_left = 33.0
+margin_top = 9.0
+margin_right = 65.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "NAME"
 valign = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 140.333
+margin_left = 159.0
 margin_top = 9.0
-margin_right = 228.333
+margin_right = 247.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "CLASS"
 valign = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 366.666
-margin_top = 7.66666
-margin_right = 382.666
-margin_bottom = 15.6667
+margin_left = 367.0
+margin_top = 9.0
+margin_right = 383.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "LV"
 valign = 1
@@ -938,23 +935,35 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="ActiveForceStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+margin_left = 1.0
+margin_top = 4.0
+margin_right = 17.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "FW"
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 10.6667
-margin_top = 4.00001
-margin_right = 42.6667
+margin_left = 25.0
+margin_top = 4.0
+margin_right = 57.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 4 )
 text = "NAME"
 valign = 1
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 132.333
+margin_left = 151.0
 margin_top = 3.66663
-margin_right = 220.333
+margin_right = 239.0
 margin_bottom = 11.6666
 custom_fonts/font = ExtResource( 4 )
 text = "CLASS"
@@ -979,4 +988,4 @@ __meta__ = {
 }
 
 [node name="RedSelectionBorderRoot" parent="." instance=ExtResource( 5 )]
-position = Vector2( 10, 96 )
+position = Vector2( 21, 96 )

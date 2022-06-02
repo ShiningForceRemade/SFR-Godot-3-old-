@@ -6,13 +6,27 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
+[node name="ActiveForceStaticLabel" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 4.0
+margin_right = 17.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "FW"
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="NameStaticLabel" type="Label" parent="."]
-margin_left = 10.6667
+margin_left = 24.6667
 margin_top = 4.00001
-margin_right = 42.6667
+margin_right = 56.6667
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 1 )
 text = "NAME"
@@ -23,9 +37,9 @@ __meta__ = {
 }
 
 [node name="ClassStaticLabel" type="Label" parent="."]
-margin_left = 132.333
+margin_left = 151.333
 margin_top = 3.66663
-margin_right = 220.333
+margin_right = 239.333
 margin_bottom = 11.6666
 custom_fonts/font = ExtResource( 1 )
 text = "CLASS"
