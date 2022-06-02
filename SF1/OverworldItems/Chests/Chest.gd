@@ -56,6 +56,7 @@ func retrieve_chest_contents() -> void:
 		if item_resource != null:
 			display_str += ma + " discovered: " + str(item_resource.item_name) + "!"
 			
+			var found = false
 			for character in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
 				if character.inventory.size() < 4:
 					# if Singleton_Game_GlobalCommonVariables.main_character_player_node.name == character.name
@@ -66,8 +67,14 @@ func retrieve_chest_contents() -> void:
 						"is_equipped": false
 					})
 					
+					found = true
+					
 					display_str += "\n" + ma + " passes it to " + character.name + "!"
 					break
+			
+			if !found:
+				display_str += "\n" + ma + " passes it to item box!"
+				Singleton_Game_GlobalCommonVariables.item_box.push_back(item_resource.resource_path)
 			
 		if gold != 0:
 			display_str += ma + " gains " + str(gold) + " coins."

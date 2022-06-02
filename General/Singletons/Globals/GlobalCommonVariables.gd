@@ -17,6 +17,7 @@ var main_character_player_node = null
 
 
 var gold: int = 0
+var item_box = []
 
 ## menus selections
 ## TODO: refactor and clean this later on
