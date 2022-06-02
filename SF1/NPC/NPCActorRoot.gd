@@ -30,6 +30,7 @@ onready var enemey_actor_root = self
 onready var raycast = $KinematicBody2D/RayCast2D
 onready var colsh = $KinematicBody2D/CollisionShape2D
 onready var kinematicBody = $KinematicBody2D
+onready var staticBody = $StaticBody2D
 
 var area2d
 
@@ -51,6 +52,7 @@ func _ready():
 	# Area2D.coll
 	
 	raycast.add_exception(kinematicBody)
+	raycast.add_exception(staticBody)
 	
 	# animationPlayer.play("DownMovement")
 	default_facing_direction_setup()

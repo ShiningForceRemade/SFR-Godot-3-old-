@@ -2058,6 +2058,9 @@ anims/LeftMovement = SubResource( 14 )
 anims/RightMovement = SubResource( 15 )
 anims/UpMovement = SubResource( 16 )
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/InnKeeperNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 23 )
+
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/InnKeeperNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -8, -16, -8, -32, 32, -32, 32, -16 )
 
@@ -2171,6 +2174,9 @@ anims/LeftMovement = SubResource( 38 )
 anims/RightMovement = SubResource( 39 )
 anims/UpMovement = SubResource( 40 )
 
+[node name="StaticBody2D" parent="NpcWrapperNode/WeaponSellerNPCRoot/NPCActorRoot" index="3"]
+position = Vector2( 0, 22 )
+
 [node name="ItemSellerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 800, 472 )
 script = ExtResource( 45 )
@@ -2187,6 +2193,9 @@ anims/DownMovement = SubResource( 41 )
 anims/LeftMovement = SubResource( 42 )
 anims/RightMovement = SubResource( 43 )
 anims/UpMovement = SubResource( 44 )
+
+[node name="StaticBody2D" parent="NpcWrapperNode/ItemSellerNPCRoot/NPCActorRoot" index="3"]
+position = Vector2( 0, 22 )
 
 [node name="GortNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 944, 256 )
@@ -2213,6 +2222,9 @@ script = ExtResource( 47 )
 [node name="Sprite" parent="NpcWrapperNode/BartenderNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 15 )
 hframes = 6
+
+[node name="CollisionShape2D" parent="NpcWrapperNode/BartenderNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 22 )
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/BartenderNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -40, 8, -56, 8, -56, -48, 128, -48, 128, 8, 112, 8, 112, -16, -40, -16 )

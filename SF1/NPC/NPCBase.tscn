@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SF1/NPC/NPCActorRoot.gd" type="Script" id=1]
 
@@ -120,6 +120,8 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=6]
+
 [node name="NPCRoot" type="Node2D"]
 
 [node name="NPCActorRoot" type="Node2D" parent="."]
@@ -168,6 +170,11 @@ anims/RightMovement = SubResource( 4 )
 anims/UpMovement = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="NPCActorRoot"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NPCActorRoot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCActorRoot/StaticBody2D"]
+shape = SubResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="."]
 __meta__ = {

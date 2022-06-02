@@ -257,19 +257,60 @@ func _process(delta):
 		colsh.disabled = true
 
 
+# TEMP: for demo
+# TODO: IMPORTANT:
+# Originally I used raycasts and kinematic bodys since I started with using the rotdd movement style
+# but since I've disabled that behind a flag in the dev console and there's no immediate plans to change this
+# it might be better to migrate to a tilemap based collision.
+# Think about this more and clean this up and refine it much more
 func interaction_attempt_to_talk() -> void:
 	if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
-		if frontFacingRaycast.is_colliding():
+		
+		print("Start")
+		var objects_collide = [] 
+		while frontFacingRaycast.is_colliding():
+			var obj = frontFacingRaycast.get_collider() # get the next object that is colliding.
+			objects_collide.append(obj) # add it to the array.
+			frontFacingRaycast.add_exception(obj) # add to ray's exception. That way it could detect something being behind it.
+			frontFacingRaycast.force_raycast_update() # update the ray's collision query.
+
+		#after all is done, remove the objects from ray's exception.
+#		for obj in objects_collide:
+#			# print(obj)
+#			# print(obj.get_parent().get_parent().has_method("attempt_to_interact"))
+#			frontFacingRaycast.remove_exception( obj )
+		# print("End")
+	
+		for obj in objects_collide:
+			# print(obj.get_parent().get_parent().has_method("attempt_to_interact"))
+			
+			if obj.get_parent().get_parent().has_method("attempt_to_interact"):
+				obj.get_parent().get_parent().attempt_to_interact()
+			elif obj.get_parent().has_method("attempt_to_interact"):
+				obj.get_parent().attempt_to_interact()
+		
+		# if frontFacingRaycast.is_colliding():
+			
+			# print(frontFacingRaycast.collide_with_bodies())
+			
 			# TODO: probably should add a helper function to get the parent element
 			# where the custom logic will live instead of going up for build v0.0.2 its fine
 			# print(frontFacingRaycast.get_collider())
 			# print(frontFacingRaycast.get_collider().get_parent().get_name())
-			print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
+			# print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
+			# print(frontFacingRaycast.get_collider().get_parent().get_parent())
+			# print(frontFacingRaycast.get_collider().get_parent().get_name())
+			# print("\n")
+		# if frontFacingRaycast.is_colliding():
+#			if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
+#				frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
+#			elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
+#				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+		
+		for obj in objects_collide:
+			frontFacingRaycast.remove_exception(obj)
 			
-			if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
-				frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
-			elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
-				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
+		print("End\n")
 
 
 func interaction_attempt_to_search() -> void:
