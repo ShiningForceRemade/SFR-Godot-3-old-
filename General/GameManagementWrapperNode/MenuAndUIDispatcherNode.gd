@@ -18,6 +18,7 @@ onready var PriestMenuWrapperRoot = $OverworldWrapperNode/PriestMenuWrapperNode
 onready var UserInteractionPromptsRoot = $UserInteractionPrompts
 
 onready var GoldInfoBox = $OverworldWrapperNode/MenusNodeWrapper/GoldInfoBox
+onready var CharacterInfoBox = $OverworldWrapperNode/MenusNodeWrapper/BattleCharacterOrEnemeyMicroInfoRoot
 
 func _ready():
 	Singleton_Game_GlobalCommonVariables.menus_root_node = self

@@ -16,7 +16,9 @@ var main_character_resource_pck = null
 var main_character_player_node = null
 
 
-var gold: int = 0
+var gold: int = 10000
+# var gold: int = 0
+
 var item_box = []
 
 ## menus selections

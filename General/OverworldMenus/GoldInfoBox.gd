@@ -3,7 +3,7 @@ extends Control
 onready var goldAmountLabel = $GoldNinePatchRect/GoldAmountLabel
 
 func _ready():
-	pass
+	UpdateGoldAmountDisplay()
 
 
 func UpdateGoldAmountDisplay() -> void:

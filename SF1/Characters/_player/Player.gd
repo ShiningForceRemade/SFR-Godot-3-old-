@@ -130,9 +130,24 @@ func _process(delta):
 			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().show()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().show()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().show()
+			
+			# TODO: add get character from player to help support different main character option
+			# var mcan = Singleton_Game_GlobalCommonVariables.main_character_player_node
+			var mcan = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0]
+			Singleton_Game_GlobalCommonVariables.menus_root_node.CharacterInfoBox.update_active_info(
+				mcan.name, 
+				mcan.class_short, 
+				mcan.level, 
+				mcan.stats.hp, 
+				mcan.stats.hp, 
+				mcan.stats.mp, 
+				mcan.stats.mp
+				)
+			
+			
 			yield(get_tree().create_timer(0.1), "timeout")
 			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().set_menu_active()
-		
+			
 		if Input.is_action_just_pressed("ui_c_key"):
 			interaction_attempt_to_talk()
 		
