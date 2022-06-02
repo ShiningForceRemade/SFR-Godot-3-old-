@@ -15,6 +15,9 @@ var main_character_resource_pck = null
 
 var main_character_player_node = null
 
+
+var gold: int = 0
+
 ## menus selections
 ## TODO: refactor and clean this later on
 ## none of these should really be globals

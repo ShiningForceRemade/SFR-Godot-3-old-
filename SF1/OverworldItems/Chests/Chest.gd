@@ -37,6 +37,7 @@ func attempt_to_open_chest() -> void:
 	# else: 
 	#	print("Chest was already opened")
 
+
 func interaction_completed() -> void:
 	# Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 	if opened && !retrieved_chest_resources:
@@ -54,11 +55,24 @@ func retrieve_chest_contents() -> void:
 	else:
 		if item_resource != null:
 			display_str += ma + " discovered: " + str(item_resource.item_name) + "!"
-			# TDOO for item_resource check if inventory full then move to next character
-			# display_str += ma + " passes it to " + next_character_with_open_slot_name + "!"
-	
+			
+			for character in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
+				if character.inventory.size() < 4:
+					# if Singleton_Game_GlobalCommonVariables.main_character_player_node.name == character.name
+					#
+					
+					character.inventory.push_back({
+						"resource": item_resource.resource_path,
+						"is_equipped": false
+					})
+					
+					display_str += "\n" + ma + " passes it to " + character.name + "!"
+					break
+			
 		if gold != 0:
 			display_str += ma + " gains " + str(gold) + " coins."
+			Singleton_Game_GlobalCommonVariables.gold = gold + Singleton_Game_GlobalCommonVariables.gold
+			Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.UpdateGoldAmountDisplay()
 	
 	retrieved_chest_resources = true
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message(display_str)

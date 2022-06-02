@@ -17,6 +17,8 @@ onready var HQMenuWrapperRoot = $HQMenusWrapperNode
 onready var PriestMenuWrapperRoot = $OverworldWrapperNode/PriestMenuWrapperNode
 onready var UserInteractionPromptsRoot = $UserInteractionPrompts
 
+onready var GoldInfoBox = $OverworldWrapperNode/MenusNodeWrapper/GoldInfoBox
+
 func _ready():
 	Singleton_Game_GlobalCommonVariables.menus_root_node = self
 
