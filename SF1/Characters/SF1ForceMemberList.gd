@@ -122,12 +122,12 @@ var ForceMembers = [
 			
 		],
 		
-		"ai_target_priority": 25,
+		"ai_target_priority": 100,
 		
 		"movement_type": "Standard",
 		
 		"stats": {
-			"attack": 14,
+			"attack": 6,
 			"attack_boost": 0,
 			# resource for stat growth unprom
 			# and promoted probably should have those
@@ -147,10 +147,10 @@ var ForceMembers = [
 			"mp": 8,
 			"mp_boost": 0,
 			
-			"critical_hit_chance": 2,
+			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
 			
-			"double_attack_chance": 10,
+			"double_attack_chance": 7,
 			"double_attack_chance_boost": 0,
 			
 			"dodge_chance": 10,
@@ -223,6 +223,216 @@ var ForceMembers = [
 		]
 	},
 	
+	# Luke
+	{
+		"character": E_SF1_FM.LUKE,
+		"leader": false,
+		
+		"character_base_node": "res://SF1/Characters/Luke/Luke.tscn",
+		"character_npc_scene": "res://SF1/Characters/Luke/LukeNPC.tscn",
+		
+		"unlocked": false,
+		"active_in_force": false,
+		
+		"name": "Luke", # TODO: do nicknames
+		"race": "Dwarf",
+		
+		"class": "Warrior",
+		"class_short": "WARR",
+		"class_idx": E_SF1_CLASSES.WARR,
+		
+		"level": 1,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 0,
+		
+		"movement_type": "Standard",
+		
+		"stats": {
+			"attack": 9,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 7,
+			"defense_boost": 0,
+			
+			"agility": 4,
+			"agility_boost": 0,
+			
+			"move": 6,
+			"move_boost": 0,
+			
+			"hp": 9,
+			"hp_boost": 0,
+			
+			"mp": 0,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
+		
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/ShortSword.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
+		"spells": []
+	},
+	
+	# Ken
+	{
+		"character": E_SF1_FM.KEN,
+		"leader": false,
+		
+		"character_base_node": "res://SF1/Characters/Ken/Ken.tscn",
+		"character_npc_scene": "res://SF1/Characters/Ken/KenNPC.tscn",
+		
+		"unlocked": false,
+		"active_in_force": false,
+		
+		"name": "Ken", # TODO: do nicknames
+		"race": "Centaur",
+		
+		"class": "Knight",
+		"class_short": "KNHT",
+		"class_idx": E_SF1_CLASSES.KNT,
+		
+		"level": 1,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 0,
+		
+		"movement_type": "Mounted",
+		
+		"stats": {
+			"attack": 7,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 6,
+			"defense_boost": 0,
+			
+			"agility": 5,
+			"agility_boost": 0,
+			
+			"move": 7,
+			"move_boost": 0,
+			
+			"hp": 8,
+			"hp_boost": 0,
+			
+			"mp": 0,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
+		
+		
+		"inventory": [
+			# Up
+			{
+				"resource": "res://SF1/Items/Weapons/Spear.tres",
+				"is_equipped": true
+			},
+			
+			# Left
+			
+			# Right
+			
+			# Down
+		],
+		
+		"spells": []
+	},
+	
 	# Tao
 	{
 		"character": E_SF1_FM.TAO,
@@ -239,8 +449,76 @@ var ForceMembers = [
 		
 		"class": "Mage",
 		"class_short": "MAGE",
+		"class_idx": E_SF1_CLASSES.MAGE,
 		
 		"level": 1,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 75,
+		
+		"movement_type": "Standard",
+		
+		"stats": {
+			"attack": 4,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 4,
+			"defense_boost": 0,
+			
+			"agility": 6,
+			"agility_boost": 0,
+			
+			"move": 5,
+			"move_boost": 0,
+			
+			"hp": 10,
+			"hp_boost": 0,
+			
+			"mp": 7,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
 		
 		"inventory": [
 			# Up
@@ -290,6 +568,7 @@ var ForceMembers = [
 		]
 	},
 	
+	# Hans
 	{
 		"character": E_SF1_FM.HANS,
 		"leader": false,
@@ -305,8 +584,76 @@ var ForceMembers = [
 		
 		"class": "Archer",
 		"class_short": "ARCH",
+		"class_idx": E_SF1_CLASSES.ACHR,
 		
 		"level": 1,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 25,
+		
+		"movement_type": "Forest",
+		
+		"stats": {
+			"attack": 6,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 5,
+			"defense_boost": 0,
+			
+			"agility": 6,
+			"agility_boost": 0,
+			
+			"move": 5,
+			"move_boost": 0,
+			
+			"hp": 12,
+			"hp_boost": 0,
+			
+			"mp": 0,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
 		
 		"inventory": [
 			# Up
@@ -325,78 +672,7 @@ var ForceMembers = [
 		"spells": []
 	},
 	
-		
-	{
-		"character": E_SF1_FM.KEN,
-		"leader": false,
-		
-		"character_base_node": "res://SF1/Characters/Ken/Ken.tscn",
-		"character_npc_scene": "res://SF1/Characters/Ken/KenNPC.tscn",
-		
-		"unlocked": false,
-		"active_in_force": false,
-		
-		"name": "Ken", # TODO: do nicknames
-		"race": "Centaur",
-		
-		"class": "Knight",
-		"class_short": "KNHT",
-		
-		"level": 1,
-		
-		"inventory": [
-			# Up
-			{
-				"resource": "res://SF1/Items/Weapons/Spear.tres",
-				"is_equipped": true
-			},
-			
-			# Left
-			
-			# Right
-			
-			# Down
-		],
-		
-		"spells": []
-	},
-	
-		
-	{
-		"character": E_SF1_FM.LUKE,
-		"leader": false,
-		
-		"character_base_node": "res://SF1/Characters/Luke/Luke.tscn",
-		"character_npc_scene": "res://SF1/Characters/Luke/LukeNPC.tscn",
-		
-		"unlocked": false,
-		"active_in_force": false,
-		
-		"name": "Luke", # TODO: do nicknames
-		"race": "Dwarf",
-		
-		"class": "Warrior",
-		"class_short": "WARR",
-		
-		"level": 1,
-		
-		"inventory": [
-			# Up
-			{
-				"resource": "res://SF1/Items/Weapons/ShortSword.tres",
-				"is_equipped": true
-			},
-			
-			# Left
-			
-			# Right
-			
-			# Down
-		],
-		
-		"spells": []
-	},
-	
+	# Lowe
 	{
 		"character": E_SF1_FM.LOWE,
 		"leader": false,
@@ -412,8 +688,77 @@ var ForceMembers = [
 		
 		"class": "Healer",
 		"class_short": "HEAL",
+		"class_idx": E_SF1_CLASSES.HEAL,
 		
 		"level": 1,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 25,
+		
+		"movement_type": "Standard",
+		
+		"stats": {
+			"attack": 6,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 5,
+			"defense_boost": 0,
+			
+			"agility": 5,
+			"agility_boost": 0,
+			
+			"move": 5,
+			"move_boost": 0,
+			
+			"hp": 11,
+			"hp_boost": 0,
+			
+			"mp": 10,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
+		
 		
 		"inventory": [
 			# Up
@@ -465,6 +810,7 @@ var ForceMembers = [
 		]
 	},
 	
+	# Gong
 	{
 		"character": E_SF1_FM.GONG,
 		"leader": false,
@@ -480,8 +826,77 @@ var ForceMembers = [
 		
 		"class": "Monk",
 		"class_short": "MONK",
+		"class_idx": E_SF1_CLASSES.MONK,
 		
 		"level": 1,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 0,
+		
+		"movement_type": "Standard",
+		
+		"stats": {
+			"attack": 11,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 4,
+			"defense_boost": 0,
+			
+			"agility": 6,
+			"agility_boost": 0,
+			
+			"move": 5,
+			"move_boost": 0,
+			
+			"hp": 11,
+			"hp_boost": 0,
+			
+			"mp": 8,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
+		
 		
 		"inventory": [
 			# Up
@@ -513,6 +928,7 @@ var ForceMembers = [
 		]
 	},
 	
+	# Gort
 	{
 		"character": E_SF1_FM.GORT,
 		"leader": false,
@@ -528,8 +944,76 @@ var ForceMembers = [
 		
 		"class": "Warrior",
 		"class_short": "WARR",
+		"class_idx": E_SF1_CLASSES.WARR,
 		
 		"level": 2,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 0,
+		
+		"movement_type": "Standard",
+		
+		"stats": {
+			"attack": 8,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 7,
+			"defense_boost": 0,
+			
+			"agility": 4,
+			"agility_boost": 0,
+			
+			"move": 6,
+			"move_boost": 0,
+			
+			"hp": 12,
+			"hp_boost": 0,
+			
+			"mp": 0,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
 		
 		"inventory": [
 			# Up
@@ -548,6 +1032,7 @@ var ForceMembers = [
 		"spells": []
 	},
 	
+	# Mae
 	{
 		"character": E_SF1_FM.MAE,
 		"leader": false,
@@ -563,8 +1048,76 @@ var ForceMembers = [
 		
 		"class": "Knight",
 		"class_short": "KNTE",
+		"class_idx": E_SF1_CLASSES.KNT,
 		
 		"level": 2,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 0,
+		
+		"movement_type": "Mounted",
+		
+		"stats": {
+			"attack": 5,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 5,
+			"defense_boost": 0,
+			
+			"agility": 7,
+			"agility_boost": 0,
+			
+			"move": 7,
+			"move_boost": 0,
+			
+			"hp": 11,
+			"hp_boost": 0,
+			
+			"mp": 0,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
 		
 		"inventory": [
 			# Up
@@ -583,6 +1136,7 @@ var ForceMembers = [
 		"spells": []
 	},
 	
+	# Khris
 	{
 		"character": E_SF1_FM.KHRIS,
 		"leader": false,
@@ -598,8 +1152,77 @@ var ForceMembers = [
 		
 		"class": "Healer",
 		"class_short": "HEAL",
+		"class_idx": E_SF1_CLASSES.HEAL,
 		
 		"level": 2,
+		
+		"status_effects": [
+			
+		],
+		
+		"ai_target_priority": 25,
+		
+		"movement_type": "Standard",
+		
+		"stats": {
+			"attack": 6,
+			"attack_boost": 0,
+			# resource for stat growth unprom
+			# and promoted probably should have those
+			
+			"defense": 5,
+			"defense_boost": 0,
+			
+			"agility": 4,
+			"agility_boost": 0,
+			
+			"move": 5,
+			"move_boost": 0,
+			
+			"hp": 10,
+			"hp_boost": 0,
+			
+			"mp": 7,
+			"mp_boost": 0,
+			
+			"critical_hit_chance": 3,
+			"critical_hit_chance_boost": 0,
+			
+			"double_attack_chance": 7,
+			"double_attack_chance_boost": 0,
+			
+			"dodge_chance": 10,
+			"dodge_chance_boost": 0,
+		},
+		
+		"resistances": {
+			"magic": 0,
+			"magic_boost": 0,
+			
+			"slow": 0,
+			"slow_boost": 0,
+			
+			"muddle": 0,
+			"muddle_boost": 0,
+			
+			"sleep": 0,
+			"sleep_boost": 0,
+			
+			"desoul": 0,
+			"desoul_boost": 0,
+			
+			"bolt": 0,
+			"bolt_boost": 0,
+			
+			"blaze": 0,
+			"blaze_boost": 0,
+			
+			"freeze": 0,
+			"freeze_boost": 0,
+		},
+		
+		"experience": 0,
+		
 		
 		"inventory": [
 			# Up
