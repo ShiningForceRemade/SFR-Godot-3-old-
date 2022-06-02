@@ -58,7 +58,7 @@ func retrieve_chest_contents() -> void:
 			
 			var found = false
 			for character in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
-				if character.inventory.size() < 4:
+				if character.unlocked && character.inventory.size() < 4:
 					# if Singleton_Game_GlobalCommonVariables.main_character_player_node.name == character.name
 					#
 					
