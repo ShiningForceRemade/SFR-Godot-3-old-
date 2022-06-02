@@ -129,26 +129,48 @@ var ForceMembers = [
 		"stats": {
 			"attack": 6,
 			"attack_boost": 0,
-			# resource for stat growth unprom
-			# and promoted probably should have those
+			"attack_target_unpromoted": 17,
+			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
+			"attack_target_promoted": 23,
+			"attack_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"defense": 4,
 			"defense_boost": 0,
+			"defense_target_unpromoted": 16,
+			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
+			"defense_target_promoted": 48,
+			"defense_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"agility": 4,
 			"agility_boost": 0,
+			"agility_target_unpromoted": 14,
+			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
+			"agility_target_promoted": 35,
+			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY],
 			
 			"move": 6,
 			"move_boost": 0,
 			
 			"hp": 12,
 			"hp_boost": 0,
+			"hp_target_unpromoted": 23,
+			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
+			"hp_target_promoted": 46,
+			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"mp": 8,
 			"mp_boost": 0,
+			"mp_target_unpromoted": 4,
+			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
+			"mp_target_promoted": 2,
+			"mp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_chance_target_unpromoted": 4,
+			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
+			"critical_hit_chance_target_promoted": 8,
+			"critical_hit_chance_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"double_attack_chance": 7,
 			"double_attack_chance_boost": 0,
