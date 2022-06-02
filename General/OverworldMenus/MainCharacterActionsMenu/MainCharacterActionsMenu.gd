@@ -74,18 +74,7 @@ func _process(_delta):
 			Singleton_Game_GlobalCommonVariables.main_character_player_node.interaction_attempt_to_search()
 			return
 		elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
-			is_menu_active = false
-			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
-			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-			hide()
-			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
-			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
-			
-			# disgusting remove these later but convertint to process instead of input with the just pressed action
-			yield(get_tree().create_timer(0.25), "timeout")
-			
-			Singleton_Game_GlobalCommonVariables.menus_root_node.s_show_overworld_inventory_menu()
-			
+			OpenInventoryMenu()
 			return
 		elif currently_selected_option == e_menu_options.MAGIC_OPTION:
 			is_menu_active = false
@@ -143,3 +132,18 @@ func set_sprites_to_zero_frame() -> void:
 	inventory_spirte.frame = 0
 	search_spirte.frame = 0
 
+
+func OpenInventoryMenu() -> void:
+	is_menu_active = false
+	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+	hide()
+	Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+	Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
+	
+	# disgusting remove these later but convertint to process instead of input with the just pressed action
+	# yield(get_tree().create_timer(0.25), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	Singleton_Game_GlobalCommonVariables.menus_root_node.s_show_overworld_inventory_menu()
+	

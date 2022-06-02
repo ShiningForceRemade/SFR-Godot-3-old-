@@ -151,11 +151,15 @@ func _input(event):
 		for i in fm_size:
 			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
 				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
-				Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
+				
+				if Singleton_Game_GlobalCommonVariables.selected_item != null:
+					Singleton_Game_GlobalCommonVariables.selected_target_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
+				else:
+					Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
 			
 				yield(get_tree().create_timer(0.1), "timeout")
 				match Singleton_Game_GlobalCommonVariables.action_type:
-					"GIVE": pass
+					"GIVE": SelectItemOrSelectItemReciever()
 					
 					"EQUIP": 
 						equipItemsControlNode.DisplayCharacterStats(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i])
@@ -171,10 +175,11 @@ func _input(event):
 		return
 		
 	elif event.is_action_pressed("ui_b_key"):
-		Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+		# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 		hide()
 		active = false
 		Singleton_Game_GlobalCommonVariables.action_type = null
+		Singleton_Game_GlobalCommonVariables.menus_root_node.OverworldActionMenuRoot.OpenInventoryMenu()
 	
 	
 func scroll_container_reset_line() -> void:
@@ -291,4 +296,33 @@ func CleanDisplayItemsFullInfoForNextDisplay() -> void:
 		
 		itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(1).text = ""
 		itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(0).hide()
+
+
+func SelectItemOrSelectItemReciever() -> void:
+	if Singleton_Game_GlobalCommonVariables.selected_item == null:
+		itemsViewControlNode.set_item_selection_menu_active()
+		return
 	
+	if Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.size() >= 4:
+		# TODO: display hands full message
+		
+		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+		
+		return
+	
+	Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.push_back(Singleton_Game_GlobalCommonVariables.selected_item)
+	
+	print(Singleton_Game_GlobalCommonVariables.selected_target_character.inventory)
+	
+	var li = Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.size()
+	Singleton_Game_GlobalCommonVariables.selected_target_character.inventory[li - 1].is_equipped = false
+	
+	Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(Singleton_Game_GlobalCommonVariables.selected_item_idx)
+	
+	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.selected_target_character)
+	
+	Singleton_Game_GlobalCommonVariables.selected_target_character = null
+	Singleton_Game_GlobalCommonVariables.selected_item = null
+	Singleton_Game_GlobalCommonVariables.selected_character = null
+	Singleton_Game_GlobalCommonVariables.selected_item_idx = null
+

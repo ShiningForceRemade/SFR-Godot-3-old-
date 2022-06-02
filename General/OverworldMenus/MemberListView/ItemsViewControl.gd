@@ -75,7 +75,7 @@ func _process(_delta):
 		print("")
 		
 		match Singleton_Game_GlobalCommonVariables.action_type:
-			"GIVE": pass
+			"GIVE": SetFindTargetOfGiveItem()
 			"EQUIP": SetEquipMenuActiveForCharacter()
 			"DROP": DropItemFromCharacter()
 			"USE": UseItemFromCharacter()
@@ -126,3 +126,25 @@ func SelectCharacterToRecieveItem() -> void:
 	
 	# TODO: impl
 	
+
+func SetFindTargetOfGiveItem() -> void:
+	# print(Singleton_Game_GlobalCommonVariables.selected_character.inventory, selected_item)
+	Singleton_Game_GlobalCommonVariables.selected_item = Singleton_Game_GlobalCommonVariables.selected_character.inventory[selected_item]
+	# TODO: clean var names to be clearer later
+	Singleton_Game_GlobalCommonVariables.selected_item_idx = selected_item
+	
+	# Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(selected_item)
+	# itemTextRedSelection.position = ITEM_TEXT_SELECTION_POSITIONS[0]
+	# selected_item = E_SelectedItem.UP
+	# get_parent().get_parent().DisplayItemsFullInfo(Singleton_Game_GlobalCommonVariables.selected_character)
+	
+	set_item_selection_menu_inactive()
+	get_parent().get_parent().active = true
+	
+	# pass
+
+### none of these should really be globals
+#var selected_character = null
+#var selected_item = null
+#var selected_target_character = null
+#var action_type = null

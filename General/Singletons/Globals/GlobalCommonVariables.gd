@@ -24,6 +24,7 @@ var item_box = []
 ## none of these should really be globals
 var selected_character = null
 var selected_item = null
+var selected_item_idx = null
 var selected_target_character = null
 var action_type = null
 ##
