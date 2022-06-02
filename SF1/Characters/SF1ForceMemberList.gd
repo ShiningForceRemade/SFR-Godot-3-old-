@@ -48,6 +48,24 @@ enum E_SF1_FM {
 	KHRIS
 }
 
+# TEMP: FIXME: refactor
+# make this this a global enum somewhere else
+enum E_SF1_CLASSES {
+	SDMN, KNT, WARR, SKNT, MAGE, MONK, HEAL, ACHR, ASKT,
+	BDMN, WKNT, DRGN, RBT, WRWF, SMR, NINJ, HERO, PLDN, 
+	GLDR, SBRN, WIZD, MSMK, VICR, BWMS, SKNT, SKYW, SKYL,
+	GRDR, CYBG, WFBN, YGRT, MGCR
+}
+# TEMP: FIXME: refactor
+# make this this a global enum somewhere else
+# taken from Item.gd
+enum E_SF1_ATTRIBUTES {
+	NONE, ATTACK, DEFENSE,
+	AGILITY, MOVE, CRITICAL, HP, MP,
+	YGRT
+}
+
+
 # TODO: copy over the base stats 
 # https://sf1.shiningforcecentral.com/characters/shining-force/
 
@@ -96,6 +114,7 @@ var ForceMembers = [
 		
 		"class": "Swordsman",
 		"class_short": "SWDM",
+		"class_idx": E_SF1_CLASSES.SDMN,
 		
 		"level": 1,
 		

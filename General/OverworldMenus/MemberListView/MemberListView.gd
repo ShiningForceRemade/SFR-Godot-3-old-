@@ -39,6 +39,10 @@ onready var itemsView_itemIconsControlNode = $StatNinePatchRect/ItemsViewControl
 onready var itemsView_itemNameAndEquippedControlNode = $StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode
 ### ItemIconsControlNode
 
+### EquipItemsControlNode
+onready var equipItemsControlNode = $StatNinePatchRect/EquipItemsViewControl
+### EquipItemsControlNode
+
 var current_selection = null
 
 func _ready():
@@ -143,10 +147,19 @@ func _input(event):
 				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
 				Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
 			
-				# active = false
 				yield(get_tree().create_timer(0.1), "timeout")
-				itemsViewControlNode.set_item_selection_menu_active()
-			
+				match Singleton_Game_GlobalCommonVariables.action_type:
+					"GIVE": pass
+					
+					"EQUIP": 
+						equipItemsControlNode.DisplayCharacterStats(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i])
+						itemsViewControlNode.hide()
+						equipItemsControlNode.set_equip_menu_active()
+						
+					_: itemsViewControlNode.set_item_selection_menu_active()
+				
+				# active = false
+				
 		# hide()
 		# active = false
 		return
@@ -155,6 +168,7 @@ func _input(event):
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 		hide()
 		active = false
+		Singleton_Game_GlobalCommonVariables.action_type = null
 	
 	
 func scroll_container_reset_line() -> void:
