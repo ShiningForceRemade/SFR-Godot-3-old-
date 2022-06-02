@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://SF1/Spells/SpellLevel.gd"
 }, {
 "base": "Resource",
+"class": "CN_SF1_StatGrowthCurves",
+"language": "GDScript",
+"path": "res://SF1/StatGrowthCurves/StatGrowthCurves.gd"
+}, {
+"base": "Resource",
 "class": "CN_SF_AnimationResource",
 "language": "GDScript",
 "path": "res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd"
@@ -72,6 +77,7 @@ _global_script_class_icons={
 "CN_SF1_Item_Weapon": "",
 "CN_SF1_Spell": "",
 "CN_SF1_Spell_Level": "",
+"CN_SF1_StatGrowthCurves": "",
 "CN_SF_AnimationResource": "",
 "CN_SF_AnimationSpellResource": "",
 "CN_SF_TargetRange": "",
