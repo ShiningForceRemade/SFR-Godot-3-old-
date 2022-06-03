@@ -1876,7 +1876,7 @@ position = Vector2( 824, 568 )
 preopend_chest = true
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 19 )]
-position = Vector2( 632, 592 )
+position = Vector2( 800, 520 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 

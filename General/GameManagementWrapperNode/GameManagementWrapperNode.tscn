@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn" type="PackedScene" id=1]
 [ext_resource path="res://General/Controls/DialogueBox/DialogueBox.tscn" type="PackedScene" id=2]
@@ -22,6 +22,10 @@
 [ext_resource path="res://General/UserInteractionPrompts/YesOrNo/YesOrNoPrompt.tscn" type="PackedScene" id=20]
 [ext_resource path="res://General/GameManagementWrapperNode/UserInteractionPrompts.gd" type="Script" id=21]
 [ext_resource path="res://General/OverworldMenus/InventoryMenu/InventoryMenu.tscn" type="PackedScene" id=22]
+[ext_resource path="res://General/ShopMenu/ShopMenu.tscn" type="PackedScene" id=23]
+[ext_resource path="res://General/ShopMenu/ItemSelectionMenu/ItemSelectionMenu.tscn" type="PackedScene" id=24]
+[ext_resource path="res://General/GameManagementWrapperNode/ShopMenuWrapperNode.gd" type="Script" id=25]
+[ext_resource path="res://General/OverworldMenus/MicroMemberListView/MicroMemberListView.tscn" type="PackedScene" id=26]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -770,8 +774,8 @@ rect_scale = Vector2( 0.75, 0.75 )
 visible = false
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 4.0
+margin_right = -261.0
+margin_bottom = -146.0
 rect_scale = Vector2( 0.8, 0.8 )
 
 [node name="OverworldActionsMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 9 )]
@@ -814,6 +818,21 @@ scale = Vector2( 0.8, 0.8 )
 
 [node name="PriestMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/PriestMenuWrapperNode"]
 
+[node name="ShopMenuWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode"]
+script = ExtResource( 25 )
+
+[node name="ShopMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode" instance=ExtResource( 23 )]
+visible = false
+position = Vector2( 129, 134 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="ShopMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode"]
+
+[node name="ShopItemSelectionMenuNode" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode" instance=ExtResource( 24 )]
+visible = false
+position = Vector2( 31, -4 )
+scale = Vector2( 0.8, 0.8 )
+
 [node name="HQMenusWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
 script = ExtResource( 17 )
 
@@ -825,6 +844,13 @@ scale = Vector2( 0.8, 0.8 )
 [node name="HQMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/HQMenusWrapperNode"]
 
 [node name="BattleMenuAndUIWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
+
+[node name="MicroMemberListWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
+
+[node name="MicroMemberListViewNodeRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/MicroMemberListWrapperNode" instance=ExtResource( 26 )]
+visible = false
+position = Vector2( 34, 2.38419e-07 )
+scale = Vector2( 0.8, 0.8 )
 
 [node name="UserInteractionPrompts" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
 script = ExtResource( 21 )

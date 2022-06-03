@@ -20,6 +20,17 @@ onready var UserInteractionPromptsRoot = $UserInteractionPrompts
 onready var GoldInfoBox = $OverworldWrapperNode/MenusNodeWrapper/GoldInfoBox
 onready var CharacterInfoBox = $OverworldWrapperNode/MenusNodeWrapper/BattleCharacterOrEnemeyMicroInfoRoot
 
+## shop menu nodes
+onready var ShopMenuWrapperNode = $OverworldWrapperNode/ShopMenuWrapperNode
+onready var ShopMenuActionMenu = $OverworldWrapperNode/ShopMenuWrapperNode/ShopMenuRoot
+onready var ShopItemSelectionMenu = $OverworldWrapperNode/ShopMenuWrapperNode/ShopItemSelectionMenuNode
+##
+
+onready var MicroMemberListWrapperNode = $MicroMemberListWrapperNode
+onready var MicroMemberListViewMenu = $MicroMemberListWrapperNode/MicroMemberListViewNodeRoot
+
+
+
 func _ready():
 	Singleton_Game_GlobalCommonVariables.menus_root_node = self
 

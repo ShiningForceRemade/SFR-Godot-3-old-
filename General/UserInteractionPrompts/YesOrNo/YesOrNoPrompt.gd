@@ -3,6 +3,8 @@ extends Node2D
 # center screen position
 # 132, 101
 
+signal signal__yes_or_no_prompt__choice
+
 var is_menu_active: bool = false
 
 enum e_menu_options {
@@ -49,6 +51,8 @@ func _process(_delta):
 			
 			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_hide__yes_or_no_prompt()
 			
+			emit_signal("signal__yes_or_no_prompt__choice", "YES")
+			
 			# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 			# Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
 			# Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
@@ -61,6 +65,8 @@ func _process(_delta):
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
 			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_hide__yes_or_no_prompt()
+			
+			emit_signal("signal__yes_or_no_prompt__choice", "NO")
 			
 			# Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://General/PriestMenu/Scripts/AttemptToRaiseDead.json"

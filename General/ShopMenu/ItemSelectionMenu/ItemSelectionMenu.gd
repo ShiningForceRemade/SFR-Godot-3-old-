@@ -1,13 +1,17 @@
-tool
+# tool
+# NOTE: tool is only enabled for testing
+# don't leave it on or the console output will spam ui_{X}_key not defined when it actually is during 
+# the game running
+
 extends Node2D
 
 export(Array, Resource) var item_list
 
-var is_active: bool = true
+var is_menu_active: bool = false
 
 var current_item_selected: int = 0
 
-onready var shop_item_scene = load("res://General/ShopMenus/ShopItem.tscn")
+onready var shop_item_scene = load("res://General/ShopMenu/ItemSelectionMenu/ShopItem.tscn")
 
 onready var shop_items_container_node = $ShopItemsStatNinePatchRect/HBoxContainer
 
@@ -27,13 +31,60 @@ func _ready():
 	pass
 
 
-func _input(event):
-	if event.is_action_pressed("ui_a_key"):
-		print("Attempt to buy item")
-	elif event.is_action_pressed("ui_b_key"):
+func set_menu_active():
+	is_menu_active = true
+
+
+func _process(_delta):
+	if !is_menu_active:
+		return
+	
+	
+	if Input.is_action_just_pressed("ui_a_key"):
+		
+		match Singleton_Game_GlobalCommonVariables.action_type:
+			"SHOP_BUY":
+				
+				if Singleton_Game_GlobalCommonVariables.gold < item_list[current_item_selected].price_buy:
+					Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+					return
+				
+				print("Attempt to buy item")
+				
+				is_menu_active = false
+				
+				Singleton_Game_GlobalCommonVariables.selected_item = item_list[current_item_selected]
+				
+				Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+				
+				var display_str = ""
+				display_str = item_list[current_item_selected].item_name + ", right?\n"
+				display_str = display_str + "That comes to " + str(item_list[current_item_selected].price_buy) + " coins.\nOK?"
+				
+				Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+				
+				var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+				# yield(get_tree().create_timer(0.02), "timeout")
+			
+				print("\n Result - ", result, "\n")
+		
+				if result == "NO":
+					is_menu_active = true
+				elif result == "YES":
+					hide()
+					Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("Who do you wish to have it?")
+					Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.set_menu_active()
+					Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.show()
+			
+				print("Show New Menu")
+			
+		
+		return
+		
+	elif Input.is_action_just_pressed("ui_b_key"):
 		print("Cancel")
 	
-	elif event.is_action_pressed("ui_left"):
+	elif Input.is_action_just_pressed("ui_left"):
 		print("Left")
 		
 		if check_if_next_or_prev_item_exists(current_item_selected - 1):
@@ -42,7 +93,7 @@ func _input(event):
 			display_item_info(item_list[current_item_selected])
 			move_info_box(current_item_selected, -21)
 		
-	elif event.is_action_pressed("ui_right"):
+	elif Input.is_action_just_pressed("ui_right"):
 		print("Right")
 		
 		if check_if_next_or_prev_item_exists(current_item_selected + 1):

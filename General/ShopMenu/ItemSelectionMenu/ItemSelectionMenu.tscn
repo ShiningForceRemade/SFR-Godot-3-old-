@@ -1,21 +1,21 @@
 [gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://General/ShopMenu/ItemSelectionMenu/ItemSelectionMenu.gd" type="Script" id=1]
 [ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=2]
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://General/ShopMenus/ItemSelectionMenu.gd" type="Script" id=4]
-[ext_resource path="res://SF1/Items/Weapons/ShortSword.tres" type="Resource" id=5]
-[ext_resource path="res://SF1/Items/Weapons/BronzeLance.tres" type="Resource" id=6]
+[ext_resource path="res://SF1/Items/Weapons/ShortSword.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://SF1/Items/Weapons/Spear.tres" type="Resource" id=5]
+[ext_resource path="res://SF1/Items/Weapons/WoodenStaff.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/Items/Weapons/HandAxe.tres" type="Resource" id=7]
 [ext_resource path="res://SF1/Items/Weapons/WoodenArrow.tres" type="Resource" id=8]
-[ext_resource path="res://SF1/Items/Weapons/Spear.tres" type="Resource" id=9]
-[ext_resource path="res://SF1/Items/Weapons/WoodenStaff.tres" type="Resource" id=10]
+[ext_resource path="res://SF1/Items/Weapons/BronzeLance.tres" type="Resource" id=9]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/ShiningForceTextBackground.png-9ed310a4373b06707cc2cedc48b3ad37.stex"
 
-[node name="ShopItemSelectionMenuNode2D" type="Node2D"]
-script = ExtResource( 4 )
-item_list = [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ) ]
+[node name="ShopItemSelectionMenuNode" type="Node2D"]
+script = ExtResource( 1 )
+item_list = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 6 ) ]
 
 [node name="ShopItemsStatNinePatchRect" type="NinePatchRect" parent="."]
 anchor_left = 0.5
@@ -73,7 +73,7 @@ margin_left = 8.66667
 margin_top = 9.66668
 margin_right = -14.3333
 margin_bottom = -17.3333
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "Medical Herb"
 autowrap = true
 __meta__ = {
@@ -88,7 +88,7 @@ margin_left = 3.33333
 margin_top = 32.6667
 margin_right = -8.66667
 margin_bottom = -7.33333
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 text = "100"
 align = 2
 valign = 1

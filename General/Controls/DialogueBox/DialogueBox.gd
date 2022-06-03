@@ -62,8 +62,10 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 
 func play_message(str_arg = "") -> void:
 	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
+	dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
+	dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
 	
-	dialogueRichTextLabel.percent_visible = 1
+	dialogueRichTextLabel.percent_visible = 0
 	dialogueRichTextLabel.bbcode_text = ""
 	
 	visible = true
@@ -86,6 +88,33 @@ func play_message(str_arg = "") -> void:
 	# yield(get_tree().create_timer(0.5), "timeout")
 	# get_tree().paused = true
 
+
+
+
+func play_message_none_interactable(str_arg = "") -> void:
+	dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
+	dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
+	
+	dialogueRichTextLabel.percent_visible = 0
+	dialogueRichTextLabel.bbcode_text = ""
+	
+	visible = true
+	dialogue_box_is_visible = visible
+	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
+	active = false
+	
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+	
+	dialogueRichTextLabel.show()
+	dialogueRichTextLabel.bbcode_text = str_arg
+	
+	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
+	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	
+	dialogueTween.start()
+	
+	# yield(get_tree().create_timer(0.5), "timeout")
+	# get_tree().paused = true
 
 
 # signal signal__dialoguebox__finished_dialog
@@ -122,6 +151,12 @@ func _process_new_resource_file():
 			print("\tError String: ", parsed_external_file.error_string)
 	
 		file.close()
+		
+		
+		dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
+		dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
+		
+		
 		visible = true
 		dialogue_box_is_visible = visible
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
@@ -279,4 +314,6 @@ func ShowMenu(string_arg: String) -> void:
 	elif  string_arg == "PriestMenu":
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 		Singleton_Game_GlobalCommonVariables.menus_root_node.PriestMenuWrapperRoot.s_show_priest_menu()
-	
+	elif  string_arg == "ShopMenu":
+		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
+		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_menu()
