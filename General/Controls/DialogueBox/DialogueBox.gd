@@ -196,6 +196,9 @@ func load_dialog():
 	print("Here")
 	active = true
 	
+	# dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
+	# dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
+	
 	if dialogue_index < dialogue.size():
 		finished = false
 		for key in dialogue[dialogue_index]:
@@ -287,6 +290,10 @@ func load_dialog():
 		active = false
 		emit_signal("signal__dialogbox__finished_dialog")
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
+		
+		# Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
+		# dialogue_index = 0
+		# dialogue = null
 		
 		if Singleton_Game_GlobalCommonVariables.interaction_node_reference != null:
 			Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()

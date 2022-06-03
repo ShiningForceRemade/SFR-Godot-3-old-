@@ -25,14 +25,17 @@ onready var InventoryPreviewRoot = $InventoryPreviewRoot
 var current_selection = null
 
 func _ready():
-	# var invisible_scrollbar_theme = Theme.new()
-	# var empty_stylebox = StyleBoxEmpty.new()
-	# invisible_scrollbar_theme.set_stylebox("scroll", "VScrollBar", empty_stylebox)
-	# invisible_scrollbar_theme.set_stylebox("scroll", "HScrollBar", empty_stylebox)
-	# ScollbarContainerNode.get_v_scrollbar().theme = invisible_scrollbar_theme
-	# ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
+	var invisible_scrollbar_theme = Theme.new()
+	var empty_stylebox = StyleBoxEmpty.new()
+	invisible_scrollbar_theme.set_stylebox("scroll", "VScrollBar", empty_stylebox)
+	invisible_scrollbar_theme.set_stylebox("scroll", "HScrollBar", empty_stylebox)
+	ScollbarContainerNode.get_v_scrollbar().theme = invisible_scrollbar_theme
+	ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
 	
 	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
+	
+	# Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0]
+	# current_selection = Singleton_Game_GlobalCommonVariables.selected_character.character
 	
 	# Test not used node
 	# var c = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0]
@@ -64,7 +67,22 @@ func _ready():
 
 func set_menu_active() -> void:
 	active = true
-	red_selection.position = Vector2(63, 11)
+	
+#	if current_selection == null:
+#		current_selection == Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0].character
+#		Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0]
+#	else:
+#		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
+#
+#		for i in fm_size:
+#			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
+#				current_selection = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character
+#				Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
+#
+	# red_selection.position = Vector2(63, 11)
+	# scroll_container_reset_line()
+	# Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0]
+	# DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
 
 
 func set_menu_inactive() -> void:
@@ -316,96 +334,6 @@ func StartCharacterItemSelectionForSell() -> void:
 	pass
 
 
-#func _input(event):
-#	if active == false:
-#		return
-#
-#	if event.is_action_pressed("ui_down"):
-#		print("a")
-#
-#		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
-#
-#		for i in fm_size:
-#			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
-#				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
-#
-#				if i + 1 >= fm_size:
-#					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
-#					red_selection.position = Vector2(21, 96)
-#					scroll_container_reset_line()
-#				else:
-#					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i + 1])
-#					if red_selection.position != Vector2(21, 96 + (12 * 5)):
-#						red_selection.position = Vector2(21, red_selection.position.y + 12)
-#
-#					if i >= 5 && i < fm_size:
-#						scroll_container_move_down_line()
-#
-#				break
-#
-#	elif event.is_action_pressed("ui_up"):
-#		print("a")
-#
-#		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
-#
-#		for i in fm_size:
-#			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
-#				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
-#
-#				if i - 1 <= -1:
-#					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_size - 1])
-#					red_selection.position = Vector2(21, 96 + (12 * 5))
-#					scroll_container_wrap_to_bottom()
-#				else:
-#					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i - 1])
-#					if red_selection.position != Vector2(21, 96):
-#						red_selection.position = Vector2(21, red_selection.position.y - 12)
-#
-#					# temp not usable
-#					if i < 5:
-#						scroll_container_move_up_line()
-#
-#
-#				break
-#
-#	elif event.is_action_pressed("ui_a_key"):
-#		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
-#
-#		for i in fm_size:
-#			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
-#				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
-#
-#				if Singleton_Game_GlobalCommonVariables.selected_item != null:
-#					Singleton_Game_GlobalCommonVariables.selected_target_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
-#				else:
-#					Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
-#
-#				yield(get_tree().create_timer(0.1), "timeout")
-#				match Singleton_Game_GlobalCommonVariables.action_type:
-#					"GIVE": SelectItemOrSelectItemReciever()
-#
-#					"EQUIP": 
-#						equipItemsControlNode.DisplayCharacterStats(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i])
-#						itemsViewControlNode.hide()
-#						equipItemsControlNode.set_equip_menu_active()
-#
-#					_: itemsViewControlNode.set_item_selection_menu_active()
-#
-#				# active = false
-#
-#		# hide()
-#		# active = false
-#		return
-#
-#	elif event.is_action_pressed("ui_b_key"):
-#		# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
-#		hide()
-#		active = false
-#		Singleton_Game_GlobalCommonVariables.action_type = null
-#		Singleton_Game_GlobalCommonVariables.menus_root_node.OverworldActionMenuRoot.OpenInventoryMenu()
-#
-#
-
 func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	DisplayItemsFullInfo(force_member)
 	
@@ -417,92 +345,28 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	
 	cnode = load(c.character_base_node).instance();
 	var cnode_actor = cnode.get_actor_root_node_internal()
-	# print(cnode, cnode_actor)
 	
 	portrait_sprite.texture = cnode_actor.texture_protrait
-	# selected_character_info_name_label.text = c.name
-	# selected_character_info_class_label.text = c.class
-	# selected_character_info_level_label.text = str(c.level)
-	
-	
-#
-#	# Inventory
-#	for child in selected_character_info_inventory_vbox.get_children():
-#		child.queue_free()
-#
-#	# cnode_actor.inventory_items_id;
-#	# cnode_actor.is_item_equipped;
-#
-#	if cnode_actor.inventory_items_id.size() > 0:
-#		selected_character_info_inventory_nothing.hide()
-#		selected_character_info_inventory_vbox.show()
-#
-#		for i in cnode_actor.inventory_items_id.size():
-#			var mil = MemberItemLine.instance()
-#
-#			mil.get_node("ItemLabel").text = cnode_actor.inventory_items_id[i].item_name
-#
-#			if cnode_actor.is_item_equipped[i]:
-#				mil.get_node("EquippedStaticLabel").show()
-#			else:
-#				mil.get_node("EquippedStaticLabel").hide()
-#
-#			selected_character_info_inventory_vbox.add_child(mil)
-#
-#	else:
-#		selected_character_info_inventory_nothing.show()
-#		selected_character_info_inventory_vbox.hide()
 
 
 func DisplayItemsFullInfo(force_member) -> void:
 	var c = force_member
 	CleanDisplayItemsFullInfoForNextDisplay()
 	
-	# itemsViewControlNode
-	
 	var i = 0
 	for item in c.inventory:
 		var irl = load(item.resource)
 		print(irl)
 		InventoryPreviewRoot.get_child(i).texture = irl.texture
-		
-		# itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(1).text = irl.item_name
-		# if force_member.inventory[i].is_equipped:
-		# itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(0).show()
-		
 		i = i + 1
+
 
 func CleanDisplayItemsFullInfoForNextDisplay() -> void:
 	for i in 4:
 		InventoryPreviewRoot.get_child(i).texture = EmptyItemSlotTexture
-		
-		# itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(1).text = ""
-		# itemsView_itemNameAndEquippedControlNode.get_child(i).get_child(0).hide()
 
-#
-#func SelectItemOrSelectItemReciever() -> void:
-#	if Singleton_Game_GlobalCommonVariables.selected_item == null:
-#		itemsViewControlNode.set_item_selection_menu_active()
-#		return
-#
-#	if Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.size() >= 4:
-#		# TODO: display hands full message
-#
-#		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
-#
-#		return
-#
-#	Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.push_back(Singleton_Game_GlobalCommonVariables.selected_item)
-#
-#	print(Singleton_Game_GlobalCommonVariables.selected_target_character.inventory)
-#
-#	var li = Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.size()
-#	Singleton_Game_GlobalCommonVariables.selected_target_character.inventory[li - 1].is_equipped = false
-#
-#	Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(Singleton_Game_GlobalCommonVariables.selected_item_idx)
-#
-#	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.selected_target_character)
-#
+
+
 #	Singleton_Game_GlobalCommonVariables.selected_target_character = null
 #	Singleton_Game_GlobalCommonVariables.selected_item = null
 #	Singleton_Game_GlobalCommonVariables.selected_character = null
