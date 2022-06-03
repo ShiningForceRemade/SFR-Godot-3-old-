@@ -1,5 +1,8 @@
 extends Control
 
+var EmptyItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+var UnequipItemSlotTexture = load("res://Assets/SFCD/Items/UnequipHand.png")
+
 onready var characterStatsPreviewControlNode = $CharacterStatsPreviewControlNode
 onready var redSelectionNode = $RedSelectionBorderRoot
 onready var selectedItemLabel = $SelectedItemLabel
@@ -38,6 +41,8 @@ func _ready():
 
 func set_equip_menu_active():
 	# show()
+	# CleanItemSlots()
+	
 	if Singleton_Game_GlobalCommonVariables.selected_character.inventory.size() > 0:
 		get_parent().get_parent().active = false
 		is_equip_menu_active = true
@@ -50,6 +55,14 @@ func set_equip_menu_active():
 		# itemTextRedSelection.show()
 	else:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+
+
+func CleanItemSlots() -> void:
+	var iicn = get_node("ItemIconsControlNode")
+	for i in 3:
+		iicn.get_child(i).texture = EmptyItemSlotTexture
+	
+	iicn.get_child(3).texture = UnequipItemSlotTexture
 
 
 func set_equip_menu_inactive() -> void:

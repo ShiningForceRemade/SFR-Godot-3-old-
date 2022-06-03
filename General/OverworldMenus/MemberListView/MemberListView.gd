@@ -85,11 +85,20 @@ func _ready():
 
 func set_items_view_active():
 	overview_mangic_and_inventory_control_node.hide()
+	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
+#	itemsViewControlNode.CleanItemSlots()
+#	itemsViewControlNode.DisplayItems()
+	
+	current_selection = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0].character
+	red_selection.position = Vector2(21, 94)
+	
+	equipItemsControlNode.CleanItemSlots()
 	itemsViewControlNode.show()
 
 
 func set_overvview_view_active():
 	itemsViewControlNode.hide()
+	itemsViewControlNode.CleanItemSlots()
 	overview_mangic_and_inventory_control_node.show()
 
 

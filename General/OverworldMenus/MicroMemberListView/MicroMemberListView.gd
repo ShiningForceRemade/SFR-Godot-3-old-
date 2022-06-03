@@ -68,6 +68,8 @@ func _ready():
 func set_menu_active() -> void:
 	active = true
 	
+# DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
+	
 #	if current_selection == null:
 #		current_selection == Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0].character
 #		Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0]
@@ -87,6 +89,7 @@ func set_menu_active() -> void:
 
 func set_menu_inactive() -> void:
 	active = false
+	# InventoryPreviewRoot.CleanItemSlots()
 	# red_selection.position = Vector2(63, 11)
 
 

@@ -1,5 +1,7 @@
 extends Control
 
+var EmptyItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+
 onready var itemTextRedSelection = $ItemTextRedSelectionBorderRoot
 
 const ITEM_TEXT_SELECTION_POSITIONS = [
@@ -25,6 +27,9 @@ func _ready():
 
 
 func set_item_selection_menu_active():
+	# CleanItemSlots()
+	# DisplayItems()
+	
 	if Singleton_Game_GlobalCommonVariables.selected_character.inventory.size() > 0:
 		get_parent().get_parent().active = false
 		is_item_view_selection_menu_active = true
@@ -37,7 +42,22 @@ func set_item_selection_menu_active():
 func set_item_selection_menu_inactive():
 	is_item_view_selection_menu_active = false
 	itemTextRedSelection.hide()
+	# CleanItemSlots()
 
+func CleanItemSlots() -> void:
+	var iicn = get_node("ItemIconsControlNode")
+	for i in 4:
+		iicn.get_child(i).texture = EmptyItemSlotTexture
+
+func DisplayItems() -> void:
+	var iicn = get_node("ItemIconsControlNode")
+	var i = 0
+	if Singleton_Game_GlobalCommonVariables.selected_character.inventory.size() > 0:
+		for item in Singleton_Game_GlobalCommonVariables.selected_character.inventory:
+			var irl = load(item.resource)
+			iicn.get_child(i).texture = irl.texture
+			i = i + 1
+	
 
 func _process(_delta):
 	if !is_item_view_selection_menu_active:
