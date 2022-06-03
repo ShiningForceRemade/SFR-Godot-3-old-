@@ -140,11 +140,13 @@ func _input(event):
 				match Singleton_Game_GlobalCommonVariables.action_type:
 					"SHOP_BUY": CompletePurchaseAndGiveItemToSelectedCharacter()
 					
-					"EQUIP": 
+					"SHOP_SELL": StartCharacterItemSelectionForSell()
+					
+					# "EQUIP": 
 						# equipItemsControlNode.DisplayCharacterStats(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i])
 						# itemsViewControlNode.hide()
 						# equipItemsControlNode.set_equip_menu_active()
-						pass
+					#	pass
 						
 					# _: itemsViewControlNode.set_item_selection_menu_active()
 				
@@ -306,7 +308,12 @@ func CompletePurchaseAndGiveItemToSelectedCharacter() -> void:
 		
 
 
-
+func StartCharacterItemSelectionForSell() -> void:
+	active = false
+	
+	$InventoryPreviewRoot.set_menu_active()
+	
+	pass
 
 
 #func _input(event):

@@ -83,6 +83,12 @@ func _process(_delta):
 		
 	elif Input.is_action_just_pressed("ui_b_key"):
 		print("Cancel")
+		is_menu_active = false
+		hide()
+		Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+		Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+		
+		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_menu()
 	
 	elif Input.is_action_just_pressed("ui_left"):
 		print("Left")
