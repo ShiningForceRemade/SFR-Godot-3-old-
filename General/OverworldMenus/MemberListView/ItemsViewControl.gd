@@ -110,7 +110,7 @@ func UseItemFromCharacter() -> void:
 
 
 func SetEquipMenuActiveForCharacter() -> void:
-	Singleton_Game_GlobalCommonVariables.selected_character
+	# Singleton_Game_GlobalCommonVariables.selected_character
 	hide()
 	is_item_view_selection_menu_active = false
 	
@@ -122,8 +122,8 @@ func SetEquipMenuActiveForCharacter() -> void:
 
 
 func SelectCharacterToRecieveItem() -> void:
-	Singleton_Game_GlobalCommonVariables.selected_character
-	
+	# Singleton_Game_GlobalCommonVariables.selected_character
+	pass
 	# TODO: impl
 	
 

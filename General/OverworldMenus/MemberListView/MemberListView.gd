@@ -46,12 +46,12 @@ onready var equipItemsControlNode = $StatNinePatchRect/EquipItemsViewControl
 var current_selection = null
 
 func _ready():
-	# var invisible_scrollbar_theme = Theme.new()
-	# var empty_stylebox = StyleBoxEmpty.new()
-	# invisible_scrollbar_theme.set_stylebox("scroll", "VScrollBar", empty_stylebox)
-	# invisible_scrollbar_theme.set_stylebox("scroll", "HScrollBar", empty_stylebox)
-	# ScollbarContainerNode.get_v_scrollbar().theme = invisible_scrollbar_theme
-	# ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
+	var invisible_scrollbar_theme = Theme.new()
+	var empty_stylebox = StyleBoxEmpty.new()
+	invisible_scrollbar_theme.set_stylebox("scroll", "VScrollBar", empty_stylebox)
+	invisible_scrollbar_theme.set_stylebox("scroll", "HScrollBar", empty_stylebox)
+	ScollbarContainerNode.get_v_scrollbar().theme = invisible_scrollbar_theme
+	ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
 	
 	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
 	
@@ -108,11 +108,11 @@ func _input(event):
 				
 				if i + 1 >= fm_size:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
-					red_selection.position = Vector2(21, 96)
+					red_selection.position = Vector2(21, 94)
 					scroll_container_reset_line()
 				else:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i + 1])
-					if red_selection.position != Vector2(21, 96 + (12 * 5)):
+					if red_selection.position != Vector2(21, 94 + (12 * 5)):
 						red_selection.position = Vector2(21, red_selection.position.y + 12)
 					
 					if i >= 5 && i < fm_size:
@@ -131,11 +131,11 @@ func _input(event):
 				
 				if i - 1 <= -1:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_size - 1])
-					red_selection.position = Vector2(21, 96 + (12 * 5))
+					red_selection.position = Vector2(21, 94 + (12 * 5))
 					scroll_container_wrap_to_bottom()
 				else:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i - 1])
-					if red_selection.position != Vector2(21, 96):
+					if red_selection.position != Vector2(21, 94):
 						red_selection.position = Vector2(21, red_selection.position.y - 12)
 					
 					# temp not usable
@@ -178,8 +178,14 @@ func _input(event):
 		# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 		hide()
 		active = false
-		Singleton_Game_GlobalCommonVariables.action_type = null
+		# Singleton_Game_GlobalCommonVariables.action_type = null
 		Singleton_Game_GlobalCommonVariables.menus_root_node.OverworldActionMenuRoot.OpenInventoryMenu()
+		
+		Singleton_Game_GlobalCommonVariables.selected_character = null
+		Singleton_Game_GlobalCommonVariables.selected_item = null
+		Singleton_Game_GlobalCommonVariables.selected_item_idx = null
+		Singleton_Game_GlobalCommonVariables.selected_target_character = null
+		Singleton_Game_GlobalCommonVariables.action_type = null
 	
 	
 func scroll_container_reset_line() -> void:
@@ -325,4 +331,3 @@ func SelectItemOrSelectItemReciever() -> void:
 	Singleton_Game_GlobalCommonVariables.selected_item = null
 	Singleton_Game_GlobalCommonVariables.selected_character = null
 	Singleton_Game_GlobalCommonVariables.selected_item_idx = null
-

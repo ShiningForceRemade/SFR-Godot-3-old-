@@ -1,5 +1,7 @@
 extends Node2D
 
+var EmptyItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+
 onready var SlotUpSprite = $SlotUpSprite
 onready var SlotLeftSprite = $SlotLeftSprite
 onready var SlotRightSprite = $SlotRightSprite
@@ -28,6 +30,7 @@ func _ready():
 
 
 func set_menu_active() -> void:
+	# CleanItemSlots()
 	active = true
 	current_selection = E_ItemSelection.UP
 	RedSelectionBorderRoot.position = RedSelectionPositions[current_selection]
@@ -37,6 +40,13 @@ func set_menu_active() -> void:
 func set_menu_inactive() -> void:
 	active = false
 	RedSelectionBorderRoot.hide()
+
+
+func CleanItemSlots() -> void:
+	SlotUpSprite.texture = EmptyItemSlotTexture
+	SlotLeftSprite.texture = EmptyItemSlotTexture
+	SlotRightSprite.texture = EmptyItemSlotTexture
+	SlotDownSprite.texture = EmptyItemSlotTexture
 
 
 func _process(_delta):
@@ -122,7 +132,8 @@ func ConfirmSellOfItem() -> void:
 	
 	var irl = load(Singleton_Game_GlobalCommonVariables.selected_character.inventory[current_selection].resource)
 	
-	var display_str = "I'll pay " + str(irl.price_sell) + " gold coins for it. OK?"
+	# var display_str = "I'll pay " + str(irl.price_sell) + " gold coins for it. OK?"
+	var display_str = "I'll pay " + str(irl.price_sell) + " gold coins for the\n" + irl.item_name + "\n OK?"
 	
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 	Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
@@ -134,15 +145,18 @@ func ConfirmSellOfItem() -> void:
 	elif result == "YES":
 		Singleton_Game_GlobalCommonVariables.gold = Singleton_Game_GlobalCommonVariables.gold + irl.price_sell
 		
+		print(Singleton_Game_GlobalCommonVariables.selected_character.inventory)
+		print(current_selection)
+		Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(current_selection)
+		print(Singleton_Game_GlobalCommonVariables.selected_character.inventory)
+		
+		Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.UpdateGoldAmountDisplay()
+		Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.selected_character)
+		
 		# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
 		# Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
 		current_selection = E_ItemSelection.UP
 		RedSelectionBorderRoot.position = RedSelectionPositions[current_selection]
-		
-		Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(current_selection)
-		
-		Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.UpdateGoldAmountDisplay()
-		Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.selected_character)
 		
 		active = true
 		return

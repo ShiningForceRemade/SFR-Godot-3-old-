@@ -31,6 +31,12 @@ func _ready():
 func set_menu_active() -> void:
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 	
+	Singleton_Game_GlobalCommonVariables.selected_character = null
+	Singleton_Game_GlobalCommonVariables.selected_item = null
+	Singleton_Game_GlobalCommonVariables.selected_item_idx = null
+	Singleton_Game_GlobalCommonVariables.selected_target_character = null
+	Singleton_Game_GlobalCommonVariables.action_type = null
+
 	yield(get_tree().create_timer(0.02), "timeout")
 	
 	is_menu_active = true

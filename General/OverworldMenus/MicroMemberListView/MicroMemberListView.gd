@@ -101,7 +101,7 @@ func _input(event):
 			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
 				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
 				
-				red_selection.position
+				# red_selection.position
 			
 				if i + 1 >= fm_size:
 					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
@@ -143,8 +143,6 @@ func _input(event):
 	elif event.is_action_pressed("ui_a_key"):
 		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
 		
-		
-		
 		for i in fm_size:
 			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
 				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
@@ -158,7 +156,9 @@ func _input(event):
 				match Singleton_Game_GlobalCommonVariables.action_type:
 					"SHOP_BUY": CompletePurchaseAndGiveItemToSelectedCharacter()
 					
-					"SHOP_SELL": StartCharacterItemSelectionForSell()
+					"SHOP_SELL":
+						Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
+						StartCharacterItemSelectionForSell()
 					
 					# "EQUIP": 
 						# equipItemsControlNode.DisplayCharacterStats(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i])
@@ -223,7 +223,10 @@ func SelectItemOrSelectItemReciever() -> void:
 		
 		return
 	
-	Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.push_back(Singleton_Game_GlobalCommonVariables.selected_item)
+	Singleton_Game_GlobalCommonVariables.selected_target_character.inventory.push_back({
+		"resource": Singleton_Game_GlobalCommonVariables.selected_item.resource_path,
+		"is_equipped": false
+	})
 	
 	print(Singleton_Game_GlobalCommonVariables.selected_target_character.inventory)
 	
@@ -259,7 +262,7 @@ func CompletePurchaseAndGiveItemToSelectedCharacter() -> void:
 	# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
 	# return
 	
-	Singleton_Game_GlobalCommonVariables.selected_item
+	# Singleton_Game_GlobalCommonVariables.selected_item
 	
 	var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
 	var character = null
