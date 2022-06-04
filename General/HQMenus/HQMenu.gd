@@ -28,9 +28,8 @@ func _ready():
 
 
 func set_menu_active() -> void:
-	is_menu_active = true
-	
 	yield(get_tree().create_timer(0.02), "timeout")
+	is_menu_active = true
 	
 	set_sprites_to_zero_frame()
 	currently_selected_option = e_menu_options.ADVICE_OPTION
@@ -47,7 +46,6 @@ func _process(delta):
 		return
 		
 	if Input.is_action_just_pressed("ui_a_key"):
-		yield(get_tree().create_timer(0.05), "timeout")
 		# event.is_action_released("ui_accept"):
 		print("Accept Action - ", currently_selected_option)
 		if currently_selected_option == e_menu_options.STATS_OPTION:
@@ -107,19 +105,27 @@ func _process(delta):
 			return
 		elif currently_selected_option == e_menu_options.JOIN_OPTION:
 			is_menu_active = false
+			# Singleton_Game_GlobalCommonVariables.main_character_player_node.interaction_attempt_to_talk()
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+			hide()
+			# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 			
-			if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().spells_id.size() == 0:
-				noValidOptionNode.re_show_action_menu = true
-				noValidOptionNode.set_no_maigc_text()
-				# get_parent().get_parent().get_parent().s_hide_action_menu()
-				get_parent().get_parent().get_parent().s_hide_character_action_menu()
-				get_parent().get_parent().get_parent().s_show_no_valid_option_warning_box()
-			else:
-				get_parent().get_parent().get_parent().s_hide_action_menu()
-				get_parent().get_parent().get_parent().s_show_battle_magic_menu()
-				
+			Singleton_Game_GlobalCommonVariables.action_type = "HQ_JOIN_OR_LEAVE"
+			
+			# Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
+			
+			# Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().show()
+			# Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().ShopMenuPosition()
+	
+			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
+			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+			
+			# Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_item_selection_menu()
+			
+			Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.set_menu_active()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.show()
+			
 			return
 		elif currently_selected_option == e_menu_options.ADVICE_OPTION:
 			is_menu_active = false
@@ -128,10 +134,13 @@ func _process(delta):
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
+			yield(get_tree().create_timer(0.2), "timeout")
+			
 			match Singleton_Game_GlobalCommonVariables.upcoming_battle_number:
 				1: Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/HQ/Default/Scripts/ActiveForceQuotes/Tao.json"
 				_: pass
 			
+			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.active = false
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 			return
 	

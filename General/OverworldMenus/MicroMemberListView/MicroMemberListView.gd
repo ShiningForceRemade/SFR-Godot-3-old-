@@ -173,6 +173,10 @@ func _input(event):
 						Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
 						StartCharacterItemSelectionForSell()
 					
+					"HQ_JOIN_OR_LEAVE":
+						Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
+						ToggleActiveInForceStatusForCharacter()
+						
 					"PRIEST_DEAD":
 						Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
 						ConfirmRevieveCharacter()
@@ -198,6 +202,8 @@ func _input(event):
 		
 		match Singleton_Game_GlobalCommonVariables.action_type:
 			"PRIEST_DEAD": GoBackToPriestMenu()
+			
+			"HQ_JOIN_OR_LEAVE": GoBackToHQMenu()
 			
 			_: GoBackToShopItemSelectionMenu()
 			# pass
@@ -282,6 +288,14 @@ func GoBackToPriestMenu() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 	Singleton_Game_GlobalCommonVariables.menus_root_node.PriestMenuWrapperRoot.s_show_priest_menu()
 
+
+func GoBackToHQMenu() -> void:
+	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+	hide()
+	# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+	Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+	Singleton_Game_GlobalCommonVariables.menus_root_node.HQMenuWrapperRoot.s_show_hq_menu()
 
 
 # Buy (a option)
@@ -460,7 +474,36 @@ func ConfirmRevieveCharacter() -> void:
 #		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopItemSelectionMenu.show()
 #		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_item_selection_menu()
 
-
+func ToggleActiveInForceStatusForCharacter() -> void:
+	active = true
+	var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
+	var character = null
+	
+	var fmidx = 0
+	for i in fm_size:
+		if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].name == Singleton_Game_GlobalCommonVariables.selected_character.name:
+			# print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].name)
+			character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
+			fmidx = i
+			# print("fmidx - " + str(fmidx))
+			break
+	
+	if character == null:
+		Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+		return
+	
+	# print(character.name)
+	
+	Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fmidx].active_in_force = !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fmidx].active_in_force
+	if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fmidx].active_in_force:
+		flist_vbox_container.get_child(fmidx + 1).get_node("ActiveForceStaticLabel").show()
+		Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(character.name + " has joined the active force!\n")
+	else:
+		flist_vbox_container.get_child(fmidx + 1).get_node("ActiveForceStaticLabel").hide()
+		Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(character.name + " has gone to the reserves!\n")
+	
+	Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+	pass
 
 func StartCharacterItemSelectionForSell() -> void:
 	active = false
