@@ -64,6 +64,8 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 
 
 func play_message(str_arg = "") -> void:
+	Clean()
+	
 	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
 	connection_status = true
 	
@@ -94,6 +96,8 @@ func play_message(str_arg = "") -> void:
 
 
 func play_message_none_interactable(str_arg = "") -> void:
+	Clean()
+	
 	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
 	# dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
 	connection_status = false
@@ -136,6 +140,10 @@ var dialogue_box_is_visible = true
 
 var wait_for_user_input_end = false
 
+
+func Clean() -> void: 
+	dialogue = {}
+	dialogue_index = 0
 
 func _process_new_resource_file():
 	var file = File.new()
