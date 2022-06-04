@@ -118,6 +118,9 @@ default_facing_direction = 2
 texture = ExtResource( 5 )
 hframes = 6
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 25, 0 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
 rotating = true

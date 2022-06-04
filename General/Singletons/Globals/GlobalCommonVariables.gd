@@ -15,6 +15,8 @@ var main_character_resource_pck = null
 
 var main_character_player_node = null
 
+var priest_egress_location = null
+var upcoming_battle_number = 1
 
 var gold: int = 10000
 # var gold: int = 0

@@ -6,7 +6,7 @@
 [ext_resource path="res://General/HQMenus/HQMenu.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
-resource_name = "AttackMenuOption"
+resource_name = "AdviceMenuOption"
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -40,6 +40,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
+resource_name = "JoinMenuOption"
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -56,7 +57,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "StayMenuOption"
+resource_name = "StatsMenuOption"
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -90,6 +91,7 @@ __meta__ = {
 position = Vector2( 12, 24 )
 texture = ExtResource( 1 )
 vframes = 2
+frame = 1
 region_enabled = true
 region_rect = Rect2( 616, 136, 24, 48 )
 __meta__ = {
@@ -100,6 +102,7 @@ __meta__ = {
 position = Vector2( 60, 24 )
 texture = ExtResource( 1 )
 vframes = 2
+frame = 1
 region_enabled = true
 region_rect = Rect2( 72, 136, 24, 48 )
 __meta__ = {
@@ -148,7 +151,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AttackMenuOption = SubResource( 1 )
+anims/AdviceMenuOption = SubResource( 1 )
 anims/InventoryMenuOption = SubResource( 2 )
-anims/MagicMenuOption = SubResource( 3 )
-anims/StayMenuOption = SubResource( 4 )
+anims/JoinMenuOption = SubResource( 3 )
+anims/StatsMenuOption = SubResource( 4 )

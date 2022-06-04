@@ -839,8 +839,8 @@ script = ExtResource( 17 )
 
 [node name="HQMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/HQMenusWrapperNode" instance=ExtResource( 16 )]
 visible = false
-position = Vector2( 130, 214 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2( 132, 136 )
+scale = Vector2( 0.75, 0.75 )
 
 [node name="HQMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/HQMenusWrapperNode"]
 

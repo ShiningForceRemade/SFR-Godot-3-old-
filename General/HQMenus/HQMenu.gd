@@ -23,107 +23,126 @@ onready var noValidOptionNode = get_parent().get_parent().get_node("OverworldWra
 func _ready():
 	set_sprites_to_zero_frame()
 	$AnimationPlayer.playback_speed = 2
-	animationPlayer.play("StayMenuOption")
+	animationPlayer.play("AdviceMenuOption")
 	label.text = "Advice"
 
 
 func set_menu_active() -> void:
 	is_menu_active = true
 	
+	yield(get_tree().create_timer(0.02), "timeout")
+	
 	set_sprites_to_zero_frame()
 	currently_selected_option = e_menu_options.ADVICE_OPTION
-	animationPlayer.play("StayMenuOption")
+	animationPlayer.play("AdviceMenuOption")
 	label.text = "Advice"
 
 
-func _input(event):
-	if is_menu_active:
-		if event.is_action_released("ui_b_key"):
-			print("Cancel Action Menu")
-			is_menu_active = false
-			yield(get_tree().create_timer(0.02), "timeout")
-			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-			Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
-			get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
-			#get_parent().get_parent().get_parent().s_hide_action_menu()
-			return
-			
-		if event.is_action_released("ui_a_key"):
-			yield(get_tree().create_timer(0.02), "timeout")
-			# event.is_action_released("ui_accept"):
-			print("Accept Action - ", currently_selected_option)
-			if currently_selected_option == e_menu_options.STATS_OPTION:
-				print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-				Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
-				
-				# emit_signal("signal_completed_turn")
-				is_menu_active = false
-				get_parent().get_parent().get_parent().s_hide_action_menu()
-				return
-			elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
-				is_menu_active = false
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-				get_parent().get_parent().get_parent().s_hide_action_menu()
-				get_parent().get_parent().get_parent().s_show_battle_inventory_menu()
-				return
-			elif currently_selected_option == e_menu_options.JOIN_OPTION:
-				is_menu_active = false
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-				
-				if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().spells_id.size() == 0:
-					noValidOptionNode.re_show_action_menu = true
-					noValidOptionNode.set_no_maigc_text()
-					# get_parent().get_parent().get_parent().s_hide_action_menu()
-					get_parent().get_parent().get_parent().s_hide_character_action_menu()
-					get_parent().get_parent().get_parent().s_show_no_valid_option_warning_box()
-				else:
-					get_parent().get_parent().get_parent().s_hide_action_menu()
-					get_parent().get_parent().get_parent().s_show_battle_magic_menu()
-					
-				return
-			elif currently_selected_option == e_menu_options.ADVICE_OPTION:
-				return
-				
-				is_menu_active = false
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
-				Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-				
-				
-				get_parent().get_parent().get_parent().s_hide_character_action_menu()
-				
-				var caa = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal()
-				
-				var equip_arg = caa.inventory_items_id[0]
-				
-				if caa.actor_type == "character":
-					# TODO move this within the target select node itself
-					# TODO: need to adjust this to handle attacking without a weapon equipped
-					# if caa.inventory_items_id.length > 0:	
-					Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg)
-				elif caa.actor_type == "enemey":
-					# TODO add a selectable version of the below also need to add get actor type to the bases
-					# also really need to start cleaning up a lot of this cruft 
-					Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(equip_arg, "character")
-					# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection_enemey_static()
-				else:
-					# TODO: should add a prefix to my errors for easy filtering
-					print("FELDC - Actor doesn't have type (not character or enemey)")
-					push_error("FELDC - Actor doesn't have type (not character or enemey)")
-				
-				return
+func _process(delta):
+	if !is_menu_active:
+		return
+	
+	if Input.is_action_just_pressed("ui_b_key"):
+		CancelHQMenu()
+		return
 		
-		if event.is_action_pressed("ui_down"):
-			menu_option_selected(e_menu_options.STATS_OPTION, "StayMenuOption", "Stats")
-		elif event.is_action_pressed("ui_up"):
-			menu_option_selected(e_menu_options.ADVICE_OPTION, "AttackMenuOption", "Advice")
-		elif event.is_action_pressed("ui_right"):
-			menu_option_selected(e_menu_options.INVENTORY_OPTION, "InventoryMenuOption", "Inventory")
-		elif event.is_action_pressed("ui_left"):
-			menu_option_selected(e_menu_options.JOIN_OPTION, "MagicMenuOption", "Join")
+	if Input.is_action_just_pressed("ui_a_key"):
+		yield(get_tree().create_timer(0.05), "timeout")
+		# event.is_action_released("ui_accept"):
+		print("Accept Action - ", currently_selected_option)
+		if currently_selected_option == e_menu_options.STATS_OPTION:
+			is_menu_active = false
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+			
+			hide()
+			
+			Singleton_Game_GlobalCommonVariables.action_type = "HQ_STATS"
+			
+			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
+			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+			
+			var display_str = "DEV NOTE - Use overworld inventory menu to check stats.\nDo you need anything else?"
+			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			if result == "NO":
+				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+				CancelHQMenu()
+				return
+			elif result == "YES":
+				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.hide()
+				show()
+				
+				is_menu_active = true
+			
+			return
+		elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
+			is_menu_active = false
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+			
+			hide()
+			
+			Singleton_Game_GlobalCommonVariables.action_type = "HQ_STATS"
+			
+			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
+			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+			
+			var display_str = "DEV NOTE - Use overworld inventory menu to check stats.\nDo you need anything else?"
+			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			if result == "NO":
+				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+				CancelHQMenu()
+				return
+			elif result == "YES":
+				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.hide()
+				show()
+				
+				is_menu_active = true
+			return
+		elif currently_selected_option == e_menu_options.JOIN_OPTION:
+			is_menu_active = false
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+			
+			if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().spells_id.size() == 0:
+				noValidOptionNode.re_show_action_menu = true
+				noValidOptionNode.set_no_maigc_text()
+				# get_parent().get_parent().get_parent().s_hide_action_menu()
+				get_parent().get_parent().get_parent().s_hide_character_action_menu()
+				get_parent().get_parent().get_parent().s_show_no_valid_option_warning_box()
+			else:
+				get_parent().get_parent().get_parent().s_hide_action_menu()
+				get_parent().get_parent().get_parent().s_show_battle_magic_menu()
+				
+			return
+		elif currently_selected_option == e_menu_options.ADVICE_OPTION:
+			is_menu_active = false
+			hide()
+			
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+			
+			match Singleton_Game_GlobalCommonVariables.upcoming_battle_number:
+				1: Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/HQ/Default/Scripts/ActiveForceQuotes/Tao.json"
+				_: pass
+			
+			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
+			return
+	
+	if Input.is_action_just_pressed("ui_down"):
+		menu_option_selected(e_menu_options.STATS_OPTION, "StatsMenuOption", "Stats")
+	elif Input.is_action_just_pressed("ui_up"):
+		menu_option_selected(e_menu_options.ADVICE_OPTION, "AdviceMenuOption", "Advice")
+	elif Input.is_action_just_pressed("ui_right"):
+		menu_option_selected(e_menu_options.INVENTORY_OPTION, "InventoryMenuOption", "Inventory")
+	elif Input.is_action_just_pressed("ui_left"):
+		menu_option_selected(e_menu_options.JOIN_OPTION, "JoinMenuOption", "Join")
 
 
 func menu_option_selected(e_menu_option_selected, animation_name: String, label_text: String) -> void:
@@ -139,4 +158,206 @@ func set_sprites_to_zero_frame() -> void:
 	join_spirte.frame = 0
 	inventory_spirte.frame = 0
 	stats_spirte.frame = 0
+
+
+
+
+
+#
+#func _process(_delta):
+#	if !is_menu_active:
+#		return
+#
+#	if Input.is_action_just_pressed("ui_b_key"):
+#		CancelPriestMenu()
+#		return
+#
+#	if Input.is_action_just_pressed("ui_a_key"):
+#		yield(get_tree().create_timer(0.02), "timeout")
+#		# event.is_action_released("ui_accept"):
+#		print("Accept Action - ", currently_selected_option)
+#		if currently_selected_option == e_menu_options.PROMOTION_OPTION:
+#			is_menu_active = false
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+#
+#			hide()
+#
+#			Singleton_Game_GlobalCommonVariables.action_type = "PRIEST_PROMOTION"
+#
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+#
+#			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
+#			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+#
+#			var display_str = "No one seems to deserve a promotion.\nDo you need anything else?"
+#			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+#			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+#			if result == "NO":
+#				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+#				CancelPriestMenu()
+#				return
+#
+#			elif result == "YES":
+#				# Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(current_selection)
+#
+#				# Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.UpdateGoldAmountDisplay()
+#				# Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.selected_character)
+#
+#				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+#				Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.hide()
+#				show()
+#
+#				is_menu_active = true
+#
+#			return
+#		elif currently_selected_option == e_menu_options.DEAD_OPTION:
+#			is_menu_active = false
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+#			hide()
+#
+#			Singleton_Game_GlobalCommonVariables.action_type = "PRIEST_DEAD"
+#
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+#
+#			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+#
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.set_menu_active()
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.HideInventoryPreview()
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.show()
+#
+#			return
+#		elif currently_selected_option == e_menu_options.CURE_OPTION:
+#			is_menu_active = false
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+#
+#			hide()
+#
+#			Singleton_Game_GlobalCommonVariables.action_type = "PRIEST_CURE"
+#
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+#
+#			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
+#			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+#
+#			var display_str = "No one seems to need my help.\nDo you need anything else?"
+#			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+#			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+#			if result == "NO":
+#				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+#				CancelPriestMenu()
+#				return
+#
+#			elif result == "YES":
+#				# Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(current_selection)
+#
+#				# Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.UpdateGoldAmountDisplay()
+#				# Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.selected_character)
+#
+#				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+#				Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.hide()
+#				show()
+#
+#				is_menu_active = true
+#
+#			return
+#		elif currently_selected_option == e_menu_options.SAVE_OPTION:
+#			is_menu_active = false
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+#			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+#
+#			hide()
+#
+#			Singleton_Game_GlobalCommonVariables.action_type = "PRIEST_PROMOTION"
+#
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+#
+#			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
+#			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+#
+#			var display_str = "DISABLED FOR DEMO!\nDo you need anything else?"
+#			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+#			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+#			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+#			if result == "NO":
+#				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+#				CancelPriestMenu()
+#				return
+#
+#			elif result == "YES":
+#				# Singleton_Game_GlobalCommonVariables.selected_character.inventory.remove(current_selection)
+#
+#				# Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.UpdateGoldAmountDisplay()
+#				# Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.selected_character)
+#
+#				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
+#				Singleton_Game_GlobalCommonVariables.menus_root_node.GoldInfoBox.hide()
+#				show()
+#
+#				is_menu_active = true
+#
+#			return
+#
+#
+#
+##		elif currently_selected_option == e_menu_options.SELL_OPTION:
+##			is_menu_active = false
+##			# Singleton_Game_GlobalCommonVariables.main_character_player_node.interaction_attempt_to_talk()
+##			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+##			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+##			hide()
+##			# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+##
+##			Singleton_Game_GlobalCommonVariables.action_type = "SHOP_SELL"
+##
+##			Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
+##
+##			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().show()
+##			Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().ShopMenuPosition()
+##
+##			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("What would you like?")
+##			Singleton_Game_GlobalCommonVariables.dialogue_box_node.show()
+##
+##			# Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_item_selection_menu()
+##
+##			Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.set_menu_active()
+##			Singleton_Game_GlobalCommonVariables.menus_root_node.MicroMemberListViewMenu.show()
+##
+##			return
+#
+#
+#
+#	if Input.is_action_just_pressed("ui_down"):
+#		menu_option_selected(e_menu_options.PROMOTION_OPTION, "StayMenuOption", "Promotion")
+#	elif Input.is_action_just_pressed("ui_up"):
+#		menu_option_selected(e_menu_options.SAVE_OPTION, "AttackMenuOption", "Save")
+#	elif Input.is_action_just_pressed("ui_right"):
+#		menu_option_selected(e_menu_options.DEAD_OPTION, "InventoryMenuOption", "Raise Dead")
+#	elif Input.is_action_just_pressed("ui_left"):
+#		menu_option_selected(e_menu_options.CURE_OPTION, "MagicMenuOption", "Cure")
+#
+#
+
+func CancelHQMenu() -> void:
+	print("Cancel HQ Menu")
+	is_menu_active = false
+	yield(get_tree().create_timer(0.02), "timeout")
+	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
+	
+	# Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
+	# get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
+	# TODO add animation
+	hide()
+
+	# Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
+	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
+	#get_parent().get_parent().get_parent().s_hide_action_menu()
 

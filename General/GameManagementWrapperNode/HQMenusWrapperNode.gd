@@ -18,8 +18,13 @@ func internal_tween_move_to_position(ox, oy, nx, ny, tweenNode, targetNode) -> v
 	tweenNode.start()
 
 func s_hide_hq_menu():
-	internal_tween_move_to_position(139, 134, 139, 134 + 80, HQMenuTween, HQMenuRoot)
+	# internal_tween_move_to_position(139, 134, 139, 134 + 80, HQMenuTween, HQMenuRoot)
+	HQMenuRoot.hide()
 
 func s_show_hq_menu():
-	internal_tween_move_to_position(139, 134 + 80, 139, 134, HQMenuTween, HQMenuRoot)
+	# internal_tween_move_to_position(139, 134 + 80, 139, 134, HQMenuTween, HQMenuRoot)
+	HQMenuRoot.show()
 	HQMenuRoot.set_menu_active()
+
+
+
