@@ -8,6 +8,8 @@ onready var dialogueTween = $DialogueTween
 
 var active: bool = false
 
+var connection_status: bool = true
+
 func _ready():
 	
 	self.hide()
@@ -18,6 +20,7 @@ func _ready():
 	
 	dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
 	dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
+	connection_status = true
 	
 	# wait till all the children are loaded and an idle frame starts maybe not the best idea????
 	# yield(get_tree(), "idle_frame")
@@ -62,8 +65,7 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 
 func play_message(str_arg = "") -> void:
 	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
-	dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
-	dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
+	connection_status = true
 	
 	dialogueRichTextLabel.percent_visible = 0
 	dialogueRichTextLabel.bbcode_text = ""
@@ -92,8 +94,9 @@ func play_message(str_arg = "") -> void:
 
 
 func play_message_none_interactable(str_arg = "") -> void:
-	dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
-	dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
+	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
+	# dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
+	connection_status = false
 	
 	dialogueRichTextLabel.percent_visible = 0
 	dialogueRichTextLabel.bbcode_text = ""
@@ -152,10 +155,7 @@ func _process_new_resource_file():
 	
 		file.close()
 		
-		
-		dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
-		dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
-		
+		connection_status = true
 		
 		visible = true
 		dialogue_box_is_visible = visible
@@ -300,9 +300,11 @@ func load_dialog():
 
 
 func _on_Tween_tween_completed(_object, _key):
+	if !connection_status:
+		return
+	
 	print("Tween complete Dialgoue")
 	finished = true
-	pass
 
 
 func check_and_replace_text_sub_points(str_arg: String) -> String:

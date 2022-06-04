@@ -222,6 +222,8 @@ func CancelShopMenu() -> void:
 		
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 	Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().hide()
+	Singleton_Game_GlobalCommonVariables.menus_root_node.gold_info_box_node().DefaultPosition()
+	
 	Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
 	#get_parent().get_parent().get_parent().s_hide_action_menu()
 	
