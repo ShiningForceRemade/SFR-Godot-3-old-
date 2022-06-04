@@ -108,6 +108,7 @@ var ForceMembers = [
 		
 		"unlocked": true,
 		"active_in_force": true,
+		"alive": true,
 		
 		"name": "Max", # TODO: do nicknames
 		"race": "Human",
@@ -255,6 +256,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": false,
 		
 		"name": "Luke", # TODO: do nicknames
 		"race": "Dwarf",
@@ -382,6 +384,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Ken", # TODO: do nicknames
 		"race": "Centaur",
@@ -509,6 +512,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Tao", # TODO: do nicknames
 		"race": "Elf",
@@ -666,6 +670,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Hans", # TODO: do nicknames
 		"race": "Elf",
@@ -792,6 +797,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Lowe", # TODO: do nicknames
 		"race": "Halfling",
@@ -952,6 +958,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Gong", # TODO: do nicknames
 		"race": "Half Giant",
@@ -1092,6 +1099,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Gort", # TODO: do nicknames
 		"race": "Dwarf",
@@ -1218,6 +1226,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Mae", # TODO: do nicknames
 		"race": "Centaur",
@@ -1344,6 +1353,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
+		"alive": true,
 		
 		"name": "Khris", # TODO: do nicknames
 		"race": "Kyantol",

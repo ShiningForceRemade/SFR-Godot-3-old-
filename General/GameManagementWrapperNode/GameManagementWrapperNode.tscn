@@ -813,8 +813,9 @@ scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 19 )
 
 [node name="PriestMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/PriestMenuWrapperNode" instance=ExtResource( 18 )]
-position = Vector2( 130, 214 )
-scale = Vector2( 0.8, 0.8 )
+visible = false
+position = Vector2( 132, 136 )
+scale = Vector2( 0.75, 0.75 )
 
 [node name="PriestMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/PriestMenuWrapperNode"]
 

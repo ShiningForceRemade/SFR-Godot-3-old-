@@ -390,7 +390,7 @@ __meta__ = {
 [node name="GongsHouseTilemapRoot" parent="." instance=ExtResource( 2 )]
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
-position = Vector2( 252, 372 )
+position = Vector2( 276, 204 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 __meta__ = {
@@ -425,6 +425,9 @@ anims/DownMovement = SubResource( 1 )
 anims/LeftMovement = SubResource( 2 )
 anims/RightMovement = SubResource( 3 )
 anims/UpMovement = SubResource( 4 )
+
+[node name="CollisionShape2D" parent="NpcWrapperNode/OldManNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 16 )
 
 [node name="JogurtNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 420, 323 )
