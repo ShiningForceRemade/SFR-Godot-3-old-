@@ -51,7 +51,9 @@ func battle_message_play(str_arg = "") -> void:
 	dialogueRichTextLabel.bbcode_text = str_arg
 	
 	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
-	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	0, 1, 
+	GetTweenTimeForText(str_arg), 
+	Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	dialogueTween.start()
 
@@ -89,7 +91,9 @@ func play_message(str_arg = "") -> void:
 	dialogueRichTextLabel.bbcode_text = str_arg
 	
 	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
-	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	0, 1, 
+	GetTweenTimeForText(str_arg), 
+	Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	dialogueTween.start()
 	
@@ -120,7 +124,9 @@ func play_message_none_interactable(str_arg = "") -> void:
 	dialogueRichTextLabel.bbcode_text = str_arg
 	
 	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
-	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	0, 1, 
+	GetTweenTimeForText(str_arg), 
+	Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	dialogueTween.start()
 	
@@ -231,12 +237,16 @@ func load_dialog():
 				
 				if itkeys.size() >= 2:
 					dialogueRichTextLabel.percent_visible = 0
-					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 
+					GetTweenTimeForText(dialogueRichTextLabel.bbcode_text), 
+					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 					dialogueTween.start()
 					continue
 				else:
 					dialogueRichTextLabel.percent_visible = 0
-					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 
+					GetTweenTimeForText(dialogueRichTextLabel.bbcode_text), 
+					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 					dialogueTween.start()
 				
 #				if itkeys.size() <= 1:
@@ -462,3 +472,16 @@ func ShowMenu(string_arg: String) -> void:
 	elif  string_arg == "ShopMenu":
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_menu()
+
+
+func GetTweenTimeForText(text_str: String) -> float:
+	var tweenTime = text_str.length() / 40
+	if tweenTime == 0:
+		tweenTime = 0.5
+	
+	# TODO: add in general settings different speeds
+	# setting a min and max and possibliy a instant reveal
+	
+	print("tweenTime - ", tweenTime)
+	
+	return tweenTime
