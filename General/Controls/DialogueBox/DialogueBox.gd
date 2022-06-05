@@ -10,6 +10,8 @@ var active: bool = false
 
 var connection_status: bool = true
 
+var interaction_yes_or_no_selection: String = ""
+
 func _ready():
 	
 	self.hide()
@@ -189,6 +191,7 @@ func _process(_delta):
 			load_dialog()
 		else:
 			dialogueTween.stop(dialogueRichTextLabel, "percent_visible")
+			dialogueTween.emit_signal("tween_completed")
 			dialogueRichTextLabel.percent_visible = 1
 			finished = true
 
@@ -204,15 +207,49 @@ func load_dialog():
 	print("Here")
 	active = true
 	
+		
 	# dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
 	# dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
 	
 	if dialogue_index < dialogue.size():
 		finished = false
+		
+		var itkeys = dialogue[dialogue_index].keys()
+		# print(ikeys)
+		
 		for key in dialogue[dialogue_index]:
-			print("Inner Loop key ", key + " value is " + str(dialogue[dialogue_index][key]))
+			print("Inner Loop key - ", key + " - value is - " + str(dialogue[dialogue_index][key]))
 			if key == "Text":
 				dialogueRichTextLabel.bbcode_text = check_and_replace_text_sub_points(dialogue[dialogue_index][key])
+				# continue
+				
+				print(itkeys.size())
+				
+				if itkeys.size() >= 2:
+					dialogueRichTextLabel.percent_visible = 0
+					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					dialogueTween.start()
+					continue
+				else:
+					dialogueRichTextLabel.percent_visible = 0
+					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					dialogueTween.start()
+				
+#				if itkeys.size() <= 1:
+#					# dialogue_index += 1
+#					dialogueRichTextLabel.percent_visible = 0
+#					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#					dialogueTween.start()
+#					continue
+#				else:
+#					dialogue_index += 1
+#					# dialogueRichTextLabel.percent_visible = 0
+#					# dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#					# dialogueTween.start()
+#
+#					pass
+#				pass
+				
 			elif key == "Expression":
 				var expression := Expression.new()
 				for command in dialogue[dialogue_index][key]:
@@ -276,32 +313,115 @@ func load_dialog():
 					
 				return
 			elif key == "InteractionPrompt":
+				
+				print("hereeee")
+				yield(dialogueTween, "tween_completed")
+				
 				active = false
 				Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
 			
-				dialogue_index += 1
-				dialogueRichTextLabel.percent_visible = 0
-				dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-				dialogueTween.start()
+				# 
+				# dialogueRichTextLabel.percent_visible = 0
+				# dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				# dialogueTween.start()
+				
+				# var display_str = "I'm very sorry!\nI'm out of stock!\nDo you want anything else?"
+				# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+				
+				# dialogue_index += 1
+				
+				
+				Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
+				var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+				if result == "NO":
+					interaction_yes_or_no_selection = "NO"
+					print("No")
+					
+					var remaining_lines = dialogue.size() - dialogue_index
+					for _x in remaining_lines:
+						
+						var ikeys = dialogue[dialogue_index].keys()
+						print(ikeys)
+						
+						if ikeys.size() <= 1:
+							continue
+						
+						# for ikey in dialogue[dialogue_index]:
+						# print(ikey)
+						print(dialogue[dialogue_index])
+						print(dialogue[dialogue_index][ikeys[1]])
+						if ikeys[0] == "InteractionAnswer":
+							if dialogue[dialogue_index][ikeys[0]] == "NO":
+								# print(dialogue[dialogue_index][ikey])
+								print(dialogue[dialogue_index][ikeys[1]])
+								
+								Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = dialogue[dialogue_index][ikeys[1]]
+								Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
+								return
+							else:
+								dialogue_index += 1
+						else:
+							dialogue_index += 1
+					pass
+				elif result == "YES":
+					interaction_yes_or_no_selection = "YES"
+					print("Yes")
+					
+					var remaining_lines = dialogue.size() - dialogue_index
+					for _x in remaining_lines:
+						
+						var ikeys = dialogue[dialogue_index].keys()
+						print(ikeys)
+						
+						if ikeys.size() <= 1:
+							continue
+						
+						# for ikey in dialogue[dialogue_index]:
+						# print(ikey)
+						print(dialogue[dialogue_index])
+						print(dialogue[dialogue_index][ikeys[1]])
+						if ikeys[0] == "InteractionAnswer":
+							if dialogue[dialogue_index][ikeys[0]] == "YES":
+								# print(dialogue[dialogue_index][ikey])
+								print(dialogue[dialogue_index][ikeys[1]])
+								
+								Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = dialogue[dialogue_index][ikeys[1]]
+								Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
+								return
+							else:
+								dialogue_index += 1
+						else:
+							dialogue_index += 1
+					
+					pass
+				
+				# dialogue_index += 1
+				# load_dialog()
 				
 				return
-				# TODO complete
+			
+			
+			
+			dialogue_index += 1
+			# dialogueRichTextLabel.percent_visible = 0
+			# dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			# dialogueTween.start()
 				
-		
-		dialogue_index += 1
-		dialogueRichTextLabel.percent_visible = 0
-		dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		dialogueTween.start()
+#			dialogue_index += 1
+#			dialogueRichTextLabel.percent_visible = 0
+#			dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#			dialogueTween.start()
 	else:
 		finished = true
 		visible = false
 		active = false
 		emit_signal("signal__dialogbox__finished_dialog")
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
-		
+		interaction_yes_or_no_selection = ""
 		# Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
 		# dialogue_index = 0
 		# dialogue = null
+		get_parent().get_node("PortraitPopupRoot").hide()
 		
 		if Singleton_Game_GlobalCommonVariables.interaction_node_reference != null:
 			Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
