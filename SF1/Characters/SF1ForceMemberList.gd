@@ -10,6 +10,8 @@ var camera_zoom: Vector2 = Vector2(1, 1)
 
 var c1 = {
 	# story flags - in order
+	"spoken_to_varios": false,
+	"spoken_to_lowe": false,
 	"spoken_to_the_king": false,
 	"initial_force_joined": false,
 	"kings_permission": false,

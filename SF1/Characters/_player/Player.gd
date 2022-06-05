@@ -345,7 +345,11 @@ func interaction_attempt_to_search() -> void:
 
 func PlayerFacingDirection() -> String:
 	return animationPlayer.current_animation
-	
+
+
+func change_facing_direction_string(direction: String) -> void:
+	animationPlayer.play(direction)
+
 
 func GetOppositePlayerFacingDirection() -> String:
 	var facing_direction = PlayerFacingDirection()

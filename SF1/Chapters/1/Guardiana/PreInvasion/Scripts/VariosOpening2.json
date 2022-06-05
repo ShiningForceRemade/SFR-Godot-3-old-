@@ -6,34 +6,6 @@
 
 		{
 			"Text": "You have the makings of a great fighter, {main_character_name}. You'll be tested soon enough."
-		},
-
-		{
-			"HidePortrait": ""
-		},
-
-		{
-			"Text": "NOTE: Guard shows up"
-		},
-
-		{
-			"Text": "Lord Varios, the king has sent for you. You must come at once!"
-		},
-
-		{
-			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
-		},
-
-		{
-			"Text": "Of course. Lead the way, guardsman."
-		},
-
-		{
-			"Text": "I fear the worst, {main_character_name}! Prepare yourself for true battle immediately!."
-		},
-
-		{
-			"HidePortrait": ""
 		}
 	]
 }

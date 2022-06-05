@@ -1,4 +1,4 @@
-[gd_scene load_steps=181 format=2]
+[gd_scene load_steps=185 format=2]
 
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=1]
 [ext_resource path="res://SF1/TileSet_Resources/Original/6.tres" type="TileSet" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.gd" type="Script" id=17]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=18]
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=19]
-[ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=20]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/OldManChruch.gd" type="Script" id=21]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/ActionSpotsWrapperNode.gd" type="Script" id=22]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/CutsceneNode.gd" type="Script" id=23]
@@ -48,7 +47,6 @@
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/SoldierGuardRight.gd" type="Script" id=46]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/NPCs/Bartender.gd" type="Script" id=47]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Map_Sprites.png" type="Texture" id=48]
-[ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=49]
 
 [sub_resource type="Animation" id=135]
 resource_name = "DownMovement"
@@ -138,6 +136,121 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=138]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=140]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=141]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=142]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=143]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -1841,6 +1954,10 @@ extents = Vector2( 24, 8 )
 [sub_resource type="RectangleShape2D" id=139]
 extents = Vector2( 98, 22 )
 
+[sub_resource type="RectangleShape2D" id=144]
+
+[sub_resource type="RectangleShape2D" id=145]
+
 [node name="GuardianaRoot" type="Node2D"]
 script = ExtResource( 17 )
 __meta__ = {
@@ -1857,26 +1974,8 @@ script = ExtResource( 24 )
 [node name="TownTilemapNode2D" parent="." instance=ExtResource( 26 )]
 position = Vector2( 140, 172 )
 
-[node name="StaticObjectsNode" type="Node2D" parent="."]
-
-[node name="EmptyChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
-position = Vector2( 680, 568 )
-
-[node name="MedicalHerbChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
-position = Vector2( 728, 568 )
-item_resource = ExtResource( 49 )
-
-[node name="HiddenGoldChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
-position = Vector2( 776, 568 )
-hidden_chest = true
-gold = 100
-
-[node name="PreopenedChestNodeRoot" parent="StaticObjectsNode" instance=ExtResource( 20 )]
-position = Vector2( 824, 568 )
-preopend_chest = true
-
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 19 )]
-position = Vector2( 920, 256 )
+position = Vector2( 152, 232 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 
@@ -1930,6 +2029,25 @@ anims/DownMovement = SubResource( 135 )
 anims/LeftMovement = SubResource( 136 )
 anims/RightMovement = SubResource( 137 )
 anims/UpMovement = SubResource( 138 )
+
+[node name="GuardForVariosNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
+visible = false
+position = Vector2( 296, 88 )
+script = ExtResource( 27 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/GuardForVariosNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 3
+
+[node name="Sprite" parent="NpcWrapperNode/GuardForVariosNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 4 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/GuardForVariosNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 140 )
+anims/LeftMovement = SubResource( 141 )
+anims/RightMovement = SubResource( 142 )
+anims/UpMovement = SubResource( 143 )
 
 [node name="PriestNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 344, 136 )
@@ -3599,9 +3717,29 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Area2D3" type="Area2D" parent="ActionSpotsWrapperNode"]
+[node name="LoweTalkSpotArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/LoweTalkSpotArea2D"]
+position = Vector2( 224, 88 )
+shape = SubResource( 144 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VariosArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/VariosArea2D"]
+position = Vector2( 176, 232 )
+shape = SubResource( 145 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="body_entered" from="ActionSpotsWrapperNode/LeftEntranceChurchArea2D" to="ActionSpotsWrapperNode" method="_on_LeftEntranceChurchArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/LeftExitChurchArea2D" to="ActionSpotsWrapperNode" method="_on_LeftExitChurchArea2D_body_entered"]
@@ -3623,11 +3761,14 @@ __meta__ = {
 [connection signal="body_entered" from="ActionSpotsWrapperNode/ShopExitArea2D" to="ActionSpotsWrapperNode" method="_on_ShopExitArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/TrolleyActionSpotArea2D" to="ActionSpotsWrapperNode" method="_on_TrolleyActionSpotArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/TownGuardExitCheckArea2D" to="ActionSpotsWrapperNode" method="_on_TownGuardExitCheckArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/LoweTalkSpotArea2D" to="ActionSpotsWrapperNode" method="_on_LoweTalkSpotArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/VariosArea2D" to="ActionSpotsWrapperNode" method="_on_VariosArea2D_body_entered"]
 
 [editable path="NpcWrapperNode/OldManChruchNPCRoot"]
 [editable path="NpcWrapperNode/WomanRedHeadChurchNPCRoot"]
 [editable path="NpcWrapperNode/VariosNPCRoot"]
 [editable path="NpcWrapperNode/LoweNPCRoot"]
+[editable path="NpcWrapperNode/GuardForVariosNPCRoot"]
 [editable path="NpcWrapperNode/PriestNPCRoot"]
 [editable path="NpcWrapperNode/SoliderOutsideChurchNPCRoot"]
 [editable path="NpcWrapperNode/GortGrandDaughterNPCRoot"]

@@ -4,6 +4,12 @@ onready var TilemapSceneRoot = $TownTilemapNode2D
 onready var TilemapRoofSceneRoot = $RoofsWrapperNode
 onready var TilemapWalkwaySceneRoot = $WalkwayDoors
 
+# NPCs
+onready var LoweRoot = $NpcWrapperNode/LoweNPCRoot
+onready var VariosRoot = $NpcWrapperNode/VariosNPCRoot
+onready var GuardRoot = $NpcWrapperNode/GuardForVariosNPCRoot
+# NPCs
+
 var using_original_tiles: bool = true
 
 # original tilesets
