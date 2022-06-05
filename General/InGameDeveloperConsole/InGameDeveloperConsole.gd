@@ -95,6 +95,10 @@ func changeScene(new_text_internal) -> void:
 			print("Change Scene to HQ")
 			sceneManagerNode.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
 	
+	elif splstr[1] == "test" || splstr[1] == "t":
+		if splstr[2] == "Chest":
+			sceneManagerNode.change_scene("res://SF1/Test_Scenes/Functionality/Chest.tscn")
+		
 	else:
 		textEdit.text = str(textEdit.text, "\n", new_text_internal, "\n", "Invalid location (scene)");
 
