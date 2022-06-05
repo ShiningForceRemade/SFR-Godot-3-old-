@@ -1,29 +1,67 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/SF1/ShiningForceMenuBorder.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture" id=2]
+[ext_resource path="res://General/Controls/PortraitPopup/PortraitPopup.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Default"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PortraitTextureRect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8, 2.2, 2.3, 4, 4.2, 5.5, 5.6, 6.5, 6.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PortraitTextureRect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Talking"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PortraitTextureRect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 0.8, 1, 1.2, 1.4, 1.7, 1.9, 2.1, 2.2, 2.4, 2.6, 2.7, 3, 3.2, 3.3, 3.4, 3.6, 3.8, 4, 4.1, 4.3, 4.5, 4.7, 4.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 0, 2, 0, 3, 0, 2, 0, 2, 0, 3, 0, 2, 0, 2, 0, 3, 0, 2, 0, 2, 0, 3, 0, 2, 0 ]
+}
 
 [node name="PortraitPopupRoot" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 3 )
 
-[node name="PortraitTextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.19843
-margin_top = 3.01575
-margin_right = -267.802
-margin_bottom = -111.984
-rect_clip_content = true
+[node name="PortraitTextureRect" type="Sprite" parent="."]
+position = Vector2( 28, 36 )
 texture = ExtResource( 2 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+hframes = 4
 
 [node name="BorderTextureRect" type="NinePatchRect" parent="."]
 margin_right = 57.0
@@ -33,3 +71,8 @@ patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Default = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/Talking = SubResource( 3 )

@@ -1,23 +1,25 @@
 extends Control
 
+onready var animationPlayer = $AnimationPlayer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	self.hide()
-	
-	pass # Replace with function body.
+	hide()
+	animationPlayer.playback_speed = 1.5
+	# animationPlayer.play("Default")
 
 
 func load_portrait(portrait_resource_path: String) -> void:
 	print("here ----", portrait_resource_path)
 	get_node("PortraitTextureRect").texture = load(portrait_resource_path)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func PlayDefaultAnimation() -> void:
+	animationPlayer.play("Default")
+
+
+func PlayTalkingAnimation() -> void:
+	animationPlayer.play("Talking")
+
+
+func StopAnimation() -> void:
+	animationPlayer.stop()

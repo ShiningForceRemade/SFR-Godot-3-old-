@@ -6,6 +6,8 @@ signal signal__dialogbox__finished_dialog
 onready var dialogueRichTextLabel = $NinePatchRect/DialogueRichTextLabel
 onready var dialogueTween = $DialogueTween
 
+onready var portraitPopupRoot = get_parent().get_node("PortraitPopupRoot")
+
 var active: bool = false
 
 var connection_status: bool = true
@@ -225,6 +227,8 @@ func load_dialog():
 				
 				print(itkeys.size())
 				
+				portraitPopupRoot.PlayTalkingAnimation()
+				
 				if itkeys.size() >= 2:
 					dialogueRichTextLabel.percent_visible = 0
 					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -283,17 +287,17 @@ func load_dialog():
 				print(dialogue[dialogue_index][key])
 				
 				# sound to play 0 is type fx for sound effect and eventually music to change background music
-				var pn = get_parent().get_node("PortraitPopupRoot")
-				pn.show()
-				pn.load_portrait(portrait_args)
+				
+				portraitPopupRoot.show()
+				portraitPopupRoot.load_portrait(portrait_args)
+				portraitPopupRoot.PlayDefaultAnimation()
 				dialogue_index += 1
 				load_dialog()
 				return
 			elif key == "HidePortrait":
 				#var portrait_args = dialogue[dialogue_index][key].split(" | ")
 				
-				var pn = get_parent().get_node("PortraitPopupRoot")
-				pn.hide()
+				portraitPopupRoot.hide()
 				
 				dialogue_index += 1
 				load_dialog()
@@ -423,6 +427,8 @@ func load_dialog():
 		# dialogue = null
 		get_parent().get_node("PortraitPopupRoot").hide()
 		
+		portraitPopupRoot.StopAnimation()
+		
 		if Singleton_Game_GlobalCommonVariables.interaction_node_reference != null:
 			Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
 
@@ -430,6 +436,8 @@ func load_dialog():
 func _on_Tween_tween_completed(_object, _key):
 	if !connection_status:
 		return
+	
+	portraitPopupRoot.PlayDefaultAnimation()
 	
 	print("Tween complete Dialgoue")
 	finished = true
