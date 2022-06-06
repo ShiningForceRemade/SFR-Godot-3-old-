@@ -1,7 +1,15 @@
 {
 	"script": [
 		{
+			"ShowPortrait": "res://Assets/SF1/NPC/King_Gaurdiana_Portraits.png"
+		},
+
+		{
 			"Text": "...that is the story, Varios."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Varios_Portraits.png"
 		},
 
 		{

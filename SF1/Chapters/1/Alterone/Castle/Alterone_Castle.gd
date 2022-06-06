@@ -23,11 +23,23 @@ var eight_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/8
 var nine_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/9.tres")
 var ten_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/10.tres")
 
+# npcs
+onready var SoliderEntrance = $NpcWrapperNode/SoliderEntranceCenterNPCRoot
+
+onready var SoliderDoor = $NpcWrapperNode/SoliderDoorNPCRoot
+
+onready var King = $NpcWrapperNode/KingNPCRoot
+# npcs
+
 func _ready():
 	match Singleton_Game_GlobalCommonVariables.position_location_st:
 		"Alterone-Castle__MainEntrance": playerNode.transform = positionsNode.get_node("CastleEntrancePosition2D").transform
 		# "Alterone-Town__HQ": playerNode.transform = positionsNode.get_node("HQEntrancePosition2D").transform
 		# "Alterone-Town__Castle": playerNode.transform = positionsNode.get_node("CabinPosition2D").transform
+	
+	if Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.spoken_to_guardiana_man_in_alterone_bar:
+		SoliderEntrance.get_child(0).tester__move_in_direction("Right")
+		SoliderEntrance.get_child(0).change_facing_direction_string("LeftMovement")
 	
 	pass
 

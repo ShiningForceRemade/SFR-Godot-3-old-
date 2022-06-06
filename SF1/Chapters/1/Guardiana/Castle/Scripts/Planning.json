@@ -1,7 +1,35 @@
 {
 	"script": [
 		{
-			"Text": "For centuries, our people have watched the Gate of the Ancients, as its guardians. Beyond that gate lies we know not what, not even if it is of the Light or the Darkness. But the Ancients knew, and they sealed it beyond the gate and set us as guards. And now we find that we may have failed in our mission, our reason for existence. Signs have been seen that forces of Runefaust are at the Gate of the Ancients! Whatever evil they are planning, we must stop it at all costs and at once!"
+			"ShowPortrait": "res://Assets/SF1/NPC/King_Gaurdiana_Portraits.png"
+		},
+
+		{
+			"Text": "For centuries, our people have watched the Gate of the Ancients, as its guardians."
+		},
+
+		{
+			"Text": "Beyond that gate lies we know not what, not even if it is of the Light or the Darkness."
+		},
+
+		{
+			"Text": "But the Ancients knew, and they sealed it beyond the gate and set us as guards."
+		},
+
+		{
+			"Text": "And now we find that we may have failed in our mission, our reason for existence."
+		},
+
+		{
+			"Text": "Signs have been seen that forces of Runefaust are at the Gate of the Ancients!"
+		},
+
+		{
+			"Text": "Whatever evil they are planning, we must stop it at all costs and at once!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Varios_Portraits.png"
 		},
 
 		{
@@ -9,23 +37,30 @@
 		},
 
 		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Nova_Portraits.png"
+		},
+
+		{
 			"Text": "Yes! He could do it. He could leave town unnoticed and have a chance to succeed, perhaps."
 		},
 
 		{
-			"Text": "Yes, Nova, I agree. Max! Will you take the task?"
+			"ShowPortrait": "res://Assets/SF1/NPC/King_Gaurdiana_Portraits.png"
 		},
 
 		{
-			"Text": "Interaction Prompt"
+			"Text": "Yes, Nova, I agree. Max! Will you take the task?",
+			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"Text": "PromptNO - What? You refuse?! It seems that Varios was wrong about you, after all. Too bad."
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/Planning_Yes.json"
 		},
-
+		
 		{
-			"Text": "PromptYes - Very well! Now, return to town and gather your troops. Come back when you're ready."
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/Planning_No.json"
 		}
 	]
 }

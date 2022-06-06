@@ -1,0 +1,35 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Varios_Portraits.png"
+		},
+
+		{
+			"Text": "Go away, Kane! I don't understand what you are talking about!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Kane_Mask_Portraits.png"
+		},
+
+		{
+			"Text": "Anyway, the treasure of Guardiana is in my hand now."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Varios_Portraits.png"
+		},
+
+		{
+			"Text": "I won't let you take that! Just leave!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Kane_Mask_Portraits.png"
+		},
+
+		{
+			"Text": "Sword of Darkness! Show me your power!!"
+		}
+	]
+}

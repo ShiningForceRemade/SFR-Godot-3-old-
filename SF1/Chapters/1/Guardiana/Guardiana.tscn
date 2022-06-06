@@ -1348,10 +1348,11 @@ anims/RightMovement = SubResource( 122 )
 anims/UpMovement = SubResource( 123 )
 
 [node name="SoldierGuardLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 752, 856 )
+position = Vector2( 824, 856 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoldierGuardLeftNPCRoot" index="0"]
 stationary = true
+default_facing_direction = 3
 
 [node name="Sprite" parent="NpcWrapperNode/SoldierGuardLeftNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -1364,7 +1365,11 @@ anims/RightMovement = SubResource( 27 )
 anims/UpMovement = SubResource( 28 )
 
 [node name="SoldierGuardRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 920, 856 )
+position = Vector2( 848, 856 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/SoldierGuardRightNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 3
 
 [node name="Sprite" parent="NpcWrapperNode/SoldierGuardRightNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )

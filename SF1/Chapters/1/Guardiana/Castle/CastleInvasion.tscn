@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/King.gd" type="Script" id=2]
@@ -8,16 +8,17 @@
 [ext_resource path="res://SF1/TileSet_Resources/Original/7.tres" type="TileSet" id=6]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/NPCs/Generic.gd" type="Script" id=8]
-[ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/ActionSpotsWrapperNode.gd" type="Script" id=9]
-[ext_resource path="res://Assets/SF1/NPC/Soldier.png" type="Texture" id=10]
-[ext_resource path="res://Assets/SF1/NPC/Knight_Centaur_Generic.png" type="Texture" id=11]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Castle/Castle_Invasion_ActionSpotsWrapperNode.gd" type="Script" id=9]
+[ext_resource path="res://Assets/SF1/NPC/Child_Pet.png" type="Texture" id=10]
+[ext_resource path="res://Assets/SF1/NPC/Woman_Redhead.png" type="Texture" id=11]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png" type="Texture" id=12]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Map_Sprites.png" type="Texture" id=13]
 [ext_resource path="res://Assets/SF1/NPC/Man_Old_WhiteBeard.png" type="Texture" id=14]
 [ext_resource path="res://Assets/SF1/NPC/King Guardiana.png" type="Texture" id=15]
-[ext_resource path="res://Assets/SF1/NPC/Nova.png" type="Texture" id=16]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Kane/Map_Sprites.png" type="Texture" id=16]
 [ext_resource path="res://Assets/SF1/NPC/Chancellor.png" type="Texture" id=17]
 [ext_resource path="res://Assets/SF1/NPC/Lord_Varios.png" type="Texture" id=18]
+[ext_resource path="res://Assets/SF1/NPC/Soldier_Injured.png" type="Texture" id=19]
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=20]
 [ext_resource path="res://Assets/SF1/NPC/Woman_Blonde_GreenDress.png" type="Texture" id=21]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
@@ -227,811 +228,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=167]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=168]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=169]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=170]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=171]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=172]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=173]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=174]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=175]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=176]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=177]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=178]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=179]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=180]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=181]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=182]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=183]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=184]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=185]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=186]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=187]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=188]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=189]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=190]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=191]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=192]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=193]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=194]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=195]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -1289,7 +485,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=204]
+[sub_resource type="Animation" id=241]
 resource_name = "DownMovement"
 length = 0.8
 loop = true
@@ -1318,7 +514,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=205]
+[sub_resource type="Animation" id=242]
 resource_name = "LeftMovement"
 length = 0.8
 loop = true
@@ -1347,7 +543,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=206]
+[sub_resource type="Animation" id=243]
 resource_name = "RightMovement"
 length = 0.8
 loop = true
@@ -1376,7 +572,122 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=207]
+[sub_resource type="Animation" id=244]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=245]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=246]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=247]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=248]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -1492,121 +803,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=211]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=212]
-resource_name = "DownMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=213]
-resource_name = "LeftMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=214]
-resource_name = "RightMovement"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=215]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -1864,7 +1060,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=224]
+[sub_resource type="Animation" id=249]
 resource_name = "DownMovement"
 length = 0.8
 loop = true
@@ -1893,7 +1089,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=225]
+[sub_resource type="Animation" id=250]
 resource_name = "LeftMovement"
 length = 0.8
 loop = true
@@ -1922,7 +1118,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=226]
+[sub_resource type="Animation" id=251]
 resource_name = "RightMovement"
 length = 0.8
 loop = true
@@ -1951,7 +1147,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=227]
+[sub_resource type="Animation" id=252]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -2338,9 +1534,6 @@ extents = Vector2( 10, 9.75 )
 [sub_resource type="RectangleShape2D" id=236]
 extents = Vector2( 59, 27.5 )
 
-[sub_resource type="RectangleShape2D" id=237]
-extents = Vector2( 85, 10 )
-
 [sub_resource type="RectangleShape2D" id=240]
 extents = Vector2( 32.5, 43.5 )
 
@@ -2365,19 +1558,6 @@ position = Vector2( 636, 828 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 
-[node name="GuardHQNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 444, 852 )
-script = ExtResource( 8 )
-DefaultScript = "GuardNearHeadquarters.json"
-
-[node name="NPCActorRoot" parent="NpcWrapperNode/GuardHQNPCRoot" index="0"]
-stationary = true
-default_facing_direction = 2
-
-[node name="Sprite" parent="NpcWrapperNode/GuardHQNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 10 )
-hframes = 6
-
 [node name="GuardGateLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 780 )
 script = ExtResource( 8 )
@@ -2387,8 +1567,8 @@ DefaultScript = "CastleGuard1.json"
 stationary = true
 
 [node name="Sprite" parent="NpcWrapperNode/GuardGateLeftNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 10 )
-hframes = 6
+texture = ExtResource( 19 )
+hframes = 2
 
 [node name="AnimationPlayer" parent="NpcWrapperNode/GuardGateLeftNPCRoot/NPCActorRoot" index="1"]
 anims/DownMovement = SubResource( 160 )
@@ -2405,8 +1585,8 @@ DefaultScript = "CastleGuard1.json"
 stationary = true
 
 [node name="Sprite" parent="NpcWrapperNode/GuardGateRightNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 10 )
-hframes = 6
+texture = ExtResource( 19 )
+hframes = 2
 
 [node name="AnimationPlayer" parent="NpcWrapperNode/GuardGateRightNPCRoot/NPCActorRoot" index="1"]
 anims/DownMovement = SubResource( 164 )
@@ -2414,116 +1594,8 @@ anims/LeftMovement = SubResource( 165 )
 anims/RightMovement = SubResource( 166 )
 anims/UpMovement = SubResource( 167 )
 
-[node name="SoliderKnightTrainerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 732, 564 )
-script = ExtResource( 8 )
-DefaultScript = "GuardNearTheKnights.json"
-
-[node name="NPCActorRoot" parent="NpcWrapperNode/SoliderKnightTrainerNPCRoot" index="0"]
-stationary = true
-
-[node name="Sprite" parent="NpcWrapperNode/SoliderKnightTrainerNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 10 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/SoliderKnightTrainerNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 168 )
-anims/LeftMovement = SubResource( 169 )
-anims/RightMovement = SubResource( 170 )
-anims/UpMovement = SubResource( 171 )
-
-[node name="Knight1NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 780, 540 )
-script = ExtResource( 8 )
-DefaultScript = "Knight1.json"
-
-[node name="Sprite" parent="NpcWrapperNode/Knight1NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/Knight1NPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 172 )
-anims/LeftMovement = SubResource( 173 )
-anims/RightMovement = SubResource( 174 )
-anims/UpMovement = SubResource( 175 )
-
-[node name="Knight2NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 828, 540 )
-script = ExtResource( 8 )
-DefaultScript = "Knight2.json"
-
-[node name="Sprite" parent="NpcWrapperNode/Knight2NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/Knight2NPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 176 )
-anims/LeftMovement = SubResource( 177 )
-anims/RightMovement = SubResource( 178 )
-anims/UpMovement = SubResource( 179 )
-
-[node name="Knight3NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 876, 540 )
-script = ExtResource( 8 )
-DefaultScript = "Knight3.json"
-
-[node name="Sprite" parent="NpcWrapperNode/Knight3NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/Knight3NPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 180 )
-anims/LeftMovement = SubResource( 181 )
-anims/RightMovement = SubResource( 182 )
-anims/UpMovement = SubResource( 183 )
-
-[node name="Knight4NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 780, 588 )
-script = ExtResource( 8 )
-DefaultScript = "Knight4.json"
-
-[node name="Sprite" parent="NpcWrapperNode/Knight4NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/Knight4NPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 184 )
-anims/LeftMovement = SubResource( 185 )
-anims/RightMovement = SubResource( 186 )
-anims/UpMovement = SubResource( 187 )
-
-[node name="Knight5NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 828, 588 )
-script = ExtResource( 8 )
-DefaultScript = "Knight5.json"
-
-[node name="Sprite" parent="NpcWrapperNode/Knight5NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/Knight5NPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 188 )
-anims/LeftMovement = SubResource( 189 )
-anims/RightMovement = SubResource( 190 )
-anims/UpMovement = SubResource( 191 )
-
-[node name="Knight6NPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 876, 588 )
-script = ExtResource( 8 )
-DefaultScript = "Knight6.json"
-
-[node name="Sprite" parent="NpcWrapperNode/Knight6NPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/Knight6NPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 192 )
-anims/LeftMovement = SubResource( 193 )
-anims/RightMovement = SubResource( 194 )
-anims/UpMovement = SubResource( 195 )
-
 [node name="MaeNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 372, 564 )
+position = Vector2( 444, 564 )
 script = ExtResource( 8 )
 DefaultScript = "Mae.json"
 
@@ -2543,13 +1615,13 @@ anims/RightMovement = SubResource( 198 )
 anims/UpMovement = SubResource( 199 )
 
 [node name="ManAcrossMaeNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 420, 564 )
+position = Vector2( 372, 564 )
 script = ExtResource( 8 )
 DefaultScript = "OldMan.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ManAcrossMaeNPCRoot" index="0"]
 stationary = true
-default_facing_direction = 1
+default_facing_direction = 2
 
 [node name="Sprite" parent="NpcWrapperNode/ManAcrossMaeNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 14 )
@@ -2561,27 +1633,44 @@ anims/LeftMovement = SubResource( 201 )
 anims/RightMovement = SubResource( 202 )
 anims/UpMovement = SubResource( 203 )
 
-[node name="SoliderLeftTreasureNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 348, 420 )
+[node name="ChildInHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 444, 540 )
 script = ExtResource( 8 )
-DefaultScript = "GuardNearTreasure.json"
+DefaultScript = "OldMan.json"
 
-[node name="NPCActorRoot" parent="NpcWrapperNode/SoliderLeftTreasureNPCRoot" index="0"]
+[node name="NPCActorRoot" parent="NpcWrapperNode/ChildInHouseNPCRoot" index="0"]
 stationary = true
-default_facing_direction = 2
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderLeftTreasureNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite" parent="NpcWrapperNode/ChildInHouseNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 10 )
 hframes = 6
 
-[node name="AnimationPlayer" parent="NpcWrapperNode/SoliderLeftTreasureNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 204 )
-anims/LeftMovement = SubResource( 205 )
-anims/RightMovement = SubResource( 206 )
-anims/UpMovement = SubResource( 207 )
+[node name="AnimationPlayer" parent="NpcWrapperNode/ChildInHouseNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 241 )
+anims/LeftMovement = SubResource( 242 )
+anims/RightMovement = SubResource( 243 )
+anims/UpMovement = SubResource( 244 )
+
+[node name="WomanInHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 468, 540 )
+script = ExtResource( 8 )
+DefaultScript = "OldMan.json"
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/WomanInHouseNPCRoot" index="0"]
+stationary = true
+
+[node name="Sprite" parent="NpcWrapperNode/WomanInHouseNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 11 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/WomanInHouseNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 245 )
+anims/LeftMovement = SubResource( 246 )
+anims/RightMovement = SubResource( 247 )
+anims/UpMovement = SubResource( 248 )
 
 [node name="KingNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 636, 440 )
+position = Vector2( 636, 444 )
 script = ExtResource( 2 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/KingNPCRoot" index="0"]
@@ -2597,26 +1686,8 @@ anims/LeftMovement = SubResource( 209 )
 anims/RightMovement = SubResource( 210 )
 anims/UpMovement = SubResource( 211 )
 
-[node name="NovaNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 588, 440 )
-script = ExtResource( 8 )
-DefaultScript = "TalkToTheKing.json"
-
-[node name="NPCActorRoot" parent="NpcWrapperNode/NovaNPCRoot" index="0"]
-stationary = true
-
-[node name="Sprite" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 16 )
-hframes = 6
-
-[node name="AnimationPlayer" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 212 )
-anims/LeftMovement = SubResource( 213 )
-anims/RightMovement = SubResource( 214 )
-anims/UpMovement = SubResource( 215 )
-
 [node name="MinisterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 684, 440 )
+position = Vector2( 636, 540 )
 script = ExtResource( 8 )
 DefaultScript = "TalkToTheKing.json"
 
@@ -2634,13 +1705,13 @@ anims/RightMovement = SubResource( 218 )
 anims/UpMovement = SubResource( 219 )
 
 [node name="VariosNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 636, 464 )
+position = Vector2( 636, 468 )
 script = ExtResource( 8 )
 DefaultScript = "TalkToTheKing.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/VariosNPCRoot" index="0"]
 stationary = true
-default_facing_direction = 3
+default_facing_direction = 2
 
 [node name="Sprite" parent="NpcWrapperNode/VariosNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 18 )
@@ -2652,20 +1723,24 @@ anims/LeftMovement = SubResource( 221 )
 anims/RightMovement = SubResource( 222 )
 anims/UpMovement = SubResource( 223 )
 
-[node name="KnightInRoomNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 756, 372 )
+[node name="KaneNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 660, 468 )
 script = ExtResource( 8 )
-DefaultScript = "KnightInsideTheCastle.json"
+DefaultScript = "TalkToTheKing.json"
 
-[node name="Sprite" parent="NpcWrapperNode/KnightInRoomNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 11 )
+[node name="NPCActorRoot" parent="NpcWrapperNode/KaneNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 1
+
+[node name="Sprite" parent="NpcWrapperNode/KaneNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 16 )
 hframes = 6
 
-[node name="AnimationPlayer" parent="NpcWrapperNode/KnightInRoomNPCRoot/NPCActorRoot" index="1"]
-anims/DownMovement = SubResource( 224 )
-anims/LeftMovement = SubResource( 225 )
-anims/RightMovement = SubResource( 226 )
-anims/UpMovement = SubResource( 227 )
+[node name="AnimationPlayer" parent="NpcWrapperNode/KaneNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 249 )
+anims/LeftMovement = SubResource( 250 )
+anims/RightMovement = SubResource( 251 )
+anims/UpMovement = SubResource( 252 )
 
 [node name="WomanRightInRoomNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 276 )
@@ -2682,6 +1757,9 @@ anims/LeftMovement = SubResource( 229 )
 anims/RightMovement = SubResource( 230 )
 anims/UpMovement = SubResource( 231 )
 
+[node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRightInRoomNPCRoot/Area2D" index="0"]
+polygon = PoolVector2Array( -36, 52, -36, 32, -12, 32, -12, 52 )
+
 [node name="WomanRightInRoomNPCRoot2" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 444, 276 )
 script = ExtResource( 8 )
@@ -2696,6 +1774,9 @@ anims/DownMovement = SubResource( 232 )
 anims/LeftMovement = SubResource( 233 )
 anims/RightMovement = SubResource( 234 )
 anims/UpMovement = SubResource( 235 )
+
+[node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRightInRoomNPCRoot2/Area2D" index="0"]
+polygon = PoolVector2Array( 108, 48, 108, 32, 132, 32, 132, 48 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
@@ -3567,20 +2648,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/InsideThroneBottomArea2D"]
-position = Vector2( 636, 504.5 )
+position = Vector2( 636, 668 )
 shape = SubResource( 236 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="InsideThroneTopArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/InsideThroneTopArea2D"]
-position = Vector2( 635, 416 )
-shape = SubResource( 237 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3604,26 +2673,17 @@ shape = SubResource( 240 )
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HQEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_HQEntranceArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HQExitArea2D" to="ActionSpotsWrapperNode" method="_on_HQExitArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/InsideThroneBottomArea2D" to="ActionSpotsWrapperNode" method="_on_InsideThroneBottomArea2D_body_entered"]
-[connection signal="body_entered" from="ActionSpotsWrapperNode/InsideThroneTopArea2D" to="ActionSpotsWrapperNode" method="_on_InsideThroneTopArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/GuardianaTownExitArea2D" to="ActionSpotsWrapperNode" method="_on_GuardianaTownExitArea2D_body_entered"]
 
-[editable path="NpcWrapperNode/GuardHQNPCRoot"]
 [editable path="NpcWrapperNode/GuardGateLeftNPCRoot"]
 [editable path="NpcWrapperNode/GuardGateRightNPCRoot"]
-[editable path="NpcWrapperNode/SoliderKnightTrainerNPCRoot"]
-[editable path="NpcWrapperNode/Knight1NPCRoot"]
-[editable path="NpcWrapperNode/Knight2NPCRoot"]
-[editable path="NpcWrapperNode/Knight3NPCRoot"]
-[editable path="NpcWrapperNode/Knight4NPCRoot"]
-[editable path="NpcWrapperNode/Knight5NPCRoot"]
-[editable path="NpcWrapperNode/Knight6NPCRoot"]
 [editable path="NpcWrapperNode/MaeNPCRoot"]
 [editable path="NpcWrapperNode/ManAcrossMaeNPCRoot"]
-[editable path="NpcWrapperNode/SoliderLeftTreasureNPCRoot"]
+[editable path="NpcWrapperNode/ChildInHouseNPCRoot"]
+[editable path="NpcWrapperNode/WomanInHouseNPCRoot"]
 [editable path="NpcWrapperNode/KingNPCRoot"]
-[editable path="NpcWrapperNode/NovaNPCRoot"]
 [editable path="NpcWrapperNode/MinisterNPCRoot"]
 [editable path="NpcWrapperNode/VariosNPCRoot"]
-[editable path="NpcWrapperNode/KnightInRoomNPCRoot"]
+[editable path="NpcWrapperNode/KaneNPCRoot"]
 [editable path="NpcWrapperNode/WomanRightInRoomNPCRoot"]
 [editable path="NpcWrapperNode/WomanRightInRoomNPCRoot2"]

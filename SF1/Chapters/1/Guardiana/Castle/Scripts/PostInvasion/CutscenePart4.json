@@ -1,0 +1,11 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "No! Father! I... I can't believe it! I'll, I'll..."
+		}
+	]
+}

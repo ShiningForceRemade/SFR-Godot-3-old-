@@ -1,0 +1,1337 @@
+[gd_scene load_steps=56 format=2]
+
+[ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SF1/Chapters/1/Alterone/Castle/ActionSpotsWrapperNode.gd" type="Script" id=3]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.gd" type="Script" id=5]
+[ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=6]
+[ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/SF1/NPC/Soldier.png" type="Texture" id=8]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Map_Sprites.png" type="Texture" id=9]
+[ext_resource path="res://Assets/SF1/NPC/King Guardiana.png" type="Texture" id=10]
+[ext_resource path="res://Assets/SF1/NPC/Priest.png" type="Texture" id=11]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Kane/Map_Sprites.png" type="Texture" id=12]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Map_Sprites.png" type="Texture" id=15]
+[ext_resource path="res://SF1/Chapters/1/Alterone/Castle_Basement/AlteroneCastleBasementTilemap..tscn" type="PackedScene" id=16]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
+[ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/CutsceneNode.gd" type="Script" id=25]
+
+[sub_resource type="Animation" id=150]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=151]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=152]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=153]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=154]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=155]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=156]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=157]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=158]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=159]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=160]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=161]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=162]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=163]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=164]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=165]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=166]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=167]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=168]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=169]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=170]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=171]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=172]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=173]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=174]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=175]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=176]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=177]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=178]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=179]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=180]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=181]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=182]
+resource_name = "DownMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=183]
+resource_name = "LeftMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=184]
+resource_name = "RightMovement"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=185]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=149]
+extents = Vector2( 12, 20 )
+
+[sub_resource type="RectangleShape2D" id=108]
+extents = Vector2( 60, 12.375 )
+
+[node name="AlteroneRoot" type="Node2D"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CutsceneNode" type="Node" parent="."]
+script = ExtResource( 25 )
+
+[node name="CutsceneAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Opening = ExtResource( 24 )
+script = ExtResource( 23 )
+
+[node name="AlteroneCastlebasementTilemap" parent="." instance=ExtResource( 16 )]
+
+[node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
+position = Vector2( 732, 396 )
+
+[node name="PositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CastleEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 444, 684 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 156, 324 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SecretPassageEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 252, 444 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 636, 132 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 732, 372 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NpcWrapperNode" type="Node2D" parent="."]
+
+[node name="SoliderNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 252, 300 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/SoliderNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 3
+
+[node name="Sprite" parent="NpcWrapperNode/SoliderNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 8 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/SoliderNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 150 )
+anims/LeftMovement = SubResource( 151 )
+anims/RightMovement = SubResource( 152 )
+anims/UpMovement = SubResource( 153 )
+
+[node name="RuneKnightBottomNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 252, 228 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/RuneKnightBottomNPCRoot" index="0"]
+stationary = true
+
+[node name="Sprite" parent="NpcWrapperNode/RuneKnightBottomNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 9 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/RuneKnightBottomNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 154 )
+anims/LeftMovement = SubResource( 155 )
+anims/RightMovement = SubResource( 156 )
+anims/UpMovement = SubResource( 157 )
+
+[node name="RuneKnightTopNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 276, 204 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/RuneKnightTopNPCRoot" index="0"]
+stationary = true
+
+[node name="Sprite" parent="NpcWrapperNode/RuneKnightTopNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 9 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/RuneKnightTopNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 158 )
+anims/LeftMovement = SubResource( 159 )
+anims/RightMovement = SubResource( 160 )
+anims/UpMovement = SubResource( 161 )
+
+[node name="RuneKnightLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 540, 228 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/RuneKnightLeftNPCRoot" index="0"]
+stationary = true
+
+[node name="Sprite" parent="NpcWrapperNode/RuneKnightLeftNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 9 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/RuneKnightLeftNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 162 )
+anims/LeftMovement = SubResource( 163 )
+anims/RightMovement = SubResource( 164 )
+anims/UpMovement = SubResource( 165 )
+
+[node name="RuneKnightRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 588, 228 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/RuneKnightRightNPCRoot" index="0"]
+stationary = true
+
+[node name="Sprite" parent="NpcWrapperNode/RuneKnightRightNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 9 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/RuneKnightRightNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 166 )
+anims/LeftMovement = SubResource( 167 )
+anims/RightMovement = SubResource( 168 )
+anims/UpMovement = SubResource( 169 )
+
+[node name="KaneNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 492, 276 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/KaneNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 2
+
+[node name="Sprite" parent="NpcWrapperNode/KaneNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 12 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/KaneNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 170 )
+anims/LeftMovement = SubResource( 171 )
+anims/RightMovement = SubResource( 172 )
+anims/UpMovement = SubResource( 173 )
+
+[node name="KingNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 492, 252 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/KingNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 2
+
+[node name="Sprite" parent="NpcWrapperNode/KingNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 10 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/KingNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 174 )
+anims/LeftMovement = SubResource( 175 )
+anims/RightMovement = SubResource( 176 )
+anims/UpMovement = SubResource( 177 )
+
+[node name="PriestNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+position = Vector2( 516, 588 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/PriestNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 2
+
+[node name="Sprite" parent="NpcWrapperNode/PriestNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 11 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/PriestNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 178 )
+anims/LeftMovement = SubResource( 179 )
+anims/RightMovement = SubResource( 180 )
+anims/UpMovement = SubResource( 181 )
+
+[node name="KhrisNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 804, 396 )
+
+[node name="NPCActorRoot" parent="NpcWrapperNode/KhrisNPCRoot" index="0"]
+stationary = true
+default_facing_direction = 2
+
+[node name="Sprite" parent="NpcWrapperNode/KhrisNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+texture = ExtResource( 15 )
+hframes = 6
+
+[node name="AnimationPlayer" parent="NpcWrapperNode/KhrisNPCRoot/NPCActorRoot" index="1"]
+anims/DownMovement = SubResource( 182 )
+anims/LeftMovement = SubResource( 183 )
+anims/RightMovement = SubResource( 184 )
+anims/UpMovement = SubResource( 185 )
+
+[node name="TestChest" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 512, 376 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 158, 91 )
+rotating = true
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 888
+limit_bottom = 1776
+smoothing_enabled = true
+smoothing_speed = 16.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TODOCOMPRESS_StaticBody2D" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CastleItemsNode" type="StaticBody2D" parent="TODOCOMPRESS_StaticBody2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleItemsNode"]
+position = Vector2( 396, 516 )
+shape = SubResource( 149 )
+
+[node name="Overpass" type="TileMap" parent="."]
+position = Vector2( 964, 952 )
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 4, 4 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -12386389, 0, 1048578, -12386388, 0, 1048579, -12386387, 0, 1048578, -12386386, 0, 1048579, -12386385, 0, 1048578, -12386384, 0, 1048579, -12320853, 0, 1114114, -12320852, 0, 1114115, -12320851, 0, 1114114, -12320850, 0, 1114115, -12320849, 0, 1114114, -12320848, 0, 1114115, -12255317, 1073741824, 1114114, -12255316, 1073741824, 1114115, -12255315, 1073741824, 1114114, -12255314, 1073741824, 1114115, -12255313, 1073741824, 1114114, -12255312, 1073741824, 1114115, -12189781, 1073741824, 1048578, -12189780, 1073741824, 1048579, -12189779, 1073741824, 1048578, -12189778, 1073741824, 1048579, -12189777, 1073741824, 1048578, -12189776, 1073741824, 1048579, -11600053, 0, 1048578, -11600052, 0, 1048579, -11600051, 0, 1048578, -11600050, 0, 1048579, -11600049, 0, 1048578, -11600048, 0, 1048579, -11665385, 0, 1048578, -11665384, 0, 1048579, -11665383, 0, 1048578, -11665382, 0, 1048579, -11665381, 0, 1048578, -11665380, 0, 1048579, -11665289, 0, 1048578, -11665288, 0, 1048579, -11665287, 0, 1048578, -11665286, 0, 1048579, -11665285, 0, 1048578, -11665284, 0, 1048579, -11534517, 0, 1114114, -11534516, 0, 1114115, -11534515, 0, 1114114, -11534514, 0, 1114115, -11534513, 0, 1114114, -11534512, 0, 1114115, -11599849, 0, 1114114, -11599848, 0, 1114115, -11599847, 0, 1114114, -11599846, 0, 1114115, -11599845, 0, 1114114, -11599844, 0, 1114115, -11599753, 0, 1114114, -11599752, 0, 1114115, -11599751, 0, 1114114, -11599750, 0, 1114115, -11599749, 0, 1114114, -11599748, 0, 1114115, -11468981, 1073741824, 1114114, -11468980, 1073741824, 1114115, -11468979, 1073741824, 1114114, -11468978, 1073741824, 1114115, -11468977, 1073741824, 1114114, -11468976, 1073741824, 1114115, -11534313, 1073741824, 1114114, -11534312, 1073741824, 1114115, -11534311, 1073741824, 1114114, -11534310, 1073741824, 1114115, -11534309, 1073741824, 1114114, -11534308, 1073741824, 1114115, -11534217, 1073741824, 1114114, -11534216, 1073741824, 1114115, -11534215, 1073741824, 1114114, -11534214, 1073741824, 1114115, -11534213, 1073741824, 1114114, -11534212, 1073741824, 1114115, -11403445, 1073741824, 1048578, -11403444, 1073741824, 1048579, -11403443, 1073741824, 1048578, -11403442, 1073741824, 1048579, -11403441, 1073741824, 1048578, -11403440, 1073741824, 1048579, -11468777, 1073741824, 1048578, -11468776, 1073741824, 1048579, -11468775, 1073741824, 1048578, -11468774, 1073741824, 1048579, -11468773, 1073741824, 1048578, -11468772, 1073741824, 1048579, -11468681, 1073741824, 1048578, -11468680, 1073741824, 1048579, -11468679, 1073741824, 1048578, -11468678, 1073741824, 1048579, -11468677, 1073741824, 1048578, -11468676, 1073741824, 1048579, -8847475, 0, 1048578, -8847474, 0, 1048579, -8847473, 0, 1048578, -8847472, 0, 1048579, -8847471, 0, 1048578, -8847470, 0, 1048579, -8847451, 0, 1048578, -8847450, 0, 1048579, -8847449, 0, 1048578, -8847448, 0, 1048579, -8847447, 0, 1048578, -8847446, 0, 1048579, -8781939, 0, 1114114, -8781938, 0, 1114115, -8781937, 0, 1114114, -8781936, 0, 1114115, -8781935, 0, 1114114, -8781934, 0, 1114115, -8781915, 0, 1114114, -8781914, 0, 1114115, -8781913, 0, 1114114, -8781912, 0, 1114115, -8781911, 0, 1114114, -8781910, 0, 1114115, -8716403, 1073741824, 1114114, -8716402, 1073741824, 1114115, -8716401, 1073741824, 1114114, -8716400, 1073741824, 1114115, -8716399, 1073741824, 1114114, -8716398, 1073741824, 1114115, -8716379, 1073741824, 1114114, -8716378, 1073741824, 1114115, -8716377, 1073741824, 1114114, -8716376, 1073741824, 1114115, -8716375, 1073741824, 1114114, -8716374, 1073741824, 1114115, -8650867, 1073741824, 1048578, -8650866, 1073741824, 1048579, -8650865, 1073741824, 1048578, -8650864, 1073741824, 1048579, -8650863, 1073741824, 1048578, -8650862, 1073741824, 1048579, -8650843, 1073741824, 1048578, -8650842, 1073741824, 1048579, -8650841, 1073741824, 1048578, -8650840, 1073741824, 1048579, -8650839, 1073741824, 1048578, -8650838, 1073741824, 1048579, -7274587, 0, 1048578, -7274586, 0, 1048579, -7274585, 0, 1048578, -7274584, 0, 1048579, -7274583, 0, 1048578, -7274582, 0, 1048579, -7209051, 0, 1114114, -7209050, 0, 1114115, -7209049, 0, 1114114, -7209048, 0, 1114115, -7209047, 0, 1114114, -7209046, 0, 1114115, -7143515, 1073741824, 1114114, -7143514, 1073741824, 1114115, -7143513, 1073741824, 1114114, -7143512, 1073741824, 1114115, -7143511, 1073741824, 1114114, -7143510, 1073741824, 1114115, -7077979, 1073741824, 1048578, -7077978, 1073741824, 1048579, -7077977, 1073741824, 1048578, -7077976, 1073741824, 1048579, -7077975, 1073741824, 1048578, -7077974, 1073741824, 1048579 )
+
+[node name="ActionSpotsWrapperNode" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="TopLeftHouseEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/TopLeftHouseEntranceArea2D"]
+position = Vector2( 444, 756 )
+shape = SubResource( 108 )
+
+[connection signal="body_entered" from="ActionSpotsWrapperNode/TopLeftHouseEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_TopLeftHouseEntranceArea2D_body_entered"]
+
+[editable path="NpcWrapperNode/SoliderNPCRoot"]
+[editable path="NpcWrapperNode/RuneKnightBottomNPCRoot"]
+[editable path="NpcWrapperNode/RuneKnightTopNPCRoot"]
+[editable path="NpcWrapperNode/RuneKnightLeftNPCRoot"]
+[editable path="NpcWrapperNode/RuneKnightRightNPCRoot"]
+[editable path="NpcWrapperNode/KaneNPCRoot"]
+[editable path="NpcWrapperNode/KingNPCRoot"]
+[editable path="NpcWrapperNode/PriestNPCRoot"]
+[editable path="NpcWrapperNode/KhrisNPCRoot"]

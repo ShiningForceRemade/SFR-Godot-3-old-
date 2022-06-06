@@ -42,7 +42,10 @@ enum E_RayCastRotationDirections {
 var GRID_BASED_MOVEMENT: bool = true
 const TILE_SIZE: int = 24
 
-const movement_tween_speed = 0.1625
+var movement_tween_speed = 0.1625
+
+func reset_movement_speed() -> void:
+	movement_tween_speed = 0.1625
 
 func _ready():
 	Singleton_Game_GlobalCommonVariables.main_character_player_node = self

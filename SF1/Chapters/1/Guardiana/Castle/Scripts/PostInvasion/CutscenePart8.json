@@ -1,0 +1,35 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Now is not the time for tears and grief. Alterone should be out next goal."
+		},
+
+		{
+			"Text": "{main_character_name}!"
+		},
+
+		{
+			"Text": "Let's go find that key! I don't want to see any more of these tradegies."
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"Text": "(Mae joins the Shining Force!)"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I'll await you at headquarters. Be quick!"
+		}
+	]
+}

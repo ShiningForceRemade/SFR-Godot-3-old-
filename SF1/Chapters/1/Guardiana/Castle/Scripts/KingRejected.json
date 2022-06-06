@@ -1,19 +1,22 @@
 {
 	"script": [
 		{
-			"Text": "Have you reconsidered? Will you go to the Gate of the Ancients and investigate?"
+			"ShowPortrait": "res://Assets/SF1/NPC/King_Gaurdiana_Portraits.png"
 		},
 
 		{
-			"Text": "Interaction Prompt"
+			"Text": "Have you reconsidered? Will you go to the Gate of the Ancients and investigate?",
+			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"Text": "PromptNO - What? You refuse?! It seems that Varios was wrong about you, after all. Too bad."
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/Planning_Yes.json"
 		},
-
+		
 		{
-			"Text": "PromptYes - Very well! Now, return to town and gather your troops. Come back when you're ready."
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/Planning_No.json"
 		}
 	]
 }

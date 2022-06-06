@@ -4,6 +4,10 @@ onready var TilemapSceneRoot = $CastleTilemapNode
 onready var TilemapRoofSceneRoot = $RoofsWrapperNode
 onready var TilemapWalkwaySceneRoot = $OverpassNode
 
+onready var GuardInFrontOfHQ = $NpcWrapperNode/GuardHQNPCRoot
+onready var Nova = $NpcWrapperNode/NovaNPCRoot
+onready var Varios = $NpcWrapperNode/VariosNPCRoot
+
 var using_original_tiles: bool = true
 
 # original tilesets
@@ -19,7 +23,13 @@ var seven_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/7
 var eight_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/8.tres")
 
 func _ready():
-	pass
+	if Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.initial_force_joined:
+		Nova.queue_free()
+		
+		GuardInFrontOfHQ.position = Vector2(GuardInFrontOfHQ.position.x - 24, GuardInFrontOfHQ.position.y)
+		GuardInFrontOfHQ.get_child(0).change_facing_direction_string("RightMovement")
+		Varios.position = Vector2(Varios.position.x + 48, Varios.position.y + 48)
+		Varios.get_child(0).change_facing_direction_string("LeftMovement")
 
 
 func _input(event):

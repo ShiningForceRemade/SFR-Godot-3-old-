@@ -1,0 +1,11 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "{main_character_name}! Look to the king!"
+		}
+	]
+}

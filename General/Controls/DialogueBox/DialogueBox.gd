@@ -348,7 +348,7 @@ func load_dialog():
 				Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
 				var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
 				if result == "NO":
-					interaction_yes_or_no_selection = "NO"
+					Singleton_Game_GlobalCommonVariables.interaction_yes_or_no_selection = "NO"
 					print("No")
 					
 					var remaining_lines = dialogue.size() - dialogue_index
@@ -378,7 +378,7 @@ func load_dialog():
 							dialogue_index += 1
 					pass
 				elif result == "YES":
-					interaction_yes_or_no_selection = "YES"
+					Singleton_Game_GlobalCommonVariables.interaction_yes_or_no_selection = "YES"
 					print("Yes")
 					
 					var remaining_lines = dialogue.size() - dialogue_index

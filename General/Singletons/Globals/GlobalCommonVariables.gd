@@ -7,6 +7,10 @@ var camera_node = null
 var dialogue_box_node = null
 var scene_manager_node = null
 
+# TODO: refactor disgusting temp for demo
+# values null | "YES" | "NO"
+var interaction_yes_or_no_selection = null
+
 # TODO: move battle vars battle scene to enum for overworld battle and in battle scene instead
 var is_currently_in_battle_scene = false
 

@@ -1,0 +1,11 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Kane_Mask_Portraits.png"
+		},
+
+		{
+			"Text": "Now, Guardiana is unworthy of my attention. Farewell, fools!"
+		}
+	]
+}

@@ -1,0 +1,51 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/King_Gaurdiana_Portraits.png"
+		},
+
+		{
+			"Text": "{main_character_name}...Mae...I don't think I'll live much longer, thought Varios protected me."
+		},
+
+		{
+			"Text": "Listen, the gate of the Ancients is the only access to the Tower. And the gate can be opened only with the key."
+		},
+
+		{
+			"Text": "You must find it before it falls into the hands of evil! You should never let them open the gate!"
+		},
+
+		{
+			"Text": "Find out why Runefaust is interested in the gate... Please..."
+		},
+
+		{
+			"Text": "Mae... Daughter of the great Varios, help {main_character_name}... Avenge your father! and be strong..."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Your majesty...."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/King_Gaurdiana_Portraits.png"
+		},
+
+		{
+			"Text": "Please tell my daughter, Anri, in Manarina...to stay strong, for her people..."
+		},
+
+		{
+			"Text": "..........."
+		},
+
+		{
+			"Text": "(The king dies.)"
+		}
+	]
+}

@@ -37,7 +37,7 @@
 		},
 
 		{
-			"Text": "(Luke, Ken, Tao and Hans join the Shining Force!)"
+			"Text": "Luke, Ken, Tao and Hans join the Shining Force!"
 		},
 
 		{
@@ -46,38 +46,6 @@
 
 		{
 			"Text": "Meet us at headquarters back in the castle!"
-		},
-
-		{
-			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
-		},
-
-		{
-			"Text": "Hey {main_character_name}! Don't try to sneak out of town without me!"
-		},
-
-		{
-			"HidePortrait": ""
-		},
-
-		{
-			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
-		},
-
-		{
-			"Text": "Now that you have your comrades, return to the king to hear his final commands. I'll follow your progress and offer advice as you face the vile hordes of Runefaust."
-		},
-
-		{
-			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
-		},
-
-		{
-			"Text": "Well, that's settled. See you at headquarters!"
-		},
-
-		{
-			"HidePortrait": ""
 		}
 	]
 }

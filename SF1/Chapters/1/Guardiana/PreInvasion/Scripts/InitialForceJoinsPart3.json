@@ -1,0 +1,23 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Nova_Portraits.png"
+		},
+
+		{
+			"Text": "Now that you have your comrades, return to the king to hear his final commands."
+		},
+
+		{
+			"Text": "I'll follow your progress and offer advice as you face the vile hordes of Runefaust."
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Well, that's settled. See you at headquarters!"
+		}
+	]
+}

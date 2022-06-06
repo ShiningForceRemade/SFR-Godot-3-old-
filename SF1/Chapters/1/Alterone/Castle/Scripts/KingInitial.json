@@ -1,7 +1,15 @@
 {
 	"script": [
 		{
-			"Text": "What? Runefaust attacked Guardiana? Hard to believe. Follow me, {main_character_name}. I have a...tactician we should consult with on this matter."
+			"ShowPortrait": "res://Assets/SF1/NPC/King_Alterone_Portraits.png"
+		},
+
+		{
+			"Text": "What? Runefaust attacked Guardiana? Hard to believe. Follow me, {main_character_name}."
+		},
+
+		{
+			"Text": " I have a...tactician we should consult with on this matter."
 		}
 	]
 }
