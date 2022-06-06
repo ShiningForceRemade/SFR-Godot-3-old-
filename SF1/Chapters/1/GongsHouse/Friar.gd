@@ -32,8 +32,8 @@ func attempt_to_interact() -> void:
 	
 	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
 	
-	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
-	interacting = false
+	# Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
+	# interacting = false
 
 
 func interaction_completed() -> void:

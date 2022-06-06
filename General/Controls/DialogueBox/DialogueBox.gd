@@ -202,6 +202,7 @@ func _process(_delta):
 			dialogueTween.emit_signal("tween_completed", self, "DialogueLineRevealComplete")
 			dialogueRichTextLabel.percent_visible = 1
 			finished = true
+			Singleton_Game_AudioManager.stop_dialogue_sfx()
 
 
 func _input(event):
@@ -221,6 +222,7 @@ func load_dialog():
 	
 	if dialogue_index < dialogue.size():
 		finished = false
+		Singleton_Game_AudioManager.play_dialogue_sfx()
 		
 		var itkeys = dialogue[dialogue_index].keys()
 		# print(ikeys)
@@ -328,6 +330,7 @@ func load_dialog():
 				ShowMenu(dialogue[dialogue_index][key])
 				
 				finished = true
+				Singleton_Game_AudioManager.stop_dialogue_sfx()
 				visible = false
 				active = false
 				emit_signal("signal__dialogbox__finished_dialog")
@@ -438,6 +441,7 @@ func load_dialog():
 #			dialogueTween.start()
 	else:
 		finished = true
+		Singleton_Game_AudioManager.stop_dialogue_sfx()
 		visible = false
 		active = false
 		emit_signal("signal__dialogbox__finished_dialog")
@@ -459,6 +463,7 @@ func _on_Tween_tween_completed(_object, _key):
 		return
 	
 	portraitPopupRoot.PlayDefaultAnimation()
+	Singleton_Game_AudioManager.stop_dialogue_sfx()
 	
 	print("Tween complete Dialgoue")
 	finished = true

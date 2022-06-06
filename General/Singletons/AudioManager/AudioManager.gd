@@ -6,6 +6,7 @@ const bus = "Master"
 const bus_music = "Music"
 const bus_alt_music = "Alt_Music"
 const bus_soundeffects = "FX"
+const bus_dialogue_sfx = "Dialogue_SFX"
 
 const num_players_music = 1
 const num_players_alt_music = 1
@@ -20,11 +21,20 @@ var queue_alt_music_p = []  # The queue of sounds to play.
 var available_sound_effects_p = []  # The available players.
 var queue_sound_effects_p = []  # The queue of sounds to play.
 
+var dialogue_playing: bool = false
+var dialoguePlayer: AudioStreamPlayer
 
 func _ready():
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index(bus_soundeffects), true)
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index(bus_music), true)
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index(bus), true)
+	
+# Re-enable this for dialgoue sound-effects P1
+#	dialoguePlayer = AudioStreamPlayer.new() 
+#	dialoguePlayer.connect("finished", self, "_dialogue_on_sfx_finished", [dialoguePlayer])
+#	dialoguePlayer.stream = load("res://Assets/SF2/Sounds/SFX/sfx_Dialogue_03.wav")
+#	dialoguePlayer.bus = bus_dialogue_sfx
+#	add_child(dialoguePlayer)
 	
 	for i in num_players_music:
 		var p = AudioStreamPlayer.new()
@@ -57,6 +67,24 @@ func _music_on_stream_finished(stream) -> void:
 func _soundeffect_on_stream_finished(stream) -> void:
 	available_sound_effects_p.append(stream)
 	emit_signal("signal__audio_manager__soundeffect__finished")
+
+func _dialogue_on_sfx_finished(stream) -> void:
+	if dialogue_playing:
+		dialoguePlayer.play()
+		# emit_signal("signal__audio_manager__soundeffect__finished")
+	
+	pass
+
+# Re-enable this for dialgoue sound-effects P2
+func play_dialogue_sfx() -> void:
+#	dialoguePlayer.play()
+#	dialogue_playing = true
+	pass
+
+func stop_dialogue_sfx() -> void:
+#	dialoguePlayer.stop()
+#	dialogue_playing = false
+	pass
 
 
 func play_music(sound_path) -> void:

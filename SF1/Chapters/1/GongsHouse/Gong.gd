@@ -43,7 +43,7 @@ func interaction_completed() -> void:
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.MoveInDirection("Left")
 	
 	var gong = self.get_child(0)
-	gong.set_movement_speed_timer(0.2)
+	gong.set_movement_speed_timer(0.15)
 	
 	gong.tester__move_in_direction("Down")
 	yield(gong.tween, "tween_completed")
