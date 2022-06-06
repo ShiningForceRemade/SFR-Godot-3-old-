@@ -2,6 +2,7 @@ extends Node2D
 
 var stationary
 var facing_direction
+var interacting: bool = false
 
 onready var npcBaseRoot = get_child(0)
 
@@ -11,6 +12,11 @@ func _ready():
 
 
 func attempt_to_interact() -> void:
+	if interacting:
+		return
+	
+	interacting = true
+	
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 	
 	# get facing direction prior to talk interaction
@@ -23,11 +29,16 @@ func attempt_to_interact() -> void:
 	
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/GongsHouse/Scripts/WomanInCabin.json"
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
+	
+	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+	
+	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
+	interacting = false
 
 
 func interaction_completed() -> void:
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
-	
+	interacting = false
 	npcBaseRoot.stationary = stationary
 	npcBaseRoot.change_facing_direction_string(facing_direction)
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false

@@ -13,15 +13,16 @@
 		},
 
 		{
-			"Text": "(Gong joins the Shining Force!) - TODO: join jingle and replace gong's hardcoded name"
+			"Text": "(Gong joins the Shining Force!)",
+			"Sound": "fx | res://Assets/SF1/SoundBank/Jingle - Comrades 1 (Happily).mp3 | yield"
 		},
 
 		{
-			"Sound": "fx | res://Assets/Sounds/StepSound.wav"
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
 		},
 
 		{
-			"Text": "I will join your troops. - TODO: leave function event and unlock character data"
+			"Text": "I will join your troops."
 		}
 	]
 }

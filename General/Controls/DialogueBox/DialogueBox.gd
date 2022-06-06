@@ -288,7 +288,18 @@ func load_dialog():
 				var sound_to_play = dialogue[dialogue_index][key].split(" | ")
 				# sound to play 0 is type fx for sound effect and eventually music to change background music
 				Singleton_Game_AudioManager.play_sfx(sound_to_play[1])
+				
+				print(sound_to_play[2])
+				
+				if sound_to_play[2] == "yield":
+					active = false
+					Singleton_Game_AudioManager.pause_all_music()
+					yield(Singleton_Game_AudioManager, "signal__audio_manager__soundeffect__finished")
+					Singleton_Game_AudioManager.pause_all_sfx()
+					Singleton_Game_AudioManager.resume_all_music()
+				
 				dialogue_index += 1
+				active = true
 				load_dialog()
 				return
 			elif key == "ShowPortrait":

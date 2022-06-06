@@ -1,5 +1,7 @@
 extends Node
 
+signal signal__audio_manager__soundeffect__finished
+
 const bus = "Master"
 const bus_music = "Music"
 const bus_alt_music = "Alt_Music"
@@ -33,10 +35,11 @@ func _ready():
 	
 	for i in num_players_alt_music:
 		var p = AudioStreamPlayer.new()
-		add_child(p)
-		available_alt_music_p.append(p)
+		
 		p.connect("finished", self, "_music_on_stream_finished", [p])
 		p.bus = bus_alt_music
+		add_child(p)
+		available_alt_music_p.append(p)
 	
 	for i in num_players_sound_effects:
 		var p = AudioStreamPlayer.new()
@@ -53,6 +56,7 @@ func _music_on_stream_finished(stream) -> void:
 	# available[idx].stop()
 func _soundeffect_on_stream_finished(stream) -> void:
 	available_sound_effects_p.append(stream)
+	emit_signal("signal__audio_manager__soundeffect__finished")
 
 
 func play_music(sound_path) -> void:
@@ -64,6 +68,11 @@ func pause_all_music() -> void:
 	for a_m_p in available_music_p:
 		a_m_p.stop()
 
+
+func resume_all_music() -> void:
+	#f not queue_music_p.empty() and not available_music_p.empty():
+	for a_m_p in available_music_p:
+		a_m_p.play()
 
 func play_music_n(sound_path) -> void:
 	# NOTE: Probably good idea to use runtime format always to avoid discrepencies between development and release builds
