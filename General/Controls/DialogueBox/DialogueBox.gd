@@ -199,7 +199,7 @@ func _process(_delta):
 			load_dialog()
 		else:
 			dialogueTween.stop(dialogueRichTextLabel, "percent_visible")
-			dialogueTween.emit_signal("tween_completed")
+			dialogueTween.emit_signal("tween_completed", self, "DialogueLineRevealComplete")
 			dialogueRichTextLabel.percent_visible = 1
 			finished = true
 
