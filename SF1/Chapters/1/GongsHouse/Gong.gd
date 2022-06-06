@@ -48,6 +48,10 @@ func interaction_completed() -> void:
 	gong.tester__move_in_direction("Down")
 	yield(gong.tween, "tween_completed")
 	
+	var fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.GONG
+	Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
+	Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].active_in_force = true
+	
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 	interacting = false
 	

@@ -2673,13 +2673,14 @@ script = ExtResource( 24 )
 position = Vector2( 140, 172 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 19 )]
-position = Vector2( 800, 760 )
+position = Vector2( 152, 232 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 
 [node name="OldManChruchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 392, 88 )
 script = ExtResource( 21 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/OldManAtTheChurch.json"
 
 [node name="Sprite" parent="NpcWrapperNode/OldManChruchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 10 )
@@ -2691,6 +2692,7 @@ polygon = PoolVector2Array( 32, 40, 32, 16, 64, 16, 64, 40 )
 [node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 272, 160 )
 script = ExtResource( 16 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/WomanRedHeadChruch.json"
 
 [node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 11 )
@@ -2858,6 +2860,7 @@ anims/UpMovement = SubResource( 143 )
 [node name="PriestNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 344, 136 )
 script = ExtResource( 28 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Priest.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/PriestNPCRoot" index="0"]
 stationary = true
@@ -2869,6 +2872,7 @@ hframes = 6
 [node name="SoliderOutsideChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 296, 376 )
 script = ExtResource( 29 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/GuardAtTheChurch.json"
 
 [node name="Sprite" parent="NpcWrapperNode/SoliderOutsideChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 4 )
@@ -2880,6 +2884,7 @@ polygon = PoolVector2Array( 32, -48, 64, -48, 176, -48, 176, 88, 160, 88, 160, -
 [node name="GortGrandDaughterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 272, 592 )
 script = ExtResource( 30 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/GortsFirstGrandDaughter.json"
 
 [node name="Sprite" parent="NpcWrapperNode/GortGrandDaughterNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 5 )
@@ -2891,6 +2896,7 @@ polygon = PoolVector2Array( 32, 40, 32, 24, 64, 24, 64, 16, 64, 0, 32, 0, 32, -1
 [node name="DogNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 416, 688 )
 script = ExtResource( 31 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Dog.json"
 
 [node name="Sprite" parent="NpcWrapperNode/DogNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 6 )
@@ -3025,6 +3031,7 @@ polygon = PoolVector2Array( -48, 56, -48, 32, 16, 32, 16, -24, 32, -24, 32, 56 )
 [node name="SoldierGuardLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 752, 856 )
 script = ExtResource( 36 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/GuardAtExit1.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoldierGuardLeftNPCRoot" index="0"]
 stationary = true
@@ -3046,6 +3053,7 @@ polygon = PoolVector2Array( -12, -16, -12, -36, 180, -36, 180, -16 )
 [node name="SoldierGuardRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 920, 856 )
 script = ExtResource( 46 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/GuardAtExit2.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoldierGuardRightNPCRoot" index="0"]
 stationary = true

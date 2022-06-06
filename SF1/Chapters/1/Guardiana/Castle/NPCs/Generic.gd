@@ -37,15 +37,15 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = script_path
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 	
-	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+	# yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
 	
-	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
-	interacting = false
+	# Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
+	# interacting = false
 
 
 func interaction_completed() -> void:
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
-	
+	interacting = false
 	npcBaseRoot.stationary = stationary
 	npcBaseRoot.change_facing_direction_string(facing_direction)
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false

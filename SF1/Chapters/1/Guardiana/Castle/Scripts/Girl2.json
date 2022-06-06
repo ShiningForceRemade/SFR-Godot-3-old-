@@ -1,27 +1,18 @@
 {
 	"script": [
 		{
-			"Text": "Princess Anri is away in Manarina. Do you know about the land of Manarina?"
-		},
-
-		{
+			"Text": "Princess Anri is away in Manarina. Do you know about the land of Manarina?",
 			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"InteractionAnswer": "Yes"
-		},
-		
-		{
-			"Text": "I see you are well-informed."
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/Girl2_Yes.json"
 		},
 
 		{
-			"InteractionAnswer": "No"
-		},
-		
-		{
-			"Text": "Manarina holds an Arcane College, where the best mages are trained."
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/Girl2_No.json"
 		}
 	]
 }

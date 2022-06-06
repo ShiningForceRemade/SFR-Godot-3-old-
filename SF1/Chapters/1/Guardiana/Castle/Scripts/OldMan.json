@@ -1,27 +1,18 @@
 {
 	"script": [
 		{
-			"Text": "The king seems very worried. Do you know why?"
-		},
-
-		{
+			"Text": "The king seems very worried. Do you know why?",
 			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"InteractionAnswer": "Yes"
-		},
-		
-		{
-			"Text": "Well! You young people think you know everything!"
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/OldMan_Yes.json"
 		},
 
 		{
-			"InteractionAnswer": "No"
-		},
-		
-		{
-			"Text": "My guess is that thoughts of the Gate of the Ancients trouble our noble king!"
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/OldMan_No.json"
 		}
 	]
 }

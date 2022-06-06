@@ -1,35 +1,22 @@
 {
 	"script": [
 		{
-			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+			"ShowPortrait": "res://Assets/SF1/NPC/Priest_Portraits.png"
 		},
 
 		{
-			"Text": "Hello, {main_character_name}! I've been having the worst nightmares. Have you had any?"
-		},
-
-		{
+			"Text": "Hello, {main_character_name}! I've been having the worst nightmares. Have you had any?",
 			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"InteractionAnswer": "Yes"
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Priest_Yes.json"
 		},
 		
 		{
-			"Text": "I bet they're the same ones I've been having!"
-		},
-
-		{
-			"InteractionAnswer": "No"
-		},
-		
-		{
-			"Text": "I saw our land in ruins. Evil creatures roamed our halls! It seemed so real!"
-		},
-
-		{
-			"Text": "Varios seemed very upset when he passed this way. Perhaps you should look for him."
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Priest_No.json"
 		}
 	]
 }
