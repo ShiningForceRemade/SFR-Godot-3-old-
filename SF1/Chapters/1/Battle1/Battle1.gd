@@ -52,6 +52,7 @@ func s_selected_actor_underneath_cursor():
 	print(Singleton_Game_GlobalBattleVariables.selected_actor_type, Singleton_Game_GlobalBattleVariables.selected_actor)
 	emit_signal("signal_selected_actor_underneath_cursor") 
 
+
 func _input(event):
 	if event.is_action_pressed("ui_hide"):
 		if tilemap_show:
@@ -60,11 +61,7 @@ func _input(event):
 			$TileMapTileInformation.show()
 			
 		tilemap_show = !tilemap_show
-	
-	# if event.is_action_pressed("ui_end"):
-	#	 s_hide_land_effect_and_active_actor_info()
-	# elif event.is_action_pressed("ui_home"):
-	#	 s_show_land_effect_and_active_actor_info()
+
 
 func s_land_effect(land_effect):
 	# print("Battle1 - Land effect is - ", land_effect)

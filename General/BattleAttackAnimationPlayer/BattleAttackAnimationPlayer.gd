@@ -435,6 +435,7 @@ func calculate_damage_step() -> void:
 	emit_signal("signal_battle_complete_damage_step")
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
 	yield(get_tree().create_timer(0.5), "timeout")
 	# return damage
 
@@ -540,6 +541,7 @@ func calculate_damage_step_enemey_attacking() -> void:
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
 	print("Complete Damage Step")
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
 	yield(get_tree().create_timer(0.4), "timeout")
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 	yield(get_tree().create_timer(0.25), "timeout")
