@@ -185,7 +185,7 @@ func set_action_menu(xpos: int):
 	var tween_actionMenu = battleActionsMenuTween
 	var bam_rect = battleActionsMenuRoot.position
 	tween_actionMenu.interpolate_property(battleActionsMenuRoot, "position",
-			bam_rect, Vector2(xpos, bam_rect.y), 0.15,
+			bam_rect, Vector2(xpos, bam_rect.y), 0.1,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween_actionMenu.start()
 

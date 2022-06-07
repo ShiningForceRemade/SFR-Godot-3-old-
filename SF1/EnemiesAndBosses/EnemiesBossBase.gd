@@ -149,24 +149,22 @@ func check_if_defeated() -> void:
 		print("\n\n\n\nI was defeated play death animation and update turn order array\n\n\n\n")
 		
 		# yield(get_tree().create_timer(1), "timeout")
-		pseudo_death_animation(0.25)
-		yield(self, "signal_death_animation_complete")
 		pseudo_death_animation(0.1)
 		yield(self, "signal_death_animation_complete")
-		pseudo_death_animation(0.1)
+		pseudo_death_animation(0.05)
 		yield(self, "signal_death_animation_complete")
 		# yield(get_tree().create_timer(1), "timeout")
 		
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 		get_parent().hide()
 		
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(0.05), "timeout")
 		emit_signal("signal_check_defeat_done")
 		
 		get_parent().queue_free()
 		return
 	
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.05), "timeout")
 	emit_signal("signal_check_defeat_done")
 	return
 
@@ -237,7 +235,9 @@ onready var animationTree = $AnimationTree
 onready var animationTreeState = animationTree.get("parameters/playback")
 onready var tween = $KinematicBody2D/Tween
 const TILE_SIZE: int = 24
-var movement_tween_speed = 0.1625
+
+# var movement_tween_speed = 0.1625
+var movement_tween_speed = 0.125
 
 func _physics_process(_delta):
 	

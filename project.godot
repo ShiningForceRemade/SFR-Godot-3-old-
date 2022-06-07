@@ -94,7 +94,7 @@ boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://Assets/Icon.png"
 config/windows_native_icon="res://Assets/Icon.ico"
-config/Version="0.0.1"
+config/Version="0.0.2"
 
 [autoload]
 

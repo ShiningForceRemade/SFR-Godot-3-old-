@@ -215,6 +215,9 @@ func s_tween_completed(_node_arg, _property_arg):
 
 
 func pseudo_ai_turn_determine():
+	# random time out TODO:
+	# yield(get_tree().create_timer(_t), "timeout")
+	
 	for _i in range(4):
 		random_move_direction(0)
 		yield(tween, "tween_completed")

@@ -104,7 +104,7 @@ func rotate_cam():
 		rotate(10)
 
 
-func smooth_move_to_new_position(new_player_node, t = 0.75):
+func smooth_move_to_new_position(new_player_node, t = 0.25): # 0.75
 	camera_smooth_moving = true
 	playerNode = new_player_node #.get_child(0).get_node("KinematicBody2D")
 	print(playerNode)

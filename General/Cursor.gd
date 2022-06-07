@@ -13,7 +13,8 @@ onready var enemies = get_parent().get_node("Enemies")
 onready var movementTween = $MovementTween
 var y_tile_move = 0
 var x_tile_move = 0
-var tile_move_time: float = 0.1
+# var tile_move_time: float = 0.1
+var tile_move_time: float = 0.025
 
 func _ready() -> void:
 	Singleton_Game_GlobalBattleVariables.cursor_root_ref = self

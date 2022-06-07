@@ -337,9 +337,7 @@ func check_if_defeated() -> void:
 		print("\n\n\n\nI was defeated play death animation and update turn order array\n\n\n\n")
 		
 		# yield(get_tree().create_timer(1), "timeout")
-		pseudo_death_animation(0.25)
-		yield(self, "signal_death_animation_complete")
-		pseudo_death_animation(0.1)
+		pseudo_death_animation(0.2)
 		yield(self, "signal_death_animation_complete")
 		pseudo_death_animation(0.1)
 		yield(self, "signal_death_animation_complete")

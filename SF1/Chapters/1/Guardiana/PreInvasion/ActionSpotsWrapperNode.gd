@@ -98,27 +98,49 @@ func _on_InnExitArea2D_body_entered(body):
 		roof_wrapper_node.get_node("Inn").show()
 
 
+var entered: bool = false
 func _on_TownGuardExitCheckArea2D_body_entered(body):
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("C1 - Kings Permission - ", Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.kings_permission)
-		if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.kings_permission:
-			Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.kings_permission = true
-			Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
-			var guard_left_node = get_parent().get_node("NpcWrapperNode/SoldierGuardLeftNPCRoot").get_child(0)
-			var guard_right_node = get_parent().get_node("NpcWrapperNode/SoldierGuardRightNPCRoot").get_child(0)
+		if !entered:
+			entered = true
+			if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.kings_permission:
+				# Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.kings_permission = true
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
+				var guard_left_node = get_parent().get_node("NpcWrapperNode/SoldierGuardLeftNPCRoot").get_child(0)
+				var guard_right_node = get_parent().get_node("NpcWrapperNode/SoldierGuardRightNPCRoot").get_child(0)
 			
-			guard_left_node.set_movement_speed_timer(0.1)
-			guard_right_node.set_movement_speed_timer(0.1)
+				guard_left_node.set_movement_speed_timer(0.1)
+				guard_right_node.set_movement_speed_timer(0.1)
 			
-			for i in 3:
-				guard_left_node.tester__move_in_direction("Right")
-				guard_right_node.tester__move_in_direction("Left")
-				yield(get_tree().create_timer(0.1), "timeout")
+				for i in 3:
+					guard_left_node.tester__move_in_direction("Right")
+					guard_right_node.tester__move_in_direction("Left")
+					yield(get_tree().create_timer(0.1), "timeout")
+				
+				guard_left_node.change_facing_direction_string("UpMovement")
+				guard_right_node.change_facing_direction_string("UpMovement")
+				
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 			
-			guard_left_node.change_facing_direction_string("UpMovement")
-			guard_right_node.change_facing_direction_string("UpMovement")
+			else:
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
+				var guard_left_node = get_parent().get_node("NpcWrapperNode/SoldierGuardLeftNPCRoot").get_child(0)
+				var guard_right_node = get_parent().get_node("NpcWrapperNode/SoldierGuardRightNPCRoot").get_child(0)
 			
-			Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
+				guard_left_node.set_movement_speed_timer(0.1)
+				guard_right_node.set_movement_speed_timer(0.1)
+			
+				for i in 2:
+					guard_left_node.tester__move_in_direction("Right")
+					guard_right_node.tester__move_in_direction("Left")
+					yield(get_tree().create_timer(0.1), "timeout")
+				
+				guard_left_node.change_facing_direction_string("UpMovement")
+				guard_right_node.change_facing_direction_string("UpMovement")
+				
+				Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
+			
 
 
 

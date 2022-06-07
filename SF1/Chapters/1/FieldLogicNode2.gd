@@ -63,8 +63,8 @@ func _ready():
 	turn_number += 1
 	pass # Replace with function body.
 
-func _input(event):
-	pass
+# func _input(event):
+# 	pass
 	
 	# TODO create Singleton Event system
 	# its only purpose for now will be to propagate swap graphics to all subscribed nodes
@@ -250,7 +250,7 @@ func generate_and_launch_new_turn_order():
 			
 			show_movement_tiles()
 			
-			yield(get_tree().create_timer(0.5), "timeout")
+			yield(get_tree().create_timer(0.25), "timeout")
 			Singleton_Game_GlobalBattleVariables.currently_selected_actor = null
 			
 		if previous_actor_pos == Vector2.ZERO:
@@ -342,7 +342,8 @@ func cursor_move_to_next_actor(a_node, previous_actor_pos):
 	
 	# TODO: create different movement speed choices
 	# also provide a fixed time choice without the distance * speed calc
-	var tween_time = distance * 0.00325
+	# var tween_time = distance * 0.00325
+	var tween_time = distance * 0.002
 	if tween_time < 0:
 		tween_time = 0.1
 				
@@ -373,62 +374,31 @@ func active_character_or_enemey_display_info():
 	print("Character Or Enemey Info after signal\n")
 
 func get_char_tile_position() -> Vector2:
-	# return tilemap.world_to_map(mc.global_position)
-	
 	var new_pos = mc.get_character_current_pos()
 	var mc_real_pos: Vector2 = Vector2.ZERO
 	mc_real_pos.x = mc.position.x + new_pos.x
 	mc_real_pos.y = mc.position.y + new_pos.y
 	return tilemap.world_to_map(mc_real_pos)
 	
-	
-	#print("XY pos - ", mc_real_pos)
-	#print("Tilemap Idxs - ", tilemap.world_to_map(mc_real_pos))
+	# print("Tilemap Idxs - ", tilemap.world_to_map(mc_real_pos))
 	# print(tilemap.get_cellv(tilemap.world_to_map(mc_real_pos)))
 
 func get_tile_info_under_character(new_pos: Vector2):
-	#print("New Pos", new_pos)
-	#print("Mc", mc.position)
-	#print("MC Kinematic", mc.get_node("CharacterRoot/KinematicBody2D").position)
-	
-	# print(mc.get_character_movement())
-	# print(mc.get_node("KinematicBody2D").position)
-	
-	#var mc_real_pos: Vector2 = Vector2.ZERO
-	#mc_real_pos.x = mc.position.x + new_pos.x
-	#mc_real_pos.y = mc.position.y + new_pos.y
-	
-	#mc_real_pos.x = new_pos.x
-	#mc_real_pos.y = new_pos.y
-	
-	# print(tilemap.world_to_map(mc.position))
-	# print(tilemap.get_cellv(tilemap.world_to_map(mc.position)))
-	# print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(tilemap.world_to_map(mc.position))))
-	
-	# print(tilemap.world_to_map(mc_real_pos))
-	# print(tilemap.get_cellv(tilemap.world_to_map(mc_real_pos)))
-	# print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(tilemap.world_to_map(mc_real_pos))))
 	var tile_id = tilemap.get_cellv(tilemap.world_to_map(new_pos))
 	if tile_id == -1:
 		emit_signal("signal_land_effect_under_tile", "Bug: No Info Report")
 		return
 	
 	var tile_name = tilemap.tile_set.tile_get_name(tile_id)
-	# print(tile_name)
 	if "30" in tile_name:
-		# print("30")
 		emit_signal("signal_land_effect_under_tile", 30)
 	elif "15" in tile_name:
-		# print("15")
 		emit_signal("signal_land_effect_under_tile", 15)
 	elif "0" in tile_name:
-		# print("0")
 		emit_signal("signal_land_effect_under_tile", 0)
 	else:
 		# print("Bug: No Info Report")
 		emit_signal("signal_land_effect_under_tile", "Bug: No Info Report")
-		
-	# print("\n")
 
 
 func generate_movement_array_representation():
@@ -646,12 +616,12 @@ func generate_movement_array_representation():
 	
 	# print(vpos)
 	# print(move_array)
-	print("Move Array")
-	for i in move_array:
-		print(i)
-	
-	var mt = Singleton_Game_GlobalBattleVariables.currently_active_character.cget_movement_type()
-	print("Movement Type - ", mt)
+#	print("Move Array")
+#	for i in move_array:
+#		print(i)
+#
+#	var mt = Singleton_Game_GlobalBattleVariables.currently_active_character.cget_movement_type()
+#	print("Movement Type - ", mt)
 	
 	# if mounted  (horses / centaurs) 2.5 / for mountain terrain
 	
