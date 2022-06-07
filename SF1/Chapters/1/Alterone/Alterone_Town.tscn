@@ -1,7 +1,6 @@
-[gd_scene load_steps=191 format=2]
+[gd_scene load_steps=190 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Alterone_BattleMap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Alterone_Town.gd" type="Script" id=5]
@@ -18,7 +17,7 @@
 [ext_resource path="res://Assets/SF1/NPC/Man_Merchant_Blue.png" type="Texture" id=16]
 [ext_resource path="res://Assets/SF1/NPC/Cart_Trolley.png" type="Texture" id=17]
 [ext_resource path="res://Assets/SF1/NPC/Man_Fishing.png" type="Texture" id=18]
-[ext_resource path="res://SF1/NPC/WomanRedHeadChurch.gd" type="Script" id=19]
+[ext_resource path="res://SF1/NPC/NPC_Generic_Default.gd" type="Script" id=19]
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=20]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
 [ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
@@ -3031,19 +3030,10 @@ position = Vector2( 540, 156 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 
-[node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 272, 160 )
-script = ExtResource( 19 )
-
-[node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
-texture = ExtResource( 8 )
-hframes = 6
-
-[node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( -40, 8, -16, 8, -16, -16, 64, -16, 64, 88, 88, 88, 88, -40, -40, -40 )
-
 [node name="ManTownEntranceNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 660, 948 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/ManAtTheEntrance.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ManTownEntranceNPCRoot" index="0"]
 stationary = true
@@ -3060,6 +3050,8 @@ anims/UpMovement = SubResource( 179 )
 
 [node name="OldWomanFirstHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 396, 852 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/OldWomanBottom.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldWomanFirstHouseNPCRoot" index="0"]
 stationary = true
@@ -3076,6 +3068,8 @@ anims/UpMovement = SubResource( 183 )
 
 [node name="ManTownExitLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 180, 972 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/ManBottom.json"
 
 [node name="Sprite" parent="NpcWrapperNode/ManTownExitLeftNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 9 )
@@ -3089,6 +3083,8 @@ anims/UpMovement = SubResource( 187 )
 
 [node name="MishaelaNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 252, 924 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/Mishaela.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MishaelaNPCRoot" index="0"]
 stationary = true
@@ -3106,6 +3102,8 @@ anims/UpMovement = SubResource( 191 )
 
 [node name="ManInFrontOfHQNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 252, 852 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/BaldMan.json"
 
 [node name="Sprite" parent="NpcWrapperNode/ManInFrontOfHQNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 13 )
@@ -3119,6 +3117,8 @@ anims/UpMovement = SubResource( 195 )
 
 [node name="WomanStandingInDirtNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 372, 732 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/WomanBlondeBottom.json"
 
 [node name="Sprite" parent="NpcWrapperNode/WomanStandingInDirtNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 14 )
@@ -3132,6 +3132,8 @@ anims/UpMovement = SubResource( 199 )
 
 [node name="RedHeadWomanBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 732, 756 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/WomanRedheadShop.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/RedHeadWomanBarNPCRoot" index="0"]
 stationary = true
@@ -3149,6 +3151,8 @@ anims/UpMovement = SubResource( 203 )
 
 [node name="BlondeWomanBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 780, 756 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/WomanBlondeShop.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/BlondeWomanBarNPCRoot" index="0"]
 stationary = true
@@ -3166,6 +3170,8 @@ anims/UpMovement = SubResource( 207 )
 
 [node name="OldWomanInBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 900, 804 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/OldWomanShop.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldWomanInBarNPCRoot" index="0"]
 stationary = true
@@ -3183,6 +3189,8 @@ anims/UpMovement = SubResource( 211 )
 
 [node name="OldManOutsideBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 972, 876 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/OldManExitShop.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldManOutsideBarNPCRoot" index="0"]
 stationary = true
@@ -3199,6 +3207,8 @@ anims/UpMovement = SubResource( 215 )
 
 [node name="MerchantCenterBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 828, 708 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/ShopGuardianaMan.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MerchantCenterBarNPCRoot" index="0"]
 stationary = true
@@ -3215,6 +3225,8 @@ anims/UpMovement = SubResource( 219 )
 
 [node name="MerchantLeftBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 732, 684 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/ItemSeller.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MerchantLeftBarNPCRoot" index="0"]
 stationary = true
@@ -3229,8 +3241,13 @@ anims/LeftMovement = SubResource( 221 )
 anims/RightMovement = SubResource( 222 )
 anims/UpMovement = SubResource( 223 )
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/MerchantLeftBarNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 24 )
+
 [node name="MerchantRightBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 900, 684 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/ManAtShop.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MerchantRightBarNPCRoot" index="0"]
 stationary = true
@@ -3245,8 +3262,13 @@ anims/LeftMovement = SubResource( 225 )
 anims/RightMovement = SubResource( 226 )
 anims/UpMovement = SubResource( 227 )
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/MerchantRightBarNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 24 )
+
 [node name="WomanNextToChestNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 612, 588 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/WomanBlondeCleanDress.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/WomanNextToChestNPCRoot" index="0"]
 stationary = true
@@ -3264,6 +3286,7 @@ anims/UpMovement = SubResource( 231 )
 
 [node name="TrolleyNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 804, 588 )
+script = ExtResource( 19 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/TrolleyNPCRoot" index="0"]
 stationary = true
@@ -3280,6 +3303,8 @@ anims/UpMovement = SubResource( 235 )
 
 [node name="ShopOwnerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 300, 516 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/WeaponSeller.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ShopOwnerNPCRoot" index="0"]
 stationary = true
@@ -3294,8 +3319,13 @@ anims/LeftMovement = SubResource( 237 )
 anims/RightMovement = SubResource( 238 )
 anims/UpMovement = SubResource( 239 )
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/ShopOwnerNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 24 )
+
 [node name="ManFishingNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 204, 444 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/Fisherman.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ManFishingNPCRoot" index="0"]
 stationary = true
@@ -3312,6 +3342,8 @@ anims/UpMovement = SubResource( 243 )
 
 [node name="OldManBeardSignNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 444, 468 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/OldManBeardCenterTown.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldManBeardSignNPCRoot" index="0"]
 stationary = true
@@ -3328,6 +3360,8 @@ anims/UpMovement = SubResource( 247 )
 
 [node name="OldManRoadNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 660, 396 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/_DEBUG_MATERIALS_AND_SCRIPTS/Scripts/FindDialogue.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldManRoadNPCRoot" index="0"]
 stationary = true
@@ -3344,6 +3378,8 @@ anims/UpMovement = SubResource( 251 )
 
 [node name="ManChruchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 780, 372 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/ManBlueVestOutside.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ManChruchNPCRoot" index="0"]
 stationary = true
@@ -3360,6 +3396,8 @@ anims/UpMovement = SubResource( 255 )
 
 [node name="OldWomanTopNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 732, 276 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/_DEBUG_MATERIALS_AND_SCRIPTS/Scripts/FindDialogue.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldWomanTopNPCRoot" index="0"]
 stationary = true
@@ -3376,6 +3414,8 @@ anims/UpMovement = SubResource( 259 )
 
 [node name="OldManTopHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 804, 156 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/OldManInHouse.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/OldManTopHouseNPCRoot" index="0"]
 stationary = true
@@ -3393,6 +3433,8 @@ anims/UpMovement = SubResource( 263 )
 
 [node name="ManBlondeTopNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 228 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Scripts/ManNearCastleEntrance.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ManBlondeTopNPCRoot" index="0"]
 stationary = true
@@ -3410,6 +3452,8 @@ anims/UpMovement = SubResource( 267 )
 
 [node name="WomanReadheadTopNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 228, 324 )
+script = ExtResource( 19 )
+DefaultScript = "res://SF1/Chapters/_DEBUG_MATERIALS_AND_SCRIPTS/Scripts/FindDialogue.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/WomanReadheadTopNPCRoot" index="0"]
 stationary = true
@@ -3424,31 +3468,8 @@ anims/LeftMovement = SubResource( 269 )
 anims/RightMovement = SubResource( 270 )
 anims/UpMovement = SubResource( 271 )
 
-[node name="TestChest" parent="." instance=ExtResource( 2 )]
-position = Vector2( 512, 376 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 158, 91 )
-rotating = true
-current = true
-process_mode = 0
-limit_left = 0
-limit_top = 0
-limit_right = 1128
-limit_bottom = 1152
-smoothing_enabled = true
-smoothing_speed = 16.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
-editor_draw_limits = true
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="TODOCOMPRESS_StaticBody2D" type="Node2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -5106,6 +5127,27 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 158, 91 )
+rotating = true
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1128
+limit_bottom = 1152
+smoothing_enabled = true
+smoothing_speed = 16.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="ActionSpotsWrapperNode" type="Node" parent="."]
 script = ExtResource( 6 )
 
@@ -5390,7 +5432,6 @@ __meta__ = {
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HQEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_HQEntranceArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/BottomHouseBasementEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_BottomHouseBasementEntranceArea2D_body_entered"]
 
-[editable path="NpcWrapperNode/WomanRedHeadChurchNPCRoot"]
 [editable path="NpcWrapperNode/ManTownEntranceNPCRoot"]
 [editable path="NpcWrapperNode/OldWomanFirstHouseNPCRoot"]
 [editable path="NpcWrapperNode/ManTownExitLeftNPCRoot"]

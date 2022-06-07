@@ -1,54 +1,18 @@
 {
 	"script": [
 		{
-			"Text": "You must be {main_character_name}, right?"
-		},
-
-		{
+			"Text": "You must be {main_character_name}, right?",
 			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"InteractionAnswer": "Yes"
-		},
-		
-		{
-			"Text": "I knew it! I lived in Guardiana until a few months ago. I just heard a rumor."
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Alterone/Scripts/ShopGuardianaMan_Yes.json"
 		},
 
 		{
-			"Text": "A friend of mine told me that Guardiana was totally wiped out. Is that true?"
-		},
-
-
-			{
-				"InteractionPrompt": "YesOrNo"
-			},
-
-			{
-				"InteractionAnswer": "Yes"
-			},
-		
-			{
-				"Text": "I hoped it wasn't true. The friend who told me about it went to inform the castle."
-			},
-
-			{
-				"InteractionAnswer": "No"
-			},
-		
-			{
-				"Text": "Good...but my friend has already left to inform the castle!"
-			},
-
-
-
-		{
-			"InteractionAnswer": "No"
-		},
-		
-		{
-			"Text": "Strange...I was so sure...."
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Alterone/Scripts/ShopGuardianaMan_No.json"
 		}
 	]
 }

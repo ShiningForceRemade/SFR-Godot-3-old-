@@ -1,0 +1,22 @@
+{
+	"script": [
+		{
+			"Text": "I knew it! I lived in Guardiana until a few months ago. I just heard a rumor."
+		},
+
+		{
+			"Text": "A friend of mine told me that Guardiana was totally wiped out. Is that true?",
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Alterone/Scripts/ShopGuardianaMan_1_Yes.json"
+		},
+
+		{
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Alterone/Scripts/ShopGuardianaMan_1_No.json"
+		}
+	]
+}
