@@ -1,7 +1,11 @@
 {
 	"script": [
 		{
-			"Text": "Welcome back. You know, I've been thinking a lot about you. What was I thinking? Ah, it's slipped my mind! Ask me some other time."
+			"Text": "Welcome back. You know, I've been thinking a lot about you."
+		},
+
+		{
+			"Text": " What was I thinking? Ah, it's slipped my mind! Ask me some other time."
 		}
 	]
 }

@@ -387,6 +387,8 @@ func calculate_damage_step() -> void:
 		yield(get_tree().create_timer(1), "timeout")
 		print_enemey_actor_evaded()
 	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
 		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
 		char_animationPlayer.play(ani_name_character_idle)
@@ -412,7 +414,7 @@ func calculate_damage_step() -> void:
 		print_coins_and_items_receieved() # 0 coins and no items for now
 		# yield(get_tree().create_timer(1.5), "timeout")
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
 	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
@@ -567,7 +569,7 @@ func enemey_defeated_play_dissolve_animation() -> void:
 	
 	enemeySpriteTween.start()
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.55), "timeout")
 
 
 func character_defeated_play_dissolve_animation() -> void:
@@ -580,7 +582,7 @@ func character_defeated_play_dissolve_animation() -> void:
 	
 	characterSpriteTween.start()
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.55), "timeout")
 
 func s_enemey_tween_completed(arg_1, arg_2) -> void:
 	
@@ -844,7 +846,7 @@ func print_exp_gain(damage_arg) -> void:
 		active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
 		)
 	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	active_actor.experience_points += exp_gain
 	if active_actor.experience_points >= 100:

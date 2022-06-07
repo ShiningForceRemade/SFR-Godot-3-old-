@@ -9,11 +9,12 @@
 		},
 		
 		{
-			"Text": "I'll be at headquarters."
+			"Text": "(Gort joins the Shining Force!)",
+			"Sound": "fx | res://Assets/SF1/SoundBank/Jingle - Comrades 2 (Sad Feeling).mp3 | yield"
 		},
 
 		{
-			"HidePortrait": ""
+			"Text": "I'll be at headquarters."
 		}
 	]
 }

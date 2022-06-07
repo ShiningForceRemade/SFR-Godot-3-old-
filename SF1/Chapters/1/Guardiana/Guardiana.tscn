@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=2]
+[gd_scene load_steps=126 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -8,13 +8,14 @@
 [ext_resource path="res://Assets/SF1/NPC/Man_Old_WhiteBeard.png" type="Texture" id=6]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/SF1/NPC/Woman_Redhead.png" type="Texture" id=8]
+[ext_resource path="res://SF1/NPC/NPC_Generic_Default.gd" type="Script" id=9]
 [ext_resource path="res://Assets/SF1/NPC/Priest.png" type="Texture" id=10]
 [ext_resource path="res://Assets/SF1/NPC/Soldier.png" type="Texture" id=11]
 [ext_resource path="res://Assets/SF1/NPC/Soldier_Injured.png" type="Texture" id=12]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/NPCs/Gort.gd" type="Script" id=13]
 [ext_resource path="res://Assets/SF1/NPC/Man_Blonde_Purple.png" type="Texture" id=14]
 [ext_resource path="res://Assets/SF1/NPC/Man_Old_Bald.png" type="Texture" id=17]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Map_Sprites.png" type="Texture" id=18]
-[ext_resource path="res://SF1/NPC/WomanRedHeadChurch.gd" type="Script" id=19]
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=20]
 [ext_resource path="res://SF1/TileSet_Resources/Original/6.tres" type="TileSet" id=21]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/ActionSpotsWrapperNode.gd" type="Script" id=22]
@@ -1250,6 +1251,8 @@ position = Vector2( 392, 400 )
 
 [node name="OldManChruchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 392, 88 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/OldManAtTheChurch.json"
 
 [node name="Sprite" parent="NpcWrapperNode/OldManChruchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 6 )
@@ -1260,7 +1263,8 @@ polygon = PoolVector2Array( 32, 40, 32, 16, 64, 16, 64, 40 )
 
 [node name="WomanRedHeadChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 272, 160 )
-script = ExtResource( 19 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/WomanRedHeadChurch.json"
 
 [node name="Sprite" parent="NpcWrapperNode/WomanRedHeadChurchNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 8 )
@@ -1271,6 +1275,8 @@ polygon = PoolVector2Array( -40, 8, -16, 8, -16, -16, 64, -16, 64, 88, 88, 88, 8
 
 [node name="PriestNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 344, 136 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/Priest.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/PriestNPCRoot" index="0"]
 stationary = true
@@ -1281,6 +1287,8 @@ hframes = 6
 
 [node name="SoliderOutsideChurchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 368, 376 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/GuardAtTheChurch.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderOutsideChurchNPCRoot" index="0"]
 stationary = true
@@ -1291,6 +1299,8 @@ hframes = 2
 
 [node name="ManRunFromTrolleyNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 512, 592 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/ManInTownTrolley.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ManRunFromTrolleyNPCRoot" index="0"]
 stationary = true
@@ -1301,6 +1311,8 @@ hframes = 6
 
 [node name="HusbandNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 584, 520 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/GirlsFather.json"
 
 [node name="Sprite" parent="NpcWrapperNode/HusbandNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 17 )
@@ -1313,10 +1325,12 @@ anims/RightMovement = SubResource( 7 )
 anims/UpMovement = SubResource( 8 )
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/HusbandNPCRoot/Area2D" index="0"]
-polygon = PoolVector2Array( 32, 32, 32, -16, 64, -16, 64, 32 )
+polygon = PoolVector2Array( 0, 36, 0, 12, 60, 12, 60, -44, 84, -44, 84, 36 )
 
 [node name="InnKeeperNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 704, 664 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/InnOwner.json"
 
 [node name="Sprite" parent="NpcWrapperNode/InnKeeperNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 17 )
@@ -1328,11 +1342,16 @@ anims/LeftMovement = SubResource( 14 )
 anims/RightMovement = SubResource( 15 )
 anims/UpMovement = SubResource( 16 )
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/InnKeeperNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 24 )
+
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/InnKeeperNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -8, -16, -8, -32, 32, -32, 32, -16 )
 
 [node name="SolderInHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 920, 640 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/WoundedGuardBuilding.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SolderInHouseNPCRoot" index="0"]
 stationary = true
@@ -1349,6 +1368,8 @@ anims/UpMovement = SubResource( 123 )
 
 [node name="SoldierGuardLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 824, 856 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/GuardEntrancePost.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoldierGuardLeftNPCRoot" index="0"]
 stationary = true
@@ -1366,6 +1387,8 @@ anims/UpMovement = SubResource( 28 )
 
 [node name="SoldierGuardRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 848, 856 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/GuardEntrancePost.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoldierGuardRightNPCRoot" index="0"]
 stationary = true
@@ -1383,6 +1406,8 @@ anims/UpMovement = SubResource( 32 )
 
 [node name="OldManNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 752, 568 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/OldManAroundTown.json"
 
 [node name="Sprite" parent="NpcWrapperNode/OldManNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 6 )
@@ -1394,8 +1419,13 @@ anims/LeftMovement = SubResource( 34 )
 anims/RightMovement = SubResource( 35 )
 anims/UpMovement = SubResource( 36 )
 
+[node name="CollisionPolygon2D" parent="NpcWrapperNode/OldManNPCRoot/Area2D" index="0"]
+polygon = PoolVector2Array( 12, -12, 36, -12, 36, 40, -84, 40, -84, -156, -128, -156, -128, -284, -84, -284, -84, -228, -104, -228, -104, -188, -56, -188, -56, 8, 12, 8 )
+
 [node name="WeaponSellerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 776, 472 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/ShopSeller.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/WeaponSellerNPCRoot" index="0"]
 stationary = true
@@ -1410,8 +1440,13 @@ anims/LeftMovement = SubResource( 38 )
 anims/RightMovement = SubResource( 39 )
 anims/UpMovement = SubResource( 40 )
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/WeaponSellerNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 24 )
+
 [node name="ItemSellerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 800, 472 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/ItemSeller.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ItemSellerNPCRoot" index="0"]
 stationary = true
@@ -1426,8 +1461,13 @@ anims/LeftMovement = SubResource( 42 )
 anims/RightMovement = SubResource( 43 )
 anims/UpMovement = SubResource( 44 )
 
+[node name="CollisionShape2D" parent="NpcWrapperNode/ItemSellerNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 24 )
+
 [node name="GortNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 944, 256 )
+script = ExtResource( 13 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/Gort.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GortNPCRoot" index="0"]
 stationary = true
@@ -1445,10 +1485,15 @@ anims/UpMovement = SubResource( 48 )
 
 [node name="BartenderNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 848, 204 )
+script = ExtResource( 9 )
+DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/BarOwner.json"
 
 [node name="Sprite" parent="NpcWrapperNode/BartenderNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 17 )
 hframes = 6
+
+[node name="CollisionShape2D" parent="NpcWrapperNode/BartenderNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+position = Vector2( 0, 24 )
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/BartenderNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -40, 8, -56, 8, -56, -48, 128, -48, 128, 8, 112, 8, 112, -16, -40, -16 )

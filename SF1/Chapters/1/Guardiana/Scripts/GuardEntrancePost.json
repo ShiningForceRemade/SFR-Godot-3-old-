@@ -1,0 +1,23 @@
+{
+	"script": [
+		{
+			"Text": "You made it back! You're a little late. We were almost overrun by Runefaust!"
+		},
+
+		{
+			"Text": "We held them off, but we've suffered greatly, as you'll see as you wander around."
+		},
+
+		{
+			"Text": "Most of our knights were lost in the battle...many homes were damaged. But we held!"
+		},
+
+		{
+			"Text": "We'll keep watch here. Runefaust is bound to attack again, sooner or later."
+		},
+
+		{
+			"Text": "Don't worry about your comrades. We've sent them up to headquarters."
+		}
+	]
+}
