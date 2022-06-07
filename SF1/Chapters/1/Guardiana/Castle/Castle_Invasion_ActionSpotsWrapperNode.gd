@@ -247,6 +247,8 @@ func _on_InsideThroneBottomArea2D_body_entered(body):
 			king.queue_free()
 			# king dies animation end
 			
+			mae.change_facing_direction_string("LeftMovement")
+			Singleton_Game_GlobalCommonVariables.main_character_player_node.change_facing_direction_string("RightMovement")
 			
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/Castle/Scripts/PostInvasion/CutscenePart8.json"
@@ -255,6 +257,11 @@ func _on_InsideThroneBottomArea2D_body_entered(body):
 			yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
+			
+			var fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.MAE
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].active_in_force = true
+			
 			
 			for i in 15:
 				mae.tester__move_in_direction("Down")

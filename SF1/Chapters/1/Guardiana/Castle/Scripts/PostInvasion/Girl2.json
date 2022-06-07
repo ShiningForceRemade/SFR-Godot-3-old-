@@ -1,27 +1,18 @@
 {
 	"script": [
 		{
-			"Text": "Will your journey take you to the town of Manarina?"
-		},
-
-		{
+			"Text": "Will your journey take you to the town of Manarina?",
 			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"InteractionAnswer": "Yes"
-		},
-		
-		{
-			"Text": "Then see Princess Anri! She can help you."
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/PostInvasion/Girl2_Yes.json"
 		},
 
 		{
-			"InteractionAnswer": "No"
-		},
-		
-		{
-			"Text": "Oh. That's too bad...."
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/Castle/Scripts/PostInvasion/Girl2_No.json"
 		}
 	]
 }

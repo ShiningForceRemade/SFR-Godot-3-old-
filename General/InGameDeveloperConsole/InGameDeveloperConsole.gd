@@ -79,6 +79,9 @@ func changeScene(new_text_internal) -> void:
 		elif splstr[2] == "Guardiana-Castle":
 			print("Change Scene to Guardiana Castle")
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
+		elif splstr[2] == "Guardiana-Castle-Invasion":
+			print("Change Scene to Guardiana Castle Invasion")
+			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/Castle/CastleInvasion.tscn")
 		elif splstr[2] == "Gongs-House":
 			print("Change Scene to Guardiana")
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")

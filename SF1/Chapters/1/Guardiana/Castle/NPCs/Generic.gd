@@ -33,7 +33,7 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 	Singleton_Game_GlobalCommonVariables.interaction_node_reference = self
 	
-	var script_path = DefaultScript
+	var script_path = "res://SF1/Chapters/1/Guardiana/Castle/Scripts/PostInvasion/" + DefaultScript
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = script_path
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 	

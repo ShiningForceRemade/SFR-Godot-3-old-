@@ -23,6 +23,8 @@ var seven_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/7
 var eight_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/8.tres")
 
 func _ready():
+	Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Castle (Guardiana and Others).mp3")
+	
 	if Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.initial_force_joined:
 		Nova.queue_free()
 		

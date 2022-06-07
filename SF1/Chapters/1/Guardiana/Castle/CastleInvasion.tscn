@@ -1579,7 +1579,7 @@ anims/UpMovement = SubResource( 163 )
 [node name="GuardGateRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 684, 780 )
 script = ExtResource( 8 )
-DefaultScript = "CastleGuard1.json"
+DefaultScript = "CastleGuard2.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GuardGateRightNPCRoot" index="0"]
 stationary = true
@@ -1636,7 +1636,7 @@ anims/UpMovement = SubResource( 203 )
 [node name="ChildInHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 444, 540 )
 script = ExtResource( 8 )
-DefaultScript = "OldMan.json"
+DefaultScript = "LittleGirl.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ChildInHouseNPCRoot" index="0"]
 stationary = true
@@ -1654,7 +1654,7 @@ anims/UpMovement = SubResource( 244 )
 [node name="WomanInHouseNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 468, 540 )
 script = ExtResource( 8 )
-DefaultScript = "OldMan.json"
+DefaultScript = "LittleGirlMother.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/WomanInHouseNPCRoot" index="0"]
 stationary = true
@@ -1689,7 +1689,7 @@ anims/UpMovement = SubResource( 211 )
 [node name="MinisterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 636, 540 )
 script = ExtResource( 8 )
-DefaultScript = "TalkToTheKing.json"
+DefaultScript = "Minister (2).json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MinisterNPCRoot" index="0"]
 stationary = true
@@ -1776,7 +1776,7 @@ anims/RightMovement = SubResource( 234 )
 anims/UpMovement = SubResource( 235 )
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/WomanRightInRoomNPCRoot2/Area2D" index="0"]
-polygon = PoolVector2Array( 108, 48, 108, 32, 132, 32, 132, 48 )
+polygon = PoolVector2Array( 84, 12, 84, -20, 60, -20, 60, 12 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
@@ -2517,7 +2517,6 @@ __meta__ = {
 }
 
 [node name="RoofsWrapperNode" type="Node2D" parent="."]
-visible = false
 position = Vector2( 636, 952 )
 __meta__ = {
 "_edit_lock_": true
