@@ -188,10 +188,11 @@ __meta__ = {
 visible = false
 
 [node name="Sprite" type="Sprite" parent="CanvasLayerSpellWrapper/SpellWrapper"]
-position = Vector2( 87.8, 84.6 )
+visible = false
+position = Vector2( 79, 92 )
 z_index = 1
 texture = ExtResource( 10 )
-hframes = 4
+hframes = 3
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayerSpellWrapper/SpellWrapper"]

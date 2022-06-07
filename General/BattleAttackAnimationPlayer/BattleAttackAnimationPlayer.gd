@@ -109,7 +109,7 @@ func setup_character_and_enemey_sprites_idle() -> void:
 
 func internal_init_weapon_for_actor(weaponSprite_arg, weapon_res) -> void:
 	weaponSprite_arg.texture = weapon_res.battle_texture
-	
+
 
 func internal_init_resource_for_actor(actorSprite, actor_animation_res) -> void:
 	actorSprite.texture = actor_animation_res.actor_animation_texture
@@ -142,7 +142,7 @@ func setup_actor_attacking() -> void:
 	setup_sprite_textures()
 	move_wrappers_into_position()
 	
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.15), "timeout")
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	
@@ -152,7 +152,7 @@ func setup_actor_attacking() -> void:
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.75), "timeout")
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
@@ -163,12 +163,6 @@ func setup_actor_attacking() -> void:
 	
 	# on the yield end
 	# show the damage box exp and coins if eneemy killed
-	
-	
-	
-	# or whatever the appriotate message is
-	
-	# Singleton_Game_AudioManager.play("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 
 
 func setup_enemey_actor_attacking() -> void:
@@ -190,7 +184,7 @@ func setup_enemey_actor_attacking() -> void:
 	# setup_sprite_textures()
 	move_wrappers_into_position()
 	
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.15), "timeout")
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
 	
@@ -199,7 +193,7 @@ func setup_enemey_actor_attacking() -> void:
 	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.75), "timeout")
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
@@ -569,11 +563,11 @@ func enemey_defeated_play_dissolve_animation() -> void:
 	enemeySprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
 	
 	enemeySpriteTween.interpolate_property(enemeySprite.material, "shader_param/dissolve_effect_amount",
-	0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	enemeySpriteTween.start()
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 
 
 func character_defeated_play_dissolve_animation() -> void:
@@ -582,11 +576,11 @@ func character_defeated_play_dissolve_animation() -> void:
 	characterSprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
 	
 	characterSpriteTween.interpolate_property(characterSprite.material, "shader_param/dissolve_effect_amount",
-	0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	characterSpriteTween.start()
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 
 func s_enemey_tween_completed(arg_1, arg_2) -> void:
 	
