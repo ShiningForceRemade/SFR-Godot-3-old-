@@ -40,8 +40,8 @@ func draw_use_range_tiles(move_array) -> void:
 		for col in range(movement):
 			if move_array[row][col] == 1:
 				Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2),
+				actor_cur_pos.x - ((movement - col) * tile_size) - half_tile,
+				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile,
 				uttwn
 				)
 	
@@ -50,8 +50,8 @@ func draw_use_range_tiles(move_array) -> void:
 		for col in range(movement):
 			if move_array[row][col + movement + 1] == 1:
 				Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2),
+				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile,
+				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile,
 				uttwn
 				)
 	
@@ -60,8 +60,8 @@ func draw_use_range_tiles(move_array) -> void:
 		for col in range(movement):
 			if move_array[row + movement + 1][col] == 1:
 				Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2),
+				actor_cur_pos.x - ((movement - col) * tile_size) - half_tile,
+				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile,
 				uttwn
 				)
 				pass
@@ -71,8 +71,8 @@ func draw_use_range_tiles(move_array) -> void:
 		for col in range(movement):
 			if move_array[row + movement + 1][col + movement + 1] == 1:
 				Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-				actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2),
+				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile,
+				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile,
 				uttwn
 				)
 	
@@ -80,8 +80,8 @@ func draw_use_range_tiles(move_array) -> void:
 	for row in range(movement):
 		if move_array[row][movement] == 1:
 			Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - (tile_size / 2),
-			actor_cur_pos.y - ((movement - row) * tile_size) - (tile_size / 2),
+			actor_cur_pos.x - half_tile,
+			actor_cur_pos.y - ((movement - row) * tile_size) - half_tile,
 			uttwn
 			)
 	
@@ -89,8 +89,8 @@ func draw_use_range_tiles(move_array) -> void:
 	for row in range(movement):
 		if move_array[row + movement + 1][movement] == 1:
 			Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - (tile_size / 2),
-			actor_cur_pos.y + ((row + 1) * tile_size) - (tile_size / 2),
+			actor_cur_pos.x - half_tile,
+			actor_cur_pos.y + ((row + 1) * tile_size) - half_tile,
 			uttwn
 			)
 	
@@ -98,8 +98,8 @@ func draw_use_range_tiles(move_array) -> void:
 	for col in range(movement):
 		if move_array[movement][col] == 1:
 			Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - ((movement - col) * tile_size) - (tile_size / 2),
-			actor_cur_pos.y - (tile_size / 2),
+			actor_cur_pos.x - ((movement - col) * tile_size) - half_tile,
+			actor_cur_pos.y - half_tile,
 			uttwn
 			)
 	
@@ -107,16 +107,16 @@ func draw_use_range_tiles(move_array) -> void:
 	for col in range(movement):
 		if move_array[movement][col + movement + 1] == 1:
 			Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x + ((col + 1) * tile_size) - (tile_size / 2),
-			actor_cur_pos.y - (tile_size / 2),
+			actor_cur_pos.x + ((col + 1) * tile_size) - half_tile,
+			actor_cur_pos.y - half_tile,
 			uttwn
 			)
 	
 	# Center Self Tile
 	if move_array[movement][movement] == 1:
 		Singleton_Game_GlobalBattleVariables.field_logic_node.draw_flashing_movement_square(center_segment, 
-		actor_cur_pos.x - (tile_size / 2), 
-		actor_cur_pos.y - (tile_size / 2),
+		actor_cur_pos.x - half_tile, 
+		actor_cur_pos.y - half_tile,
 		uttwn
 		)
 	
