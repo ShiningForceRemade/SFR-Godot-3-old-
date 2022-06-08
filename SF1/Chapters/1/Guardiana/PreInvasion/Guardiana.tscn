@@ -1,4 +1,4 @@
-[gd_scene load_steps=215 format=2]
+[gd_scene load_steps=218 format=2]
 
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=1]
 [ext_resource path="res://SF1/TileSet_Resources/Original/6.tres" type="TileSet" id=2]
@@ -52,6 +52,9 @@
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Map_Sprites.png" type="Texture" id=50]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Map_Sprites.png" type="Texture" id=51]
 [ext_resource path="res://Assets/SF1/NPC/Nova.png" type="Texture" id=52]
+[ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=53]
+[ext_resource path="res://SF1/Items/Usables/HealingSeed.tres" type="Resource" id=54]
+[ext_resource path="res://SF1/Items/Usables/AngelWing.tres" type="Resource" id=55]
 
 [sub_resource type="Animation" id=135]
 resource_name = "DownMovement"
@@ -3120,6 +3123,7 @@ position = Vector2( 0, 22 )
 [node name="ItemSellerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 800, 472 )
 script = ExtResource( 45 )
+ITEM_LIST = [ ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ) ]
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ItemSellerNPCRoot" index="0"]
 stationary = true

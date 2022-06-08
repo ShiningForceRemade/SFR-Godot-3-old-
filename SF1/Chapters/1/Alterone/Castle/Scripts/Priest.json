@@ -1,7 +1,7 @@
 {
 	"script": [
 		{
-			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+			"ShowPortrait": "res://Assets/SF1/NPC/Priest_Portraits.png"
 		},
 
 		{
@@ -13,11 +13,7 @@
 		},
 
 		{
-			"Text": "Display Priest Menu"
-		},
-
-		{
-			"HidePortrait": ""
+			"ShowMenu": "PriestMenu"
 		}
 	]
 }

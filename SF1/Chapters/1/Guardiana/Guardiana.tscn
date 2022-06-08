@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=2]
+[gd_scene load_steps=136 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -14,14 +14,24 @@
 [ext_resource path="res://Assets/SF1/NPC/Soldier_Injured.png" type="Texture" id=12]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/NPCs/Gort.gd" type="Script" id=13]
 [ext_resource path="res://Assets/SF1/NPC/Man_Blonde_Purple.png" type="Texture" id=14]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/ItemSeller.gd" type="Script" id=15]
+[ext_resource path="res://SF1/Items/Usables/MedicalHerb.tres" type="Resource" id=16]
 [ext_resource path="res://Assets/SF1/NPC/Man_Old_Bald.png" type="Texture" id=17]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Map_Sprites.png" type="Texture" id=18]
+[ext_resource path="res://SF1/Items/Usables/HealingSeed.tres" type="Resource" id=19]
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=20]
 [ext_resource path="res://SF1/TileSet_Resources/Original/6.tres" type="TileSet" id=21]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/ActionSpotsWrapperNode.gd" type="Script" id=22]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
 [ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/CutsceneNode.gd" type="Script" id=25]
+[ext_resource path="res://SF1/Items/Usables/AngelWing.tres" type="Resource" id=26]
+[ext_resource path="res://SF1/Items/Weapons/WoodenStaff.tres" type="Resource" id=27]
+[ext_resource path="res://SF1/Items/Weapons/Spear.tres" type="Resource" id=28]
+[ext_resource path="res://SF1/Items/Weapons/WoodenArrow.tres" type="Resource" id=29]
+[ext_resource path="res://SF1/Items/Weapons/ShortSword.tres" type="Resource" id=30]
+[ext_resource path="res://SF1/Items/Weapons/HandAxe.tres" type="Resource" id=31]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/WeaponSeller.gd" type="Script" id=32]
 
 [sub_resource type="Animation" id=5]
 length = 0.8
@@ -1424,8 +1434,9 @@ polygon = PoolVector2Array( 12, -12, 36, -12, 36, 40, -84, 40, -84, -156, -128, 
 
 [node name="WeaponSellerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 776, 472 )
-script = ExtResource( 9 )
+script = ExtResource( 32 )
 DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/ShopSeller.json"
+ITEM_LIST = [ ExtResource( 30 ), ExtResource( 28 ), ExtResource( 31 ), ExtResource( 27 ), ExtResource( 29 ) ]
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/WeaponSellerNPCRoot" index="0"]
 stationary = true
@@ -1445,8 +1456,9 @@ position = Vector2( 0, 24 )
 
 [node name="ItemSellerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 800, 472 )
-script = ExtResource( 9 )
+script = ExtResource( 15 )
 DefaultScript = "res://SF1/Chapters/1/Guardiana/Scripts/ItemSeller.json"
+ITEM_LIST = [ ExtResource( 16 ), ExtResource( 19 ), ExtResource( 26 ) ]
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/ItemSellerNPCRoot" index="0"]
 stationary = true

@@ -16,5 +16,5 @@ func DefaultPosition() -> void:
 
 
 func ShopMenuPosition() -> void:
-	rect_position.x = 224
-	rect_position.y = 103
+	rect_position.x = 227
+	rect_position.y = 105

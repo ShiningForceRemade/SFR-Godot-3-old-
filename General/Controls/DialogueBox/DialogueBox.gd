@@ -486,6 +486,8 @@ func ShowMenu(string_arg: String) -> void:
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 		Singleton_Game_GlobalCommonVariables.menus_root_node.PriestMenuWrapperRoot.s_show_priest_menu()
 	elif  string_arg == "ShopMenu":
+		# print(Singleton_Game_GlobalCommonVariables.interaction_node_reference.ITEM_LIST)
+		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.ShopItemSelectionMenu.insert_item_list(Singleton_Game_GlobalCommonVariables.interaction_node_reference.ITEM_LIST)
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
 		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_menu()
 

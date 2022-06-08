@@ -1,5 +1,7 @@
 extends Node2D
 
+export(Array, Resource) var ITEM_LIST
+
 var stationary
 var facing_direction
 

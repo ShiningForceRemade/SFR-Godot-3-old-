@@ -33,6 +33,10 @@ func _ready():
 
 func set_menu_active():
 	is_menu_active = true
+	display_item_info(item_list[0])
+	current_item_selected = 0
+	selection_node.position = Vector2(0, selection_node.position.y)
+	move_info_box(current_item_selected, 21)
 
 
 func _process(_delta):
@@ -146,3 +150,11 @@ func move_info_box(idx, move_amount: int) -> void:
 		item_info_node.rect_position = Vector2(item_info_node.rect_position.x + move_amount, item_info_node.rect_position.y)
 	
 	# print(item_info_node.rect_position)
+
+
+func insert_item_list(item_list_arg):
+	item_list = item_list_arg
+	
+	load_shop_items()
+	
+	display_item_info(item_list[0])

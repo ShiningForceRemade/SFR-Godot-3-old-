@@ -1,15 +1,15 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://SF1/Items/Usable.gd" type="Script" id=1]
-[ext_resource path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SFCD/Items/Usables/AngelWing.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-item_name = "Medical Herb"
+item_name = "Angel Wing"
 texture = ExtResource( 2 )
 target_actor_type = 1
-attribute = [ 6 ]
-attribute_bonus = [ 10 ]
+attribute = [  ]
+attribute_bonus = [  ]
 key_item = false
 price_buy = 100
 price_sell = 50

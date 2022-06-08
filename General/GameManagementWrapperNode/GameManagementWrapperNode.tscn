@@ -774,7 +774,7 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = -261.0
 margin_bottom = -146.0
-rect_scale = Vector2( 0.8, 0.8 )
+rect_scale = Vector2( 0.75, 0.75 )
 
 [node name="OverworldActionsMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 9 )]
 visible = false

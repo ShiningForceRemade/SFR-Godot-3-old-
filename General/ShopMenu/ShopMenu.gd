@@ -217,6 +217,8 @@ func CancelShopMenu() -> void:
 	
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.Clean()
 	
+	Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
+	
 	# Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 	# get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
 	# TODO add animation
