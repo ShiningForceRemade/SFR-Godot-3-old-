@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://SF1/Chapters/1/Battle1/Battle1.gd" type="Script" id=1]
+[ext_resource path="res://SF1/Chapters/1/Battle1/Battle_Generic.gd" type="Script" id=1]
 [ext_resource path="res://SF1/Chapters/1/TargetSelectionLogicNodeRoot.gd" type="Script" id=2]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/Goblin.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn" type="PackedScene" id=4]
