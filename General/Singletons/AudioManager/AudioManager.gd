@@ -68,7 +68,7 @@ func _soundeffect_on_stream_finished(stream) -> void:
 	available_sound_effects_p.append(stream)
 	emit_signal("signal__audio_manager__soundeffect__finished")
 
-func _dialogue_on_sfx_finished(stream) -> void:
+func _dialogue_on_sfx_finished(_stream) -> void:
 	if dialogue_playing:
 		dialoguePlayer.play()
 		# emit_signal("signal__audio_manager__soundeffect__finished")

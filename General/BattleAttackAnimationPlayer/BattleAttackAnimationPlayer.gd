@@ -584,9 +584,9 @@ func character_defeated_play_dissolve_animation() -> void:
 	
 	yield(get_tree().create_timer(0.55), "timeout")
 
-func s_enemey_tween_completed(arg_1, arg_2) -> void:
+func s_enemey_tween_completed(_arg_1, _arg_2) -> void:
 	
-	# print("\n\n\n", arg_1, " ", arg_2)
+	# print("\n\n\n", _arg_1, " ", _arg_2)
 	
 	enemeySprite.hide()
 	

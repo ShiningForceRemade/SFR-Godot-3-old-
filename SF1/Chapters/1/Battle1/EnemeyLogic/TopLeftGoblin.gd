@@ -110,7 +110,7 @@ var _point_path = []
 const BASE_LINE_WIDTH = 3.0
 const DRAW_COLOR = Color('#fff')
 
-func astar_connect_walkable_cells(target_node_arg):
+func astar_connect_walkable_cells(_target_node_arg):
 	astar_node = AStar.new()
 	
 	var mpr = Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation
@@ -259,7 +259,7 @@ func _draw():
 	if not _point_path:
 		return
 	var point_start = _point_path[0]
-	var point_end = _point_path[len(_point_path) - 1]
+	# var point_end = _point_path[len(_point_path) - 1]
 
 	var v = Vector2(point_start.x, point_start.y)
 	var last_point = v + Vector2(12, 12)

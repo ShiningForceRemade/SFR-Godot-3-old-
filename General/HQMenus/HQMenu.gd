@@ -37,7 +37,7 @@ func set_menu_active() -> void:
 	label.text = "Advice"
 
 
-func _process(delta):
+func _process(_delta):
 	if !is_menu_active:
 		return
 	

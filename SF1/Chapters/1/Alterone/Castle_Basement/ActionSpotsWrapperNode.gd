@@ -89,20 +89,20 @@ func _on_OverworldExitArea2D_body_entered(body) -> void:
 
 
 func _on_CastleEntranceArea2D_body_entered(body):
-	print("Goto Alterone Castle")
-	pass # Replace with function body.
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("Goto Alterone Castle")
 
 
 func _on_TopRightHouseBasementEntranceArea2D_body_entered(body):
-	print("Goto Basement")
-	pass # Replace with function body.
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("Goto Basement")
 
 
 func _on_HQEntranceArea2D_body_entered(body):
-	print("Goto HQ Tunnel")
-	pass # Replace with function body.
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("Goto HQ Tunnel")
 
 
 func _on_BottomHouseBasementEntranceArea2D_body_entered(body):
-	print("Goto Basement")
-	pass # Replace with function body.
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("Goto Basement")
