@@ -38,7 +38,7 @@ func attempt_to_interact() -> void:
 	# interacting = false
 
 
-func attempt_to_interact_test(script_path_arg: String) -> void:
+func attempt_to_interact_custom(script_path_arg: String) -> void:
 	if script_path_arg == "":
 		return
 	

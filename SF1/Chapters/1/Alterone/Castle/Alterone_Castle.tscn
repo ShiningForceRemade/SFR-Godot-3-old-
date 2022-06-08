@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=126 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/SF1/NPC/Woman_Purplette.png" type="Texture" id=14]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Map_Sprites.png" type="Texture" id=15]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Castle/King.gd" type="Script" id=16]
+[ext_resource path="res://SF1/Chapters/1/Alterone/Castle/NPC_Default.gd" type="Script" id=17]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Castle/AlteroneCastleTilemap..tscn" type="PackedScene" id=21]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
 [ext_resource path="res://SF1/Chapters/1/_Cutscenes/Opening.tres" type="Animation" id=24]
@@ -1912,6 +1913,12 @@ extents = Vector2( 12, 12 )
 [sub_resource type="RectangleShape2D" id=135]
 extents = Vector2( 60, 24 )
 
+[sub_resource type="RectangleShape2D" id=214]
+extents = Vector2( 36, 12 )
+
+[sub_resource type="RectangleShape2D" id=215]
+extents = Vector2( 12, 12 )
+
 [sub_resource type="RectangleShape2D" id=136]
 extents = Vector2( 24, 24 )
 
@@ -2033,6 +2040,11 @@ __meta__ = {
 
 [node name="SoliderEntranceLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 420, 660 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardsPermissionGranted.json"
+NoPermission = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard1NoPermission.json"
+Permission = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardsPermissionGranted.json"
+PostBattle4 = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardsPermissionGranted.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderEntranceLeftNPCRoot" index="0"]
 stationary = true
@@ -2049,6 +2061,9 @@ anims/UpMovement = SubResource( 153 )
 
 [node name="SoliderEntranceCenterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 444, 636 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardsPermissionGranted.json"
+NoPermission = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard2NoPermission.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderEntranceCenterNPCRoot" index="0"]
 stationary = true
@@ -2065,6 +2080,9 @@ anims/UpMovement = SubResource( 157 )
 
 [node name="SoliderEntranceRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 468, 660 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardsPermissionGranted.json"
+NoPermission = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard3NoPermission.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderEntranceRightNPCRoot" index="0"]
 stationary = true
@@ -2081,6 +2099,8 @@ anims/UpMovement = SubResource( 161 )
 
 [node name="SoliderWaterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 636 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardNearWater.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderWaterNPCRoot" index="0"]
 stationary = true
@@ -2097,6 +2117,8 @@ anims/UpMovement = SubResource( 165 )
 
 [node name="SoliderBarTableTopNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 420 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard4.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderBarTableTopNPCRoot" index="0"]
 stationary = true
@@ -2113,6 +2135,8 @@ anims/UpMovement = SubResource( 169 )
 
 [node name="SoliderBarTableRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 636, 448 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard5.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderBarTableRightNPCRoot" index="0"]
 stationary = true
@@ -2130,6 +2154,7 @@ anims/UpMovement = SubResource( 173 )
 
 [node name="SoliderBarNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 636, 396 )
+script = ExtResource( 17 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderBarNPCRoot" index="0"]
 stationary = true
@@ -2147,6 +2172,8 @@ anims/UpMovement = SubResource( 177 )
 
 [node name="SoliderDoorNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 636, 276 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardAmbush.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderDoorNPCRoot" index="0"]
 stationary = true
@@ -2164,6 +2191,8 @@ anims/UpMovement = SubResource( 181 )
 
 [node name="GuardRightNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 564, 300 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Knight1.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GuardRightNPCRoot" index="0"]
 stationary = true
@@ -2181,6 +2210,8 @@ anims/UpMovement = SubResource( 185 )
 
 [node name="GuardLeftNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 324, 300 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Knight2.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/GuardLeftNPCRoot" index="0"]
 stationary = true
@@ -2215,6 +2246,8 @@ anims/UpMovement = SubResource( 193 )
 
 [node name="MinisterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 492, 228 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Minister.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/MinisterNPCRoot" index="0"]
 stationary = true
@@ -2231,6 +2264,8 @@ anims/UpMovement = SubResource( 197 )
 
 [node name="WomanGreenDressNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 372, 516 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/WomanBlonde.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/WomanGreenDressNPCRoot" index="0"]
 stationary = true
@@ -2247,6 +2282,8 @@ anims/UpMovement = SubResource( 201 )
 
 [node name="KhrisRelativeNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 324, 564 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/KhrisRelative.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/KhrisRelativeNPCRoot" index="0"]
 stationary = true
@@ -2263,6 +2300,8 @@ anims/UpMovement = SubResource( 209 )
 
 [node name="KhrisNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 156, 396 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Khris.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/KhrisNPCRoot" index="0"]
 stationary = true
@@ -2279,6 +2318,8 @@ anims/UpMovement = SubResource( 213 )
 
 [node name="ManBarOwnerNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 612, 348 )
+script = ExtResource( 17 )
+DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/BarOwner.json"
 
 [node name="Sprite" parent="NpcWrapperNode/ManBarOwnerNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
 texture = ExtResource( 13 )
@@ -2420,6 +2461,54 @@ shape = SubResource( 134 )
 [node name="CollisionShape2D34" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
 position = Vector2( 540, 360 )
 shape = SubResource( 135 )
+
+[node name="CollisionShape2D79" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 636, 372 )
+shape = SubResource( 214 )
+
+[node name="CollisionShape2D80" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 540, 396 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D81" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 588, 436 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D82" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 612, 436 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D83" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 660, 468 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D84" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 660, 492 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D85" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 132, 396 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D86" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 228, 204 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D87" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 276, 132 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D88" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 372, 204 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D89" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 516, 204 )
+shape = SubResource( 215 )
+
+[node name="CollisionShape2D90" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
+position = Vector2( 564, 156 )
+shape = SubResource( 215 )
 
 [node name="CollisionShape2D35" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D/CastleWallsNode"]
 position = Vector2( 636, 312 )
@@ -2659,6 +2748,7 @@ position = Vector2( 492, 612 )
 shape = SubResource( 149 )
 
 [node name="Overpass" type="TileMap" parent="."]
+position = Vector2( 148, 928 )
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 4, 4 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )

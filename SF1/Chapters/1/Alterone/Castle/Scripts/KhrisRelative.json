@@ -1,27 +1,18 @@
 {
 	"script": [
 		{
-			"Text": "Khris, where are you? Have you seen her?"
-		},
-
-		{
+			"Text": "Khris, where are you? Have you seen her?",
 			"InteractionPrompt": "YesOrNo"
 		},
 
 		{
-			"InteractionAnswer": "Yes"
-		},
-		
-		{
-			"Text": "Well, then where is she?"
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Alterone/Castle/Scripts/KhrisRelative_Yes.json"
 		},
 
 		{
-			"InteractionAnswer": "No"
-		},
-		
-		{
-			"Text": "Well, don't just stand there, help me look for her."
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Alterone/Castle/Scripts/KhrisRelative_No.json"
 		}
 	]
 }

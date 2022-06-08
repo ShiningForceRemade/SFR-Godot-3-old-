@@ -13,6 +13,7 @@ func _ready():
 	# change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
 	# change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
 	# change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
+	change_scene("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
 	
 	pass
 

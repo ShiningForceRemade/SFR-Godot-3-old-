@@ -53,21 +53,22 @@ func attempt_to_interact() -> void:
 	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
 	
 	if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.spoken_to_kane_alterone:
-		npcBaseRoot.set_movement_speed_timer(0.1)
+		var move_time = 0.125
+		npcBaseRoot.set_movement_speed_timer(move_time)
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.movement_tween_speed = 0.1
 		
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.MoveInDirection("Left")
 		# Singleton_Game_GlobalCommonVariables.main_character_player_node.
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(move_time), "timeout")
 		
 		for i in 3:
 			npcBaseRoot.tester__move_in_direction("Down")
-			yield(get_tree().create_timer(0.1), "timeout")
+			yield(get_tree().create_timer(move_time), "timeout")
 		
 		
 		npcBaseRoot.tester__move_in_direction("Right")
 		pn.SoliderDoor.get_child(0).tester__move_in_direction("Right")
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(move_time), "timeout")
 		pn.SoliderDoor.get_child(0).change_facing_direction_string("LeftMovement")
 		
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.reset_movement_speed()
@@ -76,14 +77,14 @@ func attempt_to_interact() -> void:
 		
 		for i in 7:
 			npcBaseRoot.tester__move_in_direction("Right")
-			yield(get_tree().create_timer(0.1), "timeout")
+			yield(get_tree().create_timer(move_time), "timeout")
 		
 		for i in 6:
 			npcBaseRoot.tester__move_in_direction("Up")
-			yield(get_tree().create_timer(0.1), "timeout")
+			yield(get_tree().create_timer(move_time), "timeout")
 		
 		npcBaseRoot.tester__move_in_direction("Right")
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(move_time), "timeout")
 		
 		npcBaseRoot.queue_free()
 	
