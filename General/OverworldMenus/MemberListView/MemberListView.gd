@@ -44,6 +44,7 @@ onready var equipItemsControlNode = $StatNinePatchRect/EquipItemsViewControl
 ### EquipItemsControlNode
 
 var current_selection = null
+var unlocked_characters_size = 0
 
 func _ready():
 	var invisible_scrollbar_theme = Theme.new()
@@ -61,7 +62,42 @@ func _ready():
 	# flist_vbox_container.get_node("CharacterWrapperNode/ClassStaticLabel").text = c.class
 	# flist_vbox_container.get_node("CharacterWrapperNode/LevelStaticLabel").text = str(c.level)
 	
+	load_character_lines()
+	
+	pass
+
+
+func set_items_view_active():
+	overview_mangic_and_inventory_control_node.hide()
+	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
+#	itemsViewControlNode.CleanItemSlots()
+#	itemsViewControlNode.DisplayItems()
+	
+	current_selection = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0].name
+	red_selection.position = Vector2(21, 94)
+	
+	equipItemsControlNode.CleanItemSlots()
+	itemsViewControlNode.show()
+
+
+func set_overvview_view_active():
+	itemsViewControlNode.hide()
+	itemsViewControlNode.CleanItemSlots()
+	overview_mangic_and_inventory_control_node.show()
+
+
+func load_character_lines() -> void:
+	for child in flist_vbox_container.get_children():
+		child.queue_free()
+	
+	unlocked_characters_size = 0
+	
 	for character in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
+		if !character.unlocked:
+			continue
+		
+		unlocked_characters_size += 1
+		
 		var CLine = MemberSelectionLine.instance()
 		
 		if character.active_in_force:
@@ -77,89 +113,103 @@ func _ready():
 	
 	# Remove this if Godot 4 fixes this
 	# fake last item to prevent godot clipping issues
-	var CLine = MemberSelectionLine.instance()
-	flist_vbox_container.add_child(CLine)
+	if unlocked_characters_size > 5:
+		var CLine = MemberSelectionLine.instance()
+		flist_vbox_container.add_child(CLine)
 	
-	pass
-
-
-func set_items_view_active():
-	overview_mangic_and_inventory_control_node.hide()
-	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
-#	itemsViewControlNode.CleanItemSlots()
-#	itemsViewControlNode.DisplayItems()
-	
-	current_selection = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0].character
-	red_selection.position = Vector2(21, 94)
-	
-	equipItemsControlNode.CleanItemSlots()
-	itemsViewControlNode.show()
-
-
-func set_overvview_view_active():
-	itemsViewControlNode.hide()
-	itemsViewControlNode.CleanItemSlots()
-	overview_mangic_and_inventory_control_node.show()
-
 
 func _input(event):
 	if active == false:
 		return
 	
-	if event.is_action_pressed("ui_down"):
-		print("a")
-		
-		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
-		
-		for i in fm_size:
-			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
-				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
-				
-				if i + 1 >= fm_size:
-					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
-					red_selection.position = Vector2(21, 94)
-					scroll_container_reset_line()
-				else:
-					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i + 1])
-					if red_selection.position != Vector2(21, 94 + (12 * 5)):
-						red_selection.position = Vector2(21, red_selection.position.y + 12)
-					
-					if i >= 5 && i < fm_size:
-						scroll_container_move_down_line()
-				
-				break
+#	if event.is_action_pressed("test_key_z"):
+#		load_character_lines()
 	
-	elif event.is_action_pressed("ui_up"):
-		print("a")
-		
+	if event.is_action_pressed("ui_down"):
 		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
 		
-		for i in fm_size:
-			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
-				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
-				
-				if i - 1 <= -1:
-					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_size - 1])
-					red_selection.position = Vector2(21, 94 + (12 * 5))
-					scroll_container_wrap_to_bottom()
-				else:
-					DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i - 1])
-					if red_selection.position != Vector2(21, 94):
-						red_selection.position = Vector2(21, red_selection.position.y - 12)
-					
-					# temp not usable
-					if i < 5:
-						scroll_container_move_up_line()
-				
-				
+		var idx = 0
+		for c in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
+			if c.name == current_selection:
 				break
+			
+			idx += 1
+		
+		# print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, current_selection)
+		
+		if idx + 1 >= fm_size:
+			if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0].unlocked:
+				return
+			
+			DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
+			red_selection.position = Vector2(21, 94)
+			scroll_container_reset_line()
+			return
+		
+		while idx + 1 < fm_size:
+			if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx + 1].unlocked:
+				idx += 1
+				continue
+			
+			if current_selection == Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx + 1].name:
+				return
+			
+			print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx + 1].name)
+			
+			DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx + 1])
+			if red_selection.position != Vector2(21, 94 + (12 * 5)):
+				red_selection.position = Vector2(21, red_selection.position.y + 12)
+				
+			if idx >= 5 && idx < fm_size:
+				scroll_container_move_down_line()
+		
+		return
+	elif event.is_action_pressed("ui_up"):
+		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
+		
+		var idx = 0
+		for c in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
+			if c.name == current_selection:
+				break
+			
+			idx += 1
+		
+		# print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, current_selection)
+		
+		if idx - 1 <= -1:
+			if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_size - 1].unlocked:
+				return
+				
+			DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_size - 1])
+			red_selection.position = Vector2(21, 94 + (12 * 5))
+			scroll_container_wrap_to_bottom()
+		
+		while idx - 1 >= 0:
+			if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx - 1].unlocked:
+				idx -= 1
+				continue
+			
+			if current_selection == Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx - 1].name:
+				return
+			
+			print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx - 1].name)
+			
+			DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx - 1])
+			if red_selection.position != Vector2(21, 94):
+				red_selection.position = Vector2(21, red_selection.position.y - 12)
+			
+			# temp not usable
+			if idx < 5:
+				scroll_container_move_up_line()
+		
+		return
 	
 	elif event.is_action_pressed("ui_a_key"):
 		var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
 		
 		for i in fm_size:
-			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character == current_selection:
-				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].character, current_selection)
+			if Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].name == current_selection:
+				print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i].name, current_selection)
 				
 				if Singleton_Game_GlobalCommonVariables.selected_item != null:
 					Singleton_Game_GlobalCommonVariables.selected_target_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
@@ -224,7 +274,7 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	DisplayItemsFullInfo(force_member)
 	
 	var c = force_member
-	current_selection = c.character
+	current_selection = c.name
 	
 	if cnode != null:
 		cnode.queue_free()

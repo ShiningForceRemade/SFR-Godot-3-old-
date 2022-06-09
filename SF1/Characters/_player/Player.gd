@@ -162,7 +162,9 @@ func _process(delta):
 			active = false
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().set_overvview_view_active()
+			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().load_character_lines()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
+			
 		
 	
 	

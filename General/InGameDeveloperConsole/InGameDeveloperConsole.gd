@@ -124,12 +124,40 @@ func modify(new_text_internal) -> void:
 	print(splstr)
 	
 	if splstr[1] == "force-member" || splstr[1] == "fm":
-		# if splstr[2] == "{{force_member_name}}":
+		# if splstr[2] != "":
 		
-		# TODO(fledc) - add string enum to check based on fm name
-		var idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.GONG
+		if splstr[2] == "all":
+			var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
+			for i in fm_size:
+				force_member_modifcation_commands(splstr[3], i)
+		else:
+			var idx = find_character_index(splstr[2])
+			force_member_modifcation_commands(splstr[3], idx)
 		
-		if splstr[3] == "active-in-force":
-			print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, " - active-in-force - ", !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force)			
+
+
+func find_character_index(character_name: String) -> int:
+	var idx = 0
+	for character in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
+		if character_name == character.name:
+			return idx
+		idx += 1
+		
+	return -1
+
+
+func force_member_modifcation_commands(command: String, idx: int) -> void:
+	match command:
+		"active-in-force":
+			print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, " - active-in-force - ", !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force)
 			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force = !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force
+		
+		"unlock":
+			# print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, " - active-in-force - ", !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force)
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].unlocked = true
 			
+			print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].unlocked)
+		
+		"lock":
+			# print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, " - active-in-force - ", !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force)
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].unlocked = false

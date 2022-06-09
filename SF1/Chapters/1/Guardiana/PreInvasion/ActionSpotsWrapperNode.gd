@@ -348,6 +348,21 @@ func _on_ForceJoinsArea2D_body_entered(body):
 				lowe.tester__move_in_direction("Up")
 				yield(get_tree().create_timer(0.1), "timeout")
 			
+			var fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.LUKE
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].active_in_force = true
+			fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.KEN
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].active_in_force = true
+			fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.TAO
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].active_in_force = true
+			fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.HANS
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].active_in_force = true
+			fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.LOWE
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
+			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].active_in_force = true
 			
 			Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 

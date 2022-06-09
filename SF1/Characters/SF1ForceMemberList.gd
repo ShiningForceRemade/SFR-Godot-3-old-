@@ -261,7 +261,7 @@ var ForceMembers = [
 		
 		"unlocked": false,
 		"active_in_force": false,
-		"alive": false,
+		"alive": true,
 		
 		"name": "Luke", # TODO: do nicknames
 		"race": "Dwarf",

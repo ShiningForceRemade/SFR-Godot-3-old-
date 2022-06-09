@@ -63,6 +63,7 @@ func _input(event):
 				Singleton_Game_GlobalCommonVariables.action_type = "EQUIP"
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().set_items_view_active()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().load_character_lines()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
 				
 				return
@@ -76,6 +77,7 @@ func _input(event):
 				Singleton_Game_GlobalCommonVariables.action_type = "USE"
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().set_items_view_active()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().load_character_lines()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
 				
 				return
@@ -89,6 +91,7 @@ func _input(event):
 				Singleton_Game_GlobalCommonVariables.action_type = "DROP"
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().set_items_view_active()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().load_character_lines()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
 				
 				return
@@ -102,6 +105,7 @@ func _input(event):
 				Singleton_Game_GlobalCommonVariables.action_type = "GIVE"
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().show()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().set_items_view_active()
+				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().load_character_lines()
 				Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
 				
 				return
