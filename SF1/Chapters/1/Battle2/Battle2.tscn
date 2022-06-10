@@ -498,6 +498,47 @@ anims/RandomTileFlashing = SubResource( 1 )
 [node name="CursorRoot" parent="." instance=ExtResource( 6 )]
 position = Vector2( 612, 516 )
 
+[node name="CharacterPositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Position2D" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 636, 564 )
+
+[node name="Position2D2" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 636, 516 )
+
+[node name="Position2D3" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 612, 540 )
+
+[node name="Position2D4" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 636, 540 )
+
+[node name="Position2D5" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 612, 564 )
+
+[node name="Position2D6" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 612, 516 )
+
+[node name="Position2D7" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 612, 588 )
+
+[node name="Position2D8" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 636, 588 )
+
+[node name="Position2D9" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 612, 612 )
+
+[node name="Position2D10" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 636, 612 )
+
+[node name="Position2D11" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 612, 636 )
+
+[node name="Position2D12" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 636, 636 )
+
 [node name="Characters" type="Node2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
@@ -582,6 +623,7 @@ is_npc = true
 battle_logic_script = "res://SF1/Chapters/1/Battle2/EnemeyLogic/LeftSideLeftDwarf.gd"
 
 [node name="TileMapTileInformation" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource( 2 )
 cell_size = Vector2( 24, 24 )
 format = 1

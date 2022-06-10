@@ -498,6 +498,47 @@ anims/RandomTileFlashing = SubResource( 1 )
 [node name="CursorRoot" parent="." instance=ExtResource( 6 )]
 position = Vector2( 228, 564 )
 
+[node name="CharacterPositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Position2D" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 228, 564 )
+
+[node name="Position2D2" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 252, 564 )
+
+[node name="Position2D3" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 276, 564 )
+
+[node name="Position2D4" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 252, 540 )
+
+[node name="Position2D5" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 276, 540 )
+
+[node name="Position2D6" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 276, 516 )
+
+[node name="Position2D7" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 252, 516 )
+
+[node name="Position2D8" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 204, 564 )
+
+[node name="Position2D9" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 180, 564 )
+
+[node name="Position2D10" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 180, 540 )
+
+[node name="Position2D11" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 300, 564 )
+
+[node name="Position2D12" type="Position2D" parent="CharacterPositionsNode2D"]
+position = Vector2( 300, 540 )
+
 [node name="Characters" type="Node2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
