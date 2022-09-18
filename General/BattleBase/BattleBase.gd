@@ -45,8 +45,6 @@ onready var noValidOptionWarningBoxRoot = $CanvasLayerInfoControls/BattleMenusWr
 onready var targetActorMicroInfoTween = $CanvasLayerInfoControls/TargetActorMicroInfoTween
 onready var targetActorMicroInfoRoot = $CanvasLayerInfoControls/TargetActorMicroInfoRoot
 
-onready var topLevelFader = $CanvasLayerTopLevelFader/ColorRect
-
 func _ready():
 	# battleAttackAnimationPlayer.hide()
 	s_hide_action_menu()
@@ -64,7 +62,7 @@ func _ready():
 	
 	Singleton_Game_GlobalBattleVariables.battle_base = self
 	
-	topLevelFader.clear_black_fade()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.clear_black_fade()
 	
 	print("Game Version - ", ProjectSettings.get_setting("application/config/Version"))
 	

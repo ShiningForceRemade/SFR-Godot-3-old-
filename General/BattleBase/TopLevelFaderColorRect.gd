@@ -26,7 +26,7 @@ func black_fade_anim_in() -> void:
 
 
 func black_fade_anim_out() -> void:
-	print("hey")
+	# print("hey")
 	
 	# self.modulate = Color(0, 0, 0, 255)
 	

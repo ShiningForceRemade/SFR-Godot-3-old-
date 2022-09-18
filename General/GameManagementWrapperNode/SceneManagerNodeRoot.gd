@@ -14,7 +14,7 @@ func _ready():
 	# change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
 	# change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
 	# change_scene("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
-	change_scene("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
+	# change_scene("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
 	
 	pass
 
@@ -38,8 +38,6 @@ func _deferred_change_scene(new_scene) -> void:
 		child.queue_free()
 	
 	add_child(new_scene)
-
-
 
 
 func change_scene_preloaded(new_scene_preloaded) -> void:

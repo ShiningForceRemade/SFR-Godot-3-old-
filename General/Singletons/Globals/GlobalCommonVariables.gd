@@ -6,6 +6,7 @@ var menus_root_node = null
 var camera_node = null
 var dialogue_box_node = null
 var scene_manager_node = null
+var top_level_fader_node = null
 
 # TODO: refactor disgusting temp for demo
 # values null | "YES" | "NO"

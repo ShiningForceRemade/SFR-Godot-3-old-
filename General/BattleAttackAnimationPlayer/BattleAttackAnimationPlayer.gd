@@ -54,7 +54,7 @@ var heal_amount = 0
 
 func _ready():
 	# yield(get_tree().create_timer(1), "timeout")
-	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.clear_black_fade()
+	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.clear_black_fade()
 	
 	Singleton_Game_GlobalBattleVariables.battle_scene_node = self
 	# char actor
@@ -87,7 +87,7 @@ func _ready():
 
 
 func setup_character_and_enemey_sprites_idle() -> void:
-	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 	# print(Singleton_Game_GlobalBattleVariables.currently_active_character.type)
 	
 	var char_actor_rn = null
@@ -144,7 +144,7 @@ func setup_actor_attacking() -> void:
 	
 	yield(get_tree().create_timer(0.15), "timeout")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
 	yield(get_tree().create_timer(0.325), "timeout")
 	
@@ -186,7 +186,7 @@ func setup_enemey_actor_attacking() -> void:
 	
 	yield(get_tree().create_timer(0.15), "timeout")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
 	yield(get_tree().create_timer(0.325), "timeout")
 	
@@ -227,7 +227,7 @@ func setup_spell_usage() -> void:
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
 	yield(get_tree().create_timer(0.325), "timeout")
 	
@@ -422,14 +422,14 @@ func calculate_damage_step() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 	yield(get_tree().create_timer(0.4), "timeout")
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 	yield(get_tree().create_timer(0.25), "timeout")
 	
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -535,7 +535,7 @@ func calculate_damage_step_enemey_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 	print("Complete Damage Step")
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
 	yield(get_tree().create_timer(0.4), "timeout")
@@ -544,9 +544,9 @@ func calculate_damage_step_enemey_attacking() -> void:
 	
 	emit_signal("signal_battle_complete_damage_step")
 	# yield(get_tree().create_timer(0.25), "timeout")
-	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	characterWrapper.show()
-	#Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	#Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	# yield(get_tree().create_timer(0.65), "timeout")
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	
@@ -1086,7 +1086,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	# when doing multi target selection (for blaze 2) refine these along with that development
 	yield(get_tree().create_timer(0.75), "timeout")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 	yield(get_tree().create_timer(0.4), "timeout")
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 	yield(get_tree().create_timer(0.25), "timeout")
@@ -1097,7 +1097,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	emit_signal("signal_battle_scene_complete")
 	Singleton_Game_AudioManager.stop_alt_music_n()
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	

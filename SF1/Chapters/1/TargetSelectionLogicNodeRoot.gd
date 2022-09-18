@@ -90,7 +90,7 @@ func _input(event):
 			print("TODO: trigger battle action scene and play out the item use effect")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			
-			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+			Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 			yield(get_tree().create_timer(0.325), "timeout")
 			Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
 			
@@ -120,7 +120,7 @@ func _input(event):
 			print("Complete")
 			
 			Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
-			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+			Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 			
 			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
@@ -499,7 +499,7 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 func enemey_actor_attack_setup():
 	print("In Here")
 	
-	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 	# yield(get_tree().create_timer(0.3), "timeout")
 	
 	# setup_use_range_and_target_range_selection_enemey_static()
@@ -509,7 +509,7 @@ func enemey_actor_attack_setup():
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_in()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 	yield(get_tree().create_timer(0.325), "timeout")
 	
 	Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
@@ -537,7 +537,7 @@ func enemey_actor_attack_setup():
 	
 	print("Complete")
 	
-	Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
 	Singleton_Game_GlobalBattleVariables.battle_base.landEffectPopupRoot.show()
@@ -546,7 +546,7 @@ func enemey_actor_attack_setup():
 	
 	yield(get_tree().create_timer(0.45), "timeout")
 	
-	# Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.black_fade_anim_out()
+	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
 	# yield(get_tree().create_timer(0.5), "timeout")
 	

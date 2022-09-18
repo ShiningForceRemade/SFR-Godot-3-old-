@@ -10,11 +10,11 @@ func _input(event):
 		#TODO: fixme this doesnt work in the overworld only in battles
 		
 		if get_tree().paused:
-			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.clear_black_fade()
+			Singleton_Game_GlobalCommonVariables.top_level_fader_node.clear_black_fade()
 			Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.position = Vector2(-90, 100)
 			get_tree().paused = !get_tree().paused
 		else:
-			Singleton_Game_GlobalBattleVariables.battle_base.topLevelFader.dim_screen()
+			Singleton_Game_GlobalCommonVariables.top_level_fader_node.dim_screen()
 			Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.set_paused_text()
 			Singleton_Game_GlobalBattleVariables.battle_base.noValidOptionWarningBoxRoot.position = Vector2(165, 100)
 			
