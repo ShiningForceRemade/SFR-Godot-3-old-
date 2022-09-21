@@ -107,6 +107,9 @@ func changeScene(new_text_internal) -> void:
 		elif splstr[2] == "HQ":
 			print("Change Scene to HQ")
 			sceneManagerNode.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
+		elif splstr[2] == "C2-Overworld":
+			print("Change Scene to Chapter 2 Overworld")
+			sceneManagerNode.change_scene("res://SF1/Chapters/2/Overworld/Overworld.tscn")
 	
 	elif splstr[1] == "test" || splstr[1] == "t":
 		if splstr[2] == "Chest":

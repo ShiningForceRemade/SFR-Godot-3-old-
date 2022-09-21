@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SF1/Chapters/2/Overworld/OverworldTilemap..tscn" type="PackedScene" id=2]
+[ext_resource path="res://SF1/Chapters/2/Overworld/ActionSpotsWrapperNode.gd" type="Script" id=3]
+[ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://SF1/Chapters/2/Overworld/Overworld.gd" type="Script" id=10]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 12, 12 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 20, 20 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 19, 19 )
+
+[sub_resource type="RectangleShape2D" id=22]
+
+[node name="GongsHouseRoot" type="Node2D"]
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OverworldTilemapNode2D" parent="." instance=ExtResource( 2 )]
+
+[node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
+position = Vector2( 636, 676 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 158, 91 )
+rotating = true
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 768
+limit_bottom = 760
+smoothing_enabled = true
+smoothing_speed = 16.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TODOCOMPRESS_StaticBody2D" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 132, 180 )
+shape = SubResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ActionSpotsWrapperNode" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="RindoArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+position = Vector2( 0, 20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/RindoArea2D"]
+position = Vector2( 672, 644 )
+shape = SubResource( 20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MagicSchoolArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/MagicSchoolArea2D"]
+position = Vector2( 97, 63 )
+shape = SubResource( 23 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ShadeAbbeyArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ShadeAbbeyArea2D"]
+position = Vector2( 660, 220 )
+shape = SubResource( 22 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="body_entered" from="ActionSpotsWrapperNode/RindoArea2D" to="ActionSpotsWrapperNode" method="_on_RindoArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/MagicSchoolArea2D" to="ActionSpotsWrapperNode" method="_on_MagicSchoolArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/ShadeAbbeyArea2D" to="ActionSpotsWrapperNode" method="_on_ShadeAbbeyArea2D_body_entered"]
