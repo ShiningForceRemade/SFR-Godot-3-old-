@@ -108,3 +108,13 @@ func _on_GuardianaTownExitArea2D_body_entered(body):
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene outside Guardiana")
 		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")
+
+
+
+
+func _on_HQStairCaseEntranceArea2D_body_entered(body):
+	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
+		print("Change Scene Guardiana Castle to HQ")
+		Singleton_Game_GlobalCommonVariables.position_location_st = "Guardiana-Castle__HQ"
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
+

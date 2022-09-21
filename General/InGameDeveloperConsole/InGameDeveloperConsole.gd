@@ -3,12 +3,14 @@ extends Node2D
 onready var textEdit = $TextEdit
 
 var sceneManagerNode = null
+var shaderCanvasNode = null
 
 func _ready():
 	
 	Singleton_Dev_DevMenu.dev_console = self
 	
 	sceneManagerNode = get_parent().get_parent().get_node("SceneManagerNodeRoot")
+	shaderCanvasNode = get_parent().get_parent().get_node("ShadersCanvasLayer")
 	
 	pass
 
@@ -24,10 +26,15 @@ func _on_LineEdit_text_entered(new_text):
 	
 	if "toggle_move_rotdd" in new_text_internal:
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT = !Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT
+		return
 	
 	if "modify" in new_text_internal:
 		modify(new_text_internal)
+		return
 	
+	if "shader" in new_text_internal:
+		setShader(new_text_internal)
+		return
 # Change main character broken - changing the child of a node with an active process seems to be completely broken
 # if no good solution can be found replace entire PlayerRoot and replace child then add the scene back to the current space	
 #	if "change" in new_text_internal:
@@ -161,3 +168,21 @@ func force_member_modifcation_commands(command: String, idx: int) -> void:
 		"lock":
 			# print(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].name, " - active-in-force - ", !Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].active_in_force)
 			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[idx].unlocked = false
+
+
+func setShader(new_text_internal: String) -> void:
+	var splstr = new_text_internal.split(" ")
+	
+	print(splstr)
+	
+	for n in shaderCanvasNode.get_children():
+		n.hide()
+	
+	if splstr[1] == "hq4x" || splstr[1] == "HQ4x":
+		shaderCanvasNode.get_node("HQ4x").show()
+	if splstr[1] == "CRT" || splstr[1] == "crt":
+		shaderCanvasNode.get_node("CRTShader").show()
+	if splstr[1] == "CRT-AGGRO" || splstr[1] == "crt-aggro":
+		shaderCanvasNode.get_node("CRTShader2").show()
+	if splstr[1] == "off" || splstr[1] == "OFF":
+		pass

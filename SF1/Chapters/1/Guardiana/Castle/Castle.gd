@@ -1,5 +1,8 @@
 extends Node2D
 
+onready var positionsNode = $PositionsNode2D
+onready var playerNode = $PlayerCharacterRoot
+
 onready var TilemapSceneRoot = $CastleTilemapNode
 onready var TilemapRoofSceneRoot = $RoofsWrapperNode
 onready var TilemapWalkwaySceneRoot = $OverpassNode
@@ -24,6 +27,13 @@ var eight_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/8
 
 func _ready():
 	Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Castle (Guardiana and Others).mp3")
+	
+	match Singleton_Game_GlobalCommonVariables.position_location_st:
+		# "Guardiana-Castle__Entrance": playerNode.transform = positionsNode.get_node("AlteroneEntrancePosition2D").transform
+		"Guardiana-Castle__HQ": playerNode.transform = positionsNode.get_node("HQEntrancePosition2D").transform
+		"Guardiana-Castle__Storage": playerNode.transform = positionsNode.get_node("StorageEntrancePosition2D").transform
+		"Guardiana-Castle__Tower": playerNode.transform = positionsNode.get_node("RoomBehindKingPosition2D").transform
+		"Guardiana-Castle__Room": playerNode.transform = positionsNode.get_node("TowerEntrancePosition2D").transform
 	
 	if Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.initial_force_joined:
 		Nova.queue_free()

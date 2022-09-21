@@ -2363,6 +2363,35 @@ position = Vector2( 636, 952 )
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 636, 828 )
 
+[node name="PositionsNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HQEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 444, 756 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StorageEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 348, 372 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RoomBehindKingPosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 612, 396 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TowerEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+position = Vector2( 900, 300 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="NpcWrapperNode" type="Node2D" parent="."]
 
 [node name="GuardHQNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
@@ -3561,6 +3590,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="HQStairCaseEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/HQStairCaseEntranceArea2D"]
+position = Vector2( 420, 756 )
+shape = SubResource( 159 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="HQEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
 __meta__ = {
 "_edit_lock_": true
@@ -3625,6 +3666,7 @@ shape = SubResource( 240 )
 [connection signal="body_entered" from="ActionSpotsWrapperNode/SideCastleExitArea2D" to="ActionSpotsWrapperNode" method="_on_SideCastleExitArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HouseEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_HouseEntranceArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HouseExitArea2D" to="ActionSpotsWrapperNode" method="_on_HouseExitArea2D_body_entered"]
+[connection signal="body_entered" from="ActionSpotsWrapperNode/HQStairCaseEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_HQStairCaseEntranceArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HQEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_HQEntranceArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/HQExitArea2D" to="ActionSpotsWrapperNode" method="_on_HQExitArea2D_body_entered"]
 [connection signal="body_entered" from="ActionSpotsWrapperNode/InsideThroneBottomArea2D" to="ActionSpotsWrapperNode" method="_on_InsideThroneBottomArea2D_body_entered"]
