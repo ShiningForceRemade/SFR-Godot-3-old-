@@ -1,8 +1,6 @@
 extends Node2D
 
-onready var TilemapSceneRoot = $GongsHouseTilemapRoot
-onready var Walkway = $Walkway
-onready var Roof = $Roof
+onready var TilemapSceneRoot = $OverworldTilemapNode2D
 
 var using_original_tiles: bool = true
 
@@ -20,43 +18,17 @@ func _ready():
 	pass
 
 
-#func _input(event):
-#	if event.is_action_released("ui_page_down"):
-#		print("Swap Tilesets")
-#		if using_original_tiles:
-#			TilemapSceneRoot.get_node("BaseLayer").tile_set = seven_ic_tres
-#			TilemapSceneRoot.get_node("BaseLayer/10").tile_set = ten_ic_tres
-#			TilemapSceneRoot.get_node("BaseLayer/0").tile_set = zero_ic_tres
-#
-#			TilemapSceneRoot.get_node("AdditionalMap").tile_set = zero_ic_tres
-#
-#			TilemapSceneRoot.get_node("Walkway").tile_set = zero_ic_tres
-#			TilemapSceneRoot.get_node("Walkway/10").tile_set = ten_ic_tres
-#
-#			TilemapSceneRoot.get_node("Roof").tile_set = zero_ic_tres
-#
-#			Walkway.tile_set = zero_ic_tres
-#			Walkway.get_node("10").tile_set = ten_ic_tres
-#
-#			Roof.tile_set = zero_ic_tres
-#
-#			using_original_tiles = false
-#		else:
-#			TilemapSceneRoot.get_node("BaseLayer").tile_set = seven_tres
-#			TilemapSceneRoot.get_node("BaseLayer/10").tile_set = ten_tres
-#			TilemapSceneRoot.get_node("BaseLayer/0").tile_set = zero_tres
-#
-#			TilemapSceneRoot.get_node("AdditionalMap").tile_set = zero_tres
-#
-#			TilemapSceneRoot.get_node("Walkway").tile_set = zero_tres
-#			TilemapSceneRoot.get_node("Walkway/10").tile_set = ten_tres
-#
-#			TilemapSceneRoot.get_node("Roof").tile_set = zero_tres
-#
-#			Walkway.tile_set = zero_tres
-#			Walkway.get_node("10").tile_set = ten_tres
-#
-#			Roof.tile_set = zero_tres
-#
-#			using_original_tiles = true
+func _input(event):
+	if event.is_action_released("ui_page_down"):
+		print("Swap Tilesets")
+		if using_original_tiles:
+			TilemapSceneRoot.get_node("Base").tile_set = one_ic_tres
+			TilemapSceneRoot.get_node("16").tile_set = sixteen_ic_tres
+
+			using_original_tiles = false
+		else:
+			TilemapSceneRoot.get_node("Base").tile_set = one_tres
+			TilemapSceneRoot.get_node("16").tile_set = sixteen_tres
+
+			using_original_tiles = true
 
