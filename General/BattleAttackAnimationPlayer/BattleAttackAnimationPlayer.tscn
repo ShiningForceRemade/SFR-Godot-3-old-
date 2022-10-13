@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
 [ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" type="Texture" id=8]
 [ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
 [ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture" id=10]
-[ext_resource path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" type="Texture" id=11]
 [ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
 [ext_resource path="res://SF1/Characters/Lowe/BattleAnimations/Idle.anim" type="Animation" id=13]
 [ext_resource path="res://SF1/Spells/Heal/Heal.anim" type="Animation" id=14]
@@ -20,8 +19,6 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 12 )
-shader_param/dissolve_effect_amount = null
-shader_param/noise_texture = ExtResource( 11 )
 
 [sub_resource type="Animation" id=2]
 length = 1.2
@@ -114,8 +111,6 @@ tracks/6/keys = {
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 12 )
-shader_param/dissolve_effect_amount = null
-shader_param/noise_texture = ExtResource( 11 )
 
 [node name="BattleAttackAnimationPlayerRoot" type="Node2D"]
 z_index = 2
@@ -156,8 +151,9 @@ __meta__ = {
 [node name="CenterSprite" type="Sprite" parent="BackgroundWrapper"]
 position = Vector2( 128, 90 )
 texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 256, 384, 256, 96 )
+hframes = 2
+vframes = 16
+region_rect = Rect2( 0, 0, 256, 96 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -165,7 +161,8 @@ __meta__ = {
 [node name="RightSprite" type="Sprite" parent="BackgroundWrapper"]
 position = Vector2( 384, 90 )
 texture = ExtResource( 1 )
-region_enabled = true
+hframes = 2
+vframes = 16
 region_rect = Rect2( 256, 384, 256, 96 )
 __meta__ = {
 "_edit_lock_": true
@@ -174,13 +171,51 @@ __meta__ = {
 [node name="LeftSprite" type="Sprite" parent="BackgroundWrapper"]
 position = Vector2( -128, 90 )
 texture = ExtResource( 1 )
-region_enabled = true
+hframes = 2
+vframes = 16
 region_rect = Rect2( 256, 384, 256, 96 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="BackgroundTween" type="Tween" parent="."]
+
+[node name="ForegroundWrapper" type="Node2D" parent="."]
+
+[node name="CenterSprite" type="Sprite" parent="ForegroundWrapper"]
+position = Vector2( 128, 90 )
+texture = ExtResource( 1 )
+hframes = 2
+vframes = 16
+frame = 9
+region_rect = Rect2( 256, 384, 256, 96 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightSprite" type="Sprite" parent="ForegroundWrapper"]
+position = Vector2( 384, 90 )
+texture = ExtResource( 1 )
+hframes = 2
+vframes = 16
+frame = 9
+region_rect = Rect2( 256, 384, 256, 96 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftSprite" type="Sprite" parent="ForegroundWrapper"]
+position = Vector2( -128, 90 )
+texture = ExtResource( 1 )
+hframes = 2
+vframes = 16
+frame = 9
+region_rect = Rect2( 256, 384, 256, 96 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ForegroundTween" type="Tween" parent="."]
 
 [node name="CanvasLayerSpellWrapper" type="CanvasLayer" parent="."]
 

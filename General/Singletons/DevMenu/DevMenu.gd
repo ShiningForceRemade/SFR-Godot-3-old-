@@ -37,6 +37,7 @@ func _input(event):
 			Singleton_Dev_DevMenu.dev_console.show()
 			get_tree().paused = !get_tree().paused
 	
+	
 	if event.is_action_pressed("ui_tilda"):
 		print("Saving Screenshot")
 		

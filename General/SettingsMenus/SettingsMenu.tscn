@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://General/SettingsMenus/SettingsMenu.gd" type="Script" id=2]
+[ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionLongBorder.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/ShiningForceTextBackground.png-9ed310a4373b06707cc2cedc48b3ad37.stex"
 
 [node name="SettingsMenuRoot" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 2 )
 
 [node name="SettingsMenuStatNinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 16.0
@@ -77,6 +81,7 @@ __meta__ = {
 }
 
 [node name="BattleStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
+visible = false
 margin_top = 20.0
 margin_right = 80.0
 margin_bottom = 28.0
@@ -89,6 +94,7 @@ __meta__ = {
 }
 
 [node name="ApperanceStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
+visible = false
 margin_top = 40.0
 margin_right = 80.0
 margin_bottom = 48.0
@@ -101,6 +107,7 @@ __meta__ = {
 }
 
 [node name="SoundStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
+visible = false
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 68.0
@@ -128,16 +135,77 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MessageSpeedControl" type="Control" parent="GeneralStatNinePatchRect"]
-margin_left = 7.0
-margin_top = 9.0
-margin_right = 278.0
-margin_bottom = 32.0
+[node name="RedSelectionBorderRoot" parent="GeneralStatNinePatchRect" instance=ExtResource( 3 )]
+position = Vector2( 190, 15.5 )
+
+[node name="Node" type="Node2D" parent="GeneralStatNinePatchRect"]
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="MessageSpeedStaticLabel" type="Label" parent="GeneralStatNinePatchRect/MessageSpeedControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GeneralStatNinePatchRect/Node"]
+margin_left = 11.0
+margin_top = 11.0
+margin_right = 277.0
+margin_bottom = 181.0
+custom_constants/separation = 24
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ResolutionControl" type="Control" parent="GeneralStatNinePatchRect/Node/VBoxContainer"]
+margin_right = 266.0
+
+[node name="ResolutionStaticLabel" type="Label" parent="GeneralStatNinePatchRect/Node/VBoxContainer/ResolutionControl"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "RESOLUTION"
+valign = 1
+
+[node name="ResolutionLabel" type="Label" parent="GeneralStatNinePatchRect/Node/VBoxContainer/ResolutionControl"]
+margin_left = 177.0
+margin_top = 8.0
+margin_right = 262.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "1280x720"
+align = 1
+valign = 1
+
+[node name="FullscreenControl" type="Control" parent="GeneralStatNinePatchRect/Node/VBoxContainer"]
+margin_top = 24.0
+margin_right = 266.0
+margin_bottom = 24.0
+
+[node name="FullscreenStaticLabel" type="Label" parent="GeneralStatNinePatchRect/Node/VBoxContainer/FullscreenControl"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 1 )
+text = "FULLSCREEN (F11)"
+valign = 1
+
+[node name="FullscreenLabel" type="Label" parent="GeneralStatNinePatchRect/Node/VBoxContainer/FullscreenControl"]
+margin_left = 191.667
+margin_top = 7.66667
+margin_right = 255.667
+margin_bottom = 15.6667
+custom_fonts/font = ExtResource( 1 )
+text = "OFF"
+align = 1
+valign = 1
+
+[node name="MessageSpeedControl" type="Control" parent="GeneralStatNinePatchRect/Node/VBoxContainer"]
+visible = false
+margin_top = 48.0
+margin_right = 266.0
+margin_bottom = 48.0
+
+[node name="MessageSpeedStaticLabel" type="Label" parent="GeneralStatNinePatchRect/Node/VBoxContainer/MessageSpeedControl"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 56.0
@@ -145,22 +213,16 @@ margin_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "MESSAGE SPEED"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MessageSpeedInUseLabel" type="Label" parent="GeneralStatNinePatchRect/MessageSpeedControl"]
-margin_left = 165.333
+[node name="MessageSpeedInUseLabel" type="Label" parent="GeneralStatNinePatchRect/Node/VBoxContainer/MessageSpeedControl"]
+margin_left = 191.333
 margin_top = 8.0
-margin_right = 277.333
+margin_right = 255.333
 margin_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "FAST"
-align = 1
+align = 2
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BattleStatNinePatchRect" type="NinePatchRect" parent="."]
 visible = false
@@ -299,6 +361,7 @@ __meta__ = {
 }
 
 [node name="SettingInfoMenuStatNinePatchRect" type="NinePatchRect" parent="."]
+visible = false
 margin_left = 88.0
 margin_top = 152.0
 margin_right = 376.0

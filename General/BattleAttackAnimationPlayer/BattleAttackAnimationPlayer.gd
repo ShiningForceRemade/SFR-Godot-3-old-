@@ -23,6 +23,8 @@ export var enemey_actor_animation_res: Resource
 
 onready var backgroundTween = $BackgroundTween
 onready var backgroundWrapper = $BackgroundWrapper
+onready var foregroundTween = $ForegroundTween
+onready var foregroundWrapper = $ForegroundWrapper
 
 onready var characterSprite = $CharacterWrapper/CharacterSprite
 onready var weaponSprite = $CharacterWrapper/WeaponSprite
@@ -599,6 +601,7 @@ func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
 	get_node("CanvasLayerSpellWrapper").get_node("SpellWrapper").hide()
 	
 	get_node("BackgroundWrapper").position = Vector2(0, 0)
+	get_node("ForegroundWrapper").position = Vector2(0, 0)
 	
 	get_node("BackgroundBlackColorRect").color = Color(0, 0, 0, 255)
 	
@@ -904,12 +907,15 @@ func move_wrappers_into_position() -> void:
 	setup_enemey_wrapper_tween()
 	
 	backgroundTween.start()
+	foregroundTween.start()
 	characterWrapperTween.start()
 	enemeyWrapperTween.start()
 	
 
 func setup_background_wrapper_tween() -> void:
 	backgroundTween.interpolate_property(backgroundWrapper, "position",
+	Vector2(40, 0), Vector2(0, 0), 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	foregroundTween.interpolate_property(foregroundWrapper, "position",
 	Vector2(40, 0), Vector2(0, 0), 0.75, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 func setup_character_wrapper_tween() -> void:

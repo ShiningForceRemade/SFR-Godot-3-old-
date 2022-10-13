@@ -14,7 +14,7 @@ signal signal_selected_actor_underneath_cursor
 
 onready var battleAttackAnimationPlayer = $BattleAttackAnimationPlayerRoot
 
-onready var tilemap_terrian_node = $TileMapTileInformation
+onready var tilemap_terrian_node = $TilesInformationGroup/TileMapTerrianEffectInformation
 
 
 func _ready():
@@ -58,9 +58,9 @@ func s_selected_actor_underneath_cursor():
 func _input(event):
 	if event.is_action_pressed("ui_hide"):
 		if tilemap_show:
-			$TileMapTileInformation.hide()
+			tilemap_terrian_node.hide()
 		else:
-			$TileMapTileInformation.show()
+			tilemap_terrian_node.show()
 			
 		tilemap_show = !tilemap_show
 	

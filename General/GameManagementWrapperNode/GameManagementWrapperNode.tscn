@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn" type="PackedScene" id=1]
 [ext_resource path="res://General/Controls/DialogueBox/DialogueBox.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://General/ShopMenu/ItemSelectionMenu/ItemSelectionMenu.tscn" type="PackedScene" id=24]
 [ext_resource path="res://General/GameManagementWrapperNode/ShopMenuWrapperNode.gd" type="Script" id=25]
 [ext_resource path="res://General/OverworldMenus/MicroMemberListView/MicroMemberListView.tscn" type="PackedScene" id=26]
+[ext_resource path="res://General/SettingsMenus/SettingsMenu.tscn" type="PackedScene" id=27]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -858,6 +859,8 @@ position = Vector2( 321, 101 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="YesOrNoPromptTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/UserInteractionPrompts"]
+
+[node name="SettingsMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode" instance=ExtResource( 27 )]
 
 [node name="ShadersCanvasLayer" type="CanvasLayer" parent="."]
 layer = 3

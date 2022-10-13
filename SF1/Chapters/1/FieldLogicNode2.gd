@@ -12,7 +12,7 @@ signal signal_show_land_effect_and_active_actor_info
 signal signal_show_character_action_menu
 # signal signal_hide_character_action_menu
 
-onready var tilemap = get_parent().get_node("TileMapTileInformation")
+onready var tilemap = get_parent().get_node("TilesInformationGroup/TileMapTerrianEffectInformation")
 # onready var mc = get_parent().get_node("Characters/MaxCharacterRoot")
 # onready var mc = get_parent().get_node("Characters/PlayerCharacterRoot")
 onready var mc = get_parent().get_node("Characters/MaxRoot")
