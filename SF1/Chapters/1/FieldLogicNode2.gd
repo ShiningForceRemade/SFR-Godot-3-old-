@@ -1439,10 +1439,14 @@ func generate_actor_order_for_current_turn():
 	turn_order_array = ordered_turn_array
 
 func sort_actors_by_agility(a, b) -> bool:
+	
+	# TODO: remove the ag_a b add outisde of the sort to fix
+	# the unguarded linear sort error
 	var ag_a = rng.randi_range(-1, 1)
 	var ag_b = rng.randi_range(-1, 1)
-	return (a.speed + ag_a) > (b.speed + ag_b)
 	
+	return (a.speed + ag_a) > (b.speed + ag_b)
+
 
 # Turn Order Queue End
 

@@ -79,9 +79,13 @@ func changeScene(new_text_internal) -> void:
 			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B4.tscn")
 		
 	elif splstr[1] == "battle-test" || splstr[1] == "bt":
-		if splstr[2] == "terrain":
+		if splstr[2] == "terrain" || splstr[2] == "t":
 			print("Change Scene to Battle Test Terrain")
 			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+		
+		elif splstr[2] == "background" || splstr[2] == "b":
+			print("Change Scene to Battle Test Backgrounds and Stands")
+			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
 		
 	elif splstr[1] == "overworld" || splstr[1] == "ow":
 		if splstr[2] == "Guardiana-Normal":
