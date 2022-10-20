@@ -78,6 +78,11 @@ func changeScene(new_text_internal) -> void:
 			print("Change Scene to Battle 4")
 			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B4.tscn")
 		
+	elif splstr[1] == "battle-test" || splstr[1] == "bt":
+		if splstr[2] == "terrain":
+			print("Change Scene to Battle Test Terrain")
+			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+		
 	elif splstr[1] == "overworld" || splstr[1] == "ow":
 		if splstr[2] == "Guardiana-Normal":
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")

@@ -1,0 +1,121 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn" type="PackedScene" id=1]
+[ext_resource path="res://General/Controls/LandEffectPopup/LandEffectPopup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://General/Controls/DialogueBox/DialogueBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://General/BattleBase/BattleBase.gd" type="Script" id=6]
+[ext_resource path="res://General/BattleBase/CanvasLayerInfoControls.gd" type="Script" id=7]
+[ext_resource path="res://General/BattleActionsMenu/BattleActoinsMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://General/BattleActionsMenu/InventoryMenu/InventoryMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://General/BattleActionsMenu/MagicMenu/MagicMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://General/BattleActionsMenu/EquipMenu/EquipMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://General/BattleViewSelectedActorInfo/BattleViewSelectedActorInfo.tscn" type="PackedScene" id=12]
+[ext_resource path="res://General/BattleActionsMenu/UseMenu/UseMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://General/BattleActionsMenu/DropMenu/DropMenu.tscn" type="PackedScene" id=14]
+[ext_resource path="res://General/BattleActionsMenu/GiveMenu/GiveMenu.tscn" type="PackedScene" id=15]
+[ext_resource path="res://General/Controls/MicroActorInventoryView/MicroActorInventoryView.tscn" type="PackedScene" id=16]
+[ext_resource path="res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn" type="PackedScene" id=17]
+
+[node name="BattleBaseRoot" type="Node"]
+script = ExtResource( 6 )
+
+[node name="BattleNodeRoot" type="Node" parent="."]
+
+[node name="CanvasLayerInfoControls" type="CanvasLayer" parent="."]
+layer = 2
+scale = Vector2( 0.75, 0.75 )
+transform = Transform2D( 0.75, 0, 0, 0.75, 0, 0 )
+script = ExtResource( 7 )
+
+[node name="LandEffectPopupRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 2 )]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 6.0
+margin_bottom = 6.0
+
+[node name="LandEffectPopupTween" type="Tween" parent="CanvasLayerInfoControls"]
+
+[node name="ActiveActorMicroInfoRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 1 )]
+margin_left = 270.0
+margin_top = 6.0
+margin_right = 143.92
+margin_bottom = -42.06
+
+[node name="ActiveAcorMicroInfoTween" type="Tween" parent="CanvasLayerInfoControls"]
+
+[node name="TargetActorMicroInfoRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 1 )]
+margin_left = 434.0
+margin_top = 186.0
+margin_right = 433.92
+margin_bottom = 185.94
+
+[node name="TargetActorMicroInfoTween" type="Tween" parent="CanvasLayerInfoControls"]
+
+[node name="DialogueBoxRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 4 )]
+margin_left = 72.0
+margin_top = 262.0
+margin_right = 72.0
+margin_bottom = 262.0
+
+[node name="DialogueBoxTween" type="Tween" parent="CanvasLayerInfoControls"]
+
+[node name="PortraitPopupRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 5 )]
+margin_left = 73.3334
+margin_top = -76.0
+margin_right = 73.3333
+margin_bottom = -76.0
+
+[node name="PortraitPopupTween" type="Tween" parent="CanvasLayerInfoControls"]
+
+[node name="BattleViewSelectedActorInfoRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 12 )]
+position = Vector2( 95, 33 )
+
+[node name="BattleViewSelectedActorInfoTween" type="Tween" parent="CanvasLayerInfoControls"]
+
+[node name="BattleMenusWrapperRoot" type="Node" parent="CanvasLayerInfoControls"]
+
+[node name="BattleActionsMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 8 )]
+position = Vector2( 171, 182 )
+
+[node name="BattleActionsMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="BattleInventoryMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 9 )]
+position = Vector2( 171, 182 )
+
+[node name="BattleInventoryMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="BattleMagicMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 10 )]
+position = Vector2( 182, 182 )
+
+[node name="BattleMagicMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="BattleEquipMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 11 )]
+position = Vector2( 182, 182 )
+
+[node name="BattleEquipMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="BattleUseMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 13 )]
+position = Vector2( 182, 182 )
+
+[node name="BattleUseMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="BattleDropMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 14 )]
+position = Vector2( 182, 182 )
+
+[node name="BattleDropMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="BattleGiveMenuRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 15 )]
+position = Vector2( 182, 182 )
+
+[node name="BattleGiveMenuTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="MicroActorInventoryViewRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 16 )]
+position = Vector2( 535, 131 )
+
+[node name="MicroActorInventoryViewTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]
+
+[node name="NoValidOptionWarningBoxRoot" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot" instance=ExtResource( 17 )]
+position = Vector2( -90.0001, 100 )
+
+[node name="NoValidOptionWarningBoxTween" type="Tween" parent="CanvasLayerInfoControls/BattleMenusWrapperRoot"]

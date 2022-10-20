@@ -1431,10 +1431,10 @@ func generate_actor_order_for_current_turn():
 		
 	rng.randomize()
 	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
-	print("\nOrdered Array\n")
-	for n in ordered_turn_array:
-		print(n)
-	print("\n")
+	# print("\nOrdered Array\n")
+	# for n in ordered_turn_array:
+	#	print(n)
+	# print("\n")
 	
 	turn_order_array = ordered_turn_array
 
