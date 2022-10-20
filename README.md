@@ -2,7 +2,7 @@
 
 ## Prerequisites
 ### Godot
-[Godot version - 3.4.3](https://godotengine.org/download)
+[Godot version - 3.5.1](https://godotengine.org/download)
 
 [Tiled - 1.8.1](https://www.mapeditor.org) - Needed to edit the maps within the SF-Maps repo and to export them back into Godot.
 
