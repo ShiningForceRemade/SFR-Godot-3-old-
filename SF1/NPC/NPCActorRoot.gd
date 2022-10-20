@@ -116,8 +116,9 @@ func _on_Timer_timeout():
 	
 	rng.randomize()
 	
-	# _timer.set_wait_time(rng.randf_range(0.75, 4))
-	_timer.set_wait_time(0.15)
+	animationPlayer.playback_speed = 1
+	_timer.set_wait_time(rng.randf_range(1.5, 4))
+	# _timer.set_wait_time(0.15)
 	_timer.start()
 	
 	# random_move_direction(rng.randi_range(0, 3))
@@ -210,6 +211,7 @@ func check_if_not_valid_move_in_predfined_area_or_obstacle() -> bool:
 
 func s_tween_completed(_node_arg, _property_arg): 
 	# print(node_arg, " ", property_arg)
+	animationPlayer.playback_speed = 1
 	colsh.position = Vector2(0, 0)
 	emit_signal("signal_move_direction_completed")
 
@@ -294,4 +296,5 @@ func set_movement_speed_timer(speed_arg: float) -> void:
 
 func reset_movement_speed_timer() -> void:
 	# _timer.set_wait_time(0.15)
+	animationPlayer.playback_speed = 1
 	tween_animation_time = tween_animation_time_speed_const

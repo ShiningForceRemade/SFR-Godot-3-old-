@@ -22,8 +22,8 @@ var c1 = {
 	"battle_2_complete": false,
 	"entered_guardiana_post_battle_2": false,
 	"kane_cutscene_guardiana_castle_played": false,
-	"battle_3_complete": true, # false
-	"spoken_to_guardiana_man_in_alterone_bar": true, # false
+	"battle_3_complete": false,
+	"spoken_to_guardiana_man_in_alterone_bar": false,
 	"spoken_to_alterone_king_post_guardiana_invasion": false,
 	"spoken_to_kane_alterone": false,
 	"searched_alterone_jail_bars": false,
