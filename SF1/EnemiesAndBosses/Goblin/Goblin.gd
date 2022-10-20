@@ -2,6 +2,8 @@ extends Node2D
 
 signal signal_completed_turn
 signal signal_move_direction_completed
+# TODO: refactor later signal is used false positive
+# warning-ignore:unused_signal
 signal signal_battle_scene_animation_completed
 
 export var is_npc: bool = false

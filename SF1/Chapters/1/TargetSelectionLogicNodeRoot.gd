@@ -2,6 +2,8 @@ extends Node
 
 const tile_size: int = 24
 
+# TODO: refactor later signal is used false positive
+# warning-ignore:unused_signal
 signal signal_completed_target_selection_action
 
 var is_target_selection_active: bool = false

@@ -1,6 +1,10 @@
 extends Node2D
 
+# TODO: both of these signals are used (temp) suppressing the warnings
+# when godot4 launches refactor and clean this so the suppression is no longer needed
+# warning-ignore:unused_signal
 signal signal_completed_magic_level_selection_action
+# warning-ignore:unused_signal
 signal signal_completed_selected_target_action
 
 onready var redSelection = $RedSelectionBorderRoot

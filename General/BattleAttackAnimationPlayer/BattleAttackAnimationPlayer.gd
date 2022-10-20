@@ -596,7 +596,7 @@ func s_enemey_tween_completed(_arg_1, _arg_2) -> void:
 	# enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
 
 
-func internal_reset_all_actor_sprites_back_to_default_position(arg = null):
+func internal_reset_all_actor_sprites_back_to_default_position(_arg = null):
 	print("Reseting Scene")
 	self.modulate = Color("#ffffff")
 	get_node("CanvasLayerSpellWrapper").get_node("SpellWrapper").hide()
@@ -1040,7 +1040,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	yield(get_tree().create_timer(0.325), "timeout")
 	
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
-	var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
+	# var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
 	
 	char_animationPlayer.play(ani_name_character_idle)
 	
