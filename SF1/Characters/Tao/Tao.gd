@@ -1,6 +1,6 @@
 extends Node2D
 
-signal _ready
+# signal _ready
 
 signal signal_completed_turn
 signal signal_character_moved(new_pos)

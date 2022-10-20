@@ -116,7 +116,7 @@ func generate_and_launch_new_turn_order():
 	
 	# print(turn_order_array)
 	
-	var order_idx = 0
+	# var order_idx = 0
 	
 	for a in turn_order_array:
 		print("\n", a)
@@ -1379,7 +1379,7 @@ func new_check_tile(vpos: Vector2) -> bool:
 #
 # export(int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
 
-func movement_type_tile_check_flying(tile_name: String) -> bool:
+func movement_type_tile_check_flying(_tile_name: String) -> bool:
 	return true
 
 

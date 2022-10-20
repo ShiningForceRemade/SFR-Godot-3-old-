@@ -74,8 +74,8 @@ func _ready():
 	
 	enemey_animationPlayer.connect("animation_finished", self, "s_cleanup_animation_enemy")
 	
-	self.connect("signal_attack_frame_reached", self, "s_update_ui_and_animate_damage_phase")
-	self.connect("signal_enemey_attack_frame_reached", self, "s_update_ui_and_animate_damage_enemey_phase")
+	var _res_s_atr = self.connect("signal_attack_frame_reached", self, "s_update_ui_and_animate_damage_phase")
+	var _res_s_eafr = self.connect("signal_enemey_attack_frame_reached", self, "s_update_ui_and_animate_damage_enemey_phase")
 	# internal_signal_enemey_attack_frame_reached()
 	# black_fade_anim_in()
 	

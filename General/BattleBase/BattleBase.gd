@@ -89,27 +89,33 @@ func _deferred_change_scene(new_scene) -> void:
 func connect_battle_logic_to_self() -> void:
 	var battleNodeRoot = get_node("BattleNodeRoot").get_child(0) # 
 	
-	battleNodeRoot.disconnect("signal_land_effect_under_tile", self, "s_land_effect")
+	if(battleNodeRoot.is_connected("signal_land_effect_under_tile", self, "s_land_effect")):
+		battleNodeRoot.disconnect("signal_land_effect_under_tile", self, "s_land_effect")
 	if battleNodeRoot.connect("signal_land_effect_under_tile", self, "s_land_effect") != OK:
 		print("BattleBase - signal_land_effect_under_tile failed to connect")
 	
-	battleNodeRoot.disconnect("signal_active_character_or_enemey", self, "s_active_character_or_enemey")
+	if(battleNodeRoot.is_connected("signal_active_character_or_enemey", self, "s_active_character_or_enemey")):
+		battleNodeRoot.disconnect("signal_active_character_or_enemey", self, "s_active_character_or_enemey")
 	if battleNodeRoot.connect("signal_active_character_or_enemey", self, "s_active_character_or_enemey") != OK:
 		print("BattleBase - signal_active_character_or_enemey failed to connect")
 	
-	battleNodeRoot.disconnect("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info")
+	if(battleNodeRoot.is_connected("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info")):
+		battleNodeRoot.disconnect("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info")
 	if battleNodeRoot.connect("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info") != OK:
 		print("BattleBase - signal_hide_land_effect_and_active_actor_info failed to connect")
 	
-	battleNodeRoot.disconnect("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info")
+	if(battleNodeRoot.is_connected("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info")):
+		battleNodeRoot.disconnect("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info")
 	if battleNodeRoot.connect("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info") != OK:
 		print("BattleBase - signal_show_land_effect_and_active_actor_info failed to connect")
 	
-	battleNodeRoot.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
+	if(battleNodeRoot.is_connected("signal_show_character_action_menu", self, "s_show_character_action_menu")):
+		battleNodeRoot.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
 	if battleNodeRoot.connect("signal_show_character_action_menu", self, "s_show_character_action_menu") != OK:
 		print("BattleBase - signal_show_character_action_menu failed to connect")
 	
-	battleNodeRoot.disconnect("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor")
+	if(battleNodeRoot.is_connected("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor")):
+		battleNodeRoot.disconnect("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor")
 	if battleNodeRoot.connect("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor") != OK:
 		print("BattleBase - signal_selected_actor_underneath_cursor failed to connect")
 

@@ -493,7 +493,7 @@ func ShowMenu(string_arg: String) -> void:
 
 
 func GetTweenTimeForText(text_str: String) -> float:
-	var tweenTime = text_str.length() / 40
+	var tweenTime = float(float(text_str.length()) / 40.0)
 	if tweenTime == 0:
 		tweenTime = 0.5
 	

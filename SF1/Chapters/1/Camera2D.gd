@@ -3,7 +3,7 @@ extends Camera2D
 signal signal_camera_move_complete
 
 # onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/KinematicBody2D")
-onready var playerNode = get_parent().get_node("Enemies/RuneKnightRoot")
+onready var playerNode = get_parent().get_node("Enemies").get_child(0) # /RuneKnightRoot")
 # onready var playerNode = get_parent().get_node("Characters/MaxRoot")
 
 # get_node("res://SF1/Character/SmallIsland.tscn")

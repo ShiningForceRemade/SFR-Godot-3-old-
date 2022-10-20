@@ -354,5 +354,3 @@ func attempt_to_give_item_to_character_actor() -> bool:
 		print("Full Inventory can't give Item")
 		return false
 	
-	return false
-	
