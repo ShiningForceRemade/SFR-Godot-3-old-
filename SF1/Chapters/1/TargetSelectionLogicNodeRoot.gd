@@ -429,7 +429,7 @@ func forward_pass_naive(start_row, start_col) -> bool:
 	var c = start_col
 	
 	# print(use_range_array_rep, "\n")
-	var check_pos
+	var check_pos_internal
 	
 	while r < t_rows:
 		while c < t_cols:
@@ -441,12 +441,12 @@ func forward_pass_naive(start_row, start_col) -> bool:
 				
 				# print("row ", r, " col ",  c)
 				
-				check_pos = get_tile_adjustment(r, c_row, c, c_col)
+				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
 				# print(check_pos)
 				
 				for child in target_node_children:
 					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
+					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -465,7 +465,7 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 	var c = start_col
 	
 	# print(use_range_array_rep, "\n")
-	var check_pos
+	var check_pos_internal
 	
 	while r >= 0:
 		while c >= 0:
@@ -477,12 +477,12 @@ func backwards_pass_naive(start_row, start_col) -> bool:
 				
 				# print("row ", r, " col ",  c)
 				
-				check_pos = get_tile_adjustment(r, c_row, c, c_col)
+				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
 				# print(check_pos)
 				
 				for child in target_node_children:
 					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
+					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -682,7 +682,7 @@ func right_side_pass_vt(start_row, start_col) -> bool:
 	var c = start_col
 	
 	print(use_range_array_rep, "\n")
-	var check_pos
+	var check_pos_internal
 	
 	while r < t_rows:
 		while c < t_cols:
@@ -694,12 +694,12 @@ func right_side_pass_vt(start_row, start_col) -> bool:
 				
 				print("row ", r, " col ",  c)
 				
-				check_pos = get_tile_adjustment(r, c_row, c, c_col)
-				print(check_pos)
+				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
+				print(check_pos_internal)
 				
 				for child in target_node_children:
-					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
+					print(check_pos_internal, " ", Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y), " ", child.position)
+					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -722,7 +722,7 @@ func left_side_pass_vt(start_row, start_col) -> bool:
 	var c = start_col
 	
 	print(use_range_array_rep, "\n")
-	var check_pos
+	var check_pos_internal
 	
 	while r < t_rows:
 		while c >= 0:
@@ -734,12 +734,12 @@ func left_side_pass_vt(start_row, start_col) -> bool:
 				
 				print("row ", r, " col ",  c)
 				
-				check_pos = get_tile_adjustment(r, c_row, c, c_col)
+				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
 				print(check_pos)
 				
 				for child in target_node_children:
-					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
+					print(check_pos_internal, " ", Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y), " ", child.position)
+					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -759,7 +759,7 @@ func left_side_pass_upwards(start_row, start_col) -> bool:
 	var c = start_col
 	
 	print(use_range_array_rep, "\n")
-	var check_pos
+	var check_pos_internal
 	
 	while r >= 0:
 		while c >= 0:
@@ -772,12 +772,12 @@ func left_side_pass_upwards(start_row, start_col) -> bool:
 				
 				print("row ", r, " col ",  c)
 				
-				check_pos = get_tile_adjustment(r, c_row, c, c_col)
-				print(check_pos)
+				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
+				print(check_pos_internal)
 				
 				for child in target_node_children:
-					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
+					print(check_pos_internal, " ", Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y), " ", child.position)
+					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -798,7 +798,7 @@ func right_side_pass_upwards(start_row, start_col) -> bool:
 	var c = start_col
 	
 	print(use_range_array_rep, "\n")
-	var check_pos
+	var check_pos_internal
 	
 	while r >= 0:
 		while c >= c_col:
@@ -811,12 +811,12 @@ func right_side_pass_upwards(start_row, start_col) -> bool:
 				
 				print("row ", r, " col ",  c)
 				
-				check_pos = get_tile_adjustment(r, c_row, c, c_col)
+				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
 				print(check_pos)
 				
 				for child in target_node_children:
-					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
+					print(check_pos_internal, " ", Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y), " ", child.position)
+					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				
@@ -836,7 +836,7 @@ func right_side_pass_vt_old() -> bool:
 	var c = 0
 	
 	print(use_range_array_rep, "\n")
-	var check_pos
+	var check_pos_internal
 	
 	while r < t_rows:
 		while c < t_cols:
@@ -848,12 +848,12 @@ func right_side_pass_vt_old() -> bool:
 				
 				print("row ", r, " col ",  c)
 				
-				check_pos = get_tile_adjustment(r, c_row, c, c_col)
-				print(check_pos)
+				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
+				print(check_pos_internal)
 				
 				for child in target_node_children:
-					print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-					if Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y) == child.global_position:
+					print(check_pos_internal, " ", Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y), " ", child.position)
+					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
 						set_and_save_new_target_selection(r, c, child)
 						return true
 				

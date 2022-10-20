@@ -69,7 +69,8 @@ func _ready():
 	# setup_actor_attacking()
 	
 	char_animationPlayer.connect("animation_finished", self, "s_cleanup_animation")
-	char_animationPlayer.remove_animation("AttackNormal")
+	if char_animationPlayer.has_animation("AttackNormal"):
+		char_animationPlayer.remove_animation("AttackNormal")
 	char_animationPlayer.remove_animation("Idle")
 	
 	enemey_animationPlayer.connect("animation_finished", self, "s_cleanup_animation_enemy")

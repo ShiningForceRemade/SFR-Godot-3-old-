@@ -1,7 +1,7 @@
 extends Node2D
 
-signal signal_completed_magic_level_selection_action
-signal signal_completed_selected_target_action
+# signal signal_completed_magic_level_selection_action
+# signal signal_completed_selected_target_action
 
 onready var redSelection = $RedSelectionBorderRoot
 

@@ -120,45 +120,45 @@ func _input(event):
 			noValidOptionNode.re_show_action_menu = false
 			return
 			
-			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
-			
-			print(actor.inventory_items_id[currently_selected_option].item_name)
-			print(actor.is_item_equipped[currently_selected_option])
-			
-			# actor.inventory_items_id[currently_selected_option].item_use_range_path
-			# actor.inventory_items_id[currently_selected_option].item_use_target_path
-			
-			# var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
-			# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(actor.inventory_items_id[currently_selected_option])
-			
-			# eturn
-			
-			is_battle_use_menu_active = false
-			is_target_selection_active = true
-			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
-			Singleton_Game_GlobalBattleVariables.field_logic_node.show_use_target_tiles()
-			
-			get_parent().get_parent().get_parent().s_hide_battle_use_menu()
-			setup_use_range_and_target_range_selection(actor.inventory_items_id[currently_selected_option])
-			yield(self, "signal_completed_item_use_action")
-			
-			# todo if cancelled
-			is_battle_use_menu_active = true
-			is_target_selection_active = false
-			get_parent().get_parent().get_parent().s_show_battle_use_menu()
-			# if completed action
-			# emit turn completed to field logic node
-			# Singleton_Game_GlobalBattleVariables.field_logic_node
-			
-			print("Complete")
-			#if currently_selected_option == e_menu_options.STAY_OPTION:
-			#	print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
-			#	Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
-				
-			#	# emit_signal("signal_completed_turn")
-			#	is_battle_inventory_menu_active = false
-			#	get_parent().get_parent().s_hide_action_menu()
-			#	return
+#			var actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
+#
+#			print(actor.inventory_items_id[currently_selected_option].item_name)
+#			print(actor.is_item_equipped[currently_selected_option])
+#
+#			# actor.inventory_items_id[currently_selected_option].item_use_range_path
+#			# actor.inventory_items_id[currently_selected_option].item_use_target_path
+#
+#			# var equip_arg = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+#			# Singleton_Game_GlobalBattleVariables.target_selection_node.setup_use_range_and_target_range_selection(actor.inventory_items_id[currently_selected_option])
+#
+#			# eturn
+#
+#			is_battle_use_menu_active = false
+#			is_target_selection_active = true
+#			Singleton_Game_GlobalBattleVariables.field_logic_node.hide_movement_tiles()
+#			Singleton_Game_GlobalBattleVariables.field_logic_node.show_use_target_tiles()
+#
+#			get_parent().get_parent().get_parent().s_hide_battle_use_menu()
+#			setup_use_range_and_target_range_selection(actor.inventory_items_id[currently_selected_option])
+#			yield(self, "signal_completed_item_use_action")
+#
+#			# todo if cancelled
+#			is_battle_use_menu_active = true
+#			is_target_selection_active = false
+#			get_parent().get_parent().get_parent().s_show_battle_use_menu()
+#			# if completed action
+#			# emit turn completed to field logic node
+#			# Singleton_Game_GlobalBattleVariables.field_logic_node
+#
+#			print("Complete")
+#			#if currently_selected_option == e_menu_options.STAY_OPTION:
+#			#	print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)
+#			#	Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
+#
+#			#	# emit_signal("signal_completed_turn")
+#			#	is_battle_inventory_menu_active = false
+#			#	get_parent().get_parent().s_hide_action_menu()
+#			#	return
 				
 			
 		if event.is_action_pressed("ui_down"):

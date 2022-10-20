@@ -906,7 +906,7 @@ func draw_movement_tiles_from_movement_array() -> void:
 	
 	var actor_cur_pos = mc.global_position
 	var movement = mc.get_character_movement()
-	var mid_point = movement - 1
+	# var mid_point = movement - 1
 	
 	var center_segment = Color("7de1e1e1")
 	
