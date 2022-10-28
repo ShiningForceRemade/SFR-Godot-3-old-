@@ -11,6 +11,7 @@ signal signal_show_character_action_menu
 
 onready var characterRoot = get_child(0).get_node("CharacterRoot")
 onready var kinematicBody = get_child(0).get_node("CharacterRoot/KinematicBody2D")
+onready var staticCharacterCollision = get_child(0).get_node("CharacterRoot/KinematicBody2D").get_node("StaticCollisionShape2D")
 onready var animationPlayer = get_child(0).get_node("CharacterRoot/AnimationPlayer")
 onready var animationTree = get_child(0).get_node("CharacterRoot/AnimationTree")
 onready var animationTreeState = animationTree.get("parameters/playback")

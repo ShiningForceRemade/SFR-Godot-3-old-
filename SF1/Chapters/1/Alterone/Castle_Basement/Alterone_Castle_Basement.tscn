@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/SF1/NPC/Priest.png" type="Texture" id=11]
 [ext_resource path="res://Assets/SF1/EnemiesAndBosses/Kane/Map_Sprites.png" type="Texture" id=12]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Castle_Basement/NPC_Default.gd" type="Script" id=13]
+[ext_resource path="res://SF1/OverworldItems/Doors/Door.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Map_Sprites.png" type="Texture" id=15]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Castle_Basement/AlteroneCastleBasementTilemap..tscn" type="PackedScene" id=16]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
@@ -1185,6 +1186,11 @@ anims/Opening = ExtResource( 24 )
 script = ExtResource( 23 )
 
 [node name="AlteroneCastlebasementTilemap" parent="." instance=ExtResource( 16 )]
+
+[node name="DoorsWrapperNode2D" type="Node2D" parent="."]
+
+[node name="DoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 14 )]
+position = Vector2( 636, 228 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 732, 396 )

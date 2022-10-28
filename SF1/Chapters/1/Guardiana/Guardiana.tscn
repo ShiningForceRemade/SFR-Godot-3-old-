@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=2]
+[gd_scene load_steps=137 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://SF1/Items/Weapons/ShortSword.tres" type="Resource" id=30]
 [ext_resource path="res://SF1/Items/Weapons/HandAxe.tres" type="Resource" id=31]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/WeaponSeller.gd" type="Script" id=32]
+[ext_resource path="res://SF1/OverworldItems/Doors/Door.tscn" type="PackedScene" id=33]
 
 [sub_resource type="Animation" id=5]
 length = 0.8
@@ -1253,6 +1254,17 @@ script = ExtResource( 23 )
 
 [node name="TownTilemap" parent="." instance=ExtResource( 3 )]
 position = Vector2( 140, 172 )
+
+[node name="DoorsWrapperNode2D" type="Node2D" parent="."]
+
+[node name="ChruchRoomDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 440, 136 )
+
+[node name="BarDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 920, 304 )
+
+[node name="InnDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 704, 760 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 392, 400 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=2]
+[gd_scene load_steps=201 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SF1/Items/Weapons/WoodenStaff.tres" type="Resource" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://SF1/Chapters/1/Alterone/ItemSeller.gd" type="Script" id=30]
 [ext_resource path="res://SF1/Items/Usables/HealingSeed.tres" type="Resource" id=31]
 [ext_resource path="res://SF1/Items/Usables/AngelWing.tres" type="Resource" id=32]
+[ext_resource path="res://SF1/OverworldItems/Doors/Door.tscn" type="PackedScene" id=33]
 
 [sub_resource type="Animation" id=176]
 resource_name = "DownMovement"
@@ -3020,6 +3021,35 @@ anims/Opening = ExtResource( 24 )
 script = ExtResource( 23 )
 
 [node name="AlteroneTownTilemap" parent="." instance=ExtResource( 3 )]
+
+[node name="DoorsWrapperNode2D" type="Node2D" parent="."]
+
+[node name="HouseNearEntranceDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 420, 948 )
+
+[node name="BarLeftDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 732, 828 )
+
+[node name="BarRightDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 900, 876 )
+
+[node name="ShopDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 300, 612 )
+
+[node name="ChruchLeftDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 780, 468 )
+
+[node name="ChruchRightDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 900, 468 )
+
+[node name="HouseTopRightRightDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 852, 228 )
+
+[node name="HouseTopLeftEntranceDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 204, 276 )
+
+[node name="HouseTopLeftInsideDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
+position = Vector2( 204, 204 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 780, 612 )
