@@ -22,6 +22,12 @@ func _ready():
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character = null
 	
+	Singleton_Game_GlobalBattleVariables.tilemaps_wrapper = $TilesInformationGroup
+	Singleton_Game_GlobalBattleVariables.tilemap_foreground = $TilesInformationGroup/TileMapForegroundInformation
+	Singleton_Game_GlobalBattleVariables.tilemap_background = $TilesInformationGroup/TileMapBackgroundInformation
+	Singleton_Game_GlobalBattleVariables.tilemap_stand = $TilesInformationGroup/TileMapStandInformation
+	Singleton_Game_GlobalBattleVariables.tilemap_terrain = $TilesInformationGroup/TileMapTerrianEffectInformation
+	
 	# Singleton_Game_GlobalBattleVariables.camera_node.position = Vector2(240, 200)
 	
 	Singleton_Game_AudioManager.play_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle 1 (Standard).mp3")

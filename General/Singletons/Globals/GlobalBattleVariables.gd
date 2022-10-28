@@ -16,6 +16,12 @@ var active_actor_move_point_representation
 var character_nodes
 var enemey_nodes
 
+var tilemaps_wrapper
+var tilemap_foreground
+var tilemap_background
+var tilemap_stand
+var tilemap_terrain
+
 var currently_selected_actor
 
 var field_logic_node

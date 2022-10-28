@@ -122,7 +122,10 @@ func play_turn():
 			bls.play_turn(self)
 			yield(bls, "signal_logic_completed")
 		else:
-			pseudo_ai_turn_determine()
+			# pseudo_ai_turn_determine()
+			yield(get_tree().create_timer(0.1), "timeout")
+			animationPlayer.play("DownMovement")
+			emit_signal("signal_completed_turn")
 	
 		animationPlayer.play("DownMovement")
 		emit_signal("signal_completed_turn")

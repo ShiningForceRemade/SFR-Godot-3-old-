@@ -25,6 +25,7 @@ onready var backgroundTween = $BackgroundTween
 onready var backgroundWrapper = $BackgroundWrapper
 onready var foregroundTween = $ForegroundTween
 onready var foregroundWrapper = $ForegroundWrapper
+onready var groundSprite = $CharacterWrapper/GroundSprite
 
 onready var characterSprite = $CharacterWrapper/CharacterSprite
 onready var weaponSprite = $CharacterWrapper/WeaponSprite
@@ -108,6 +109,60 @@ func setup_character_and_enemey_sprites_idle() -> void:
 	var weapon_res = char_actor_rn.inventory_items_id[0] 
 	# load("res://SF1/Items/Weapons/WoodenArrow.tres") # Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
 	internal_init_weapon_for_actor(weaponSprite, weapon_res)
+
+var tile_name_to_frame_mapping_dictionary = {
+	"SF1_SkyWithMountains": 0,
+	"SF1_Town": 1,
+	"SF1_Gate": 9,
+	"SF1_Sky": 17,
+	"SF1_Mountains": 15,
+	"SF1_SeaEmpty": 14,
+	"SF1_AnicentsFlat": 2,
+	"SF1_AncientsStairs": 3,
+	"SF1_Cave": 4,
+	"SF1_Quarry": 5,
+	"SF1_LandBrdige": 6,
+	"SF1_Ship": 7,
+	"SF1_SeaWithIsland": 8,
+	"SF1_GrasslandsFlat": 10,
+	"SF1_GrasslandsWithOthers": 11,
+	"SF1_Forest": 12,
+	"SF1_ForestDense": 13,
+	"SF1_Desert": 16,
+	"SF1_TownMountainSide": 18,
+	"SF1_AncientsBlue": 19,
+	"SF1_AncientsAbandonded": 20,
+	"SF1_FortGround": 21,
+	"SF1_Fort": 22,
+	"SF1_Shipyard": 23,
+	"SF1_Chapel1": 24,
+	"SF1_Chapel2": 25,
+	"SF1_Fortress": 26,
+	"SF1_Tower": 27,
+	"SF1_Castle": 28,
+	"SF1_Circus": 29,
+	"SF1_AnicentsEntrance": 30,
+}
+
+var tile_name_stand_to_frame_mapping_dictionary = {
+	"SF1_Bridge": 0,
+	"SF1_Building": 1,
+	"SF1_Gravel": 2,
+	"SF1_Dirt": 3,
+	"SF1_Grass": 4,
+	"SF1_Mountain": 5,
+	"SF1_Desert": 6,
+	"SF1_DirtAndRocks": 7,
+	"SF1_Blue": 8,
+}
+
+func setup_foreground_background_and_stand(foreground_name: String, background_name: String, stand_name: String) -> void:
+	for c in backgroundWrapper.get_children():
+		c.frame = tile_name_to_frame_mapping_dictionary[background_name]
+	for c in foregroundWrapper.get_children():
+		c.frame = tile_name_to_frame_mapping_dictionary[foreground_name]
+	
+	groundSprite.frame = tile_name_stand_to_frame_mapping_dictionary[stand_name]
 
 
 func internal_init_weapon_for_actor(weaponSprite_arg, weapon_res) -> void:

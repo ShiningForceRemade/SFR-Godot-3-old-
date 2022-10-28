@@ -8,7 +8,10 @@ func _ready():
 	
 	Singleton_Game_GlobalCommonVariables.scene_manager_node = self
 	
-	change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+	# change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+	
+	# change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+	change_scene("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
 	
 	# ref 1
 	# change_scene("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")

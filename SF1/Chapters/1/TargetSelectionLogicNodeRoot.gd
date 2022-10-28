@@ -106,6 +106,7 @@ func _input(event):
 				Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
 			
 			Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
+			get_background_foreground_and_stand_for_active_character_and_target(Singleton_Game_GlobalBattleVariables.currently_selected_actor.position)
 			
 			Singleton_Game_AudioManager.stop_music_n()
 			
@@ -149,7 +150,50 @@ func _input(event):
 			
 			change_direction_based_on_position()
 			
-		
+
+
+
+func get_background_foreground_and_stand_for_active_character_and_target(new_pos: Vector2):
+	var f = Singleton_Game_GlobalBattleVariables.tilemap_foreground
+	var tile_id = f.get_cellv(f.world_to_map(new_pos))
+	if tile_id == -1:
+		print("Bug: no foreground tile underneath")
+		return
+	
+	var foreground_tile_name = f.tile_set.tile_get_name(tile_id)
+	print(foreground_tile_name)
+	
+	var b = Singleton_Game_GlobalBattleVariables.tilemap_background
+	tile_id = b.get_cellv(b.world_to_map(new_pos))
+	if tile_id == -1:
+		print("Bug: no background tile underneath")
+		return
+	
+	var background_tile_name = b.tile_set.tile_get_name(tile_id)
+	print(background_tile_name)
+	
+	var s = Singleton_Game_GlobalBattleVariables.tilemap_stand
+	tile_id = s.get_cellv(s.world_to_map(new_pos))
+	if tile_id == -1:
+		print("Bug: no stand tile underneath")
+		return
+	
+	var stand_tile_name = s.tile_set.tile_get_name(tile_id)
+	print(stand_tile_name)
+	
+	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_foreground_background_and_stand(foreground_tile_name, background_tile_name, stand_tile_name)
+	
+	print("")
+#	if "30" in tile_name:
+#		emit_signal("signal_land_effect_under_tile", 30)
+#	elif "15" in tile_name:
+#		emit_signal("signal_land_effect_under_tile", 15)
+#	elif "0" in tile_name:
+#		emit_signal("signal_land_effect_under_tile", 0)
+#	else:
+#		# print("Bug: No Info Report")
+#		emit_signal("signal_land_effect_under_tile", "Bug: No Info Report")
+
 
 func setup_use_range_and_target_range_selection(item_arg, actor_target_type = "enemey") -> void:
 	spell_name_selected = ""
