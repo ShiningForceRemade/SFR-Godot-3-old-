@@ -43,7 +43,8 @@ enum E_RayCastRotationDirections {
 var GRID_BASED_MOVEMENT: bool = true
 const TILE_SIZE: int = 24
 
-var movement_tween_speed = 0.1625
+# var movement_tween_speed = 0.1625
+var movement_tween_speed = 0.20625
 
 func reset_movement_speed() -> void:
 	movement_tween_speed = 0.1625
@@ -184,32 +185,34 @@ func _process(delta):
 			if animationPlayer.current_animation != "RightMovement":
 				animationPlayer.play("RightMovement")
 			
-			animationPlayer.playback_speed = 2
-			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
 				# print("colliding")
 				return
+			
+			animationPlayer.playback_speed = 2
+			
 			colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
 			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
 			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
+			tween.start()
 		elif Input.is_action_pressed("ui_left"):
 			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
 			
 			if animationPlayer.current_animation != "LeftMovement":
 				animationPlayer.play("LeftMovement")
-				
-			animationPlayer.playback_speed = 2
 			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
 				# print("colliding")
 				return
 			
+			animationPlayer.playback_speed = 2
+			
 			colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
 			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-			
+			tween.start()
 		elif Input.is_action_pressed("ui_up"):
 			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
@@ -218,16 +221,18 @@ func _process(delta):
 				animationPlayer.play("UpMovement")
 			
 			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
-			animationPlayer.playback_speed = 2
 			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
 				# print("colliding")
 				return
 			
+			animationPlayer.playback_speed = 2
+			
 			colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
 			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+			tween.start()
 		elif Input.is_action_pressed("ui_down"):
 			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
 			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
@@ -235,20 +240,20 @@ func _process(delta):
 			if animationPlayer.current_animation != "DownMovement":
 				animationPlayer.play("DownMovement")
 			
-			animationPlayer.playback_speed = 2
-			
 			frontFacingRaycast.force_raycast_update()
 			if frontFacingRaycast.is_colliding():
 				# print("colliding")
 				return
-				
+			
+			animationPlayer.playback_speed = 2
+			
 			colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
 			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-		
+			tween.start()
 		#print("CharacterMoved")
 		
 		#if is_instance_valid(tween):
-		tween.start()
+		
 	
 	# TODO: ROTDD styled movement
 	# TODO: godot 3.4.x has better movement handling code 
