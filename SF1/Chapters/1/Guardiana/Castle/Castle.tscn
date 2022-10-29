@@ -2655,7 +2655,7 @@ anims/RightMovement = SubResource( 206 )
 anims/UpMovement = SubResource( 207 )
 
 [node name="KingNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 636, 440 )
+position = Vector2( 636, 444 )
 script = ExtResource( 2 )
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/KingNPCRoot" index="0"]
@@ -2671,12 +2671,23 @@ anims/LeftMovement = SubResource( 209 )
 anims/RightMovement = SubResource( 210 )
 anims/UpMovement = SubResource( 211 )
 
+[node name="StaticBody2D" parent="NpcWrapperNode/KingNPCRoot/NPCActorRoot" index="3"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" parent="NpcWrapperNode/KingNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="NovaNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 588, 440 )
 script = ExtResource( 8 )
 DefaultScript = "res://SF1/Chapters/1/Guardiana/Castle/Scripts/TalkToTheKing.json"
 
 [node name="NPCActorRoot" parent="NpcWrapperNode/NovaNPCRoot" index="0"]
+position = Vector2( 0, 4 )
 stationary = true
 
 [node name="Sprite" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
@@ -2689,8 +2700,18 @@ anims/LeftMovement = SubResource( 213 )
 anims/RightMovement = SubResource( 214 )
 anims/UpMovement = SubResource( 215 )
 
+[node name="StaticBody2D" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot" index="3"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="MinisterNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 684, 440 )
+position = Vector2( 684, 444 )
 script = ExtResource( 8 )
 DefaultScript = "res://SF1/Chapters/1/Guardiana/Castle/Scripts/TalkToTheKing.json"
 
@@ -2707,8 +2728,18 @@ anims/LeftMovement = SubResource( 217 )
 anims/RightMovement = SubResource( 218 )
 anims/UpMovement = SubResource( 219 )
 
+[node name="StaticBody2D" parent="NpcWrapperNode/MinisterNPCRoot/NPCActorRoot" index="3"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" parent="NpcWrapperNode/MinisterNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="VariosNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
-position = Vector2( 636, 464 )
+position = Vector2( 636, 468 )
 script = ExtResource( 8 )
 DefaultScript = "res://SF1/Chapters/1/Guardiana/Castle/Scripts/TalkToTheKing.json"
 
@@ -2725,6 +2756,16 @@ anims/DownMovement = SubResource( 220 )
 anims/LeftMovement = SubResource( 221 )
 anims/RightMovement = SubResource( 222 )
 anims/UpMovement = SubResource( 223 )
+
+[node name="StaticBody2D" parent="NpcWrapperNode/VariosNPCRoot/NPCActorRoot" index="3"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" parent="NpcWrapperNode/VariosNPCRoot/NPCActorRoot/StaticBody2D" index="0"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="KnightInRoomNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 756, 372 )

@@ -1,7 +1,6 @@
-[gd_scene load_steps=137 format=2]
+[gd_scene load_steps=136 format=2]
 
 [ext_resource path="res://SF1/Characters/_player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://SF1/OverworldItems/Chests/Chest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Town.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Guardiana.gd" type="Script" id=5]
@@ -1205,7 +1204,7 @@ extents = Vector2( 24, 24 )
 extents = Vector2( 24, 12 )
 
 [sub_resource type="RectangleShape2D" id=107]
-extents = Vector2( 84, 32 )
+extents = Vector2( 84, 36 )
 
 [sub_resource type="RectangleShape2D" id=108]
 extents = Vector2( 16, 8 )
@@ -1240,10 +1239,8 @@ extents = Vector2( 24, 8 )
 extents = Vector2( 24, 8 )
 
 [node name="GuardianaRoot" type="Node2D"]
+position = Vector2( 4, -4 )
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CutsceneNode" type="Node" parent="."]
 script = ExtResource( 25 )
@@ -1256,6 +1253,9 @@ script = ExtResource( 23 )
 position = Vector2( 140, 172 )
 
 [node name="DoorsWrapperNode2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ChruchRoomDoorRootNode" parent="DoorsWrapperNode2D" instance=ExtResource( 33 )]
 position = Vector2( 440, 136 )
@@ -1270,6 +1270,9 @@ position = Vector2( 704, 760 )
 position = Vector2( 392, 400 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="OldManChruchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 7 )]
 position = Vector2( 392, 88 )
@@ -1521,9 +1524,6 @@ position = Vector2( 0, 24 )
 
 [node name="CollisionPolygon2D" parent="NpcWrapperNode/BartenderNPCRoot/Area2D" index="0"]
 polygon = PoolVector2Array( -40, 8, -56, 8, -56, -48, 128, -48, 128, 8, 112, 8, 112, -16, -40, -16 )
-
-[node name="TestChest" parent="." instance=ExtResource( 2 )]
-position = Vector2( 512, 376 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
@@ -1979,7 +1979,7 @@ position = Vector2( 152, 96 )
 shape = SubResource( 92 )
 
 [node name="CollisionShape2D269" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 212, 56 )
+position = Vector2( 212, 64 )
 shape = SubResource( 93 )
 
 [node name="CollisionShape2D272" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
@@ -1987,11 +1987,11 @@ position = Vector2( 320, 28 )
 shape = SubResource( 94 )
 
 [node name="CollisionShape2D280" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 440, 56 )
+position = Vector2( 440, 64 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D379" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 415, 56 )
+position = Vector2( 416, 64 )
 shape = SubResource( 53 )
 
 [node name="CollisionShape2D281" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
@@ -2079,7 +2079,7 @@ position = Vector2( 572, 720 )
 shape = SubResource( 106 )
 
 [node name="CollisionShape2D341" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 444 )
+position = Vector2( 584, 448 )
 shape = SubResource( 107 )
 
 [node name="WalkwayDoors" type="TileMap" parent="."]
@@ -2102,6 +2102,9 @@ format = 1
 tile_data = PoolIntArray( -917498, 0, 1441820, -917497, 0, 1441821, -917496, 0, 1441820, -917495, 0, 1441821, -917494, 0, 1441820, -917493, 0, 1441821, -917480, 0, 1441808, -917479, 0, 1441809, -917478, 0, 1441808, -917477, 0, 1441809, -917476, 0, 1441808, -917475, 0, 1441809, -917432, 0, 1441808, -917431, 0, 1441809, -917430, 0, 1441808, -917429, 0, 1441809, -917428, 0, 1441808, -917427, 0, 1441809, -851962, 0, 1507356, -851961, 0, 1507357, -851960, 0, 1507356, -851959, 0, 1507357, -851958, 0, 1507356, -851957, 0, 1507357, -851944, 0, 1507344, -851943, 0, 1507345, -851942, 0, 1507344, -851941, 0, 1507345, -851940, 0, 1507344, -851939, 0, 1507345, -851896, 0, 1507344, -851895, 0, 1507345, -851894, 0, 1507344, -851893, 0, 1507345, -851892, 0, 1507344, -851891, 0, 1507345, 1835055, 0, 393223, 1835056, 0, 393222, 1835057, 0, 393223, 1835058, 0, 393222, 1835059, 0, 393223, 1835060, 0, 393222, 1835061, 0, 393223, 1835062, 0, 393222, 1835200, 0, 1441808, 1835201, 0, 1441809, 1835202, 0, 1441808, 1835203, 0, 1441809, 1835204, 0, 1441808, 1835205, 0, 1441809, 1900591, 0, 458759, 1900592, 0, 458758, 1900593, 0, 458759, 1900594, 0, 458758, 1900595, 0, 458759, 1900596, 0, 458758, 1900597, 0, 458759, 1900598, 0, 458758, 1900736, 0, 1507344, 1900737, 0, 1507345, 1900738, 0, 1507344, 1900739, 0, 1507345, 1900740, 0, 1507344, 1900741, 0, 1507345, 1966127, 0, 393225, 1966128, 0, 393224, 1966129, 0, 393225, 1966130, 0, 393224, 1966131, 0, 393225, 1966132, 0, 393224, 1966133, 0, 393225, 1966134, 0, 393224, 2031663, 0, 458761, 2031664, 0, 458760, 2031665, 0, 458761, 2031666, 0, 458760, 2031667, 0, 458761, 2031668, 0, 458760, 2031669, 0, 458761, 2031670, 0, 458760, 2097199, 0, 393223, 2097200, 0, 393222, 2097201, 0, 393223, 2097202, 0, 393222, 2097203, 0, 393223, 2097204, 0, 393222, 2097205, 0, 393223, 2097206, 0, 393222, 2162735, 0, 393223, 2162736, 0, 393222, 2162737, 0, 393223, 2162738, 0, 393222, 2162739, 0, 393223, 2162740, 0, 393222, 2162741, 0, 393223, 2162742, 0, 393222, 2228271, 0, 393223, 2228272, 0, 393222, 2228273, 0, 393223, 2228274, 0, 393222, 2228275, 0, 393223, 2228276, 0, 393222, 2228277, 0, 393223, 2228278, 0, 393222, 2293807, 0, 393223, 2293808, 0, 393222, 2293809, 0, 393223, 2293810, 0, 393222, 2293811, 0, 393223, 2293812, 0, 393222, 2293813, 0, 393223, 2293814, 0, 393222, 2359343, 0, 393223, 2359344, 0, 393222, 2359345, 0, 393223, 2359346, 0, 393222, 2359347, 0, 393223, 2359348, 0, 393222, 2359349, 0, 393223, 2359350, 0, 393222, 2424879, 0, 393223, 2424880, 0, 393222, 2424881, 0, 393223, 2424882, 0, 393222, 2424883, 0, 393223, 2424884, 0, 393222, 2424885, 0, 393223, 2424886, 0, 393222, 2490415, 0, 393229, 2490416, 0, 393230, 2490417, 0, 393231, 2490418, 0, 393232, 2490419, 0, 393233, 2490420, 536870912, 393231, 2490421, 536870912, 393230, 2490422, 536870912, 393229, 2555951, 0, 458765, 2555952, 0, 458766, 2555953, 0, 458767, 2555954, 0, 458768, 2555955, 0, 458769, 2555956, 536870912, 458767, 2555957, 536870912, 458766, 2555958, 536870912, 458765, 9306250, 0, 1441808, 9306251, 0, 1441809, 9306252, 0, 1441808, 9306253, 0, 1441809, 9306254, 0, 1441808, 9306255, 0, 1441809, 9371786, 0, 1507344, 9371787, 0, 1507345, 9371788, 0, 1507344, 9371789, 0, 1507345, 9371790, 0, 1507344, 9371791, 0, 1507345 )
 
 [node name="RoofsWrapperNode" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="GortsHouse" type="TileMap" parent="RoofsWrapperNode"]
 visible = false
@@ -2343,6 +2346,9 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/Area2D"]
 

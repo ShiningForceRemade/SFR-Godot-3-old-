@@ -43,14 +43,24 @@ enum E_RayCastRotationDirections {
 var GRID_BASED_MOVEMENT: bool = true
 const TILE_SIZE: int = 24
 
+const speed = 24 * 6
+var last_position = Vector2()
+var target_position = Vector2()
+var movedir = Vector2()
+# frontFacingRaycast
+
 # var movement_tween_speed = 0.1625
-var movement_tween_speed = 0.20625
+var movement_tween_speed = 0.1625
 
 func reset_movement_speed() -> void:
 	movement_tween_speed = 0.1625
 
 func _ready():
 	Singleton_Game_GlobalCommonVariables.main_character_player_node = self
+	
+	# position = position.snapped((Vector2(TILE_SIZE, TILE_SIZE)))
+	last_position = position
+	target_position = position
 	
 	# init_player_char()
 	animationPlayer.play("DownMovement")
@@ -120,6 +130,42 @@ func setup_animations_types_depending_on_movement() -> void:
 		animationTree.active = false
 		animationTreeState.start("Movement 4 Directions")
 
+func get_moveDir():
+	var LEFT = Input.is_action_pressed("ui_left")
+	var RIGHT = Input.is_action_pressed("ui_right")
+	var UP = Input.is_action_pressed("ui_up")
+	var DOWN = Input.is_action_pressed("ui_down")
+	
+	movedir.x = -int(LEFT) + int(RIGHT)
+	movedir.y = -int(UP) + int(DOWN)
+	
+	if movedir.x > 0:
+		animationPlayer.play("RightMovement")
+	elif movedir.x < 0:
+		animationPlayer.play("LeftMovement")
+	elif movedir.y < 0:
+		animationPlayer.play("UpMovement")
+	elif movedir.y > 0:
+		animationPlayer.play("DownMovement")
+	
+	# colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
+	# tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed * delta, Tween.TRANS_LINEAR)
+	# # frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
+	# tween.start()
+	
+	if movedir.x != 0 && movedir.y != 0:
+		movedir = Vector2.ZERO
+		if animationPlayer.playback_speed != 1:
+			animationPlayer.playback_speed = 1
+			print("rest speed")
+	
+	if movedir != Vector2.ZERO:
+		frontFacingRaycast.cast_to = movedir * TILE_SIZE / 2
+		if animationPlayer.playback_speed != 2:
+			animationPlayer.playback_speed = 2
+			print("speed")
+		# frontFacingRaycast.cast_to = movedir * ((TILE_SIZE / 2) - 1)
+
 func _process(delta):
 	# func _physics_process(delta):
 	if !active: 
@@ -149,16 +195,17 @@ func _process(delta):
 				mcan.stats.mp
 				)
 			
-			
 			yield(get_tree().create_timer(0.1), "timeout")
 			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().set_menu_active()
+			return
 			
 		if Input.is_action_just_pressed("ui_c_key"):
 			interaction_attempt_to_talk()
+			return
 		
 		if Input.is_action_just_pressed("test_key_z"):
 			# CutscenePlayerTemp.play("Opening")
-			pass
+			return
 		
 		if Input.is_action_just_pressed("test_key_x"):
 			active = false
@@ -166,90 +213,110 @@ func _process(delta):
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().set_overvview_view_active()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().load_character_lines()
 			Singleton_Game_GlobalCommonVariables.menus_root_node.member_list_node().active = true
-			
-		
+			return
 	
 	
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
 		#if is_instance_valid(tween):
-		if tween.is_active():
-			return
+		pass
 		
-		# print("Here")
-		# animationPlayer.playback_speed = 4
+		if frontFacingRaycast.is_colliding():
+			position = last_position
+			target_position = last_position
+		else:
+			position += speed * movedir * delta
+			
+			if position.distance_to(last_position) >= TILE_SIZE - speed * delta:
+				position = target_position
 		
-		if Input.is_action_pressed("ui_right"):
-			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
-			
-			if animationPlayer.current_animation != "RightMovement":
-				animationPlayer.play("RightMovement")
-			
-			frontFacingRaycast.force_raycast_update()
-			if frontFacingRaycast.is_colliding():
-				# print("colliding")
-				return
-			
-			animationPlayer.playback_speed = 2
-			
-			colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
-			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
-			tween.start()
-		elif Input.is_action_pressed("ui_left"):
-			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
-			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
-			
-			if animationPlayer.current_animation != "LeftMovement":
-				animationPlayer.play("LeftMovement")
-			
-			frontFacingRaycast.force_raycast_update()
-			if frontFacingRaycast.is_colliding():
-				# print("colliding")
-				return
-			
-			animationPlayer.playback_speed = 2
-			
-			colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
-			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-			tween.start()
-		elif Input.is_action_pressed("ui_up"):
-			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
-			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
-			
-			if animationPlayer.current_animation != "UpMovement":
-				animationPlayer.play("UpMovement")
-			
-			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
-			
-			frontFacingRaycast.force_raycast_update()
-			if frontFacingRaycast.is_colliding():
-				# print("colliding")
-				return
-			
-			animationPlayer.playback_speed = 2
-			
-			colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
-			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-			tween.start()
-		elif Input.is_action_pressed("ui_down"):
-			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
-			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
-			
-			if animationPlayer.current_animation != "DownMovement":
-				animationPlayer.play("DownMovement")
-			
-			frontFacingRaycast.force_raycast_update()
-			if frontFacingRaycast.is_colliding():
-				# print("colliding")
-				return
-			
-			animationPlayer.playback_speed = 2
-			
-			colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
-			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-			tween.start()
+		# idle
+		if position == target_position:
+			get_moveDir()
+			last_position = position
+			target_position += movedir * TILE_SIZE
+		
+	# colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
+	
+		pass
+		
+#		if tween.is_active():
+#			return
+#
+#		# print("Here")
+#		# animationPlayer.playback_speed = 4
+#
+#		if Input.is_action_pressed("ui_right"):
+#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
+#
+#			if animationPlayer.current_animation != "RightMovement":
+#				animationPlayer.play("RightMovement")
+#
+#			frontFacingRaycast.force_raycast_update()
+#			if frontFacingRaycast.is_colliding():
+#				# print("colliding")
+#				return
+#
+#			animationPlayer.playback_speed = 2
+#
+#			colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
+#			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed * delta, Tween.TRANS_LINEAR)
+#			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
+#			tween.start()
+#		elif Input.is_action_pressed("ui_left"):
+#			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
+#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
+#
+#			if animationPlayer.current_animation != "LeftMovement":
+#				animationPlayer.play("LeftMovement")
+#
+#			frontFacingRaycast.force_raycast_update()
+#			if frontFacingRaycast.is_colliding():
+#				# print("colliding")
+#				return
+#
+#			animationPlayer.playback_speed = 2
+#
+#			colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
+#			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+#			tween.start()
+#		elif Input.is_action_pressed("ui_up"):
+#			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
+#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
+#
+#			if animationPlayer.current_animation != "UpMovement":
+#				animationPlayer.play("UpMovement")
+#
+#			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+#
+#			frontFacingRaycast.force_raycast_update()
+#			if frontFacingRaycast.is_colliding():
+#				# print("colliding")
+#				return
+#
+#			animationPlayer.playback_speed = 2
+#
+#			colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
+#			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+#			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+#			tween.start()
+#		elif Input.is_action_pressed("ui_down"):
+#			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
+#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
+#
+#			if animationPlayer.current_animation != "DownMovement":
+#				animationPlayer.play("DownMovement")
+#
+#			frontFacingRaycast.force_raycast_update()
+#			if frontFacingRaycast.is_colliding():
+#				# print("colliding")
+#				return
+#
+#			animationPlayer.playback_speed = 2
+#
+#			colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
+#			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+#			tween.start()
 		#print("CharacterMoved")
 		
 		#if is_instance_valid(tween):

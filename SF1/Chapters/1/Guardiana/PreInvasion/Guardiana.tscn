@@ -2536,7 +2536,7 @@ extents = Vector2( 60, 36 )
 extents = Vector2( 12, 36 )
 
 [sub_resource type="RectangleShape2D" id=85]
-extents = Vector2( 40, 16 )
+extents = Vector2( 40, 14 )
 
 [sub_resource type="RectangleShape2D" id=86]
 extents = Vector2( 12, 60 )
@@ -2593,7 +2593,7 @@ extents = Vector2( 60, 24 )
 extents = Vector2( 12, 58 )
 
 [sub_resource type="RectangleShape2D" id=122]
-extents = Vector2( 48, 23 )
+extents = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=102]
 extents = Vector2( 24, 12 )
@@ -2614,7 +2614,7 @@ extents = Vector2( 24, 24 )
 extents = Vector2( 24, 12 )
 
 [sub_resource type="RectangleShape2D" id=107]
-extents = Vector2( 84, 32 )
+extents = Vector2( 84, 36 )
 
 [sub_resource type="RectangleShape2D" id=108]
 extents = Vector2( 16, 8 )
@@ -2661,6 +2661,7 @@ extents = Vector2( 98, 14 )
 extents = Vector2( 32, 22 )
 
 [node name="GuardianaRoot" type="Node2D"]
+position = Vector2( 4, -4 )
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_lock_": true
@@ -2677,6 +2678,9 @@ script = ExtResource( 24 )
 position = Vector2( 140, 172 )
 
 [node name="DoorsWrapper" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ChurchDoorRootNode" parent="DoorsWrapper" instance=ExtResource( 56 )]
 position = Vector2( 440, 136 )
@@ -2697,9 +2701,12 @@ position = Vector2( 608, 568 )
 position = Vector2( 320, 664 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 19 )]
-position = Vector2( 416, 160 )
+position = Vector2( 152, 232 )
 
 [node name="NpcWrapperNode" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="OldManChruchNPCRoot" parent="NpcWrapperNode" instance=ExtResource( 18 )]
 position = Vector2( 392, 88 )
@@ -3212,7 +3219,7 @@ anims/UpMovement = SubResource( 52 )
 polygon = PoolVector2Array( -32, 104, -32, 80, -8, 80, -8, 112, 64, 112, 64, -40, 40, -40, 40, -16, 16, -16, 16, -64, 80, -64, 80, 128, -32, 128 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 158, 91 )
+position = Vector2( 156, 94 )
 rotating = true
 current = true
 process_mode = 0
@@ -3228,12 +3235,8 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 editor_draw_limits = true
 script = ExtResource( 25 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="TODOCOMPRESS_StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -3241,954 +3244,554 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 128, 160 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 104, 188 )
 shape = SubResource( 54 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 140, 256 )
 shape = SubResource( 55 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 188, 280 )
 shape = SubResource( 55 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D376" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 200, 256 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 376 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 248, 376 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 400 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 424 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D17" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 448 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D18" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 248, 448 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D19" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 272, 448 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D20" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 296, 448 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D21" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 320, 472 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D22" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 344, 472 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D23" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 368, 472 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D24" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 392, 496 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D25" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 416, 496 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D26" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 440, 472 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D27" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 464, 496 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D28" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 488, 520 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D29" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 488, 544 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D30" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 464, 544 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D31" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 464, 568 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D33" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 432, 584 )
 shape = SubResource( 56 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D36" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 432, 640 )
 shape = SubResource( 57 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D37" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 408, 664 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D39" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 432, 688 )
 shape = SubResource( 58 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D43" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 376, 736 )
 shape = SubResource( 59 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D49" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 264, 712 )
 shape = SubResource( 60 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D51" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 200, 680 )
 shape = SubResource( 61 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D52" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 216, 640 )
 shape = SubResource( 62 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D54" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 272, 652 )
 shape = SubResource( 134 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D58" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 356, 656 )
 shape = SubResource( 131 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D59" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 344, 616 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D61" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 368, 592 )
 shape = SubResource( 65 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D65" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 392, 544 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D69" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 306, 528 )
 shape = SubResource( 132 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D377" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 272, 568 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D378" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 296, 568 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
+
+[node name="CollisionShape2D380" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 344, 616 )
+shape = SubResource( 53 )
 
 [node name="CollisionShape2D73" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 248, 590 )
 shape = SubResource( 67 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D79" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 480, 712 )
 shape = SubResource( 68 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D82" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 504, 784 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D83" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 532, 808 )
 shape = SubResource( 69 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D85" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 572, 816 )
 shape = SubResource( 70 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D90" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 608, 856 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D92" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 656, 832 )
 shape = SubResource( 71 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D94" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 720, 856 )
 shape = SubResource( 72 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D97" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 776, 880 )
 shape = SubResource( 73 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D98" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 896, 880 )
 shape = SubResource( 73 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D102" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 844 )
 shape = SubResource( 74 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D104" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 920, 532 )
 shape = SubResource( 74 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D105" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 460 )
 shape = SubResource( 74 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D106" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 860, 460 )
 shape = SubResource( 75 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D103" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 796 )
 shape = SubResource( 74 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D108" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 992, 700 )
 shape = SubResource( 76 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D112" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 616 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D113" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 640 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D114" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 664 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D117" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 860, 700 )
 shape = SubResource( 124 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D119" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 740, 532 )
 shape = SubResource( 78 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D120" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 836, 532 )
 shape = SubResource( 78 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D118" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 932, 700 )
 shape = SubResource( 125 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D126" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 884, 640 )
 shape = SubResource( 79 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D135" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 908, 604 )
 shape = SubResource( 80 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D137" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 848, 628 )
 shape = SubResource( 126 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D136" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 568 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D139" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 496 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D142" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 424 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D143" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 400 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D144" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 944, 376 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D145" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D147" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 956, 304 )
 shape = SubResource( 81 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D150" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 968, 256 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D155" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 884, 232 )
 shape = SubResource( 82 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D159" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 800, 256 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D165" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 848, 304 )
 shape = SubResource( 83 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D167" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 872, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D169" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 896, 400 )
 shape = SubResource( 84 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D177" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 848, 496 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D179" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 788, 500 )
+position = Vector2( 788, 498 )
 shape = SubResource( 85 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D186" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 728, 448 )
 shape = SubResource( 86 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D191" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 800, 412 )
 shape = SubResource( 87 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D192" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 800, 376 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D193" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 776, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D194" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 752, 328 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D195" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 680, 328 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D196" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 704, 304 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D197" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 728, 304 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D198" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 728, 280 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D199" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 704, 256 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D205" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 680, 132 )
 shape = SubResource( 88 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D216" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 584, 160 )
 shape = SubResource( 89 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D225" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 560, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D226" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 536, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D227" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 512, 328 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D228" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 488, 328 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D230" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 464, 376 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D235" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 368, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D236" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 320, 352 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D244" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 272, 292 )
 shape = SubResource( 90 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D245" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 416, 292 )
 shape = SubResource( 90 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D250" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 232 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D251" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 224, 208 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D253" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 212, 148 )
 shape = SubResource( 91 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D267" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 152, 96 )
 shape = SubResource( 92 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D269" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 212, 56 )
+position = Vector2( 212, 64 )
 shape = SubResource( 93 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D272" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 320, 28 )
 shape = SubResource( 94 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D280" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 440, 56 )
+position = Vector2( 440, 64 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D379" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 415, 56 )
+position = Vector2( 416, 64 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D281" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 356, 76 )
 shape = SubResource( 95 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D282" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 320, 88 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D289" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 344, 124 )
 shape = SubResource( 96 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D297" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 464, 148 )
 shape = SubResource( 97 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D308" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 272, 400 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D309" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 512, 504 )
 shape = SubResource( 98 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D316" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 548, 556 )
 shape = SubResource( 128 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D322" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 644, 556 )
 shape = SubResource( 129 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D323" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 656, 504 )
 shape = SubResource( 127 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D334" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 584, 496 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D343" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 584, 628 )
 shape = SubResource( 120 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D344" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 536, 710 )
 shape = SubResource( 121 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D345" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 596, 749 )
+position = Vector2( 596, 748 )
 shape = SubResource( 122 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D347" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 584, 664 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D348" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 608, 664 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
+
+[node name="CollisionShape2D350" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
+position = Vector2( 632, 664 )
+shape = SubResource( 53 )
 
 [node name="CollisionShape2D349" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 668, 664 )
 shape = SubResource( 102 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D351" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 704, 628 )
 shape = SubResource( 103 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D360" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 704, 688 )
 shape = SubResource( 104 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D362" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 752, 664 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D363" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 752, 700 )
 shape = SubResource( 123 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D371" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 668, 748 )
 shape = SubResource( 105 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D373" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
 position = Vector2( 740, 748 )
 shape = SubResource( 105 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D372" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 632, 720 )
+position = Vector2( 632, 712 )
 shape = SubResource( 53 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D374" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 572, 720 )
+position = Vector2( 572, 712 )
 shape = SubResource( 106 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D341" type="CollisionShape2D" parent="TODOCOMPRESS_StaticBody2D"]
-position = Vector2( 584, 444 )
+position = Vector2( 584, 448 )
 shape = SubResource( 107 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="WalkwayDoors" type="TileMap" parent="."]
 position = Vector2( 140, 172 )
@@ -4211,6 +3814,9 @@ tile_data = PoolIntArray( -917498, 0, 1441820, -917497, 0, 1441821, -917496, 0, 
 
 [node name="RoofsWrapperNode" type="Node2D" parent="."]
 visible = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="GortsHouse" type="TileMap" parent="RoofsWrapperNode"]
 position = Vector2( 140, 172 )
@@ -4305,7 +3911,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/LeftEntranceChurchArea2D"]
-position = Vector2( 176, 104 )
+position = Vector2( 180, 104 )
 shape = SubResource( 108 )
 __meta__ = {
 "_edit_lock_": true
@@ -4318,7 +3924,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/LeftExitChurchArea2D"]
-position = Vector2( 176, 148 )
+position = Vector2( 180, 144 )
 shape = SubResource( 109 )
 __meta__ = {
 "_edit_lock_": true
@@ -4330,7 +3936,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/MainEntranceChurchArea2D"]
-position = Vector2( 344, 272 )
+position = Vector2( 348, 272 )
 shape = SubResource( 110 )
 __meta__ = {
 "_edit_lock_": true
@@ -4342,7 +3948,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/MainExitChurchArea2D"]
-position = Vector2( 344, 352 )
+position = Vector2( 348, 344 )
 shape = SubResource( 111 )
 __meta__ = {
 "_edit_lock_": true
@@ -4354,7 +3960,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/BarEntranceArea2D"]
-position = Vector2( 920, 272 )
+position = Vector2( 924, 272 )
 shape = SubResource( 112 )
 __meta__ = {
 "_edit_lock_": true
@@ -4366,7 +3972,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/BarExitArea2D"]
-position = Vector2( 920, 328 )
+position = Vector2( 924, 328 )
 shape = SubResource( 113 )
 __meta__ = {
 "_edit_lock_": true
@@ -4378,7 +3984,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/FamilyHouseEntranceArea2D"]
-position = Vector2( 608, 544 )
+position = Vector2( 612, 544 )
 shape = SubResource( 112 )
 __meta__ = {
 "_edit_lock_": true
@@ -4390,7 +3996,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/FamilyHouseExitArea2D"]
-position = Vector2( 608, 592 )
+position = Vector2( 612, 592 )
 shape = SubResource( 113 )
 __meta__ = {
 "_edit_lock_": true
@@ -4402,7 +4008,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/SoliderHouseEntranceArea2D"]
-position = Vector2( 896, 688 )
+position = Vector2( 900, 688 )
 shape = SubResource( 112 )
 __meta__ = {
 "_edit_lock_": true
@@ -4414,7 +4020,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/SoliderHouseExitArea2D"]
-position = Vector2( 896, 736 )
+position = Vector2( 900, 736 )
 shape = SubResource( 113 )
 __meta__ = {
 "_edit_lock_": true
@@ -4426,7 +4032,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/GortHouseEntranceArea2D"]
-position = Vector2( 320, 640 )
+position = Vector2( 324, 636 )
 shape = SubResource( 112 )
 __meta__ = {
 "_edit_lock_": true
@@ -4438,7 +4044,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/GortHouseExitArea2D"]
-position = Vector2( 320, 688 )
+position = Vector2( 324, 684 )
 shape = SubResource( 113 )
 __meta__ = {
 "_edit_lock_": true
@@ -4450,7 +4056,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/InnEntranceArea2D"]
-position = Vector2( 704, 736 )
+position = Vector2( 708, 736 )
 shape = SubResource( 112 )
 __meta__ = {
 "_edit_lock_": true
@@ -4462,7 +4068,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/InnExitArea2D"]
-position = Vector2( 704, 784 )
+position = Vector2( 708, 784 )
 shape = SubResource( 113 )
 __meta__ = {
 "_edit_lock_": true
@@ -4474,7 +4080,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/GortBasementEntranceArea2D"]
-position = Vector2( 344, 568 )
+position = Vector2( 348, 560 )
 shape = SubResource( 114 )
 __meta__ = {
 "_edit_lock_": true
@@ -4486,7 +4092,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/GortBasementExitArea2D"]
-position = Vector2( 88, 1272 )
+position = Vector2( 92, 1268 )
 shape = SubResource( 115 )
 __meta__ = {
 "_edit_lock_": true
@@ -4498,7 +4104,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/KingsCastleEntranceArea2D"]
-position = Vector2( 632, 32 )
+position = Vector2( 636, 32 )
 shape = SubResource( 116 )
 __meta__ = {
 "_edit_lock_": true
@@ -4510,7 +4116,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ExitGuardianaArea2D"]
-position = Vector2( 836, 920 )
+position = Vector2( 844, 920 )
 shape = SubResource( 117 )
 __meta__ = {
 "_edit_lock_": true
@@ -4522,7 +4128,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ShopEntranceArea2D"]
-position = Vector2( 788, 520 )
+position = Vector2( 792, 520 )
 shape = SubResource( 118 )
 __meta__ = {
 "_edit_lock_": true
@@ -4534,7 +4140,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ShopExitArea2D"]
-position = Vector2( 788, 568 )
+position = Vector2( 792, 568 )
 shape = SubResource( 119 )
 __meta__ = {
 "_edit_lock_": true
@@ -4546,7 +4152,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/TrolleyActionSpotArea2D"]
-position = Vector2( 584, 592 )
+position = Vector2( 588, 588 )
 shape = SubResource( 133 )
 __meta__ = {
 "_edit_lock_": true
@@ -4558,7 +4164,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/TownGuardExitCheckArea2D"]
-position = Vector2( 838, 830 )
+position = Vector2( 844, 828 )
 shape = SubResource( 139 )
 __meta__ = {
 "_edit_lock_": true
@@ -4570,11 +4176,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/LoweTalkSpotArea2D"]
-position = Vector2( 224, 88 )
+position = Vector2( 204, 84 )
 shape = SubResource( 144 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="VariosArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
 __meta__ = {
@@ -4582,7 +4185,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/VariosArea2D"]
-position = Vector2( 176, 232 )
+position = Vector2( 180, 228 )
 shape = SubResource( 145 )
 __meta__ = {
 "_edit_lock_": true
@@ -4594,7 +4197,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionSpotsWrapperNode/ForceJoinsArea2D"]
-position = Vector2( 632, 362 )
+position = Vector2( 636, 360 )
 shape = SubResource( 170 )
 __meta__ = {
 "_edit_lock_": true

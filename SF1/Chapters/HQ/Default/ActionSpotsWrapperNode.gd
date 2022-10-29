@@ -14,9 +14,9 @@ func _ready():
 func _on_ExitArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		match Singleton_Game_GlobalCommonVariables.position_location_st:
-			"Alterone-Town__HQ":
+			"Alterone-Castle-Basement__HQ":
 				print("Change Scene Alterone Town HQ Entrance")
-				Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
+				Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
 			
 			_:
 				print("Change Scene Guardiana Kings Castle HQ Entrance")

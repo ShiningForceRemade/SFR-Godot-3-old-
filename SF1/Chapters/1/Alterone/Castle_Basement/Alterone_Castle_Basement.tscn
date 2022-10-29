@@ -1170,7 +1170,7 @@ extents = Vector2( 12, 24 )
 extents = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=224]
-extents = Vector2( 12, 12.375 )
+extents = Vector2( 10, 10.1875 )
 
 [node name="AlteroneCastleBasementRoot" type="Node2D"]
 script = ExtResource( 5 )
@@ -1185,7 +1185,7 @@ script = ExtResource( 25 )
 anims/Opening = ExtResource( 24 )
 script = ExtResource( 23 )
 
-[node name="AlteroneCastlebasementTilemap" parent="." instance=ExtResource( 16 )]
+[node name="AlteroneCastleBasementTilemap" parent="." instance=ExtResource( 16 )]
 
 [node name="DoorsWrapperNode2D" type="Node2D" parent="."]
 
@@ -1973,16 +1973,106 @@ tile_data = PoolIntArray( -12386389, 0, 1048578, -12386388, 0, 1048579, -1238638
 [node name="ActionSpotsWrapperNode" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="TopLeftHouseEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+[node name="HQEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/TopLeftHouseEntranceArea2D"]
-position = Vector2( 220, 412 )
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/HQEntranceArea2D"]
+position = Vector2( 252, 1668 )
 shape = SubResource( 224 )
 
-[connection signal="body_entered" from="ActionSpotsWrapperNode/TopLeftHouseEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_TopLeftHouseEntranceArea2D_body_entered"]
+[node name="SecretPassagewayHQLineEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/SecretPassagewayHQLineEntranceArea2D"]
+position = Vector2( 636, 1692 )
+shape = SubResource( 224 )
+
+[node name="SecretPassagewayHQLineExitArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/SecretPassagewayHQLineExitArea2D"]
+position = Vector2( 636, 1524 )
+shape = SubResource( 224 )
+
+[node name="SecretPassagewayJailExitArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/SecretPassagewayJailExitArea2D"]
+position = Vector2( 636, 732 )
+shape = SubResource( 224 )
+
+[node name="SecretPassagewayJailEntranceArea2D2" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/SecretPassagewayJailEntranceArea2D2"]
+position = Vector2( 636, 588 )
+shape = SubResource( 224 )
+
+[node name="CastleJailEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/CastleJailEntranceArea2D"]
+position = Vector2( 756, 396 )
+shape = SubResource( 224 )
+
+[node name="CastleAmbushEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/CastleAmbushEntranceArea2D"]
+position = Vector2( 660, 156 )
+shape = SubResource( 224 )
+
+[node name="CastleLibrayEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/CastleLibrayEntranceArea2D"]
+position = Vector2( 132, 348 )
+shape = SubResource( 224 )
+
+[node name="CastleSecretEntranceArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/CastleSecretEntranceArea2D"]
+position = Vector2( 1812, 388 )
+shape = SubResource( 224 )
+
+[node name="HouseExitArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/HouseExitArea2D"]
+position = Vector2( 1860, 708 )
+shape = SubResource( 224 )
+
+[node name="OtherHouseExitArea2D" type="Area2D" parent="ActionSpotsWrapperNode"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="ActionSpotsWrapperNode/OtherHouseExitArea2D"]
+position = Vector2( 660, 1836 )
+shape = SubResource( 224 )
+
+[connection signal="body_entered" from="ActionSpotsWrapperNode/HQEntranceArea2D" to="ActionSpotsWrapperNode" method="_on_HQEntranceArea2D_body_entered"]
 
 [editable path="NpcWrapperNode/SoliderNPCRoot"]
 [editable path="NpcWrapperNode/RuneKnightBottomNPCRoot"]

@@ -3,7 +3,7 @@ extends Node2D
 onready var positionsNode = $PositionsNode2D
 onready var playerNode = $PlayerCharacterRoot
 
-onready var TilemapSceneRoot = $AlteroneCastleTilemap
+onready var TilemapSceneRoot = $AlteroneCastleBasementTilemap
 onready var TilemapOverpassSceneRoot = $Overpass
 
 var using_original_tiles: bool = true
@@ -28,11 +28,12 @@ onready var King = $NpcWrapperNode/KingNPCRoot
 # npcs
 
 func _ready():
-	#match Singleton_Game_GlobalCommonVariables.position_location_st:
-	#	"Alterone-Castle__MainEntrance": playerNode.transform = positionsNode.get_node("CastleEntrancePosition2D").transform
+	match Singleton_Game_GlobalCommonVariables.position_location_st:
+		"Alterone-Town__HQ": playerNode.transform = positionsNode.get_node("HQHallHallEntrancePosition2D").transform
+		# "Alterone-Castle__MainEntrance": playerNode.transform = positionsNode.get_node("CastleEntrancePosition2D").transform
 		# "Alterone-Town__HQ": playerNode.transform = positionsNode.get_node("HQEntrancePosition2D").transform
 		# "Alterone-Town__Castle": playerNode.transform = positionsNode.get_node("CabinPosition2D").transform
-	
+
 	# if Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.spoken_to_guardiana_man_in_alterone_bar:
 	#	SoliderEntrance.get_child(0).tester__move_in_direction("Right")
 	#	SoliderEntrance.get_child(0).change_facing_direction_string("LeftMovement")
