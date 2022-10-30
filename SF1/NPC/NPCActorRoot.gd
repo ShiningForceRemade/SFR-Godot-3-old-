@@ -139,11 +139,12 @@ func random_move_direction(direction):
 	
 	if direction == 0:
 		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x + TILE_SIZE, position.y)):
-		animationPlayer.playback_speed = 2
 		
 		raycast.rotation_degrees = E_RayCastRotationDirections.Right
 		raycast.force_raycast_update()
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
+		
+		animationPlayer.playback_speed = 2
 		
 		animationPlayer.play("RightMovement")
 		colsh.position = Vector2(TILE_SIZE, 0)
@@ -153,11 +154,12 @@ func random_move_direction(direction):
 	elif direction == 1:
 		
 		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x - TILE_SIZE, position.y)):
-		animationPlayer.playback_speed = 2
 		
 		raycast.rotation_degrees = E_RayCastRotationDirections.Left
 		raycast.force_raycast_update()
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
+		
+		animationPlayer.playback_speed = 2
 		
 		animationPlayer.play("LeftMovement")
 		colsh.position = Vector2(-TILE_SIZE, 0)
@@ -167,10 +169,11 @@ func random_move_direction(direction):
 	elif direction == 2:
 		
 		# if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  - TILE_SIZE)):
-		animationPlayer.playback_speed = 2
 		
 		raycast.rotation_degrees = E_RayCastRotationDirections.Up
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
+		
+		animationPlayer.playback_speed = 2
 		
 		animationPlayer.play("UpMovement")
 		colsh.position = Vector2(0, -TILE_SIZE)
@@ -180,10 +183,11 @@ func random_move_direction(direction):
 	elif direction == 3:
 		
 		#if enemey_actor_root.check_if_move_is_possible(Vector2(position.x, position.y  + TILE_SIZE)):
-		animationPlayer.playback_speed = 2
 		
 		raycast.rotation_degrees = E_RayCastRotationDirections.Down
 		if check_if_not_valid_move_in_predfined_area_or_obstacle(): return
+		
+		animationPlayer.playback_speed = 2
 		
 		animationPlayer.play("DownMovement")
 		colsh.position = Vector2(0, TILE_SIZE)
