@@ -200,7 +200,9 @@ func _process(delta):
 			return
 			
 		if Input.is_action_just_pressed("ui_c_key"):
+			print("talk")
 			interaction_attempt_to_talk()
+			print("talk")
 			return
 		
 		if Input.is_action_just_pressed("test_key_z"):
@@ -219,104 +221,104 @@ func _process(delta):
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
 		#if is_instance_valid(tween):
-		pass
+#		pass
+#TODO: add toggle for this movement
+#		if frontFacingRaycast.is_colliding():
+#			position = last_position
+#			target_position = last_position
+#		else:
+#			position += speed * movedir * delta
+#
+#			if position.distance_to(last_position) >= TILE_SIZE - speed * delta:
+#				position = target_position
+#
+#		# idle
+#		if position == target_position:
+#			get_moveDir()
+#			last_position = position
+#			target_position += movedir * TILE_SIZE
+#
+#	# colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
+#
+#		pass
 		
-		if frontFacingRaycast.is_colliding():
-			position = last_position
-			target_position = last_position
-		else:
-			position += speed * movedir * delta
-			
-			if position.distance_to(last_position) >= TILE_SIZE - speed * delta:
-				position = target_position
-		
-		# idle
-		if position == target_position:
-			get_moveDir()
-			last_position = position
-			target_position += movedir * TILE_SIZE
-		
-	# colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
-	
-		pass
-		
-#		if tween.is_active():
-#			return
-#
-#		# print("Here")
-#		# animationPlayer.playback_speed = 4
-#
-#		if Input.is_action_pressed("ui_right"):
-#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
-#
-#			if animationPlayer.current_animation != "RightMovement":
-#				animationPlayer.play("RightMovement")
-#
-#			frontFacingRaycast.force_raycast_update()
-#			if frontFacingRaycast.is_colliding():
-#				# print("colliding")
-#				return
-#
-#			animationPlayer.playback_speed = 2
-#
-#			colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
-#			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed * delta, Tween.TRANS_LINEAR)
-#			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
-#			tween.start()
-#		elif Input.is_action_pressed("ui_left"):
-#			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
-#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
-#
-#			if animationPlayer.current_animation != "LeftMovement":
-#				animationPlayer.play("LeftMovement")
-#
-#			frontFacingRaycast.force_raycast_update()
-#			if frontFacingRaycast.is_colliding():
-#				# print("colliding")
-#				return
-#
-#			animationPlayer.playback_speed = 2
-#
-#			colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
-#			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-#			tween.start()
-#		elif Input.is_action_pressed("ui_up"):
-#			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
-#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
-#
-#			if animationPlayer.current_animation != "UpMovement":
-#				animationPlayer.play("UpMovement")
-#
-#			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
-#
-#			frontFacingRaycast.force_raycast_update()
-#			if frontFacingRaycast.is_colliding():
-#				# print("colliding")
-#				return
-#
-#			animationPlayer.playback_speed = 2
-#
-#			colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
-#			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-#			tween.start()
-#		elif Input.is_action_pressed("ui_down"):
-#			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
-#			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
-#
-#			if animationPlayer.current_animation != "DownMovement":
-#				animationPlayer.play("DownMovement")
-#
-#			frontFacingRaycast.force_raycast_update()
-#			if frontFacingRaycast.is_colliding():
-#				# print("colliding")
-#				return
-#
-#			animationPlayer.playback_speed = 2
-#
-#			colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
-#			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-#			tween.start()
+		if tween.is_active():
+			return
+
+		# print("Here")
+		# animationPlayer.playback_speed = 4
+
+		if Input.is_action_pressed("ui_right"):
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Right
+
+			if animationPlayer.current_animation != "RightMovement":
+				animationPlayer.play("RightMovement")
+
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+
+			animationPlayer.playback_speed = 2
+
+			colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
+			tween.interpolate_property(self, 'position', position, Vector2(position.x + TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+			# frontFacingRaycast.position = Vector2(position.x + TILE_SIZE, position.y)
+			tween.start()
+		elif Input.is_action_pressed("ui_left"):
+			# frontFacingRaycast.position = Vector2(position.x - TILE_SIZE, position.y)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Left
+
+			if animationPlayer.current_animation != "LeftMovement":
+				animationPlayer.play("LeftMovement")
+
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+
+			animationPlayer.playback_speed = 2
+
+			colsh.position = Vector2(colsh.position.x - TILE_SIZE, colsh.position.y)
+			tween.interpolate_property(self, 'position', position, Vector2(position.x - TILE_SIZE, position.y), movement_tween_speed, Tween.TRANS_LINEAR)
+			tween.start()
+		elif Input.is_action_pressed("ui_up"):
+			# frontFacingRaycast.position = Vector2(position.x, position.y - TILE_SIZE)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Up
+
+			if animationPlayer.current_animation != "UpMovement":
+				animationPlayer.play("UpMovement")
+
+			#if check_if_move_is_possible(Vector2(pnode.position.x, pnode.position.y - TILE_SIZE)):
+
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+
+			animationPlayer.playback_speed = 2
+
+			colsh.position = Vector2(colsh.position.x, colsh.position.y - TILE_SIZE)
+			# Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+			tween.start()
+		elif Input.is_action_pressed("ui_down"):
+			# frontFacingRaycast.position = Vector2(position.x, position.y + TILE_SIZE)
+			frontFacingRaycast.rotation_degrees = E_RayCastRotationDirections.Down
+
+			if animationPlayer.current_animation != "DownMovement":
+				animationPlayer.play("DownMovement")
+
+			frontFacingRaycast.force_raycast_update()
+			if frontFacingRaycast.is_colliding():
+				# print("colliding")
+				return
+
+			animationPlayer.playback_speed = 2
+
+			colsh.position = Vector2(colsh.position.x, colsh.position.y + TILE_SIZE)
+			tween.interpolate_property(self, 'position', position, Vector2(position.x, position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
+			tween.start()
 		#print("CharacterMoved")
 		
 		#if is_instance_valid(tween):
@@ -361,7 +363,22 @@ func interaction_attempt_to_talk() -> void:
 		
 		print("Start")
 		var objects_collide = [] 
+		
+		if frontFacingRaycast.is_colliding():
+			if frontFacingRaycast.get_collider().is_in_group("Collisions"):
+				print("Collisions")
+				var obj = frontFacingRaycast.get_collider() # get the next object that is colliding.
+				objects_collide.append(obj) # add it to the array.
+				frontFacingRaycast.add_exception(obj) # add to ray's exception. That way it could detect something being behind it.
+				frontFacingRaycast.force_raycast_update()
+				#return
+		
 		while frontFacingRaycast.is_colliding():
+			# if frontFacingRaycast.get_collider().is_in_group("Collisions"):
+			#	break
+			
+			print(frontFacingRaycast.get_collider())
+			
 			var obj = frontFacingRaycast.get_collider() # get the next object that is colliding.
 			objects_collide.append(obj) # add it to the array.
 			frontFacingRaycast.add_exception(obj) # add to ray's exception. That way it could detect something being behind it.
@@ -409,6 +426,9 @@ func interaction_attempt_to_talk() -> void:
 func interaction_attempt_to_search() -> void:
 	# if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
 	if frontFacingRaycast.is_colliding():
+		
+		print("attempt to search")
+		
 		# TODO: probably should add a helper function to get the parent element
 		# where the custom logic will live instead of going up for build v0.0.2 its fine
 		# print(frontFacingRaycast.get_collider())

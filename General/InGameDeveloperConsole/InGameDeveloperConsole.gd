@@ -27,6 +27,12 @@ func _on_LineEdit_text_entered(new_text):
 	if "toggle_move_rotdd" in new_text_internal:
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT = !Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT
 		return
+	if "toggle_move_default" in new_text_internal:
+		Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT = !Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT
+		return
+	if "toggle_move_new_default" in new_text_internal:
+		Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT = !Singleton_Game_GlobalCommonVariables.main_character_player_node.GRID_BASED_MOVEMENT
+		return
 	
 	if "modify" in new_text_internal:
 		modify(new_text_internal)
