@@ -10,6 +10,8 @@ func _ready():
 	
 	# change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
 	
+	change_scene("res://General/BattleBase/Movement/BattleBase-T-Movement-Mounted.tscn")
+	
 	# change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
 	# change_scene("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
 	

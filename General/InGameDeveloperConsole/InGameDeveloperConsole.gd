@@ -87,6 +87,14 @@ func changeScene(new_text_internal) -> void:
 			print("Change Scene to Battle Test Backgrounds and Stands")
 			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
 		
+		elif splstr[2] == "movement-standard" || splstr[2] == "m-standard":
+			print("Change Scene to Battle Test Backgrounds and Stands")
+			sceneManagerNode.change_scene("res://General/BattleBase/Movement/BattleBase-T-Movement-Standard.tscn")
+		
+		elif splstr[2] == "movement-mounted" || splstr[2] == "m-mounted":
+			print("Change Scene to Battle Test Scene movement mounted")
+			sceneManagerNode.change_scene("res://General/BattleBase/Movement/BattleBase-T-Movement-Mounted.tscn")
+			
 	elif splstr[1] == "overworld" || splstr[1] == "ow":
 		if splstr[2] == "Guardiana-Normal":
 			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")

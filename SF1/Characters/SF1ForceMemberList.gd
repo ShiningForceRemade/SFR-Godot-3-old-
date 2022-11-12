@@ -1513,4 +1513,101 @@ var ForceMembers = [
 # as well as inserting nad reading data from them better than pulling the node instance
 # while keeping editor editability
 
+# Movement types and their penalties
+# ripped from the sf2 land guide probably not fully accurate for SF1 
+# TODO: verify
+const sf_movement_types = [
+	# (standard / walking) = 0
+	{
+		"SKY": 0,
+		"GROUND": 1.0,
+		"PATH_AND_BRIDGE": 1.0,
+		"OVERGROWTH": 1.5,
+		"FOREST": 2.0,
+		"MOUNTAIN": 1.5,
+		"SAND": 1.5,
+		"HIGH_MOUNTAIN": 0,
+		"WATER": 0,
+	},
+	
+	# (mounted / horses / centaurs) = 1
+	{
+		"SKY": 0,
+		"GROUND": 1.0,
+		"PATH_AND_BRIDGE": 1.0,
+		"OVERGROWTH": 1.5,
+		"FOREST": 2.5,
+		"MOUNTAIN": 2.5,
+		"SAND": 2.5,
+		"HIGH_MOUNTAIN": 0,
+		"WATER": 0,
+	},
+	
+	# aquatic = 2
+	{
+		"SKY": 0,
+		"GROUND": 0,
+		"PATH_AND_BRIDGE": 0,
+		"OVERGROWTH": 0,
+		"FOREST": 0,
+		"MOUNTAIN": 0,
+		"SAND": 0,
+		"HIGH_MOUNTAIN": 0,
+		"WATER": 1.0,
+	},
+	
+	# (forest / elves / animals / beastman) = 3
+	{
+		"SKY": 0,
+		"GROUND": 1.0,
+		"PATH_AND_BRIDGE": 1.0,
+		"OVERGROWTH": 1.0,
+		"FOREST": 1.0,
+		"MOUNTAIN": 1.0,
+		"SAND": 2.0,
+		"HIGH_MOUNTAIN": 0,
+		"WATER": 0,
+	},
+	
+	# (mechanical) = 4
+	{
+		"SKY": 0,
+		"GROUND": 1.0,
+		"PATH_AND_BRIDGE": 1.0,
+		"OVERGROWTH": 1.0,
+		"FOREST": 1.5,
+		"MOUNTAIN": 1.5,
+		"SAND": 1.5,
+		"HIGH_MOUNTAIN": 0,
+		"WATER": 0,
+	},
+	
+	# (flying) = 5
+	{
+		"SKY": 1.0,
+		"GROUND": 1.0,
+		"PATH_AND_BRIDGE": 1.0,
+		"OVERGROWTH": 1.0,
+		"FOREST": 1.0,
+		"MOUNTAIN": 1.0,
+		"SAND": 1.0,
+		"HIGH_MOUNTAIN": 1.0,
+		"WATER": 1.0,
+	},
+	
+	# (hovering) = 6
+	# high mountains if I remember correctly cant be passed with hover units
+	# TODO: double check
+	{
+		"SKY": 1.0,
+		"GROUND": 1.0,
+		"PATH_AND_BRIDGE": 1.0,
+		"OVERGROWTH": 1.0,
+		"FOREST": 1.0,
+		"MOUNTAIN": 1.0,
+		"SAND": 1.0,
+		"HIGH_MOUNTAIN": 1.0,
+		"WATER": 1.0,
+	},
+]
 

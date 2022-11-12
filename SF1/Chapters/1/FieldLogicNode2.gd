@@ -624,26 +624,18 @@ func generate_movement_array_representation():
 #	print("Movement Type - ", mt)
 	
 	# if mounted  (horses / centaurs) 2.5 / for mountain terrain
+
+
 	
-	move_array = apply_movement_cost_per_terrain(move_array)
+	# 
 	
+	# var copy_penalty = move_array.duplicate(true)
 	
 	# print("\n\n\nCharacter Movement Array ") #, Singleton_Game_GlobalBattleVariables.active_actor_movement_array)
-#	var copy = move_array.duplicate(true)
+
 	Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation = move_array
-#
-#	for i in range(copy.size()):
-#		for j in range(copy[i].size()):
-#			if copy[i][j] == 1:
-#				copy[i][j] = "___1"
-#			elif copy[i][j] == 2:
-#				copy[i][j] = "ENEM"
-#			elif copy[i][j] == null:
-#				copy[i][j] = "____"
-#	copy[movement][movement] = "SELF"
-#	for a in copy:
-#		print(a)
-#	print("End")
+
+	
 	
 	# print(point_array)
 	Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation = point_array
@@ -651,84 +643,180 @@ func generate_movement_array_representation():
 	
 	print("Genereate End\n\n\n")
 	
-	astar_connect_walkable_cells()
+	#astar_connect_walkable_cells()
 	
+	# print(Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation)
+#	var copy_penalty = Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation.duplicate(true)
+#	for i in range(copy_penalty.size()):
+#		for j in range(copy_penalty[i].size()):
+#			if copy_penalty[i][j] == null:
+#				copy_penalty[i][j] = "________"
+#			else:
+#				copy_penalty[i][j] = copy_penalty[i][j].terrain.substr(0, 8)
+#	copy_penalty[movement][movement] = "__SELF__"
+#	for a in copy_penalty:
+#		print(a)
+#	print("End")
+	
+	move_array = apply_movement_cost_per_terrain(move_array)
+	astar_connect_walkable_cells()
+	var copy = move_array.duplicate(true)	
+	for i in range(copy.size()):
+		for j in range(copy[i].size()):
+			if copy[i][j] == null:
+				copy[i][j] = "_______"
+			elif typeof(copy[i][j]) == TYPE_STRING:
+				copy[i][j] = copy[i][j]
+			else:
+				copy[i][j] = copy[i][j].terrain.substr(0, 7)
+	copy[movement][movement] = "__SELF_"
+	for a in copy:
+		print(a)
+	print("End")
+
 	return # move_array
 
 func apply_movement_cost_per_terrain(move_array):
 	var move_array_c = move_array
 	var movement = mc.get_character_movement()
+	print(movement)
+	var movement_type = mc.cget_movement_type()
+	print(movement_type)
+	var sfmt = Singleton_Game_GlobalCommonVariables.sf_game_data_node.sf_movement_types
+	print(sfmt[movement_type])
+	
 	# if mounted  (horses / centaurs) 2.5 / for mountain terrain
-	var penalty_max = ceil(movement / 2.5)
+	# var penalty_max = ceil(movement / 2.5)
 	# var penalty_max = ceil(movement / 2)
 	
-	var temp_penalty = penalty_max
-	
+	var temp_penalty = 4 # penalty_max
+	var terrain_penalty_float
 	# center tile (self)
 	# move_array_c[movement][movement]
 	
 	# TODO: IMPORTANT: PRIORITY: really should refactor and compress these quadrant loops
 	# 8 per func x 4 functions is getting too annoying, refactor priority - don't wait for godot 4 gdscript 2
 	
-	# TODO: test me
-	# TOP LEFT QUADRANT
+	# DONE - TOP LEFT QUADRANT
 	for row in range(1, movement):
-		temp_penalty -= 1
 		for col in range(movement):
 			if col <= movement - row - 1:
 				continue
 			
 			if move_array_c[row][col] != null:
-				if "Mountain" in move_array_c[row][col].terrain:
-					if row < temp_penalty:
+				if move_array_c[row][col].terrain != "INVALID_CELL":
+					terrain_penalty_float = sfmt[movement_type][move_array_c[row][col].terrain]
+					if terrain_penalty_float == 1.0:
+						continue
+					
+					temp_penalty = int(round(movement / terrain_penalty_float))
+					if ((movement - row - 1) + (movement - col - 1)) >= (temp_penalty - 1):
 						move_array_c[row][col].on_tile = 3
+						move_array_c[row][col].terrain = "REMOVMED"
 	
-	# TOP RIGHT QUADRANT
+	# DONE - BOTTOM RIGHT QUADRANT
+	for row in range(movement - 1):
+		for col in range(movement - 1):
+			if col >= movement - row - 1:
+				continue
+			
+			if move_array_c[row + movement + 1][col + movement + 1] != null:
+				if move_array_c[row + movement + 1][col + movement + 1].terrain != "INVALID_CELL":
+					terrain_penalty_float = sfmt[movement_type][move_array_c[row + movement + 1][col + movement + 1].terrain]
+					if terrain_penalty_float == 1.0:
+						continue
+					
+					temp_penalty = int(round(movement / terrain_penalty_float))
+					if col + row >= (temp_penalty - 1):
+						move_array_c[row + movement + 1][col + movement + 1].on_tile = 3
+						move_array_c[row + movement + 1][col + movement + 1].terrain = "REMOVMED"
+	
+	# DONE test more - TOP RIGHT QUADRANT
 	for row in range(1, movement):
-		temp_penalty -= 1
 		for col in range(movement):
 			if col >= row:
 				continue
-			
+
 			if move_array_c[row][col + movement + 1] != null:
-				if "Mountain" in move_array_c[row][col + movement + 1].terrain:
-					if row > temp_penalty:
+				if move_array_c[row][col + movement + 1].terrain != "INVALID_CELL":
+					terrain_penalty_float = sfmt[movement_type][move_array_c[row][col + movement + 1].terrain]
+					if terrain_penalty_float == 1.0:
+						continue
+					
+					temp_penalty = int(round(movement / terrain_penalty_float))
+					if ((movement - row - 1) + col) >= (temp_penalty - 1):
 						move_array_c[row][col + movement + 1].on_tile = 3
+						move_array_c[row][col + movement + 1].terrain = "REMOVME"
 	
-	# move_array[row][movement] = {
-	#	"on_tile": 1,
-	#	"terrain": get_tilename_at_pos(Vector2(vpos.x, vpos.y - (movement - row)))
-	#}
+	# DONE - BOTTOM LEFT QUADRANT
+	for row in range(movement - 1):
+		for col in range(1, movement):
+			if col <= row:
+				continue
+			
+			if move_array_c[row + movement + 1][col] != null:
+				if move_array_c[row + movement + 1][col].terrain != "INVALID_CELL":
+					terrain_penalty_float = sfmt[movement_type][move_array_c[row + movement + 1][col].terrain]
+					if terrain_penalty_float == 1.0:
+						move_array_c[row + movement + 1][col].terrain = "T-" + String((movement - col - 1) + row) + " P-" + String(temp_penalty - 1)
+						continue
+					
+					temp_penalty = int(round(movement / terrain_penalty_float))
+					if (movement - col - 1) + row >= (temp_penalty - 1):
+						move_array_c[row + movement + 1][col].on_tile = 3
+						move_array_c[row + movement + 1][col].terrain = "REMOVME"
 	
-	# Straight Across Left Side
+	# DONE Straight Across Left Side
 	for col in range(movement):
 		if move_array_c[movement][col] != null:
-			if "Mountain" in move_array_c[movement][col].terrain:
-				if col < penalty_max:
+			if move_array_c[movement][col].terrain != "INVALID_CELL":
+				terrain_penalty_float = sfmt[movement_type][move_array_c[movement][col].terrain]
+				if terrain_penalty_float == 1.0:
+					continue
+				temp_penalty = int(round(movement / terrain_penalty_float))
+				if movement - col > (temp_penalty - 1):
 					move_array_c[movement][col].on_tile = 3
-	
-	# Straight Across Right Side
+					move_array_c[movement][col].terrain = "REMOVME"
+
+	# DONE - Straight Across Right Side
 	for col in range(movement):
 		if move_array_c[movement][col + movement + 1] != null:
-			if "Mountain" in move_array_c[movement][col + movement + 1].terrain:
-				if col > penalty_max:
+			if move_array_c[movement][col + movement + 1].terrain != "INVALID_CELL":
+				terrain_penalty_float = sfmt[movement_type][move_array_c[movement][col + movement + 1].terrain]
+				if terrain_penalty_float == 1.0:
+					continue
+				temp_penalty = int(round(movement / terrain_penalty_float))
+				if col > (temp_penalty - 1):
 					move_array_c[movement][col + movement + 1].on_tile = 3
-	
-	# Straight Down Top Portion
+					move_array_c[movement][col + movement + 1].terrain = "REMOVME"
+
+	# DONE - Straight Down Top Portion
 	for row in range(movement):
 		if move_array_c[row][movement] != null:
-			if "Mountain" in move_array_c[row][movement].terrain:
-				if row < penalty_max:
+			if move_array_c[row][movement].terrain != "INVALID_CELL":
+				terrain_penalty_float = sfmt[movement_type][move_array_c[row][movement].terrain]
+				if terrain_penalty_float == 1.0:
+					continue
+				temp_penalty = int(round(movement / terrain_penalty_float))
+				if movement - row > (temp_penalty - 1):
 					move_array_c[row][movement].on_tile = 3
-	
-	# Straight Down Bottom Portion
+					move_array_c[row][movement].terrain = "REMOVME"
+
+	# DONE - Straight Down Bottom Portion
 	for row in range(movement):
 		if move_array_c[row + movement + 1][movement] != null:
-			if "Mountain" in move_array_c[row + movement + 1][movement].terrain:
-				if row > penalty_max:
+			if move_array_c[row + movement + 1][movement].terrain != "INVALID_CELL":
+				terrain_penalty_float = sfmt[movement_type][move_array_c[row + movement + 1][movement].terrain]
+				if terrain_penalty_float == 1.0:
+					continue
+				temp_penalty = int(round(movement / terrain_penalty_float))
+				print("Stra - ", row, " ", (temp_penalty - 1))
+				if row >= (temp_penalty - 1):
 					move_array_c[row + movement + 1][movement].on_tile = 3
+					move_array_c[row + movement + 1][movement].terrain = "REMOVME"
 	
 	return move_array_c
+
 
 func generate_point_array_for_a_start(): 
 	var vpos: Vector2 = get_char_tile_position()
@@ -1318,9 +1406,23 @@ func get_tilename_at_pos(vpos: Vector2) -> String:
 	# print(current_tile_pos)
 	if current_tile_pos != tilemap.INVALID_CELL:
 		# Valid tile - Tile name
-		return tilemap.tile_set.tile_get_name(current_tile_pos)
+		var tn = tilemap.tile_set.tile_get_name(current_tile_pos)
+		
+		return terrain_type_from_tile_name(tn)
 	
-	return "Invalid Cell"
+	return "INVALID_CELL"
+
+func terrain_type_from_tile_name(tile_name: String) -> String:
+	if "Mountain" in tile_name:
+		return "MOUNTAIN"
+	elif "Forest" in tile_name:
+		return "FOREST"
+	elif "Ground" in tile_name:
+		return "GROUND"
+	elif "Path" in tile_name:
+		return "PATH_AND_BRIDGE"
+	
+	return "INVALID_CELL"
 
 func new_check_tile(vpos: Vector2) -> bool:
 	var current_tile_pos = tilemap.get_cellv(vpos)
