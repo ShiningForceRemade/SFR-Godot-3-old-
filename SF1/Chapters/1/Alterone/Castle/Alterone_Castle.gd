@@ -1,10 +1,10 @@
 extends Node2D
 
-onready var positionsNode = $PositionsNode2D
-onready var playerNode = $PlayerCharacterRoot
+@onready var positionsNode = $PositionsNode2D
+@onready var playerNode = $PlayerCharacterRoot
 
-onready var TilemapSceneRoot = $AlteroneCastleTilemap
-onready var TilemapOverpassSceneRoot = $Overpass
+@onready var TilemapSceneRoot = $AlteroneCastleTilemap
+@onready var TilemapOverpassSceneRoot = $Overpass
 
 var using_original_tiles: bool = true
 
@@ -24,11 +24,11 @@ var nine_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/9.
 var ten_ic_tres = load("res://SF1/TileSet_Resources/Ivan_Cal_Graphic_Upgrade/10.tres")
 
 # npcs
-onready var SoliderEntrance = $NpcWrapperNode/SoliderEntranceCenterNPCRoot
+@onready var SoliderEntrance = $NpcWrapperNode/SoliderEntranceCenterNPCRoot
 
-onready var SoliderDoor = $NpcWrapperNode/SoliderDoorNPCRoot
+@onready var SoliderDoor = $NpcWrapperNode/SoliderDoorNPCRoot
 
-onready var King = $NpcWrapperNode/KingNPCRoot
+@onready var King = $NpcWrapperNode/KingNPCRoot
 # npcs
 
 func _ready():

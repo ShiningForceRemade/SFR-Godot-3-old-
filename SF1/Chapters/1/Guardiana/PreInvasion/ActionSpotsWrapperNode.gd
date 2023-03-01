@@ -53,13 +53,13 @@ func _on_ExitGuardianaArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene outside Guardiana")
 		Singleton_Game_GlobalCommonVariables.position_location_st = "Overworld_Guardiana_Castle"
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Battle2/Overworld.tscn")
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Battle2/Overworld.tscn")
 
 
 func _on_KingsCastleEntranceArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene Guardiana Kings Castle")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
 
 
 func _on_FamilyHouseEntranceArea2D_body_entered(body):
@@ -116,7 +116,7 @@ func _on_TownGuardExitCheckArea2D_body_entered(body):
 				for i in 3:
 					guard_left_node.tester__move_in_direction("Right")
 					guard_right_node.tester__move_in_direction("Left")
-					yield(get_tree().create_timer(0.1), "timeout")
+					await get_tree().create_timer(0.1).timeout
 				
 				guard_left_node.change_facing_direction_string("UpMovement")
 				guard_right_node.change_facing_direction_string("UpMovement")
@@ -134,7 +134,7 @@ func _on_TownGuardExitCheckArea2D_body_entered(body):
 				for i in 2:
 					guard_left_node.tester__move_in_direction("Right")
 					guard_right_node.tester__move_in_direction("Left")
-					yield(get_tree().create_timer(0.1), "timeout")
+					await get_tree().create_timer(0.1).timeout
 				
 				guard_left_node.change_facing_direction_string("UpMovement")
 				guard_right_node.change_facing_direction_string("UpMovement")
@@ -155,18 +155,18 @@ func _on_TrolleyActionSpotArea2D_body_entered(body):
 			trolley_man_node.set_movement_speed_timer(0.1)
 			
 			trolley_node.tester__move_in_direction("Left")
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 	
 			trolley_node.tester__move_in_direction("Left")
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 	
 			trolley_node.tester__move_in_direction("Left")
 			trolley_man_node.tester__move_in_direction("Down")
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			
 			trolley_node.tester__move_in_direction("Left")
 			trolley_man_node.tester__move_in_direction("Down")
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			
 			trolley_node.reset_movement_speed_timer()
 			trolley_man_node.reset_movement_speed_timer()
@@ -194,20 +194,20 @@ func _on_VariosArea2D_body_entered(body):
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/VariosOpening2.json"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 			
-			yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+			await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
 			
 			for i in 5:
 				guard.tester__move_in_direction("Left")
-				yield(guard.tween, "tween_completed")
+				await guard.tween.finished
 			for i in 4:
 				guard.tester__move_in_direction("Down")
-				yield(guard.tween, "tween_completed")
+				await guard.tween.finished
 			
 			Singleton_Game_GlobalCommonVariables.main_character_player_node.MoveInDirection("Down")
 			guard.tester__move_in_direction("Down")
-			yield(guard.tween, "tween_completed")
+			await guard.tween.finished
 			
 			guard.change_facing_direction_string("LeftMovement")
 			Singleton_Game_GlobalCommonVariables.main_character_player_node.change_facing_direction_string("UpMovement")
@@ -216,20 +216,20 @@ func _on_VariosArea2D_body_entered(body):
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/VariosOpening3.json"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 			
-			yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+			await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 			
 			guard.tester__move_in_direction("Up")
 			varios.tester__move_in_direction("Right")
-			# yield(guard.tween, "tween_completed")
-			yield(varios.tween, "tween_completed")
+			# await guard.tween.finished
+			await varios.tween.finished
 			
 			# for i in 4:
 			for i in 6:
 				guard.tester__move_in_direction("Up")
 				varios.tester__move_in_direction("Up")
-				# yield(guard.tween, "tween_completed")
-				yield(varios.tween, "tween_completed")
+				# await guard.tween.finished
+				await varios.tween.finished
 			
 			# pn.VariosRoot.queue_free()
 			# pn.GuardRoot.queue_free()
@@ -250,22 +250,22 @@ func _on_LoweTalkSpotArea2D_body_entered(body):
 			lowe.set_movement_speed_timer(0.15)
 	
 			lowe.tester__move_in_direction("Left")
-			yield(lowe.tween, "tween_completed")
+			await lowe.tween.finished
 			lowe.tester__move_in_direction("Left")
-			yield(lowe.tween, "tween_completed")
+			await lowe.tween.finished
 			lowe.tester__move_in_direction("Down")
-			yield(lowe.tween, "tween_completed")
+			await lowe.tween.finished
 			lowe.tester__move_in_direction("Left")
-			yield(lowe.tween, "tween_completed")
+			await lowe.tween.finished
 			lowe.tester__move_in_direction("Left")
-			yield(lowe.tween, "tween_completed")
+			await lowe.tween.finished
 			
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 			# Singleton_Game_GlobalCommonVariables.interaction_node_reference = self
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/LoweOpening.json"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 			
-			yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+			await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 			Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 			
 			Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.spoken_to_lowe = true
@@ -302,13 +302,13 @@ func _on_ForceJoinsArea2D_body_entered(body):
 				ken.tester__move_in_direction("Down")
 				tao.tester__move_in_direction("Down")
 				hans.tester__move_in_direction("Down")
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 			
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/InitialForceJoinsPart1.json"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 			
-			yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+			await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
 			
@@ -317,36 +317,36 @@ func _on_ForceJoinsArea2D_body_entered(body):
 				ken.tester__move_in_direction("Up")
 				tao.tester__move_in_direction("Up")
 				hans.tester__move_in_direction("Up")
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 			
 			for i in 14:
 				lowe.tester__move_in_direction("Down")
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 			
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/InitialForceJoinsPart2.json"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 			
-			yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+			await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
 			
 			for i in 16:
 				nova.tester__move_in_direction("Down")
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 			
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/InitialForceJoinsPart3.json"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 			
-			yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+			await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 			Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
 			
 			for i in 16:
 				nova.tester__move_in_direction("Up")
 				lowe.tester__move_in_direction("Up")
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 			
 			var fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.LUKE
 			Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true

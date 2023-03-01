@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var itemInfoNode = preload("res://General/BattleViewSelectedActorInfo/Item/ItemMicroView.tscn")
-onready var spellInfoNode = preload("res://General/BattleViewSelectedActorInfo/Spell/SpellMicroView.tscn")
+@onready var itemInfoNode = preload("res://General/BattleViewSelectedActorInfo/Item/ItemMicroView.tscn")
+@onready var spellInfoNode = preload("res://General/BattleViewSelectedActorInfo/Spell/SpellMicroView.tscn")
 
 var battle_view_selected_actor_info_menu_active: bool = false
 
@@ -49,7 +49,7 @@ func _input(event):
 			
 			get_parent().get_parent().s_hide_battle_view_selected_actor_info_menu()
 			
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			# re-act cursor through global ref to it
 			Singleton_Game_GlobalBattleVariables.cursor_root_ref.active = true
 			
@@ -121,7 +121,7 @@ func display_actor_info(actor) -> void:
 		$StatNinePatchRect/InventoryVBoxContainer.show()
 		
 		for n in range(inventory_item_size):
-			var itemInfoN = itemInfoNode.instance()
+			var itemInfoN = itemInfoNode.instantiate()
 			itemInfoN.init_item_micro_info(actor.inventory_items_id[n].texture, actor.inventory_items_id[n].item_name, actor.is_item_equipped[n])
 			$StatNinePatchRect/InventoryVBoxContainer.add_child(itemInfoN)
 	
@@ -137,6 +137,6 @@ func display_actor_info(actor) -> void:
 		$StatNinePatchRect/SpellsVBoxContainer.show()
 		
 		for n in range(spells_size):
-			var spellInfoN = spellInfoNode.instance()
+			var spellInfoN = spellInfoNode.instantiate()
 			spellInfoN.init_spell_micro_info(actor.spells_id[n])
 			$StatNinePatchRect/SpellsVBoxContainer.add_child(spellInfoN)

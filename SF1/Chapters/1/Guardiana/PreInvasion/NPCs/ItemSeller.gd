@@ -1,11 +1,11 @@
 extends Node2D
 
-export(Array, Resource) var ITEM_LIST
+@export var ITEM_LIST: Array # (Array, Resource)
 
 var stationary
 var facing_direction
 
-onready var npcBaseRoot = get_child(0)
+@onready var npcBaseRoot = get_child(0)
 
 func _ready():
 	stationary = npcBaseRoot.stationary

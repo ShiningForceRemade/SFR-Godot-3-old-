@@ -16,8 +16,8 @@ func _on_ExitArea2D_body_entered(body) -> void:
 		match Singleton_Game_GlobalCommonVariables.position_location_st:
 			"Alterone-Castle-Basement__HQ":
 				print("Change Scene Alterone Town HQ Entrance")
-				Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
+				Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
 			
 			_:
 				print("Change Scene Guardiana Kings Castle HQ Entrance")
-				Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
+				Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")

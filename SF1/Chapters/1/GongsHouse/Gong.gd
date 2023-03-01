@@ -4,7 +4,7 @@ var stationary
 var facing_direction
 var interacting: bool = false
 
-onready var npcBaseRoot = get_child(0)
+@onready var npcBaseRoot = get_child(0)
 
 func _ready():
 	stationary = npcBaseRoot.stationary
@@ -30,7 +30,7 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/GongsHouse/Scripts/Gong.json"
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 	
-	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+	await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 	
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 	interacting = false
@@ -46,7 +46,7 @@ func interaction_completed() -> void:
 	gong.set_movement_speed_timer(0.15)
 	
 	gong.tester__move_in_direction("Down")
-	yield(gong.tween, "tween_completed")
+	await gong.tween.finished
 	
 	var fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.GONG
 	Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
@@ -57,19 +57,19 @@ func interaction_completed() -> void:
 	
 	for i in 4:
 		gong.tester__move_in_direction("Down")
-		yield(gong.tween, "tween_completed")
+		await gong.tween.finished
 	for i in 4:
 		gong.tester__move_in_direction("Right")
-		yield(gong.tween, "tween_completed")
+		await gong.tween.finished
 	for i in 4:
 		gong.tester__move_in_direction("Down")
-		yield(gong.tween, "tween_completed")
+		await gong.tween.finished
 	
 	for i in 5:
 		gong.tester__move_in_direction("Left")
-		yield(gong.tween, "tween_completed")
+		await gong.tween.finished
 		gong.tester__move_in_direction("Down")
-		yield(gong.tween, "tween_completed")
+		await gong.tween.finished
 		
 	gong.tester__move_in_direction("Down")
-	yield(gong.tween, "tween_completed")
+	await gong.tween.finished

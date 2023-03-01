@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png" type="Texture" id=1]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png" type="Texture2D" id=1]
 [ext_resource path="res://SF1/Spells/Heal/Heal.tres" type="Resource" id=2]
 [ext_resource path="res://SF1/Characters/Lowe/BattleAnimations/BattleAnimations.tres" type="Resource" id=3]
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=6]
+[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture2D" id=6]
 [ext_resource path="res://SF1/Characters/Gong/Gong.gd" type="Script" id=7]
 
 [node name="GongRoot" type="Node2D"]
@@ -30,7 +30,7 @@ critical_hit_chance = 2
 ai_target_priority = 25
 battle_animation_unpromoted_resource = ExtResource( 3 )
 
-[node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="CharacterRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 6 )
 hframes = 6
 region_enabled = true

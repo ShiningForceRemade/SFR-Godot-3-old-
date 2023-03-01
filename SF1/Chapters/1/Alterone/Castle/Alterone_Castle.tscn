@@ -7,14 +7,14 @@
 [ext_resource path="res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.gd" type="Script" id=5]
 [ext_resource path="res://SF1/TileSet_Resources/Original/0.tres" type="TileSet" id=6]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/SF1/NPC/Soldier.png" type="Texture" id=8]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Arthur/Promoted_Map_Sprites.png" type="Texture" id=9]
-[ext_resource path="res://Assets/SF1/NPC/King Guardiana.png" type="Texture" id=10]
-[ext_resource path="res://Assets/SF1/NPC/Adviser.png" type="Texture" id=11]
-[ext_resource path="res://Assets/SF1/NPC/Woman_Blonde_GreenDress.png" type="Texture" id=12]
-[ext_resource path="res://Assets/SF1/NPC/Man_Merchant_Blue.png" type="Texture" id=13]
-[ext_resource path="res://Assets/SF1/NPC/Woman_Purplette.png" type="Texture" id=14]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Map_Sprites.png" type="Texture" id=15]
+[ext_resource path="res://Assets/SF1/NPC/Soldier.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Arthur/Promoted_Map_Sprites.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/SF1/NPC/King Guardiana.png" type="Texture2D" id=10]
+[ext_resource path="res://Assets/SF1/NPC/Adviser.png" type="Texture2D" id=11]
+[ext_resource path="res://Assets/SF1/NPC/Woman_Blonde_GreenDress.png" type="Texture2D" id=12]
+[ext_resource path="res://Assets/SF1/NPC/Man_Merchant_Blue.png" type="Texture2D" id=13]
+[ext_resource path="res://Assets/SF1/NPC/Woman_Purplette.png" type="Texture2D" id=14]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Map_Sprites.png" type="Texture2D" id=15]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Castle/King.gd" type="Script" id=16]
 [ext_resource path="res://SF1/Chapters/1/Alterone/Castle/NPC_Default.gd" type="Script" id=17]
 [ext_resource path="res://SF1/OverworldItems/Doors/Door.tscn" type="PackedScene" id=18]
@@ -34,8 +34,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -46,8 +46,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -63,8 +63,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -75,8 +75,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -92,8 +92,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -104,8 +104,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -120,8 +120,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -132,8 +132,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -149,8 +149,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -161,8 +161,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -178,8 +178,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -190,8 +190,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -207,8 +207,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -219,8 +219,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -235,8 +235,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -247,8 +247,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -264,8 +264,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -276,8 +276,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -293,8 +293,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -305,8 +305,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -322,8 +322,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -334,8 +334,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -350,8 +350,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -362,8 +362,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -379,8 +379,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -391,8 +391,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -408,8 +408,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -420,8 +420,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -437,8 +437,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -449,8 +449,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -465,8 +465,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -477,8 +477,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -494,8 +494,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -506,8 +506,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -523,8 +523,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -535,8 +535,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -552,8 +552,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -564,8 +564,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -580,8 +580,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -592,8 +592,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -609,8 +609,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -621,8 +621,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -638,8 +638,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -650,8 +650,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -667,8 +667,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -679,8 +679,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -695,8 +695,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -707,8 +707,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -724,8 +724,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -736,8 +736,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -753,8 +753,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -765,8 +765,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -782,8 +782,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -794,8 +794,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -810,8 +810,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -822,8 +822,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -839,8 +839,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -851,8 +851,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -868,8 +868,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -880,8 +880,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -897,8 +897,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -909,8 +909,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -925,8 +925,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -937,8 +937,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -954,8 +954,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -966,8 +966,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -983,8 +983,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -995,8 +995,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1012,8 +1012,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1024,8 +1024,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1040,8 +1040,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1052,8 +1052,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1069,8 +1069,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -1081,8 +1081,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1098,8 +1098,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1110,8 +1110,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1127,8 +1127,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1139,8 +1139,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1155,8 +1155,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1167,8 +1167,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1184,8 +1184,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -1196,8 +1196,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1213,8 +1213,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1225,8 +1225,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1242,8 +1242,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1254,8 +1254,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1270,8 +1270,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1282,8 +1282,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1299,8 +1299,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -1311,8 +1311,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1328,8 +1328,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1340,8 +1340,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1357,8 +1357,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1369,8 +1369,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1385,8 +1385,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1397,8 +1397,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1414,8 +1414,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -1426,8 +1426,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1443,8 +1443,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1455,8 +1455,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1472,8 +1472,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1484,8 +1484,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1500,8 +1500,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1512,8 +1512,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1529,8 +1529,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -1541,8 +1541,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1558,8 +1558,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1570,8 +1570,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1587,8 +1587,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1599,8 +1599,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1615,8 +1615,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1627,8 +1627,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1644,8 +1644,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -1656,8 +1656,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1673,8 +1673,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1685,8 +1685,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1702,8 +1702,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1714,8 +1714,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1730,8 +1730,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1742,8 +1742,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1759,8 +1759,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -1771,8 +1771,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1788,8 +1788,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1800,8 +1800,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -1817,8 +1817,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -1829,8 +1829,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -1845,8 +1845,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -1857,131 +1857,131 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=113]
-extents = Vector2( 48, 24 )
+size = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=114]
-extents = Vector2( 12, 228 )
+size = Vector2( 12, 228 )
 
 [sub_resource type="RectangleShape2D" id=115]
-extents = Vector2( 60, 24 )
+size = Vector2( 60, 24 )
 
 [sub_resource type="RectangleShape2D" id=116]
-extents = Vector2( 12, 72 )
+size = Vector2( 12, 72 )
 
 [sub_resource type="RectangleShape2D" id=117]
-extents = Vector2( 240, 24 )
+size = Vector2( 240, 24 )
 
 [sub_resource type="RectangleShape2D" id=118]
-extents = Vector2( 12, 72 )
+size = Vector2( 12, 72 )
 
 [sub_resource type="RectangleShape2D" id=119]
-extents = Vector2( 12, 24 )
+size = Vector2( 12, 24 )
 
 [sub_resource type="RectangleShape2D" id=120]
-extents = Vector2( 48, 24 )
+size = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=121]
-extents = Vector2( 12, 204 )
+size = Vector2( 12, 204 )
 
 [sub_resource type="RectangleShape2D" id=122]
-extents = Vector2( 48, 24 )
+size = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=123]
-extents = Vector2( 48, 36 )
+size = Vector2( 48, 36 )
 
 [sub_resource type="RectangleShape2D" id=124]
-extents = Vector2( 36, 22 )
+size = Vector2( 36, 22 )
 
 [sub_resource type="RectangleShape2D" id=131]
-extents = Vector2( 36, 24 )
+size = Vector2( 36, 24 )
 
 [sub_resource type="RectangleShape2D" id=132]
-extents = Vector2( 60, 60 )
+size = Vector2( 60, 60 )
 
 [sub_resource type="RectangleShape2D" id=133]
-extents = Vector2( 48, 24 )
+size = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=134]
-extents = Vector2( 12, 12 )
+size = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=135]
-extents = Vector2( 60, 24 )
+size = Vector2( 60, 24 )
 
 [sub_resource type="RectangleShape2D" id=214]
-extents = Vector2( 36, 12 )
+size = Vector2( 36, 12 )
 
 [sub_resource type="RectangleShape2D" id=215]
-extents = Vector2( 12, 12 )
+size = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=136]
-extents = Vector2( 24, 24 )
+size = Vector2( 24, 24 )
 
 [sub_resource type="RectangleShape2D" id=137]
-extents = Vector2( 12, 108 )
+size = Vector2( 12, 108 )
 
 [sub_resource type="RectangleShape2D" id=138]
-extents = Vector2( 12, 16 )
+size = Vector2( 12, 16 )
 
 [sub_resource type="RectangleShape2D" id=139]
-extents = Vector2( 36, 12 )
+size = Vector2( 36, 12 )
 
 [sub_resource type="RectangleShape2D" id=140]
-extents = Vector2( 12, 24 )
+size = Vector2( 12, 24 )
 
 [sub_resource type="RectangleShape2D" id=141]
-extents = Vector2( 60, 24 )
+size = Vector2( 60, 24 )
 
 [sub_resource type="RectangleShape2D" id=142]
-extents = Vector2( 36, 12 )
+size = Vector2( 36, 12 )
 
 [sub_resource type="RectangleShape2D" id=143]
-extents = Vector2( 12, 20 )
+size = Vector2( 12, 20 )
 
 [sub_resource type="RectangleShape2D" id=144]
-extents = Vector2( 108, 12 )
+size = Vector2( 108, 12 )
 
 [sub_resource type="RectangleShape2D" id=145]
-extents = Vector2( 24, 8 )
+size = Vector2( 24, 8 )
 
 [sub_resource type="RectangleShape2D" id=146]
-extents = Vector2( 60, 12 )
+size = Vector2( 60, 12 )
 
 [sub_resource type="RectangleShape2D" id=147]
-extents = Vector2( 108, 12 )
+size = Vector2( 108, 12 )
 
 [sub_resource type="RectangleShape2D" id=148]
-extents = Vector2( 12, 20 )
+size = Vector2( 12, 20 )
 
 [sub_resource type="RectangleShape2D" id=125]
-extents = Vector2( 12, 48 )
+size = Vector2( 12, 48 )
 
 [sub_resource type="RectangleShape2D" id=126]
-extents = Vector2( 12, 24 )
+size = Vector2( 12, 24 )
 
 [sub_resource type="RectangleShape2D" id=127]
-extents = Vector2( 12, 36 )
+size = Vector2( 12, 36 )
 
 [sub_resource type="RectangleShape2D" id=128]
-extents = Vector2( 84, 24 )
+size = Vector2( 84, 24 )
 
 [sub_resource type="RectangleShape2D" id=129]
-extents = Vector2( 12, 48 )
+size = Vector2( 12, 48 )
 
 [sub_resource type="RectangleShape2D" id=130]
-extents = Vector2( 12, 72 )
+size = Vector2( 12, 72 )
 
 [sub_resource type="RectangleShape2D" id=149]
-extents = Vector2( 12, 20 )
+size = Vector2( 12, 20 )
 
 [sub_resource type="RectangleShape2D" id=108]
-extents = Vector2( 60, 12.375 )
+size = Vector2( 60, 12.375 )
 
 [node name="AlteroneRoot" type="Node2D"]
 script = ExtResource( 5 )
@@ -2015,31 +2015,31 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CastleEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="CastleEntrancePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 444, 684 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="LeftStaircaseEntrancePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 156, 324 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="SecretPassageEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="SecretPassageEntrancePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 252, 444 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="TopStaircaseEntrancePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 636, 132 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightStaircaseEntrancePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="RightStaircaseEntrancePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 732, 372 )
 __meta__ = {
 "_edit_lock_": true
@@ -2058,7 +2058,7 @@ PostBattle4 = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardsPermissionGran
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderEntranceLeftNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderEntranceLeftNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderEntranceLeftNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2077,7 +2077,7 @@ NoPermission = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard2NoPermission.
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderEntranceCenterNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderEntranceCenterNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderEntranceCenterNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2096,7 +2096,7 @@ NoPermission = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard3NoPermission.
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderEntranceRightNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderEntranceRightNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderEntranceRightNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2114,7 +2114,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardNearWater.jso
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderWaterNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderWaterNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderWaterNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2132,7 +2132,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard4.json"
 [node name="NPCActorRoot" parent="NpcWrapperNode/SoliderBarTableTopNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderBarTableTopNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderBarTableTopNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2151,7 +2151,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Guard5.json"
 stationary = true
 default_facing_direction = 1
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderBarTableRightNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderBarTableRightNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2169,7 +2169,7 @@ script = ExtResource( 17 )
 stationary = true
 default_facing_direction = 3
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderBarNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderBarNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2188,7 +2188,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/GuardAmbush.json"
 stationary = true
 default_facing_direction = 1
 
-[node name="Sprite" parent="NpcWrapperNode/SoliderDoorNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/SoliderDoorNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 8 )
 hframes = 6
 
@@ -2207,7 +2207,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Knight1.json"
 stationary = true
 default_facing_direction = 1
 
-[node name="Sprite" parent="NpcWrapperNode/GuardRightNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/GuardRightNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 9 )
 hframes = 6
 
@@ -2226,7 +2226,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Knight2.json"
 stationary = true
 default_facing_direction = 2
 
-[node name="Sprite" parent="NpcWrapperNode/GuardLeftNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/GuardLeftNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 9 )
 hframes = 6
 
@@ -2243,7 +2243,7 @@ script = ExtResource( 16 )
 [node name="NPCActorRoot" parent="NpcWrapperNode/KingNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/KingNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/KingNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 10 )
 hframes = 6
 
@@ -2261,7 +2261,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Minister.json"
 [node name="NPCActorRoot" parent="NpcWrapperNode/MinisterNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/MinisterNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/MinisterNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 11 )
 hframes = 6
 
@@ -2279,7 +2279,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/WomanBlonde.json"
 [node name="NPCActorRoot" parent="NpcWrapperNode/WomanGreenDressNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/WomanGreenDressNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/WomanGreenDressNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 12 )
 hframes = 6
 
@@ -2297,7 +2297,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/KhrisRelative.json
 [node name="NPCActorRoot" parent="NpcWrapperNode/KhrisRelativeNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/KhrisRelativeNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/KhrisRelativeNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 14 )
 hframes = 6
 
@@ -2315,7 +2315,7 @@ DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/Khris.json"
 [node name="NPCActorRoot" parent="NpcWrapperNode/KhrisNPCRoot" index="0"]
 stationary = true
 
-[node name="Sprite" parent="NpcWrapperNode/KhrisNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/KhrisNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 15 )
 hframes = 6
 
@@ -2330,7 +2330,7 @@ position = Vector2( 612, 348 )
 script = ExtResource( 17 )
 DefaultScript = "res://SF1/Chapters/1/Alterone/Castle/Scripts/BarOwner.json"
 
-[node name="Sprite" parent="NpcWrapperNode/ManBarOwnerNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/ManBarOwnerNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 13 )
 hframes = 6
 
@@ -2349,19 +2349,19 @@ position = Vector2( 512, 376 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
-rotating = true
+ignore_rotation =true # reversed "rotating" for Camera2D
 current = true
 process_mode = 0
 limit_left = 0
 limit_top = 0
 limit_right = 888
 limit_bottom = 816
-smoothing_enabled = true
-smoothing_speed = 16.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
+follow_smoothing_enabled = true
+position_smoothing_speed = 16.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource( 4 )
 __meta__ = {
@@ -2762,7 +2762,7 @@ tile_set = ExtResource( 6 )
 cell_size = Vector2( 4, 4 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
-tile_data = PoolIntArray( -12386389, 0, 1048578, -12386388, 0, 1048579, -12386387, 0, 1048578, -12386386, 0, 1048579, -12386385, 0, 1048578, -12386384, 0, 1048579, -12320853, 0, 1114114, -12320852, 0, 1114115, -12320851, 0, 1114114, -12320850, 0, 1114115, -12320849, 0, 1114114, -12320848, 0, 1114115, -12255317, 1073741824, 1114114, -12255316, 1073741824, 1114115, -12255315, 1073741824, 1114114, -12255314, 1073741824, 1114115, -12255313, 1073741824, 1114114, -12255312, 1073741824, 1114115, -12189781, 1073741824, 1048578, -12189780, 1073741824, 1048579, -12189779, 1073741824, 1048578, -12189778, 1073741824, 1048579, -12189777, 1073741824, 1048578, -12189776, 1073741824, 1048579, -11600053, 0, 1048578, -11600052, 0, 1048579, -11600051, 0, 1048578, -11600050, 0, 1048579, -11600049, 0, 1048578, -11600048, 0, 1048579, -11665385, 0, 1048578, -11665384, 0, 1048579, -11665383, 0, 1048578, -11665382, 0, 1048579, -11665381, 0, 1048578, -11665380, 0, 1048579, -11665289, 0, 1048578, -11665288, 0, 1048579, -11665287, 0, 1048578, -11665286, 0, 1048579, -11665285, 0, 1048578, -11665284, 0, 1048579, -11534517, 0, 1114114, -11534516, 0, 1114115, -11534515, 0, 1114114, -11534514, 0, 1114115, -11534513, 0, 1114114, -11534512, 0, 1114115, -11599849, 0, 1114114, -11599848, 0, 1114115, -11599847, 0, 1114114, -11599846, 0, 1114115, -11599845, 0, 1114114, -11599844, 0, 1114115, -11599753, 0, 1114114, -11599752, 0, 1114115, -11599751, 0, 1114114, -11599750, 0, 1114115, -11599749, 0, 1114114, -11599748, 0, 1114115, -11468981, 1073741824, 1114114, -11468980, 1073741824, 1114115, -11468979, 1073741824, 1114114, -11468978, 1073741824, 1114115, -11468977, 1073741824, 1114114, -11468976, 1073741824, 1114115, -11534313, 1073741824, 1114114, -11534312, 1073741824, 1114115, -11534311, 1073741824, 1114114, -11534310, 1073741824, 1114115, -11534309, 1073741824, 1114114, -11534308, 1073741824, 1114115, -11534217, 1073741824, 1114114, -11534216, 1073741824, 1114115, -11534215, 1073741824, 1114114, -11534214, 1073741824, 1114115, -11534213, 1073741824, 1114114, -11534212, 1073741824, 1114115, -11403445, 1073741824, 1048578, -11403444, 1073741824, 1048579, -11403443, 1073741824, 1048578, -11403442, 1073741824, 1048579, -11403441, 1073741824, 1048578, -11403440, 1073741824, 1048579, -11468777, 1073741824, 1048578, -11468776, 1073741824, 1048579, -11468775, 1073741824, 1048578, -11468774, 1073741824, 1048579, -11468773, 1073741824, 1048578, -11468772, 1073741824, 1048579, -11468681, 1073741824, 1048578, -11468680, 1073741824, 1048579, -11468679, 1073741824, 1048578, -11468678, 1073741824, 1048579, -11468677, 1073741824, 1048578, -11468676, 1073741824, 1048579, -8847475, 0, 1048578, -8847474, 0, 1048579, -8847473, 0, 1048578, -8847472, 0, 1048579, -8847471, 0, 1048578, -8847470, 0, 1048579, -8847451, 0, 1048578, -8847450, 0, 1048579, -8847449, 0, 1048578, -8847448, 0, 1048579, -8847447, 0, 1048578, -8847446, 0, 1048579, -8781939, 0, 1114114, -8781938, 0, 1114115, -8781937, 0, 1114114, -8781936, 0, 1114115, -8781935, 0, 1114114, -8781934, 0, 1114115, -8781915, 0, 1114114, -8781914, 0, 1114115, -8781913, 0, 1114114, -8781912, 0, 1114115, -8781911, 0, 1114114, -8781910, 0, 1114115, -8716403, 1073741824, 1114114, -8716402, 1073741824, 1114115, -8716401, 1073741824, 1114114, -8716400, 1073741824, 1114115, -8716399, 1073741824, 1114114, -8716398, 1073741824, 1114115, -8716379, 1073741824, 1114114, -8716378, 1073741824, 1114115, -8716377, 1073741824, 1114114, -8716376, 1073741824, 1114115, -8716375, 1073741824, 1114114, -8716374, 1073741824, 1114115, -8650867, 1073741824, 1048578, -8650866, 1073741824, 1048579, -8650865, 1073741824, 1048578, -8650864, 1073741824, 1048579, -8650863, 1073741824, 1048578, -8650862, 1073741824, 1048579, -8650843, 1073741824, 1048578, -8650842, 1073741824, 1048579, -8650841, 1073741824, 1048578, -8650840, 1073741824, 1048579, -8650839, 1073741824, 1048578, -8650838, 1073741824, 1048579, -7274587, 0, 1048578, -7274586, 0, 1048579, -7274585, 0, 1048578, -7274584, 0, 1048579, -7274583, 0, 1048578, -7274582, 0, 1048579, -7209051, 0, 1114114, -7209050, 0, 1114115, -7209049, 0, 1114114, -7209048, 0, 1114115, -7209047, 0, 1114114, -7209046, 0, 1114115, -7143515, 1073741824, 1114114, -7143514, 1073741824, 1114115, -7143513, 1073741824, 1114114, -7143512, 1073741824, 1114115, -7143511, 1073741824, 1114114, -7143510, 1073741824, 1114115, -7077979, 1073741824, 1048578, -7077978, 1073741824, 1048579, -7077977, 1073741824, 1048578, -7077976, 1073741824, 1048579, -7077975, 1073741824, 1048578, -7077974, 1073741824, 1048579 )
+tile_data = PackedInt32Array( -12386389, 0, 1048578, -12386388, 0, 1048579, -12386387, 0, 1048578, -12386386, 0, 1048579, -12386385, 0, 1048578, -12386384, 0, 1048579, -12320853, 0, 1114114, -12320852, 0, 1114115, -12320851, 0, 1114114, -12320850, 0, 1114115, -12320849, 0, 1114114, -12320848, 0, 1114115, -12255317, 1073741824, 1114114, -12255316, 1073741824, 1114115, -12255315, 1073741824, 1114114, -12255314, 1073741824, 1114115, -12255313, 1073741824, 1114114, -12255312, 1073741824, 1114115, -12189781, 1073741824, 1048578, -12189780, 1073741824, 1048579, -12189779, 1073741824, 1048578, -12189778, 1073741824, 1048579, -12189777, 1073741824, 1048578, -12189776, 1073741824, 1048579, -11600053, 0, 1048578, -11600052, 0, 1048579, -11600051, 0, 1048578, -11600050, 0, 1048579, -11600049, 0, 1048578, -11600048, 0, 1048579, -11665385, 0, 1048578, -11665384, 0, 1048579, -11665383, 0, 1048578, -11665382, 0, 1048579, -11665381, 0, 1048578, -11665380, 0, 1048579, -11665289, 0, 1048578, -11665288, 0, 1048579, -11665287, 0, 1048578, -11665286, 0, 1048579, -11665285, 0, 1048578, -11665284, 0, 1048579, -11534517, 0, 1114114, -11534516, 0, 1114115, -11534515, 0, 1114114, -11534514, 0, 1114115, -11534513, 0, 1114114, -11534512, 0, 1114115, -11599849, 0, 1114114, -11599848, 0, 1114115, -11599847, 0, 1114114, -11599846, 0, 1114115, -11599845, 0, 1114114, -11599844, 0, 1114115, -11599753, 0, 1114114, -11599752, 0, 1114115, -11599751, 0, 1114114, -11599750, 0, 1114115, -11599749, 0, 1114114, -11599748, 0, 1114115, -11468981, 1073741824, 1114114, -11468980, 1073741824, 1114115, -11468979, 1073741824, 1114114, -11468978, 1073741824, 1114115, -11468977, 1073741824, 1114114, -11468976, 1073741824, 1114115, -11534313, 1073741824, 1114114, -11534312, 1073741824, 1114115, -11534311, 1073741824, 1114114, -11534310, 1073741824, 1114115, -11534309, 1073741824, 1114114, -11534308, 1073741824, 1114115, -11534217, 1073741824, 1114114, -11534216, 1073741824, 1114115, -11534215, 1073741824, 1114114, -11534214, 1073741824, 1114115, -11534213, 1073741824, 1114114, -11534212, 1073741824, 1114115, -11403445, 1073741824, 1048578, -11403444, 1073741824, 1048579, -11403443, 1073741824, 1048578, -11403442, 1073741824, 1048579, -11403441, 1073741824, 1048578, -11403440, 1073741824, 1048579, -11468777, 1073741824, 1048578, -11468776, 1073741824, 1048579, -11468775, 1073741824, 1048578, -11468774, 1073741824, 1048579, -11468773, 1073741824, 1048578, -11468772, 1073741824, 1048579, -11468681, 1073741824, 1048578, -11468680, 1073741824, 1048579, -11468679, 1073741824, 1048578, -11468678, 1073741824, 1048579, -11468677, 1073741824, 1048578, -11468676, 1073741824, 1048579, -8847475, 0, 1048578, -8847474, 0, 1048579, -8847473, 0, 1048578, -8847472, 0, 1048579, -8847471, 0, 1048578, -8847470, 0, 1048579, -8847451, 0, 1048578, -8847450, 0, 1048579, -8847449, 0, 1048578, -8847448, 0, 1048579, -8847447, 0, 1048578, -8847446, 0, 1048579, -8781939, 0, 1114114, -8781938, 0, 1114115, -8781937, 0, 1114114, -8781936, 0, 1114115, -8781935, 0, 1114114, -8781934, 0, 1114115, -8781915, 0, 1114114, -8781914, 0, 1114115, -8781913, 0, 1114114, -8781912, 0, 1114115, -8781911, 0, 1114114, -8781910, 0, 1114115, -8716403, 1073741824, 1114114, -8716402, 1073741824, 1114115, -8716401, 1073741824, 1114114, -8716400, 1073741824, 1114115, -8716399, 1073741824, 1114114, -8716398, 1073741824, 1114115, -8716379, 1073741824, 1114114, -8716378, 1073741824, 1114115, -8716377, 1073741824, 1114114, -8716376, 1073741824, 1114115, -8716375, 1073741824, 1114114, -8716374, 1073741824, 1114115, -8650867, 1073741824, 1048578, -8650866, 1073741824, 1048579, -8650865, 1073741824, 1048578, -8650864, 1073741824, 1048579, -8650863, 1073741824, 1048578, -8650862, 1073741824, 1048579, -8650843, 1073741824, 1048578, -8650842, 1073741824, 1048579, -8650841, 1073741824, 1048578, -8650840, 1073741824, 1048579, -8650839, 1073741824, 1048578, -8650838, 1073741824, 1048579, -7274587, 0, 1048578, -7274586, 0, 1048579, -7274585, 0, 1048578, -7274584, 0, 1048579, -7274583, 0, 1048578, -7274582, 0, 1048579, -7209051, 0, 1114114, -7209050, 0, 1114115, -7209049, 0, 1114114, -7209048, 0, 1114115, -7209047, 0, 1114114, -7209046, 0, 1114115, -7143515, 1073741824, 1114114, -7143514, 1073741824, 1114115, -7143513, 1073741824, 1114114, -7143512, 1073741824, 1114115, -7143511, 1073741824, 1114114, -7143510, 1073741824, 1114115, -7077979, 1073741824, 1048578, -7077978, 1073741824, 1048579, -7077977, 1073741824, 1048578, -7077976, 1073741824, 1048579, -7077975, 1073741824, 1048578, -7077974, 1073741824, 1048579 )
 
 [node name="ActionSpotsWrapperNode" type="Node" parent="."]
 script = ExtResource( 3 )

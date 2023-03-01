@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var redSelection = $RedSelectionBorderRoot
+@onready var redSelection = $RedSelectionBorderRoot
 
 const rs_top_pos    = Vector2(16, 0)
 const rs_left_pos   = Vector2(0, 12)
@@ -19,19 +19,19 @@ var currently_selected_option: int = e_equip_menu_options.UP_OPTION
 
 # onready var animationPlayer = $AnimationPlayer
 
-onready var equip_up_slot_spirte = $EquipSlotUpSprite
-onready var unequip_down_slot_spirte = $UnequipSlotDownSprite
-onready var equip_left_slot_spirte = $EquipSlotLeftSprite
-onready var equip_right_slot_spirte = $EquipSlotRightSprite
+@onready var equip_up_slot_spirte = $EquipSlotUpSprite
+@onready var unequip_down_slot_spirte = $UnequipSlotDownSprite
+@onready var equip_left_slot_spirte = $EquipSlotLeftSprite
+@onready var equip_right_slot_spirte = $EquipSlotRightSprite
 
-onready var typeLabel = $ItemInfoNinePatchRect/TypeNameLabel
-onready var nameLabel = $ItemInfoNinePatchRect/WeaponNameLabel
-onready var equipLabel = $ItemInfoNinePatchRect/EquippedLabel
+@onready var typeLabel = $ItemInfoNinePatchRect/TypeNameLabel
+@onready var nameLabel = $ItemInfoNinePatchRect/WeaponNameLabel
+@onready var equipLabel = $ItemInfoNinePatchRect/EquippedLabel
 
-onready var stat_attack_label = $StatNinePatchRect/StatVBoxContainer/AttackStatLabel
-onready var stat_defense_label = $StatNinePatchRect/StatVBoxContainer/DefenseStatLabel
-onready var stat_move_label = $StatNinePatchRect/StatVBoxContainer/MoveStatLabel
-onready var stat_agility_label = $StatNinePatchRect/StatVBoxContainer/AgilityStatLabel
+@onready var stat_attack_label = $StatNinePatchRect/StatVBoxContainer/AttackStatLabel
+@onready var stat_defense_label = $StatNinePatchRect/StatVBoxContainer/DefenseStatLabel
+@onready var stat_move_label = $StatNinePatchRect/StatVBoxContainer/MoveStatLabel
+@onready var stat_agility_label = $StatNinePatchRect/StatVBoxContainer/AgilityStatLabel
 
 var inventory_items
 var active_char_root
@@ -104,7 +104,7 @@ func _input(event):
 			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
 			# get_parent().get_parent().get_parent().s_show_battle_inventory_menu()
 			# get_parent().get_node("BattleInventoryMenuRoot").set_battle_inventory_menu_active()
@@ -118,7 +118,7 @@ func _input(event):
 			
 			get_parent().get_parent().get_parent().s_hide_battle_equip_menu()
 			
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
 			
 			#if currently_selected_option == e_menu_options.STAY_OPTION:

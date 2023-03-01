@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var TilemapSceneRoot = $AncientsGateTilemap
+@onready var TilemapSceneRoot = $AncientsGateTilemap
 # onready var Walkway = $Walkway
 # onready var Roof = $Roof
 

@@ -1,11 +1,11 @@
 extends Node2D
 
-export var preopend_chest: bool = false
-export var hidden_chest: bool = false
-export var item_resource: Resource 
-export var gold: int = 0
+@export var preopend_chest: bool = false
+@export var hidden_chest: bool = false
+@export var item_resource: Resource 
+@export var gold: int = 0
 
-onready var textureRectNode = $TextureRect
+@onready var textureRectNode = $TextureRect
 
 const TILE_SIZE: int = 24
 

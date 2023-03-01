@@ -3,9 +3,9 @@ extends Control
 var EmptyItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
 var UnequipItemSlotTexture = load("res://Assets/SFCD/Items/UnequipHand.png")
 
-onready var characterStatsPreviewControlNode = $CharacterStatsPreviewControlNode
-onready var redSelectionNode = $RedSelectionBorderRoot
-onready var selectedItemLabel = $SelectedItemLabel
+@onready var characterStatsPreviewControlNode = $CharacterStatsPreviewControlNode
+@onready var redSelectionNode = $RedSelectionBorderRoot
+@onready var selectedItemLabel = $SelectedItemLabel
 
 const ITEM_TEXT_SELECTION_POSITIONS = [
 	Vector2(30, 14),

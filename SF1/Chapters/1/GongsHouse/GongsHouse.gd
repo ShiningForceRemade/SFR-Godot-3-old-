@@ -1,8 +1,8 @@
 extends Node2D
 
-onready var TilemapSceneRoot = $GongsHouseTilemapRoot
-onready var Walkway = $Walkway
-onready var Roof = $Roof
+@onready var TilemapSceneRoot = $GongsHouseTilemapRoot
+@onready var Walkway = $Walkway
+@onready var Roof = $Roof
 
 var using_original_tiles: bool = true
 

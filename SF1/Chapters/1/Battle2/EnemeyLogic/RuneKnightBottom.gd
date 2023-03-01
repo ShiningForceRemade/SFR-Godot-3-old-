@@ -14,15 +14,15 @@ func play_turn(self_arg):
 	if Singleton_Game_GlobalBattleVariables.field_logic_node.turn_number == 1:
 		for _i in range(1):
 			pself.random_move_direction(3)
-			yield(pself, "signal_move_direction_completed")
+			await pself.signal_move_direction_completed
 		
 		for _i in range(4):
 			pself.random_move_direction(1)
-			yield(pself, "signal_move_direction_completed")
+			await pself.signal_move_direction_completed
 		
 		for _i in range(2):
 			pself.random_move_direction(3)
-			yield(pself, "signal_move_direction_completed")
+			await pself.signal_move_direction_completed
 		
 		pself.animationPlayer.play("DownMovement")
 		emit_signal("signal_logic_completed")
@@ -66,7 +66,7 @@ func play_turn(self_arg):
 		for i in range(possible_target_array.size()):
 			# CLEAN: TODO: REFACTOR: IMPORTANT:			
 			attempt_to_find_path(possible_target_array[i])
-			yield(self, "signal_complete_a_path_check")
+			await self.signal_complete_a_path_check
 		
 			res = pself.is_character_actor_within_attack_range()
 			if res != Vector2.ZERO:
@@ -77,10 +77,10 @@ func play_turn(self_arg):
 			
 				#emit_signal("signal_logic_completed")
 				#pself.internal_call_complete()
-				yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_complete_damage_step")
+				await Singleton_Game_GlobalBattleVariables.battle_scene_node.signal_battle_complete_damage_step
 			
 				
-				yield(pself.get_tree().create_timer(0.3), "timeout")
+				await pself.get_tree().create_timer(0.3).timeout
 	
 				emit_signal("signal_logic_completed")
 				pself.internal_call_complete()
@@ -88,7 +88,7 @@ func play_turn(self_arg):
 				return
 	
 	
-	yield(pself.get_tree().create_timer(0.3), "timeout")
+	await pself.get_tree().create_timer(0.3).timeout
 	
 	emit_signal("signal_logic_completed")
 	pself.internal_call_complete()
@@ -100,19 +100,19 @@ func go_to_target(target_node_arg):
 	print(pself.position, " ", target_node_arg.position)
 	
 	astar_connect_walkable_cells(target_node_arg)
-	# yield(self, "signal_complete_a_path_check")
+	# await self.signal_complete_a_path_check
 	
 	# if pself.position.x >= target_node_arg.position.x and pself.position.y <= target_node_arg.position.y:
 		# Top Left and Left Across and Top Down
 	#	pself.random_move_direction(2)
-	#	yield(pself, "signal_move_direction_completed")
+	#	await pself.signal_move_direction_completed
 		
 	#	pass
 	
 	
 	pass
 
-# onready var astar_node = AStar.new()
+# onready var astar_node = AStar3D.new()
 var astar_node
 var map_size
 
@@ -125,7 +125,7 @@ const BASE_LINE_WIDTH = 3.0
 const DRAW_COLOR = Color('#fff')
 
 func astar_connect_walkable_cells(target_node_arg):
-	astar_node = AStar.new()
+	astar_node = AStar3D.new()
 	
 	var mpr = Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation
 	var temp_point_index
@@ -140,7 +140,7 @@ func astar_connect_walkable_cells(target_node_arg):
 	for point in mpr:
 		var point_index = calculate_point_index(point)
 
-		var points_relative = PoolVector2Array([
+		var points_relative = PackedVector2Array([
 			Vector2(point.x + 1, point.y),
 			Vector2(point.x - 1, point.y),
 			Vector2(point.x, point.y + 1),
@@ -157,8 +157,8 @@ func astar_connect_walkable_cells(target_node_arg):
 	pass
 
 func attempt_to_find_path(target_node_arg):
-	var sp = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(pself.position)
-	var ep = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(target_node_arg.position)
+	var sp = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.local_to_map(pself.position)
+	var ep = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.local_to_map(target_node_arg.position)
 	
 	find_path(sp, ep)
 
@@ -218,7 +218,7 @@ func find_path(world_start, world_end):
 	
 	# TODO: add argument to this signal if true target was reachable and attacked
 	# if false do path finding and attack second target and so on
-	yield(pself.get_tree().create_timer(0.01), "timeout")
+	await pself.get_tree().create_timer(0.01).timeout
 	emit_signal("signal_complete_a_path_check")
 	# _draw()
 
@@ -239,22 +239,22 @@ func move_to_point_end_from_path(point_path_arg):
 			print("move left")
 			current_pos.x -= 1
 			pself.random_move_direction(1)
-			yield(pself, "signal_move_direction_completed")
+			await pself.signal_move_direction_completed
 		elif point_path_arg[idx].x > current_pos.x:
 			print("move right")
 			current_pos.x += 1
 			pself.random_move_direction(0)
-			yield(pself, "signal_move_direction_completed")
+			await pself.signal_move_direction_completed
 		elif point_path_arg[idx].y < current_pos.y:
 			print("move top")
 			current_pos.y -= 1
 			pself.random_move_direction(2)
-			yield(pself, "signal_move_direction_completed")
+			await pself.signal_move_direction_completed
 		elif point_path_arg[idx].y > current_pos.y:
 			print("move bottom")
 			current_pos.y += 1
 			pself.random_move_direction(3)
-			yield(pself, "signal_move_direction_completed")
+			await pself.signal_move_direction_completed
 			
 	emit_signal("signal_complete_a_path_check")
 	pass
@@ -262,7 +262,7 @@ func move_to_point_end_from_path(point_path_arg):
 func is_enemey_actor_at_end_tile(end_point) -> bool:
 	var tile_point
 	for enemey_actor in Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children():
-		tile_point = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(enemey_actor.position)
+		tile_point = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.local_to_map(enemey_actor.position)
 		if tile_point == end_point:
 			return true
 			
@@ -280,11 +280,11 @@ func _draw():
 	for index in range(1, len(_point_path)):
 		v = Vector2(_point_path[index].x, _point_path[index].y)
 		var current_point = v + Vector2(12, 12)
-		draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true)
+		draw_line(last_point,current_point,DRAW_COLOR,BASE_LINE_WIDTH)
 		draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
 		last_point = current_point
 		
-	yield(pself, "freeze")
+	await pself.freeze
 	
 	pass
 

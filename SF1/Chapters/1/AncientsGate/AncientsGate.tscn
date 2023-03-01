@@ -7,46 +7,46 @@
 [ext_resource path="res://SF1/Chapters/1/AncientsGate/AncientsGateTilemap.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 12, 104 )
+size = Vector2( 12, 104 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 24, 36.25 )
+size = Vector2( 24, 36.25 )
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 12, 36.25 )
+size = Vector2( 12, 36.25 )
 
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 12, 25.125 )
+size = Vector2( 12, 25.125 )
 
 [sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 12, 119.5 )
+size = Vector2( 12, 119.5 )
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 96, 24 )
+size = Vector2( 96, 24 )
 
 [sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 12, 16 )
+size = Vector2( 12, 16 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 24.5, 36 )
+size = Vector2( 24.5, 36 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 24, 36 )
+size = Vector2( 24, 36 )
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 12, 12 )
+size = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 47.375, 47.625 )
+size = Vector2( 47.375, 47.625 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 45.6875, 47.625 )
+size = Vector2( 45.6875, 47.625 )
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 13.8438, 36.3125 )
+size = Vector2( 13.8438, 36.3125 )
 
 [sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 25.75, 37.25 )
+size = Vector2( 25.75, 37.25 )
 
 [node name="AncientsGateRoot" type="Node2D"]
 script = ExtResource( 2 )
@@ -61,19 +61,19 @@ position = Vector2( 324, 444 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
-rotating = true
+ignore_rotation =true # reversed "rotating" for Camera2D
 current = true
 process_mode = 0
 limit_left = 0
 limit_top = 0
 limit_right = 624
 limit_bottom = 552
-smoothing_enabled = true
-smoothing_speed = 16.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
+follow_smoothing_enabled = true
+position_smoothing_speed = 16.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource( 4 )
 __meta__ = {

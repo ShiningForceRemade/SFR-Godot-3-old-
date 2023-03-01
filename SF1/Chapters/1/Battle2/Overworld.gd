@@ -1,11 +1,11 @@
 extends Node2D
 
 # Player and positions (exits)
-onready var positionsNode = $PositionsNode2D
-onready var playerNode = $PlayerCharacterRoot
+@onready var positionsNode = $PositionsNode2D
+@onready var playerNode = $PlayerCharacterRoot
 
 # hot swapping tiles
-onready var TilemapSceneRoot = $OverworldTilemapNode2D
+@onready var TilemapSceneRoot = $OverworldTilemapNode2D
 
 var using_original_tiles: bool = true
 

@@ -1,6 +1,6 @@
 extends Control
 
-onready var itemTextRedSelection = $ItemTextRedSelectionBorderRoot
+@onready var itemTextRedSelection = $ItemTextRedSelectionBorderRoot
 
 const ITEM_TEXT_SELECTION_POSITIONS = [
 	Vector2(155, 8),

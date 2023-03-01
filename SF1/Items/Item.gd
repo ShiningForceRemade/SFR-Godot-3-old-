@@ -2,11 +2,11 @@ extends Resource
 # NOTE: Base Class for all other SF1 items
 class_name CN_SF1_Item
 
-export var item_name: String
+@export var item_name: String
 
-export var texture: Texture
+@export var texture: Texture2D
 
-export(int, "None", "Characters", "Enemies", "Both") var target_actor_type
+@export var target_actor_type: int # (int, "None", "Characters", "Enemies", "Both")
 
 # ? - attribute that isn't known in sfedit (maybe crit since this seems to be modifiy in the original sf1 chances)
 # YGRT is this yogurt?
@@ -15,20 +15,21 @@ export(int, "None", "Characters", "Enemies", "Both") var target_actor_type
 # to be in the same object group instead of having them as two separate arrays
 
 ## The attributes this item will effect
-export(Array, int, "None", "Attack", "Defense", 
-			"Agility", "Move", 
-			"Critcal", "HP", "MP",
-			"YGRT") var attribute
+@export var attribute: Array[int] 
+# ("None", "Attack", "Defense", 
+#			"Agility", "Move", 
+#			"Critcal", "HP", "MP",
+#			"YGRT")
 
 ## The attribute bonus for the attributes selected above, make sure to match index number on the left side between the two
-export(Array, int) var attribute_bonus
+@export var attribute_bonus: Array[int]
 
 # NOTE: IMPORTANT:
 # Ensures can't be sold dropped or anything else that might lock the game progress
-export var key_item: bool = false
+@export var key_item: bool = false
 
-export var price_buy: int
-export var price_sell: int
+@export var price_buy: int
+@export var price_sell: int
 
 # maybe convert this to a status with a list of options for easy extending
 # export var cursed: bool = false
@@ -36,32 +37,32 @@ export var price_sell: int
 # ? [NONE]
 # export var usage_range: int = 255
 
-# export(int, "None") var use_effect: int = 0
+# export var use_effect: int = 0 # (int, "None")
 
 # ? [1]
 #export var item_range: int = 16
 # 0 stuff like shower cure used on everyone 
 # after 0 normal movement styled targeting
 # should add spell type of target
-# export(int, "0", "1", "2", "3") var item_use_range: int
-export var item_use_range: Resource
-export var item_use_range_path: String
+# export var item_use_range: int # (int, "0", "1", "2", "3")
+@export var item_use_range: Resource
+@export var item_use_range_path: String
 # use on only one person
 # should add cross like blaze 2 and other tpyes of selection combos
-# export(int, "1") var item_use_target_type: int
-export var item_use_target_type: Resource
-export var item_use_target_path: String
+# export var item_use_target_type: int # (int, "1")
+@export var item_use_target_type: Resource
+@export var item_use_target_path: String
 
 # export var attack_effect: int = 0
 
-export var sell_to_deals: bool = false
+@export var sell_to_deals: bool = false
 
 
 # export var cant_drop: bool = false
 
 # weapons rings and armor (TODO: going to use american spelling check for none american spellings later)
 #export var chance_to_crack: bool = false
-export var usable: bool = false
+@export var usable: bool = false
 
 # seems redundant cause of curse
 # export var cannot_unequip: bool = false

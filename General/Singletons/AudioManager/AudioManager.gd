@@ -31,7 +31,7 @@ func _ready():
 	
 # Re-enable this for dialgoue sound-effects P1
 #	dialoguePlayer = AudioStreamPlayer.new() 
-#	dialoguePlayer.connect("finished", self, "_dialogue_on_sfx_finished", [dialoguePlayer])
+#	dialoguePlayer.connect("finished",Callable(self,"_dialogue_on_sfx_finished").bind(dialoguePlayer))
 #	dialoguePlayer.stream = load("res://Assets/SF2/Sounds/SFX/sfx_Dialogue_03.wav")
 #	dialoguePlayer.bus = bus_dialogue_sfx
 #	add_child(dialoguePlayer)
@@ -40,13 +40,13 @@ func _ready():
 		var p = AudioStreamPlayer.new()
 		add_child(p)
 		available_music_p.append(p)
-		p.connect("finished", self, "_music_on_stream_finished", [p])
+		p.connect("finished",Callable(self,"_music_on_stream_finished").bind(p))
 		p.bus = bus_music
 	
 	for i in num_players_alt_music:
 		var p = AudioStreamPlayer.new()
 		
-		p.connect("finished", self, "_music_on_stream_finished", [p])
+		p.connect("finished",Callable(self,"_music_on_stream_finished").bind(p))
 		p.bus = bus_alt_music
 		add_child(p)
 		available_alt_music_p.append(p)
@@ -55,7 +55,7 @@ func _ready():
 		var p = AudioStreamPlayer.new()
 		add_child(p)
 		available_sound_effects_p.append(p)
-		p.connect("finished", self, "_soundeffect_on_stream_finished", [p])
+		p.connect("finished",Callable(self,"_soundeffect_on_stream_finished").bind(p))
 		p.bus = bus_soundeffects
 
 
@@ -92,13 +92,13 @@ func play_music(sound_path) -> void:
 
 
 func pause_all_music() -> void:
-	#f not queue_music_p.empty() and not available_music_p.empty():
+	#f not queue_music_p.is_empty() and not available_music_p.is_empty():
 	for a_m_p in available_music_p:
 		a_m_p.stop()
 
 
 func resume_all_music() -> void:
-	#f not queue_music_p.empty() and not available_music_p.empty():
+	#f not queue_music_p.is_empty() and not available_music_p.is_empty():
 	for a_m_p in available_music_p:
 		a_m_p.play()
 
@@ -130,17 +130,18 @@ func stop_alt_music_n() -> void:
 
 
 func get_runtime_audio_file_data_for_stream(audio_file):
-	var file = File.new()
-	if file.file_exists(audio_file):
+	# var file = File.new()
+	var file = FileAccess.open(audio_file, FileAccess.READ)
+	if file:
 		var stream
-		file.open(audio_file, file.READ)
-		var buffer = file.get_buffer(file.get_len())
+		# file.open(audio_file, file.READ)
+		var buffer = file.get_buffer(file.get_length())
 		stream = AudioStreamMP3.new()
 		
 		# IMPORTANT: NOTE:
 		# Wav file support needs to be tested if wav files are ever loaded dynamically at runtime
-		# stream = AudioStreamSample.new()
-		# stream.format = AudioStreamSample.FORMAT_16_BITS
+		# stream = AudioStreamWAV.new()
+		# stream.format = AudioStreamWAV.FORMAT_16_BITS
 		# stream.stereo = true
 		
 		stream.data = buffer
@@ -156,7 +157,7 @@ func play_sfx(sound_path) -> void:
 
 
 func pause_all_sfx() -> void:
-	if not queue_sound_effects_p.empty() and not available_sound_effects_p.empty():
+	if not queue_sound_effects_p.is_empty() and not available_sound_effects_p.is_empty():
 		for a_s_e_p in available_sound_effects_p:
 			a_s_e_p.stop()
 
@@ -170,12 +171,12 @@ func play(type, sound_path) -> void:
 
 func _process(_delta):
 	# Play a queued sound if any players are available.
-	if not queue_music_p.empty() and not available_music_p.empty():
+	if not queue_music_p.is_empty() and not available_music_p.is_empty():
 		available_music_p[0].stream = load(queue_music_p.pop_front())
 		available_music_p[0].play()
 		available_music_p.pop_front()
 	
-	if not queue_sound_effects_p.empty() and not available_sound_effects_p.empty():
+	if not queue_sound_effects_p.is_empty() and not available_sound_effects_p.is_empty():
 		available_sound_effects_p[0].stream = load(queue_sound_effects_p.pop_front())
 		available_sound_effects_p[0].play()
 		available_sound_effects_p.pop_front()	

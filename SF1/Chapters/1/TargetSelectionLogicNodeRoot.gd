@@ -93,7 +93,7 @@ func _input(event):
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			
 			Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
-			yield(get_tree().create_timer(0.325), "timeout")
+			await get_tree().create_timer(0.325).timeout
 			Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
 			
 			Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
@@ -118,7 +118,7 @@ func _input(event):
 				elif Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().actor_type == "enemey":
 					Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_enemey_actor_attacking()
 			
-			yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
+			await Singleton_Game_GlobalBattleVariables.battle_scene_node.signal_battle_scene_complete
 			
 			print("Complete")
 			
@@ -130,7 +130,7 @@ func _input(event):
 			Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
 			target_range.cleanup_cursor()
 			
-			yield(get_tree().create_timer(0.25), "timeout")
+			await get_tree().create_timer(0.25).timeout
 			
 			Singleton_Game_GlobalBattleVariables.currently_active_character.s_complete_turn()
 			
@@ -155,7 +155,7 @@ func _input(event):
 
 func get_background_foreground_and_stand_for_active_character_and_target(new_pos: Vector2):
 	var f = Singleton_Game_GlobalBattleVariables.tilemap_foreground
-	var tile_id = f.get_cellv(f.world_to_map(new_pos))
+	var tile_id = f.get_cellv(f.local_to_map(new_pos))
 	if tile_id == -1:
 		print("Bug: no foreground tile underneath")
 		return
@@ -164,7 +164,7 @@ func get_background_foreground_and_stand_for_active_character_and_target(new_pos
 	print(foreground_tile_name)
 	
 	var b = Singleton_Game_GlobalBattleVariables.tilemap_background
-	tile_id = b.get_cellv(b.world_to_map(new_pos))
+	tile_id = b.get_cellv(b.local_to_map(new_pos))
 	if tile_id == -1:
 		print("Bug: no background tile underneath")
 		return
@@ -173,7 +173,7 @@ func get_background_foreground_and_stand_for_active_character_and_target(new_pos
 	print(background_tile_name)
 	
 	var s = Singleton_Game_GlobalBattleVariables.tilemap_stand
-	tile_id = s.get_cellv(s.world_to_map(new_pos))
+	tile_id = s.get_cellv(s.local_to_map(new_pos))
 	if tile_id == -1:
 		print("Bug: no stand tile underneath")
 		return
@@ -287,12 +287,12 @@ func setup_magic_use_range_and_target_range_selection(spell_arg) -> void:
 	spell_name_selected = spell_arg.name
 	
 	if spell_arg.name == "Egress":
-		yield(get_tree().create_timer(0.02), "timeout")
+		await get_tree().create_timer(0.02).timeout
 		emit_signal("signal_completed_magic_level_selection_action")
 		return
 #	if spell_arg.name == "Heal":
 #		Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
-#		yield(get_tree().create_timer(0.02), "timeout")
+#		await get_tree().create_timer(0.02).timeout
 #		emit_signal("signal_completed_magic_level_selection_action")
 #		return
 		
@@ -380,7 +380,7 @@ func set_cursor_target_on_first_found_enemey() -> void:
 	
 	target_range.bc_cursor_ref.hide() # cleanup_cursor()
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	await get_tree().create_timer(1.5).timeout
 	
 	# ui_b_key cancel
 	is_target_selection_active = false
@@ -548,7 +548,7 @@ func enemey_actor_attack_setup():
 	print("In Here")
 	
 	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
-	# yield(get_tree().create_timer(0.3), "timeout")
+	# await get_tree().create_timer(0.3).timeout
 	
 	# setup_use_range_and_target_range_selection_enemey_static()
 	
@@ -558,7 +558,7 @@ func enemey_actor_attack_setup():
 	Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro()
 	
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
-	yield(get_tree().create_timer(0.325), "timeout")
+	await get_tree().create_timer(0.325).timeout
 	
 	Singleton_Game_GlobalBattleVariables.camera_node.position_camera_for_battle_scene()
 	
@@ -581,7 +581,7 @@ func enemey_actor_attack_setup():
 	Singleton_Game_AudioManager.stop_music_n()
 	
 	Singleton_Game_GlobalBattleVariables.battle_scene_node.setup_enemey_actor_attacking()
-	yield(Singleton_Game_GlobalBattleVariables.battle_scene_node, "signal_battle_scene_complete")
+	await Singleton_Game_GlobalBattleVariables.battle_scene_node.signal_battle_scene_complete
 	
 	print("Complete")
 	
@@ -592,11 +592,11 @@ func enemey_actor_attack_setup():
 	Singleton_Game_GlobalBattleVariables.battle_base.s_show_land_effect()
 	Singleton_Game_GlobalBattleVariables.field_logic_node.hide_use_target_tiles()
 	
-	yield(get_tree().create_timer(0.45), "timeout")
+	await get_tree().create_timer(0.45).timeout
 	
 	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
-	# yield(get_tree().create_timer(0.5), "timeout")
+	# await get_tree().create_timer(0.5).timeout
 	
 	Singleton_Game_AudioManager.play_music_n("res://Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
 	

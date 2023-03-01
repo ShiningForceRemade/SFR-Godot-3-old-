@@ -3,8 +3,8 @@ extends Node
 const bmc_x: int = 171
 const bmc_y: int = 182
 
-onready var HQMenuRoot = $HQMenuRoot
-onready var HQMenuTween = $HQMenuTween
+@onready var HQMenuRoot = $HQMenuRoot
+@onready var HQMenuTween = create_tween() # $HQMenuTween
 
 func _ready():
 	pass

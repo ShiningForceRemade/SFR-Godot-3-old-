@@ -2,13 +2,13 @@ extends Camera2D
 
 # signal signal_camera_move_complete
 
-# onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/KinematicBody2D")
-onready var playerNode = get_parent().get_node("PlayerCharacterRoot")
+# onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/CharacterBody2D")
+@onready var playerNode = get_parent().get_node("PlayerCharacterRoot")
 # onready var playerNode = get_parent().get_node("Characters/MaxRoot")
 
 # get_node("res://SF1/Character/SmallIsland.tscn")
 
-onready var battleAttackAnimationPlayer = null # get_parent().get_node("BattleAttackAnimationPlayerRoot")
+@onready var battleAttackAnimationPlayer = null # get_parent().get_node("BattleAttackAnimationPlayerRoot")
 
 # onready var displayInfoControl = get_parent().get_node("DisplayInfoControl")
 
@@ -23,10 +23,14 @@ var camera_active_follow: bool = true
 
 func _ready():
 	Singleton_Game_GlobalBattleVariables.camera_node = self
-	zoom = Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom
+	
+	# TODO: fixme
+	# zoom = Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom
+	
+	
 	# position.x = 220
 	# position.y = 160
-	# print("Camera - playernode - ", playerNode)
+	# print("Camera3D - playernode - ", playerNode)
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -34,15 +38,15 @@ func _process(_delta):
 	if !camera_active_follow:
 		return
 	
-	#var p = playerNode.get_child(0).get_node("KinematicBody2D")
+	#var p = playerNode.get_child(0).get_node("CharacterBody2D")
 	#playerNode = p
 	
 	# print(playerNode.position)
 	position.x = playerNode.position.x 
 	position.y = playerNode.position.y #  - 60# + (tile_size * 12)
 	
-	#displayInfoControl.rect_position.x = playerNode.position.x
-	#displayInfoControl.rect_position.y = playerNode.position.y
+	#displayInfoControl.position.x = playerNode.position.x
+	#displayInfoControl.position.y = playerNode.position.y
 	
 	# if position.x < 130:
 	# 	position.x = 130
@@ -69,23 +73,26 @@ func _process(_delta):
 
 func zoom():
 	if Input.is_action_just_released('ui_minus'):
-		zoom.x += 1
-		zoom.y += 1
+		
+		# TODO: fixme
+		# zoom.x += 1
+		# zoom.y += 1
 		
 		Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom = zoom
 		#if zoom.x > 2:
 		#	zoom = Vector2(1.95, 1.95)
-		# stepify(zoom.x, 0.1)
-		# stepify(zoom.y, 0.1)
+		# snapped(zoom.x, 0.1)
+		# snapped(zoom.y, 0.1)
 	if Input.is_action_just_released('ui_plus'):
-		zoom.x -= 1
-		zoom.y -= 1
+		# TODO: fixme
+		# zoom.x -= 1
+		# zoom.y -= 1
 		
 		Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom = zoom
 		#if zoom.x < 1:
 		#	zoom = Vector2(1.0, 1.0)
-		# stepify(zoom.x, 0.1)
-		# stepify(zoom.y, 0.1)
+		# snapped(zoom.x, 0.1)
+		# snapped(zoom.y, 0.1)
 
 
 func rotate_cam():

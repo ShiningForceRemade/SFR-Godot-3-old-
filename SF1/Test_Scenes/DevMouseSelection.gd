@@ -1,7 +1,7 @@
 extends Node2D
 
 #onready var tilemap = get_parent()
-onready var tilemap = get_parent().get_node("TileMap")
+@onready var tilemap = get_parent().get_node("TileMap")
 
 
 func _ready():
@@ -11,11 +11,11 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				# Get which tile is under the mouse
 				var mouse_pos = tilemap.get_local_mouse_position()
-				var cell_pos = tilemap.world_to_map(mouse_pos)
+				var cell_pos = tilemap.local_to_map(mouse_pos)
 				var tile_id = tilemap.get_cellv(cell_pos)
 				
 				var tile_name = tilemap.tile_set.tile_get_name(tile_id)

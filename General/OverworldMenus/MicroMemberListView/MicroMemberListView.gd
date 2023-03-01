@@ -12,15 +12,15 @@ var MemberSelectionLine = load("res://General/OverworldMenus/MicroMemberListView
 var MemberMagicLine = load("res://General/OverworldMenus/MemberListView/MemberMagicLine.tscn")
 var MemberItemLine = load("res://General/OverworldMenus/MemberListView/MemberItemLine.tscn")
 
-onready var ScollbarContainerNode = $StatNinePatchRect2/ScrollContainer
+@onready var ScollbarContainerNode = $StatNinePatchRect2/ScrollContainer
 
-onready var portrait_sprite = $PortraitWrapperNode/PortraitSprite
+@onready var portrait_sprite = $PortraitWrapperNode/PortraitSprite
 
-onready var red_selection = $RedSelectionBorderRoot
+@onready var red_selection = $RedSelectionBorderRoot
 
-onready var flist_vbox_container = $StatNinePatchRect2/ScrollContainer/VBoxContainer
+@onready var flist_vbox_container = $StatNinePatchRect2/ScrollContainer/VBoxContainer
 
-onready var InventoryPreviewRoot = $InventoryPreviewRoot
+@onready var InventoryPreviewRoot = $InventoryPreviewRoot
 
 var current_selection = null
 
@@ -29,8 +29,8 @@ func _ready():
 	var empty_stylebox = StyleBoxEmpty.new()
 	invisible_scrollbar_theme.set_stylebox("scroll", "VScrollBar", empty_stylebox)
 	invisible_scrollbar_theme.set_stylebox("scroll", "HScrollBar", empty_stylebox)
-	ScollbarContainerNode.get_v_scrollbar().theme = invisible_scrollbar_theme
-	ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
+	ScollbarContainerNode.get_v_scroll_bar().theme = invisible_scrollbar_theme
+	ScollbarContainerNode.get_h_scroll_bar().theme = invisible_scrollbar_theme
 	
 	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
 	
@@ -44,7 +44,7 @@ func _ready():
 	# flist_vbox_container.get_node("CharacterWrapperNode/LevelStaticLabel").text = str(c.level)
 	
 	for character in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
-		var CLine = MemberSelectionLine.instance()
+		var CLine = MemberSelectionLine.instantiate()
 		
 		if character.active_in_force:
 			CLine.get_node("ActiveForceStaticLabel").show()
@@ -64,7 +64,7 @@ func _ready():
 	
 	# Remove this if Godot 4 fixes this
 	# fake last item to prevent godot clipping issues
-	var CLine = MemberSelectionLine.instance()
+	var CLine = MemberSelectionLine.instantiate()
 	flist_vbox_container.add_child(CLine)
 	
 	pass
@@ -165,7 +165,7 @@ func _input(event):
 				else:
 					Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
 			
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 				match Singleton_Game_GlobalCommonVariables.action_type:
 					"SHOP_BUY": CompletePurchaseAndGiveItemToSelectedCharacter()
 					
@@ -214,11 +214,11 @@ func _input(event):
 	
 	
 func scroll_container_reset_line() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	ScollbarContainerNode.set_v_scroll(-16)
 
 func scroll_container_wrap_to_bottom() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
 	# NOTE due to the extra control node we need to take away 2 from the total list size to get the 
 	# visible end of list - hopefully this node gets a rework in Godot 4 and this can be cleaned and simplified
@@ -231,7 +231,7 @@ func scroll_container_move_up_line() -> void:
 	scroll_container_set_vertical_scroll(-16)
 
 func scroll_container_set_vertical_scroll(scroll_distance_arg: int) -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	var x = ScollbarContainerNode.scroll_vertical
 	ScollbarContainerNode.set_v_scroll(x + scroll_distance_arg)
 
@@ -342,7 +342,7 @@ func CompletePurchaseAndGiveItemToSelectedCharacter() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("Here you go! Use it in good health, my friend.\nWant anything else?")
 	
 	Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-	var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+	var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 	if result == "NO":
 		active = false
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
@@ -401,7 +401,7 @@ func ConfirmRevieveCharacter() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("Oh, my! " + character.name + " is in bad shape. I can revive them, but it will cost " + str(revive_cost) + " coins.\nAgreed?")
 	
 	Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-	var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+	var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 	if result == "NO":
 		active = true
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
@@ -447,7 +447,7 @@ func ConfirmRevieveCharacter() -> void:
 #	Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable("Here you go! Use it in good health, my friend.\nWant anything else?")
 #
 #	Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-#	var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+#	var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 #	if result == "NO":
 #		active = false
 #		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
@@ -522,7 +522,7 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	if cnode != null:
 		cnode.queue_free()
 	
-	cnode = load(c.character_base_node).instance();
+	cnode = load(c.character_base_node).instantiate();
 	var cnode_actor = cnode.get_actor_root_node_internal()
 	
 	portrait_sprite.texture = cnode_actor.texture_protrait

@@ -1,6 +1,6 @@
 extends Node2D
 
-export var DefaultScript: String = ""
+@export var DefaultScript: String = ""
 #export var PostSpokenToKingScript: String = ""
 #export var PostForceHasJoinedScript: String = ""
 #export var PostInvasionScript: String = ""
@@ -10,8 +10,8 @@ var stationary
 var facing_direction
 var interacting: bool = false
 
-onready var pn = get_parent().get_parent()
-onready var npcBaseRoot = get_child(0)
+@onready var pn = get_parent().get_parent()
+@onready var npcBaseRoot = get_child(0)
 
 func _ready():
 	stationary = npcBaseRoot.stationary
@@ -50,7 +50,7 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = script_path
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 	
-	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+	await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 	
 	if !Singleton_Game_GlobalCommonVariables.sf_game_data_node.c1.spoken_to_kane_alterone:
 		var move_time = 0.125
@@ -59,16 +59,16 @@ func attempt_to_interact() -> void:
 		
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.MoveInDirection("Left")
 		# Singleton_Game_GlobalCommonVariables.main_character_player_node.
-		yield(get_tree().create_timer(move_time), "timeout")
+		await get_tree().create_timer(move_time).timeout
 		
 		for i in 3:
 			npcBaseRoot.tester__move_in_direction("Down")
-			yield(get_tree().create_timer(move_time), "timeout")
+			await get_tree().create_timer(move_time).timeout
 		
 		
 		npcBaseRoot.tester__move_in_direction("Right")
 		pn.SoliderDoor.get_child(0).tester__move_in_direction("Right")
-		yield(get_tree().create_timer(move_time), "timeout")
+		await get_tree().create_timer(move_time).timeout
 		pn.SoliderDoor.get_child(0).change_facing_direction_string("LeftMovement")
 		
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.reset_movement_speed()
@@ -77,14 +77,14 @@ func attempt_to_interact() -> void:
 		
 		for i in 7:
 			npcBaseRoot.tester__move_in_direction("Right")
-			yield(get_tree().create_timer(move_time), "timeout")
+			await get_tree().create_timer(move_time).timeout
 		
 		for i in 6:
 			npcBaseRoot.tester__move_in_direction("Up")
-			yield(get_tree().create_timer(move_time), "timeout")
+			await get_tree().create_timer(move_time).timeout
 		
 		npcBaseRoot.tester__move_in_direction("Right")
-		yield(get_tree().create_timer(move_time), "timeout")
+		await get_tree().create_timer(move_time).timeout
 		
 		npcBaseRoot.queue_free()
 	

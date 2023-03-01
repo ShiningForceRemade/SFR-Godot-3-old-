@@ -1,20 +1,20 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture" id=1]
-[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" type="Texture2D" id=1]
+[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" type="Texture2D" id=2]
 [ext_resource path="res://SF1/Spells/Blaze/Blaze.anim" type="Animation" id=3]
 [ext_resource path="res://SF1/EnemiesAndBosses/Sniper/BattleAnimations/AttackNormal.anim" type="Animation" id=4]
 [ext_resource path="res://General/BattleAttackAnimationPlayer/BattleAttackAnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://SF1/Characters/Hans/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=6]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.tres" type="Resource" id=7]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" type="Texture" id=8]
-[ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture" id=9]
-[ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture" id=10]
-[ext_resource path="res://Shaders/Dissolve.shader" type="Shader" id=12]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/SF1/Weapons/Wooden_Rod.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture2D" id=10]
+[ext_resource path="res://Shaders/Dissolve.gdshader" type="Shader" id=12]
 [ext_resource path="res://SF1/Characters/Lowe/BattleAnimations/Idle.anim" type="Animation" id=13]
 [ext_resource path="res://SF1/Spells/Heal/Heal.anim" type="Animation" id=14]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" type="Texture" id=15]
-[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Sniper/Battle_Sprites.png" type="Texture" id=16]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" type="Texture2D" id=15]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Sniper/Battle_Sprites.png" type="Texture2D" id=16]
 [ext_resource path="res://SF1/EnemiesAndBosses/GiantBat/BattleAnimations/Idle.anim" type="Animation" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -29,8 +29,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.3, 0.6, 1.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 0 ]
 }
@@ -41,8 +41,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.3, 0.6, 1.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Vector2( 228, 80 ), Vector2( 266, 48 ), Vector2( 89, 76 ), Vector2( 228, 80 ) ]
 }
@@ -53,8 +53,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.3, 0.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 1, 1 ]
 }
@@ -65,8 +65,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.9, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.9, 1.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
 }
@@ -77,8 +77,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 254, 100 ) ]
 }
@@ -89,8 +89,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.6, 0.9, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.6, 0.9, 1.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 0, 0 ]
 }
@@ -101,8 +101,8 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.8 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.8 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "internal_signal_attack_frame_reached"
@@ -121,9 +121,9 @@ enemey_actor_animation_res = ExtResource( 7 )
 [node name="EditorHelperToolWrapperNode" type="Node" parent="."]
 
 [node name="TextEdit" type="TextEdit" parent="EditorHelperToolWrapperNode"]
-margin_top = -184.0
-margin_right = 319.0
-margin_bottom = -19.0
+offset_top = -184.0
+offset_right = 319.0
+offset_bottom = -19.0
 text = "To reset the scene back to default for a new 
 animation
 
@@ -138,8 +138,8 @@ __meta__ = {
 }
 
 [node name="BackgroundBlackColorRect" type="ColorRect" parent="."]
-margin_right = 320.0
-margin_bottom = 180.0
+offset_right = 320.0
+offset_bottom = 180.0
 color = Color( 0, 0, 0, 255 )
 __meta__ = {
 "_edit_lock_": true,
@@ -148,7 +148,7 @@ __meta__ = {
 
 [node name="BackgroundWrapper" type="Node2D" parent="."]
 
-[node name="CenterSprite" type="Sprite" parent="BackgroundWrapper"]
+[node name="CenterSprite" type="Sprite2D" parent="BackgroundWrapper"]
 position = Vector2( 128, 90 )
 texture = ExtResource( 1 )
 hframes = 2
@@ -158,7 +158,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightSprite" type="Sprite" parent="BackgroundWrapper"]
+[node name="RightSprite" type="Sprite2D" parent="BackgroundWrapper"]
 position = Vector2( 384, 90 )
 texture = ExtResource( 1 )
 hframes = 2
@@ -168,7 +168,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftSprite" type="Sprite" parent="BackgroundWrapper"]
+[node name="LeftSprite" type="Sprite2D" parent="BackgroundWrapper"]
 position = Vector2( -128, 90 )
 texture = ExtResource( 1 )
 hframes = 2
@@ -182,7 +182,7 @@ __meta__ = {
 
 [node name="ForegroundWrapper" type="Node2D" parent="."]
 
-[node name="CenterSprite" type="Sprite" parent="ForegroundWrapper"]
+[node name="CenterSprite" type="Sprite2D" parent="ForegroundWrapper"]
 position = Vector2( 128, 90 )
 texture = ExtResource( 1 )
 hframes = 2
@@ -193,7 +193,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightSprite" type="Sprite" parent="ForegroundWrapper"]
+[node name="RightSprite" type="Sprite2D" parent="ForegroundWrapper"]
 position = Vector2( 384, 90 )
 texture = ExtResource( 1 )
 hframes = 2
@@ -204,7 +204,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftSprite" type="Sprite" parent="ForegroundWrapper"]
+[node name="LeftSprite" type="Sprite2D" parent="ForegroundWrapper"]
 position = Vector2( -128, 90 )
 texture = ExtResource( 1 )
 hframes = 2
@@ -222,7 +222,7 @@ __meta__ = {
 [node name="SpellWrapper" type="Node2D" parent="CanvasLayerSpellWrapper"]
 visible = false
 
-[node name="Sprite" type="Sprite" parent="CanvasLayerSpellWrapper/SpellWrapper"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayerSpellWrapper/SpellWrapper"]
 visible = false
 position = Vector2( 79, 92 )
 z_index = 1
@@ -237,7 +237,7 @@ anims/Heal = ExtResource( 14 )
 
 [node name="CharacterWrapper" type="Node2D" parent="."]
 
-[node name="GroundSprite" type="Sprite" parent="CharacterWrapper"]
+[node name="GroundSprite" type="Sprite2D" parent="CharacterWrapper"]
 position = Vector2( 240, 134 )
 texture = ExtResource( 2 )
 vframes = 9
@@ -246,14 +246,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CharacterSprite" type="Sprite" parent="CharacterWrapper"]
+[node name="CharacterSprite" type="Sprite2D" parent="CharacterWrapper"]
 material = SubResource( 1 )
 position = Vector2( 240, 92 )
 z_index = 1
 texture = ExtResource( 8 )
 hframes = 4
 
-[node name="WeaponSprite" type="Sprite" parent="CharacterWrapper"]
+[node name="WeaponSprite" type="Sprite2D" parent="CharacterWrapper"]
 position = Vector2( 214, 108 )
 texture = ExtResource( 9 )
 
@@ -267,19 +267,19 @@ anims/Idle = ExtResource( 13 )
 [node name="CharacterTargetWrapper" type="Node2D" parent="."]
 position = Vector2( 160, 0 )
 
-[node name="GroundSprite" type="Sprite" parent="CharacterTargetWrapper"]
+[node name="GroundSprite" type="Sprite2D" parent="CharacterTargetWrapper"]
 position = Vector2( 240, 134 )
 texture = ExtResource( 2 )
 vframes = 9
 frame = 1
 
-[node name="CharacterSprite" type="Sprite" parent="CharacterTargetWrapper"]
+[node name="CharacterSprite" type="Sprite2D" parent="CharacterTargetWrapper"]
 position = Vector2( 254, 100 )
 z_index = 1
 texture = ExtResource( 15 )
 hframes = 3
 
-[node name="WeaponSprite" type="Sprite" parent="CharacterTargetWrapper"]
+[node name="WeaponSprite" type="Sprite2D" parent="CharacterTargetWrapper"]
 position = Vector2( 228, 80 )
 texture = ExtResource( 9 )
 
@@ -290,7 +290,7 @@ anims/AttackNormal = SubResource( 2 )
 
 [node name="EnemeyWrapper" type="Node2D" parent="."]
 
-[node name="EnemeySprite" type="Sprite" parent="EnemeyWrapper"]
+[node name="EnemeySprite" type="Sprite2D" parent="EnemeyWrapper"]
 material = SubResource( 3 )
 position = Vector2( 80, 86 )
 texture = ExtResource( 16 )
@@ -309,8 +309,8 @@ anims/Idle = ExtResource( 17 )
 
 [node name="BlackFadeColorRect" type="ColorRect" parent="CanvasLayer"]
 modulate = Color( 255, 255, 255, 0 )
-margin_right = 320.0
-margin_bottom = 180.0
+offset_right = 320.0
+offset_bottom = 180.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_lock_": true,

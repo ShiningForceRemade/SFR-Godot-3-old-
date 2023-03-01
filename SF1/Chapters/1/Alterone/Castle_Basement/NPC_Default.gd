@@ -1,6 +1,6 @@
 extends "res://SF1/NPC/NPC_Generic_Default_Test.gd"
 
-export var PostBattle4: String = ""
+@export var PostBattle4: String = ""
 
 func attempt_to_interact():
 	var script_path = ""

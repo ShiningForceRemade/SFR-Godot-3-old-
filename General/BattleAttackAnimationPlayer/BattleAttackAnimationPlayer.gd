@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node2D
 
 signal signal_battle_scene_complete
@@ -9,38 +9,38 @@ signal signal_exp_phase_is_over
 signal signal_attack_frame_reached
 signal signal_enemey_attack_frame_reached
 
-export var reset_scene: bool = false setget internal_reset_all_actor_sprites_back_to_default_position
+@export var reset_scene: bool = false : set = internal_reset_all_actor_sprites_back_to_default_position
 
 var rng = RandomNumberGenerator.new()
 
-const shader_color_blend = preload("res://Shaders/ColorBlend.shader")
+const shader_color_blend = preload("res://Shaders/ColorBlend.gdshader")
 
-const shader_dissolve = preload("res://Shaders/Dissolve.shader")
+const shader_dissolve = preload("res://Shaders/Dissolve.gdshader")
 const shader_texture__noise_pixelated = preload("res://Shaders/ShaderTextureImages/NoisePixelated.jpg")
 
-export var character_actor_animation_res: Resource
-export var enemey_actor_animation_res: Resource
+@export var character_actor_animation_res: Resource
+@export var enemey_actor_animation_res: Resource
 
-onready var backgroundTween = $BackgroundTween
-onready var backgroundWrapper = $BackgroundWrapper
-onready var foregroundTween = $ForegroundTween
-onready var foregroundWrapper = $ForegroundWrapper
-onready var groundSprite = $CharacterWrapper/GroundSprite
+@onready var backgroundTween = create_tween()
+@onready var backgroundWrapper = $BackgroundWrapper
+@onready var foregroundTween = create_tween()
+@onready var foregroundWrapper = $ForegroundWrapper
+@onready var groundSprite = $CharacterWrapper/GroundSprite
 
-onready var characterSprite = $CharacterWrapper/CharacterSprite
-onready var weaponSprite = $CharacterWrapper/WeaponSprite
-onready var char_animationPlayer = $CharacterWrapper/AnimationPlayer
-onready var characterWrapperTween = $CharacterWrapperTween
-onready var characterWrapper = $CharacterWrapper
-onready var characterSpriteTween = $CharacterWrapper/CharacterSpriteTween
+@onready var characterSprite = $CharacterWrapper/CharacterSprite
+@onready var weaponSprite = $CharacterWrapper/WeaponSprite
+@onready var char_animationPlayer = $CharacterWrapper/AnimationPlayer
+@onready var characterWrapperTween = create_tween()
+@onready var characterWrapper = $CharacterWrapper
+@onready var characterSpriteTween = create_tween()
 
-onready var enemeySprite = $EnemeyWrapper/EnemeySprite
-onready var enemey_animationPlayer = $EnemeyWrapper/AnimationPlayer
-onready var enemeyWrapperTween = $EnemeyWrapperTween
-onready var enemeyWrapper = $EnemeyWrapper
-onready var enemeySpriteTween = $EnemeyWrapper/EnemeySpriteTween
+@onready var enemeySprite = $EnemeyWrapper/EnemeySprite
+@onready var enemey_animationPlayer = $EnemeyWrapper/AnimationPlayer
+@onready var enemeyWrapperTween = create_tween()
+@onready var enemeyWrapper = $EnemeyWrapper
+@onready var enemeySpriteTween = create_tween()
 
-onready var blackFadeTween = $CanvasLayer/BlackFadeTween
+@onready var blackFadeTween = create_tween()
 
 const ani_name_enemey_idle: String = "Enemey Idle"
 const ani_name_enemey_attack_normal: String = "Enemey Attack Normal"
@@ -56,7 +56,7 @@ var attack_missed = false
 var heal_amount = 0
 
 func _ready():
-	# yield(get_tree().create_timer(1), "timeout")
+	# await get_tree().create_timer(1).timeout
 	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.clear_black_fade()
 	
 	Singleton_Game_GlobalBattleVariables.battle_scene_node = self
@@ -69,20 +69,20 @@ func _ready():
 	# setup_character_and_enemey_sprites_idle()
 	# setup_actor_attacking()
 	
-	char_animationPlayer.connect("animation_finished", self, "s_cleanup_animation")
+	char_animationPlayer.connect("animation_finished",Callable(self,"s_cleanup_animation"))
 	if char_animationPlayer.has_animation("AttackNormal"):
-		char_animationPlayer.remove_animation("AttackNormal")
-	char_animationPlayer.remove_animation("Idle")
+		char_animationPlayer.remove_animation_library("AttackNormal")
+	char_animationPlayer.remove_animation_library("Idle")
 	
-	enemey_animationPlayer.connect("animation_finished", self, "s_cleanup_animation_enemy")
+	enemey_animationPlayer.connect("animation_finished",Callable(self,"s_cleanup_animation_enemy"))
 	
-	var _res_s_atr = self.connect("signal_attack_frame_reached", self, "s_update_ui_and_animate_damage_phase")
-	var _res_s_eafr = self.connect("signal_enemey_attack_frame_reached", self, "s_update_ui_and_animate_damage_enemey_phase")
+	var _res_s_atr = self.connect("signal_attack_frame_reached",Callable(self,"s_update_ui_and_animate_damage_phase"))
+	var _res_s_eafr = self.connect("signal_enemey_attack_frame_reached",Callable(self,"s_update_ui_and_animate_damage_enemey_phase"))
 	# internal_signal_enemey_attack_frame_reached()
 	# black_fade_anim_in()
 	
-	enemeySpriteTween.connect("tween_completed", self, "s_enemey_tween_completed")
-	blackFadeTween.connect("tween_completed", self, "s_cleanup_black_fade_tween")
+	enemeySpriteTween.connect("finished",Callable(self,"s_enemey_tween_completed"))
+	blackFadeTween.connect("finished",Callable(self,"s_cleanup_black_fade_tween"))
 	
 	internal_reset_all_actor_sprites_back_to_default_position()
 	
@@ -191,31 +191,31 @@ func setup_actor_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = true
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
-	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
+	enemeySprite.material.set_shader_parameter("dissolve_effect_amount", 0)
 	enemeySprite.show()
-	characterSprite.material.set_shader_param("dissolve_effect_amount", 0)
+	characterSprite.material.set_shader_parameter("dissolve_effect_amount", 0)
 	characterSprite.show()
 	characterWrapper.show()
 	
 	setup_sprite_textures()
 	move_wrappers_into_position()
 	
-	yield(get_tree().create_timer(0.15), "timeout")
+	await get_tree().create_timer(0.15).timeout
 	
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
-	yield(get_tree().create_timer(0.325), "timeout")
+	await get_tree().create_timer(0.325).timeout
 	
 	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
-	yield(get_tree().create_timer(0.75), "timeout")
+	await get_tree().create_timer(0.75).timeout
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	await get_tree().create_timer(1.5).timeout
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
 	setup_attacking_animation()
 	
@@ -232,9 +232,9 @@ func setup_enemey_actor_attacking() -> void:
 	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
-	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
+	enemeySprite.material.set_shader_parameter("dissolve_effect_amount", 0)
 	enemeySprite.show()
-	characterSprite.material.set_shader_param("dissolve_effect_amount", 0)
+	characterSprite.material.set_shader_parameter("dissolve_effect_amount", 0)
 	characterSprite.show()
 	characterWrapper.show()
 	
@@ -242,21 +242,21 @@ func setup_enemey_actor_attacking() -> void:
 	# setup_sprite_textures()
 	move_wrappers_into_position()
 	
-	yield(get_tree().create_timer(0.15), "timeout")
+	await get_tree().create_timer(0.15).timeout
 	
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
-	yield(get_tree().create_timer(0.325), "timeout")
+	await get_tree().create_timer(0.325).timeout
 	
 	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	yield(get_tree().create_timer(0.75), "timeout")
+	await get_tree().create_timer(0.75).timeout
 	
 	# load text box saying x is attacking or doing y to z
 	print_who_is_attacking()
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	await get_tree().create_timer(1.5).timeout
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
 	setup_enemey_attacking_animation()
 	
@@ -267,58 +267,58 @@ func setup_enemey_actor_attacking() -> void:
 func setup_spell_usage() -> void:
 	using_spell = true
 	
-	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.remove_animation("Character Spell")
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.remove_animation_library("Character Spell")
 	
-	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.position = Vector2(-180, -180)
+	$CanvasLayerSpellWrapper/SpellWrapper/Sprite2D.position = Vector2(-180, -180)
 	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = true
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
-	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
+	enemeySprite.material.set_shader_parameter("dissolve_effect_amount", 0)
 	enemeySprite.show()
-	characterSprite.material.set_shader_param("dissolve_effect_amount", 0)
+	characterSprite.material.set_shader_parameter("dissolve_effect_amount", 0)
 	characterSprite.show()
 	characterWrapper.show()
 	
 	setup_sprite_textures()
 	move_wrappers_into_position()
 	
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	
-	yield(get_tree().create_timer(0.325), "timeout")
+	await get_tree().create_timer(0.325).timeout
 	
 	Singleton_Game_AudioManager.play_alt_music_n(Singleton_Dev_Internal.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
 	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	# load text box saying x is attacking or doing y to z
 	# print_who_is_attacking()
 	
 	print_spell_usage()
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	await get_tree().create_timer(1.5).timeout
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
 	setup_spell_animation()
 
 
 func s_cleanup_animation(animation_name_arg) -> void:
 	print("Animation Name - ", animation_name_arg)
-	yield(self, "signal_battle_complete_damage_step")
+	await self.signal_battle_complete_damage_step
 	
-	char_animationPlayer.remove_animation(ani_name_character_attack_normal)
-	# char_animationPlayer.remove_animation(ani_name_character_idle)
+	char_animationPlayer.remove_animation_library(ani_name_character_attack_normal)
+	# char_animationPlayer.remove_animation_library(ani_name_character_idle)
 	
 	cleanup_battle_scene_completed()
 
 
 func s_cleanup_animation_enemy(animation_name_arg) -> void:
 	print("Animation Name - ", animation_name_arg)
-	yield(self, "signal_battle_complete_damage_step")
+	await self.signal_battle_complete_damage_step
 	
-	# char_animationPlayer.remove_animation(ani_name_character_attack_normal)
-	# char_animationPlayer.remove_animation(ani_name_character_idle)
+	# char_animationPlayer.remove_animation_library(ani_name_character_attack_normal)
+	# char_animationPlayer.remove_animation_library(ani_name_character_idle)
 	
 	cleanup_battle_scene_completed()
 
@@ -352,7 +352,7 @@ func s_update_ui_and_animate_damage_phase() -> void:
 	
 	calculate_damage_step()
 	
-	yield(self, "signal_battle_complete_damage_step")
+	await self.signal_battle_complete_damage_step
 
 
 func s_update_ui_and_animate_damage_enemey_phase() -> void:
@@ -360,7 +360,7 @@ func s_update_ui_and_animate_damage_enemey_phase() -> void:
 	
 	calculate_damage_step_enemey_attacking()
 	
-	yield(self, "signal_battle_complete_damage_step")
+	await self.signal_battle_complete_damage_step
 
 func calculate_damage_step() -> void:
 	var enemeyRoot = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("EnemeyRoot")
@@ -372,7 +372,7 @@ func calculate_damage_step() -> void:
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/CriticalSound.wav")
 		is_critical_hit = true
 		# char_animationPlayer.stop(false)
-		# yield(get_tree().create_timer(1), "timeout")
+		# await get_tree().create_timer(1).timeout
 		# char_animationPlayer.play()
 	
 	var damage = 0
@@ -419,78 +419,78 @@ func calculate_damage_step() -> void:
 		
 	print(characterRoot.get_attack(), enemeyRoot.defense)
 	
-	# yield(get_tree().create_timer(1), "timeout")
+	# await get_tree().create_timer(1).timeout
 	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 	
-	# print("\n\n\n", enemeySprite.material.get_shader_param("color_blend_target"))
+	# print("\n\n\n", enemeySprite.material.get_shader_parameter("color_blend_target"))
 	
 	if not attack_missed:
 		if using_spell:
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 		
-		enemeySprite.material.shader = shader_color_blend
-		enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
+		enemeySprite.material.gdshader = shader_color_blend
+		enemeySprite.material.set_shader_parameter("blend_strength_modifier", 0.35)
 	
 		# TODO: generate the movement and timings randomly 
 		# using fixed animation to simulate the shake for the demo
-		enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
+		enemey_animationPlayer.add_animation_library("shake", load("res://General/Animations/EnemeyShake.anim"))
 		enemey_animationPlayer.play("shake")
 	
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 		if is_critical_hit:
 			print_critical_damage_done_to(damage)
 		else:
 			print_damage_done_to(damage)
 	else:
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 		print_enemey_actor_evaded()
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.add_animation_library(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
 		char_animationPlayer.play(ani_name_character_idle)
 		
-	enemeySprite.material.set_shader_param("blend_strength_modifier", 0.0)
+	enemeySprite.material.set_shader_parameter("blend_strength_modifier", 0.0)
 	enemey_animationPlayer.stop()
 	
 	if enemeyRoot.HP_Current == 0:
 		enemey_defeated_play_dissolve_animation()
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 		print_actor_defeated()
 	elif enemeyRoot.battle_animation_resource.animation_res_idle != null:
-		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+		enemey_animationPlayer.add_animation_library(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
 		enemey_animationPlayer.play(ani_name_enemey_idle)
 	# enemey_animationPlayer.play(ani_name_enemey_idle)
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	print_exp_gain(damage)
-	yield(self, "signal_exp_phase_is_over")
+	await self.signal_exp_phase_is_over
 	
 	if enemeyRoot.HP_Current == 0:
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 		print_coins_and_items_receieved() # 0 coins and no items for now
-		# yield(get_tree().create_timer(1.5), "timeout")
+		# await get_tree().create_timer(1.5).timeout
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
-	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	# await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
 	
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
-	yield(get_tree().create_timer(0.4), "timeout")
+	await get_tree().create_timer(0.4).timeout
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
-	yield(get_tree().create_timer(0.25), "timeout")
+	await get_tree().create_timer(0.25).timeout
 	
 	print("Complete Damage Step")
 	emit_signal("signal_battle_complete_damage_step")
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	# return damage
 
 
@@ -534,30 +534,30 @@ func calculate_damage_step_enemey_attacking() -> void:
 		
 	print(enemeyRoot.get_attack(), characterRoot.defense)
 	
-	# yield(get_tree().create_timer(1), "timeout")
+	# await get_tree().create_timer(1).timeout
 	# Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 	
 	Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
 	Singleton_Game_GlobalBattleVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_selected_actor)
 	
-	# print("\n\n\n", enemeySprite.material.get_shader_param("color_blend_target"))
+	# print("\n\n\n", enemeySprite.material.get_shader_parameter("color_blend_target"))
 	
-	# enemeySprite.material.shader = shader_color_blend
-	# enemeySprite.material.set_shader_param("blend_strength_modifier", 0.35)
+	# enemeySprite.material.gdshader = shader_color_blend
+	# enemeySprite.material.set_shader_parameter("blend_strength_modifier", 0.35)
 	
 	# TODO: generate the movement and timings randomly 
 	# using fixed animation to simulate the shake for the demo
-	# enemey_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
+	# enemey_animationPlayer.add_animation_library("shake", load("res://General/Animations/EnemeyShake.anim"))
 	# enemey_animationPlayer.play("shake")
 	
-	# yield(get_tree().create_timer(1), "timeout")
+	# await get_tree().create_timer(1).timeout
 	if not attack_missed:
-		characterSprite.material.shader = shader_color_blend
-		characterSprite.material.set_shader_param("blend_strength_modifier", 0.35)
+		characterSprite.material.gdshader = shader_color_blend
+		characterSprite.material.set_shader_parameter("blend_strength_modifier", 0.35)
 	
 		# TODO: generate the movement and timings randomly 
 		# using fixed animation to simulate the shake for the demo
-		char_animationPlayer.add_animation("shake", load("res://General/Animations/EnemeyShake.anim"))
+		char_animationPlayer.add_animation_library("shake", load("res://General/Animations/EnemeyShake.anim"))
 		char_animationPlayer.play("shake")
 		
 		if is_critical_hit:
@@ -567,28 +567,28 @@ func calculate_damage_step_enemey_attacking() -> void:
 	else:
 		print_character_actor_evaded()
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	if enemeyRoot.battle_animation_resource.animation_res_idle != null:
-		enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+		enemey_animationPlayer.add_animation_library(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
 		enemey_animationPlayer.play(ani_name_enemey_idle)
 		
-	characterSprite.material.set_shader_param("blend_strength_modifier", 0.0)
+	characterSprite.material.set_shader_parameter("blend_strength_modifier", 0.0)
 	char_animationPlayer.stop()
 	
 	if characterRoot.HP_Current == 0:
 		character_defeated_play_dissolve_animation()
 		print_char_actor_defeated()
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 		characterWrapper.hide()
 	elif characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.add_animation_library(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
 		char_animationPlayer.play(ani_name_character_idle)
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play("Hit for " + str(damage))
-	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	# await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 0
 	Singleton_Game_GlobalBattleVariables.currently_selected_actor.z_index = 0
@@ -596,16 +596,16 @@ func calculate_damage_step_enemey_attacking() -> void:
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
 	print("Complete Damage Step")
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.hide()
-	yield(get_tree().create_timer(0.4), "timeout")
+	await get_tree().create_timer(0.4).timeout
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
-	yield(get_tree().create_timer(0.25), "timeout")
+	await get_tree().create_timer(0.25).timeout
 	
 	emit_signal("signal_battle_complete_damage_step")
-	# yield(get_tree().create_timer(0.25), "timeout")
+	# await get_tree().create_timer(0.25).timeout
 	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
 	characterWrapper.show()
 	#Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_out()
-	# yield(get_tree().create_timer(0.65), "timeout")
+	# await get_tree().create_timer(0.65).timeout
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	
 	# return damage
@@ -618,29 +618,29 @@ func calculate_damage_step_enemey_attacking() -> void:
 #	pass
 
 func enemey_defeated_play_dissolve_animation() -> void:
-	enemeySprite.material.shader = shader_dissolve 
-	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0.3)
-	enemeySprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
+	enemeySprite.material.gdshader = shader_dissolve 
+	enemeySprite.material.set_shader_parameter("dissolve_effect_amount", 0.3)
+	enemeySprite.material.set_shader_parameter("noise_texture", shader_texture__noise_pixelated)
 	
 	enemeySpriteTween.interpolate_property(enemeySprite.material, "shader_param/dissolve_effect_amount",
 	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	enemeySpriteTween.start()
 	
-	yield(get_tree().create_timer(0.55), "timeout")
+	await get_tree().create_timer(0.55).timeout
 
 
 func character_defeated_play_dissolve_animation() -> void:
-	characterSprite.material.shader = shader_dissolve 
-	characterSprite.material.set_shader_param("dissolve_effect_amount", 0.3)
-	characterSprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
+	characterSprite.material.gdshader = shader_dissolve 
+	characterSprite.material.set_shader_parameter("dissolve_effect_amount", 0.3)
+	characterSprite.material.set_shader_parameter("noise_texture", shader_texture__noise_pixelated)
 	
 	characterSpriteTween.interpolate_property(characterSprite.material, "shader_param/dissolve_effect_amount",
 	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	characterSpriteTween.start()
 	
-	yield(get_tree().create_timer(0.55), "timeout")
+	await get_tree().create_timer(0.55).timeout
 
 func s_enemey_tween_completed(_arg_1, _arg_2) -> void:
 	
@@ -648,7 +648,7 @@ func s_enemey_tween_completed(_arg_1, _arg_2) -> void:
 	
 	enemeySprite.hide()
 	
-	# enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
+	# enemeySprite.material.set_shader_parameter("dissolve_effect_amount", 0)
 
 
 func internal_reset_all_actor_sprites_back_to_default_position(_arg = null):
@@ -678,11 +678,11 @@ func setup_sprite_textures() -> void:
 		enemeyWrapper.show()
 		internal_init_resource_for_actor(enemeySprite, enemeyRoot.battle_animation_resource)
 		if enemeyRoot.battle_animation_resource.animation_res_idle != null:
-			enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+			enemey_animationPlayer.add_animation_library(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
 			enemey_animationPlayer.play(ani_name_enemey_idle)
 		else:
 			if enemeyRoot.battle_animation_resource.animation_res_attack != null:
-				enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_attack)
+				enemey_animationPlayer.add_animation_library(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_attack)
 				enemey_animationPlayer.play(ani_name_enemey_idle)
 				enemey_animationPlayer.seek(0, true)
 				enemey_animationPlayer.stop()
@@ -693,10 +693,10 @@ func setup_sprite_textures() -> void:
 	
 	internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.add_animation_library(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
 		char_animationPlayer.play(ani_name_character_idle)
 	else:
-		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		char_animationPlayer.add_animation_library(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
 		# seek first frame of attack to prevent odd positioning of other sprites
 		char_animationPlayer.play(ani_name_character_idle)
 		char_animationPlayer.seek(0.1, true)
@@ -719,11 +719,11 @@ func setup_sprite_textures_enemey_attack() -> void:
 		enemeyWrapper.show()
 		internal_init_resource_for_actor(enemeySprite, enemeyRoot.battle_animation_resource)
 		if enemeyRoot.battle_animation_resource.animation_res_idle != null:
-			enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
+			enemey_animationPlayer.add_animation_library(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_idle)
 			enemey_animationPlayer.play(ani_name_enemey_idle)
 		else:
 			if enemeyRoot.battle_animation_resource.animation_res_attack != null:
-				enemey_animationPlayer.add_animation(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_attack)
+				enemey_animationPlayer.add_animation_library(ani_name_enemey_idle, enemeyRoot.battle_animation_resource.animation_res_attack)
 				enemey_animationPlayer.play(ani_name_enemey_idle)
 				enemey_animationPlayer.seek(0, true)
 				enemey_animationPlayer.stop()
@@ -734,10 +734,10 @@ func setup_sprite_textures_enemey_attack() -> void:
 	
 	internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_idle != null:
-		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
+		char_animationPlayer.add_animation_library(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_idle)
 		char_animationPlayer.play(ani_name_character_idle)
 	else:
-		char_animationPlayer.add_animation(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		char_animationPlayer.add_animation_library(ani_name_character_idle, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
 		# seek first frame of attack to prevent odd positioning of other sprites
 		char_animationPlayer.play(ani_name_character_idle)
 		char_animationPlayer.seek(0.1, true)
@@ -758,7 +758,7 @@ func setup_attacking_animation() -> void:
 	
 	# internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if characterRoot.battle_animation_unpromoted_resource.animation_res_attack != null:
-		char_animationPlayer.add_animation(ani_name_character_attack_normal, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+		char_animationPlayer.add_animation_library(ani_name_character_attack_normal, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
 		char_animationPlayer.play(ani_name_character_attack_normal)
 	else:
 		char_animationPlayer.stop()
@@ -770,7 +770,7 @@ func setup_enemey_attacking_animation() -> void:
 	
 	# internal_init_resource_for_actor(characterSprite, characterRoot.battle_animation_unpromoted_resource)
 	if activeActorRoot.battle_animation_resource.animation_res_attack != null:
-		enemey_animationPlayer.add_animation("Enemey Attack", activeActorRoot.battle_animation_resource.animation_res_attack)
+		enemey_animationPlayer.add_animation_library("Enemey Attack", activeActorRoot.battle_animation_resource.animation_res_attack)
 		enemey_animationPlayer.play("Enemey Attack")
 	else:
 		enemey_animationPlayer.stop()
@@ -781,14 +781,14 @@ func setup_spell_animation() -> void:
 	var characterRoot = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	var sar = characterRoot.spells_id[0].spell_animation_resource
 	
-	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.texture = sar.primary_animation_texture
-	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.hframes = sar.hframes
+	$CanvasLayerSpellWrapper/SpellWrapper/Sprite2D.texture = sar.primary_animation_texture
+	$CanvasLayerSpellWrapper/SpellWrapper/Sprite2D.hframes = sar.hframes
 	$CanvasLayerSpellWrapper/SpellWrapper.show()
 	
-	char_animationPlayer.add_animation(ani_name_character_attack_normal, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
+	char_animationPlayer.add_animation_library(ani_name_character_attack_normal, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
 	char_animationPlayer.play(ani_name_character_attack_normal)
 	
-	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.add_animation("Character Spell", sar.animation_res)
+	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.add_animation_library("Character Spell", sar.animation_res)
 	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.play("Character Spell")
 
 
@@ -798,7 +798,7 @@ func print_who_is_attacking() -> void:
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal() # get_node("CharacterRoot")
 	
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(active_actor.cget_actor_name() + " Attacks!")
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 	pass
 
@@ -810,7 +810,7 @@ func print_spell_usage() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		active_actor.cget_actor_name() + " casts " + active_actor.spells_id[0].name + " level 1."
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 	pass
 
@@ -822,7 +822,7 @@ func print_enemey_actor_evaded() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		selected_actor.enemey_name + " evades the attack!"
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 func print_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
@@ -831,7 +831,7 @@ func print_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		"Inflicts " + str(damage_arg) + " points of damage on the " + selected_actor.enemey_name + "."
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 
 func print_critical_damage_done_to(damage_arg) -> void:
@@ -841,7 +841,7 @@ func print_critical_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		"A stunning attack! " + selected_actor.enemey_name + " suffers " + str(damage_arg) + " points of damage."
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 
 func print_character_actor_evaded() -> void:
@@ -851,7 +851,7 @@ func print_character_actor_evaded() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		selected_actor.cget_actor_name() + " evaded the attack!"
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 
 func print_enemey_damage_done_to(damage_arg) -> void:
@@ -861,7 +861,7 @@ func print_enemey_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		"Inflicts " + str(damage_arg) + " points of damage to " + selected_actor.cget_actor_name() + "."
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 func print_enemey_critical_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.show()
@@ -870,7 +870,7 @@ func print_enemey_critical_damage_done_to(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		"A stunning attack! " + selected_actor.cget_actor_name() + " suffers " + str(damage_arg) + " points of damage."
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 
 
@@ -904,8 +904,8 @@ func print_exp_gain(damage_arg) -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
-	yield(get_tree().create_timer(0.5), "timeout")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
+	await get_tree().create_timer(0.5).timeout
 	
 	active_actor.experience_points += exp_gain
 	if active_actor.experience_points >= 100:
@@ -915,8 +915,8 @@ func print_exp_gain(damage_arg) -> void:
 		Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		active_actor.cget_actor_name() + "'s level increases to " + str(active_actor.level) + "!"
 		)
-		yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
-		yield(get_tree().create_timer(1), "timeout")
+		await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
+		await get_tree().create_timer(1).timeout
 		print("TODO: generate stat gain and print based on character stat curves")
 	
 	emit_signal("signal_exp_phase_is_over")
@@ -927,7 +927,7 @@ func print_actor_defeated() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		selected_actor.enemey_name + " is defeated!"
 	)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 
 
@@ -936,7 +936,7 @@ func print_char_actor_defeated() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		selected_actor.cget_actor_name() + " can fight no longer."
 	)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 
 func print_coins_and_items_receieved() -> void:
@@ -948,7 +948,7 @@ func print_coins_and_items_receieved() -> void:
 	)
 	
 	Singleton_Game_GlobalOverworldVariables.coins += selected_actor.coins
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 
 
@@ -1050,7 +1050,7 @@ func internal_signal_switch_to_next_character_actor() -> void:
 	
 	$CharacterTargetWrapper/WeaponSprite.texture = selected_actor.inventory_items_id[0].battle_texture
 	
-	$CharacterTargetWrapper/AnimationPlayer.add_animation("Target Idle", selected_actor.battle_animation_unpromoted_resource.animation_res_idle)
+	$CharacterTargetWrapper/AnimationPlayer.add_animation_library("Target Idle", selected_actor.battle_animation_unpromoted_resource.animation_res_idle)
 	$CharacterTargetWrapper/AnimationPlayer.play("Target Idle")
 	
 	$CharacterTargetTween.interpolate_property($CharacterTargetWrapper, "position", 
@@ -1085,14 +1085,14 @@ func internal_signal_print_recover_amount() -> void:
 		# active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
 		active_actor.cget_actor_name() + " regains " + str(heal_amount) + " hit points."
 	)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 	
 	print("Print Recover amount")
 
 func internal_signal_switch_back_to_active_actor() -> void:
 	# Add a bit more time to the currently heald character before swapping back
-	yield(get_tree().create_timer(0.325), "timeout")
+	await get_tree().create_timer(0.325).timeout
 	
 	var active_actor = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
 	# var selected_actor = Singleton_Game_GlobalBattleVariables.currently_selected_actor.get_node("CharacterRoot")
@@ -1121,7 +1121,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.battle_message_play(
 		active_actor.cget_actor_name() + " gains " + str(exp_gain) + " experience points."
 		)
-	yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 	
 	active_actor.MP_Current -= active_actor.spells_id[0].levels[0].mp_usage_cost
 	
@@ -1135,9 +1135,9 @@ func internal_signal_switch_back_to_active_actor() -> void:
 		
 	print("Complete Heal Step")
 	
-	$CharacterTargetWrapper/AnimationPlayer.remove_animation("Target Idle")
+	$CharacterTargetWrapper/AnimationPlayer.remove_animation_library("Target Idle")
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	await get_tree().create_timer(1.5).timeout
 	Singleton_Game_GlobalBattleVariables.currently_active_character.z_index = 1
 	# Singleton_Game_AudioManager.pause_all_music()
 	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.playback_speed = 1
@@ -1146,12 +1146,12 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	# TODO: redo the structure for the heal animation
 	# having different timings for the animation calls vs the function yields causes too many time differences
 	# when doing multi target selection (for blaze 2) refine these along with that development
-	yield(get_tree().create_timer(0.75), "timeout")
+	await get_tree().create_timer(0.75).timeout
 	
 	Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
-	yield(get_tree().create_timer(0.4), "timeout")
+	await get_tree().create_timer(0.4).timeout
 	Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
-	yield(get_tree().create_timer(0.25), "timeout")
+	await get_tree().create_timer(0.25).timeout
 	print("Complete Battle Scene")
 	internal_reset_all_actor_sprites_back_to_default_position()
 	
@@ -1163,7 +1163,7 @@ func internal_signal_switch_back_to_active_actor() -> void:
 	
 	Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene = false
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	# Singleton_Game_GlobalBattleVariables.camera_node.playerNode = Singleton_Game_GlobalBattleVariables.currently_active_character
 	

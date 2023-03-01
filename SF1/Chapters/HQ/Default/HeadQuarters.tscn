@@ -4,7 +4,7 @@
 [ext_resource path="res://SF1/Chapters/HQ/Default/Nova.gd" type="Script" id=2]
 [ext_resource path="res://SF1/Chapters/HQ/Default/HeadQuarters.gd" type="Script" id=3]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/Camera2D.gd" type="Script" id=4]
-[ext_resource path="res://Assets/SF1/NPC/Nova.png" type="Texture" id=5]
+[ext_resource path="res://Assets/SF1/NPC/Nova.png" type="Texture2D" id=5]
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=7]
 [ext_resource path="res://SF1/Chapters/HQ/Default/ActionSpotsWrapperNode.gd" type="Script" id=20]
 [ext_resource path="res://SF1/Chapters/1/Guardiana/GuardianaCutsceneAnimationPlayer.gd" type="Script" id=23]
@@ -13,76 +13,76 @@
 [ext_resource path="res://SF1/Chapters/HQ/Default/HeadQuartersTilemap.tscn" type="PackedScene" id=26]
 
 [sub_resource type="RectangleShape2D" id=120]
-extents = Vector2( 240, 24 )
+size = Vector2( 240, 24 )
 
 [sub_resource type="RectangleShape2D" id=121]
-extents = Vector2( 12, 96 )
+size = Vector2( 12, 96 )
 
 [sub_resource type="RectangleShape2D" id=122]
-extents = Vector2( 12, 140 )
+size = Vector2( 12, 140 )
 
 [sub_resource type="RectangleShape2D" id=123]
-extents = Vector2( 36, 24 )
+size = Vector2( 36, 24 )
 
 [sub_resource type="RectangleShape2D" id=124]
-extents = Vector2( 48, 24 )
+size = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=125]
-extents = Vector2( 12, 56 )
+size = Vector2( 12, 56 )
 
 [sub_resource type="RectangleShape2D" id=126]
-extents = Vector2( 108, 8 )
+size = Vector2( 108, 8 )
 
 [sub_resource type="RectangleShape2D" id=127]
-extents = Vector2( 13, 36 )
+size = Vector2( 13, 36 )
 
 [sub_resource type="RectangleShape2D" id=128]
-extents = Vector2( 120.5, 8 )
+size = Vector2( 120.5, 8 )
 
 [sub_resource type="RectangleShape2D" id=129]
-extents = Vector2( 12.25, 108 )
+size = Vector2( 12.25, 108 )
 
 [sub_resource type="RectangleShape2D" id=130]
-extents = Vector2( 12.25, 72 )
+size = Vector2( 12.25, 72 )
 
 [sub_resource type="RectangleShape2D" id=131]
-extents = Vector2( 12.25, 128 )
+size = Vector2( 12.25, 128 )
 
 [sub_resource type="RectangleShape2D" id=132]
-extents = Vector2( 24, 8 )
+size = Vector2( 24, 8 )
 
 [sub_resource type="RectangleShape2D" id=133]
-extents = Vector2( 108, 8 )
+size = Vector2( 108, 8 )
 
 [sub_resource type="RectangleShape2D" id=134]
-extents = Vector2( 12, 60 )
+size = Vector2( 12, 60 )
 
 [sub_resource type="RectangleShape2D" id=135]
-extents = Vector2( 12, 66 )
+size = Vector2( 12, 66 )
 
 [sub_resource type="RectangleShape2D" id=136]
-extents = Vector2( 60, 25 )
+size = Vector2( 60, 25 )
 
 [sub_resource type="RectangleShape2D" id=138]
-extents = Vector2( 12, 28.5 )
+size = Vector2( 12, 28.5 )
 
 [sub_resource type="RectangleShape2D" id=139]
-extents = Vector2( 12, 34.25 )
+size = Vector2( 12, 34.25 )
 
 [sub_resource type="RectangleShape2D" id=140]
-extents = Vector2( 12, 13.125 )
+size = Vector2( 12, 13.125 )
 
 [sub_resource type="RectangleShape2D" id=141]
-extents = Vector2( 36, 16.5625 )
+size = Vector2( 36, 16.5625 )
 
 [sub_resource type="RectangleShape2D" id=142]
-extents = Vector2( 40, 24.2813 )
+size = Vector2( 40, 24.2813 )
 
 [sub_resource type="RectangleShape2D" id=137]
-extents = Vector2( 12, 60.5 )
+size = Vector2( 12, 60.5 )
 
 [sub_resource type="RectangleShape2D" id=143]
-extents = Vector2( 8, 10 )
+size = Vector2( 8, 10 )
 
 [node name="HQDefaultRoot" type="Node2D"]
 script = ExtResource( 3 )
@@ -114,7 +114,7 @@ script = ExtResource( 2 )
 stationary = true
 default_facing_direction = 2
 
-[node name="Sprite" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NpcWrapperNode/NovaNPCRoot/NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 5 )
 hframes = 6
 
@@ -123,19 +123,19 @@ position = Vector2( 25, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
-rotating = true
+ignore_rotation =true # reversed "rotating" for Camera2D
 current = true
 process_mode = 0
 limit_left = 0
 limit_top = 0
 limit_right = 624
 limit_bottom = 856
-smoothing_enabled = true
-smoothing_speed = 16.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
+follow_smoothing_enabled = true
+position_smoothing_speed = 16.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource( 4 )
 __meta__ = {
@@ -454,73 +454,73 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftTopRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="LeftTopRowLeftPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 364, 605 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftTopRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="LeftTopRowRightPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 388, 605 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightTopRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="RightTopRowLeftPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 436, 605 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightTopRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="RightTopRowRightPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 460, 605 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftMiddleRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="LeftMiddleRowLeftPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 364, 653 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftMiddleRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="LeftMiddleRowRightPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 388, 653 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightMiddleRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="RightMiddleRowLeftPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 436, 653 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightMiddleRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="RightMiddleRowRightPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 460, 653 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftBottomRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="LeftBottomRowLeftPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 364, 701 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftBottomRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="LeftBottomRowRightPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 388, 701 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightBottomRowLeftPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="RightBottomRowLeftPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 436, 701 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightBottomRowRightPosition2D" type="Position2D" parent="ActiveForcePositionsNode2D"]
+[node name="RightBottomRowRightPosition2D" type="Marker2D" parent="ActiveForcePositionsNode2D"]
 position = Vector2( 460, 701 )
 __meta__ = {
 "_edit_lock_": true
@@ -531,181 +531,181 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopLeftRoomRight__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopLeftRoomRight__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 172, 124 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopLeftRoomLeft__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopLeftRoomLeft__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 124, 124 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomLeftRoomRight__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomLeftRoomRight__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 124, 224 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopLeftLongTableLeftStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopLeftLongTableLeftStool__Facing-Up__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 268, 172 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopLeftLongTableRightStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopLeftLongTableRightStool__Facing-Up__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 292, 172 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRightLongTableTopStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRightLongTableTopStool__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 484, 244 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopLeftLongTableBehind__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopLeftLongTableBehind__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 268, 124 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftBesidesArmor__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="LeftBesidesArmor__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 148, 316 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRightLongTableBottomStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRightLongTableBottomStool__Facing-Up__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 484, 292 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StandingInCenter__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="StandingInCenter__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 413, 268 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableLeftBottomStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableLeftBottomStool__Facing-Right__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 364, 196 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableLeftTopStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableLeftTopStool__Facing-Right__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 364, 172 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableTopLeftStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableTopLeftStool__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 388, 148 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableTopMiddleStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableTopMiddleStool__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 412, 148 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableTopRightStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableTopRightStool__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 436, 148 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableRightTopStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableRightTopStool__Facing-Left__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 460, 172 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableRightBottomStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableRightBottomStool__Facing-Left__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 460, 196 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableBottomLeftStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableBottomLeftStool__Facing-Up__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 388, 220 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableBottomMiddleStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableBottomMiddleStool__Facing-Up__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 413, 220 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopRoundTableBottomRightStool__Facing-Up__Position2D2" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="TopRoundTableBottomRightStool__Facing-Up__Position2D2" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 436, 220 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableLeftBottomStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableLeftBottomStool__Facing-Right__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 268, 292 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableLeftTopStool__Facing-Right__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableLeftTopStool__Facing-Right__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 268, 268 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableTopLeftStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableTopLeftStool__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 292, 244 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableTopMiddleStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableTopMiddleStool__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 316, 244 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableTopRightStool__Facing-Down__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableTopRightStool__Facing-Down__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 340, 244 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableRightTopStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableRightTopStool__Facing-Left__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 364, 268 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableRightBottomStool__Facing-Left__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableRightBottomStool__Facing-Left__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 364, 292 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableBottomLeftStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableBottomLeftStool__Facing-Up__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 292, 316 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableBottomMiddleStool__Facing-Up__Position2D" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableBottomMiddleStool__Facing-Up__Position2D" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 316, 316 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomRoundTableBottomRightStool__Facing-Up__Position2D2" type="Position2D" parent="InactiveForcePositionsNode2D"]
+[node name="BottomRoundTableBottomRightStool__Facing-Up__Position2D2" type="Marker2D" parent="InactiveForcePositionsNode2D"]
 position = Vector2( 340, 316 )
 __meta__ = {
 "_edit_lock_": true

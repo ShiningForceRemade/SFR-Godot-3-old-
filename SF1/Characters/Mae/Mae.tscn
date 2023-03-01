@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png" type="Texture" id=1]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png" type="Texture2D" id=1]
 [ext_resource path="res://SF1/Characters/Ken/BattleAnimations/BattleAnimations.tres" type="Resource" id=2]
 [ext_resource path="res://SF1/Items/Weapons/Spear.tres" type="Resource" id=3]
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture" id=5]
+[ext_resource path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Overworld Sprites - Removed Background.png" type="Texture2D" id=5]
 [ext_resource path="res://SF1/Characters/Mae/Mae.gd" type="Script" id=6]
 
 [node name="MaeRoot" type="Node2D"]
@@ -29,7 +29,7 @@ critical_hit_chance = 3
 movement_type = 1
 battle_animation_unpromoted_resource = ExtResource( 2 )
 
-[node name="Sprite" parent="CharacterRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="CharacterRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 5 )
 hframes = 6
 region_enabled = true

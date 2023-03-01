@@ -1,8 +1,8 @@
-tool
+@tool
 extends Button
 
 
-export var reset_scene: bool = false setget _on_ResetBattleAnimationSceneButton_pressed
+@export var reset_scene: bool = false : set = _on_ResetBattleAnimationSceneButton_pressed
 
 # Declare member variables here. Examples:
 # var a = 2

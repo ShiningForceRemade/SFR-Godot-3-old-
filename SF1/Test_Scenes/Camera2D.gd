@@ -1,6 +1,6 @@
 extends Camera2D
 
-onready var playerNode = get_node("/root/Node2D/MaxCharacterRoot/KinematicBody2D")
+@onready var playerNode = get_node("/root/Node2D/MaxCharacterRoot/CharacterBody2D")
 # get_node("res://SF1/Character/SmallIsland.tscn")
 
 # SceneTree.get_node("MAX")

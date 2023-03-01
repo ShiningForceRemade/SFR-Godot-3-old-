@@ -1,16 +1,16 @@
 extends Node2D
 
-export var DefaultScript: String = ""
-export var PostSpokenToKingScript: String = ""
-export var PostForceHasJoinedScript: String = ""
-export var PostInvasionScript: String = ""
-export var PostKingsDeathScript: String = ""
+@export var DefaultScript: String = ""
+@export var PostSpokenToKingScript: String = ""
+@export var PostForceHasJoinedScript: String = ""
+@export var PostInvasionScript: String = ""
+@export var PostKingsDeathScript: String = ""
 
 var stationary
 var facing_direction
 var interacting: bool = false
 
-onready var npcBaseRoot = get_child(0)
+@onready var npcBaseRoot = get_child(0)
 
 func _ready():
 	stationary = npcBaseRoot.stationary
@@ -57,7 +57,7 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = script_path
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 	
-	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+	await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 	
 	if Singleton_Game_GlobalCommonVariables.interaction_yes_or_no_selection != null:
 		match Singleton_Game_GlobalCommonVariables.interaction_yes_or_no_selection:

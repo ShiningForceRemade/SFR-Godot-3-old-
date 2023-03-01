@@ -3,10 +3,10 @@ extends Control
 signal signal_dialogue_completed
 signal signal__dialogbox__finished_dialog
 
-onready var dialogueRichTextLabel = $NinePatchRect/DialogueRichTextLabel
-onready var dialogueTween = $DialogueTween
+@onready var dialogueRichTextLabel = $NinePatchRect/DialogueRichTextLabel
+@onready var dialogueTween = create_tween() # $DialogueTween
 
-onready var portraitPopupRoot = get_parent().get_node("PortraitPopupRoot")
+@onready var portraitPopupRoot = get_parent().get_node("PortraitPopupRoot")
 
 var active: bool = false
 
@@ -22,12 +22,12 @@ func _ready():
 	
 	# Singleton_Game_GlobalBattleVariables.dialogue_box_node = self
 	
-	dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
-	dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
+	dialogueTween.connect("finished",Callable(self,"s_battle_message_complete"))
+	dialogueTween.connect("finished",Callable(self,"_on_Tween_tween_completed"))
 	connection_status = true
 	
 	# wait till all the children are loaded and an idle frame starts maybe not the best idea????
-	# yield(get_tree(), "idle_frame")
+	# await get_tree().idle_frame
 	
 	# self.connect("signal_texture_action", 
 	# node, 
@@ -43,12 +43,12 @@ func _ready():
 
 
 func battle_message_play(str_arg = "") -> void:
-	dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
-	Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+	dialogueTween.connect("finished",Callable(self,"s_battle_message_complete"))
+	Singleton_Game_GlobalBattleVariables.dialogue_box_node.position = Vector2(72, 160)
 	dialogueRichTextLabel.percent_visible = 0
 	dialogueRichTextLabel.show()
 	
-	dialogueRichTextLabel.bbcode_text = str_arg
+	dialogueRichTextLabel.text = str_arg
 	
 	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
 	0, 1, 
@@ -59,11 +59,11 @@ func battle_message_play(str_arg = "") -> void:
 
 
 func s_battle_message_complete(_node_arg, _property_arg) -> void: 
-	# dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
+	# dialogueTween.connect("finished",Callable(self,"s_battle_message_complete"))
 	# print("Tween completed ", node_arg, " ", property_arg)
-	# yield(get_tree().create_timer(1.5), "timeout")
+	# await get_tree().create_timer(1.5).timeout
 	
-	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 262)
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.position = Vector2(72, 262)
 	# dialogueRichTextLabel.hide()
 	
 	emit_signal("signal_dialogue_completed")
@@ -72,11 +72,11 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 func play_message(str_arg = "") -> void:
 	Clean()
 	
-	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
+	# dialogueTween.disconnect("finished",Callable(self,"s_battle_message_complete"))
 	connection_status = true
 	
 	dialogueRichTextLabel.percent_visible = 0
-	dialogueRichTextLabel.bbcode_text = ""
+	dialogueRichTextLabel.text = ""
 	
 	visible = true
 	dialogue_box_is_visible = visible
@@ -85,10 +85,10 @@ func play_message(str_arg = "") -> void:
 	
 	# dialogue_index = 999999999999
 	
-	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.position = Vector2(72, 160)
 	
 	dialogueRichTextLabel.show()
-	dialogueRichTextLabel.bbcode_text = str_arg
+	dialogueRichTextLabel.text = str_arg
 	
 	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
 	0, 1, 
@@ -97,7 +97,7 @@ func play_message(str_arg = "") -> void:
 	
 	dialogueTween.start()
 	
-	# yield(get_tree().create_timer(0.5), "timeout")
+	# await get_tree().create_timer(0.5).timeout
 	# get_tree().paused = true
 
 
@@ -106,22 +106,22 @@ func play_message(str_arg = "") -> void:
 func play_message_none_interactable(str_arg = "") -> void:
 	Clean()
 	
-	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
-	# dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
+	# dialogueTween.disconnect("finished",Callable(self,"s_battle_message_complete"))
+	# dialogueTween.disconnect("finished",Callable(self,"_on_Tween_tween_completed"))
 	connection_status = false
 	
 	dialogueRichTextLabel.percent_visible = 0
-	dialogueRichTextLabel.bbcode_text = ""
+	dialogueRichTextLabel.text = ""
 	
 	visible = true
 	dialogue_box_is_visible = visible
 	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 	active = false
 	
-	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.position = Vector2(72, 160)
 	
 	dialogueRichTextLabel.show()
-	dialogueRichTextLabel.bbcode_text = str_arg
+	dialogueRichTextLabel.text = str_arg
 	
 	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
 	0, 1, 
@@ -130,15 +130,15 @@ func play_message_none_interactable(str_arg = "") -> void:
 	
 	dialogueTween.start()
 	
-	# yield(get_tree().create_timer(0.5), "timeout")
+	# await get_tree().create_timer(0.5).timeout
 	# get_tree().paused = true
 
 
 # signal signal__dialoguebox__finished_dialog
 
-export(Dictionary) var ON_END_DICT = {}
+@export var ON_END_DICT: Dictionary = {}
 
-export(String, FILE, '*.json') var external_file = ''
+@export var external_file = '' # (String, FILE, '*.json')
 var parsed_external_file = {}
 
 var dialogue = {}
@@ -156,11 +156,14 @@ func Clean() -> void:
 	dialogue_index = 0
 
 func _process_new_resource_file():
-	var file = File.new()
+	# var file = File.new()
 	print(external_file)
 	if external_file != "":
-		file.open(external_file, file.READ)
-		parsed_external_file = JSON.parse(file.get_as_text())
+		# file.open(external_file, file.READ)
+		var file = FileAccess.open(external_file, FileAccess.READ)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(file.get_as_text())
+		parsed_external_file = test_json_conv.get_data()
 	
 		if parsed_external_file.error == OK:
 			var data = parsed_external_file.result
@@ -180,7 +183,7 @@ func _process_new_resource_file():
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 		load_dialog()
 	else:
-		dialogueRichTextLabel.bbcode_text = "Add script file - (file a bug report)"
+		dialogueRichTextLabel.text = "Add script file - (file a bug report)"
 		finished = true
 
 
@@ -194,12 +197,12 @@ func _process(_delta):
 		
 	# if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")) and !wait_for_user_input_end:
 	if (Input.is_action_just_pressed("ui_a_key") || Input.is_action_just_pressed("ui_accept")):
-		# yield(get_tree().create_timer(0.1), "timeout")
+		# await get_tree().create_timer(0.1).timeout
 		if finished:
 			load_dialog()
 		else:
-			dialogueTween.stop(dialogueRichTextLabel, "percent_visible")
-			dialogueTween.emit_signal("tween_completed", self, "DialogueLineRevealComplete")
+			dialogueTween.stop() # dialogueRichTextLabel, "percent_visible")
+			dialogueTween.emit_signal("finished", self, "DialogueLineRevealComplete")
 			dialogueRichTextLabel.percent_visible = 1
 			finished = true
 			Singleton_Game_AudioManager.stop_dialogue_sfx()
@@ -217,8 +220,8 @@ func load_dialog():
 	active = true
 	
 		
-	# dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
-	# dialogueTween.connect("tween_completed", self, "_on_Tween_tween_completed")
+	# dialogueTween.connect("finished",Callable(self,"s_battle_message_complete"))
+	# dialogueTween.connect("finished",Callable(self,"_on_Tween_tween_completed"))
 	
 	if dialogue_index < dialogue.size():
 		finished = false
@@ -230,7 +233,7 @@ func load_dialog():
 		for key in dialogue[dialogue_index]:
 			print("Inner Loop key - ", key + " - value is - " + str(dialogue[dialogue_index][key]))
 			if key == "Text":
-				dialogueRichTextLabel.bbcode_text = check_and_replace_text_sub_points(dialogue[dialogue_index][key])
+				dialogueRichTextLabel.text = check_and_replace_text_sub_points(dialogue[dialogue_index][key])
 				# continue
 				
 				print(itkeys.size())
@@ -240,14 +243,14 @@ func load_dialog():
 				if itkeys.size() >= 2:
 					dialogueRichTextLabel.percent_visible = 0
 					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 
-					GetTweenTimeForText(dialogueRichTextLabel.bbcode_text), 
+					GetTweenTimeForText(dialogueRichTextLabel.text), 
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 					dialogueTween.start()
 					continue
 				else:
 					dialogueRichTextLabel.percent_visible = 0
 					dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 
-					GetTweenTimeForText(dialogueRichTextLabel.bbcode_text), 
+					GetTweenTimeForText(dialogueRichTextLabel.text), 
 					Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 					dialogueTween.start()
 				
@@ -296,7 +299,7 @@ func load_dialog():
 				if sound_to_play[2] == "yield":
 					active = false
 					Singleton_Game_AudioManager.pause_all_music()
-					yield(Singleton_Game_AudioManager, "signal__audio_manager__soundeffect__finished")
+					await Singleton_Game_AudioManager.signal__audio_manager__soundeffect__finished
 					Singleton_Game_AudioManager.pause_all_sfx()
 					Singleton_Game_AudioManager.resume_all_music()
 				
@@ -343,7 +346,7 @@ func load_dialog():
 			elif key == "InteractionPrompt":
 				
 				print("hereeee")
-				yield(dialogueTween, "tween_completed")
+				await dialogueTween.finished
 				
 				active = false
 				Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
@@ -360,7 +363,7 @@ func load_dialog():
 				
 				
 				Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-				var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+				var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 				if result == "NO":
 					Singleton_Game_GlobalCommonVariables.interaction_yes_or_no_selection = "NO"
 					print("No")

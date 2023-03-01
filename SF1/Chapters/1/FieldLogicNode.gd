@@ -12,15 +12,15 @@ signal signal_show_land_effect_and_active_actor_info
 signal signal_show_character_action_menu
 # signal signal_hide_character_action_menu
 
-onready var tilemap = get_parent().get_node("TilesInformationGroup/TileMapTerrianEffectInformation")
+@onready var tilemap = get_parent().get_node("TilesInformationGroup/TileMapTerrianEffectInformation")
 # onready var mc = get_parent().get_node("Characters/MaxCharacterRoot")
 # onready var mc = get_parent().get_node("Characters/PlayerCharacterRoot")
-onready var mc = get_parent().get_node("Characters/MaxRoot")
+@onready var mc = get_parent().get_node("Characters/MaxRoot")
 
-onready var enemies = get_parent().get_node("Enemies")
-onready var characters = get_parent().get_node("Characters")
+@onready var enemies = get_parent().get_node("Enemies")
+@onready var characters = get_parent().get_node("Characters")
 
-onready var cursor_root = get_parent().get_node("CursorRoot")
+@onready var cursor_root = get_parent().get_node("CursorRoot")
 
 const tile_size: int = 24 # 24 by 24
 
@@ -40,11 +40,11 @@ var camera
 func _ready():
 	# print(tilemap)
 	
-	yield(get_parent().get_parent(), "ready")
+	await get_parent().get_parent().ready
 	
 	# get_parent().get_parent().get_parent().connect_battle_logic_to_self()
 	
-	# yield(get_tree().root, "ready")
+	# await get_tree().root.ready
 	
 	camera = get_parent().get_node("Camera2D")
 	
@@ -97,7 +97,7 @@ func generate_and_launch_new_turn_order():
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	yield(t, "timeout")
+	await t.timeout
 	
 	var previous_actor_pos
 	if Singleton_Game_GlobalBattleVariables.currently_active_character != null:
@@ -130,13 +130,13 @@ func generate_and_launch_new_turn_order():
 			
 			print("Enemy Turn Start")
 			
-			# camera.smooth_move_to_new_position(a.node.get_node("EnemeyRoot/KinematicBody2D"))
+			# camera.smooth_move_to_new_position(a.node.get_node("EnemeyRoot/CharacterBody2D"))
 			
 			cursor_move_to_next_actor(a.node, previous_actor_pos)
-			yield(camera, "signal_camera_move_complete")
+			await camera.signal_camera_move_complete
 			cursor_root.hide()
 			
-			# mc.connect("signal_character_moved", self, "get_tile_info_under_character")
+			# mc.connect("signal_character_moved",Callable(self,"get_tile_info_under_character"))
 			
 			print(a.node)
 			mc = a.node
@@ -156,10 +156,10 @@ func generate_and_launch_new_turn_order():
 			
 			$AnimationPlayer.play("RandomTileFlashing")
 			
-			yield(get_tree().create_timer(0.3), "timeout")
+			await get_tree().create_timer(0.3).timeout
 			
 			a.node.play_turn()
-			yield(a.node, "signal_completed_turn")
+			await a.node.signal_completed_turn
 			
 			mc.z_index = 0
 			print("Enemy Turn End")
@@ -173,7 +173,7 @@ func generate_and_launch_new_turn_order():
 #			t.set_one_shot(true)
 #			self.add_child(t)
 #			t.start()
-#			yield(t, "timeout")
+#			await t.timeout
 		elif a.type == "character" || Singleton_Game_GlobalBattleVariables.control_enemies:
 			# continue
 			print("Character Turn Start")
@@ -189,7 +189,7 @@ func generate_and_launch_new_turn_order():
 			
 			
 			cursor_move_to_next_actor(a.node, previous_actor_pos)
-			yield(camera, "signal_camera_move_complete")
+			await camera.signal_camera_move_complete
 			cursor_root.hide()
 			
 			mc = a.node
@@ -210,9 +210,9 @@ func generate_and_launch_new_turn_order():
 			emit_signal("signal_show_land_effect_and_active_actor_info")
 			Singleton_Game_GlobalBattleVariables.battle_base.force_show_land_effect()
 			
-			mc.connect("signal_character_moved", self, "get_tile_info_under_character")
-			mc.connect("signal_show_character_action_menu", self, "s_show_character_action_menu")
-			mc.connect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
+			mc.connect("signal_character_moved",Callable(self,"get_tile_info_under_character"))
+			mc.connect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu"))
+			mc.connect("signal_switch_focus_to_cursor",Callable(self,"s_switch_focus_to_cursor"))
 			
 			show_movement_tiles()
 			
@@ -228,22 +228,22 @@ func generate_and_launch_new_turn_order():
 			
 			mc.z_index = 1
 			
-			yield(Singleton_Game_GlobalBattleVariables.self_node(), "signal_completed_turn")
+			await Singleton_Game_GlobalBattleVariables.self_node().signal_completed_turn
 			
-			# yield(a.node, "signal_completed_turn_z")
+			# await a.node.signal_completed_turn_z
 			hide_movement_tiles()
 			print("Character Turn End")
 			
 			previous_actor_pos = a.node.global_position
 			mc.z_index = 0
 			
-			mc.disconnect("signal_character_moved", self, "get_tile_info_under_character")
-			mc.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
-			mc.disconnect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
+			mc.disconnect("signal_character_moved",Callable(self,"get_tile_info_under_character"))
+			mc.disconnect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu"))
+			mc.disconnect("signal_switch_focus_to_cursor",Callable(self,"s_switch_focus_to_cursor"))
 			
 			show_movement_tiles()
 			
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 			Singleton_Game_GlobalBattleVariables.currently_selected_actor = null
 			
 		if previous_actor_pos == Vector2.ZERO:
@@ -254,18 +254,18 @@ func generate_and_launch_new_turn_order():
 			if actor.alive:
 				if actor.node.get_actor_root_node_internal().HP_Current == 0:
 					actor.node.get_actor_root_node_internal().check_if_defeated()
-					yield(actor.node.get_actor_root_node_internal(), "signal_check_defeat_done")
-					# yield(actor.node.get_actor_root_node_internal(), "signal_check_defeat_done")
+					await actor.node.get_actor_root_node_internal().signal_check_defeat_done
+					# await actor.node.get_actor_root_node_internal().signal_check_defeat_done
 					print("TODO Clean up logic and animation")
 					actor.node.queue_free()
 					actor.alive = false;
 					
 					if actor.name == "MaxRoot":
-						yield(get_tree().create_timer(0.25), "timeout")
+						await get_tree().create_timer(0.25).timeout
 						print_defeat_max_was_killed()
 					
 					if actor.name == "RuneKnightRoot":
-						yield(get_tree().create_timer(0.25), "timeout")
+						await get_tree().create_timer(0.25).timeout
 						print_victory_defeated_rune_knight()
 						
 					continue
@@ -301,7 +301,7 @@ func print_defeat_max_was_killed() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.play_message(
 		"Max was defeated, the shining force loses the battle to Runefaust. Restart the app to try again."
 		)
-	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	# await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 
 func print_victory_defeated_rune_knight() -> void:
@@ -312,7 +312,7 @@ func print_victory_defeated_rune_knight() -> void:
 	Singleton_Game_GlobalBattleVariables.dialogue_box_node.play_message(
 		"You've defeated the forces of Runefaust. Restart the game to play again (try to break it and find bugs!)"
 		)
-	# yield(Singleton_Game_GlobalBattleVariables.dialogue_box_node, "signal_dialogue_completed")
+	# await Singleton_Game_GlobalBattleVariables.dialogue_box_node.signal_dialogue_completed
 
 
 func s_switch_focus_to_cursor():
@@ -341,7 +341,7 @@ func cursor_move_to_next_actor(a_node, previous_actor_pos):
 				
 	cursor_root.move_to_new_pos_battle_scene(cursor_root.position, a_node.global_position, tween_time)
 	
-	print("Camera POS - ", camera.position, " ",  a_node.global_position)
+	print("Camera3D POS - ", camera.position, " ",  a_node.global_position)
 	
 	camera.smooth_move_to_new_position(a_node, tween_time)
 	
@@ -354,7 +354,7 @@ func s_show_character_action_menu():
 func active_character_or_enemey_display_info():
 	#emit_signal("signal_active_character_or_enemey", "name_arg", class_arg, level, current_hp, total_hp, current_mp, total_mp)
 	print("Character Or Enemey Info before signal \n")
-	# yield(get_tree().root, "ready")
+	# await get_tree().root.ready
 	emit_signal("signal_active_character_or_enemey", 
 	mc.cget_actor_name(), # "Max",
 	mc.cget_class(), # "SWDM"
@@ -366,26 +366,26 @@ func active_character_or_enemey_display_info():
 	print("Character Or Enemey Info after signal\n")
 
 func get_char_tile_position() -> Vector2:
-	# return tilemap.world_to_map(mc.global_position)
+	# return tilemap.local_to_map(mc.global_position)
 	
 	var new_pos = mc.get_character_current_pos()
 	var mc_real_pos: Vector2 = Vector2.ZERO
 	mc_real_pos.x = mc.position.x + new_pos.x
 	mc_real_pos.y = mc.position.y + new_pos.y
-	return tilemap.world_to_map(mc_real_pos)
+	return tilemap.local_to_map(mc_real_pos)
 	
 	
 	#print("XY pos - ", mc_real_pos)
-	#print("Tilemap Idxs - ", tilemap.world_to_map(mc_real_pos))
-	# print(tilemap.get_cellv(tilemap.world_to_map(mc_real_pos)))
+	#print("Tilemap Idxs - ", tilemap.local_to_map(mc_real_pos))
+	# print(tilemap.get_cellv(tilemap.local_to_map(mc_real_pos)))
 
 func get_tile_info_under_character(new_pos: Vector2):
 	#print("New Pos", new_pos)
 	#print("Mc", mc.position)
-	#print("MC Kinematic", mc.get_node("CharacterRoot/KinematicBody2D").position)
+	#print("MC Kinematic", mc.get_node("CharacterRoot/CharacterBody2D").position)
 	
 	# print(mc.get_character_movement())
-	# print(mc.get_node("KinematicBody2D").position)
+	# print(mc.get_node("CharacterBody2D").position)
 	
 	#var mc_real_pos: Vector2 = Vector2.ZERO
 	#mc_real_pos.x = mc.position.x + new_pos.x
@@ -394,14 +394,14 @@ func get_tile_info_under_character(new_pos: Vector2):
 	#mc_real_pos.x = new_pos.x
 	#mc_real_pos.y = new_pos.y
 	
-	# print(tilemap.world_to_map(mc.position))
-	# print(tilemap.get_cellv(tilemap.world_to_map(mc.position)))
-	# print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(tilemap.world_to_map(mc.position))))
+	# print(tilemap.local_to_map(mc.position))
+	# print(tilemap.get_cellv(tilemap.local_to_map(mc.position)))
+	# print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(tilemap.local_to_map(mc.position))))
 	
-	# print(tilemap.world_to_map(mc_real_pos))
-	# print(tilemap.get_cellv(tilemap.world_to_map(mc_real_pos)))
-	# print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(tilemap.world_to_map(mc_real_pos))))
-	var tile_id = tilemap.get_cellv(tilemap.world_to_map(new_pos))
+	# print(tilemap.local_to_map(mc_real_pos))
+	# print(tilemap.get_cellv(tilemap.local_to_map(mc_real_pos)))
+	# print(tilemap.tile_set.tile_get_name(tilemap.get_cellv(tilemap.local_to_map(mc_real_pos))))
+	var tile_id = tilemap.get_cellv(tilemap.local_to_map(new_pos))
 	if tile_id == -1:
 		emit_signal("signal_land_effect_under_tile", "Bug: No Info Report")
 		return
@@ -649,11 +649,11 @@ func generate_point_array_for_a_start():
 
 
 
-onready var astar_node = AStar.new()
+@onready var astar_node = AStar3D.new()
 var map_size
 
 #func astar_connect_walkable_cells() -> void:
-#	# astar_node = AStar.new()
+#	# astar_node = AStar3D.new()
 #	var _point_path = []
 #
 #	var mpr = Singleton_Game_GlobalBattleVariables.active_actor_move_point_representation
@@ -669,7 +669,7 @@ var map_size
 #	for point in mpr:
 #		var point_index = calculate_point_index(point)
 #
-#		var points_relative = PoolVector2Array([
+#		var points_relative = PackedVector2Array([
 #			Vector2(point.x + 1, point.y),
 #			Vector2(point.x - 1, point.y),
 #			Vector2(point.x, point.y + 1),
@@ -684,7 +684,7 @@ var map_size
 #
 #			astar_node.connect_points(point_index, point_relative_index, false)
 #
-#	var path_start_position = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(mc.position)
+#	var path_start_position = Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.local_to_map(mc.position)
 #
 #	for p in astar_node.get_points():
 #		print(p)
@@ -695,7 +695,7 @@ var map_size
 #	var end_point_index
 #
 #	for tpv in mpr:
-#		var path_end_position = Vector2(tpv.x * 24 + 13, tpv.y * 24 + 12)# Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(target_node_arg.position)
+#		var path_end_position = Vector2(tpv.x * 24 + 13, tpv.y * 24 + 12)# Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.local_to_map(target_node_arg.position)
 #
 #		# Target Actor Tile Above
 #		end_point_index = calculate_point_index(Vector2(path_end_position.x, path_end_position.y - 1))
@@ -708,7 +708,7 @@ var map_size
 # Rename Function
 # Checks array representation paths, unreachable tiles are marked as null and not drawn as a result
 func astar_connect_walkable_cells() -> void:
-	# astar_node = AStar.new()
+	# astar_node = AStar3D.new()
 	var _point_path = []
 	
 	var mar = Singleton_Game_GlobalBattleVariables.active_actor_move_array_representation
@@ -728,7 +728,7 @@ func astar_connect_walkable_cells() -> void:
 			if mar[row][col] == 1:
 				var point_index = calculate_point_index(Vector2(row, col))
 
-				var points_relative = PoolVector2Array([
+				var points_relative = PackedVector2Array([
 					Vector2(row + 1, col),
 					Vector2(row - 1, col),
 					Vector2(row, col + 1),
@@ -743,7 +743,7 @@ func astar_connect_walkable_cells() -> void:
 			
 					astar_node.connect_points(point_index, point_relative_index, false)
 	
-	var path_start_position = Vector2(actor_movement, actor_movement) # Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.world_to_map(mc.position)
+	var path_start_position = Vector2(actor_movement, actor_movement) # Singleton_Game_GlobalBattleVariables.field_logic_node.tilemap.local_to_map(mc.position)
 	
 	# for p in astar_node.get_points():
 	#	print(p)
@@ -1233,7 +1233,7 @@ func new_check_tile(vpos: Vector2) -> bool:
 ## when godot 4 comes out and you can assign functions to vars move to assigning the 
 ## movement check functions to the start of the move array representation
 #
-# export(int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
+# export var movement_type: int = 0 # "Standard" # (int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering")
 
 func movement_type_tile_check_flying(tile_name: String) -> bool:
 	return true
@@ -1242,13 +1242,13 @@ func movement_type_tile_check_flying(tile_name: String) -> bool:
 func draw_flashing_movement_square(acolor: Color, xpos: int, ypos: int, node_arg = null) -> void:
 	var cr = ColorRect.new()
 	cr.color = acolor
-	cr.rect_size.x = 24
-	cr.rect_size.y = 24
+	cr.size.x = 24
+	cr.size.y = 24
 
-	cr.rect_position.x = xpos
-	cr.rect_position.y = ypos
+	cr.position.x = xpos
+	cr.position.y = ypos
 
-	#print(cr.rect_position)
+	#print(cr.position)
 	
 	# TODO: CLEAN: node_arg using to test having movement and use tiles on different layers to avoid redrawing
 	# just going to hide and show as needed with a fresh clean when new action or character turn for the respective layer
@@ -1286,7 +1286,7 @@ func generate_actor_order_for_current_turn():
 	var ordered_turn_array = turn_order_array
 		
 	rng.randomize()
-	ordered_turn_array.sort_custom(self, "sort_actors_by_agility")
+	ordered_turn_array.sort_custom(Callable(self,"sort_actors_by_agility"))
 	print("\nOrdered Array\n")
 	for n in ordered_turn_array:
 		print(n)

@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var textEdit = $TextEdit
+@onready var textEdit = $TextEdit
 
 var sceneManagerNode = null
 var shaderCanvasNode = null
@@ -42,7 +42,7 @@ func _on_LineEdit_text_entered(new_text):
 #		if splstr[1] == "main-actor":
 #			if splstr[2] != "":
 #				print("teststestst")
-#				var new_actor = load("res://SF1/Characters/Tao/Tao.tscn").instance()
+#				var new_actor = load("res://SF1/Characters/Tao/Tao.tscn").instantiate()
 #				Singleton_Game_GlobalCommonVariables.main_character_player_node.ChangeActor(new_actor)
 	
 	
@@ -65,72 +65,72 @@ func changeScene(new_text_internal) -> void:
 			# need to refactor battle base to be loaded by default and change its subscene battle, instead
 			# of loading entirely new battle base scenes 
 			
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B1.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/BattleBase-B1.tscn")
 			
 		elif splstr[2] == "2":
 			print("Change Scene to Battle 2")
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B2.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/BattleBase-B2.tscn")
 			# sceneManagerNode.get_child(1).change_battle_scene("res://SF1/Chapters/1/Battle2/Battle2.tscn")
 		elif splstr[2] == "3":
 			print("Change Scene to Battle 3")
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B3.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/BattleBase-B3.tscn")
 		elif splstr[2] == "4":
 			print("Change Scene to Battle 4")
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B4.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/BattleBase-B4.tscn")
 		
 	elif splstr[1] == "battle-test" || splstr[1] == "bt":
 		if splstr[2] == "terrain" || splstr[2] == "t":
 			print("Change Scene to Battle Test Terrain")
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/BattleBase-T-Terrain.tscn")
 		
 		elif splstr[2] == "background" || splstr[2] == "b":
 			print("Change Scene to Battle Test Backgrounds and Stands")
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
 		
 		elif splstr[2] == "movement-standard" || splstr[2] == "m-standard":
 			print("Change Scene to Battle Test Backgrounds and Stands")
-			sceneManagerNode.change_scene("res://General/BattleBase/Movement/BattleBase-T-Movement-Standard.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/Movement/BattleBase-T-Movement-Standard.tscn")
 		
 		elif splstr[2] == "movement-mounted" || splstr[2] == "m-mounted":
 			print("Change Scene to Battle Test Scene movement mounted")
-			sceneManagerNode.change_scene("res://General/BattleBase/Movement/BattleBase-T-Movement-Mounted.tscn")
+			sceneManagerNode.change_scene_to_file("res://General/BattleBase/Movement/BattleBase-T-Movement-Mounted.tscn")
 			
 	elif splstr[1] == "overworld" || splstr[1] == "ow":
 		if splstr[2] == "Guardiana-Normal":
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")
 		elif splstr[2] == "Guardiana-Invasion":
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/Guardiana.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/Guardiana/Guardiana.tscn")
 		elif splstr[2] == "Guardiana-Castle":
 			print("Change Scene to Guardiana Castle")
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
 		elif splstr[2] == "Guardiana-Castle-Invasion":
 			print("Change Scene to Guardiana Castle Invasion")
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/Guardiana/Castle/CastleInvasion.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/Guardiana/Castle/CastleInvasion.tscn")
 		elif splstr[2] == "Gongs-House":
 			print("Change Scene to Guardiana")
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
 		elif splstr[2] == "Ancients-Gate":
 			print("Change Scene to Ancients Gate")
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/AncientsGate/AncientsGate.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/AncientsGate/AncientsGate.tscn")
 		elif splstr[2] == "Alterone":
 			print("Change Scene to Alterone")
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
 		elif splstr[2] == "Alterone-Castle-Basement":
 			print("Change Scene to Alterone Castle Basement")
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
 		elif splstr[2] == "Alterone-Castle":
 			print("Change Scene to Alterone")
-			sceneManagerNode.change_scene("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
 		elif splstr[2] == "HQ":
 			print("Change Scene to HQ")
-			sceneManagerNode.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
 		elif splstr[2] == "C2-Overworld":
 			print("Change Scene to Chapter 2 Overworld")
-			sceneManagerNode.change_scene("res://SF1/Chapters/2/Overworld/Overworld.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Chapters/2/Overworld/Overworld.tscn")
 	
 	elif splstr[1] == "test" || splstr[1] == "t":
 		if splstr[2] == "Chest":
-			sceneManagerNode.change_scene("res://SF1/Test_Scenes/Functionality/Chest.tscn")
+			sceneManagerNode.change_scene_to_file("res://SF1/Test_Scenes/Functionality/Chest.tscn")
 		
 	else:
 		textEdit.text = str(textEdit.text, "\n", new_text_internal, "\n", "Invalid location (scene)");

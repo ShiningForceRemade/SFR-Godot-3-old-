@@ -3,8 +3,8 @@ extends Node
 const bmc_x: int = 171
 const bmc_y: int = 182
 
-onready var YesOrNoPromptRoot = $YesOrNoPromptRoot
-onready var YesOrNoPromptTween = $YesOrNoPromptTween
+@onready var YesOrNoPromptRoot = $YesOrNoPromptRoot
+@onready var YesOrNoPromptTween = create_tween() # $YesOrNoPromptTween
 
 
 func _ready():

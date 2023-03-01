@@ -1,9 +1,9 @@
-tool
+@tool
 extends Control
 
-export var item_resource: Resource
+@export var item_resource: Resource
 
-onready var item_spirte = $ItemSprite
+@onready var item_spirte = $ItemSprite
 
 func _ready():
 	

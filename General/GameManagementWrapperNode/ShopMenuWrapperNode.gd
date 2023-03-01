@@ -3,9 +3,9 @@ extends Node
 const bmc_x: int = 171
 const bmc_y: int = 182
 
-onready var ShopMenuRoot = $ShopMenuRoot
-onready var ShopMenuTween = $ShopMenuTween
-onready var ShopItemSelectionMenu = $ShopItemSelectionMenuNode
+@onready var ShopMenuRoot = $ShopMenuRoot
+@onready var ShopMenuTween = create_tween() # $ShopMenuTween
+@onready var ShopItemSelectionMenu = $ShopItemSelectionMenuNode
 
 func _ready():
 	pass

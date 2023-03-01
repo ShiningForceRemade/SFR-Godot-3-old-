@@ -8,26 +8,26 @@ func _ready():
 	
 	Singleton_Game_GlobalCommonVariables.scene_manager_node = self
 	
-	# change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+	# change_scene_to_file("res://General/BattleBase/BattleBase-T-Terrain.tscn")
 	
-	change_scene("res://General/BattleBase/Movement/BattleBase-T-Movement-Mounted.tscn")
+	change_scene_to_file("res://General/BattleBase/Movement/BattleBase-T-Movement-Mounted.tscn")
 	
-	# change_scene("res://General/BattleBase/BattleBase-T-Terrain.tscn")
-	# change_scene("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
+	# change_scene_to_file("res://General/BattleBase/BattleBase-T-Terrain.tscn")
+	# change_scene_to_file("res://General/BattleBase/BattleBase-T-Backgrounds.tscn")
 	
 	# ref 1
-	# change_scene("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
-	# change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
-	# change_scene("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
-	# change_scene("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
-	# change_scene("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
-	# change_scene("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
+	# change_scene_to_file("res://SF1/Chapters/1/Guardiana/Castle/Castle.tscn")
+	# change_scene_to_file("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
+	# change_scene_to_file("res://SF1/Chapters/1/GongsHouse/GongsHouse.tscn")
+	# change_scene_to_file("res://SF1/Chapters/1/Alterone/Alterone_Town.tscn")
+	# change_scene_to_file("res://SF1/Chapters/1/Alterone/Castle/Alterone_Castle.tscn")
+	# change_scene_to_file("res://SF1/Chapters/1/Alterone/Castle_Basement/Alterone_Castle_Basement.tscn")
 	
 	pass
 
 
-func change_scene(new_scene_resource_path: String) -> void:
-	var new_scene = load(new_scene_resource_path).instance();
+func change_scene_to_file(new_scene_resource_path: String) -> void:
+	var new_scene = load(new_scene_resource_path).instantiate();
 	
 	call_deferred("_deferred_change_scene", new_scene)
 	
@@ -39,7 +39,7 @@ func change_scene(new_scene_resource_path: String) -> void:
 # TODO: need to setup deferred calls for the other types as well
 
 func _deferred_change_scene(new_scene) -> void:
-	# var new_scene = load(new_scene_resource_path).instance();
+	# var new_scene = load(new_scene_resource_path).instantiate();
 	
 	for child in get_children():
 		child.queue_free()
@@ -48,7 +48,7 @@ func _deferred_change_scene(new_scene) -> void:
 
 
 func change_scene_preloaded(new_scene_preloaded) -> void:
-	var new_scene = new_scene_preloaded.instance();
+	var new_scene = new_scene_preloaded.instantiate();
 	
 	for child in get_children():
 		child.queue_free()

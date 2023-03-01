@@ -3,7 +3,7 @@
 [ext_resource path="res://SF1/Characters/_template/CharacterBase.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12, 12 )
+size = Vector2( 12, 12 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "DownMovement"
@@ -16,8 +16,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -28,8 +28,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -45,8 +45,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -57,8 +57,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -74,8 +74,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
 }
@@ -86,8 +86,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
 }
@@ -102,8 +102,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 4, 5 ]
 }
@@ -114,8 +114,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -126,33 +126,33 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Tween" type="Tween" parent="KinematicBody2D"]
+[node name="Tween" type="Tween" parent="CharacterBody2D"]
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2( 0, -8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StaticCollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="StaticCollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../KinematicBody2D/Sprite")
+root_node = NodePath("../CharacterBody2D/Sprite2D")
 anims/DownMovement = SubResource( 2 )
 anims/LeftMovement = SubResource( 3 )
 anims/RightMovement = SubResource( 4 )

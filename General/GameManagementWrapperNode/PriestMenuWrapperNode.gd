@@ -3,8 +3,8 @@ extends Node
 const bmc_x: int = 171
 const bmc_y: int = 182
 
-onready var PriestMenuRoot = $PriestMenuRoot
-onready var PriestMenuTween = $PriestMenuTween
+@onready var PriestMenuRoot = $PriestMenuRoot
+@onready var PriestMenuTween = create_tween() # $PriestMenuTween
 
 func _ready():
 	pass

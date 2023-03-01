@@ -15,5 +15,5 @@ func init_spell_micro_info(spell_obj):
 		var spellBarNode = load("res://General/BattleViewSelectedActorInfo/Spell/SpellLevelBar.tscn")
 		
 		for _n in range(spell_levels_size):
-			var sbn = spellBarNode.instance()
+			var sbn = spellBarNode.instantiate()
 			$HBoxContainer.add_child(sbn)

@@ -32,42 +32,42 @@ transform = Transform2D( 0.75, 0, 0, 0.75, 0, 0 )
 script = ExtResource( 7 )
 
 [node name="LandEffectPopupRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 2 )]
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 6.0
-margin_bottom = 6.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 6.0
+offset_bottom = 6.0
 
 [node name="LandEffectPopupTween" type="Tween" parent="CanvasLayerInfoControls"]
 
 [node name="ActiveActorMicroInfoRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 1 )]
-margin_left = 270.0
-margin_top = 6.0
-margin_right = 143.92
-margin_bottom = -42.06
+offset_left = 270.0
+offset_top = 6.0
+offset_right = 143.92
+offset_bottom = -42.06
 
 [node name="ActiveAcorMicroInfoTween" type="Tween" parent="CanvasLayerInfoControls"]
 
 [node name="TargetActorMicroInfoRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 1 )]
-margin_left = 434.0
-margin_top = 186.0
-margin_right = 433.92
-margin_bottom = 185.94
+offset_left = 434.0
+offset_top = 186.0
+offset_right = 433.92
+offset_bottom = 185.94
 
 [node name="TargetActorMicroInfoTween" type="Tween" parent="CanvasLayerInfoControls"]
 
 [node name="DialogueBoxRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 4 )]
-margin_left = 72.0
-margin_top = 262.0
-margin_right = 72.0
-margin_bottom = 262.0
+offset_left = 72.0
+offset_top = 262.0
+offset_right = 72.0
+offset_bottom = 262.0
 
 [node name="DialogueBoxTween" type="Tween" parent="CanvasLayerInfoControls"]
 
 [node name="PortraitPopupRoot" parent="CanvasLayerInfoControls" instance=ExtResource( 5 )]
-margin_left = 73.3334
-margin_top = -76.0
-margin_right = 73.3333
-margin_bottom = -76.0
+offset_left = 73.3334
+offset_top = -76.0
+offset_right = 73.3333
+offset_bottom = -76.0
 
 [node name="PortraitPopupTween" type="Tween" parent="CanvasLayerInfoControls"]
 

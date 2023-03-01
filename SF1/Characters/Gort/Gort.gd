@@ -30,17 +30,17 @@ func cget_movement_type() -> int: return $CharacterRoot.movement_type
 func play_turn():
 	print("\n" + $CharacterRoot.character_name + " Turn Start\n")	
 	$CharacterRoot.play_turn()
-	if $CharacterRoot.connect("signal_completed_turn", self, "s_complete_turn") != OK:
+	if $CharacterRoot.connect("signal_completed_turn",Callable(self,"s_complete_turn")) != OK:
 		print($CharacterRoot.character_name + " - signal_completed_turn failed to connect")
 		
-	if $CharacterRoot.connect("signal_character_moved", self, "s_char_moved")  != OK:
+	if $CharacterRoot.connect("signal_character_moved",Callable(self,"s_char_moved"))  != OK:
 		print($CharacterRoot.character_name + " - signal_character_moved failed to connect")
 		
-	if $CharacterRoot.connect("signal_show_character_action_menu", self, "s_show_character_action_menu") != OK:
+	if $CharacterRoot.connect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu")) != OK:
 		print($CharacterRoot.character_name + " - signal_show_character_action_menu failed to connect")
-	# yield(self, "signal_completed_turn")
+	# await self.signal_completed_turn
 	
-	if $CharacterRoot.connect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor") != OK:
+	if $CharacterRoot.connect("signal_switch_focus_to_cursor",Callable(self,"s_switch_focus_to_cursor")) != OK:
 		print($CharacterRoot.character_name + " - signal_switch_focus_to_cursor failed to connect")
 
 func s_switch_focus_to_cursor():
@@ -50,10 +50,10 @@ func s_switch_focus_to_cursor():
 func s_complete_turn():
 	print("\n" + $CharacterRoot.character_name + " Turn End\n")
 	$CharacterRoot.animationPlayer.play("DownMovement")
-	$CharacterRoot.disconnect("signal_completed_turn", self, "s_complete_turn")
-	$CharacterRoot.disconnect("signal_character_moved", self, "s_char_moved")
-	$CharacterRoot.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
-	$CharacterRoot.disconnect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
+	$CharacterRoot.disconnect("signal_completed_turn",Callable(self,"s_complete_turn"))
+	$CharacterRoot.disconnect("signal_character_moved",Callable(self,"s_char_moved"))
+	$CharacterRoot.disconnect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu"))
+	$CharacterRoot.disconnect("signal_switch_focus_to_cursor",Callable(self,"s_switch_focus_to_cursor"))
 	emit_signal("signal_completed_turn")
 
 func s_char_moved(new_pos):
@@ -66,10 +66,10 @@ func get_character_movement():
 	return $CharacterRoot.move
 
 func get_character_current_pos() -> Vector2:
-	return $CharacterRoot/KinematicBody2D.position
+	return $CharacterRoot/CharacterBody2D.position
 
 func get_kinematic_body():
-	return $CharacterRoot/KinematicBody2D
+	return $CharacterRoot/CharacterBody2D
 
 func get_actor_root_node_internal():
 	return get_node("CharacterRoot")

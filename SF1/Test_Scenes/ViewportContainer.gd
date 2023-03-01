@@ -1,4 +1,4 @@
-extends ViewportContainer
+extends SubViewportContainer
 
 
 # Declare member variables here. Examples:
@@ -8,7 +8,7 @@ extends ViewportContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	material.set_shader_param("ViewportTexture", $Viewport.get_texture())
+	material.set_shader_parameter("ViewportTexture", $SubViewport.get_texture())
 	
 	pass # Replace with function body.
 

@@ -3,31 +3,31 @@ extends Node
 const bmc_x: int = 171
 const bmc_y: int = 182
 
-onready var OverworldActionMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldActionsMenuRoot
+@onready var OverworldActionMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldActionsMenuRoot
 
-onready var battleMagicMenuTween = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/BattleMagicMenuTween
-onready var battleMagicMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode # /OverworldMagicMenuRoot
-onready var battleMagicMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/OverworldMagicMenuRoot
+@onready var battleMagicMenuTween = create_tween()
+@onready var battleMagicMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode # /OverworldMagicMenuRoot
+@onready var battleMagicMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode/OverworldMagicMenuRoot
 
-onready var OverworldInventoryMenuTween = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode/InventoryMenuTween
-onready var OverworldInventoryMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode
-onready var OverworldInventoryMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode/InventoryMenuRoot
+@onready var OverworldInventoryMenuTween = create_tween()
+@onready var OverworldInventoryMenuWrapperRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode
+@onready var OverworldInventoryMenuRoot = $OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode/InventoryMenuRoot
 
-onready var HQMenuWrapperRoot = $HQMenusWrapperNode
-onready var PriestMenuWrapperRoot = $OverworldWrapperNode/PriestMenuWrapperNode
-onready var UserInteractionPromptsRoot = $UserInteractionPrompts
+@onready var HQMenuWrapperRoot = $HQMenusWrapperNode
+@onready var PriestMenuWrapperRoot = $OverworldWrapperNode/PriestMenuWrapperNode
+@onready var UserInteractionPromptsRoot = $UserInteractionPrompts
 
-onready var GoldInfoBox = $OverworldWrapperNode/MenusNodeWrapper/GoldInfoBox
-onready var CharacterInfoBox = $OverworldWrapperNode/MenusNodeWrapper/BattleCharacterOrEnemeyMicroInfoRoot
+@onready var GoldInfoBox = $OverworldWrapperNode/MenusNodeWrapper/GoldInfoBox
+@onready var CharacterInfoBox = $OverworldWrapperNode/MenusNodeWrapper/BattleCharacterOrEnemeyMicroInfoRoot
 
 ## shop menu nodes
-onready var ShopMenuWrapperNode = $OverworldWrapperNode/ShopMenuWrapperNode
-onready var ShopMenuActionMenu = $OverworldWrapperNode/ShopMenuWrapperNode/ShopMenuRoot
-onready var ShopItemSelectionMenu = $OverworldWrapperNode/ShopMenuWrapperNode/ShopItemSelectionMenuNode
+@onready var ShopMenuWrapperNode = $OverworldWrapperNode/ShopMenuWrapperNode
+@onready var ShopMenuActionMenu = $OverworldWrapperNode/ShopMenuWrapperNode/ShopMenuRoot
+@onready var ShopItemSelectionMenu = $OverworldWrapperNode/ShopMenuWrapperNode/ShopItemSelectionMenuNode
 ##
 
-onready var MicroMemberListWrapperNode = $MicroMemberListWrapperNode
-onready var MicroMemberListViewMenu = $MicroMemberListWrapperNode/MicroMemberListViewNodeRoot
+@onready var MicroMemberListWrapperNode = $MicroMemberListWrapperNode
+@onready var MicroMemberListViewMenu = $MicroMemberListWrapperNode/MicroMemberListViewNodeRoot
 
 
 

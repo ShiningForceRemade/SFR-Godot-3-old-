@@ -14,23 +14,23 @@ func _ready():
 func _on_AlteroneEntranceArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene - SF1 C1 - Alterone")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene(scene__alterone)
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file(scene__alterone)
 
 
 func _on_GuardianaEntranceArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene - SF1 C1 - Guardiana")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene(scene__guardiana)
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file(scene__guardiana)
 
 
 func _on_AncientsGateEntranceArea2D_body_entered(body):
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene - SF1 C1 - Ancients Gate")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene(scene__ancients_gate)
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file(scene__ancients_gate)
 
 
 func _on_CabinEntranceArea2D_body_entered(body):
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene - SF1 C1 - Cabin (Gong Location)")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene(scene__gongs_house)
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file(scene__gongs_house)
 

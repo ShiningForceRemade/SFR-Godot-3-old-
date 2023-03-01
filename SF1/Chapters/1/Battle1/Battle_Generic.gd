@@ -12,9 +12,9 @@ signal signal_show_character_action_menu
 
 signal signal_selected_actor_underneath_cursor
 
-onready var battleAttackAnimationPlayer = $BattleAttackAnimationPlayerRoot
+@onready var battleAttackAnimationPlayer = $BattleAttackAnimationPlayerRoot
 
-onready var tilemap_terrian_node = $TilesInformationGroup/TileMapTerrianEffectInformation
+@onready var tilemap_terrian_node = $TilesInformationGroup/TileMapTerrianEffectInformation
 
 
 func _ready():
@@ -37,21 +37,21 @@ func _ready():
 	Singleton_Game_GlobalBattleVariables.character_wrapper_node = $Characters
 	Singleton_Game_GlobalBattleVariables.enemies_wrapper_node = $Enemies
 	
-	if $FieldLogicNode.connect("signal_land_effect_under_tile", self, "s_land_effect") != OK:
+	if $FieldLogicNode.connect("signal_land_effect_under_tile",Callable(self,"s_land_effect")) != OK:
 		print("Log - Error: Battle1.tscn - connect signal_land_effect_under_tile not okay")
 		
-	if $FieldLogicNode.connect("signal_active_character_or_enemey", self, "s_active_character_or_enemey_info") != OK:
+	if $FieldLogicNode.connect("signal_active_character_or_enemey",Callable(self,"s_active_character_or_enemey_info")) != OK:
 		print("Log - Error: Battle1.tscn - connect signal_active_character_or_enemey not okay")
 	
-	if $FieldLogicNode.connect("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info") != OK:
+	if $FieldLogicNode.connect("signal_hide_land_effect_and_active_actor_info",Callable(self,"s_hide_land_effect_and_active_actor_info")) != OK:
 		print("Log - Error: Battle1.tscn - connect signal_hide_land_effect_and_active_actor_info not okay")
-	if $FieldLogicNode.connect("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info") != OK:
+	if $FieldLogicNode.connect("signal_show_land_effect_and_active_actor_info",Callable(self,"s_show_land_effect_and_active_actor_info")) != OK:
 		print("Log - Error: Battle1.tscn - connect signal_show_land_effect_and_active_actor_info not okay")
 	
-	if $FieldLogicNode.connect("signal_show_character_action_menu", self, "s_show_character_action_menu") != OK:
+	if $FieldLogicNode.connect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu")) != OK:
 		print("Log - Error: Battle1.tscn - connect signal_show_character_action_menu not okay")
 	
-	if $CursorRoot.connect("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor") != OK:
+	if $CursorRoot.connect("signal_selected_actor_underneath_cursor",Callable(self,"s_selected_actor_underneath_cursor")) != OK:
 		print("Log - Error: Battle1.tscn - connect signal_selected_actor_underneath_cursor not okay")
 
 

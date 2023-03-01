@@ -1,89 +1,62 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://d4i7w8jrk48fm"]
 
-[ext_resource path="res://Assets/SFCD/Items/EmptyItemSlot.png" type="Texture" id=1]
-[ext_resource path="res://General/BattleActionsMenu/GiveMenu/GiveMenu.gd" type="Script" id=2]
-[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=3]
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" type="PackedScene" id=5]
+[ext_resource type="Texture2D" uid="uid://c1jstal8qrxys" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="1"]
+[ext_resource type="Script" path="res://General/BattleActionsMenu/GiveMenu/GiveMenu.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://b0u3srggt8s74" path="res://Assets/SF1/ShiningForceTextBackground.png" id="3"]
+[ext_resource type="PackedScene" path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" id="5"]
 
 [node name="GiveMenuRoot" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
-[node name="SlotUpSprite" type="Sprite" parent="."]
-position = Vector2( 24, 12 )
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="SlotUpSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 12)
+texture = ExtResource("1")
 
-[node name="SlotLeftSprite" type="Sprite" parent="."]
-position = Vector2( 8, 24 )
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="SlotLeftSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("1")
 
-[node name="SlotRightSprite" type="Sprite" parent="."]
-position = Vector2( 40, 24 )
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="SlotRightSprite" type="Sprite2D" parent="."]
+position = Vector2(40, 24)
+texture = ExtResource("1")
 
-[node name="SlotDownSprite" type="Sprite" parent="."]
-position = Vector2( 24, 36 )
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="SlotDownSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 36)
+texture = ExtResource("1")
 
 [node name="ItemInfoNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 58.0
-margin_top = 8.0
-margin_right = 172.0
-margin_bottom = 48.0
-texture = ExtResource( 3 )
+offset_left = 58.0
+offset_top = 8.0
+offset_right = 172.0
+offset_bottom = 48.0
+texture = ExtResource("3")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="TypeNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 0
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 6.0
-margin_top = 6.0
-margin_right = -6.0
-margin_bottom = -27.0
-custom_fonts/font = ExtResource( 4 )
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -27.0
 text = "ITEM TYPE"
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="WeaponNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 0
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 6.0
-margin_top = 14.0
-margin_right = -6.0
-margin_bottom = -4.0
-custom_fonts/font = ExtResource( 4 )
+offset_left = 6.0
+offset_top = 14.0
+offset_right = -6.0
+offset_bottom = -4.0
 text = "ITEM NAME"
-autowrap = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="RedSelectionBorderRoot" parent="." instance=ExtResource( 5 )]
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("5")]

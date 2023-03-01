@@ -9,19 +9,19 @@ signal signal_character_moved(new_pos)
 
 signal signal_show_character_action_menu
 
-onready var characterRoot = get_child(0).get_node("CharacterRoot")
-onready var kinematicBody = get_child(0).get_node("CharacterRoot/KinematicBody2D")
-onready var staticCharacterCollision = get_child(0).get_node("CharacterRoot/KinematicBody2D").get_node("StaticCollisionShape2D")
-onready var animationPlayer = get_child(0).get_node("CharacterRoot/AnimationPlayer")
-onready var animationTree = get_child(0).get_node("CharacterRoot/AnimationTree")
-onready var animationTreeState = animationTree.get("parameters/playback")
-onready var tween = get_child(0).get_node("CharacterRoot/KinematicBody2D/Tween")
+@onready var characterRoot = get_child(0).get_node("CharacterRoot")
+@onready var kinematicBody = get_child(0).get_node("CharacterRoot/CharacterBody2D")
+@onready var staticCharacterCollision = get_child(0).get_node("CharacterRoot/CharacterBody2D").get_node("StaticCollisionShape2D")
+@onready var animationPlayer = get_child(0).get_node("CharacterRoot/AnimationPlayer")
+@onready var animationTree = get_child(0).get_node("CharacterRoot/AnimationTree")
+@onready var animationTreeState = animationTree.get("parameters/playback")
+@onready var tween = get_child(0).get_node("CharacterRoot/CharacterBody2D/Tween")
 
-onready var colsh = get_child(0).get_node("CharacterRoot/KinematicBody2D/CollisionShape2D")
+@onready var colsh = get_child(0).get_node("CharacterRoot/CharacterBody2D/CollisionShape2D")
 
-onready var frontFacingRaycast = $RayCast2D
+@onready var frontFacingRaycast = $RayCast2D
 
-onready var CutscenePlayerTemp = get_parent().get_node("CutsceneAnimationPlayer")
+@onready var CutscenePlayerTemp = get_parent().get_node("CutsceneAnimationPlayer")
 
 
 var velocity: Vector2 = Vector2.ZERO
@@ -68,7 +68,7 @@ func _ready():
 	#position = position.snapped(Vector2.ONE * TILE_SIZE)
 	#position += Vector2.ONE * TILE_SIZE / 2
 	
-	tween.connect("tween_completed", self, "s_tween_completed")
+	tween.connect("finished",Callable(self,"s_tween_completed"))
 	
 	# use animation tree for freeform movement
 	# hardcoded logic for grid based 
@@ -102,7 +102,7 @@ func get_actor_name() -> String:
 
 #func init_player_char():
 	#print("kinematicBody - ", kinematicBody)
-	#kinematicBody.connect("signal_character_moved", self, "char_moved")
+	#kinematicBody.connect("signal_character_moved",Callable(self,"char_moved"))
 
 func char_moved(new_pos):
 	emit_signal("signal_character_moved", new_pos)
@@ -125,7 +125,7 @@ func setup_animations_types_depending_on_movement() -> void:
 		animationTree.active = false
 		# animationTree.active = true
 	else:
-		# $Sprite.flip_h = false
+		# $Sprite2D.flip_h = false
 		animationPlayer.stop()
 		animationTree.active = false
 		animationTreeState.start("Movement 4 Directions")
@@ -160,11 +160,11 @@ func get_moveDir():
 			print("rest speed")
 	
 	if movedir != Vector2.ZERO:
-		frontFacingRaycast.cast_to = movedir * TILE_SIZE / 2
+		frontFacingRaycast.target_position = movedir * TILE_SIZE / 2
 		if animationPlayer.playback_speed != 2:
 			animationPlayer.playback_speed = 2
 			print("speed")
-		# frontFacingRaycast.cast_to = movedir * ((TILE_SIZE / 2) - 1)
+		# frontFacingRaycast.target_position = movedir * ((TILE_SIZE / 2) - 1)
 
 func _process(delta):
 	# func _physics_process(delta):
@@ -195,7 +195,7 @@ func _process(delta):
 				mcan.stats.mp
 				)
 			
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			Singleton_Game_GlobalCommonVariables.menus_root_node.overworld_action_menu_node().set_menu_active()
 			return
 			
@@ -239,8 +239,9 @@ func _process(delta):
 #		# colsh.position = Vector2(colsh.position.x + TILE_SIZE, colsh.position.y)
 #		pass
 		
-		if tween.is_active():
-			return
+		# TODO: fixme
+		# if tween.is_active():
+		#	return
 
 		# print("Here")
 		# animationPlayer.playback_speed = 4
@@ -337,15 +338,17 @@ func _process(delta):
 			#velocity += input_vector * ACCELERATION * delta
 			# Running
 			if Input.is_action_pressed("ui_accept"):	
-				# velocity = velocity.clamped(MAX_SPEED * RUNNING_SPEED_RATE * delta)
+				# velocity = velocity.limit_length(MAX_SPEED * RUNNING_SPEED_RATE * delta)
 				velocity = velocity.move_toward(input_vector * MAX_SPEED * RUNNING_SPEED_RATE, ACCELERATION * delta)
 			else:
-				#velocity = velocity.clamped(MAX_SPEED * delta)
+				#velocity = velocity.limit_length(MAX_SPEED * delta)
 				velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
-		velocity = kinematicBody.move_and_slide(velocity)
+		kinematicBody.set_velocity(velocity)
+		kinematicBody.move_and_slide()
+		velocity = kinematicBody.velocity
 		colsh.disabled = true
 
 
@@ -449,19 +452,19 @@ func ChangeActor(new_actor_arg) -> void:
 	# get_child(0).queue_free()
 	
 	add_child(new_actor_arg)
-	yield(new_actor_arg, "_ready")
+	await new_actor_arg._ready
 	
 
 func RestartAfterActorChange() -> void:
 	characterRoot = get_child(0).get_node("CharacterRoot")
-	kinematicBody = get_child(0).get_node("CharacterRoot/KinematicBody2D")
+	kinematicBody = get_child(0).get_node("CharacterRoot/CharacterBody2D")
 	animationPlayer = get_child(0).get_node("CharacterRoot/AnimationPlayer")
 	animationPlayer.play("DownMovement")
 	animationTree = get_child(0).get_node("CharacterRoot/AnimationTree")
 	animationTreeState = animationTree.get("parameters/playback")
-	tween = get_child(0).get_node("CharacterRoot/KinematicBody2D/Tween")
+	tween = get_child(0).get_node("CharacterRoot/CharacterBody2D/Tween")
 	
-	colsh = get_child(0).get_node("CharacterRoot/KinematicBody2D/CollisionShape2D")
+	colsh = get_child(0).get_node("CharacterRoot/CharacterBody2D/CollisionShape2D")
 	
 	frontFacingRaycast = get_parent().get_node("RayCast2D")
 	

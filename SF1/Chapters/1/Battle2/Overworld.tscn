@@ -7,124 +7,124 @@
 [ext_resource path="res://SF1/Chapters/1/Battle2/Overworld.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 12 )
+size = Vector2( 32, 12 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 72, 12 )
+size = Vector2( 72, 12 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 72, 30.7129 )
+size = Vector2( 72, 30.7129 )
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 30.9564, 50.7347 )
+size = Vector2( 30.9564, 50.7347 )
 
 [sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 23.0562, 25.1647 )
+size = Vector2( 23.0562, 25.1647 )
 
 [sub_resource type="RectangleShape2D" id=36]
-extents = Vector2( 20.4136, 26.9404 )
+size = Vector2( 20.4136, 26.9404 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 16, 12 )
+size = Vector2( 16, 12 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 8, 24.0001 )
+size = Vector2( 8, 24.0001 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 32, 7.99994 )
+size = Vector2( 32, 7.99994 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 8, 40.0001 )
+size = Vector2( 8, 40.0001 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 32, 8.00006 )
+size = Vector2( 32, 8.00006 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 8, 8.00006 )
+size = Vector2( 8, 8.00006 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 64, 8.00006 )
+size = Vector2( 64, 8.00006 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 40, 8.00006 )
+size = Vector2( 40, 8.00006 )
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 24, 8.00006 )
+size = Vector2( 24, 8.00006 )
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 16, 31.9999 )
+size = Vector2( 16, 31.9999 )
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 24, 23.9999 )
+size = Vector2( 24, 23.9999 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 40, 23.9999 )
+size = Vector2( 40, 23.9999 )
 
 [sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 24, 232 )
+size = Vector2( 24, 232 )
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 24, 296 )
+size = Vector2( 24, 296 )
 
 [sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 448, 16 )
+size = Vector2( 448, 16 )
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 9.51672, 33.2777 )
+size = Vector2( 9.51672, 33.2777 )
 
 [sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 15.315, 10.5587 )
+size = Vector2( 15.315, 10.5587 )
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 60, 12 )
+size = Vector2( 60, 12 )
 
 [sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 12, 12 )
+size = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 12, 36 )
+size = Vector2( 12, 36 )
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 12, 56 )
+size = Vector2( 12, 56 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 36, 25.6126 )
+size = Vector2( 36, 25.6126 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 48.2861, 34.252 )
+size = Vector2( 48.2861, 34.252 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 39.9999, 16 )
+size = Vector2( 39.9999, 16 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 64.8547, 9.9856 )
+size = Vector2( 64.8547, 9.9856 )
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 12.2371, 103.862 )
+size = Vector2( 12.2371, 103.862 )
 
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 109.359, 13.3586 )
+size = Vector2( 109.359, 13.3586 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 12.9242, 10.5807 )
+size = Vector2( 12.9242, 10.5807 )
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 12.5244, 33.629 )
+size = Vector2( 12.5244, 33.629 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 24, 47.9999 )
+size = Vector2( 24, 47.9999 )
 
 [sub_resource type="RectangleShape2D" id=42]
-extents = Vector2( 16, 16 )
+size = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 4.21053, 3.10526 )
+size = Vector2( 4.21053, 3.10526 )
 
 [sub_resource type="RectangleShape2D" id=43]
-extents = Vector2( 6.625, 6.25 )
+size = Vector2( 6.625, 6.25 )
 
 [sub_resource type="RectangleShape2D" id=44]
-extents = Vector2( 5, 5 )
+size = Vector2( 5, 5 )
 
 [node name="OverworldRoot" type="Node2D"]
 script = ExtResource( 5 )
@@ -140,25 +140,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="GuardianaCastlePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="GuardianaCastlePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 204, 562 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AncientsGatePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="AncientsGatePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 636, 586 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CabinPosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="CabinPosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 732, 610 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AlteronePosition2D" type="Position2D" parent="PositionsNode2D"]
+[node name="AlteronePosition2D" type="Marker2D" parent="PositionsNode2D"]
 position = Vector2( 492, 154 )
 __meta__ = {
 "_edit_lock_": true
@@ -166,19 +166,19 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
-rotating = true
+ignore_rotation =true # reversed "rotating" for Camera2D
 current = true
 process_mode = 0
 limit_left = 0
 limit_top = 0
 limit_right = 765
 limit_bottom = 765
-smoothing_enabled = true
-smoothing_speed = 16.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
+follow_smoothing_enabled = true
+position_smoothing_speed = 16.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource( 2 )
 __meta__ = {

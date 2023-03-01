@@ -3,7 +3,7 @@ extends Node2D
 var stationary
 var facing_direction
 
-onready var npcBaseRoot = get_child(0)
+@onready var npcBaseRoot = get_child(0)
 
 func _ready():
 	stationary = npcBaseRoot.stationary
@@ -37,7 +37,7 @@ func attempt_to_interact() -> void:
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/LoweOpening2.json"
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 		
-		yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+		await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 		
 		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 		
@@ -59,23 +59,23 @@ func LoweLeavesForCastle() -> void:
 	lowe.set_movement_speed_timer(0.15)
 	
 	lowe.tester__move_in_direction("Right")
-	yield(get_tree().create_timer(0.15), "timeout")
+	await get_tree().create_timer(0.15).timeout
 	
 	for i in 6:
 		lowe.tester__move_in_direction("Down")
-		yield(get_tree().create_timer(0.15), "timeout")
+		await get_tree().create_timer(0.15).timeout
 	for i in 4:
 		lowe.tester__move_in_direction("Right")
-		yield(get_tree().create_timer(0.15), "timeout")
+		await get_tree().create_timer(0.15).timeout
 	for i in 7:
 		lowe.tester__move_in_direction("Down")
-		yield(get_tree().create_timer(0.15), "timeout")
+		await get_tree().create_timer(0.15).timeout
 	for i in 12:
 		lowe.tester__move_in_direction("Right")
-		yield(get_tree().create_timer(0.15), "timeout")
+		await get_tree().create_timer(0.15).timeout
 	for i in 17:
 		lowe.tester__move_in_direction("Up")
-		yield(get_tree().create_timer(0.15), "timeout")
-		# yield(lowe.tween, "tween_completed")
+		await get_tree().create_timer(0.15).timeout
+		# await lowe.tween.finished
 	
 	queue_free()

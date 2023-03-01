@@ -1,241 +1,163 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://d1c3jsjukl74t"]
 
-[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=1]
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://b0u3srggt8s74" path="res://Assets/SF1/ShiningForceTextBackground.png" id="1"]
+[ext_resource type="Script" path="res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.gd" id="3"]
 
 [node name="BattleCharacterOrEnemeyMicroInfoRoot" type="Control"]
+layout_mode = 3
 anchor_right = 0.394
 anchor_bottom = 0.267
-margin_right = -0.0800095
-margin_bottom = -0.0600052
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
+offset_right = -0.0800095
+offset_bottom = -0.0600052
+script = ExtResource("3")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_right = 150.0
-margin_bottom = 48.0
-texture = ExtResource( 1 )
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 48.0
+texture = ExtResource("1")
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="NameLabel" type="Label" parent="NinePatchRect"]
-margin_left = 6.0
-margin_top = 8.0
-margin_right = 66.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 66.0
+offset_bottom = 16.0
 text = "Name"
-valign = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="ClassLabel" type="Label" parent="NinePatchRect"]
-margin_left = 80.0
-margin_top = 8.0
-margin_right = 112.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 0
+offset_left = 80.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 16.0
 text = "CLSS"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="LevelLabel" type="Label" parent="NinePatchRect"]
-margin_left = 128.0
-margin_top = 8.0
-margin_right = 144.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 144.0
+offset_bottom = 16.0
 text = "LV"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="HPStaticLabel" type="Label" parent="NinePatchRect"]
-margin_left = 7.0
-margin_top = 20.0
-margin_right = 23.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 0
+offset_left = 7.0
+offset_top = 20.0
+offset_right = 23.0
+offset_bottom = 28.0
 text = "HP"
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="MPStaticLabel" type="Label" parent="NinePatchRect"]
-margin_left = 7.0
-margin_top = 32.0
-margin_right = 23.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 0
+offset_left = 7.0
+offset_top = 32.0
+offset_right = 23.0
+offset_bottom = 40.0
 text = "MP"
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="CurrentHPLabel" type="Label" parent="NinePatchRect"]
-margin_left = 103.0
-margin_top = 20.0
-margin_right = 143.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 0
+offset_left = 103.0
+offset_top = 20.0
+offset_right = 143.0
+offset_bottom = 28.0
 text = "29/41"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="CurrentMPLabel" type="Label" parent="NinePatchRect"]
-margin_left = 102.0
-margin_top = 32.0
-margin_right = 142.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 0
+offset_left = 102.0
+offset_top = 32.0
+offset_right = 142.0
+offset_bottom = 40.0
 text = "10/10"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="HPBarWrapperControl" type="Control" parent="NinePatchRect"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="StaticLeftEdgeColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
-margin_left = 24.0
-margin_top = 21.0
-margin_right = 25.0
-margin_bottom = 26.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 24.0
+offset_top = 21.0
+offset_right = 25.0
+offset_bottom = 26.0
 
 [node name="StaticRightEdgeColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
-margin_left = 26.0
-margin_top = 21.0
-margin_right = 27.0
-margin_bottom = 26.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 26.0
+offset_top = 21.0
+offset_right = 27.0
+offset_bottom = 26.0
 
 [node name="StaticCenterWrapColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
-margin_left = 25.0
-margin_top = 20.0
-margin_right = 26.0
-margin_bottom = 27.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 25.0
+offset_top = 20.0
+offset_right = 26.0
+offset_bottom = 27.0
 
 [node name="BackgroundColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
-margin_left = 25.0
-margin_top = 21.0
-margin_right = 26.0
-margin_bottom = 26.0
-color = Color( 1, 0.00784314, 0.00784314, 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 25.0
+offset_top = 21.0
+offset_right = 26.0
+offset_bottom = 26.0
+color = Color(1, 0.00784314, 0.00784314, 1)
 
 [node name="ForegroundColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
-margin_left = 25.0
-margin_top = 21.0
-margin_right = 26.0
-margin_bottom = 26.0
-color = Color( 1, 0.835294, 0.0941176, 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 25.0
+offset_top = 21.0
+offset_right = 26.0
+offset_bottom = 26.0
+color = Color(1, 0.835294, 0.0941176, 1)
 
 [node name="MPBarWrapperControl" type="Control" parent="NinePatchRect"]
-margin_top = 12.0
-margin_right = 40.0
-margin_bottom = 52.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+anchors_preset = 0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 52.0
 
 [node name="StaticLeftEdgeColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
-margin_left = 24.0
-margin_top = 21.0
-margin_right = 25.0
-margin_bottom = 26.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 24.0
+offset_top = 21.0
+offset_right = 25.0
+offset_bottom = 26.0
 
 [node name="StaticRightEdgeColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
-margin_left = 26.0
-margin_top = 21.0
-margin_right = 27.0
-margin_bottom = 26.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 26.0
+offset_top = 21.0
+offset_right = 27.0
+offset_bottom = 26.0
 
 [node name="StaticCenterWrapColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
-margin_left = 25.0
-margin_top = 20.0
-margin_right = 26.0
-margin_bottom = 27.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 25.0
+offset_top = 20.0
+offset_right = 26.0
+offset_bottom = 27.0
 
 [node name="BackgroundColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
-margin_left = 25.0
-margin_top = 21.0
-margin_right = 26.0
-margin_bottom = 26.0
-color = Color( 1, 0.00784314, 0.00784314, 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 25.0
+offset_top = 21.0
+offset_right = 26.0
+offset_bottom = 26.0
+color = Color(1, 0.00784314, 0.00784314, 1)
 
 [node name="ForegroundColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
-margin_left = 25.0
-margin_top = 21.0
-margin_right = 26.0
-margin_bottom = 26.0
-color = Color( 1, 0.835294, 0.0941176, 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 25.0
+offset_top = 21.0
+offset_right = 26.0
+offset_bottom = 26.0
+color = Color(1, 0.835294, 0.0941176, 1)

@@ -1,245 +1,131 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cihdmpr36kg32"]
 
-[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=2]
-[ext_resource path="res://General/BattleActionsMenu/EquipMenu/EquipMenu.gd" type="Script" id=3]
-[ext_resource path="res://Assets/SFCD/Items/UnequipHand.png" type="Texture" id=4]
-[ext_resource path="res://Assets/SFCD/Items/EmptyItemSlot.png" type="Texture" id=5]
-[ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=7]
+[ext_resource type="Texture2D" uid="uid://b0u3srggt8s74" path="res://Assets/SF1/ShiningForceTextBackground.png" id="2"]
+[ext_resource type="Script" path="res://General/BattleActionsMenu/EquipMenu/EquipMenu.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://clonaa5opblg5" path="res://Assets/SFCD/Items/UnequipHand.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c1jstal8qrxys" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="5"]
+[ext_resource type="PackedScene" path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" id="6"]
 
 [node name="BattleEquipMenuRoot" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
-[node name="EquipSlotUpSprite" type="Sprite" parent="."]
-position = Vector2( 24, 12 )
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="EquipSlotUpSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 12)
+texture = ExtResource("5")
 
-[node name="EquipSlotLeftSprite" type="Sprite" parent="."]
-position = Vector2( 8, 24 )
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="EquipSlotLeftSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("5")
 
-[node name="EquipSlotRightSprite" type="Sprite" parent="."]
-position = Vector2( 40, 24 )
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="EquipSlotRightSprite" type="Sprite2D" parent="."]
+position = Vector2(40, 24)
+texture = ExtResource("5")
 
-[node name="UnequipSlotDownSprite" type="Sprite" parent="."]
-position = Vector2( 24, 36 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="UnequipSlotDownSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 36)
+texture = ExtResource("4")
 
 [node name="ItemInfoNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 58.0
-margin_top = 8.0
-margin_right = 172.0
-margin_bottom = 48.0
-texture = ExtResource( 2 )
+offset_left = 58.0
+offset_top = 8.0
+offset_right = 172.0
+offset_bottom = 48.0
+texture = ExtResource("2")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="TypeNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 0
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 6.24965
-margin_top = 6.0
-margin_right = -6.0
-margin_bottom = -24.0
-custom_fonts/font = ExtResource( 7 )
+offset_left = 6.24965
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -24.0
 text = "ITEM TYPE"
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="WeaponNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 0
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 6.0
-margin_top = 17.0
-margin_right = -6.0
-margin_bottom = -15.0
-custom_fonts/font = ExtResource( 7 )
+offset_left = 6.0
+offset_top = 17.0
+offset_right = -6.0
+offset_bottom = -15.0
 text = "ITEM NAME"
-autowrap = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="EquippedLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 0
 anchor_left = -0.00218987
 anchor_right = 0.99781
 anchor_bottom = 1.0
-margin_left = 7.0
-margin_top = 26.0
-margin_right = -5.75034
-margin_bottom = -6.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.913725, 0.647059, 0.231373, 1 )
+offset_left = 7.0
+offset_top = 26.0
+offset_right = -5.75034
+offset_bottom = -6.0
 text = "EQUIPPED"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = -113.0
-margin_top = -32.0
-margin_right = -11.0
-margin_bottom = 48.0
-texture = ExtResource( 2 )
+offset_left = -113.0
+offset_top = -32.0
+offset_right = -11.0
+offset_bottom = 48.0
+texture = ExtResource("2")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="StaticLabelVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 60.0
-margin_bottom = 73.0
-custom_constants/separation = 11
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 73.0
 
 [node name="AttackStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
-margin_right = 56.0
-margin_bottom = 8.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "ATTACK"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="DefenseStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
-margin_top = 19.0
-margin_right = 56.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "DEFENSE"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="MoveStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
-margin_top = 38.0
-margin_right = 56.0
-margin_bottom = 46.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "MOVE"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="AgilityStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
-margin_top = 57.0
-margin_right = 56.0
-margin_bottom = 65.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "AGILITY"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="StatVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect"]
-margin_left = 63.0
-margin_top = 7.0
-margin_right = 95.0
-margin_bottom = 73.0
-custom_constants/separation = 11
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 63.0
+offset_top = 7.0
+offset_right = 95.0
+offset_bottom = 73.0
 
 [node name="AttackStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
-margin_right = 32.0
-margin_bottom = 8.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "999"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="DefenseStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
-margin_top = 19.0
-margin_right = 32.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "999"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="MoveStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
-margin_top = 38.0
-margin_right = 32.0
-margin_bottom = 46.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "999"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="AgilityStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
-margin_top = 57.0
-margin_right = 32.0
-margin_bottom = 65.0
-custom_fonts/font = ExtResource( 7 )
+layout_mode = 2
 text = "999"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="RedSelectionBorderRoot" parent="." instance=ExtResource( 6 )]
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("6")]

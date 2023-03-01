@@ -10,26 +10,28 @@ enum e_menu_options {
 }
 var currently_selected_option: int = e_menu_options.SAVE_OPTION
 
-onready var animationPlayer = $AnimationPlayer
-onready var label = $NinePatchRect/Label
+@onready var animationPlayer = $AnimationPlayer
+@onready var label = $NinePatchRect/Label
 
-onready var save_spirte    = $SaveActionSprite
-onready var cure_spirte     = $CureActionSprite
-onready var dead_spirte = $DeadActionSprite
-onready var promotion_spirte      = $PromotionActionSprite
+@onready var save_spirte    = $SaveActionSprite
+@onready var cure_spirte     = $CureActionSprite
+@onready var dead_spirte = $DeadActionSprite
+@onready var promotion_spirte      = $PromotionActionSprite
 
 
 # onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()
-	$AnimationPlayer.playback_speed = 2
+	# TODO: fixme
+	# $AnimationPlayer.playback_speed = 2
+	
 	animationPlayer.play("AttackMenuOption")
 	label.text = "Save"
 
 
 func set_menu_active() -> void:
-	yield(get_tree().create_timer(0.02), "timeout")
+	await get_tree().create_timer(0.02).timeout
 	
 	is_menu_active = true
 	
@@ -48,7 +50,7 @@ func _process(_delta):
 		return
 		
 	if Input.is_action_just_pressed("ui_a_key"):
-		yield(get_tree().create_timer(0.02), "timeout")
+		await get_tree().create_timer(0.02).timeout
 		# event.is_action_released("ui_accept"):
 		print("Accept Action - ", currently_selected_option)
 		if currently_selected_option == e_menu_options.PROMOTION_OPTION:
@@ -69,7 +71,7 @@ func _process(_delta):
 			var display_str = "No one seems to deserve a promotion.\nDo you need anything else?"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 			if result == "NO":
 				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 				CancelPriestMenu()
@@ -124,7 +126,7 @@ func _process(_delta):
 			var display_str = "No one seems to need my help.\nDo you need anything else?"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 			if result == "NO":
 				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 				CancelPriestMenu()
@@ -161,7 +163,7 @@ func _process(_delta):
 			var display_str = "DISABLED FOR DEMO!\nDo you need anything else?"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 			if result == "NO":
 				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 				CancelPriestMenu()
@@ -239,7 +241,7 @@ func CancelPriestMenu() -> void:
 	print("Cancel Overworld Action Menu")
 	is_menu_active = false
 	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-	yield(get_tree().create_timer(0.02), "timeout")
+	await get_tree().create_timer(0.02).timeout
 	
 	Singleton_Game_GlobalCommonVariables.action_type = null
 	

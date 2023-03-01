@@ -2,7 +2,7 @@ extends Control
 
 var EmptyItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
 
-onready var itemTextRedSelection = $ItemTextRedSelectionBorderRoot
+@onready var itemTextRedSelection = $ItemTextRedSelectionBorderRoot
 
 const ITEM_TEXT_SELECTION_POSITIONS = [
 	Vector2(155, 8),

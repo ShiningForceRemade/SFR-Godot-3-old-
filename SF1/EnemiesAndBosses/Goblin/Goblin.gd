@@ -6,14 +6,14 @@ signal signal_move_direction_completed
 # warning-ignore:unused_signal
 signal signal_battle_scene_animation_completed
 
-export var is_npc: bool = false
+@export var is_npc: bool = false
 
-onready var body = $EnemeyRoot/KinematicBody2D
-onready var tween = $EnemeyRoot/KinematicBody2D/Tween
-onready var animationPlayer = $EnemeyRoot/AnimationPlayer
-onready var animationTree = $EnemeyRoot/AnimationTree
-onready var animationTreeState = animationTree.get("parameters/playback")
-onready var enemey_actor_root = $EnemeyRoot
+@onready var body = $EnemeyRoot/CharacterBody2D
+@onready var tween = $EnemeyRoot/CharacterBody2D/Tween
+@onready var animationPlayer = $EnemeyRoot/AnimationPlayer
+@onready var animationTree = $EnemeyRoot/AnimationTree
+@onready var animationTreeState = animationTree.get("parameters/playback")
+@onready var enemey_actor_root = $EnemeyRoot
 
 const TILE_SIZE: int = 24
 
@@ -21,17 +21,17 @@ var _timer = null
 
 var rng = RandomNumberGenerator.new()
 
-export var battle_logic_script: String
+@export var battle_logic_script: String
 
 func _ready():
 	animationPlayer.play("DownMovement")
 	
-	tween.connect("tween_completed", self, "s_tween_completed")
+	tween.connect("finished",Callable(self,"s_tween_completed"))
 	
 	if !is_npc:
 		_timer = Timer.new()
 		add_child(_timer)
-		_timer.connect("timeout", self, "_on_Timer_timeout")
+		_timer.connect("timeout",Callable(self,"_on_Timer_timeout"))
 		_timer.set_wait_time(1.0)
 		_timer.set_one_shot(false) # Make sure it loops
 		_timer.start()
@@ -96,7 +96,7 @@ func random_move_direction(direction):
 	
 	# tween.start()
 	
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	emit_signal("signal_move_direction_completed")
 
 func s_tween_completed(node_arg, property_arg): 
@@ -116,14 +116,14 @@ func play_turn():
 	# play_turn_as_character
 	else:
 		print("battle_logic_script ", battle_logic_script)
-		if not battle_logic_script.empty():
+		if not battle_logic_script.is_empty():
 			var bls = load(battle_logic_script)
 			bls = bls.new()
 			bls.play_turn(self)
-			yield(bls, "signal_logic_completed")
+			await bls.signal_logic_completed
 		else:
 			# pseudo_ai_turn_determine()
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			animationPlayer.play("DownMovement")
 			emit_signal("signal_completed_turn")
 	
@@ -143,14 +143,14 @@ func internal_attack_actor_found() -> void:
 	print("ATTTACKKKKKKKKKK")
 	# Singleton_Game_GlobalBattleVariables.battle_base.s_show_target_actor_micro()
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	get_parent().get_parent().get_node("TargetSelectionLogicNodeRoot").enemey_actor_attack_setup()
 
 func pseudo_ai_turn_determine():
 	for _i in range(4):
 		random_move_direction(0)
-		yield(tween, "tween_completed")
+		await tween.finished
 	animationPlayer.play("DownMovement")
 	emit_signal("signal_completed_turn")
 
@@ -224,17 +224,17 @@ signal signal_switch_focus_to_cursor
 func play_turn_as_character():
 	print("\n" + enemey_actor_root.enemey_name + " Turn Start\n")	
 	enemey_actor_root.play_turn()
-	if enemey_actor_root.connect("signal_completed_turn", self, "s_complete_turn") != OK:
+	if enemey_actor_root.connect("signal_completed_turn",Callable(self,"s_complete_turn")) != OK:
 		print(enemey_actor_root.enemey_name + " - signal_completed_turn failed to connect")
 		
-	if enemey_actor_root.connect("signal_character_moved", self, "s_char_moved")  != OK:
+	if enemey_actor_root.connect("signal_character_moved",Callable(self,"s_char_moved"))  != OK:
 		print(enemey_actor_root.enemey_name + " - signal_character_moved failed to connect")
 		
-	if enemey_actor_root.connect("signal_show_character_action_menu", self, "s_show_character_action_menu") != OK:
+	if enemey_actor_root.connect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu")) != OK:
 		print(enemey_actor_root.enemey_name + " - signal_show_character_action_menu failed to connect")
-	# yield(self, "signal_completed_turn")
+	# await self.signal_completed_turn
 	
-	if enemey_actor_root.connect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor") != OK:
+	if enemey_actor_root.connect("signal_switch_focus_to_cursor",Callable(self,"s_switch_focus_to_cursor")) != OK:
 		print(enemey_actor_root.enemey_name + " - signal_switch_focus_to_cursor failed to connect")
 
 func s_switch_focus_to_cursor():
@@ -244,10 +244,10 @@ func s_switch_focus_to_cursor():
 func s_complete_turn_as_character():
 	print("\n" + enemey_actor_root.enemey_name + " Turn End\n")
 	enemey_actor_root.animationPlayer.play("DownMovement")
-	enemey_actor_root.disconnect("signal_completed_turn", self, "s_complete_turn")
-	enemey_actor_root.disconnect("signal_character_moved", self, "s_char_moved")
-	enemey_actor_root.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
-	enemey_actor_root.disconnect("signal_switch_focus_to_cursor", self, "s_switch_focus_to_cursor")
+	enemey_actor_root.disconnect("signal_completed_turn",Callable(self,"s_complete_turn"))
+	enemey_actor_root.disconnect("signal_character_moved",Callable(self,"s_char_moved"))
+	enemey_actor_root.disconnect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu"))
+	enemey_actor_root.disconnect("signal_switch_focus_to_cursor",Callable(self,"s_switch_focus_to_cursor"))
 	emit_signal("signal_completed_turn")
 
 func s_char_moved(new_pos):
@@ -258,4 +258,4 @@ func s_show_character_action_menu():
 	emit_signal("signal_show_character_action_menu")
 
 func get_kinematic_body():
-	return $CharacterRoot/KinematicBody2D
+	return $CharacterRoot/CharacterBody2D

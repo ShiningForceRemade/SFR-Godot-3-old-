@@ -3,5 +3,5 @@
 [ext_resource path="res://General/Singletons/DevMenu/DevMenu.gd" type="Script" id=1]
 
 [node name="DevMenuSingletonRoot" type="Node2D"]
-pause_mode = 2
+process_mode = 2
 script = ExtResource( 1 )

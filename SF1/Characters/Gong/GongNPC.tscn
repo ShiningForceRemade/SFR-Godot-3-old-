@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://SF1/NPC/NPCBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Map_Sprites.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Map_Sprites.png" type="Texture2D" id=2]
 [ext_resource path="res://SF1/Characters/Gong/GongNPC.gd" type="Script" id=3]
 
 [node name="GongNPCRoot" instance=ExtResource( 1 )]
@@ -10,6 +10,6 @@ script = ExtResource( 3 )
 [node name="NPCActorRoot" parent="." index="0"]
 stationary = true
 
-[node name="Sprite" parent="NPCActorRoot/KinematicBody2D" index="1"]
+[node name="Sprite2D" parent="NPCActorRoot/CharacterBody2D" index="1"]
 texture = ExtResource( 2 )
 hframes = 6

@@ -12,21 +12,35 @@ class_name CN_SF1_Item_Weapon
 
 enum character_classes {SWORDSMAN}
 
-export var battle_texture: Texture
+@export var battle_texture: Texture2D
 
-export var chance_to_crack: bool = false
+@export var chance_to_crack: bool = false
 
-export(Array, int, "Swordsman - SDMN", "Knight - KNT",
-	"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
-	"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
-	"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 
-	"Robot - RBT", "Werewolf - WRWF", "Samurai - SMR", 
-	"Ninja - NINJ", "Hero - HERO", "Paladin - PLDN", 
-	"Galaditor - GLDR", "SBRN", "Wizard - WIZD", 
-	"Master Monk - MSMK", "Vicar - VICR", "BWMS", 
-	"Sky Knight - SKNT", "Sky Warrior - SKYW", "SKYL",
-	"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
-	"MGCR") var equippable_by
+
+@export var equippable_by: Array[int]
+#  "Swordsman - SDMN", "Knight - KNT",
+# 	"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
+# 	"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
+# 	"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 
+# 	"Robot - RBT", "Werewolf - WRWF", "Samurai - SMR", 
+# 	"Ninja - NINJ", "Hero - HERO", "Paladin - PLDN", 
+# 	"Galaditor - GLDR", "SBRN", "Wizard - WIZD", 
+# 	"Master Monk - MSMK", "Vicar - VICR", "BWMS", 
+# 	"Sky Knight - SKNT", "Sky Warrior - SKYW", "SKYL",
+# 	"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
+# 	"MGCR") 
+	
+#@export(Array, int, "Swordsman - SDMN", "Knight - KNT",
+#	"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
+#	"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
+#	"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 
+#	"Robot - RBT", "Werewolf - WRWF", "Samurai - SMR", 
+#	"Ninja - NINJ", "Hero - HERO", "Paladin - PLDN", 
+#	"Galaditor - GLDR", "SBRN", "Wizard - WIZD", 
+#	"Master Monk - MSMK", "Vicar - VICR", "BWMS", 
+#	"Sky Knight - SKNT", "Sky Warrior - SKYW", "SKYL",
+#	"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
+#	"MGCR") var equippable_by
 
 func _ready():
 	pass

@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
 
-[sub_resource type="StreamTexture" id=1]
+[sub_resource type="CompressedTexture2D" id=1]
 load_path = "res://.import/ShiningForceTextBackground.png-9ed310a4373b06707cc2cedc48b3ad37.stex"
 
 [node name="PreBattleMenuSelectorNode2D" type="Node2D"]
 
 [node name="MenuStatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 28.0
-margin_top = 34.0
-margin_right = 380.0
-margin_bottom = 158.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 28.0
+offset_top = 34.0
+offset_right = 380.0
+offset_bottom = 158.0
+scale = Vector2( 0.75, 0.75 )
 texture = SubResource( 1 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -26,10 +26,10 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuStatNinePatchRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -16.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
 custom_constants/separation = 12
 __meta__ = {
 "_edit_lock_": true,
@@ -37,8 +37,8 @@ __meta__ = {
 }
 
 [node name="StartBattleStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
-margin_right = 320.0
-margin_bottom = 8.0
+offset_right = 320.0
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 1 )
 text = "START BATTLE"
 valign = 1
@@ -48,9 +48,9 @@ __meta__ = {
 }
 
 [node name="ForceMembersStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
-margin_top = 20.0
-margin_right = 320.0
-margin_bottom = 28.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 28.0
 custom_fonts/font = ExtResource( 1 )
 text = "FORCE MEMBERS"
 valign = 1
@@ -61,9 +61,9 @@ __meta__ = {
 
 [node name="MapStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
 visible = false
-margin_top = 40.0
-margin_right = 320.0
-margin_bottom = 48.0
+offset_top = 40.0
+offset_right = 320.0
+offset_bottom = 48.0
 custom_fonts/font = ExtResource( 1 )
 text = "MAP"
 valign = 1
@@ -73,9 +73,9 @@ __meta__ = {
 }
 
 [node name="VictoryConditionsStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
-margin_top = 40.0
-margin_right = 320.0
-margin_bottom = 48.0
+offset_top = 40.0
+offset_right = 320.0
+offset_bottom = 48.0
 custom_fonts/font = ExtResource( 1 )
 text = "VICTORY CONDITIONS"
 valign = 1
@@ -85,9 +85,9 @@ __meta__ = {
 }
 
 [node name="RetreatStaticLabel" type="Label" parent="MenuStatNinePatchRect/VBoxContainer"]
-margin_top = 60.0
-margin_right = 320.0
-margin_bottom = 68.0
+offset_top = 60.0
+offset_right = 320.0
+offset_bottom = 68.0
 custom_fonts/font = ExtResource( 1 )
 text = "RETREAT"
 valign = 1
@@ -97,11 +97,11 @@ __meta__ = {
 }
 
 [node name="UnconsciousMenuStatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 208.0
-margin_top = 5.0
-margin_right = 352.0
-margin_bottom = 25.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 208.0
+offset_top = 5.0
+offset_right = 352.0
+offset_bottom = 25.0
+scale = Vector2( 0.75, 0.75 )
 texture = SubResource( 1 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -113,10 +113,10 @@ __meta__ = {
 }
 
 [node name="UnconsciousStaticLabel" type="Label" parent="UnconsciousMenuStatNinePatchRect"]
-margin_left = 6.66666
-margin_top = 7.0
-margin_right = 102.667
-margin_bottom = 15.0
+offset_left = 6.66666
+offset_top = 7.0
+offset_right = 102.667
+offset_bottom = 15.0
 custom_fonts/font = ExtResource( 1 )
 text = "UNCONSCIOUS:"
 valign = 1
@@ -126,10 +126,10 @@ __meta__ = {
 }
 
 [node name="AmountUnconsciousLabel" type="Label" parent="UnconsciousMenuStatNinePatchRect"]
-margin_left = 105.667
-margin_top = 4.0
-margin_right = 137.667
-margin_bottom = 15.0
+offset_left = 105.667
+offset_top = 4.0
+offset_right = 137.667
+offset_bottom = 15.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2

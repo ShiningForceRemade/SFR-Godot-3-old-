@@ -1,8 +1,8 @@
 extends Label
 
-var bitmapFont: BitmapFont
+var bitmapFont: FontFile
 
-var bitmapMenuFont: BitmapFont
+var bitmapMenuFont: FontFile
 
 func _ready():
 	# one time generation needed
@@ -12,7 +12,7 @@ func _ready():
 	pass
 
 func generate_dialog_font():
-	bitmapFont = BitmapFont.new()
+	bitmapFont = FontFile.new()
 	bitmapFont.add_texture(preload("res://Assets/SF1/Font-Dialogue.png"))
 	bitmapFont.height = 15
 
@@ -107,7 +107,7 @@ func generate_dialog_font():
 		theme.default_font = bitmapFont
 
 func generate_menu_font():
-	bitmapFont = BitmapFont.new()
+	bitmapFont = FontFile.new()
 	bitmapFont.add_texture(preload("res://Assets/SF1/Font-Menu.png"))
 	bitmapFont.height = 8
 

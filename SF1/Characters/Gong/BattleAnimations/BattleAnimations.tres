@@ -2,7 +2,7 @@
 
 [ext_resource path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd" type="Script" id=1]
 [ext_resource path="res://SF1/Characters/Lowe/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=2]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" type="Texture2D" id=3]
 [ext_resource path="res://SF1/Characters/Lowe/BattleAnimations/Idle.anim" type="Animation" id=4]
 
 [resource]

@@ -2,11 +2,11 @@ extends Node2D
 
 var EmptyItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
 
-onready var SlotUpSprite = $SlotUpSprite
-onready var SlotLeftSprite = $SlotLeftSprite
-onready var SlotRightSprite = $SlotRightSprite
-onready var SlotDownSprite = $SlotDownSprite
-onready var RedSelectionBorderRoot = $RedSelectionBorderRoot
+@onready var SlotUpSprite = $SlotUpSprite
+@onready var SlotLeftSprite = $SlotLeftSprite
+@onready var SlotRightSprite = $SlotRightSprite
+@onready var SlotDownSprite = $SlotDownSprite
+@onready var RedSelectionBorderRoot = $RedSelectionBorderRoot
 
 enum E_ItemSelection {
 	UP,
@@ -84,7 +84,7 @@ func _process(_delta):
 #				else:
 #					Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
 #
-#				yield(get_tree().create_timer(0.1), "timeout")
+#				await get_tree().create_timer(0.1).timeout
 #				match Singleton_Game_GlobalCommonVariables.action_type:
 #					"SHOP_BUY": CompletePurchaseAndGiveItemToSelectedCharacter()
 #
@@ -137,7 +137,7 @@ func ConfirmSellOfItem() -> void:
 	
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 	Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-	var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+	var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 	if result == "NO":
 		active = true
 		return

@@ -1,10 +1,10 @@
 extends Node2D
 
-onready var emptySlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+@onready var emptySlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
 
 signal signal_completed_item_give_action
 
-onready var redSelection = $RedSelectionBorderRoot
+@onready var redSelection = $RedSelectionBorderRoot
 
 const rs_top_pos    = Vector2(16, 0)
 const rs_left_pos   = Vector2(0, 12)
@@ -24,13 +24,13 @@ var currently_selected_option: int = e_give_menu_options.UP_OPTION
 
 # onready var animationPlayer = $AnimationPlayer
 
-onready var up_slot_spirte = $SlotUpSprite
-onready var down_slot_spirte = $SlotDownSprite
-onready var left_slot_spirte = $SlotLeftSprite
-onready var right_slot_spirte = $SlotRightSprite
+@onready var up_slot_spirte = $SlotUpSprite
+@onready var down_slot_spirte = $SlotDownSprite
+@onready var left_slot_spirte = $SlotLeftSprite
+@onready var right_slot_spirte = $SlotRightSprite
 
-onready var typeLabel = $ItemInfoNinePatchRect/TypeNameLabel
-onready var nameLabel = $ItemInfoNinePatchRect/WeaponNameLabel
+@onready var typeLabel = $ItemInfoNinePatchRect/TypeNameLabel
+@onready var nameLabel = $ItemInfoNinePatchRect/WeaponNameLabel
 
 var inventory_items
 
@@ -111,7 +111,7 @@ func _input(event):
 			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
 			# get_parent().get_parent().get_parent().s_show_battle_inventory_menu()
 			# get_parent().get_node("BattleInventoryMenuRoot").set_battle_inventory_menu_active()
@@ -146,9 +146,9 @@ func _input(event):
 			
 			get_parent().get_parent().get_parent().s_hide_battle_give_menu()
 			setup_use_range_and_target_range_selection(actor.inventory_items_id[currently_selected_option])
-			yield(self, "signal_completed_item_give_action")
+			await self.signal_completed_item_give_action
 			
-			# Todo check if cancelled cancelled
+			# Todo check if canceled canceled
 			
 			if cancelled_give:
 				print("I was reached")

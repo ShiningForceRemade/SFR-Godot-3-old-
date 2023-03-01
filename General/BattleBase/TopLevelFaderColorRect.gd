@@ -1,6 +1,6 @@
 extends ColorRect
 
-onready var fadeTween = get_parent().get_node("Tween")
+@onready var fadeTween = create_tween() # get_parent().get_node("Tween")
 
 func _ready():
 	self.modulate = Color(0, 0, 0, 0)
@@ -39,7 +39,7 @@ func black_fade_anim_out() -> void:
 
 func black_fade_anim_in_out() -> void:
 	black_fade_anim_in()
-	# yield(self, "signal_black_fade_in_out_completed")
+	# await self.signal_black_fade_in_out_completed
 	black_fade_anim_out()
 	pass
 

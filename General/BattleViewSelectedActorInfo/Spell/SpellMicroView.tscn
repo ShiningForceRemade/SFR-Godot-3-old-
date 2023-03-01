@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
+[ext_resource path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" type="Texture2D" id=2]
 [ext_resource path="res://General/BattleViewSelectedActorInfo/Spell/SpellLevelBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://General/BattleViewSelectedActorInfo/Spell/SpellMicroView.gd" type="Script" id=4]
 
 [node name="SpellInfoControlRoot" type="Control"]
 anchor_right = 0.562
 anchor_bottom = 0.278
-margin_right = 0.159988
-margin_bottom = -0.0400047
-rect_pivot_offset = Vector2( -78.1107, -51.1849 )
+offset_right = 0.159988
+offset_bottom = -0.0400047
+pivot_offset = Vector2( -78.1107, -51.1849 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true,
@@ -20,10 +20,10 @@ __meta__ = {
 [node name="SpellTextureRect" type="TextureRect" parent="."]
 anchor_left = -0.00110236
 anchor_right = -0.00110236
-margin_top = -12.0
-margin_right = 16.0
-margin_bottom = 12.0
-rect_clip_content = true
+offset_top = -12.0
+offset_right = 16.0
+offset_bottom = 12.0
+clip_contents = true
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,10 +32,10 @@ __meta__ = {
 [node name="SpellNameLabel" type="Label" parent="."]
 anchor_left = -0.000347222
 anchor_right = -0.000347222
-margin_left = 20.0
-margin_top = -16.0
-margin_right = 162.0
-margin_bottom = 3.0
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 162.0
+offset_bottom = 3.0
 custom_fonts/font = ExtResource( 1 )
 text = "Medical Herb"
 valign = 1
@@ -45,10 +45,10 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 19.5426
-margin_top = 5.00001
-margin_right = 115.543
-margin_bottom = 12.0
+offset_left = 19.5426
+offset_top = 5.00001
+offset_right = 115.543
+offset_bottom = 12.0
 custom_constants/separation = 12
 __meta__ = {
 "_edit_use_anchors_": false
@@ -58,6 +58,6 @@ __meta__ = {
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_right = 0.0
-margin_bottom = 6.0
+offset_left = 0.0
+offset_right = 0.0
+offset_bottom = 6.0

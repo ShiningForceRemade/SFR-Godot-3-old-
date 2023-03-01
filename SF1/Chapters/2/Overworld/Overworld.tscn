@@ -7,160 +7,160 @@
 [ext_resource path="res://SF1/Chapters/2/Overworld/Overworld.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 12, 92 )
+size = Vector2( 12, 92 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 12, 56 )
+size = Vector2( 12, 56 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 12, 44 )
+size = Vector2( 12, 44 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 24, 20 )
+size = Vector2( 24, 20 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 120, 8 )
+size = Vector2( 120, 8 )
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 204, 20 )
+size = Vector2( 204, 20 )
 
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 144, 12 )
+size = Vector2( 144, 12 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 132, 12 )
+size = Vector2( 132, 12 )
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 120, 12 )
+size = Vector2( 120, 12 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 108, 12 )
+size = Vector2( 108, 12 )
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 96, 12 )
+size = Vector2( 96, 12 )
 
 [sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 84, 12 )
+size = Vector2( 84, 12 )
 
 [sub_resource type="RectangleShape2D" id=36]
-extents = Vector2( 71.7813, 12 )
+size = Vector2( 71.7813, 12 )
 
 [sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 59.8906, 12 )
+size = Vector2( 59.8906, 12 )
 
 [sub_resource type="RectangleShape2D" id=38]
-extents = Vector2( 47.9453, 72 )
+size = Vector2( 47.9453, 72 )
 
 [sub_resource type="RectangleShape2D" id=39]
-extents = Vector2( 36, 12 )
+size = Vector2( 36, 12 )
 
 [sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 48.4932, 12 )
+size = Vector2( 48.4932, 12 )
 
 [sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 72, 36 )
+size = Vector2( 72, 36 )
 
 [sub_resource type="RectangleShape2D" id=42]
-extents = Vector2( 48.1233, 12 )
+size = Vector2( 48.1233, 12 )
 
 [sub_resource type="RectangleShape2D" id=43]
-extents = Vector2( 12.0616, 24 )
+size = Vector2( 12.0616, 24 )
 
 [sub_resource type="RectangleShape2D" id=44]
-extents = Vector2( 36.0308, 12 )
+size = Vector2( 36.0308, 12 )
 
 [sub_resource type="RectangleShape2D" id=45]
-extents = Vector2( 36.0308, 24 )
+size = Vector2( 36.0308, 24 )
 
 [sub_resource type="RectangleShape2D" id=46]
-extents = Vector2( 36.0308, 12 )
+size = Vector2( 36.0308, 12 )
 
 [sub_resource type="RectangleShape2D" id=47]
-extents = Vector2( 24.0154, 84 )
+size = Vector2( 24.0154, 84 )
 
 [sub_resource type="RectangleShape2D" id=48]
-extents = Vector2( 36.002, 24 )
+size = Vector2( 36.002, 24 )
 
 [sub_resource type="RectangleShape2D" id=49]
-extents = Vector2( 48, 36 )
+size = Vector2( 48, 36 )
 
 [sub_resource type="RectangleShape2D" id=50]
-extents = Vector2( 36, 24 )
+size = Vector2( 36, 24 )
 
 [sub_resource type="RectangleShape2D" id=51]
-extents = Vector2( 24, 24 )
+size = Vector2( 24, 24 )
 
 [sub_resource type="RectangleShape2D" id=52]
-extents = Vector2( 12, 36 )
+size = Vector2( 12, 36 )
 
 [sub_resource type="RectangleShape2D" id=53]
-extents = Vector2( 36, 24 )
+size = Vector2( 36, 24 )
 
 [sub_resource type="RectangleShape2D" id=54]
-extents = Vector2( 24, 12 )
+size = Vector2( 24, 12 )
 
 [sub_resource type="RectangleShape2D" id=55]
-extents = Vector2( 22, 12 )
+size = Vector2( 22, 12 )
 
 [sub_resource type="RectangleShape2D" id=56]
-extents = Vector2( 36, 36 )
+size = Vector2( 36, 36 )
 
 [sub_resource type="RectangleShape2D" id=57]
-extents = Vector2( 12, 36 )
+size = Vector2( 12, 36 )
 
 [sub_resource type="RectangleShape2D" id=58]
-extents = Vector2( 24, 12 )
+size = Vector2( 24, 12 )
 
 [sub_resource type="RectangleShape2D" id=59]
-extents = Vector2( 48, 24 )
+size = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=60]
-extents = Vector2( 36, 12 )
+size = Vector2( 36, 12 )
 
 [sub_resource type="RectangleShape2D" id=61]
-extents = Vector2( 60, 24 )
+size = Vector2( 60, 24 )
 
 [sub_resource type="RectangleShape2D" id=62]
-extents = Vector2( 48, 12 )
+size = Vector2( 48, 12 )
 
 [sub_resource type="RectangleShape2D" id=63]
-extents = Vector2( 36, 24 )
+size = Vector2( 36, 24 )
 
 [sub_resource type="RectangleShape2D" id=64]
-extents = Vector2( 12, 300 )
+size = Vector2( 12, 300 )
 
 [sub_resource type="RectangleShape2D" id=65]
-extents = Vector2( 348, 12 )
+size = Vector2( 348, 12 )
 
 [sub_resource type="RectangleShape2D" id=66]
-extents = Vector2( 12, 36 )
+size = Vector2( 12, 36 )
 
 [sub_resource type="RectangleShape2D" id=67]
-extents = Vector2( 36, 12 )
+size = Vector2( 36, 12 )
 
 [sub_resource type="RectangleShape2D" id=68]
-extents = Vector2( 24, 12 )
+size = Vector2( 24, 12 )
 
 [sub_resource type="RectangleShape2D" id=69]
-extents = Vector2( 48, 24 )
+size = Vector2( 48, 24 )
 
 [sub_resource type="RectangleShape2D" id=70]
-extents = Vector2( 12, 24 )
+size = Vector2( 12, 24 )
 
 [sub_resource type="RectangleShape2D" id=71]
-extents = Vector2( 48, 12 )
+size = Vector2( 48, 12 )
 
 [sub_resource type="RectangleShape2D" id=72]
-extents = Vector2( 24, 12 )
+size = Vector2( 24, 12 )
 
 [sub_resource type="RectangleShape2D" id=73]
-extents = Vector2( 12, 12 )
+size = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 20, 20 )
+size = Vector2( 20, 20 )
 
 [sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 19, 19 )
+size = Vector2( 19, 19 )
 
 [sub_resource type="RectangleShape2D" id=22]
 
@@ -177,19 +177,19 @@ position = Vector2( 636, 676 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 158, 91 )
-rotating = true
+ignore_rotation =true # reversed "rotating" for Camera2D
 current = true
 process_mode = 0
 limit_left = 0
 limit_top = 0
 limit_right = 768
 limit_bottom = 760
-smoothing_enabled = true
-smoothing_speed = 16.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
+follow_smoothing_enabled = true
+position_smoothing_speed = 16.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource( 4 )
 __meta__ = {

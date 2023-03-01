@@ -1,19 +1,19 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture2D" id=2]
 
-[sub_resource type="StreamTexture" id=1]
+[sub_resource type="CompressedTexture2D" id=1]
 load_path = "res://.import/ShiningForceTextBackground.png-9ed310a4373b06707cc2cedc48b3ad37.stex"
 
 [node name="CardListMenuRoot" type="Node2D"]
 
 [node name="CardListStatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 16.0
-margin_top = 23.0
-margin_right = 144.0
-margin_bottom = 163.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 16.0
+offset_top = 23.0
+offset_right = 144.0
+offset_bottom = 163.0
+scale = Vector2( 0.75, 0.75 )
 texture = SubResource( 1 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -25,10 +25,10 @@ __meta__ = {
 }
 
 [node name="CardListStaticLabel" type="Label" parent="CardListStatNinePatchRect"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 88.0
-margin_bottom = 16.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "CARD LIST"
 valign = 1
@@ -40,10 +40,10 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CardListStatNinePatchRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 23.0
-margin_right = -8.0
-margin_bottom = -8.0
+offset_left = 8.0
+offset_top = 23.0
+offset_right = -8.0
+offset_bottom = -8.0
 custom_constants/separation = 12
 __meta__ = {
 "_edit_lock_": true,
@@ -51,8 +51,8 @@ __meta__ = {
 }
 
 [node name="CardOptionLabel" type="Label" parent="CardListStatNinePatchRect/VBoxContainer"]
-margin_right = 112.0
-margin_bottom = 8.0
+offset_right = 112.0
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 1 )
 text = "MAX"
 valign = 1
@@ -61,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CardSprite" type="Sprite" parent="."]
+[node name="CardSprite" type="Sprite2D" parent="."]
 position = Vector2( 224, 76 )
 texture = ExtResource( 2 )
 hframes = 4
@@ -70,11 +70,11 @@ __meta__ = {
 }
 
 [node name="CardDescriptionStatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 17.0
-margin_top = 131.0
-margin_right = 400.0
-margin_bottom = 187.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 17.0
+offset_top = 131.0
+offset_right = 400.0
+offset_bottom = 187.0
+scale = Vector2( 0.75, 0.75 )
 texture = SubResource( 1 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -86,10 +86,10 @@ __meta__ = {
 }
 
 [node name="CardNameLabel" type="Label" parent="CardDescriptionStatNinePatchRect"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 372.0
-margin_bottom = 16.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 372.0
+offset_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "[Max's Card]"
 valign = 1
@@ -99,10 +99,10 @@ __meta__ = {
 }
 
 [node name="CopyStaticLabel" type="Label" parent="CardDescriptionStatNinePatchRect"]
-margin_left = 8.0
-margin_top = 23.0
-margin_right = 32.0
-margin_bottom = 31.0
+offset_left = 8.0
+offset_top = 23.0
+offset_right = 32.0
+offset_bottom = 31.0
 custom_fonts/font = ExtResource( 1 )
 text = "Copy:"
 valign = 1
@@ -112,10 +112,10 @@ __meta__ = {
 }
 
 [node name="CopyLabel" type="Label" parent="CardDescriptionStatNinePatchRect"]
-margin_left = 53.0
-margin_top = 23.0
-margin_right = 372.0
-margin_bottom = 31.0
+offset_left = 53.0
+offset_top = 23.0
+offset_right = 372.0
+offset_bottom = 31.0
 custom_fonts/font = ExtResource( 1 )
 text = "Attck with Supernova"
 valign = 1
@@ -125,10 +125,10 @@ __meta__ = {
 }
 
 [node name="EffectStaticLabel" type="Label" parent="CardDescriptionStatNinePatchRect"]
-margin_left = 8.0
-margin_top = 39.0
-margin_right = 64.0
-margin_bottom = 47.0
+offset_left = 8.0
+offset_top = 39.0
+offset_right = 64.0
+offset_bottom = 47.0
 custom_fonts/font = ExtResource( 1 )
 text = "Effect:"
 valign = 1
@@ -138,10 +138,10 @@ __meta__ = {
 }
 
 [node name="EffectLabel" type="Label" parent="CardDescriptionStatNinePatchRect"]
-margin_left = 71.0
-margin_top = 39.0
-margin_right = 372.0
-margin_bottom = 47.0
+offset_left = 71.0
+offset_top = 39.0
+offset_right = 372.0
+offset_bottom = 47.0
 custom_fonts/font = ExtResource( 1 )
 text = "Super Egress"
 valign = 1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
+[ext_resource path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" type="Texture2D" id=2]
 [ext_resource path="res://General/BattleViewSelectedActorInfo/Item/ItemMicroView.gd" type="Script" id=3]
 
 [node name="ItemInventoryInfoControlRoot" type="Control"]
@@ -11,20 +11,20 @@ __meta__ = {
 }
 
 [node name="ItemTextureRect" type="TextureRect" parent="."]
-margin_top = -13.0
-margin_right = 16.0
-margin_bottom = 11.0
-rect_clip_content = true
+offset_top = -13.0
+offset_right = 16.0
+offset_bottom = 11.0
+clip_contents = true
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ItemNameLabel" type="Label" parent="."]
-margin_left = 20.0
-margin_top = -11.0
-margin_right = 159.0
-margin_bottom = -3.0
+offset_left = 20.0
+offset_top = -11.0
+offset_right = 159.0
+offset_bottom = -3.0
 custom_fonts/font = ExtResource( 1 )
 text = "Medical Herb"
 __meta__ = {
@@ -32,10 +32,10 @@ __meta__ = {
 }
 
 [node name="EquippedLabel" type="Label" parent="."]
-margin_left = 20.0
-margin_top = 2.0
-margin_right = 84.0
-margin_bottom = 10.0
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 84.0
+offset_bottom = 10.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 text = "EQUIPPED"

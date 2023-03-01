@@ -1,10 +1,13 @@
 extends Control
 
-onready var animationPlayer = $AnimationPlayer
+@onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	hide()
-	animationPlayer.playback_speed = 1.5
+	
+	# TODO: fixme
+	# animationPlayer.playback_speed = 1.5
+	
 	# animationPlayer.play("Default")
 
 

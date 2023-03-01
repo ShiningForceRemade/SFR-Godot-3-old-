@@ -10,25 +10,28 @@ enum e_menu_options {
 }
 var currently_selected_option: int = e_menu_options.ADVICE_OPTION
 
-onready var animationPlayer = $AnimationPlayer
-onready var label = $NinePatchRect/Label
+@onready var animationPlayer = $AnimationPlayer
+@onready var label = $NinePatchRect/Label
 
-onready var advice_spirte    = $AdviceActionSprite
-onready var join_spirte     = $JoinActionSprite
-onready var inventory_spirte = $InventoryActionSprite
-onready var stats_spirte      = $StatsActionSprite
+@onready var advice_spirte    = $AdviceActionSprite
+@onready var join_spirte     = $JoinActionSprite
+@onready var inventory_spirte = $InventoryActionSprite
+@onready var stats_spirte      = $StatsActionSprite
 
-onready var noValidOptionNode = get_parent().get_parent().get_node("OverworldWrapperNode/MenusNodeWrapper/NoValidOptionWarningBoxRoot")
+@onready var noValidOptionNode = get_parent().get_parent().get_node("OverworldWrapperNode/MenusNodeWrapper/NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()
-	$AnimationPlayer.playback_speed = 2
+	
+	# TODO: fixme
+	#$AnimationPlayer.playback_speed = 2
+	
 	animationPlayer.play("AdviceMenuOption")
 	label.text = "Advice"
 
 
 func set_menu_active() -> void:
-	yield(get_tree().create_timer(0.02), "timeout")
+	await get_tree().create_timer(0.02).timeout
 	is_menu_active = true
 	
 	set_sprites_to_zero_frame()
@@ -63,7 +66,7 @@ func _process(_delta):
 			var display_str = "DEV NOTE - Use overworld inventory menu to check stats.\nDo you need anything else?"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 			if result == "NO":
 				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 				CancelHQMenu()
@@ -91,7 +94,7 @@ func _process(_delta):
 			var display_str = "DEV NOTE - Use overworld inventory menu to check stats.\nDo you need anything else?"
 			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 			if result == "NO":
 				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 				CancelHQMenu()
@@ -134,7 +137,7 @@ func _process(_delta):
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
-			yield(get_tree().create_timer(0.2), "timeout")
+			await get_tree().create_timer(0.2).timeout
 			
 			match Singleton_Game_GlobalCommonVariables.upcoming_battle_number:
 				1: Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/HQ/Default/Scripts/ActiveForceQuotes/Tao.json"
@@ -182,7 +185,7 @@ func set_sprites_to_zero_frame() -> void:
 #		return
 #
 #	if Input.is_action_just_pressed("ui_a_key"):
-#		yield(get_tree().create_timer(0.02), "timeout")
+#		await get_tree().create_timer(0.02).timeout
 #		# event.is_action_released("ui_accept"):
 #		print("Accept Action - ", currently_selected_option)
 #		if currently_selected_option == e_menu_options.PROMOTION_OPTION:
@@ -203,7 +206,7 @@ func set_sprites_to_zero_frame() -> void:
 #			var display_str = "No one seems to deserve a promotion.\nDo you need anything else?"
 #			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 #			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-#			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+#			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 #			if result == "NO":
 #				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 #				CancelPriestMenu()
@@ -258,7 +261,7 @@ func set_sprites_to_zero_frame() -> void:
 #			var display_str = "No one seems to need my help.\nDo you need anything else?"
 #			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 #			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-#			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+#			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 #			if result == "NO":
 #				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 #				CancelPriestMenu()
@@ -295,7 +298,7 @@ func set_sprites_to_zero_frame() -> void:
 #			var display_str = "DISABLED FOR DEMO!\nDo you need anything else?"
 #			Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 #			Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-#			var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+#			var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
 #			if result == "NO":
 #				Singleton_Game_GlobalCommonVariables.dialogue_box_node.hide()
 #				CancelPriestMenu()
@@ -358,7 +361,7 @@ func set_sprites_to_zero_frame() -> void:
 func CancelHQMenu() -> void:
 	print("Cancel HQ Menu")
 	is_menu_active = false
-	yield(get_tree().create_timer(0.02), "timeout")
+	await get_tree().create_timer(0.02).timeout
 	Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 	
 	Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()

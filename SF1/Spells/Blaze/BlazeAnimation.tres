@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationSpellResource.gd" type="Script" id=1]
-[ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" type="Texture2D" id=2]
 [ext_resource path="res://SF1/Spells/Blaze/Blaze.anim" type="Animation" id=3]
 
 [resource]

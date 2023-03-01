@@ -5,21 +5,21 @@
 
 extends Node2D
 
-export(Array, Resource) var item_list
+@export var item_list: Array[Resource]
 
 var is_menu_active: bool = false
 
 var current_item_selected: int = 0
 
-onready var shop_item_scene = load("res://General/ShopMenu/ItemSelectionMenu/ShopItem.tscn")
+@onready var shop_item_scene = load("res://General/ShopMenu/ItemSelectionMenu/ShopItem.tscn")
 
-onready var shop_items_container_node = $ShopItemsStatNinePatchRect/HBoxContainer
+@onready var shop_items_container_node = $ShopItemsStatNinePatchRect/HBoxContainer
 
-onready var item_info_node = $ItemInfoStatNinePatchRect
-onready var item_info_item_name_node = $ItemInfoStatNinePatchRect/ItemNameLabel
-onready var item_info__gold_node = $ItemInfoStatNinePatchRect/GoldLabel
+@onready var item_info_node = $ItemInfoStatNinePatchRect
+@onready var item_info_item_name_node = $ItemInfoStatNinePatchRect/ItemNameLabel
+@onready var item_info__gold_node = $ItemInfoStatNinePatchRect/GoldLabel
 
-onready var selection_node = $SelectionControl
+@onready var selection_node = $SelectionControl
 
 
 func _ready():
@@ -67,8 +67,8 @@ func _process(_delta):
 				
 				Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
 				
-				var result = yield(Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
-				# yield(get_tree().create_timer(0.02), "timeout")
+				var result = await Singleton_Game_GlobalCommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot.signal__yes_or_no_prompt__choice
+				# await get_tree().create_timer(0.02).timeout
 			
 				print("\n Result - ", result, "\n")
 		
@@ -127,7 +127,7 @@ func load_shop_items() -> void:
 		child.queue_free()
 	
 	for item in item_list:
-		var si = shop_item_scene.instance()
+		var si = shop_item_scene.instantiate()
 		
 		si.item_resource = item
 		
@@ -141,15 +141,15 @@ func display_item_info(item) -> void:
 
 func move_info_box(idx, move_amount: int) -> void:
 	if idx == 0:
-		item_info_node.rect_position = Vector2(14, item_info_node.rect_position.y)
+		item_info_node.position = Vector2(14, item_info_node.position.y)
 	elif idx >= 9:
-		item_info_node.rect_position = Vector2(203, item_info_node.rect_position.y)
+		item_info_node.position = Vector2(203, item_info_node.position.y)
 	elif idx == 8:
-		item_info_node.rect_position = Vector2(182, item_info_node.rect_position.y)
+		item_info_node.position = Vector2(182, item_info_node.position.y)
 	else:
-		item_info_node.rect_position = Vector2(item_info_node.rect_position.x + move_amount, item_info_node.rect_position.y)
+		item_info_node.position = Vector2(item_info_node.position.x + move_amount, item_info_node.position.y)
 	
-	# print(item_info_node.rect_position)
+	# print(item_info_node.position)
 
 
 func insert_item_list(item_list_arg):

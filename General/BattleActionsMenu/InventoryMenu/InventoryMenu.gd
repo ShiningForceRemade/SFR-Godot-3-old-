@@ -10,19 +10,20 @@ enum e_inventory_menu_options {
 }
 var currently_selected_option: int = e_inventory_menu_options.USE_OPTION
 
-onready var animationPlayer = $AnimationPlayer
+@onready var animationPlayer = $AnimationPlayer
 
-onready var label = $NinePatchRect/Label
+@onready var label = $NinePatchRect/Label
 
-onready var use_spirte   = $UseActionSprite
-onready var give_spirte  = $GiveActionSprite
-onready var equip_spirte = $EquipActionSprite
-onready var drop_spirte  = $DropActionSprite
+@onready var use_spirte   = $UseActionSprite
+@onready var give_spirte  = $GiveActionSprite
+@onready var equip_spirte = $EquipActionSprite
+@onready var drop_spirte  = $DropActionSprite
 
 
 func _ready():
 	set_sprites_to_zero_frame()
-	$AnimationPlayer.playback_speed = 2
+	# TODO: fixme
+	# $AnimationPlayer.playback_speed = 2
 	animationPlayer.play("UseMenuOption")
 	label.text = "Use"
 
@@ -43,7 +44,7 @@ func _input(event):
 			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			get_parent().get_node("BattleActionsMenuRoot").set_menu_active()
 			return
 			

@@ -10,20 +10,23 @@ enum e_menu_options {
 }
 var currently_selected_option: int = e_menu_options.TALK_OPTION
 
-onready var animationPlayer = $AnimationPlayer
-onready var label = $NinePatchRect/Label
+@onready var animationPlayer = $AnimationPlayer
+@onready var label = $NinePatchRect/Label
 
-onready var talk_spirte    = $TalkActionSprite
-onready var magic_spirte     = $MagicActionSprite
-onready var inventory_spirte = $InventoryActionSprite
-onready var search_spirte      = $SearchActionSprite
+@onready var talk_spirte    = $TalkActionSprite
+@onready var magic_spirte     = $MagicActionSprite
+@onready var inventory_spirte = $InventoryActionSprite
+@onready var search_spirte      = $SearchActionSprite
 
 
-onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+@onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()
-	$AnimationPlayer.playback_speed = 2
+	
+	# TODO: fixme
+	# $AnimationPlayer.playback_speed = 2
+	
 	animationPlayer.play("TalkMenuOption")
 	label.text = "Talk"
 
@@ -45,7 +48,7 @@ func _process(_delta):
 		print("Cancel Overworld Action Menu")
 		is_menu_active = false
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-		yield(get_tree().create_timer(0.02), "timeout")
+		await get_tree().create_timer(0.02).timeout
 		
 		# Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 		# get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
@@ -59,7 +62,7 @@ func _process(_delta):
 		return
 			
 	if Input.is_action_just_pressed("ui_a_key"):
-		yield(get_tree().create_timer(0.02), "timeout")
+		await get_tree().create_timer(0.02).timeout
 		# event.is_action_released("ui_accept"):
 		print("Accept Action - ", currently_selected_option)
 		if currently_selected_option == e_menu_options.SEARCH_OPTION:
@@ -142,8 +145,8 @@ func OpenInventoryMenu() -> void:
 	Singleton_Game_GlobalCommonVariables.menus_root_node.character_info_box_node().hide()
 	
 	# disgusting remove these later but convertint to process instead of input with the just pressed action
-	# yield(get_tree().create_timer(0.25), "timeout")
-	yield(get_tree().create_timer(0.2), "timeout")
+	# await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(0.2).timeout
 	
 	Singleton_Game_GlobalCommonVariables.menus_root_node.s_show_overworld_inventory_menu()
 	

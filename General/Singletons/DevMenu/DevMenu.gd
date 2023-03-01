@@ -25,7 +25,7 @@ func _input(event):
 	
 	if event.is_action_released("ui_toggle_fullscreen"):
 		# print("Toggled Fullscreen")
-		OS.window_fullscreen = !OS.window_fullscreen
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (!((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 	
 	# TODO: add dev menu and perform check here
 	
@@ -41,20 +41,22 @@ func _input(event):
 	if event.is_action_pressed("ui_tilda"):
 		print("Saving Screenshot")
 		
-		var time = OS.get_datetime()
+		var time = Time.get_datetime_dict_from_system()
 		var time_string = str(time["year"]) + "-" + str(time["month"]) + "-" + str(time["day"]) + "_H" + str(time["hour"]) + "M" + str(time["minute"]) + "S" + str(time["second"])
 		
 		var img = get_viewport().get_texture().get_data()
 		
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
+		await get_tree().idle_frame
 		
 		img.flip_y()
 		
-		var d = Directory.new()
-		if !(d.dir_exists(Singleton_Dev_Internal.base_path + "Screenshots")):
+		# var d = Directory.new()
+		var d = DirAccess.open(Singleton_Dev_Internal.base_path + "Screenshots")
+		# if !(d.dir_exists(Singleton_Dev_Internal.base_path + "Screenshots")):
+		if !d:
 			print("Screenshots folder doesnt exist, attempt to create it.")
-			d.open(Singleton_Dev_Internal.base_path)
+			DirAccess.open(Singleton_Dev_Internal.base_path)
 			d.make_dir(Singleton_Dev_Internal.base_path + "Screenshots")
 			
 		# var save_path = "res://Screenshots/" + time_string + ".png"

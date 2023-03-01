@@ -12,35 +12,35 @@ var MemberSelectionLine = load("res://General/OverworldMenus/MemberListView/Memb
 var MemberMagicLine = load("res://General/OverworldMenus/MemberListView/MemberMagicLine.tscn")
 var MemberItemLine = load("res://General/OverworldMenus/MemberListView/MemberItemLine.tscn")
 
-onready var ScollbarContainerNode = $StatNinePatchRect2/ScrollContainer
+@onready var ScollbarContainerNode = $StatNinePatchRect2/ScrollContainer
 
-onready var portrait_sprite = $PortraitWrapperNode/PortraitSprite
+@onready var portrait_sprite = $PortraitWrapperNode/PortraitSprite
 
-onready var red_selection = $RedSelectionBorderRoot
+@onready var red_selection = $RedSelectionBorderRoot
 
 
-onready var selected_character_info_name_label = $StatNinePatchRect/StaticCharacterInfoControlNode/NameLabel
-onready var selected_character_info_class_label = $StatNinePatchRect/StaticCharacterInfoControlNode/ClassLabel
-onready var selected_character_info_level_label = $StatNinePatchRect/StaticCharacterInfoControlNode/LevelLabel
+@onready var selected_character_info_name_label = $StatNinePatchRect/StaticCharacterInfoControlNode/NameLabel
+@onready var selected_character_info_class_label = $StatNinePatchRect/StaticCharacterInfoControlNode/ClassLabel
+@onready var selected_character_info_level_label = $StatNinePatchRect/StaticCharacterInfoControlNode/LevelLabel
 
-onready var overview_mangic_and_inventory_control_node = $StatNinePatchRect/OverviewMagicAndInventoryControlNode
+@onready var overview_mangic_and_inventory_control_node = $StatNinePatchRect/OverviewMagicAndInventoryControlNode
 
-onready var selected_character_info_magic_vbox = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer
-onready var selected_character_info_magic_nothing = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/MagicNothingStaticLabel
+@onready var selected_character_info_magic_vbox = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer
+@onready var selected_character_info_magic_nothing = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/MagicNothingStaticLabel
 
-onready var selected_character_info_inventory_vbox = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer
-onready var selected_character_info_inventory_nothing = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/ItemsNothingStaticLabel
+@onready var selected_character_info_inventory_vbox = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer
+@onready var selected_character_info_inventory_nothing = $StatNinePatchRect/OverviewMagicAndInventoryControlNode/ItemsNothingStaticLabel
 
-onready var flist_vbox_container = $StatNinePatchRect2/ScrollContainer/VBoxContainer
+@onready var flist_vbox_container = $StatNinePatchRect2/ScrollContainer/VBoxContainer
 
 ### ItemIconsControlNode
-onready var itemsViewControlNode = $StatNinePatchRect/ItemsViewControl
-onready var itemsView_itemIconsControlNode = $StatNinePatchRect/ItemsViewControl/ItemIconsControlNode
-onready var itemsView_itemNameAndEquippedControlNode = $StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode
+@onready var itemsViewControlNode = $StatNinePatchRect/ItemsViewControl
+@onready var itemsView_itemIconsControlNode = $StatNinePatchRect/ItemsViewControl/ItemIconsControlNode
+@onready var itemsView_itemNameAndEquippedControlNode = $StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode
 ### ItemIconsControlNode
 
 ### EquipItemsControlNode
-onready var equipItemsControlNode = $StatNinePatchRect/EquipItemsViewControl
+@onready var equipItemsControlNode = $StatNinePatchRect/EquipItemsViewControl
 ### EquipItemsControlNode
 
 var current_selection = null
@@ -51,8 +51,8 @@ func _ready():
 	var empty_stylebox = StyleBoxEmpty.new()
 	invisible_scrollbar_theme.set_stylebox("scroll", "VScrollBar", empty_stylebox)
 	invisible_scrollbar_theme.set_stylebox("scroll", "HScrollBar", empty_stylebox)
-	ScollbarContainerNode.get_v_scrollbar().theme = invisible_scrollbar_theme
-	ScollbarContainerNode.get_h_scrollbar().theme = invisible_scrollbar_theme
+	ScollbarContainerNode.get_v_scroll_bar().theme = invisible_scrollbar_theme
+	ScollbarContainerNode.get_h_scroll_bar().theme = invisible_scrollbar_theme
 	
 	DisplayNewlySelectedCharacterInfo(Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[0])
 	
@@ -98,7 +98,7 @@ func load_character_lines() -> void:
 		
 		unlocked_characters_size += 1
 		
-		var CLine = MemberSelectionLine.instance()
+		var CLine = MemberSelectionLine.instantiate()
 		
 		if character.active_in_force:
 			CLine.get_node("ActiveForceStaticLabel").show()
@@ -114,7 +114,7 @@ func load_character_lines() -> void:
 	# Remove this if Godot 4 fixes this
 	# fake last item to prevent godot clipping issues
 	if unlocked_characters_size > 5:
-		var CLine = MemberSelectionLine.instance()
+		var CLine = MemberSelectionLine.instantiate()
 		flist_vbox_container.add_child(CLine)
 	
 
@@ -216,7 +216,7 @@ func _input(event):
 				else:
 					Singleton_Game_GlobalCommonVariables.selected_character = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[i]
 			
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 				match Singleton_Game_GlobalCommonVariables.action_type:
 					"GIVE": SelectItemOrSelectItemReciever()
 					
@@ -248,11 +248,11 @@ func _input(event):
 	
 	
 func scroll_container_reset_line() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	ScollbarContainerNode.set_v_scroll(-16)
 
 func scroll_container_wrap_to_bottom() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	var fm_size = Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers.size()
 	# NOTE due to the extra control node we need to take away 2 from the total list size to get the 
 	# visible end of list - hopefully this node gets a rework in Godot 4 and this can be cleaned and simplified
@@ -265,7 +265,7 @@ func scroll_container_move_up_line() -> void:
 	scroll_container_set_vertical_scroll(-16)
 
 func scroll_container_set_vertical_scroll(scroll_distance_arg: int) -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	var x = ScollbarContainerNode.scroll_vertical
 	ScollbarContainerNode.set_v_scroll(x + scroll_distance_arg)
 
@@ -279,7 +279,7 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	if cnode != null:
 		cnode.queue_free()
 	
-	cnode = load(c.character_base_node).instance();
+	cnode = load(c.character_base_node).instantiate();
 	var cnode_actor = cnode.get_actor_root_node_internal()
 	# print(cnode, cnode_actor)
 	
@@ -298,7 +298,7 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 		selected_character_info_magic_vbox.show()
 		
 		for spell in cnode_actor.spells_id:
-			var mml = MemberMagicLine.instance()
+			var mml = MemberMagicLine.instantiate()
 			
 			mml.get_node("SpellLabel").text = spell.name
 			
@@ -321,7 +321,7 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 		selected_character_info_inventory_vbox.show()
 		
 		for i in cnode_actor.inventory_items_id.size():
-			var mil = MemberItemLine.instance()
+			var mil = MemberItemLine.instantiate()
 			
 			mil.get_node("ItemLabel").text = cnode_actor.inventory_items_id[i].item_name
 			

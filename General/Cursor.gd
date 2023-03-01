@@ -7,10 +7,10 @@ var active: bool = false
 const tile_size: int = 24
 const TILE_SIZE: int = 24
 
-onready var characters = get_parent().get_node("Characters")
-onready var enemies = get_parent().get_node("Enemies")
+@onready var characters = get_parent().get_node("Characters")
+@onready var enemies = get_parent().get_node("Enemies")
 
-onready var movementTween = $MovementTween
+@onready var movementTween = create_tween() # $MovementTween
 var y_tile_move = 0
 var x_tile_move = 0
 # var tile_move_time: float = 0.1
@@ -83,12 +83,15 @@ func _input(event) -> void:
 			if tween_time <= 0:
 				tween_time = 0
 			
-			movementTween.interpolate_property(self, 'position', self.position, 
+			#movementTween.interpolate_property(self, 'position', self.position, 
+			#Singleton_Game_GlobalBattleVariables.currently_active_character.global_position, 
+			#tween_time, # 0.25,
+			# Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			movementTween.tween_property(self, 'position',
 			Singleton_Game_GlobalBattleVariables.currently_active_character.global_position, 
-			tween_time, # 0.25,
-			 Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			tween_time)
 			
-			yield(get_tree().create_timer(tween_time + 0.05), "timeout")
+			await get_tree().create_timer(tween_time + 0.05).timeout
 			
 			print("Hide")
 			active = false
@@ -97,7 +100,7 @@ func _input(event) -> void:
 			Singleton_Game_GlobalBattleVariables.camera_node.playerNode = Singleton_Game_GlobalBattleVariables.currently_active_character
 			
 			# so dirty really need to look into a proper method of handling these kinds of things soon
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			
 			Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 		##elif event.is_action_released("ui_a_key"):
@@ -147,7 +150,8 @@ func _input(event) -> void:
 
 
 func move_to_new_pos_battle_scene(cur_pos: Vector2, new_pos: Vector2, t = 0.25) -> void:
-	movementTween.interpolate_property(self, "position",
-			cur_pos, new_pos, t,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	movementTween.start()
+	#movementTween.interpolate_property(self, "position",
+			#cur_pos, new_pos, t,
+			#Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	movementTween.tween_property(self, "position", new_pos, t)
+	# movementTween.start()

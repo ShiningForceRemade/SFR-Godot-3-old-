@@ -1,15 +1,15 @@
-tool
+@tool
 extends EditorPlugin
 
 const CutsceneEditor = preload("res://addons/CutsceneEditor/CutsceneEditor.tscn")
 var CutsceneEditorInstance
 
 func _enter_tree():
-	CutsceneEditorInstance = CutsceneEditor.instance()
+	CutsceneEditorInstance = CutsceneEditor.instantiate()
 	
-	get_editor_interface().get_editor_viewport().add_child(CutsceneEditorInstance)
+	get_editor_interface().get_editor_main_screen().add_child(CutsceneEditorInstance)
 	
-	make_visible(false)
+	_make_visible(false)
 	
 	pass
 
@@ -21,18 +21,18 @@ func _exit_tree():
 	pass
 
 
-func has_main_screen() -> bool:
+func _has_main_screen() -> bool:
 	return true
 	
 
-func make_visible(visible) -> void:
+func _make_visible(visible) -> void:
 	if CutsceneEditorInstance:
 		CutsceneEditorInstance.visible = visible
 
 
-func get_plugin_name() -> String:
+func _get_plugin_name() -> String:
 	return "SFRemade Cutscene Editor"
 	
 
-func get_plugin_icon():
+func _get_plugin_icon():
 	return get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")

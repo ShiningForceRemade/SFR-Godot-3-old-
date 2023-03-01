@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuBorder.png" type="Texture" id=1]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture" id=2]
-[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=3]
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuBorder.png" type="Texture2D" id=1]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture2D" id=2]
+[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=4]
 [ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionLongBorder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://General/OverworldMenus/MemberListView/MemberListView.gd" type="Script" id=6]
-[ext_resource path="res://Assets/SFCD/Items/EmptyItemSlot.png" type="Texture" id=7]
+[ext_resource path="res://Assets/SFCD/Items/EmptyItemSlot.png" type="Texture2D" id=7]
 [ext_resource path="res://General/OverworldMenus/MemberListView/ItemsViewControl.gd" type="Script" id=8]
-[ext_resource path="res://Assets/SFCD/Items/UnequipHand.png" type="Texture" id=9]
+[ext_resource path="res://Assets/SFCD/Items/UnequipHand.png" type="Texture2D" id=9]
 [ext_resource path="res://General/OverworldMenus/MemberListView/EquipItemsViewControl.gd" type="Script" id=10]
 [ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionBorder.tscn" type="PackedScene" id=11]
 
@@ -20,7 +20,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PortraitSprite" type="Sprite" parent="PortraitWrapperNode"]
+[node name="PortraitSprite" type="Sprite2D" parent="PortraitWrapperNode"]
 position = Vector2( 20.7908, 33.5002 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 2 )
@@ -30,10 +30,10 @@ __meta__ = {
 }
 
 [node name="PortraitNinePatchRect" type="NinePatchRect" parent="PortraitWrapperNode"]
-margin_top = 6.0
-margin_right = 55.0
-margin_bottom = 77.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_top = 6.0
+offset_right = 55.0
+offset_bottom = 77.0
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 1 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -45,11 +45,11 @@ __meta__ = {
 }
 
 [node name="StatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 40.0
-margin_top = 6.0
-margin_right = 392.0
-margin_bottom = 104.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 40.0
+offset_top = 6.0
+offset_right = 392.0
+offset_bottom = 104.0
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -61,17 +61,17 @@ __meta__ = {
 }
 
 [node name="StaticCharacterInfoControlNode" type="Control" parent="StatNinePatchRect"]
-margin_right = 344.0
-margin_bottom = 19.0
+offset_right = 344.0
+offset_bottom = 19.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="NameLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
-margin_left = 8.0
-margin_top = 7.0
-margin_right = 40.0
-margin_bottom = 15.0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 15.0
 custom_fonts/font = ExtResource( 4 )
 text = "NAME"
 valign = 1
@@ -81,10 +81,10 @@ __meta__ = {
 }
 
 [node name="ClassLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
-margin_left = 133.333
-margin_top = 7.0
-margin_right = 173.333
-margin_bottom = 15.0
+offset_left = 133.333
+offset_top = 7.0
+offset_right = 173.333
+offset_bottom = 15.0
 custom_fonts/font = ExtResource( 4 )
 text = "CLASS"
 valign = 1
@@ -94,10 +94,10 @@ __meta__ = {
 }
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
-margin_left = 303.333
-margin_top = 7.0
-margin_right = 319.333
-margin_bottom = 15.0
+offset_left = 303.333
+offset_top = 7.0
+offset_right = 319.333
+offset_bottom = 15.0
 custom_fonts/font = ExtResource( 4 )
 text = "LV"
 valign = 1
@@ -107,10 +107,10 @@ __meta__ = {
 }
 
 [node name="LevelLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
-margin_left = 295.0
-margin_top = 7.0
-margin_right = 344.0
-margin_bottom = 15.0
+offset_left = 295.0
+offset_top = 7.0
+offset_right = 344.0
+offset_bottom = 15.0
 custom_fonts/font = ExtResource( 4 )
 text = "1"
 align = 2
@@ -121,17 +121,17 @@ __meta__ = {
 }
 
 [node name="OverviewMagicAndInventoryControlNode" type="Control" parent="StatNinePatchRect"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MagicStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
-margin_left = 8.0
-margin_top = 21.3333
-margin_right = 48.0
-margin_bottom = 29.3333
+offset_left = 8.0
+offset_top = 21.3333
+offset_right = 48.0
+offset_bottom = 29.3333
 custom_fonts/font = ExtResource( 4 )
 text = "MAGIC"
 valign = 1
@@ -141,10 +141,10 @@ __meta__ = {
 }
 
 [node name="MagicNothingStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
-margin_left = 8.0
-margin_top = 34.6667
-margin_right = 64.0
-margin_bottom = 42.6667
+offset_left = 8.0
+offset_top = 34.6667
+offset_right = 64.0
+offset_bottom = 42.6667
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "NOTHING"
@@ -155,10 +155,10 @@ __meta__ = {
 }
 
 [node name="SpellsVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
-margin_left = 8.0
-margin_top = 35.0
-margin_right = 171.0
-margin_bottom = 88.0
+offset_left = 8.0
+offset_top = 35.0
+offset_right = 171.0
+offset_bottom = 88.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_lock_": true,
@@ -167,11 +167,11 @@ __meta__ = {
 
 [node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer"]
 visible = false
-margin_right = 163.0
+offset_right = 163.0
 
 [node name="SpellLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
-margin_right = 109.0
-margin_bottom = 8.0
+offset_right = 109.0
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 4 )
 text = "MAGIC"
 valign = 1
@@ -181,10 +181,10 @@ __meta__ = {
 }
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
-margin_left = 119.989
-margin_top = -0.328068
-margin_right = 135.989
-margin_bottom = 7.67193
+offset_left = 119.989
+offset_top = -0.328068
+offset_right = 135.989
+offset_bottom = 7.67193
 custom_fonts/font = ExtResource( 4 )
 text = "LV"
 valign = 1
@@ -194,9 +194,9 @@ __meta__ = {
 }
 
 [node name="LevelLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
-margin_left = 131.0
-margin_right = 152.0
-margin_bottom = 8.0
+offset_left = 131.0
+offset_right = 152.0
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 4 )
 text = "1"
 align = 2
@@ -207,10 +207,10 @@ __meta__ = {
 }
 
 [node name="ItemsStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
-margin_left = 173.0
-margin_top = 21.3333
-margin_right = 213.0
-margin_bottom = 29.3333
+offset_left = 173.0
+offset_top = 21.3333
+offset_right = 213.0
+offset_bottom = 29.3333
 custom_fonts/font = ExtResource( 4 )
 text = "ITEMS"
 valign = 1
@@ -221,10 +221,10 @@ __meta__ = {
 
 [node name="ItemsNothingStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
 visible = false
-margin_left = 174.333
-margin_top = 34.6667
-margin_right = 230.333
-margin_bottom = 42.6667
+offset_left = 174.333
+offset_top = 34.6667
+offset_right = 230.333
+offset_bottom = 42.6667
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "NOTHING"
@@ -235,20 +235,20 @@ __meta__ = {
 }
 
 [node name="InventoryVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
-margin_left = 175.0
-margin_top = 35.0
-margin_right = 342.0
-margin_bottom = 88.0
+offset_left = 175.0
+offset_top = 35.0
+offset_right = 342.0
+offset_bottom = 88.0
 custom_constants/separation = 15
 
 [node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer"]
 visible = false
-margin_right = 167.0
+offset_right = 167.0
 
 [node name="EquippedStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer/Test_DONT_USE_Control"]
-margin_left = -1.0
-margin_right = 7.0
-margin_bottom = 8.0
+offset_left = -1.0
+offset_right = 7.0
+offset_bottom = 8.0
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "E"
@@ -259,9 +259,9 @@ __meta__ = {
 }
 
 [node name="ItemLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer/Test_DONT_USE_Control"]
-margin_left = 11.0
-margin_right = 167.0
-margin_bottom = 8.0
+offset_left = 11.0
+offset_right = 167.0
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 4 )
 text = "ITEM"
 valign = 1
@@ -270,20 +270,20 @@ __meta__ = {
 }
 
 [node name="ItemsViewControl" type="Control" parent="StatNinePatchRect"]
-margin_left = 5.0
-margin_top = 19.0
-margin_right = 347.0
-margin_bottom = 93.0
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 347.0
+offset_bottom = 93.0
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="ItemsDashStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl"]
-margin_left = 29.6667
-margin_top = 2.33333
-margin_right = 101.667
-margin_bottom = 10.3333
+offset_left = 29.6667
+offset_top = 2.33333
+offset_right = 101.667
+offset_bottom = 10.3333
 custom_fonts/font = ExtResource( 4 )
 text = "- ITEMS -"
 valign = 1
@@ -293,76 +293,76 @@ __meta__ = {
 }
 
 [node name="ItemIconsControlNode" type="Control" parent="StatNinePatchRect/ItemsViewControl"]
-margin_left = 3.0
-margin_top = 13.0
-margin_right = 139.0
-margin_bottom = 72.0
+offset_left = 3.0
+offset_top = 13.0
+offset_right = 139.0
+offset_bottom = 72.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="UpTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
-margin_left = 53.6667
-margin_top = 1.0
-margin_right = 72.6667
-margin_bottom = 20.0
+offset_left = 53.6667
+offset_top = 1.0
+offset_right = 72.6667
+offset_bottom = 20.0
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="LeftTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
-margin_left = 28.3334
-margin_top = 17.0001
-margin_right = 47.3334
-margin_bottom = 36.0001
+offset_left = 28.3334
+offset_top = 17.0001
+offset_right = 47.3334
+offset_bottom = 36.0001
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="RightTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
-margin_left = 81.6666
-margin_top = 17.0
-margin_right = 100.667
-margin_bottom = 36.0
+offset_left = 81.6666
+offset_top = 17.0
+offset_right = 100.667
+offset_bottom = 36.0
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="DownTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
-margin_left = 53.6666
-margin_top = 34.3334
-margin_right = 72.6666
-margin_bottom = 53.3334
+offset_left = 53.6666
+offset_top = 34.3334
+offset_right = 72.6666
+offset_bottom = 53.3334
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="ItemNameAndEquippedControlNode" type="Control" parent="StatNinePatchRect/ItemsViewControl"]
-margin_left = 147.0
-margin_top = 10.0
-margin_right = 339.0
-margin_bottom = 72.0
+offset_left = 147.0
+offset_top = 10.0
+offset_right = 339.0
+offset_bottom = 72.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="UpItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
-margin_right = 192.0
-margin_bottom = 11.0
+offset_right = 192.0
+offset_bottom = 11.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="UpItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/UpItemControl"]
 visible = false
-margin_left = -1.33334
-margin_top = 3.00001
-margin_right = 6.66666
-margin_bottom = 11.0
+offset_left = -1.33334
+offset_top = 3.00001
+offset_right = 6.66666
+offset_bottom = 11.0
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "E"
@@ -373,10 +373,10 @@ __meta__ = {
 }
 
 [node name="UpItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/UpItemControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 valign = 1
 __meta__ = {
@@ -384,18 +384,18 @@ __meta__ = {
 }
 
 [node name="LeftItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
-margin_right = 195.0
-margin_bottom = 40.0
+offset_right = 195.0
+offset_bottom = 40.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="LeftItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/LeftItemControl"]
 visible = false
-margin_left = -1.33334
-margin_top = 17.6667
-margin_right = 6.66666
-margin_bottom = 25.6667
+offset_left = -1.33334
+offset_top = 17.6667
+offset_right = 6.66666
+offset_bottom = 25.6667
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "E"
@@ -405,10 +405,10 @@ __meta__ = {
 }
 
 [node name="LeftItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/LeftItemControl"]
-margin_left = 13.0
-margin_top = 18.0
-margin_right = 162.0
-margin_bottom = 26.0
+offset_left = 13.0
+offset_top = 18.0
+offset_right = 162.0
+offset_bottom = 26.0
 custom_fonts/font = ExtResource( 4 )
 valign = 1
 __meta__ = {
@@ -416,18 +416,18 @@ __meta__ = {
 }
 
 [node name="RightItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
-margin_right = 195.0
-margin_bottom = 40.0
+offset_right = 195.0
+offset_bottom = 40.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="RightItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/RightItemControl"]
 visible = false
-margin_left = -1.33334
-margin_top = 33.6667
-margin_right = 6.66666
-margin_bottom = 41.6667
+offset_left = -1.33334
+offset_top = 33.6667
+offset_right = 6.66666
+offset_bottom = 41.6667
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "E"
@@ -437,10 +437,10 @@ __meta__ = {
 }
 
 [node name="RightItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/RightItemControl"]
-margin_left = 13.0
-margin_top = 34.0
-margin_right = 162.0
-margin_bottom = 42.0
+offset_left = 13.0
+offset_top = 34.0
+offset_right = 162.0
+offset_bottom = 42.0
 custom_fonts/font = ExtResource( 4 )
 valign = 1
 __meta__ = {
@@ -448,17 +448,17 @@ __meta__ = {
 }
 
 [node name="DownItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
-margin_top = 49.3333
-margin_right = 195.0
-margin_bottom = 57.3333
+offset_top = 49.3333
+offset_right = 195.0
+offset_bottom = 57.3333
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="DownItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/DownItemControl"]
 visible = false
-margin_right = 8.0
-margin_bottom = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "E"
@@ -468,9 +468,9 @@ __meta__ = {
 }
 
 [node name="DownItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/DownItemControl"]
-margin_left = 13.3333
-margin_right = 185.333
-margin_bottom = 8.0
+offset_left = 13.3333
+offset_right = 185.333
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 4 )
 valign = 1
 __meta__ = {
@@ -484,20 +484,20 @@ scale = Vector2( 1.33333, 1.33333 )
 
 [node name="EquipItemsViewControl" type="Control" parent="StatNinePatchRect"]
 visible = false
-margin_left = 5.0
-margin_top = 19.0
-margin_right = 347.0
-margin_bottom = 93.0
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 347.0
+offset_bottom = 93.0
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="EquipmentStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl"]
-margin_left = 2.99998
-margin_top = 2.33333
-margin_right = 75.0
-margin_bottom = 10.3333
+offset_left = 2.99998
+offset_top = 2.33333
+offset_right = 75.0
+offset_bottom = 10.3333
 custom_fonts/font = ExtResource( 4 )
 text = "Equipment"
 valign = 1
@@ -507,59 +507,59 @@ __meta__ = {
 }
 
 [node name="ItemIconsControlNode" type="Control" parent="StatNinePatchRect/EquipItemsViewControl"]
-margin_left = -23.6667
-margin_top = 13.0
-margin_right = 112.333
-margin_bottom = 72.0
+offset_left = -23.6667
+offset_top = 13.0
+offset_right = 112.333
+offset_bottom = 72.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="UpTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
-margin_left = 53.6667
-margin_top = 1.0
-margin_right = 72.6667
-margin_bottom = 20.0
+offset_left = 53.6667
+offset_top = 1.0
+offset_right = 72.6667
+offset_bottom = 20.0
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="LeftTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
-margin_left = 28.3334
-margin_top = 17.0001
-margin_right = 47.3334
-margin_bottom = 36.0001
+offset_left = 28.3334
+offset_top = 17.0001
+offset_right = 47.3334
+offset_bottom = 36.0001
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="RightTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
-margin_left = 81.6666
-margin_top = 17.0
-margin_right = 100.667
-margin_bottom = 36.0
+offset_left = 81.6666
+offset_top = 17.0
+offset_right = 100.667
+offset_bottom = 36.0
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="DownTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
-margin_left = 53.6666
-margin_top = 34.3334
-margin_right = 72.6666
-margin_bottom = 53.3334
+offset_left = 53.6666
+offset_top = 34.3334
+offset_right = 72.6666
+offset_bottom = 53.3334
 texture = ExtResource( 9 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="SelectedItemLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl"]
-margin_left = 101.667
-margin_top = 2.33333
-margin_right = 173.667
-margin_bottom = 10.3333
+offset_left = 101.667
+offset_top = 2.33333
+offset_right = 173.667
+offset_bottom = 10.3333
 custom_fonts/font = ExtResource( 4 )
 text = "NOTHING"
 valign = 1
@@ -569,24 +569,24 @@ __meta__ = {
 }
 
 [node name="CharacterStatsPreviewControlNode" type="Control" parent="StatNinePatchRect/EquipItemsViewControl"]
-margin_left = 90.0
-margin_top = 10.0
-margin_right = 339.0
-margin_bottom = 72.0
+offset_left = 90.0
+offset_top = 10.0
+offset_right = 339.0
+offset_bottom = 72.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AttackControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_top = 2.66667
-margin_right = 192.0
-margin_bottom = 13.6667
+offset_top = 2.66667
+offset_right = 192.0
+offset_bottom = 13.6667
 
 [node name="AttackStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AttackControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "ATT"
 valign = 1
@@ -595,10 +595,10 @@ __meta__ = {
 }
 
 [node name="AttackLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AttackControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -608,15 +608,15 @@ __meta__ = {
 }
 
 [node name="DefenseControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_top = 17.3333
-margin_right = 192.0
-margin_bottom = 28.3333
+offset_top = 17.3333
+offset_right = 192.0
+offset_bottom = 28.3333
 
 [node name="DefenseStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DefenseControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "DEF"
 valign = 1
@@ -625,10 +625,10 @@ __meta__ = {
 }
 
 [node name="DefenseLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DefenseControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -638,15 +638,15 @@ __meta__ = {
 }
 
 [node name="AgilityControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_top = 32.0
-margin_right = 192.0
-margin_bottom = 43.0
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = 43.0
 
 [node name="AgilityStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AgilityControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "AGI"
 valign = 1
@@ -655,10 +655,10 @@ __meta__ = {
 }
 
 [node name="AgilityLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AgilityControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -668,15 +668,15 @@ __meta__ = {
 }
 
 [node name="MoveControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_top = 46.6666
-margin_right = 192.0
-margin_bottom = 57.6666
+offset_top = 46.6666
+offset_right = 192.0
+offset_bottom = 57.6666
 
 [node name="MoveStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MoveControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "MOV"
 valign = 1
@@ -685,10 +685,10 @@ __meta__ = {
 }
 
 [node name="MoveLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MoveControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -698,16 +698,16 @@ __meta__ = {
 }
 
 [node name="HPControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_left = 78.6667
-margin_top = 2.66667
-margin_right = 270.667
-margin_bottom = 13.6667
+offset_left = 78.6667
+offset_top = 2.66667
+offset_right = 270.667
+offset_bottom = 13.6667
 
 [node name="HPStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/HPControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "HP"
 valign = 1
@@ -716,10 +716,10 @@ __meta__ = {
 }
 
 [node name="HPLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/HPControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -729,16 +729,16 @@ __meta__ = {
 }
 
 [node name="MPControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_left = 78.6667
-margin_top = 17.3333
-margin_right = 270.667
-margin_bottom = 28.3333
+offset_left = 78.6667
+offset_top = 17.3333
+offset_right = 270.667
+offset_bottom = 28.3333
 
 [node name="MPStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MPControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "MP"
 valign = 1
@@ -747,10 +747,10 @@ __meta__ = {
 }
 
 [node name="MPLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MPControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -760,16 +760,16 @@ __meta__ = {
 }
 
 [node name="CriticalHitChanceAttackControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_left = 78.6667
-margin_top = 32.0
-margin_right = 270.667
-margin_bottom = 43.0
+offset_left = 78.6667
+offset_top = 32.0
+offset_right = 270.667
+offset_bottom = 43.0
 
 [node name="CriticalHitChanceStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/CriticalHitChanceAttackControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "CRI"
 valign = 1
@@ -778,10 +778,10 @@ __meta__ = {
 }
 
 [node name="CriticalHitChanceLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/CriticalHitChanceAttackControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -791,16 +791,16 @@ __meta__ = {
 }
 
 [node name="DoubleAttackChanceControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_left = 78.6667
-margin_top = 46.6666
-margin_right = 270.667
-margin_bottom = 57.6666
+offset_left = 78.6667
+offset_top = 46.6666
+offset_right = 270.667
+offset_bottom = 57.6666
 
 [node name="DoubleAttackChanceStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DoubleAttackChanceControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "DA"
 valign = 1
@@ -809,10 +809,10 @@ __meta__ = {
 }
 
 [node name="DoubleAttackChanceLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DoubleAttackChanceControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -822,16 +822,16 @@ __meta__ = {
 }
 
 [node name="DodgeControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
-margin_left = 154.667
-margin_top = 2.66667
-margin_right = 346.667
-margin_bottom = 13.6667
+offset_left = 154.667
+offset_top = 2.66667
+offset_right = 346.667
+offset_bottom = 13.6667
 
 [node name="DodgeStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DodgeControl"]
-margin_left = 13.0
-margin_top = 3.33334
-margin_right = 162.0
-margin_bottom = 11.3333
+offset_left = 13.0
+offset_top = 3.33334
+offset_right = 162.0
+offset_bottom = 11.3333
 custom_fonts/font = ExtResource( 4 )
 text = "DOD"
 valign = 1
@@ -840,10 +840,10 @@ __meta__ = {
 }
 
 [node name="DodgeLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DodgeControl"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 11.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 11.0
 custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
@@ -856,10 +856,10 @@ __meta__ = {
 position = Vector2( 30, 47 )
 
 [node name="StatNinePatchRect2" type="NinePatchRect" parent="."]
-margin_top = 79.0
-margin_right = 405.0
-margin_bottom = 207.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_top = 79.0
+offset_right = 405.0
+offset_bottom = 207.0
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -876,10 +876,10 @@ __meta__ = {
 }
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 33.0
-margin_top = 9.0
-margin_right = 65.0
-margin_bottom = 17.0
+offset_left = 33.0
+offset_top = 9.0
+offset_right = 65.0
+offset_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "NAME"
 valign = 1
@@ -888,10 +888,10 @@ __meta__ = {
 }
 
 [node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 159.0
-margin_top = 9.0
-margin_right = 247.0
-margin_bottom = 17.0
+offset_left = 159.0
+offset_top = 9.0
+offset_right = 247.0
+offset_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "CLASS"
 valign = 1
@@ -900,10 +900,10 @@ __meta__ = {
 }
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 367.0
-margin_top = 9.0
-margin_right = 383.0
-margin_bottom = 17.0
+offset_left = 367.0
+offset_top = 9.0
+offset_right = 383.0
+offset_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "LV"
 valign = 1
@@ -912,10 +912,10 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StatNinePatchRect2"]
-margin_left = 8.0
-margin_top = 22.0
-margin_right = 397.0
-margin_bottom = 116.0
+offset_left = 8.0
+offset_top = 22.0
+offset_right = 397.0
+offset_bottom = 116.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -934,10 +934,10 @@ __meta__ = {
 }
 
 [node name="ActiveForceStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 1.0
-margin_top = 4.0
-margin_right = 17.0
-margin_bottom = 12.0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 17.0
+offset_bottom = 12.0
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "FW"
@@ -947,10 +947,10 @@ __meta__ = {
 }
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 25.0
-margin_top = 4.0
-margin_right = 57.0
-margin_bottom = 12.0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 57.0
+offset_bottom = 12.0
 custom_fonts/font = ExtResource( 4 )
 text = "NAME"
 valign = 1
@@ -959,10 +959,10 @@ __meta__ = {
 }
 
 [node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 151.0
-margin_top = 3.66663
-margin_right = 239.0
-margin_bottom = 11.6666
+offset_left = 151.0
+offset_top = 3.66663
+offset_right = 239.0
+offset_bottom = 11.6666
 custom_fonts/font = ExtResource( 4 )
 text = "CLASS"
 valign = 1
@@ -972,10 +972,10 @@ __meta__ = {
 }
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 333.0
-margin_top = 4.0
-margin_right = 374.0
-margin_bottom = 12.0
+offset_left = 333.0
+offset_top = 4.0
+offset_right = 374.0
+offset_bottom = 12.0
 custom_fonts/font = ExtResource( 4 )
 text = "LV"
 align = 2
@@ -987,11 +987,11 @@ __meta__ = {
 
 [node name="StatNinePatchRect3" type="NinePatchRect" parent="."]
 visible = false
-margin_left = -1.0
-margin_top = 59.0
-margin_right = 55.0
-margin_bottom = 87.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = -1.0
+offset_top = 59.0
+offset_right = 55.0
+offset_bottom = 87.0
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -1003,10 +1003,10 @@ __meta__ = {
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect3"]
 visible = false
-margin_left = 3.6667
-margin_top = 10.3334
-margin_right = 51.6667
-margin_bottom = 18.3334
+offset_left = 3.6667
+offset_top = 10.3334
+offset_right = 51.6667
+offset_bottom = 18.3334
 custom_fonts/font = ExtResource( 4 )
 text = "SELECT"
 valign = 1

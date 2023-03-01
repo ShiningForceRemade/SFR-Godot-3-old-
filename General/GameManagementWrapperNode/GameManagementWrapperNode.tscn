@@ -1,34 +1,34 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=38 format=3 uid="uid://dyr2jx546wssn"]
 
-[ext_resource path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn" type="PackedScene" id=1]
-[ext_resource path="res://General/Controls/DialogueBox/DialogueBox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" type="PackedScene" id=3]
-[ext_resource path="res://General/InGameDeveloperConsole/InGameDeveloperConsole.tscn" type="PackedScene" id=4]
-[ext_resource path="res://General/BattleBase/TopLevelFaderColorRect.gd" type="Script" id=5]
-[ext_resource path="res://General/GameManagementWrapperNode/CanvasLayerTopLevelFader.gd" type="Script" id=6]
-[ext_resource path="res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn" type="PackedScene" id=7]
-[ext_resource path="res://General/OverworldMenus/GoldInfoBox.tscn" type="PackedScene" id=8]
-[ext_resource path="res://General/OverworldMenus/MainCharacterActionsMenu/MainCharacterActionsMenu.tscn" type="PackedScene" id=9]
-[ext_resource path="res://General/GameManagementWrapperNode/SceneManagerNodeRoot.gd" type="Script" id=10]
-[ext_resource path="res://General/OverworldMenus/MemberListView/MemberListView.tscn" type="PackedScene" id=11]
-[ext_resource path="res://SF1/Characters/SF1ForceMemberList.gd" type="Script" id=12]
-[ext_resource path="res://General/GameManagementWrapperNode/MenuAndUIDispatcherNode.gd" type="Script" id=13]
-[ext_resource path="res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn" type="PackedScene" id=14]
-[ext_resource path="res://General/OverworldMenus/MagicMenu/MagicMenu.tscn" type="PackedScene" id=15]
-[ext_resource path="res://General/HQMenus/HQMenu.tscn" type="PackedScene" id=16]
-[ext_resource path="res://General/GameManagementWrapperNode/HQMenusWrapperNode.gd" type="Script" id=17]
-[ext_resource path="res://General/PriestMenu/PriestMenu.tscn" type="PackedScene" id=18]
-[ext_resource path="res://General/GameManagementWrapperNode/PriestMenuWrapperNode.gd" type="Script" id=19]
-[ext_resource path="res://General/UserInteractionPrompts/YesOrNo/YesOrNoPrompt.tscn" type="PackedScene" id=20]
-[ext_resource path="res://General/GameManagementWrapperNode/UserInteractionPrompts.gd" type="Script" id=21]
-[ext_resource path="res://General/OverworldMenus/InventoryMenu/InventoryMenu.tscn" type="PackedScene" id=22]
-[ext_resource path="res://General/ShopMenu/ShopMenu.tscn" type="PackedScene" id=23]
-[ext_resource path="res://General/ShopMenu/ItemSelectionMenu/ItemSelectionMenu.tscn" type="PackedScene" id=24]
-[ext_resource path="res://General/GameManagementWrapperNode/ShopMenuWrapperNode.gd" type="Script" id=25]
-[ext_resource path="res://General/OverworldMenus/MicroMemberListView/MicroMemberListView.tscn" type="PackedScene" id=26]
-[ext_resource path="res://General/SettingsMenus/SettingsMenu.tscn" type="PackedScene" id=27]
+[ext_resource type="PackedScene" uid="uid://d3yscwwny8r44" path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cv2nsu8qllrjq" path="res://General/Controls/DialogueBox/DialogueBox.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://General/InGameDeveloperConsole/InGameDeveloperConsole.tscn" id="4"]
+[ext_resource type="Script" path="res://General/BattleBase/TopLevelFaderColorRect.gd" id="5"]
+[ext_resource type="Script" path="res://General/GameManagementWrapperNode/CanvasLayerTopLevelFader.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://d1c3jsjukl74t" path="res://General/Controls/BattleCharacterOrEnemeyMicroInfo/BattleCharacterOrEnemeyMicroInfo.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://General/OverworldMenus/GoldInfoBox.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://General/OverworldMenus/MainCharacterActionsMenu/MainCharacterActionsMenu.tscn" id="9"]
+[ext_resource type="Script" path="res://General/GameManagementWrapperNode/SceneManagerNodeRoot.gd" id="10"]
+[ext_resource type="PackedScene" path="res://General/OverworldMenus/MemberListView/MemberListView.tscn" id="11"]
+[ext_resource type="Script" path="res://SF1/Characters/SF1ForceMemberList.gd" id="12"]
+[ext_resource type="Script" path="res://General/GameManagementWrapperNode/MenuAndUIDispatcherNode.gd" id="13"]
+[ext_resource type="PackedScene" uid="uid://66576vnvsxlg" path="res://General/BattleActionsMenu/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://General/OverworldMenus/MagicMenu/MagicMenu.tscn" id="15"]
+[ext_resource type="PackedScene" path="res://General/HQMenus/HQMenu.tscn" id="16"]
+[ext_resource type="Script" path="res://General/GameManagementWrapperNode/HQMenusWrapperNode.gd" id="17"]
+[ext_resource type="PackedScene" path="res://General/PriestMenu/PriestMenu.tscn" id="18"]
+[ext_resource type="Script" path="res://General/GameManagementWrapperNode/PriestMenuWrapperNode.gd" id="19"]
+[ext_resource type="PackedScene" path="res://General/UserInteractionPrompts/YesOrNo/YesOrNoPrompt.tscn" id="20"]
+[ext_resource type="Script" path="res://General/GameManagementWrapperNode/UserInteractionPrompts.gd" id="21"]
+[ext_resource type="PackedScene" path="res://General/OverworldMenus/InventoryMenu/InventoryMenu.tscn" id="22"]
+[ext_resource type="PackedScene" path="res://General/ShopMenu/ShopMenu.tscn" id="23"]
+[ext_resource type="PackedScene" path="res://General/ShopMenu/ItemSelectionMenu/ItemSelectionMenu.tscn" id="24"]
+[ext_resource type="Script" path="res://General/GameManagementWrapperNode/ShopMenuWrapperNode.gd" id="25"]
+[ext_resource type="PackedScene" path="res://General/OverworldMenus/MicroMemberListView/MicroMemberListView.tscn" id="26"]
+[ext_resource type="PackedScene" path="res://General/SettingsMenus/SettingsMenu.tscn" id="27"]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
 
 render_mode blend_mul;
@@ -39,10 +39,10 @@ void fragment() {
     COLOR = vec4(screen_pixel, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id="2"]
+shader = SubResource("1")
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id="3"]
 code = "/**
 * hq2x and hq4x filter.
 * https://www.shadertoy.com/view/MslGRS
@@ -179,17 +179,16 @@ void fragment(){
 	COLOR = color;
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/type = 2
+[sub_resource type="ShaderMaterial" id="4"]
+shader = SubResource("3")
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id="5"]
 code = "shader_type canvas_item;
 
-uniform vec4 lightest : hint_color; // 061820
-uniform vec4 light : hint_color; //346856
-uniform vec4 dark : hint_color; // 88c070
-uniform vec4 darkest : hint_color; // e0f8d0
+uniform vec4 lightest : source_color; // 061820
+uniform vec4 light : source_color; //346856
+uniform vec4 dark : source_color; // 88c070
+uniform vec4 darkest : source_color; // e0f8d0
 
 void fragment() {
 	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
@@ -205,14 +204,10 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
-shader_param/lightest = Color( 0.0235294, 0.0941176, 0.12549, 1 )
-shader_param/light = Color( 0.203922, 0.407843, 0.337255, 1 )
-shader_param/dark = Color( 0.533333, 0.752941, 0.439216, 1 )
-shader_param/darkest = Color( 0.878431, 0.972549, 0.815686, 1 )
+[sub_resource type="ShaderMaterial" id="6"]
+shader = SubResource("5")
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id="7"]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/VHS-and-CRT-monitor-effect
@@ -443,31 +438,10 @@ void fragment()
 	COLOR = text;
 }"
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
-shader_param/overlay = true
-shader_param/scanlines_opacity = 0.057
-shader_param/scanlines_width = 0.236
-shader_param/grille_opacity = 0.406
-shader_param/resolution = Vector2( 640, 480 )
-shader_param/pixelate = false
-shader_param/roll = false
-shader_param/roll_speed = 2.017
-shader_param/roll_size = 0.0
-shader_param/roll_variation = 5.0
-shader_param/distort_intensity = 0.2
-shader_param/noise_opacity = 0.357
-shader_param/noise_speed = 5.0
-shader_param/static_noise_intensity = 0.05
-shader_param/aberration = 0.01
-shader_param/brightness = 1.25
-shader_param/discolor = false
-shader_param/warp_amount = 0.02
-shader_param/clip_warp = false
-shader_param/vignette_intensity = 0.0
-shader_param/vignette_opacity = 0.0
+[sub_resource type="ShaderMaterial" id="8"]
+shader = SubResource("7")
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id="9"]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/VHS-and-CRT-monitor-effect
@@ -698,256 +672,218 @@ void fragment()
 	COLOR = text;
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
-shader_param/overlay = true
-shader_param/scanlines_opacity = 0.304
-shader_param/scanlines_width = 0.297
-shader_param/grille_opacity = 0.225
-shader_param/resolution = Vector2( 640, 480 )
-shader_param/pixelate = true
-shader_param/roll = true
-shader_param/roll_speed = 2.0
-shader_param/roll_size = 23.871
-shader_param/roll_variation = 5.0
-shader_param/distort_intensity = 0.134
-shader_param/noise_opacity = 0.357
-shader_param/noise_speed = 8.032
-shader_param/static_noise_intensity = 0.234
-shader_param/aberration = -0.029
-shader_param/brightness = 1.25
-shader_param/discolor = false
-shader_param/warp_amount = 0.364
-shader_param/clip_warp = false
-shader_param/vignette_intensity = 1.0
-shader_param/vignette_opacity = 0.473
+[sub_resource type="ShaderMaterial" id="10"]
+shader = SubResource("9")
 
 [node name="GameManagementWrapperNodeRoot" type="Node2D"]
 
 [node name="SF1Node" type="Node" parent="."]
-script = ExtResource( 12 )
+script = ExtResource("12")
 
 [node name="SceneManagerNodeRoot" type="Node" parent="."]
-script = ExtResource( 10 )
+script = ExtResource("10")
 
-[node name="GuardianaRoot" parent="SceneManagerNodeRoot" instance=ExtResource( 1 )]
+[node name="GuardianaRoot" parent="SceneManagerNodeRoot" instance=ExtResource("1")]
 
 [node name="MenusAndUICanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MenuAndUIDispatcherNode" type="Node" parent="MenusAndUICanvasLayer"]
-script = ExtResource( 13 )
+script = ExtResource("13")
 
 [node name="OverworldWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
 
-[node name="DialogueBoxRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode" instance=ExtResource( 2 )]
+[node name="DialogueBoxRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode" instance=ExtResource("2")]
 visible = false
-margin_left = 52.0
-margin_top = 126.0
-margin_right = 52.0
-margin_bottom = 126.0
-rect_scale = Vector2( 0.75, 0.75 )
+layout_mode = 3
+anchors_preset = 0
+offset_left = 52.0
+offset_top = 126.0
+offset_right = 52.0
+offset_bottom = 126.0
+scale = Vector2(0.75, 0.75)
 
-[node name="DialogueBoxTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode"]
-
-[node name="PortraitPopupRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode" instance=ExtResource( 3 )]
-margin_left = 52.0
-margin_top = 8.0
-margin_right = 51.9999
-margin_bottom = 8.0
-rect_scale = Vector2( 0.75, 0.75 )
-
-[node name="PortraitPopupTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode"]
+[node name="PortraitPopupRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode" instance=ExtResource("3")]
+layout_mode = 3
+anchors_preset = 15
+offset_left = 52.0
+offset_top = 8.0
+offset_right = 51.9999
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
 
 [node name="MenusNodeWrapper" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode"]
 
-[node name="BattleCharacterOrEnemeyMicroInfoRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 7 )]
+[node name="BattleCharacterOrEnemeyMicroInfoRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource("7")]
 visible = false
-margin_left = 204.0
-margin_top = 4.0
-margin_right = 203.92
-margin_bottom = 3.93999
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 204.0
+offset_top = 4.0
+offset_right = 203.92
+offset_bottom = 3.93999
+scale = Vector2(0.75, 0.75)
 
-[node name="GoldInfoBox" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 8 )]
+[node name="GoldInfoBox" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource("8")]
 visible = false
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -261.0
-margin_bottom = -146.0
-rect_scale = Vector2( 0.75, 0.75 )
+layout_mode = 3
+anchors_preset = 15
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -261.0
+offset_bottom = -146.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
 
-[node name="OverworldActionsMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 9 )]
+[node name="OverworldActionsMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource("9")]
 visible = false
-position = Vector2( 132, 136 )
-scale = Vector2( 0.75, 0.75 )
+position = Vector2(132, 136)
+scale = Vector2(0.75, 0.75)
 
-[node name="MemberListViewNodeRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 11 )]
+[node name="MemberListViewNodeRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource("11")]
 visible = false
-position = Vector2( 8, 0 )
+position = Vector2(8, 0)
 
-[node name="NoValidOptionWarningBoxRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource( 14 )]
+[node name="NoValidOptionWarningBoxRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper" instance=ExtResource("14")]
 visible = false
 
 [node name="OverworldMagicMenuNode" type="Node2D" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper"]
-position = Vector2( 139, 214 )
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2(139, 214)
 
-[node name="OverworldMagicMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode" instance=ExtResource( 15 )]
-scale = Vector2( 0.825, 0.825 )
-
-[node name="BattleMagicMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode"]
+[node name="OverworldMagicMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldMagicMenuNode" instance=ExtResource("15")]
+scale = Vector2(0.825, 0.825)
 
 [node name="OverworldInventoryMenuNode" type="Node2D" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper"]
 
-[node name="InventoryMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode" instance=ExtResource( 22 )]
-position = Vector2( 130, 214 )
-scale = Vector2( 0.8, 0.8 )
-
-[node name="InventoryMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode"]
+[node name="InventoryMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/MenusNodeWrapper/OverworldInventoryMenuNode" instance=ExtResource("22")]
+position = Vector2(130, 214)
+scale = Vector2(0.8, 0.8)
 
 [node name="PriestMenuWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode"]
-script = ExtResource( 19 )
+script = ExtResource("19")
 
-[node name="PriestMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/PriestMenuWrapperNode" instance=ExtResource( 18 )]
+[node name="PriestMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/PriestMenuWrapperNode" instance=ExtResource("18")]
 visible = false
-position = Vector2( 132, 136 )
-scale = Vector2( 0.75, 0.75 )
-
-[node name="PriestMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/PriestMenuWrapperNode"]
+position = Vector2(132, 136)
+scale = Vector2(0.75, 0.75)
 
 [node name="ShopMenuWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode"]
-script = ExtResource( 25 )
+script = ExtResource("25")
 
-[node name="ShopMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode" instance=ExtResource( 23 )]
+[node name="ShopMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode" instance=ExtResource("23")]
 visible = false
-position = Vector2( 129, 134 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2(129, 134)
+scale = Vector2(0.8, 0.8)
 
-[node name="ShopMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode"]
-
-[node name="ShopItemSelectionMenuNode" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode" instance=ExtResource( 24 )]
+[node name="ShopItemSelectionMenuNode" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/OverworldWrapperNode/ShopMenuWrapperNode" instance=ExtResource("24")]
 visible = false
-position = Vector2( 31, -4 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2(31, -4)
+scale = Vector2(0.8, 0.8)
 
 [node name="HQMenusWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
-script = ExtResource( 17 )
+script = ExtResource("17")
 
-[node name="HQMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/HQMenusWrapperNode" instance=ExtResource( 16 )]
+[node name="HQMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/HQMenusWrapperNode" instance=ExtResource("16")]
 visible = false
-position = Vector2( 132, 136 )
-scale = Vector2( 0.75, 0.75 )
-
-[node name="HQMenuTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/HQMenusWrapperNode"]
+position = Vector2(132, 136)
+scale = Vector2(0.75, 0.75)
 
 [node name="BattleMenuAndUIWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
 
 [node name="MicroMemberListWrapperNode" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
 
-[node name="MicroMemberListViewNodeRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/MicroMemberListWrapperNode" instance=ExtResource( 26 )]
+[node name="MicroMemberListViewNodeRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/MicroMemberListWrapperNode" instance=ExtResource("26")]
 visible = false
-position = Vector2( 34, 2.38419e-07 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2(34, 2.38419e-07)
+scale = Vector2(0.8, 0.8)
 
 [node name="UserInteractionPrompts" type="Node" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode"]
-script = ExtResource( 21 )
+script = ExtResource("21")
 
-[node name="YesOrNoPromptRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/UserInteractionPrompts" instance=ExtResource( 20 )]
-position = Vector2( 321, 101 )
-scale = Vector2( 0.8, 0.8 )
+[node name="YesOrNoPromptRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/UserInteractionPrompts" instance=ExtResource("20")]
+position = Vector2(321, 101)
+scale = Vector2(0.8, 0.8)
 
-[node name="YesOrNoPromptTween" type="Tween" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode/UserInteractionPrompts"]
-
-[node name="SettingsMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode" instance=ExtResource( 27 )]
+[node name="SettingsMenuRoot" parent="MenusAndUICanvasLayer/MenuAndUIDispatcherNode" instance=ExtResource("27")]
 
 [node name="ShadersCanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
 
 [node name="RedTintShader" type="ColorRect" parent="ShadersCanvasLayer"]
 visible = false
-material = SubResource( 2 )
+material = SubResource("2")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -15.0432
-margin_top = -11.6378
-margin_right = 21.9568
-margin_bottom = 7.36224
+offset_left = -15.0432
+offset_top = -11.6378
+offset_right = 21.9568
+offset_bottom = 7.36224
 
 [node name="HQ4x" type="ColorRect" parent="ShadersCanvasLayer"]
 visible = false
-material = SubResource( 4 )
+material = SubResource("4")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -15.0432
-margin_top = -11.6378
-margin_right = 21.9568
-margin_bottom = 7.36224
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -15.0432
+offset_top = -11.6378
+offset_right = 21.9568
+offset_bottom = 7.36224
 
 [node name="GameboyShader" type="ColorRect" parent="ShadersCanvasLayer"]
 visible = false
-material = SubResource( 6 )
+material = SubResource("6")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.404442
-margin_top = -0.57106
-margin_right = -0.404449
-margin_bottom = 1.42896
+offset_left = -0.404442
+offset_top = -0.57106
+offset_right = -0.404449
+offset_bottom = 1.42896
 
 [node name="CRTShader" type="ColorRect" parent="ShadersCanvasLayer"]
 visible = false
-material = SubResource( 8 )
+material = SubResource("8")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -14.2415
-margin_top = -8.78592
-margin_right = 22.7585
-margin_bottom = 10.2141
+offset_left = -14.2415
+offset_top = -8.78592
+offset_right = 22.7585
+offset_bottom = 10.2141
 
 [node name="CRTShader2" type="ColorRect" parent="ShadersCanvasLayer"]
 visible = false
-material = SubResource( 10 )
+material = SubResource("10")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -14.2415
-margin_top = -8.78592
-margin_right = 22.7585
-margin_bottom = 10.2141
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -14.2415
+offset_top = -8.78592
+offset_right = 22.7585
+offset_bottom = 10.2141
 
 [node name="CanvasLayerTopLevelFader" type="CanvasLayer" parent="."]
 layer = 99
-script = ExtResource( 6 )
+script = ExtResource("6")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayerTopLevelFader"]
-margin_right = 320.0
-margin_bottom = 180.0
-color = Color( 0, 0, 0, 1 )
-script = ExtResource( 5 )
-
-[node name="Tween" type="Tween" parent="CanvasLayerTopLevelFader"]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("5")
 
 [node name="DevToolingCanvasLayer" type="CanvasLayer" parent="."]
 layer = 99
 
 [node name="ColorRect" type="ColorRect" parent="DevToolingCanvasLayer"]
 visible = false
-margin_right = 320.0
-margin_bottom = 180.0
-color = Color( 0, 0, 0, 1 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("5")
 
-[node name="Tween" type="Tween" parent="DevToolingCanvasLayer"]
-
-[node name="InGameDeveloperConsoleRoot" parent="DevToolingCanvasLayer" instance=ExtResource( 4 )]
+[node name="InGameDeveloperConsoleRoot" parent="DevToolingCanvasLayer" instance=ExtResource("4")]
 visible = false
-position = Vector2( 8, 78 )
+position = Vector2(8, 78)

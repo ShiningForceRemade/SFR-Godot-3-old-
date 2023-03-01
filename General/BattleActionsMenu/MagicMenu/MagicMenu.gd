@@ -7,7 +7,7 @@ signal signal_completed_magic_level_selection_action
 # warning-ignore:unused_signal
 signal signal_completed_selected_target_action
 
-onready var redSelection = $RedSelectionBorderRoot
+@onready var redSelection = $RedSelectionBorderRoot
 
 const rs_top_pos    = Vector2(16, 0)
 const rs_left_pos   = Vector2(0, 12)
@@ -25,24 +25,24 @@ enum e_magic_menu_options {
 var currently_selected_option: int = e_magic_menu_options.UP_OPTION
 
 # onready var animationPlayer = $AnimationPlayer
-onready var spell_name_label = $NinePatchRect/SpellNameLabel
-onready var spell_cost_label = $NinePatchRect/MpCostLabel
+@onready var spell_name_label = $NinePatchRect/SpellNameLabel
+@onready var spell_cost_label = $NinePatchRect/MpCostLabel
 
-onready var spell_up_slot_spirte = $SpellSlotUpSprite
-onready var spell_down_slot_spirte = $SpellSlotDownSprite
-onready var spell_left_slot_spirte = $SpellSlotLeftSprite
-onready var spell_right_slot_spirte = $SpellSlotRightSprite
+@onready var spell_up_slot_spirte = $SpellSlotUpSprite
+@onready var spell_down_slot_spirte = $SpellSlotDownSprite
+@onready var spell_left_slot_spirte = $SpellSlotLeftSprite
+@onready var spell_right_slot_spirte = $SpellSlotRightSprite
 
 var character_spells
 
-onready var magicLevelSelectorWrapper = $NinePatchRect/MagicLevelSelectorWrapperNode2D
+@onready var magicLevelSelectorWrapper = $NinePatchRect/MagicLevelSelectorWrapperNode2D
 
 var is_select_magic_level_active: bool = false
 
 var is_target_selection_active: bool = false
 var target_node_children
 
-onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+@onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 var spell_idx: int = 0
 # var spell_level_idx
@@ -85,14 +85,14 @@ func _input(event):
 			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
-			yield(get_tree().create_timer(0.1), "timeout")
+			await get_tree().create_timer(0.1).timeout
 			get_parent().get_node("BattleActionsMenuRoot").set_menu_active()
 			return
 			
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			
-			yield(get_tree().create_timer(0.001), "timeout")
+			await get_tree().create_timer(0.001).timeout
 			
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
@@ -104,9 +104,9 @@ func _input(event):
 			
 			magicLevelSelectorWrapper.show()
 			select_magic_level(actor.spells_id[currently_selected_option])
-			yield(self, "signal_completed_magic_level_selection_action")
+			await self.signal_completed_magic_level_selection_action
 			
-			# todo if cancelled
+			# todo if canceled
 			is_battle_magic_menu_active = true
 			is_select_magic_level_active = false
 			
@@ -132,7 +132,7 @@ func _input(event):
 		if event.is_action_released("ui_a_key"): #event.is_action_released("ui_accept"):
 			print("Selected Magic Level - ", currently_selected_option)
 			
-			yield(get_tree().create_timer(0.001), "timeout")
+			await get_tree().create_timer(0.001).timeout
 			
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
@@ -162,9 +162,9 @@ func _input(event):
 			
 			Singleton_Game_GlobalBattleVariables.target_selection_node.setup_magic_use_range_and_target_range_selection(actor.spells_id[currently_selected_option])
 			
-			yield(self, "signal_completed_magic_level_selection_action")
+			await self.signal_completed_magic_level_selection_action
 			
-			# todo if cancelled
+			# todo if canceled
 			is_battle_magic_menu_active = true
 			is_select_magic_level_active = false
 

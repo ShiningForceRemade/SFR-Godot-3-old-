@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
 
 [node name="MemberMagicLineControl" type="Control"]
 anchor_right = 1.0
@@ -10,8 +10,8 @@ __meta__ = {
 }
 
 [node name="SpellLabel" type="Label" parent="."]
-margin_right = 109.0
-margin_bottom = 8.0
+offset_right = 109.0
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 1 )
 text = "MAGIC"
 valign = 1
@@ -21,10 +21,10 @@ __meta__ = {
 }
 
 [node name="LevelStaticLabel" type="Label" parent="."]
-margin_left = 119.989
-margin_top = -0.328068
-margin_right = 135.989
-margin_bottom = 7.67193
+offset_left = 119.989
+offset_top = -0.328068
+offset_right = 135.989
+offset_bottom = 7.67193
 custom_fonts/font = ExtResource( 1 )
 text = "LV"
 valign = 1
@@ -34,9 +34,9 @@ __meta__ = {
 }
 
 [node name="LevelLabel" type="Label" parent="."]
-margin_left = 131.0
-margin_right = 152.0
-margin_bottom = 8.0
+offset_left = 131.0
+offset_right = 152.0
+offset_bottom = 8.0
 custom_fonts/font = ExtResource( 1 )
 text = "1"
 align = 2

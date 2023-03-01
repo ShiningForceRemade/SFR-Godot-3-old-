@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
 
-[sub_resource type="StreamTexture" id=1]
+[sub_resource type="CompressedTexture2D" id=1]
 load_path = "res://.import/ShiningForceTextBackground.png-9ed310a4373b06707cc2cedc48b3ad37.stex"
 
 [node name="ItemBoxMenuRoot" type="Node2D"]
 
 [node name="ItemBoxTotalsStatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 64.0
-margin_top = 8.0
-margin_right = 384.0
-margin_bottom = 82.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 384.0
+offset_bottom = 82.0
+scale = Vector2( 0.75, 0.75 )
 texture = SubResource( 1 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -24,10 +24,10 @@ __meta__ = {
 }
 
 [node name="TotalStaticLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 372.0
-margin_bottom = 16.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 372.0
+offset_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "Total:"
 valign = 1
@@ -37,10 +37,10 @@ __meta__ = {
 }
 
 [node name="TotalLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 64.0
-margin_top = 8.0
-margin_right = 96.0
-margin_bottom = 16.0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2
@@ -51,10 +51,10 @@ __meta__ = {
 }
 
 [node name="ItemsStaticLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 8.0
-margin_top = 28.3333
-margin_right = 48.0
-margin_bottom = 36.3333
+offset_left = 8.0
+offset_top = 28.3333
+offset_right = 48.0
+offset_bottom = 36.3333
 custom_fonts/font = ExtResource( 1 )
 text = "Items:"
 valign = 1
@@ -64,10 +64,10 @@ __meta__ = {
 }
 
 [node name="ItemsTotalLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 53.0
-margin_top = 28.0
-margin_right = 96.0
-margin_bottom = 36.0
+offset_left = 53.0
+offset_top = 28.0
+offset_right = 96.0
+offset_bottom = 36.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2
@@ -78,10 +78,10 @@ __meta__ = {
 }
 
 [node name="WeaponsStaticLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 8.0
-margin_top = 49.6666
-margin_right = 64.0
-margin_bottom = 57.6666
+offset_left = 8.0
+offset_top = 49.6666
+offset_right = 64.0
+offset_bottom = 57.6666
 custom_fonts/font = ExtResource( 1 )
 text = "Weapons:"
 valign = 1
@@ -91,10 +91,10 @@ __meta__ = {
 }
 
 [node name="WeaponsTotalLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 71.0
-margin_top = 50.0
-margin_right = 96.0
-margin_bottom = 58.0
+offset_left = 71.0
+offset_top = 50.0
+offset_right = 96.0
+offset_bottom = 58.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2
@@ -105,10 +105,10 @@ __meta__ = {
 }
 
 [node name="RingsStaticLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 118.667
-margin_top = 28.3333
-margin_right = 182.667
-margin_bottom = 36.3333
+offset_left = 118.667
+offset_top = 28.3333
+offset_right = 182.667
+offset_bottom = 36.3333
 custom_fonts/font = ExtResource( 1 )
 text = "Rings:"
 valign = 1
@@ -118,10 +118,10 @@ __meta__ = {
 }
 
 [node name="RingsTotalLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 181.667
-margin_top = 28.6667
-margin_right = 206.667
-margin_bottom = 36.6667
+offset_left = 181.667
+offset_top = 28.6667
+offset_right = 206.667
+offset_bottom = 36.6667
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2
@@ -132,10 +132,10 @@ __meta__ = {
 }
 
 [node name="ArmorStaticLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 118.667
-margin_top = 49.6666
-margin_right = 182.667
-margin_bottom = 57.6666
+offset_left = 118.667
+offset_top = 49.6666
+offset_right = 182.667
+offset_bottom = 57.6666
 custom_fonts/font = ExtResource( 1 )
 text = "Armour:"
 valign = 1
@@ -145,10 +145,10 @@ __meta__ = {
 }
 
 [node name="ArmorTotalLabel" type="Label" parent="ItemBoxTotalsStatNinePatchRect"]
-margin_left = 181.667
-margin_top = 50.0
-margin_right = 206.667
-margin_bottom = 58.0
+offset_left = 181.667
+offset_top = 50.0
+offset_right = 206.667
+offset_bottom = 58.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2
@@ -159,11 +159,11 @@ __meta__ = {
 }
 
 [node name="ItemsStatNinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 17.0
-margin_top = 63.0
-margin_right = 400.0
-margin_bottom = 208.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 17.0
+offset_top = 63.0
+offset_right = 400.0
+offset_bottom = 208.0
+scale = Vector2( 0.75, 0.75 )
 texture = SubResource( 1 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -175,10 +175,10 @@ __meta__ = {
 }
 
 [node name="ItemStaticLabel" type="Label" parent="ItemsStatNinePatchRect"]
-margin_left = 14.6667
-margin_top = 8.0
-margin_right = 46.6667
-margin_bottom = 16.0
+offset_left = 14.6667
+offset_top = 8.0
+offset_right = 46.6667
+offset_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "Item"
 valign = 1
@@ -188,10 +188,10 @@ __meta__ = {
 }
 
 [node name="AmountStaticLabel" type="Label" parent="ItemsStatNinePatchRect"]
-margin_left = 318.667
-margin_top = 8.0
-margin_right = 366.667
-margin_bottom = 16.0
+offset_left = 318.667
+offset_top = 8.0
+offset_right = 366.667
+offset_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "Amount"
 valign = 1

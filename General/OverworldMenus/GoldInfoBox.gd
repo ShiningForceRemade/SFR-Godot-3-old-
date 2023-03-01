@@ -1,6 +1,6 @@
 extends Control
 
-onready var goldAmountLabel = $GoldNinePatchRect/GoldAmountLabel
+@onready var goldAmountLabel = $GoldNinePatchRect/GoldAmountLabel
 
 func _ready():
 	UpdateGoldAmountDisplay()
@@ -11,10 +11,10 @@ func UpdateGoldAmountDisplay() -> void:
 
 
 func DefaultPosition() -> void:
-	rect_position.x = 4
-	rect_position.y = 4
+	position.x = 4
+	position.y = 4
 
 
 func ShopMenuPosition() -> void:
-	rect_position.x = 227
-	rect_position.y = 105
+	position.x = 227
+	position.y = 105

@@ -1,8 +1,8 @@
 extends Node2D
 
-onready var TilemapSceneRoot = $TownTilemap
-onready var TilemapRoofSceneRoot = $RoofsWrapperNode
-onready var TilemapWalkwaySceneRoot = $WalkwayDoors
+@onready var TilemapSceneRoot = $TownTilemap
+@onready var TilemapRoofSceneRoot = $RoofsWrapperNode
+@onready var TilemapWalkwaySceneRoot = $WalkwayDoors
 
 var using_original_tiles: bool = true
 
@@ -32,13 +32,13 @@ func _ready():
 #		for i in 3:
 #			luke.tester__move_in_direction("Right")
 #			ken.tester__move_in_direction("Left")
-#			yield(get_tree().create_timer(0.1), "timeout")
+#			await get_tree().create_timer(0.1).timeout
 		
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = true
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/Scripts/GuardEntrance.json"
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 		
-		yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+		await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
 		

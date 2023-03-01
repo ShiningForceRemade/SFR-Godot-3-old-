@@ -4,7 +4,7 @@ class_name CN_SF1_Item_Armor
 
 enum character_classes {SWORDSMAN}
 
-export(Array, int, "Swordsman - SDMN", "Knight - KNT",
+@export(Array, int, "Swordsman - SDMN", "Knight - KNT",
 	"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
 	"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
 	"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 

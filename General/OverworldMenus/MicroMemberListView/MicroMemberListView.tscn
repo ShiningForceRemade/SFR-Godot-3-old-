@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
 [ext_resource path="res://General/BattleActionsMenu/RedSelectionBorder/RedSelectionLongBorder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://General/OverworldMenus/MicroMemberListView/InventoryPreview.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=7]
-[ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture" id=8]
-[ext_resource path="res://Assets/SF1/ShiningForceMenuBorder.png" type="Texture" id=10]
+[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture2D" id=7]
+[ext_resource path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuBorder.png" type="Texture2D" id=10]
 [ext_resource path="res://General/OverworldMenus/MicroMemberListView/MicroMemberListView.gd" type="Script" id=11]
 
 [node name="MicroMemberListViewNodeRoot" type="Node2D"]
@@ -16,7 +16,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PortraitSprite" type="Sprite" parent="PortraitWrapperNode"]
+[node name="PortraitSprite" type="Sprite2D" parent="PortraitWrapperNode"]
 position = Vector2( 20.7908, 33.5002 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 8 )
@@ -26,10 +26,10 @@ __meta__ = {
 }
 
 [node name="PortraitNinePatchRect" type="NinePatchRect" parent="PortraitWrapperNode"]
-margin_top = 6.0
-margin_right = 55.0
-margin_bottom = 77.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_top = 6.0
+offset_right = 55.0
+offset_bottom = 77.0
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 10 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -45,11 +45,11 @@ position = Vector2( 2, 59 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="StatNinePatchRect2" type="NinePatchRect" parent="."]
-margin_left = 41.0
-margin_top = 6.0
-margin_right = 393.0
-margin_bottom = 121.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 41.0
+offset_top = 6.0
+offset_right = 393.0
+offset_bottom = 121.0
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 7 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -63,19 +63,19 @@ __meta__ = {
 }
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 33.0
-margin_top = 9.0
-margin_right = 65.0
-margin_bottom = 17.0
+offset_left = 33.0
+offset_top = 9.0
+offset_right = 65.0
+offset_bottom = 17.0
 custom_fonts/font = ExtResource( 1 )
 text = "NAME"
 valign = 1
 
 [node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 159.0
-margin_top = 9.0
-margin_right = 247.0
-margin_bottom = 17.0
+offset_left = 159.0
+offset_top = 9.0
+offset_right = 247.0
+offset_bottom = 17.0
 custom_fonts/font = ExtResource( 1 )
 text = "CLASS"
 valign = 1
@@ -84,19 +84,19 @@ __meta__ = {
 }
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
-margin_left = 267.0
-margin_top = 9.0
-margin_right = 283.0
-margin_bottom = 17.0
+offset_left = 267.0
+offset_top = 9.0
+offset_right = 283.0
+offset_bottom = 17.0
 custom_fonts/font = ExtResource( 1 )
 text = "LV"
 valign = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StatNinePatchRect2"]
-margin_left = 9.0
-margin_top = 8.0
-margin_right = 345.0
-margin_bottom = 104.0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 345.0
+offset_bottom = 104.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StatNinePatchRect2/ScrollContainer"]
 custom_constants/separation = 16
@@ -112,10 +112,10 @@ __meta__ = {
 }
 
 [node name="ActiveForceStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 1.0
-margin_top = 4.0
-margin_right = 17.0
-margin_bottom = 12.0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 17.0
+offset_bottom = 12.0
 custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "FW"
@@ -125,10 +125,10 @@ __meta__ = {
 }
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 25.0
-margin_top = 4.0
-margin_right = 57.0
-margin_bottom = 12.0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 57.0
+offset_bottom = 12.0
 custom_fonts/font = ExtResource( 1 )
 text = "NAME"
 valign = 1
@@ -137,10 +137,10 @@ __meta__ = {
 }
 
 [node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 151.0
-margin_top = 3.66663
-margin_right = 239.0
-margin_bottom = 11.6666
+offset_left = 151.0
+offset_top = 3.66663
+offset_right = 239.0
+offset_bottom = 11.6666
 custom_fonts/font = ExtResource( 1 )
 text = "CLASS"
 valign = 1
@@ -149,10 +149,10 @@ __meta__ = {
 }
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
-margin_left = 233.0
-margin_top = 4.0
-margin_right = 274.0
-margin_bottom = 12.0
+offset_left = 233.0
+offset_top = 4.0
+offset_right = 274.0
+offset_bottom = 12.0
 custom_fonts/font = ExtResource( 1 )
 text = "LV"
 align = 2
@@ -160,11 +160,11 @@ valign = 1
 
 [node name="StatNinePatchRect3" type="NinePatchRect" parent="."]
 visible = false
-margin_left = -1.0
-margin_top = 59.0
-margin_right = 55.0
-margin_bottom = 87.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = -1.0
+offset_top = 59.0
+offset_right = 55.0
+offset_bottom = 87.0
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 7 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -176,10 +176,10 @@ __meta__ = {
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect3"]
 visible = false
-margin_left = 3.6667
-margin_top = 10.3334
-margin_right = 51.6667
-margin_bottom = 18.3334
+offset_left = 3.6667
+offset_top = 10.3334
+offset_right = 51.6667
+offset_bottom = 18.3334
 custom_fonts/font = ExtResource( 1 )
 text = "SELECT"
 valign = 1

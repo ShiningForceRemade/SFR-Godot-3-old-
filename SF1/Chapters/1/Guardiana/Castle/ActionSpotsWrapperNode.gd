@@ -17,7 +17,7 @@ func _on_LeftEntranceChurchArea2D_body_entered(body) -> void:
 func _on_ExitGuardianaArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene outside Guardiana")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Battle2/Overworld.tscn")
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Battle2/Overworld.tscn")
 
 
 func _on_KingsCastleEntranceArea2D_body_entered(body) -> void:
@@ -88,16 +88,16 @@ func InsideThroneRoom() -> void:
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/1/Guardiana/Castle/Scripts/MeetingWithTheKing.json"
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 		
-		yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+		await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 		Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
 		Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = ""
 		
 		for i in 2:
 			varios.tester__move_in_direction("Down")
-			yield(varios.tween, "tween_completed")
+			await varios.tween.finished
 		for i in 2:
 			varios.tester__move_in_direction("Right")
-			yield(varios.tween, "tween_completed")
+			await varios.tween.finished
 		
 		varios.change_facing_direction_string("LeftMovement")
 		
@@ -107,7 +107,7 @@ func InsideThroneRoom() -> void:
 func _on_GuardianaTownExitArea2D_body_entered(body):
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene outside Guardiana")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")
 
 
 
@@ -116,5 +116,5 @@ func _on_HQStairCaseEntranceArea2D_body_entered(body):
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene Guardiana Castle to HQ")
 		Singleton_Game_GlobalCommonVariables.position_location_st = "Guardiana-Castle__HQ"
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/HQ/Default/HeadQuarters.tscn")
 

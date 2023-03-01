@@ -2,13 +2,13 @@ extends Camera2D
 
 signal signal_camera_move_complete
 
-# onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/KinematicBody2D")
-onready var playerNode = get_parent().get_node("Enemies").get_child(0) # /RuneKnightRoot")
+# onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/CharacterBody2D")
+@onready var playerNode = get_parent().get_node("Enemies").get_child(0) # /RuneKnightRoot")
 # onready var playerNode = get_parent().get_node("Characters/MaxRoot")
 
 # get_node("res://SF1/Character/SmallIsland.tscn")
 
-onready var battleAttackAnimationPlayer = get_parent().get_node("BattleAttackAnimationPlayerRoot")
+@onready var battleAttackAnimationPlayer = get_parent().get_node("BattleAttackAnimationPlayerRoot")
 
 # onready var displayInfoControl = get_parent().get_node("DisplayInfoControl")
 
@@ -35,7 +35,7 @@ func _process(_delta):
 	if camera_smooth_moving:
 		return
 	
-	#var p = playerNode.get_child(0).get_node("KinematicBody2D")
+	#var p = playerNode.get_child(0).get_node("CharacterBody2D")
 	#playerNode = p
 	
 	# print(playerNode.position)
@@ -66,13 +66,16 @@ func zoom():
 #		elif zoom.x == 1.95:
 #			zoom = Vector2(1.55, 1.55)
 
-		zoom.x += 0.05
-		zoom.y += 0.05
+# TODO: fixme
+		# zoom.x += 0.05
+		# zoom.y += 0.05
+		# if zoom.x > 2:
+		# 	zoom = Vector2(2.0, 2.0)
 		
-		if zoom.x > 2:
-			zoom = Vector2(2.0, 2.0)
-		# stepify(zoom.x, 0.1)
-		# stepify(zoom.y, 0.1)
+		
+		
+		# snapped(zoom.x, 0.1)
+		# snapped(zoom.y, 0.1)
 	if Input.is_action_just_released('ui_plus'):
 		if Singleton_Game_GlobalBattleVariables.is_currently_in_battle_scene:
 			return
@@ -84,13 +87,16 @@ func zoom():
 #		elif zoom.x == 1.0:
 #			zoom = Vector2(1.55, 1.55)
 	# if Input.is_action_just_released('ui_plus') and zoom.x > 1 and zoom.y > 1:
-		zoom.x -= 0.05
-		zoom.y -= 0.05
+	
+	# TODO: fixme
+		#zoom.x -= 0.05
+		#zoom.y -= 0.05
+		#if zoom.x < 1:
+		#	zoom = Vector2(1.0, 1.0)
 		
-		if zoom.x < 1:
-			zoom = Vector2(1.0, 1.0)
-		# stepify(zoom.x, 0.1)
-		# stepify(zoom.y, 0.1)
+		
+		# snapped(zoom.x, 0.1)
+		# snapped(zoom.y, 0.1)
 	
 	# not moire zoom levels
 	# TODO: set these as the defaults
@@ -106,7 +112,7 @@ func rotate_cam():
 
 func smooth_move_to_new_position(new_player_node, t = 0.25): # 0.75
 	camera_smooth_moving = true
-	playerNode = new_player_node #.get_child(0).get_node("KinematicBody2D")
+	playerNode = new_player_node #.get_child(0).get_node("CharacterBody2D")
 	print(playerNode)
 	
 	print("Cur pos - ", position, "\nNew pos - ", playerNode.global_position)
@@ -114,27 +120,31 @@ func smooth_move_to_new_position(new_player_node, t = 0.25): # 0.75
 	# npos.y = new_player_node.position.y #  + (tile_size * 12)
 	
 	var tween_camera = $CameraTween
-	tween_camera.connect("tween_completed", self, "s_complete_smooth_move")
+	tween_camera.connect("finished",Callable(self,"s_complete_smooth_move"))
 	
-	# tween_camera.connect("tween_all_completed", self, "s_complete_smooth_move")
+	# tween_camera.connect("tween_all_completed",Callable(self,"s_complete_smooth_move"))
 	
-	print("Camera pos - ", position, " new pos - ", npos)
+	print("Camera3D pos - ", position, " new pos - ", npos)
 	
-	tween_camera.interpolate_property(self, "position",
-			position, Vector2(npos.x, npos.y), t, # 0.75,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	#tween_camera.interpolate_property(self, "position",
+			#position, Vector2(npos.x, npos.y), t, # 0.75,
+			#Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	
-	tween_camera.start()
+	# TODO: fixme important
+	# tween_camera.tween_property(self, "position", Vector2(npos.x, npos.y), t)
+	
+			
+	# tween_camera.start()
 	# camera_smooth_moving = false
 
 
 func s_complete_smooth_move(obj, key):
 	print("\nI was called asdasd", obj, key)
 	camera_smooth_moving = false
-	# playerNode = playerNode.get_child(0).get_node("KinematicBody2D")
+	# playerNode = playerNode.get_child(0).get_node("CharacterBody2D")
 	# position = playerNode.position
 	#print("\nI was called", obj, key)
-	$CameraTween.disconnect("tween_completed", self, "s_complete_smooth_move")
+	$CameraTween.disconnect("finished",Callable(self,"s_complete_smooth_move"))
 	emit_signal("signal_camera_move_complete")
 
 func _physics_process(_delta):
@@ -153,8 +163,11 @@ func test_an():
 func position_camera_for_battle_scene() -> void:
 	old_pos = position
 	old_zoom = zoom
-	zoom.x = 1
-	zoom.y = 1
+	
+	# TODO: fixme
+	# zoom.x = 1
+	#zoom.y = 1
+	
 	position.x = 0
 	position.y = 0
 	camera_active_follow = false
@@ -164,14 +177,17 @@ func position_camera_for_battle_scene() -> void:
 func reset_camera_for_map() -> void:
 	camera_smooth_moving = false
 	camera_active_follow = false
-	zoom = old_zoom
+	
+	# TODO: fixme
+	# zoom = old_zoom
+	
 	position = old_pos
 	
 	battleAttackAnimationPlayer.hide()
 	
 	# _process(0)
 	
-	# yield(get_tree().create_timer(0.1), "timeout")
+	# await get_tree().create_timer(0.1).timeout
 	
 	camera_active_follow = true
 	camera_smooth_moving = true

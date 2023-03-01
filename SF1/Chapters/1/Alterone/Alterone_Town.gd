@@ -1,11 +1,11 @@
 extends Node2D
 
-onready var positionsNode = $PositionsNode2D
-onready var playerNode = $PlayerCharacterRoot
+@onready var positionsNode = $PositionsNode2D
+@onready var playerNode = $PlayerCharacterRoot
 
-onready var TilemapSceneRoot = $AlteroneTownTilemap
-onready var TilemapRoofSceneRoot = $RoofsWrapperNode
-onready var TilemapOverpassSceneRoot = $OverpassLayerNode
+@onready var TilemapSceneRoot = $AlteroneTownTilemap
+@onready var TilemapRoofSceneRoot = $RoofsWrapperNode
+@onready var TilemapOverpassSceneRoot = $OverpassLayerNode
 
 var using_original_tiles: bool = true
 

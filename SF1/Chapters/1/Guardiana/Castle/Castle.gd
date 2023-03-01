@@ -1,15 +1,15 @@
 extends Node2D
 
-onready var positionsNode = $PositionsNode2D
-onready var playerNode = $PlayerCharacterRoot
+@onready var positionsNode = $PositionsNode2D
+@onready var playerNode = $PlayerCharacterRoot
 
-onready var TilemapSceneRoot = $CastleTilemapNode
-onready var TilemapRoofSceneRoot = $RoofsWrapperNode
-onready var TilemapWalkwaySceneRoot = $OverpassNode
+@onready var TilemapSceneRoot = $CastleTilemapNode
+@onready var TilemapRoofSceneRoot = $RoofsWrapperNode
+@onready var TilemapWalkwaySceneRoot = $OverpassNode
 
-onready var GuardInFrontOfHQ = $NpcWrapperNode/GuardHQNPCRoot
-onready var Nova = $NpcWrapperNode/NovaNPCRoot
-onready var Varios = $NpcWrapperNode/VariosNPCRoot
+@onready var GuardInFrontOfHQ = $NpcWrapperNode/GuardHQNPCRoot
+@onready var Nova = $NpcWrapperNode/NovaNPCRoot
+@onready var Varios = $NpcWrapperNode/VariosNPCRoot
 
 var using_original_tiles: bool = true
 

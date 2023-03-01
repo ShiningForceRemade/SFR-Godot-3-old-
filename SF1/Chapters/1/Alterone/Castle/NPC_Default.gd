@@ -1,9 +1,9 @@
 extends "res://SF1/NPC/NPC_Generic_Default_Test.gd"
 
 
-export var NoPermission: String = ""
-export var Permission: String = ""
-export var PostBattle4: String = ""
+@export var NoPermission: String = ""
+@export var Permission: String = ""
+@export var PostBattle4: String = ""
 
 
 func attempt_to_interact():

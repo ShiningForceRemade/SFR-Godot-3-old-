@@ -8,10 +8,10 @@ enum E_GeneralSettings {
 }
 var current_choice = E_GeneralSettings.Resolution
 
-onready var redselection = $GeneralStatNinePatchRect/RedSelectionBorderRoot
+@onready var redselection = $GeneralStatNinePatchRect/RedSelectionBorderRoot
 
-onready var fullscreen_label = $GeneralStatNinePatchRect/Node/VBoxContainer/FullscreenControl/FullscreenLabel
-onready var resolution_label = $GeneralStatNinePatchRect/Node/VBoxContainer/ResolutionControl/ResolutionLabel
+@onready var fullscreen_label = $GeneralStatNinePatchRect/Node/VBoxContainer/FullscreenControl/FullscreenLabel
+@onready var resolution_label = $GeneralStatNinePatchRect/Node/VBoxContainer/ResolutionControl/ResolutionLabel
 
 var current_resolution = 1
 var A_Resolutions = [
@@ -26,8 +26,8 @@ var A_Resolutions = [
 func _ready():
 	
 	# Prevent window from resizing anymore ther than the settings menu
-	OS.window_resizable = false
-	OS.set_window_size(Vector2(1280, 720))
+	get_window().unresizable = not (false)
+	get_window().set_size(Vector2(1280, 720))
 	# DisplayServer.window_set_size(Vector2i(1920, 1080)) # G4
 	# OS.set_windows_resizable(false)
 	
@@ -70,27 +70,27 @@ func Handle_Resolution(event):
 		if(current_resolution > 0):
 			current_resolution = current_resolution - 1
 			resolution_label.text = String(A_Resolutions[current_resolution])
-			OS.set_window_size(A_Resolutions[current_resolution])
+			get_window().set_size(A_Resolutions[current_resolution])
 			center_window()
 	if event.is_action_pressed("ui_right"):
 		if(current_resolution < 4):
 			current_resolution = current_resolution + 1
 			resolution_label.text = String(A_Resolutions[current_resolution])
-			OS.set_window_size(A_Resolutions[current_resolution])
+			get_window().set_size(A_Resolutions[current_resolution])
 			center_window()
 
 
 func Handle_Fullscreen(event):
 	if event.is_action_pressed("ui_left"):
-		OS.window_fullscreen = false
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (false) else Window.MODE_WINDOWED
 		fullscreen_label.text = "OFF"
 	if event.is_action_pressed("ui_right"):
-		OS.window_fullscreen = true
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (true) else Window.MODE_WINDOWED
 		fullscreen_label.text = "ON"
 
 
 func center_window():
-	var screen_size = OS.get_screen_size(0)
-	var window_size = OS.get_window_size()
+	var screen_size = DisplayServer.screen_get_size(0)
+	var window_size = get_window().get_size()
 	
-	OS.set_window_position(screen_size*0.5 - window_size*0.5)
+	get_window().set_position(screen_size*0.5 - window_size*0.5)

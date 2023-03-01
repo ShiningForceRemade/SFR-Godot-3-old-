@@ -10,19 +10,21 @@ enum e_menu_options {
 }
 var currently_selected_option: int = e_menu_options.STAY_OPTION
 
-onready var animationPlayer = $AnimationPlayer
-onready var label = $NinePatchRect/Label
+@onready var animationPlayer = $AnimationPlayer
+@onready var label = $NinePatchRect/Label
 
-onready var attack_spirte    = $AttackActionSprite
-onready var magic_spirte     = $MagicActionSprite
-onready var inventory_spirte = $InventoryActionSprite
-onready var stay_spirte      = $StayActionSprite
+@onready var attack_spirte    = $AttackActionSprite
+@onready var magic_spirte     = $MagicActionSprite
+@onready var inventory_spirte = $InventoryActionSprite
+@onready var stay_spirte      = $StayActionSprite
 
-onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
+@onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()
-	$AnimationPlayer.playback_speed = 2
+	# TODO: fixme
+	# $AnimationPlayer.playback_speed = 2
+	
 	animationPlayer.play("StayMenuOption")
 	label.text = "Stay"
 
@@ -41,7 +43,7 @@ func _input(event):
 		if event.is_action_released("ui_b_key"):
 			print("Cancel Action Menu")
 			is_menu_active = false
-			yield(get_tree().create_timer(0.02), "timeout")
+			await get_tree().create_timer(0.02).timeout
 			Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 			get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
@@ -49,7 +51,7 @@ func _input(event):
 			return
 			
 		if event.is_action_released("ui_a_key"):
-			yield(get_tree().create_timer(0.02), "timeout")
+			await get_tree().create_timer(0.02).timeout
 			# event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			if currently_selected_option == e_menu_options.STAY_OPTION:

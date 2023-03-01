@@ -34,10 +34,10 @@ func calculate_hp_or_mp_bar_width_and_set(current_hp, total_hp, current_mp, tota
 	elif current_hp_width < 0:
 		current_hp_width = 0
 			
-	$NinePatchRect/HPBarWrapperControl/BackgroundColorRect.rect_size.x = hp_total_width
-	$NinePatchRect/HPBarWrapperControl/StaticCenterWrapColorRect.rect_size.x = hp_total_width
-	$NinePatchRect/HPBarWrapperControl/StaticRightEdgeColorRect.rect_position.x = hp_total_width + $NinePatchRect/HPBarWrapperControl/StaticCenterWrapColorRect.rect_position.x
-	$NinePatchRect/HPBarWrapperControl/ForegroundColorRect.rect_size.x = current_hp_width
+	$NinePatchRect/HPBarWrapperControl/BackgroundColorRect.size.x = hp_total_width
+	$NinePatchRect/HPBarWrapperControl/StaticCenterWrapColorRect.size.x = hp_total_width
+	$NinePatchRect/HPBarWrapperControl/StaticRightEdgeColorRect.position.x = hp_total_width + $NinePatchRect/HPBarWrapperControl/StaticCenterWrapColorRect.position.x
+	$NinePatchRect/HPBarWrapperControl/ForegroundColorRect.size.x = current_hp_width
 
 	if total_mp != 0:
 		var mp_total_width = int(total_mp * 1.2)
@@ -53,10 +53,10 @@ func calculate_hp_or_mp_bar_width_and_set(current_hp, total_hp, current_mp, tota
 			current_mp_width = 0
 		
 		$NinePatchRect/MPBarWrapperControl.show()
-		$NinePatchRect/MPBarWrapperControl/BackgroundColorRect.rect_size.x = mp_total_width
-		$NinePatchRect/MPBarWrapperControl/StaticCenterWrapColorRect.rect_size.x = mp_total_width
-		$NinePatchRect/MPBarWrapperControl/StaticRightEdgeColorRect.rect_position.x = mp_total_width + $NinePatchRect/MPBarWrapperControl/StaticCenterWrapColorRect.rect_position.x
-		$NinePatchRect/MPBarWrapperControl/ForegroundColorRect.rect_size.x = current_mp_width
+		$NinePatchRect/MPBarWrapperControl/BackgroundColorRect.size.x = mp_total_width
+		$NinePatchRect/MPBarWrapperControl/StaticCenterWrapColorRect.size.x = mp_total_width
+		$NinePatchRect/MPBarWrapperControl/StaticRightEdgeColorRect.position.x = mp_total_width + $NinePatchRect/MPBarWrapperControl/StaticCenterWrapColorRect.position.x
+		$NinePatchRect/MPBarWrapperControl/ForegroundColorRect.size.x = current_mp_width
 	else:
 		$NinePatchRect/MPBarWrapperControl.hide()
 

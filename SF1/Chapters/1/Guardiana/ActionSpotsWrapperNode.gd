@@ -53,11 +53,11 @@ func _on_ExitGuardianaArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene outside Guardiana")
 		Singleton_Game_GlobalCommonVariables.position_location_st = "Overworld_Guardiana_Castle"
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Battle2/Overworld.tscn")
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Battle2/Overworld.tscn")
 
 
 func _on_KingsCastleEntranceArea2D_body_entered(body) -> void:
 	if body == Singleton_Game_GlobalCommonVariables.main_character_active_kinematic_body_node:
 		print("Change Scene Guardiana Kings Castle")
-		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene("res://SF1/Chapters/1/Guardiana/Castle/CastleInvasion.tscn")
+		Singleton_Game_GlobalCommonVariables.scene_manager_node.change_scene_to_file("res://SF1/Chapters/1/Guardiana/Castle/CastleInvasion.tscn")
 

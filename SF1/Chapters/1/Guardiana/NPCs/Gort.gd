@@ -1,13 +1,13 @@
 extends Node2D
 
-export var DefaultScript: String
+@export var DefaultScript: String
 
 var stationary
 var facing_direction
 var interacting: bool = false
 
 
-onready var npcBaseRoot = get_child(0)
+@onready var npcBaseRoot = get_child(0)
 
 func _ready():
 	stationary = npcBaseRoot.stationary
@@ -33,7 +33,7 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node.external_file = DefaultScript # "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/OldManAtTheChurch.json"
 	Singleton_Game_GlobalCommonVariables.dialogue_box_node._process_new_resource_file()
 	
-	yield(Singleton_Game_GlobalCommonVariables.dialogue_box_node, "signal__dialogbox__finished_dialog")
+	await Singleton_Game_GlobalCommonVariables.dialogue_box_node.signal__dialogbox__finished_dialog
 	
 	var fm_idx = Singleton_Game_GlobalCommonVariables.sf_game_data_node.E_SF1_FM.GORT
 	Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers[fm_idx].unlocked = true
@@ -46,44 +46,44 @@ func attempt_to_interact() -> void:
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.change_facing_direction_string("RightMovement")
 	
 	gort.tester__move_in_direction("Left")
-	yield(gort.tween, "tween_completed")
+	await gort.tween.finished
 	
 	Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(true)
 	interacting = false
 	
 	for i in 10:
 		gort.tester__move_in_direction("Down")
-		yield(gort.tween, "tween_completed")
+		await gort.tween.finished
 	
 	gort.tester__move_in_direction("Left")
-	yield(gort.tween, "tween_completed")
+	await gort.tween.finished
 	
 	for i in 3:
 		gort.tester__move_in_direction("Down")
-		yield(gort.tween, "tween_completed")
+		await gort.tween.finished
 	
 	gort.tester__move_in_direction("Left")
-	yield(gort.tween, "tween_completed")
+	await gort.tween.finished
 	gort.tester__move_in_direction("Left")
-	yield(gort.tween, "tween_completed")
+	await gort.tween.finished
 	gort.tester__move_in_direction("Down")
-	yield(gort.tween, "tween_completed")
+	await gort.tween.finished
 	
 	for i in 7:
 		gort.tester__move_in_direction("Left")
-		yield(gort.tween, "tween_completed")
+		await gort.tween.finished
 	
 	for i in 8:
 		gort.tester__move_in_direction("Up")
-		yield(gort.tween, "tween_completed")
+		await gort.tween.finished
 	
 	for i in 2:
 		gort.tester__move_in_direction("Left")
-		yield(gort.tween, "tween_completed")
+		await gort.tween.finished
 	
 	for i in 17:
 		gort.tester__move_in_direction("Up")
-		yield(gort.tween, "tween_completed")
+		await gort.tween.finished
 	
 	queue_free()
 

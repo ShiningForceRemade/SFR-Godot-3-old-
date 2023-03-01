@@ -15,8 +15,8 @@ func _ready():
 func _process(delta):
 	var img = get_viewport().get_texture().get_data()
 		
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
+	await get_tree().idle_frame
 		
 	img.flip_y()
 	

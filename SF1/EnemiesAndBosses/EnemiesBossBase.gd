@@ -1,25 +1,25 @@
-tool
+@tool
 extends Node2D
 
-export var actor_type: String = "enemey"
+@export var actor_type: String = "enemey"
 
 signal signal_check_defeat_done
 signal signal_death_animation_complete
 
-onready var pnode = get_parent()
+@onready var pnode = get_parent()
 
-export var enemey_name: String
+@export var enemey_name: String
 
 # group - drops
-export var coins: int
+@export var coins: int
 ## what does class mean for a monster?
-export var monster_class: int
+@export var monster_class: int
 
 ## TODO: clean me up item id and drop chance object array type
-export var droppable_items_id: Dictionary
+@export var droppable_items_id: Dictionary
 
-export(Array, Resource) var inventory_items_id
-export(Array, bool) var is_item_equipped
+@export var inventory_items_id # (Array, Resource)
+@export var is_item_equipped # (Array, bool)
 
 # maybe I should make this associateion enum and the corresponding array a singleton for global usage
 # enum weapons_and_rings { 
@@ -30,76 +30,76 @@ export(Array, bool) var is_item_equipped
 # 	weapons_and_rings.ShortSword: "res://SF1/Items/Short Sword/ShortSword.tscn",
 # }
 
-# export(Array, weapons_and_rings) var equips_idssss
+# export var equips_idssss # (Array, weapons_and_rings)
 
 # const item_location_c
 
 ## Only the first 4 fields are valid everything after that is ignored!
-# export(Array, String, "Short Sword") var equips_id
+# export var equips_id # (Array, String, "Short Sword")
 ## Only the first 4 fields are valid everything after that is ignored!
-# export(Array, int) var items_id
+# export var items_id # (Array, int)
 ## Only the first 4 fields are valid everything after that is ignored!
-export(Array, int) var spells_id
+@export var spells_id # (Array, int)
 
 # group - textures
-export var texture_sprite_map: Texture
-export var texture_sprite_battle: Texture
+@export var texture_sprite_map: Texture2D
+@export var texture_sprite_battle: Texture2D
 # battle palette ? whats this
-export var texture_protrait: Texture
+@export var texture_protrait: Texture2D
 
 # group - stats
-export var effective_level: int
-export var attack: int
-export var defense: int
-export var agility: int
-export var move: int
-export var HP_Current: int
-export var HP_Total: int
-export var MP_Current: int
-export var MP_Total: int
+@export var effective_level: int
+@export var attack: int
+@export var defense: int
+@export var agility: int
+@export var move: int
+@export var HP_Current: int
+@export var HP_Total: int
+@export var MP_Current: int
+@export var MP_Total: int
 
-export(Array, int, "Medical Herb") var magic_array
-export(int, "None") var status: int = 0
+@export var magic_array # (Array, int, "Medical Herb")
+@export var status: int = 0 # (int, "None")
 
-export(int, 0, 100) var critical_hit_chance: int = 10
-export(int, 0, 100) var double_attack_chance: int = 10
-export(int, 0, 100) var dodge_chance: int = 10
+@export var critical_hit_chance: int = 10 # (int, 0, 100)
+@export var double_attack_chance: int = 10 # (int, 0, 100)
+@export var dodge_chance: int = 10 # (int, 0, 100)
 
 # group - behaviours
-export(int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
+@export var movement_type: int = 0 # "Standard" # (int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering")
 
-export var evasion_chance: float = 1/32 * 100
+@export var evasion_chance: float = 1/32 * 100
 
-export var regeneration_rate: int = 0
+@export var regeneration_rate: int = 0
 # NOTE: shining force editor v3.4.4 has one other behaviour type that hasn't been solved yet
 # action type and chance should be sub group
-export(int, "Default", "Caster", "Use Items", 
+@export(int, "Default", "Caster", "Use Items", 
 			"Fire Breath", "Fire Breath 2", "Fire Breath 3", "Fire Breath 4",
 			"Ice Breath", "Ice Breath 2",
 			"Machine Gun", "Laser", "Demon Blaze",
 			"Dark Dragon Mid", "Dark Dragon Side") var action_type: int = 0 # "Default"
-export(int, 0, 100) var action_type_chance: int = 0
+@export var action_type_chance: int = 0 # (int, 0, 100)
 # special attack and chance should be sub group
-export(int, "None", "150% Damage Critical", "200% Damage Critical", 
+@export(int, "None", "150% Damage Critical", "200% Damage Critical", 
 			"Steal MP", "Steal HP", "Steal HP 2",
 			"Poison Chance", "Sleep Chance",
 			"Sleep Chance 2", "Death Chance") var special_attack: int = 0 # "None
-export(int, 0, 100) var special_attack_chance: int = 0
+@export var special_attack_chance: int = 0 # (int, 0, 100)
 
 # group - magic resistances
 # general
-export(int, 0, 100) var magic_resistance: int = 0
+@export var magic_resistance: int = 0 # (int, 0, 100)
 # spell specific resistance
 # NOTE: shining force editor v3.4.4 has one other resistance type that hasn't been solved yet
-export(int, 0, 100) var slow_resistance: int = 0
-export(int, 0, 100) var muddle_resistance: int = 0
-export(int, 0, 100) var sleep_and_desoul_resistance: int = 0
-export(int, 0, 100) var bolt_resistance: int = 0
-export(int, 0, 100) var blaze_resistance: int = 0
-export(int, 0, 100) var freeze_resistance: int = 0
+@export var slow_resistance: int = 0 # (int, 0, 100)
+@export var muddle_resistance: int = 0 # (int, 0, 100)
+@export var sleep_and_desoul_resistance: int = 0 # (int, 0, 100)
+@export var bolt_resistance: int = 0 # (int, 0, 100)
+@export var blaze_resistance: int = 0 # (int, 0, 100)
+@export var freeze_resistance: int = 0 # (int, 0, 100)
 
 
-export var battle_animation_resource: Resource
+@export var battle_animation_resource: Resource
 
 
 var active: bool = false
@@ -148,35 +148,35 @@ func check_if_defeated() -> void:
 	if HP_Current == 0:
 		print("\n\n\n\nI was defeated play death animation and update turn order array\n\n\n\n")
 		
-		# yield(get_tree().create_timer(1), "timeout")
+		# await get_tree().create_timer(1).timeout
 		pseudo_death_animation(0.1)
-		yield(self, "signal_death_animation_complete")
+		await self.signal_death_animation_complete
 		pseudo_death_animation(0.05)
-		yield(self, "signal_death_animation_complete")
-		# yield(get_tree().create_timer(1), "timeout")
+		await self.signal_death_animation_complete
+		# await get_tree().create_timer(1).timeout
 		
 		Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
 		get_parent().hide()
 		
-		yield(get_tree().create_timer(0.05), "timeout")
+		await get_tree().create_timer(0.05).timeout
 		emit_signal("signal_check_defeat_done")
 		
 		get_parent().queue_free()
 		return
 	
-	yield(get_tree().create_timer(0.05), "timeout")
+	await get_tree().create_timer(0.05).timeout
 	emit_signal("signal_check_defeat_done")
 	return
 
 func pseudo_death_animation(time_arg: float) -> void:
 	$AnimationPlayer.play("RightMovement")
-	yield(get_tree().create_timer(time_arg), "timeout")
+	await get_tree().create_timer(time_arg).timeout
 	$AnimationPlayer.play("UpMovement")
-	yield(get_tree().create_timer(time_arg), "timeout")
+	await get_tree().create_timer(time_arg).timeout
 	$AnimationPlayer.play("LeftMovement")
-	yield(get_tree().create_timer(time_arg), "timeout")
+	await get_tree().create_timer(time_arg).timeout
 	$AnimationPlayer.play("DownMovement")
-	yield(get_tree().create_timer(time_arg), "timeout")
+	await get_tree().create_timer(time_arg).timeout
 	
 	
 	emit_signal("signal_death_animation_complete")
@@ -228,12 +228,12 @@ signal signal_show_character_action_menu
 
 signal signal_switch_focus_to_cursor
 
-onready var characterRoot = self
-onready var kinematicBody = $KinematicBody2D
-onready var animationPlayer = $AnimationPlayer
-onready var animationTree = $AnimationTree
-onready var animationTreeState = animationTree.get("parameters/playback")
-onready var tween = $KinematicBody2D/Tween
+@onready var characterRoot = self
+@onready var kinematicBody = $CharacterBody2D
+@onready var animationPlayer = $AnimationPlayer
+@onready var animationTree = $AnimationTree
+@onready var animationTreeState = animationTree.get("parameters/playback")
+@onready var tween = $CharacterBody2D/Tween
 const TILE_SIZE: int = 24
 
 # var movement_tween_speed = 0.1625
@@ -254,7 +254,7 @@ func _physics_process(_delta):
 				return
 				
 			active = !active
-			yield(get_tree().create_timer(0.03), "timeout")
+			await get_tree().create_timer(0.03).timeout
 			
 			# emit_signal("signal_completed_turn")
 			# print("Emit signal player turn end")
@@ -264,7 +264,7 @@ func _physics_process(_delta):
 		
 		if Input.is_action_just_released("ui_b_key"):
 			active = !active
-			yield(get_tree().create_timer(0.03), "timeout")
+			await get_tree().create_timer(0.03).timeout
 			emit_signal("signal_switch_focus_to_cursor")
 		
 		# animationPlayer.playback_speed = 4

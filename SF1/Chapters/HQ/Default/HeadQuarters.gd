@@ -1,12 +1,12 @@
 extends Node2D
 
-onready var TilemapSceneRoot = $HeadQuartersTilemapNode2D
+@onready var TilemapSceneRoot = $HeadQuartersTilemapNode2D
 
 var NpcBaseScene = preload("res://SF1/NPC/NPCBase.tscn")
-onready var NpcRootNode = $NpcWrapperNode
+@onready var NpcRootNode = $NpcWrapperNode
 
-onready var ActivePositionsRootNode = $ActiveForcePositionsNode2D
-onready var InactivePositionsRootNode = $InactiveForcePositionsNode2D
+@onready var ActivePositionsRootNode = $ActiveForcePositionsNode2D
+@onready var InactivePositionsRootNode = $InactiveForcePositionsNode2D
 # TODO for inactive positions when Godot 4 comes out put facing direction in the metadata
 # Refactor - disgusting right now but good enough for demo release
 
@@ -38,7 +38,7 @@ func _ready():
 		if fm.leader:
 			continue
 		
-		npc_fm = load(fm.character_npc_scene).instance()
+		npc_fm = load(fm.character_npc_scene).instantiate()
 		npc_fm_chr = npc_fm.get_child(0)
 		npc_fm_chr.stationary = true
 		
@@ -74,7 +74,7 @@ func _ready():
 	
 # TODO move this into a test function to easily be able to confirm all active and inactive positions
 #		for fm in Singleton_Game_GlobalCommonVariables.sf_game_data_node.ForceMembers:
-#		npc_fm = NpcBaseScene.instance()
+#		npc_fm = NpcBaseScene.instantiate()
 #		npc_fm.get_child(0).stationary = true
 #
 #		if fm.active_in_force:
@@ -82,7 +82,7 @@ func _ready():
 #		else: #!fm.active_in_force:
 #			npc_fm.position = inactive_pos[i].position
 #
-#		var npc_fm_sprite = npc_fm.get_child(0).get_child(0).get_node("Sprite")	
+#		var npc_fm_sprite = npc_fm.get_child(0).get_child(0).get_node("Sprite2D")	
 #		npc_fm_sprite.texture = load("res://Assets/SF1/PlayableCharacters/Arthur/Unpromoted_Map_Sprites.png")
 #		npc_fm_sprite.hframes = 6
 #

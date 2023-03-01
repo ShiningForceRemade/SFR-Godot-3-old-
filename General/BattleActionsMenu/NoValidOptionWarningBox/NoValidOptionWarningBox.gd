@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var textLabel = $BackgroundNinePatchRect/TextLabel
+@onready var textLabel = $BackgroundNinePatchRect/TextLabel
 
 var internal_cleanup_timer: Timer
 const internal_cleanup_timer_name: String = "internal_cleanup_timer__no_valid_option_warning_box"
@@ -43,7 +43,7 @@ func set_no_cant_use_text() -> void:
 func start_self_clear_timer() -> void:
 	internal_cleanup_timer = Timer.new()
 	internal_cleanup_timer.set_name(internal_cleanup_timer_name)
-	var _ignore = internal_cleanup_timer.connect("timeout", self, "s_internal_cleanup_timer_completed")
+	var _ignore = internal_cleanup_timer.connect("timeout",Callable(self,"s_internal_cleanup_timer_completed"))
 	internal_cleanup_timer.set_wait_time(3)
 	add_child(internal_cleanup_timer)
 	internal_cleanup_timer.start()
@@ -62,7 +62,7 @@ func s_internal_cleanup_timer_completed() -> void:
 	
 	# TODO: FIXME: Dirty hack waiting a tiny bit to prevent double b released from trigger here
 	# and in the battle action menu leading to a premature closing of the menu
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	
 	if re_show_action_menu:
 		get_parent().get_parent().get_parent().s_show_character_action_menu()

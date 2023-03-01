@@ -1,11 +1,11 @@
 extends Node2D
 
-onready var defaultItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+@onready var defaultItemSlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
 
-onready var item_up_slot_spirte     = $ItemSlotUpSprite
-onready var item_down_slot_spirte   = $ItemSlotDownSprite
-onready var item_left_slot_spirte   = $ItemSlotLeftSprite
-onready var item_right_slot_spirte  = $ItemSlotRightSprite
+@onready var item_up_slot_spirte     = $ItemSlotUpSprite
+@onready var item_down_slot_spirte   = $ItemSlotDownSprite
+@onready var item_left_slot_spirte   = $ItemSlotLeftSprite
+@onready var item_right_slot_spirte  = $ItemSlotRightSprite
 
 var inventory_items
 var selected_actor

@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var TilemapSceneRoot = $OverworldTilemapNode2D
+@onready var TilemapSceneRoot = $OverworldTilemapNode2D
 
 var using_original_tiles: bool = true
 

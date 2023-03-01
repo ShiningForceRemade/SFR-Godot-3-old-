@@ -6,7 +6,7 @@ func _ready():
 func draw_cursor_and_get_targets(center_actor_target_selected):
 	print(center_actor_target_selected)
 	
-	bc_cursor_ref = Sprite.new()
+	bc_cursor_ref = Sprite2D.new()
 	bc_cursor_ref.texture = load("res://Assets/SF1/ShiningForceCursor.png")
 	bc_cursor_ref.position = Singleton_Game_GlobalBattleVariables.currently_active_character.global_position
 	#sprite.position.x -= 12

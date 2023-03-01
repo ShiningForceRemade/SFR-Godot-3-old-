@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationResource.gd" type="Script" id=1]
-[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Goblin/Battle_Sprites.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/EnemiesAndBosses/Goblin/Battle_Sprites.png" type="Texture2D" id=2]
 [ext_resource path="res://SF1/EnemiesAndBosses/Goblin/BattleAnimations/AttackNormal/AttackNormal.anim" type="Animation" id=3]
 
 [resource]

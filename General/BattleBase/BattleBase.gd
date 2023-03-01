@@ -7,43 +7,43 @@ const bmc_x: int = 171
 const bmc_y: int = 182
 
 # onready var battleAttackAnimationPlayer = $CanvasLayerInfoControls/BattleAttackAnimationPlayer
-onready var landEffectPopupTween = $CanvasLayerInfoControls/LandEffectPopupTween
-onready var landEffectPopupRoot = $CanvasLayerInfoControls/LandEffectPopupRoot
-onready var activeActorMicroInfoTween = $CanvasLayerInfoControls/ActiveAcorMicroInfoTween
-onready var activeActorMicroInfoRoot = $CanvasLayerInfoControls/ActiveActorMicroInfoRoot	
+@onready var landEffectPopupTween = create_tween() 
+@onready var landEffectPopupRoot = $CanvasLayerInfoControls/LandEffectPopupRoot
+@onready var activeActorMicroInfoTween = create_tween()
+@onready var activeActorMicroInfoRoot = $CanvasLayerInfoControls/ActiveActorMicroInfoRoot	
 	
-onready var battleActionsMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuTween
-onready var battleActionsMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot
+@onready var battleActionsMenuTween = create_tween()
+@onready var battleActionsMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleActionsMenuRoot
 
-onready var battleInventoryMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuTween
-onready var battleInventoryMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot
+@onready var battleInventoryMenuTween = create_tween()
+@onready var battleInventoryMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleInventoryMenuRoot
 
-onready var battleMagicMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuTween
-onready var battleMagicMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuRoot
+@onready var battleMagicMenuTween = create_tween()
+@onready var battleMagicMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleMagicMenuRoot
 
-onready var battleEquipMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuTween
-onready var battleEquipMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuRoot
+@onready var battleEquipMenuTween = create_tween()
+@onready var battleEquipMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleEquipMenuRoot
 
-onready var battleViewSelectedActorInfoTween = $CanvasLayerInfoControls/BattleViewSelectedActorInfoTween
-onready var battleViewSelectedActorInfoRoot = $CanvasLayerInfoControls/BattleViewSelectedActorInfoRoot
+@onready var battleViewSelectedActorInfoTween = create_tween()
+@onready var battleViewSelectedActorInfoRoot = $CanvasLayerInfoControls/BattleViewSelectedActorInfoRoot
 
-onready var battleUseMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuTween
-onready var battleUseMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuRoot
+@onready var battleUseMenuTween = create_tween()
+@onready var battleUseMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleUseMenuRoot
 
-onready var battleDropMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuTween
-onready var battleDropMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuRoot
+@onready var battleDropMenuTween = create_tween()
+@onready var battleDropMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleDropMenuRoot
 
-onready var battleGiveMenuTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuTween
-onready var battleGiveMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuRoot
+@onready var battleGiveMenuTween = create_tween()
+@onready var battleGiveMenuRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/BattleGiveMenuRoot
 
-onready var microActorInventoryViewTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewTween
-onready var microActorInventoryViewRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot
+@onready var microActorInventoryViewTween = create_tween()
+@onready var microActorInventoryViewRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/MicroActorInventoryViewRoot
 
-onready var noValidOptionWarningBoxTween = $CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxTween
-onready var noValidOptionWarningBoxRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxRoot
+@onready var noValidOptionWarningBoxTween = create_tween()
+@onready var noValidOptionWarningBoxRoot = $CanvasLayerInfoControls/BattleMenusWrapperRoot/NoValidOptionWarningBoxRoot
 
-onready var targetActorMicroInfoTween = $CanvasLayerInfoControls/TargetActorMicroInfoTween
-onready var targetActorMicroInfoRoot = $CanvasLayerInfoControls/TargetActorMicroInfoRoot
+@onready var targetActorMicroInfoTween = create_tween()
+@onready var targetActorMicroInfoRoot = $CanvasLayerInfoControls/TargetActorMicroInfoRoot
 
 func _ready():
 	# battleAttackAnimationPlayer.hide()
@@ -73,7 +73,7 @@ func _ready():
 
 
 func change_battle_scene(new_scene_resource_path: String) -> void:
-	var new_scene = load(new_scene_resource_path).instance();
+	var new_scene = load(new_scene_resource_path).instantiate();
 	call_deferred("_deferred_change_scene", new_scene)
 
 func _deferred_change_scene(new_scene) -> void:
@@ -89,34 +89,34 @@ func _deferred_change_scene(new_scene) -> void:
 func connect_battle_logic_to_self() -> void:
 	var battleNodeRoot = get_node("BattleNodeRoot").get_child(0) # 
 	
-	if(battleNodeRoot.is_connected("signal_land_effect_under_tile", self, "s_land_effect")):
-		battleNodeRoot.disconnect("signal_land_effect_under_tile", self, "s_land_effect")
-	if battleNodeRoot.connect("signal_land_effect_under_tile", self, "s_land_effect") != OK:
+	if(battleNodeRoot.is_connected("signal_land_effect_under_tile",Callable(self,"s_land_effect"))):
+		battleNodeRoot.disconnect("signal_land_effect_under_tile",Callable(self,"s_land_effect"))
+	if battleNodeRoot.connect("signal_land_effect_under_tile",Callable(self,"s_land_effect")) != OK:
 		print("BattleBase - signal_land_effect_under_tile failed to connect")
 	
-	if(battleNodeRoot.is_connected("signal_active_character_or_enemey", self, "s_active_character_or_enemey")):
-		battleNodeRoot.disconnect("signal_active_character_or_enemey", self, "s_active_character_or_enemey")
-	if battleNodeRoot.connect("signal_active_character_or_enemey", self, "s_active_character_or_enemey") != OK:
+	if(battleNodeRoot.is_connected("signal_active_character_or_enemey",Callable(self,"s_active_character_or_enemey"))):
+		battleNodeRoot.disconnect("signal_active_character_or_enemey",Callable(self,"s_active_character_or_enemey"))
+	if battleNodeRoot.connect("signal_active_character_or_enemey",Callable(self,"s_active_character_or_enemey")) != OK:
 		print("BattleBase - signal_active_character_or_enemey failed to connect")
 	
-	if(battleNodeRoot.is_connected("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info")):
-		battleNodeRoot.disconnect("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info")
-	if battleNodeRoot.connect("signal_hide_land_effect_and_active_actor_info", self, "s_hide_land_effect_and_active_actor_info") != OK:
+	if(battleNodeRoot.is_connected("signal_hide_land_effect_and_active_actor_info",Callable(self,"s_hide_land_effect_and_active_actor_info"))):
+		battleNodeRoot.disconnect("signal_hide_land_effect_and_active_actor_info",Callable(self,"s_hide_land_effect_and_active_actor_info"))
+	if battleNodeRoot.connect("signal_hide_land_effect_and_active_actor_info",Callable(self,"s_hide_land_effect_and_active_actor_info")) != OK:
 		print("BattleBase - signal_hide_land_effect_and_active_actor_info failed to connect")
 	
-	if(battleNodeRoot.is_connected("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info")):
-		battleNodeRoot.disconnect("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info")
-	if battleNodeRoot.connect("signal_show_land_effect_and_active_actor_info", self, "s_show_land_effect_and_active_actor_info") != OK:
+	if(battleNodeRoot.is_connected("signal_show_land_effect_and_active_actor_info",Callable(self,"s_show_land_effect_and_active_actor_info"))):
+		battleNodeRoot.disconnect("signal_show_land_effect_and_active_actor_info",Callable(self,"s_show_land_effect_and_active_actor_info"))
+	if battleNodeRoot.connect("signal_show_land_effect_and_active_actor_info",Callable(self,"s_show_land_effect_and_active_actor_info")) != OK:
 		print("BattleBase - signal_show_land_effect_and_active_actor_info failed to connect")
 	
-	if(battleNodeRoot.is_connected("signal_show_character_action_menu", self, "s_show_character_action_menu")):
-		battleNodeRoot.disconnect("signal_show_character_action_menu", self, "s_show_character_action_menu")
-	if battleNodeRoot.connect("signal_show_character_action_menu", self, "s_show_character_action_menu") != OK:
+	if(battleNodeRoot.is_connected("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu"))):
+		battleNodeRoot.disconnect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu"))
+	if battleNodeRoot.connect("signal_show_character_action_menu",Callable(self,"s_show_character_action_menu")) != OK:
 		print("BattleBase - signal_show_character_action_menu failed to connect")
 	
-	if(battleNodeRoot.is_connected("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor")):
-		battleNodeRoot.disconnect("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor")
-	if battleNodeRoot.connect("signal_selected_actor_underneath_cursor", self, "s_selected_actor_underneath_cursor") != OK:
+	if(battleNodeRoot.is_connected("signal_selected_actor_underneath_cursor",Callable(self,"s_selected_actor_underneath_cursor"))):
+		battleNodeRoot.disconnect("signal_selected_actor_underneath_cursor",Callable(self,"s_selected_actor_underneath_cursor"))
+	if battleNodeRoot.connect("signal_selected_actor_underneath_cursor",Callable(self,"s_selected_actor_underneath_cursor")) != OK:
 		print("BattleBase - signal_selected_actor_underneath_cursor failed to connect")
 
 
@@ -142,39 +142,47 @@ func s_show_land_effect_and_active_actor_info():
 	set_land_effect_and_active_actor_positions(270, 6)
 
 func set_land_effect_and_active_actor_positions(active_x: int, land_x: int):
-	var aair_rect = activeActorMicroInfoRoot.rect_position
-	landEffectPopupTween.interpolate_property(activeActorMicroInfoRoot, "rect_position",
-			aair_rect, Vector2(active_x, aair_rect.y), 0.15,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	landEffectPopupTween.start()
+	var aair_rect = activeActorMicroInfoRoot.position
+	#landEffectPopupTween.interpolate_property(activeActorMicroInfoRoot, "position",
+	#		aair_rect, Vector2(active_x, aair_rect.y), 0.15,
+	#		Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	landEffectPopupTween.tween_property(activeActorMicroInfoRoot, "position",
+			Vector2(active_x, aair_rect.y), 0.15)
+	# landEffectPopupTween.start()
 	
-	var lep_rect = landEffectPopupRoot.rect_position
-	activeActorMicroInfoTween.interpolate_property(landEffectPopupRoot, "rect_position",
-			lep_rect, Vector2(land_x, lep_rect.y), 0.15,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	activeActorMicroInfoTween.start()
+	var lep_rect = landEffectPopupRoot.position
+	#activeActorMicroInfoTween.interpolate_property(landEffectPopupRoot, "position",
+#			lep_rect, Vector2(land_x, lep_rect.y), 0.15,
+#			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	activeActorMicroInfoTween.tween_property(landEffectPopupRoot, "position",
+			Vector2(land_x, lep_rect.y), 0.15)
+					
+	# activeActorMicroInfoTween.start()
 
 func s_hide_land_effect():
 	# set_land_effect_and_active_actor_positions(500, -90)
-	var aair_rect = activeActorMicroInfoRoot.rect_position
-	landEffectPopupTween.interpolate_property(landEffectPopupRoot, "rect_position",
-			aair_rect, Vector2(500, -90), 0.15,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	landEffectPopupTween.start()
+	var aair_rect = activeActorMicroInfoRoot.position
+	#landEffectPopupTween.interpolate_property(landEffectPopupRoot, "position",
+			#aair_rect, Vector2(500, -90), 0.15,
+			#Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	landEffectPopupTween.tween_property(landEffectPopupRoot, "position", Vector2(500, -90), 0.15)
+	# landEffectPopupTween.start()
 
 func s_show_land_effect():
 	# set_land_effect_and_active_actor_positions(500, -90)
-	# var aair_rect = activeActorMicroInfoRoot.rect_position
-	landEffectPopupTween.interpolate_property(landEffectPopupRoot, "rect_position",
-			Vector2(-66, 6), Vector2(6, 6), 0.15,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	landEffectPopupTween.start()
+	# var aair_rect = activeActorMicroInfoRoot.position
+	#landEffectPopupTween.interpolate_property(landEffectPopupRoot, "position",
+			#Vector2(-66, 6), Vector2(6, 6), 0.15,
+			#Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	landEffectPopupTween.tween_property(landEffectPopupRoot, "position",
+			Vector2(6, 6), 0.15)
+	# landEffectPopupTween.start()
 	
 # Land Effect and Active Actor Info Windows End
 
 func force_show_land_effect():
 	landEffectPopupRoot.show()
-	landEffectPopupRoot.rect_position = Vector2(6, 6)
+	landEffectPopupRoot.position = Vector2(6, 6)
 
 # Action Menu
 # delete these three functions after checking over
@@ -188,10 +196,13 @@ func s_hide_action_menu():
 func set_action_menu(xpos: int):
 	var tween_actionMenu = battleActionsMenuTween
 	var bam_rect = battleActionsMenuRoot.position
-	tween_actionMenu.interpolate_property(battleActionsMenuRoot, "position",
-			bam_rect, Vector2(xpos, bam_rect.y), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween_actionMenu.start()
+	# tween_actionMenu.interpolate_property(battleActionsMenuRoot, "position",
+#			bam_rect, Vector2(xpos, bam_rect.y), 0.1,
+#			Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			
+	tween_actionMenu.tween_property(battleActionsMenuRoot, "position",
+			Vector2(xpos, bam_rect.y), 0.1)
+	# tween_actionMenu.start()
 
 func s_show_character_action_menu():
 	internal_tween_move_to_position(bmc_x, bmc_y + 80, bmc_x, bmc_y, battleActionsMenuTween, battleActionsMenuRoot)
@@ -323,15 +334,18 @@ func s_show_no_valid_option_warning_box():
 
 func internal_tween_move_to_position(ox, oy, nx, ny, tweenNode, targetNode) -> void:
 	print(tweenNode)
-	tweenNode.interpolate_property(targetNode, "position",
-			Vector2(ox, oy), Vector2(nx, ny), 0.1,
-			Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tweenNode.start()
+	
+	# tweenNode.interpolate_property(targetNode, "position",
+	#		Vector2(ox, oy), Vector2(nx, ny), 0.1,
+	#		Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tweenNode.tween_property(targetNode, "position", Vector2(nx, ny), 0.1)
+						
+	# tweenNode.start()
 
 
 func internal_tween_move_to_rect_position(ox, oy, nx, ny, tweenNode, targetNode) -> void:
 	print(tweenNode)
-	tweenNode.interpolate_property(targetNode, "rect_position",
+	tweenNode.interpolate_property(targetNode, "position",
 			Vector2(ox, oy), Vector2(nx, ny), 0.1,
 			Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tweenNode.start()

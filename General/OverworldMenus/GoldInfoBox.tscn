@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture" id=2]
+[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="FontFile" id=1]
+[ext_resource path="res://Assets/SF1/ShiningForceTextBackground.png" type="Texture2D" id=2]
 [ext_resource path="res://General/OverworldMenus/GoldInfoBox.gd" type="Script" id=3]
 
 [node name="GoldInfoBox" type="Control"]
@@ -13,8 +13,8 @@ __meta__ = {
 }
 
 [node name="GoldNinePatchRect" type="NinePatchRect" parent="."]
-margin_right = 55.0
-margin_bottom = 29.0
+offset_right = 55.0
+offset_bottom = 29.0
 texture = ExtResource( 2 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -26,10 +26,10 @@ __meta__ = {
 }
 
 [node name="GoldStaticLabel" type="Label" parent="GoldNinePatchRect"]
-margin_left = 6.36054
-margin_top = 6.66667
-margin_right = 38.3605
-margin_bottom = 14.6667
+offset_left = 6.36054
+offset_top = 6.66667
+offset_right = 38.3605
+offset_bottom = 14.6667
 custom_fonts/font = ExtResource( 1 )
 text = "GOLD"
 __meta__ = {
@@ -38,10 +38,10 @@ __meta__ = {
 }
 
 [node name="GoldAmountLabel" type="Label" parent="GoldNinePatchRect"]
-margin_left = 7.0
-margin_top = 16.0
-margin_right = 49.0
-margin_bottom = 24.0
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 49.0
+offset_bottom = 24.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2

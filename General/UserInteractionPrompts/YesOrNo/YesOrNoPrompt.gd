@@ -10,21 +10,22 @@ enum e_menu_options {
 }
 var currently_selected_option: int = e_menu_options.YES_OPTION
 
-onready var animationPlayer = $AnimationPlayer
+@onready var animationPlayer = $AnimationPlayer
 
-onready var yes_spirte    = $YesActionSprite
-onready var no_spirte     = $NoActionSprite
+@onready var yes_spirte    = $YesActionSprite
+@onready var no_spirte     = $NoActionSprite
 
 # onready var noValidOptionNode = get_parent().get_node("NoValidOptionWarningBoxRoot")
 
 func _ready():
 	set_sprites_to_zero_frame()
-	$AnimationPlayer.playback_speed = 2
+	# TODO: fixme
+	#$AnimationPlayer.playback_speed = 2
 	animationPlayer.play("YesMenuOption")
 
 
 func set_menu_active() -> void:
-	yield(get_tree().create_timer(0.02), "timeout")
+	await get_tree().create_timer(0.02).timeout
 	
 	is_menu_active = true
 	
@@ -50,7 +51,7 @@ func _process(_delta):
 		menu_option_selected(e_menu_options.NO_OPTION, "NoMenuOption")
 		
 		# Small yield to quickly show the no selection before disappering
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		
 		NoChoiceSelected()
 		return
