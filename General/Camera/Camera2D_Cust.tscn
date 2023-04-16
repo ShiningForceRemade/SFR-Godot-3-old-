@@ -7,4 +7,6 @@ limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 24.0
+editor_draw_limits = true
 script = ExtResource("1_gkcc7")
+metadata/_edit_lock_ = true

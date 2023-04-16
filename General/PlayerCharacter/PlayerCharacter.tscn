@@ -7,7 +7,6 @@
 [node name="PlayerCharacterRoot" type="AnimatableBody2D"]
 sync_to_physics = false
 script = ExtResource("1_4xly6")
-metadata/_edit_lock_ = true
 
 [node name="CharacterRoot" parent="." instance=ExtResource("1_sqfox")]
 
