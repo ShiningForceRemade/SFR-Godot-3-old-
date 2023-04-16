@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccjnckj0x3fj3"
+path="res://.godot/imported/Jingle - Curse.mp3-4b1f1fd2bd6f2598faebae3ef1378f3d.mp3str"
+
+[deps]
+
+source_file="res://Assets/SF1/SoundBank/Jingle - Curse.mp3"
+dest_files=["res://.godot/imported/Jingle - Curse.mp3-4b1f1fd2bd6f2598faebae3ef1378f3d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

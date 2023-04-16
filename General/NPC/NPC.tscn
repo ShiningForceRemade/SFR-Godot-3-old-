@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://itpvlgqdm3kt"]
+
+[ext_resource type="Script" path="res://General/NPC/NPC.gd" id="1_ghay4"]
+[ext_resource type="Shape2D" uid="uid://bh7uaaxfqc2lk" path="res://General/24x24_collision_shape.tres" id="2_gsdfh"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_v4i3b"]
+
+[node name="NPCRoot" type="Node2D"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+script = ExtResource("1_ghay4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = ExtResource("2_gsdfh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = ExtResource("2_gsdfh")
+
+[node name="CharacterRoot" parent="AnimatableBody2D" instance=ExtResource("2_v4i3b")]
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatableBody2D"]
+target_position = Vector2(0, 20)
+
+[node name="Timer" type="Timer" parent="AnimatableBody2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

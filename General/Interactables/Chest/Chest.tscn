@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddkr5q87xwgw4"]
+
+[ext_resource type="Shape2D" uid="uid://bh7uaaxfqc2lk" path="res://General/24x24_collision_shape.tres" id="1_hn1g1"]
+[ext_resource type="Texture2D" uid="uid://ce0dpxntokcgg" path="res://Assets/SF1/StaticObjects/Chest.png" id="1_yrcc4"]
+
+[node name="Chest" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yrcc4")
+hframes = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = ExtResource("1_hn1g1")

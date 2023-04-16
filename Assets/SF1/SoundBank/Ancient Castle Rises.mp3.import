@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cydwonwctuh54"
+path="res://.godot/imported/Ancient Castle Rises.mp3-fb74f7691bc9458709d744d032682144.mp3str"
+
+[deps]
+
+source_file="res://Assets/SF1/SoundBank/Ancient Castle Rises.mp3"
+dest_files=["res://.godot/imported/Ancient Castle Rises.mp3-fb74f7691bc9458709d744d032682144.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

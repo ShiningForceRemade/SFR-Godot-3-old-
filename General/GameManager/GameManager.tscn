@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3l0bfv248y4h"]
+
+[ext_resource type="Script" path="res://General/GameManager/SceneManager.gd" id="1_fymdo"]
+[ext_resource type="Script" path="res://General/GameManager/SF1Node.gd" id="1_qrnep"]
+[ext_resource type="PackedScene" uid="uid://e6wer5ts00w1" path="res://SF1/Chapters/1/Cabin/Cabin.tscn" id="1_r3k5x"]
+[ext_resource type="PackedScene" uid="uid://d22vywrt5rx3p" path="res://General/Controls/DialogueBox/DialogueBox.tscn" id="2_ly824"]
+[ext_resource type="Shader" path="res://General/GameManager/CRT.gdshader" id="2_ts544"]
+[ext_resource type="PackedScene" uid="uid://c4tkgq2olycub" path="res://DevTooling/InGameDeveloperConsole/DeveloperConsole.tscn" id="4_evtrf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6h7e"]
+shader = ExtResource("2_ts544")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.012
+shader_parameter/grille_opacity = 0.166
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.052
+shader_parameter/noise_opacity = 0.154
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.066
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.003
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.118
+
+[node name="GameManager" type="Node"]
+
+[node name="SF1Node" type="Node" parent="."]
+script = ExtResource("1_qrnep")
+
+[node name="SceneManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("1_fymdo")
+
+[node name="Cabin" parent="SceneManager" instance=ExtResource("1_r3k5x")]
+
+[node name="MenusAndUICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" parent="MenusAndUICanvasLayer" instance=ExtResource("2_ly824")]
+visible = false
+offset_left = 48.0
+offset_top = 119.0
+offset_right = 16.0
+offset_bottom = 11.0
+scale = Vector2(0.8, 0.8)
+
+[node name="ShadersCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CRTShader" type="ColorRect" parent="ShadersCanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_n6h7e")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 33.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackFade" type="ColorRect" parent="ShadersCanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DevToolingCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DeveloperConsole" parent="DevToolingCanvasLayer" instance=ExtResource("4_evtrf")]
+visible = false
+offset_left = 8.0
+offset_top = 68.0
+offset_right = -144.0
+offset_bottom = -8.0

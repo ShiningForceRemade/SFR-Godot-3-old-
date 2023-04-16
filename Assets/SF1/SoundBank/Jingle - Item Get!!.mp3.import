@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpf2hdpserdl7"
+path="res://.godot/imported/Jingle - Item Get!!.mp3-3b2f32297f8e2a8e4070ad62569ff6a2.mp3str"
+
+[deps]
+
+source_file="res://Assets/SF1/SoundBank/Jingle - Item Get!!.mp3"
+dest_files=["res://.godot/imported/Jingle - Item Get!!.mp3-3b2f32297f8e2a8e4070ad62569ff6a2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

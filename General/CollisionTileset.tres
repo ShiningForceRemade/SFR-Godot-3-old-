@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bqdwc68vnfpg"]
+
+[ext_resource type="Texture2D" uid="uid://c01rcrjmfo8gr" path="res://Assets/CustomTileOverworldInformation.png" id="1_cfsf2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e0i4j"]
+texture = ExtResource("1_cfsf2")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[resource]
+tile_size = Vector2i(24, 24)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_e0i4j")

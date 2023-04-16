@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdx6qfqat68dl"
+path="res://.godot/imported/Battle 3 (Mid Boss).mp3-d8af1ce2e088ff4d69f7b659e459ba1e.mp3str"
+
+[deps]
+
+source_file="res://Assets/SF1/SoundBank/Battle 3 (Mid Boss).mp3"
+dest_files=["res://.godot/imported/Battle 3 (Mid Boss).mp3-d8af1ce2e088ff4d69f7b659e459ba1e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

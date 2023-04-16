@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://d22vywrt5rx3p"]
+
+[ext_resource type="Script" path="res://General/Controls/DialogueBox/DialogueBox.gd" id="1_q0es8"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="1_x68ap"]
+[ext_resource type="FontFile" uid="uid://cpvk7jx85llqr" path="res://Assets/SF1/Shining-Force-Dialogue.ttf" id="3_rxrjk"]
+
+[node name="DialogueBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -32.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q0es8")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 69.0
+texture = ExtResource("1_x68ap")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_rxrjk")
+bbcode_enabled = true
+text = "Hello sfmods!
+Test - [shake rate=20][color=red]BLAZE LV 1[/color] "
+scroll_active = false
+scroll_following = true
+metadata/_edit_lock_ = true
