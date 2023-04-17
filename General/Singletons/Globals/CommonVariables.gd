@@ -8,6 +8,13 @@ var dialogue_box_node = null
 var scene_manager_node = null
 var top_level_fader_node = null
 
+
+### ui node refs
+
+var ui__portrait_popup: Node2D = null
+
+
+
 # TODO: refactor disgusting temp for demo
 # values null | "YES" | "NO"
 var interaction_yes_or_no_selection = null

@@ -1,14 +1,16 @@
 extends Node2D
 
+signal signal_action_finished
 
 # 
 # @export var is_npc: bool = true
 var is_npc: bool = true
 ## If true npc won't move away from their current spot.
 @export var stationary: bool
+
 ## Which direction the npc should be facing when the scene loads.
-enum EFacingDirection { DOWN, UP, LEFT, RIGHT }
 @export var FacingDirection: EFacingDirection
+enum EFacingDirection { DOWN, UP, LEFT, RIGHT }
 
 #
 @onready var ray: RayCast2D = $RayCast2D
@@ -23,13 +25,19 @@ var GRID_BASED_MOVEMENT:bool = true
 var is_currently_moving:bool = false
 
 var animation_speed = 4
+var tween_animation_time: float = 0.5
+var tween_animation_time_speed_const: float = 0.5
+# var tween = null
 
 var rng = RandomNumberGenerator.new()
 
+var parent_node = null
 
 #
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	parent_node = get_parent()
+	
 	if is_npc && !stationary:
 		npc_move()
 		
@@ -40,6 +48,27 @@ func _ready() -> void:
 		EFacingDirection.RIGHT: play_animation("RightMovement")
 	
 	pass
+
+
+func attempt_interaction_talk() -> void:
+	# TODO: check if move in progress 
+	if parent_node.has_meta("attempt_interaction_talk"):
+		parent_node.attempt_interaction_talk()
+	else:
+		attempt_to_talk()
+
+func attempt_interaction_search() -> void:
+	# TODO: check if move in progress 
+	if parent_node.has_meta("attempt_interaction_search"):
+		parent_node.attempt_interaction_search()
+	else:
+		attempt_to_search()
+
+func attempt_to_talk() -> void:
+	print("Trying to talk to npc")
+
+func attempt_to_search() -> void:
+	print("Trying to search the npc")
 
 
 func npc_move() -> void:
@@ -140,6 +169,29 @@ func play_animation(animation_name: String) ->  void:
 		chracter_animation_player.play(animation_name)
 
 
+### Facing Direction Helpers
+
+func change_facing_direction(current_selection_pos: Vector2) -> void:
+	if position.x < current_selection_pos.x:
+		play_animation("RightMovement")
+	elif position.x > current_selection_pos.x:
+		play_animation("LeftMovement")
+	elif position.y < current_selection_pos.y:
+		play_animation("DownMovement")
+	elif position.y > current_selection_pos.y:
+		play_animation("UpMovement")
+
+
+func change_facing_direction_string(direction: String) -> void:
+	play_animation(direction)
+
+
+func get_facing_direction() -> String:
+	return chracter_animation_player.current_animation
+
+
+###
+
 enum e_directions {
 	LEFT,
 	RIGHT,
@@ -168,16 +220,56 @@ func attempt_to_move(new_position_target: Vector2, direction: e_directions) -> v
 	
 	if !ray.is_colliding():
 		collision_shape_cell_block.position = collision_cell_blocker_positions[direction]
-		
-		var tween: Tween = create_tween()
-		tween.tween_property(self, "position",
-			new_position_target,
-			1.0 / animation_speed
-		).set_trans(Tween.TRANS_LINEAR)
-	
-		is_currently_moving = true
-		await tween.finished
-		is_currently_moving = false
-		chracter_animation_player.speed_scale = 1
-		
+		action_move(new_position_target)
 		collision_shape_cell_block.position = Vector2.ZERO
+
+func action_move(new_position_target: Vector2) -> void:
+	var tween = create_tween()
+	tween.connect("finished", Callable(self, "emit_action_finished"))
+	tween.tween_property(self, "position",
+		new_position_target,
+		1.0 / animation_speed
+	).set_trans(Tween.TRANS_LINEAR)
+	
+	is_currently_moving = true
+	await tween.finished
+	is_currently_moving = false
+	chracter_animation_player.speed_scale = 1
+
+func emit_action_finished() -> void:
+	emit_signal("signal_action_finished")
+
+func set_movement_speed_timer(speed_arg: float) -> void:
+	tween_animation_time = speed_arg
+
+func reset_movement_speed_timer() -> void:
+	chracter_animation_player.speed_scale = 1
+	tween_animation_time = tween_animation_time_speed_const
+
+
+# TODO: CLEAN: this code can be refactored to be simpler - should also move vector arrays in a dict
+func MoveInDirection(move_direction_arg: String, ignore_collision: bool = false) -> void:
+	if move_direction_arg == "Right":
+		play_animation("RightMovement")
+		if ignore_collision:
+			action_move(Vector2(position.x + 24, position.y))
+		else:
+			attempt_to_move(Vector2(position.x + 24, position.y), e_directions.RIGHT)
+	elif move_direction_arg == "Left":
+		play_animation("LeftMovement")
+		if ignore_collision:
+			action_move(Vector2(position.x - 24, position.y))
+		else:
+			attempt_to_move(Vector2(position.x - 24, position.y), e_directions.LEFT)
+	elif move_direction_arg == "Up":
+		play_animation("UpMovement")
+		if ignore_collision:
+			action_move(Vector2(position.x, position.y - 24))
+		else:
+			attempt_to_move(Vector2(position.x, position.y - 24), e_directions.UP)
+	elif move_direction_arg == "Down":
+		play_animation("DownMovement")
+		if ignore_collision:
+			action_move(Vector2(position.x, position.y + 24))
+		else:
+			attempt_to_move(Vector2(position.x, position.y + 24), e_directions.DOWN)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3l0bfv248y4h"]
+[gd_scene load_steps=9 format=3 uid="uid://b3l0bfv248y4h"]
 
 [ext_resource type="Script" path="res://General/GameManager/SceneManager.gd" id="1_fymdo"]
 [ext_resource type="Script" path="res://General/GameManager/SF1Node.gd" id="1_qrnep"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d22vywrt5rx3p" path="res://General/Controls/DialogueBox/DialogueBox.tscn" id="2_ly824"]
 [ext_resource type="Shader" path="res://General/GameManager/CRT.gdshader" id="2_ts544"]
 [ext_resource type="PackedScene" uid="uid://c4tkgq2olycub" path="res://DevTooling/InGameDeveloperConsole/DeveloperConsole.tscn" id="4_evtrf"]
+[ext_resource type="PackedScene" uid="uid://cqu54wxhekf6p" path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" id="5_3em28"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n6h7e"]
 shader = ExtResource("2_ts544")
@@ -50,6 +51,12 @@ offset_left = 48.0
 offset_top = 119.0
 offset_right = 16.0
 offset_bottom = 11.0
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="PortraitPopup" parent="MenusAndUICanvasLayer" instance=ExtResource("5_3em28")]
+visible = false
+position = Vector2(72, 35)
 scale = Vector2(0.8, 0.8)
 
 [node name="ShadersCanvasLayer" type="CanvasLayer" parent="."]

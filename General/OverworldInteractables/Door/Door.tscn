@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://rtgchifxuvgx"]
+
+[ext_resource type="Texture2D" uid="uid://eeepo2p2m5nb" path="res://Assets/SF1/StaticObjects/Door.png" id="1_gi715"]
+[ext_resource type="Script" path="res://General/OverworldInteractables/Door/Door.gd" id="1_h7atd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx6q1"]
+size = Vector2(12, 12)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_h7atd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gi715")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_mx6q1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

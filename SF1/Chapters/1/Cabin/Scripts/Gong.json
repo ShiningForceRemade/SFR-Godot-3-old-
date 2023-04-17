@@ -1,0 +1,28 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I am Gong. I have fought the evil of Runefaust for many years. I will aid you."
+		},
+
+		{
+			"HidePortrait": ""
+		},
+
+		{
+			"Text": "(Gong joins the Shining Force!)",
+			"Sound": "fx | res://Assets/SF1/SoundBank/Jingle - Comrades 1 (Happily).mp3 | yield"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I will join your troops."
+		}
+	]
+}

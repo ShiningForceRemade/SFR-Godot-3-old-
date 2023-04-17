@@ -23,3 +23,5 @@ target_position = Vector2(0, 20)
 metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
+
+[editable path="CharacterRoot"]
