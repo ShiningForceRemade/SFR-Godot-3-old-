@@ -137,7 +137,7 @@ func get_runtime_audio_file_data_for_stream(audio_file: String):
 	if file:
 		var stream
 		# file.open(audio_file, file.READ)
-		var buffer = file.get_buffer(file.get_len())
+		var buffer = file.get_buffer(file.get_length())
 		stream = AudioStreamMP3.new()
 
 		# IMPORTANT: NOTE:

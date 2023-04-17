@@ -13,4 +13,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if body == Singleton_CommonVariables.main_character_active_kinematic_body_node:
 			self_hidden = true
 			self.hide()
-			# Singleton_AudioManager.play_alt_music_n(Singleton_DevToolingManager.base_path + "Assets/SF1/SoundEffects/DoorOpened.mp3")
+			Singleton_AudioManager.play_alt_music_n(Singleton_DevToolingManager.base_path + "Assets/SF1/SoundEffects/DoorOpened.mp3")

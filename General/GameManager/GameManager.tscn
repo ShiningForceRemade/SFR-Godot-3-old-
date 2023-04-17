@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3l0bfv248y4h"]
+[gd_scene load_steps=12 format=3 uid="uid://b3l0bfv248y4h"]
 
 [ext_resource type="Script" path="res://General/GameManager/SceneManager.gd" id="1_fymdo"]
 [ext_resource type="Script" path="res://General/GameManager/SF1Node.gd" id="1_qrnep"]
@@ -7,6 +7,9 @@
 [ext_resource type="Shader" path="res://General/GameManager/CRT.gdshader" id="2_ts544"]
 [ext_resource type="PackedScene" uid="uid://c4tkgq2olycub" path="res://DevTooling/InGameDeveloperConsole/DeveloperConsole.tscn" id="4_evtrf"]
 [ext_resource type="PackedScene" uid="uid://cqu54wxhekf6p" path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" id="5_3em28"]
+[ext_resource type="PackedScene" uid="uid://b7n5mweny73gs" path="res://General/Menus/PriestMenu/PriestMenu.tscn" id="6_8cvy1"]
+[ext_resource type="PackedScene" uid="uid://bjn64b22cl6ex" path="res://General/Controls/GoldInfoBox/GoldInfoBox.tscn" id="7_o0isl"]
+[ext_resource type="PackedScene" uid="uid://c503ret6y3xep" path="res://General/Controls/ActorMicroInfoBox/ActorMicroInfoBox.tscn" id="8_83orp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n6h7e"]
 shader = ExtResource("2_ts544")
@@ -58,6 +61,24 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(72, 35)
 scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="PriestMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("6_8cvy1")]
+visible = false
+position = Vector2(131, 136)
+scale = Vector2(0.8, 0.8)
+
+[node name="GoldInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("7_o0isl")]
+visible = false
+position = Vector2(7, 7)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="ActorMicroInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("8_83orp")]
+visible = false
+position = Vector2(199, 7)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
 
 [node name="ShadersCanvasLayer" type="CanvasLayer" parent="."]
 

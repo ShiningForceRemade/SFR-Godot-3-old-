@@ -12,6 +12,10 @@ var top_level_fader_node = null
 ### ui node refs
 
 var ui__portrait_popup: Node2D = null
+var ui__gold_info_box: Node2D = null
+var ui__actor_micro_info_box: Node2D = null
+
+var ui__priest_menu: Node2D = null
 
 
 

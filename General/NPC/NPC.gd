@@ -72,7 +72,9 @@ func attempt_to_search() -> void:
 
 
 func npc_move() -> void:
-	if !is_currently_moving:
+	# TODO: FIXME: should stop on stationary var change
+	# but also need a way to restart this after an interaction is complete
+	if !is_currently_moving: #  && !stationary:
 		rng.randomize()
 	
 		# animationPlayer.playback_speed = 1

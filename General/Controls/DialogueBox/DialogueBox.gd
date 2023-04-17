@@ -85,7 +85,6 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 
 
 #
-#
 #func play_message_none_interactable(str_arg = "") -> void:
 #	Clean()
 #
@@ -98,7 +97,7 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 #
 #	visible = true
 #	dialogue_box_is_visible = visible
-#	Singleton_Game_GlobalCommonVariables.dialogue_box_is_currently_active = false
+#	Singleton_CommonVariables.dialogue_box_is_currently_active = false
 #	active = false
 #
 #	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
@@ -112,9 +111,9 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 #	Tween.TRANS_LINEAR, Tween.EASE_IN)
 #
 #	dialogueTween.start()
-#
-#	# yield(get_tree().create_timer(0.5), "timeout")
-#	# get_tree().paused = true
+
+	# yield(get_tree().create_timer(0.5), "timeout")
+	# get_tree().paused = true
 
 
 # signal signal__dialoguebox__finished_dialog
@@ -322,23 +321,20 @@ func load_dialog():
 				dialogue_index += 1
 				load_dialog()
 				return
-#			elif key == "ShowMenu":
-#
-#				Singleton_CommonVariables.dialogue_bo.break_on_purpose_here_need_to_impl()
-#
-#				# ShowMenu(dialogue[dialogue_index][key])
-#
-#				finished = true
-#				Singleton_AudioManager.stop_dialogue_sfx()
-#				visible = false
-#				active = false
-#				emit_signal("signal__dialogbox__finished_dialog")
-#				Singleton_CommonVariables.dialogue_box_is_currently_active = false
-#
-#				# if Singleton_Game_GlobalCommonVariables.interaction_node_reference != null:
-#				# 	Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
-#
-#				return
+			elif key == "ShowMenu":
+				ShowMenu(dialogue[dialogue_index][key])
+				
+				finished = true
+				Singleton_AudioManager.stop_dialogue_sfx()
+				visible = false
+				active = false
+				emit_signal("signal__dialogbox__finished_dialog")
+				Singleton_CommonVariables.dialogue_box_is_currently_active = false
+				
+				# if Singleton_Game_GlobalCommonVariables.interaction_node_reference != null:
+				# 	Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
+				
+				return
 #			elif key == "InteractionPrompt":
 #
 #				print("hereeee")
@@ -480,21 +476,18 @@ func check_and_replace_text_sub_points(str_arg: String) -> String:
 	return nstr
 
 
-#
-#func ShowMenu(string_arg: String) -> void:
-#	if string_arg == "HQMenu":
-#		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
-#		Singleton_Game_GlobalCommonVariables.menus_root_node.HQMenuWrapperRoot.s_show_hq_menu()
-#	elif  string_arg == "PriestMenu":
-#		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
-#		Singleton_Game_GlobalCommonVariables.menus_root_node.PriestMenuWrapperRoot.s_show_priest_menu()
-#	elif  string_arg == "ShopMenu":
-#		# print(Singleton_Game_GlobalCommonVariables.interaction_node_reference.ITEM_LIST)
-#		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.ShopItemSelectionMenu.insert_item_list(Singleton_Game_GlobalCommonVariables.interaction_node_reference.ITEM_LIST)
-#		Singleton_Game_GlobalCommonVariables.main_character_player_node.set_active_processing(false)
-#		Singleton_Game_GlobalCommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_menu()
-#
-#
+func ShowMenu(string_arg: String) -> void:
+	if string_arg == "HQMenu":
+		Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
+		Singleton_CommonVariables.menus_root_node.HQMenuWrapperRoot.s_show_hq_menu()
+	elif  string_arg == "PriestMenu":
+		Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
+		Singleton_CommonVariables.ui__priest_menu.s_show_priest_menu()
+	elif  string_arg == "ShopMenu":
+		# print(Singleton_Game_GlobalCommonVariables.interaction_node_reference.ITEM_LIST)
+		Singleton_CommonVariables.menus_root_node.ShopMenuWrapperNode.ShopItemSelectionMenu.insert_item_list(Singleton_CommonVariables.interaction_node_reference.ITEM_LIST)
+		Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
+		Singleton_CommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_menu()
 
 
 func GetTweenTimeForText(text_str: String) -> float:

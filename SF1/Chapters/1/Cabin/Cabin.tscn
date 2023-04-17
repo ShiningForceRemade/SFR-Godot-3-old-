@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://e6wer5ts00w1"]
+[gd_scene load_steps=21 format=3 uid="uid://e6wer5ts00w1"]
 
 [ext_resource type="PackedScene" uid="uid://diyeea0puvxu7" path="res://General/PlayerCharacter/PlayerCharacter.tscn" id="1_o5xma"]
 [ext_resource type="PackedScene" path="res://SF1/Chapters/1/Cabin/Gongs_House_G4.tscn" id="2_k71yx"]
@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://cjb1cr6lw5nnm" path="res://Assets/SF1/PlayableCharacters/Jogurt/Unpromoted_Map_Sprites.png" id="7_y7gqb"]
 [ext_resource type="Texture2D" uid="uid://c6xdmbyy3ssey" path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Map_Sprites.png" id="9_7tipa"]
 [ext_resource type="Script" path="res://SF1/Chapters/1/Cabin/Gong.gd" id="9_m7pai"]
+[ext_resource type="Texture2D" uid="uid://cdbj6qn3lpegv" path="res://Assets/SF1/NPC/Woman_Blonde_PinkDress.png" id="11_lpgly"]
+[ext_resource type="Script" path="res://SF1/Chapters/1/Cabin/Woman.gd" id="11_yj0kq"]
+[ext_resource type="Texture2D" uid="uid://diqhrgxad6pho" path="res://Assets/SF1/NPC/Man_Old_WhiteBeard.png" id="12_oppvi"]
+[ext_resource type="Script" path="res://SF1/Chapters/1/Cabin/OldMan.gd" id="13_f1fqp"]
 
 [sub_resource type="Animation" id="Animation_vmx57"]
 resource_name = "RightMovement"
@@ -165,7 +169,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 1
-layer_3/enabled = true
+layer_3/enabled = false
 layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
@@ -180,7 +184,7 @@ position = Vector2(276, 252)
 metadata/_edit_lock_ = true
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_o5xma")]
-position = Vector2(252, 348)
+position = Vector2(252, 156)
 
 [node name="CharacterRoot" parent="PlayerCharacterRoot" index="0"]
 character_name = "Max"
@@ -229,9 +233,37 @@ FacingDirection = 2
 texture = ExtResource("9_7tipa")
 hframes = 6
 
+[node name="WomanWalkingAround" parent="NPCs" instance=ExtResource("5_eybnu")]
+position = Vector2(204, 180)
+script = ExtResource("11_yj0kq")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" parent="NPCs/WomanWalkingAround/AnimatableBody2D/CharacterRoot" index="0"]
+texture = ExtResource("11_lpgly")
+hframes = 6
+
+[node name="CollisionPolygon2D" parent="NPCs/WomanWalkingAround/Area2D" index="0"]
+polygon = PackedVector2Array(60, 12, 36, 12, 36, 36, 84, 36, 84, -60, 60, -60)
+
+[node name="OldMan" parent="NPCs" instance=ExtResource("5_eybnu")]
+position = Vector2(276, 156)
+script = ExtResource("13_f1fqp")
+metadata/_edit_lock_ = true
+
+[node name="AnimatableBody2D" parent="NPCs/OldMan" index="0"]
+stationary = true
+
+[node name="Sprite2D" parent="NPCs/OldMan/AnimatableBody2D/CharacterRoot" index="0"]
+texture = ExtResource("12_oppvi")
+hframes = 6
+
 [editable path="PlayerCharacterRoot"]
 [editable path="PlayerCharacterRoot/CharacterRoot"]
 [editable path="NPCs/Jogurt"]
 [editable path="NPCs/Jogurt/AnimatableBody2D/CharacterRoot"]
 [editable path="NPCs/Gong"]
 [editable path="NPCs/Gong/AnimatableBody2D/CharacterRoot"]
+[editable path="NPCs/WomanWalkingAround"]
+[editable path="NPCs/WomanWalkingAround/AnimatableBody2D/CharacterRoot"]
+[editable path="NPCs/OldMan"]
+[editable path="NPCs/OldMan/AnimatableBody2D/CharacterRoot"]
