@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "This is pretty boring. When can I get into the fight?"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

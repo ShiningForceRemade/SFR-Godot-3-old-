@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3tergq841egt"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" uid="uid://cyw8ri3jdrriy" path="res://General/Camera/Camera2D_Cust.tscn" id="1_5u4fb"]
-[ext_resource type="PackedScene" uid="uid://csxwyq1q57tep" path="res://SF1/Chapters/1/Guardiana/Castle/GuardianaCastleTilemap.tscn" id="1_ngcci"]
+[ext_resource type="PackedScene" path="res://SF1/Chapters/1/Guardiana/Castle/GuardianaCastleTilemap.tscn" id="1_ngcci"]
 [ext_resource type="Script" path="res://SF1/Chapters/1/Guardiana/Castle/Castle.gd" id="1_sq0io"]
 [ext_resource type="TileSet" uid="uid://bqdwc68vnfpg" path="res://General/CollisionTileset.tres" id="3_344j8"]
-[ext_resource type="PackedScene" uid="uid://diyeea0puvxu7" path="res://General/PlayerCharacter/PlayerCharacter.tscn" id="3_ij223"]
+[ext_resource type="PackedScene" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="3_ij223"]
 
 [node name="Castle" type="Node"]
 script = ExtResource("1_sq0io")

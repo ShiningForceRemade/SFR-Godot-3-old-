@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Pick me! Pick me! C'mon, {main_character_name}!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Please don't put me in front. I can't stand being hit."
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

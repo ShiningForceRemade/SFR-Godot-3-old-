@@ -90,8 +90,8 @@ func _process(_delta):
 			
 			var display_str = "No one seems to deserve a promotion.\nDo you need anything else?"
 			Singleton_CommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
-			Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = await Signal(Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			Singleton_CommonVariables.ui__yes_or_no_prompt.s_show__yes_or_no_prompt()
+			var result = await Signal(Singleton_CommonVariables.ui__yes_or_no_prompt, "signal__yes_or_no_prompt__choice")
 			if result == "NO":
 				Singleton_CommonVariables.dialogue_box_node.hide()
 				CancelPriestMenu()
@@ -123,9 +123,9 @@ func _process(_delta):
 			
 			Singleton_CommonVariables.dialogue_box_node.show()
 			
-			Singleton_CommonVariables.menus_root_node.MicroMemberListViewMenu.set_menu_active()
-			Singleton_CommonVariables.menus_root_node.MicroMemberListViewMenu.HideInventoryPreview()
-			Singleton_CommonVariables.menus_root_node.MicroMemberListViewMenu.show()
+			Singleton_CommonVariables.ui__micro_member_list_view.set_menu_active()
+			Singleton_CommonVariables.ui__micro_member_list_view.HideInventoryPreview()
+			Singleton_CommonVariables.ui__micro_member_list_view.show()
 			
 			return
 		elif currently_selected_option == e_menu_options.CURE_OPTION:
@@ -145,8 +145,8 @@ func _process(_delta):
 			
 			var display_str = "No one seems to need my help.\nDo you need anything else?"
 			Singleton_CommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
-			Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = await Signal(Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			Singleton_CommonVariables.ui__yes_or_no_prompt.s_show__yes_or_no_prompt()
+			var result = await Signal(Singleton_CommonVariables.ui__yes_or_no_prompt, "signal__yes_or_no_prompt__choice")
 			if result == "NO":
 				Singleton_CommonVariables.dialogue_box_node.hide()
 				CancelPriestMenu()
@@ -182,8 +182,8 @@ func _process(_delta):
 			
 			var display_str = "DISABLED FOR DEMO!\nDo you need anything else?"
 			Singleton_CommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
-			Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-			var result = await Signal(Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
+			Singleton_CommonVariables.ui__yes_or_no_prompt.s_show__yes_or_no_prompt()
+			var result = await Signal(Singleton_CommonVariables.ui__yes_or_no_prompt, "signal__yes_or_no_prompt__choice")
 			if result == "NO":
 				Singleton_CommonVariables.dialogue_box_node.hide()
 				CancelPriestMenu()

@@ -1,0 +1,11 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Varios_Portraits.png"
+		},
+
+		{
+			"Text": "You have the makings of a great fighter, {main_character_name}. You'll be tested soon enough."
+		}
+	]
+}

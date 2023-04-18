@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://e6wer5ts00w1"]
+[gd_scene load_steps=21 format=3 uid="uid://udxjicsvp6qk"]
 
-[ext_resource type="PackedScene" uid="uid://diyeea0puvxu7" path="res://General/PlayerCharacter/PlayerCharacter.tscn" id="1_o5xma"]
+[ext_resource type="PackedScene" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="1_o5xma"]
 [ext_resource type="PackedScene" path="res://SF1/Chapters/1/Cabin/Gongs_House_G4.tscn" id="2_k71yx"]
 [ext_resource type="Script" path="res://SF1/Chapters/1/Cabin/Camera2D.gd" id="3_ybvr4"]
 [ext_resource type="TileSet" uid="uid://bqdwc68vnfpg" path="res://General/CollisionTileset.tres" id="4_tty83"]
@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://diqhrgxad6pho" path="res://Assets/SF1/NPC/Man_Old_WhiteBeard.png" id="12_oppvi"]
 [ext_resource type="Script" path="res://SF1/Chapters/1/Cabin/OldMan.gd" id="13_f1fqp"]
 
-[sub_resource type="Animation" id="Animation_vmx57"]
-resource_name = "RightMovement"
+[sub_resource type="Animation" id="Animation_scqes"]
+resource_name = "DownMovement"
 length = 0.80001
 loop_mode = 1
 tracks/0/type = "value"
@@ -29,46 +29,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [2, 3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ohc35"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_s78wr"]
@@ -99,8 +60,35 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_scqes"]
-resource_name = "DownMovement"
+[sub_resource type="Animation" id="Animation_ohc35"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vmx57"]
+resource_name = "RightMovement"
 length = 0.80001
 loop_mode = 1
 tracks/0/type = "value"
@@ -113,7 +101,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_at7ec"]
@@ -184,7 +184,7 @@ position = Vector2(276, 252)
 metadata/_edit_lock_ = true
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_o5xma")]
-position = Vector2(252, 156)
+position = Vector2(252, 372)
 
 [node name="CharacterRoot" parent="PlayerCharacterRoot" index="0"]
 character_name = "Max"

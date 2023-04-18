@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyyq3vq7o514"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_8p3nx"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="1_elaei"]
+[ext_resource type="Texture2D" uid="uid://dadpqgcpviiey" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Map_Sprites.png" id="3_b57vq"]
+[ext_resource type="Texture2D" uid="uid://cebtj3ojk2dr2" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Battle_Sprites.png" id="4_3uwkf"]
+[ext_resource type="Texture2D" uid="uid://7hw4uimbywqm" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png" id="5_pajop"]
+
+[node name="Luke" type="Node2D"]
+script = ExtResource("1_8p3nx")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("1_elaei")]
+character_name = "Luke"
+texture_sprite_map = ExtResource("3_b57vq")
+texture_sprite_battle = ExtResource("4_3uwkf")
+texture_protrait = ExtResource("5_pajop")

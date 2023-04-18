@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbhwox788dydl"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" uid="uid://cyw8ri3jdrriy" path="res://General/Camera/Camera2D_Cust.tscn" id="1_vfg0p"]
 [ext_resource type="PackedScene" uid="uid://crun86j0ciw20" path="res://SF1/Chapters/1/Overworld/OverworldTilemap.tscn" id="1_xo6ue"]
-[ext_resource type="PackedScene" uid="uid://diyeea0puvxu7" path="res://General/PlayerCharacter/PlayerCharacter.tscn" id="2_g53k7"]
+[ext_resource type="PackedScene" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="2_g53k7"]
 [ext_resource type="TileSet" uid="uid://bqdwc68vnfpg" path="res://General/CollisionTileset.tres" id="2_rm4c6"]
 
 [node name="Overworld" type="Node2D"]

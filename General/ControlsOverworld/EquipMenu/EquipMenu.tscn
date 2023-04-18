@@ -1,0 +1,162 @@
+[gd_scene load_steps=7 format=3 uid="uid://1307f554rw2x"]
+
+[ext_resource type="Script" path="res://General/ControlsOverworld/EquipMenu/EquipMenu.gd" id="1_wemm2"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://lh7rsgq46lcq" path="res://Assets/SFCD/Items/UnequipHand.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bexr4d3s2v782" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://b451lgd0islao" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionBorder.tscn" id="6_ksrs0"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="7"]
+
+[node name="BattleEquipMenuRoot" type="Node2D"]
+script = ExtResource("1_wemm2")
+
+[node name="EquipSlotUpSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 12)
+texture = ExtResource("5")
+
+[node name="EquipSlotLeftSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("5")
+
+[node name="EquipSlotRightSprite" type="Sprite2D" parent="."]
+position = Vector2(40, 24)
+texture = ExtResource("5")
+
+[node name="UnequipSlotDownSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 36)
+texture = ExtResource("4")
+
+[node name="ItemInfoNinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 64.0
+offset_top = 12.0
+offset_right = 168.0
+offset_bottom = 48.0
+texture = ExtResource("2")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="TypeNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+offset_left = 6.22775
+offset_top = 6.0
+offset_right = -9.77224
+offset_bottom = -20.0
+theme_override_fonts/font = ExtResource("7")
+text = "ITEM TYPE"
+
+[node name="WeaponNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+offset_left = 6.22775
+offset_top = 14.0
+offset_right = -9.77224
+offset_bottom = -12.0
+theme_override_fonts/font = ExtResource("7")
+text = "ITEM NAME"
+
+[node name="EquippedLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+offset_left = 8.22775
+offset_top = 22.0
+offset_right = 4.22776
+offset_bottom = -4.0
+theme_override_colors/font_color = Color(0.913725, 0.647059, 0.231373, 1)
+theme_override_fonts/font = ExtResource("7")
+text = "EQUIPPED"
+
+[node name="StatNinePatchRect" type="NinePatchRect" parent="."]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = -16.0
+offset_bottom = 48.0
+texture = ExtResource("2")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="StaticLabelVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 60.0
+metadata/_edit_lock_ = true
+
+[node name="AttackStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "ATTACK"
+metadata/_edit_lock_ = true
+
+[node name="DefenseStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "DEFENSE"
+metadata/_edit_lock_ = true
+
+[node name="MoveStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "MOVE"
+metadata/_edit_lock_ = true
+
+[node name="AgilityStaticLabel" type="Label" parent="StatNinePatchRect/StaticLabelVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "AGILITY"
+metadata/_edit_lock_ = true
+
+[node name="StatVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 8.0
+offset_right = 76.0
+offset_bottom = 60.0
+metadata/_edit_lock_ = true
+
+[node name="AttackStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DefenseStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="MoveStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AgilityStatLabel" type="Label" parent="StatNinePatchRect/StatVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7")
+text = "999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("6_ksrs0")]
+position = Vector2(16, 0)

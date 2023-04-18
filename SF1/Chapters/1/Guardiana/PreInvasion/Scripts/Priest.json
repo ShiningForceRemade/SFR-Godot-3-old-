@@ -1,0 +1,22 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Priest_Portraits.png"
+		},
+
+		{
+			"Text": "Hello, {main_character_name}! I've been having the worst nightmares. Have you had any?",
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Priest_Yes.json"
+		},
+		
+		{
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Priest_No.json"
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"Text": "Welcome {main_character_name}! Those vile Runefausters have made me mad."
+		},
+
+		{
+			"Text": "I have weapons guaranteed to knock those monsters' heads off. Take a look."
+		},
+
+		{
+			"ShowMenu": "ShopMenu"
+		}
+	]
+}

@@ -11,153 +11,166 @@ extends Node2D
 ## Determines behaviour in battle - "character" or "enemey"
 @export var actor_type: String = "character"
 
-#@export_group("Racer Properties")
 #@export var nickname = "Nick"
-### descipo
-#@export var age = 26
+
 #
-#@export_group("")
-#@onready var pnode = get_parent()
+# todo make a dictionary with all of these in the format of
+# {full: swordsman, short: sdmn
+const char_class_array = ["SDMN", "KNT",
+		"WARR", "SKNT", "MAGE",
+		"MONK", "HEAL", "ACHR", "ASKT",
+		"BDMN", "WKNT", "DRGN", 
+		"RBT", "WRWF", "SMR", 
+		"NINJ", "HERO", "PLDN", 
+		"GLDR", "SBRN", "WIZD", 
+		"MSMK", "VICR", "BWMS", 
+		"SKNT", "SKYW", "SKYL",
+		"GRDR", "CYBG", "WFBN", "YGRT",
+		"MGCR"]
+
+@export_enum("Swordsman - SDMN", "Knight - KNT",
+		"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
+		"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
+		"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 
+		"Robot - RBT", "Werewolf - WRWF", "Samurai - SMR", 
+		"Ninja - NINJ", "Hero - HERO", "Paladin - PLDN", 
+		"Galaditor - GLDR", "SBRN", "Wizard - WIZD", 
+		"Master Monk - MSMK", "Vicar - VICR", "BWMS", 
+		"Sky Knight - SKNT", "Sky Warrior - SKYW", "SKYL",
+		"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
+		"MGCR") var character_class: int
+
+@export var is_promoted: bool = false
+
+# const item_location_c
+
+## Only the first 4 fields are valid everything after that is ignored!
+@export var inventory_items_id: Array[Resource]
+@export var is_item_equipped: Array[bool]
+
+## Only the first 4 fields are valid everything after that is ignored!
+@export var spells_id: Array[Resource]
+
+# group - textures
+@export var texture_sprite_map: Texture
+@export var texture_sprite_battle: Texture
+# battle palette ? whats this
+@export var texture_protrait: Texture
+
+
+# @export_enum("Medical Herb") var magic_array: Array[int]
+@export var magic_array: Array[int]
+@export_enum("None") var status: int = 0
+
+
+### Group - stats - start
+
+@export_group("Stats")
+
+@export var level: int
+@export var move: int
+
+@export_subgroup("HP")
+@export var HP_Current: int
+@export var HP_Total: int
+@export_enum("steady", "early", "late", "early-late") var hp_growth: int
+
+@export_subgroup("MP")
+@export var MP_Current: int
+@export var MP_Total: int
+@export_enum("steady", "early", "late", "early-late") var mp_growth: int
+
+@export_subgroup("Attack")
+@export var attack: int
+@export_enum("steady", "early", "late", "early-late") var attack_growth: int
+
+@export_subgroup("Defense")
+@export var defense: int
+@export_enum("steady", "early", "late", "early-late") var defense_growth: int
+
+@export_subgroup("Agility")
+@export var agility: int
+@export_enum("steady", "early", "late", "early-late") var agility_growth: int
+
+### Group - stats - end
+
+@export_range(0, 100) var critical_hit_chance: int = 10
+@export_enum("steady", "early", "late", "early-late") var critical_hit_growth: int
+
+@export_range(0, 100) var double_attack_chance: int = 10
+@export_range(0, 100) var dodge_chance: int = 10
+
+@export var ai_target_priority: int
+
+# group - behaviours
+@export_enum("Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
+# export var regeneration_rate: int = 0
+
+# NOTE: for characters this should be done on a per character basis like kiwi fire breath or other specials 
+# within the character scene and script itself
+# NOTE: shining force editor v3.4.4 has one other behaviour type that hasn't been solved yet
+# action type and chance should be sub group
+#export(int, "Default", "Caster", "Use Items", 
+#			"Fire Breath", "Fire Breath 2", "Fire Breath 3", "Fire Breath 4",
+#			"Ice Breath", "Ice Breath 2",
+#			"Machine Gun", "Laser", "Demon Blaze",
+#			"Dark Dragon Mid", "Dark Dragon Side") var action_type: int = 0 # "Default"
+#export(int, 0, 100) var action_type_chance: int = 0
+
+# special attack and chance should be sub group
+#export(int, "None", "150% Damage Critical", "200% Damage Critical", 
+#			"Steal MP", "Steal HP", "Steal HP 2",
+#			"Poison Chance", "Sleep Chance",
+#			"Sleep Chance 2", "Death Chance") var special_attack: int = 0 # "None
+#export(int, 0, 100) var special_attack_chance: int = 0
+
+# group - magic resistances
+# general
+@export_range(0, 100) var magic_resistance: int = 0
+# spell specific resistance
+# NOTE: shining force editor v3.4.4 has one other resistance type that hasn't been solved yet
+@export_range(0, 100) var slow_resistance: int = 0
+@export_range(0, 100) var muddle_resistance: int = 0
+@export_range(0, 100) var sleep_and_desoul_resistance: int = 0
+@export_range(0, 100) var bolt_resistance: int = 0
+@export_range(0, 100) var blaze_resistance: int = 0
+@export_range(0, 100) var freeze_resistance: int = 0
+
+@export var experience_points: int = 0
+
+@export var battle_animation_unpromoted_resource: Resource
+
+# messy wait for native grouping support then subgroup
+#var test = "" # We will store the value here
+#func _get(property):
+#	if property == "test/test":
+#		return test # One can implement custom getter logic here
 #
+#func _set(property, value):
+#	if property == "test/test":
+#		test = value # One can implement custom setter logic here
+#		return true
 #
-## todo make a dictionary with all of these in the format of
-## {full: swordsman, short: sdmn
-#const char_class_array = ["SDMN", "KNT",
-#		"WARR", "SKNT", "MAGE",
-#		"MONK", "HEAL", "ACHR", "ASKT",
-#		"BDMN", "WKNT", "DRGN", 
-#		"RBT", "WRWF", "SMR", 
-#		"NINJ", "HERO", "PLDN", 
-#		"GLDR", "SBRN", "WIZD", 
-#		"MSMK", "VICR", "BWMS", 
-#		"SKNT", "SKYW", "SKYL",
-#		"GRDR", "CYBG", "WFBN", "YGRT",
-#		"MGCR"]
-#
-#@export(int, "Swordsman - SDMN", "Knight - KNT",
-#		"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
-#		"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
-#		"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 
-#		"Robot - RBT", "Werewolf - WRWF", "Samurai - SMR", 
-#		"Ninja - NINJ", "Hero - HERO", "Paladin - PLDN", 
-#		"Galaditor - GLDR", "SBRN", "Wizard - WIZD", 
-#		"Master Monk - MSMK", "Vicar - VICR", "BWMS", 
-#		"Sky Knight - SKNT", "Sky Warrior - SKYW", "SKYL",
-#		"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
-#		"MGCR") var character_class: int
-#
-#@export var is_promoted: bool = false
-#
-## const item_location_c
-#
-### Only the first 4 fields are valid everything after that is ignored!
-#@export(Array, Resource) var inventory_items_id
-#@export(Array, bool) var is_item_equipped
-#
-### Only the first 4 fields are valid everything after that is ignored!
-#@export(Array, Resource) var spells_id
-#
-## group - textures
-#@export var texture_sprite_map: Texture
-#@export var texture_sprite_battle: Texture
-## battle palette ? whats this
-#@export var texture_protrait: Texture
-#
-## group - stats
-#@export var level: int
-#@export var attack: int
-#@export(int, "steady", "early", "late", "early-late") var attack_growth
-#@export var defense: int
-#@export(int, "steady", "early", "late", "early-late") var defense_growth
-#@export var agility: int
-#@export(int, "steady", "early", "late", "early-late") var agility_growth
-#@export var move: int
-#@export var HP_Current: int
-#@export var HP_Total: int
-#@export(int, "steady", "early", "late", "early-late") var hp_growth
-#@export var MP_Current: int
-#@export var MP_Total: int
-#@export(int, "steady", "early", "late", "early-late") var mp_growth
-#@export(Array, int, "Medical Herb") var magic_array
-#@export(int, "None") var status: int = 0
-#
-#@export(int, 0, 100) var critical_hit_chance: int = 10
-#@export(int, "steady", "early", "late", "early-late") var critical_hit_growth
-#
-#@export(int, 0, 100) var double_attack_chance: int = 10
-#@export(int, 0, 100) var dodge_chance: int = 10
-#
-#@export var ai_target_priority: int
-#
-## group - behaviours
-#@export(int, "Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
-## export var regeneration_rate: int = 0
-#
-## NOTE: for characters this should be done on a per character basis like kiwi fire breath or other specials 
-## within the character scene and script itself
-## NOTE: shining force editor v3.4.4 has one other behaviour type that hasn't been solved yet
-## action type and chance should be sub group
-##export(int, "Default", "Caster", "Use Items", 
-##			"Fire Breath", "Fire Breath 2", "Fire Breath 3", "Fire Breath 4",
-##			"Ice Breath", "Ice Breath 2",
-##			"Machine Gun", "Laser", "Demon Blaze",
-##			"Dark Dragon Mid", "Dark Dragon Side") var action_type: int = 0 # "Default"
-##export(int, 0, 100) var action_type_chance: int = 0
-#
-## special attack and chance should be sub group
-##export(int, "None", "150% Damage Critical", "200% Damage Critical", 
-##			"Steal MP", "Steal HP", "Steal HP 2",
-##			"Poison Chance", "Sleep Chance",
-##			"Sleep Chance 2", "Death Chance") var special_attack: int = 0 # "None
-##export(int, 0, 100) var special_attack_chance: int = 0
-#
-## group - magic resistances
-## general
-#@export(int, 0, 100) var magic_resistance: int = 0
-## spell specific resistance
-## NOTE: shining force editor v3.4.4 has one other resistance type that hasn't been solved yet
-#@export(int, 0, 100) var slow_resistance: int = 0
-#@export(int, 0, 100) var muddle_resistance: int = 0
-#@export(int, 0, 100) var sleep_and_desoul_resistance: int = 0
-#@export(int, 0, 100) var bolt_resistance: int = 0
-#@export(int, 0, 100) var blaze_resistance: int = 0
-#@export(int, 0, 100) var freeze_resistance: int = 0
-#
-#@export var experience_points: int = 0
-#
-#@export var battle_animation_unpromoted_resource: Resource
-#
-## messy wait for native grouping support then subgroup
-##var test = "" # We will store the value here
-##func _get(property):
-##	if property == "test/test":
-##		return test # One can implement custom getter logic here
+#func _get_property_list():
+#	return [
+#		{
+#			"hint": PROPERTY_HINT_NONE,
+#			"usage": PROPERTY_USAGE_DEFAULT,
+#			"name": "test/test",
+#			"type": TYPE_STRING
+#		}
+#	]
+
+## Actor (unit) Performance Statistics
+var aps_enemey_kills: int = 0
+var aps_times_defeated: int = 0 # unit deaths
+var aps_dodges: int = 0 # enemey missed
+var aps_misses: int = 0 # missed enemey
+var aps_double_attacks: int = 0
+var aps_special_attack: int = 0
+var aps_critical_hits: int = 0
 ##
-##func _set(property, value):
-##	if property == "test/test":
-##		test = value # One can implement custom setter logic here
-##		return true
-##
-##func _get_property_list():
-##	return [
-##		{
-##			"hint": PROPERTY_HINT_NONE,
-##			"usage": PROPERTY_USAGE_DEFAULT,
-##			"name": "test/test",
-##			"type": TYPE_STRING
-##		}
-##	]
-#
-### Actor (unit) Performance Statistics
-#var aps_enemey_kills: int = 0
-#var aps_times_defeated: int = 0 # unit deaths
-#var aps_dodges: int = 0 # enemey missed
-#var aps_misses: int = 0 # missed enemey
-#var aps_double_attacks: int = 0
-#var aps_special_attack: int = 0
-#var aps_critical_hits: int = 0
-###
-#
+
 
 
 # @var movement_tween_speed = 0.1625

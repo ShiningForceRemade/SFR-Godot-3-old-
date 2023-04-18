@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "I think I'll go stir crazy if you don't let me out of here soon!"
+		},
+
+		{
+			"HidePortrait": ""
+		}
+	]
+}

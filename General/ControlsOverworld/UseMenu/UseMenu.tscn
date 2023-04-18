@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://hjiesgslomj1"]
+
+[ext_resource type="Texture2D" uid="uid://bexr4d3s2v782" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="1"]
+[ext_resource type="Script" path="res://General/ControlsOverworld/UseMenu/UseMenu.gd" id="1_3bepl"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://b451lgd0islao" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionBorder.tscn" id="4_v6ibt"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="6"]
+
+[node name="UseEquipMenuRoot" type="Node2D"]
+script = ExtResource("1_3bepl")
+
+[node name="SlotUpSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 12)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="SlotLeftSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="SlotRightSprite" type="Sprite2D" parent="."]
+position = Vector2(40, 24)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="SlotDownSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 36)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="ItemInfoNinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 64.0
+offset_top = 12.0
+offset_right = 192.0
+offset_bottom = 48.0
+texture = ExtResource("3")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="TypeNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+offset_left = 8.2803
+offset_top = 20.0
+offset_right = -7.71968
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("6")
+text = "ITEM TYPE"
+
+[node name="WeaponNameLabel" type="Label" parent="ItemInfoNinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+offset_left = 8.2803
+offset_top = 8.0
+offset_right = -7.71968
+offset_bottom = -16.0
+theme_override_fonts/font = ExtResource("6")
+text = "ITEM NAME"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("4_v6ibt")]
+position = Vector2(16, 0)
+metadata/_edit_lock_ = true

@@ -1,15 +1,28 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3l0bfv248y4h"]
+[gd_scene load_steps=25 format=3 uid="uid://b3l0bfv248y4h"]
 
 [ext_resource type="Script" path="res://General/GameManager/SceneManager.gd" id="1_fymdo"]
 [ext_resource type="Script" path="res://General/GameManager/SF1Node.gd" id="1_qrnep"]
-[ext_resource type="PackedScene" uid="uid://e6wer5ts00w1" path="res://SF1/Chapters/1/Cabin/Cabin.tscn" id="1_r3k5x"]
 [ext_resource type="PackedScene" uid="uid://d22vywrt5rx3p" path="res://General/Controls/DialogueBox/DialogueBox.tscn" id="2_ly824"]
 [ext_resource type="Shader" path="res://General/GameManager/CRT.gdshader" id="2_ts544"]
+[ext_resource type="PackedScene" uid="uid://dwet7q712nkve" path="res://SF1/Chapters/HeadQuarters/HeadQuarters.tscn" id="3_wkfag"]
 [ext_resource type="PackedScene" uid="uid://c4tkgq2olycub" path="res://DevTooling/InGameDeveloperConsole/DeveloperConsole.tscn" id="4_evtrf"]
 [ext_resource type="PackedScene" uid="uid://cqu54wxhekf6p" path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" id="5_3em28"]
 [ext_resource type="PackedScene" uid="uid://b7n5mweny73gs" path="res://General/Menus/PriestMenu/PriestMenu.tscn" id="6_8cvy1"]
 [ext_resource type="PackedScene" uid="uid://bjn64b22cl6ex" path="res://General/Controls/GoldInfoBox/GoldInfoBox.tscn" id="7_o0isl"]
 [ext_resource type="PackedScene" uid="uid://c503ret6y3xep" path="res://General/Controls/ActorMicroInfoBox/ActorMicroInfoBox.tscn" id="8_83orp"]
+[ext_resource type="PackedScene" uid="uid://de2qtm5baxn5l" path="res://General/Controls/YesOrNoPrompt/YesOrNoPrompt.tscn" id="9_620es"]
+[ext_resource type="PackedScene" uid="uid://r7q6cbglek3n" path="res://General/ControlsOverworld/ActionsMenu/ActionsMenu.tscn" id="10_mjs10"]
+[ext_resource type="PackedScene" uid="uid://dv3qaqslut63l" path="res://General/ControlsOverworld/MicroMemberListView/MicroMemberListView.tscn" id="11_d3dwc"]
+[ext_resource type="PackedScene" uid="uid://c6mpihptmyue8" path="res://General/ControlsOverworld/ShopMenu/ShopMenu.tscn" id="11_myimt"]
+[ext_resource type="PackedScene" uid="uid://bv43e0jmlifoi" path="res://General/ControlsOverworld/ShopMenu/ItemSelectionMenu/ItemSelectionMenu.tscn" id="13_gb2us"]
+[ext_resource type="PackedScene" uid="uid://bmcqbtq2fvprp" path="res://General/ControlsOverworld/DropMenu/DropMenu.tscn" id="14_x8vf8"]
+[ext_resource type="PackedScene" uid="uid://1307f554rw2x" path="res://General/ControlsOverworld/EquipMenu/EquipMenu.tscn" id="15_rgpd6"]
+[ext_resource type="PackedScene" uid="uid://cx1of3bwcl057" path="res://General/ControlsOverworld/GiveMenu/GiveMenu.tscn" id="16_pr5hh"]
+[ext_resource type="PackedScene" uid="uid://bwmkktkirrfbc" path="res://General/ControlsOverworld/InventoryMenu/InventoryMenu.tscn" id="17_yuih7"]
+[ext_resource type="PackedScene" uid="uid://b8ebym4vluj2q" path="res://General/ControlsOverworld/MagicMenu/MagicMenu.tscn" id="18_xigkr"]
+[ext_resource type="PackedScene" uid="uid://by5ykniuq56un" path="res://General/ControlsOverworld/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn" id="19_dggqp"]
+[ext_resource type="PackedScene" uid="uid://h4qib203h5ag" path="res://General/ControlsOverworld/HQMenus/HQMenu.tscn" id="20_i8ied"]
+[ext_resource type="PackedScene" uid="uid://hjiesgslomj1" path="res://General/ControlsOverworld/UseMenu/UseMenu.tscn" id="20_q0t0q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n6h7e"]
 shader = ExtResource("2_ts544")
@@ -44,9 +57,11 @@ script = ExtResource("1_qrnep")
 process_mode = 3
 script = ExtResource("1_fymdo")
 
-[node name="Cabin" parent="SceneManager" instance=ExtResource("1_r3k5x")]
+[node name="HeadQuarters" parent="SceneManager" instance=ExtResource("3_wkfag")]
 
 [node name="MenusAndUICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="---------ControlsCommon" type="Node" parent="MenusAndUICanvasLayer"]
 
 [node name="DialogueBox" parent="MenusAndUICanvasLayer" instance=ExtResource("2_ly824")]
 visible = false
@@ -77,6 +92,85 @@ metadata/_edit_lock_ = true
 [node name="ActorMicroInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("8_83orp")]
 visible = false
 position = Vector2(199, 7)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="YesOrNoPrompt" parent="MenusAndUICanvasLayer" instance=ExtResource("9_620es")]
+visible = false
+position = Vector2(132, 100)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="--------OverworldMenus" type="Node" parent="MenusAndUICanvasLayer"]
+
+[node name="ActionsMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("10_mjs10")]
+visible = false
+position = Vector2(131, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="ShopMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("11_myimt")]
+visible = false
+position = Vector2(131, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="MicroMemberListViewNodeRoot" parent="MenusAndUICanvasLayer" instance=ExtResource("11_d3dwc")]
+visible = false
+position = Vector2(36, 12)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="ShopItemSelectionMenuNode" parent="MenusAndUICanvasLayer" instance=ExtResource("13_gb2us")]
+visible = false
+position = Vector2(36, 6)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="DropMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("14_x8vf8")]
+visible = false
+position = Vector2(140, 136)
+scale = Vector2(0.8, 0.8)
+
+[node name="EquipMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("15_rgpd6")]
+visible = false
+position = Vector2(140, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="GiveMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("16_pr5hh")]
+visible = false
+position = Vector2(140, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="InventoryMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("17_yuih7")]
+visible = false
+position = Vector2(131, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="MagicMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("18_xigkr")]
+visible = false
+position = Vector2(140, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="NoValidOptionWarningBoxRoot" parent="MenusAndUICanvasLayer" instance=ExtResource("19_dggqp")]
+visible = false
+position = Vector2(96, 72)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="HQMenuRoot" parent="MenusAndUICanvasLayer" instance=ExtResource("20_i8ied")]
+visible = false
+position = Vector2(131, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="UseEquipMenuRoot" parent="MenusAndUICanvasLayer" instance=ExtResource("20_q0t0q")]
+visible = false
+position = Vector2(140, 136)
 scale = Vector2(0.8, 0.8)
 metadata/_edit_lock_ = true
 

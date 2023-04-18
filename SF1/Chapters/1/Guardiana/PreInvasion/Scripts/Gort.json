@@ -1,0 +1,22 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Hey there, youngster. My name is Gort. Care to hear my story?",
+			"InteractionPrompt": "YesOrNo"
+		},
+
+		{
+			"InteractionAnswer": "YES",
+			"Script": "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Gort_Yes.json"
+		},
+		
+		{
+			"InteractionAnswer": "NO",
+			"Script": "res://SF1/Chapters/1/Guardiana/PreInvasion/Scripts/Gort_No.json"
+		}
+	]
+}

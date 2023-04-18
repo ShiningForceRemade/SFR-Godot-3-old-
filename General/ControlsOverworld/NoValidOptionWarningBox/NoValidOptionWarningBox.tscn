@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://by5ykniuq56un"]
+
+[ext_resource type="Script" path="res://General/ControlsOverworld/NoValidOptionWarningBox/NoValidOptionWarningBox.gd" id="1_yeld0"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="2"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="3"]
+
+[node name="NoValidOptionWarningBoxRoot" type="Node2D"]
+script = ExtResource("1_yeld0")
+
+[node name="BackgroundNinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 168.0
+offset_bottom = 24.0
+texture = ExtResource("2")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="TextLabel" type="Label" parent="BackgroundNinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00218987
+anchor_right = 0.99781
+anchor_bottom = 1.0
+offset_left = 8.3679
+offset_top = 8.0
+offset_right = -7.63208
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("3")
+text = "No Target."
+horizontal_alignment = 1
+vertical_alignment = 1

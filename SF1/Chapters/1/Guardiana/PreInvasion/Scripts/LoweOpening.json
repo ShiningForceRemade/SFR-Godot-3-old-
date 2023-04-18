@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Well, {main_character_name}, had enough swordplay for today?"
+		},
+
+		{
+			"Text": "I don't know how you keep at it hour after hour. I'm dead tired after about 15 minutes!"
+		}
+	]
+}

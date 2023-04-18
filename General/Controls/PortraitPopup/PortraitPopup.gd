@@ -12,7 +12,8 @@ func _ready():
 
 func load_portrait(portrait_resource_path: String) -> void:
 	print("here ----", portrait_resource_path)
-	portraitTextureRect.texture = load(portrait_resource_path)
+	if portrait_resource_path != null:
+		portraitTextureRect.texture = load(portrait_resource_path)
 
 
 func PlayDefaultAnimation() -> void:

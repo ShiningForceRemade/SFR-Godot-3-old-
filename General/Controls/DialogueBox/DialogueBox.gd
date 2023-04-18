@@ -84,34 +84,35 @@ func s_battle_message_complete(_node_arg, _property_arg) -> void:
 #	# get_tree().paused = true
 
 
-#
-#func play_message_none_interactable(str_arg = "") -> void:
-#	Clean()
-#
-#	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
-#	# dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
-#	connection_status = false
-#
-#	dialogueRichTextLabel.percent_visible = 0
-#	dialogueRichTextLabel.bbcode_text = ""
-#
-#	visible = true
-#	dialogue_box_is_visible = visible
-#	Singleton_CommonVariables.dialogue_box_is_currently_active = false
-#	active = false
-#
-#	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
-#
-#	dialogueRichTextLabel.show()
-#	dialogueRichTextLabel.bbcode_text = str_arg
-#
-#	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
-#	0, 1, 
-#	GetTweenTimeForText(str_arg), 
-#	Tween.TRANS_LINEAR, Tween.EASE_IN)
-#
-#	dialogueTween.start()
 
+func play_message_none_interactable(str_arg = "") -> void:
+	Clean()
+
+	# dialogueTween.disconnect("tween_completed", self, "s_battle_message_complete")
+	# dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
+	connection_status = false
+
+	dialogueRichTextLabel.visible_ratio = 0
+	dialogueRichTextLabel.text = ""
+
+	visible = true
+	dialogue_box_is_visible = visible
+	Singleton_CommonVariables.dialogue_box_is_currently_active = false
+	active = false
+
+	# Singleton_BattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+
+	dialogueRichTextLabel.show()
+	dialogueRichTextLabel.bbcode_text = str_arg
+	
+	var dialogueTween = create_tween()
+	dialogueTween.tween_property(dialogueRichTextLabel, "visible_ratio", 0, 1) 
+	dialogueTween.tween_interval(GetTweenTimeForText(str_arg))
+	dialogueTween.set_ease(Tween.EASE_IN)
+	dialogueTween.set_trans(Tween.TRANS_LINEAR)
+	
+	# dialogueTween.start()
+	
 	# yield(get_tree().create_timer(0.5), "timeout")
 	# get_tree().paused = true
 
@@ -335,95 +336,95 @@ func load_dialog():
 				# 	Singleton_Game_GlobalCommonVariables.interaction_node_reference.interaction_completed()
 				
 				return
-#			elif key == "InteractionPrompt":
-#
-#				print("hereeee")
-#				Singleton_CommonVariables.dialogue_bo.break_on_purpose_here_need_to_impl()
-#				# TODO: FIXME:
-#				# await Signal(dialogueTween, "tween_completed")
-#
-#				active = false
-#				Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-#
-#				# 
-#				# dialogueRichTextLabel.percent_visible = 0
-#				# dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#				# dialogueTween.start()
-#
-#				# var display_str = "I'm very sorry!\nI'm out of stock!\nDo you want anything else?"
-#				# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
-#
-#				# dialogue_index += 1
-#
-#
-#				Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.s_show__yes_or_no_prompt()
-#				var result = await Signal(Singleton_CommonVariables.menus_root_node.UserInteractionPromptsRoot.YesOrNoPromptRoot, "signal__yes_or_no_prompt__choice")
-#				if result == "NO":
-#					Singleton_CommonVariables.interaction_yes_or_no_selection = "NO"
-#					print("No")
-#
-#					var remaining_lines = dialogue.size() - dialogue_index
-#					for _x in remaining_lines:
-#
-#						var ikeys = dialogue[dialogue_index].keys()
-#						print(ikeys)
-#
-#						if ikeys.size() <= 1:
-#							continue
-#
-#						# for ikey in dialogue[dialogue_index]:
-#						# print(ikey)
-#						print(dialogue[dialogue_index])
-#						print(dialogue[dialogue_index][ikeys[1]])
-#						if ikeys[0] == "InteractionAnswer":
-#							if dialogue[dialogue_index][ikeys[0]] == "NO":
-#								# print(dialogue[dialogue_index][ikey])
-#								print(dialogue[dialogue_index][ikeys[1]])
-#
-#								Singleton_CommonVariables.dialogue_box_node.external_file = dialogue[dialogue_index][ikeys[1]]
-#								Singleton_CommonVariables.dialogue_box_node._process_new_resource_file()
-#								return
-#							else:
-#								dialogue_index += 1
-#						else:
-#							dialogue_index += 1
-#					pass
-#				elif result == "YES":
-#					Singleton_CommonVariables.interaction_yes_or_no_selection = "YES"
-#					print("Yes")
-#
-#					var remaining_lines = dialogue.size() - dialogue_index
-#					for _x in remaining_lines:
-#
-#						var ikeys = dialogue[dialogue_index].keys()
-#						print(ikeys)
-#
-#						if ikeys.size() <= 1:
-#							continue
-#
-#						# for ikey in dialogue[dialogue_index]:
-#						# print(ikey)
-#						print(dialogue[dialogue_index])
-#						print(dialogue[dialogue_index][ikeys[1]])
-#						if ikeys[0] == "InteractionAnswer":
-#							if dialogue[dialogue_index][ikeys[0]] == "YES":
-#								# print(dialogue[dialogue_index][ikey])
-#								print(dialogue[dialogue_index][ikeys[1]])
-#
-#								Singleton_CommonVariables.dialogue_box_node.external_file = dialogue[dialogue_index][ikeys[1]]
-#								Singleton_CommonVariables.dialogue_box_node._process_new_resource_file()
-#								return
-#							else:
-#								dialogue_index += 1
-#						else:
-#							dialogue_index += 1
-#
-#					pass
-#
-#				# dialogue_index += 1
-#				# load_dialog()
-#
-#				return
+			elif key == "InteractionPrompt":
+
+				print("hereeee")
+				# Singleton_CommonVariables.dialogue_bo.break_on_purpose_here_need_to_impl()
+				# TODO: FIXME:
+				# await Signal(dialogueTween, "tween_completed")
+
+				active = false
+				Singleton_CommonVariables.ui__yes_or_no_prompt.s_show__yes_or_no_prompt()
+
+				# 
+				# dialogueRichTextLabel.percent_visible = 0
+				# dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				# dialogueTween.start()
+
+				# var display_str = "I'm very sorry!\nI'm out of stock!\nDo you want anything else?"
+				# Singleton_Game_GlobalCommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+
+				# dialogue_index += 1
+
+
+				Singleton_CommonVariables.ui__yes_or_no_prompt.s_show__yes_or_no_prompt()
+				var result = await Signal(Singleton_CommonVariables.ui__yes_or_no_prompt, "signal__yes_or_no_prompt__choice")
+				if result == "NO":
+					Singleton_CommonVariables.interaction_yes_or_no_selection = "NO"
+					print("No")
+
+					var remaining_lines = dialogue.size() - dialogue_index
+					for _x in remaining_lines:
+
+						var ikeys = dialogue[dialogue_index].keys()
+						print(ikeys)
+
+						if ikeys.size() <= 1:
+							continue
+
+						# for ikey in dialogue[dialogue_index]:
+						# print(ikey)
+						print(dialogue[dialogue_index])
+						print(dialogue[dialogue_index][ikeys[1]])
+						if ikeys[0] == "InteractionAnswer":
+							if dialogue[dialogue_index][ikeys[0]] == "NO":
+								# print(dialogue[dialogue_index][ikey])
+								print(dialogue[dialogue_index][ikeys[1]])
+
+								Singleton_CommonVariables.dialogue_box_node.external_file = dialogue[dialogue_index][ikeys[1]]
+								Singleton_CommonVariables.dialogue_box_node._process_new_resource_file()
+								return
+							else:
+								dialogue_index += 1
+						else:
+							dialogue_index += 1
+					pass
+				elif result == "YES":
+					Singleton_CommonVariables.interaction_yes_or_no_selection = "YES"
+					print("Yes")
+
+					var remaining_lines = dialogue.size() - dialogue_index
+					for _x in remaining_lines:
+
+						var ikeys = dialogue[dialogue_index].keys()
+						print(ikeys)
+
+						if ikeys.size() <= 1:
+							continue
+
+						# for ikey in dialogue[dialogue_index]:
+						# print(ikey)
+						print(dialogue[dialogue_index])
+						print(dialogue[dialogue_index][ikeys[1]])
+						if ikeys[0] == "InteractionAnswer":
+							if dialogue[dialogue_index][ikeys[0]] == "YES":
+								# print(dialogue[dialogue_index][ikey])
+								print(dialogue[dialogue_index][ikeys[1]])
+
+								Singleton_CommonVariables.dialogue_box_node.external_file = dialogue[dialogue_index][ikeys[1]]
+								Singleton_CommonVariables.dialogue_box_node._process_new_resource_file()
+								return
+							else:
+								dialogue_index += 1
+						else:
+							dialogue_index += 1
+
+					pass
+
+				# dialogue_index += 1
+				# load_dialog()
+
+				return
 
 
 
@@ -479,15 +480,15 @@ func check_and_replace_text_sub_points(str_arg: String) -> String:
 func ShowMenu(string_arg: String) -> void:
 	if string_arg == "HQMenu":
 		Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
-		Singleton_CommonVariables.menus_root_node.HQMenuWrapperRoot.s_show_hq_menu()
+		Singleton_CommonVariables.ui__hq_menu.show_with_tween()
 	elif  string_arg == "PriestMenu":
 		Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
 		Singleton_CommonVariables.ui__priest_menu.s_show_priest_menu()
 	elif  string_arg == "ShopMenu":
 		# print(Singleton_Game_GlobalCommonVariables.interaction_node_reference.ITEM_LIST)
-		Singleton_CommonVariables.menus_root_node.ShopMenuWrapperNode.ShopItemSelectionMenu.insert_item_list(Singleton_CommonVariables.interaction_node_reference.ITEM_LIST)
+		Singleton_CommonVariables.ui__shop_item_selection_menu.insert_item_list(Singleton_CommonVariables.interaction_node_reference.ITEM_LIST)
 		Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
-		Singleton_CommonVariables.menus_root_node.ShopMenuWrapperNode.s_show_shop_menu()
+		Singleton_CommonVariables.ui__shop_menu.s_show_shop_menu()
 
 
 func GetTweenTimeForText(text_str: String) -> float:

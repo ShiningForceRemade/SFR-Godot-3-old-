@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://blhprxolo5vvq"]
+
+[ext_resource type="Texture2D" uid="uid://bexr4d3s2v782" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="1"]
+[ext_resource type="Script" path="res://General/ControlsOverworld/MicroMemberListView/InventoryPreview.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://b451lgd0islao" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionBorder.tscn" id="3"]
+
+[node name="InventoryPreviewRoot" type="Node2D"]
+script = ExtResource("2")
+
+[node name="SlotUpSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 12)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="SlotLeftSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="SlotRightSprite" type="Sprite2D" parent="."]
+position = Vector2(40, 24)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="SlotDownSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 36)
+texture = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("3")]
+position = Vector2(16, 0)

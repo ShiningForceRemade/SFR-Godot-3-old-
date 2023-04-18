@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://12nby2m8fegb"]
+[gd_scene load_steps=6 format=3 uid="uid://12nby2m8fegb"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_4disg"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="1_cqr13"]
+[ext_resource type="Texture2D" uid="uid://c5k05u34xnnts" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Map_Sprites.png" id="3_j1dlq"]
+[ext_resource type="Texture2D" uid="uid://dbcenl20q6pns" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Battle_Sprites.png" id="4_gddva"]
+[ext_resource type="Texture2D" uid="uid://be8wx6cawojlj" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Portraits.png" id="5_1v7pj"]
 
 [node name="Max" type="Node2D"]
+script = ExtResource("1_4disg")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("1_cqr13")]
+position = Vector2(8, -16)
+character_name = "Max"
+texture_sprite_map = ExtResource("3_j1dlq")
+texture_sprite_battle = ExtResource("4_gddva")
+texture_protrait = ExtResource("5_1v7pj")

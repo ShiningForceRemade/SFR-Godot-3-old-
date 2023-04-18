@@ -155,12 +155,14 @@ offset_bottom = 34.0
 metadata/_edit_lock_ = true
 
 [node name="StaticLeftEdgeColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
 offset_top = 6.0
 offset_right = 1.0
 offset_bottom = 12.0
 metadata/_edit_lock_ = true
 
 [node name="StaticRightEdgeColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 6.0
 offset_right = 3.0
@@ -168,6 +170,7 @@ offset_bottom = 12.0
 metadata/_edit_lock_ = true
 
 [node name="StaticCenterWrapColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 5.0
 offset_right = 2.0
@@ -175,6 +178,7 @@ offset_bottom = 13.0
 metadata/_edit_lock_ = true
 
 [node name="BackgroundColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 6.0
 offset_right = 2.0
@@ -183,6 +187,7 @@ color = Color(1, 0.00784314, 0.00784314, 1)
 metadata/_edit_lock_ = true
 
 [node name="ForegroundColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 6.0
 offset_right = 2.0

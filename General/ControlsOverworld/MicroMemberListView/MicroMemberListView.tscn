@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://dv3qaqslut63l"]
+
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://blhprxolo5vvq" path="res://General/ControlsOverworld/MicroMemberListView/InventoryPreview.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="7"]
+[ext_resource type="PackedScene" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionLongBorder.tscn" id="7_50skj"]
+[ext_resource type="Texture2D" uid="uid://doky8w0iu55ih" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://cpydwxcj01iv1" path="res://Assets/SF1/ShiningForceMenuBorder.png" id="10"]
+[ext_resource type="Script" path="res://General/ControlsOverworld/MicroMemberListView/MicroMemberListView.gd" id="11"]
+
+[node name="MicroMemberListViewNodeRoot" type="Node2D"]
+script = ExtResource("11")
+
+[node name="PortraitWrapperNode" type="Node2D" parent="."]
+
+[node name="PortraitSprite" type="Sprite2D" parent="PortraitWrapperNode"]
+position = Vector2(22, 29)
+scale = Vector2(0.708333, 0.75)
+texture = ExtResource("8")
+hframes = 4
+
+[node name="PortraitNinePatchRect" type="NinePatchRect" parent="PortraitWrapperNode"]
+offset_right = 44.0
+offset_bottom = 58.0
+texture = ExtResource("10")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="StatNinePatchRect2" type="NinePatchRect" parent="."]
+offset_left = 44.0
+offset_right = 312.0
+offset_bottom = 96.0
+texture = ExtResource("7")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="NameClassLevelWrapperNode" type="Node2D" parent="StatNinePatchRect2"]
+
+[node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
+offset_left = 28.0
+offset_top = 8.0
+offset_right = 100.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("1")
+text = "NAME"
+vertical_alignment = 1
+
+[node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
+offset_left = 132.0
+offset_top = 7.0
+offset_right = 192.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("1")
+text = "CLASS"
+vertical_alignment = 1
+
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
+offset_left = 223.0
+offset_top = 7.0
+offset_right = 259.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("1")
+text = "LV"
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="StatNinePatchRect2"]
+layout_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatNinePatchRect2/ScrollContainer"]
+layout_mode = 2
+
+[node name="Test_NOT-USED_CharacterWrapperNode" type="Control" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ActiveForceStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+text = "FW"
+
+[node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+text = "NAME"
+
+[node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+text = "CLASS"
+
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+text = "LV"
+
+[node name="StatNinePatchRect3" type="NinePatchRect" parent="."]
+offset_top = 57.0
+offset_right = 44.0
+offset_bottom = 81.0
+texture = ExtResource("7")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="NameStaticLabel" type="Label" parent="StatNinePatchRect3"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("1")
+text = "SELECT"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="InventoryPreviewRoot" parent="." instance=ExtResource("3")]
+position = Vector2(4, 58)
+scale = Vector2(0.8, 0.8)
+
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("7_50skj")]
+position = Vector2(64, 24)

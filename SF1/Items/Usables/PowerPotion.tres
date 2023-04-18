@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://SF1/Items/Usable.gd" type="Script" id=1]
+[ext_resource path="res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1_plus_Self.gd" type="Script" id=2]
+[ext_resource path="res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd" type="Script" id=3]
+[ext_resource path="res://Assets/SFCD/Items/Usables/PowerPotion.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+item_name = "Power Potion"
+texture = ExtResource( 4 )
+target_actor_type = 1
+attribute = [ 1 ]
+attribute_bonus = [ 1, 4 ]
+key_item = false
+price_buy = 500
+price_sell = 500
+item_use_range = ExtResource( 2 )
+item_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1_plus_Self.gd"
+item_use_target_type = ExtResource( 3 )
+item_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
+sell_to_deals = true
+usable = true

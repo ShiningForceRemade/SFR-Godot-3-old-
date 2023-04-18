@@ -1,0 +1,19 @@
+{
+	"script": [
+		{
+			"Text": "Lord Varios, the king has sent for you. You must come at once!"
+		},
+
+		{
+			"ShowPortrait": "res://Assets/SF1/NPC/Varios_Portraits.png"
+		},
+
+		{
+			"Text": "Of course. Lead the way, guardsman."
+		},
+
+		{
+			"Text": "I fear the worst, {main_character_name}! Prepare yourself for true battle immediately!."
+		}
+	]
+}

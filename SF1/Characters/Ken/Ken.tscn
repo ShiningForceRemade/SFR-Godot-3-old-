@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ukgydxdq01m1"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_j4ci7"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_evldt"]
+
+[node name="Ken" type="Node2D"]
+script = ExtResource("1_j4ci7")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_evldt")]

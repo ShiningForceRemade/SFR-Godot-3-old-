@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=3 uid="uid://h4qib203h5ag"]
+
+[ext_resource type="Texture2D" uid="uid://bta3lh8n2hffm" path="res://Assets/SFCD/Genesis 32X SCD - Shining Force CD Sega CD - Icons.png" id="1"]
+[ext_resource type="Script" path="res://General/ControlsOverworld/HQMenus/HQMenu.gd" id="1_bj76u"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="2"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="3"]
+
+[sub_resource type="Animation" id="1"]
+resource_name = "AdviceMenuOption"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AdviceActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "InventoryMenuOption"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InventoryActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "JoinMenuOption"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JoinActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "StatsMenuOption"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StatsActionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rphbv"]
+_data = {
+"AdviceMenuOption": SubResource("1"),
+"InventoryMenuOption": SubResource("2"),
+"JoinMenuOption": SubResource("3"),
+"StatsMenuOption": SubResource("4")
+}
+
+[node name="HQMenuRoot" type="Node2D"]
+script = ExtResource("1_bj76u")
+
+[node name="AdviceActionSprite" type="Sprite2D" parent="."]
+position = Vector2(36, 12)
+texture = ExtResource("1")
+vframes = 2
+region_enabled = true
+region_rect = Rect2(360, 136, 24, 48)
+
+[node name="JoinActionSprite" type="Sprite2D" parent="."]
+position = Vector2(12, 24)
+texture = ExtResource("1")
+vframes = 2
+region_enabled = true
+region_rect = Rect2(616, 136, 24, 48)
+
+[node name="InventoryActionSprite" type="Sprite2D" parent="."]
+position = Vector2(60, 24)
+texture = ExtResource("1")
+vframes = 2
+region_enabled = true
+region_rect = Rect2(72, 136, 24, 48)
+
+[node name="StatsActionSprite" type="Sprite2D" parent="."]
+position = Vector2(36, 36)
+texture = ExtResource("1")
+vframes = 2
+region_enabled = true
+region_rect = Rect2(296, 136, 24, 48)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 88.0
+offset_top = 24.0
+offset_right = 216.0
+offset_bottom = 48.0
+texture = ExtResource("2")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3")
+text = "TEST"
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "AdviceMenuOption"
+libraries = {
+"": SubResource("AnimationLibrary_rphbv")
+}

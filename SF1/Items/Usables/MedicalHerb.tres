@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://SF1/Items/Usable.gd" type="Script" id=1]
+[ext_resource path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+item_name = "Medical Herb"
+texture = ExtResource( 2 )
+target_actor_type = 1
+attribute = [ 6 ]
+attribute_bonus = [ 10 ]
+key_item = false
+price_buy = 100
+price_sell = 50
+item_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd"
+item_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
+sell_to_deals = false
+usable = true

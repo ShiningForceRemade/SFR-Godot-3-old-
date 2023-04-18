@@ -1,0 +1,15 @@
+{
+	"script": [
+		{
+			"ShowPortrait": "res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png"
+		},
+
+		{
+			"Text": "Hey {main_character_name}! Don't try to sneak out of town without me!"
+		},
+
+		{
+			"Text": "(Lowe joins the Shining Force!)"
+		}
+	]
+}
