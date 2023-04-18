@@ -92,7 +92,7 @@ func play_message_none_interactable(str_arg = "") -> void:
 	# dialogueTween.disconnect("tween_completed", self, "_on_Tween_tween_completed")
 	connection_status = false
 
-	dialogueRichTextLabel.visible_ratio = 0
+	dialogueRichTextLabel.set_visible_characters(0)
 	dialogueRichTextLabel.text = ""
 
 	visible = true
@@ -106,10 +106,13 @@ func play_message_none_interactable(str_arg = "") -> void:
 	dialogueRichTextLabel.bbcode_text = str_arg
 	
 	var dialogueTween = create_tween()
-	dialogueTween.tween_property(dialogueRichTextLabel, "visible_ratio", 0, 1) 
-	dialogueTween.tween_interval(GetTweenTimeForText(str_arg))
+	dialogueTween.tween_method(dialogueRichTextLabel.set_visible_characters, 0, dialogueRichTextLabel.get_parsed_text().length(), GetTweenTimeForText(str_arg))
 	dialogueTween.set_ease(Tween.EASE_IN)
 	dialogueTween.set_trans(Tween.TRANS_LINEAR)
+	
+	# dialogueTween.connect("finished", Callable(Singleton_CommonVariables.dialogue_box_node, "_on_Tween_tween_completed"))
+	
+	
 	
 	# dialogueTween.start()
 	
@@ -224,29 +227,16 @@ func load_dialog():
 
 				Singleton_CommonVariables.ui__portrait_popup.PlayTalkingAnimation()
 
+				dialogueRichTextLabel.set_visible_characters(0)
+				var dialogueTween = create_tween()
+				# dialogueTween.connect("finished", Callable(self, "s_battle_message_complete"))
+				dialogueTween.connect("finished", Callable(Singleton_CommonVariables.dialogue_box_node, "_on_Tween_tween_completed"))
+				dialogueTween.set_trans(Tween.TRANS_LINEAR)
+				dialogueTween.set_ease(Tween.EASE_IN_OUT)
+				dialogueTween.tween_method(dialogueRichTextLabel.set_visible_characters, 0, dialogueRichTextLabel.get_parsed_text().length(), GetTweenTimeForText(dialogueRichTextLabel.get_parsed_text()))
+				
 				if itkeys.size() >= 2:
-					# dialogueRichTextLabel.set_visible_ratio(0)
-					dialogueRichTextLabel.visible_characters = 0
-					var dialogueTween = create_tween()
-					# dialogueTween.connect("finished", Callable(self, "s_battle_message_complete"))
-					dialogueTween.connect("finished", Callable(Singleton_CommonVariables.dialogue_box_node, "_on_Tween_tween_completed"))
-					dialogueTween.tween_interval(GetTweenTimeForText(dialogueRichTextLabel.get_parsed_text()))
-					dialogueTween.set_trans(Tween.TRANS_LINEAR)
-					dialogueTween.set_ease(Tween.EASE_IN_OUT)
-					dialogueTween.tween_property(dialogueRichTextLabel, "visible_characters", 999, 1)
-					# dialogueTween.play()
 					continue
-				else:
-					# dialogueRichTextLabel.set_visible_ratio(0)
-					dialogueRichTextLabel.visible_characters = 0
-					var dialogueTween = create_tween()
-					# dialogueTween.connect("finished", Callable(self, "s_battle_message_complete"))
-					dialogueTween.connect("finished", Callable(Singleton_CommonVariables.dialogue_box_node, "_on_Tween_tween_completed"))
-					dialogueTween.tween_interval(GetTweenTimeForText(dialogueRichTextLabel.get_parsed_text()))
-					dialogueTween.set_trans(Tween.TRANS_LINEAR)
-					dialogueTween.set_ease(Tween.EASE_IN_OUT)
-					dialogueTween.tween_property(dialogueRichTextLabel, "visible_characters", 999, 1)
-					# dialogueTween.play()
 
 #				if itkeys.size() <= 1:
 #					# dialogue_index += 1

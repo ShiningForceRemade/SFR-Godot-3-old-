@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://General/GameManager/SF1Node.gd" id="1_qrnep"]
 [ext_resource type="PackedScene" uid="uid://d22vywrt5rx3p" path="res://General/Controls/DialogueBox/DialogueBox.tscn" id="2_ly824"]
 [ext_resource type="Shader" path="res://General/GameManager/CRT.gdshader" id="2_ts544"]
-[ext_resource type="PackedScene" uid="uid://dwet7q712nkve" path="res://SF1/Chapters/HeadQuarters/HeadQuarters.tscn" id="3_wkfag"]
+[ext_resource type="PackedScene" uid="uid://cjjb3q3tvwpys" path="res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn" id="3_si2wa"]
 [ext_resource type="PackedScene" uid="uid://c4tkgq2olycub" path="res://DevTooling/InGameDeveloperConsole/DeveloperConsole.tscn" id="4_evtrf"]
 [ext_resource type="PackedScene" uid="uid://cqu54wxhekf6p" path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" id="5_3em28"]
 [ext_resource type="PackedScene" uid="uid://b7n5mweny73gs" path="res://General/Menus/PriestMenu/PriestMenu.tscn" id="6_8cvy1"]
@@ -57,7 +57,7 @@ script = ExtResource("1_qrnep")
 process_mode = 3
 script = ExtResource("1_fymdo")
 
-[node name="HeadQuarters" parent="SceneManager" instance=ExtResource("3_wkfag")]
+[node name="Guardiana" parent="SceneManager" instance=ExtResource("3_si2wa")]
 
 [node name="MenusAndUICanvasLayer" type="CanvasLayer" parent="."]
 
