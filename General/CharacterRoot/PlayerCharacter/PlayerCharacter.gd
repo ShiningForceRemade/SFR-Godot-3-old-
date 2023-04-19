@@ -4,10 +4,11 @@ signal signal_action_finished
 
 #
 @onready var ray: RayCast2D = $RayCast2D
+@onready var ray_interactables: RayCast2D = $InteractablesRayCast2D
 @onready var _timer: Timer = $Timer
 
 @onready var collision_shape_cell_block: CollisionShape2D = $CollisionShape2D2
-@onready var chracter_animation_player: AnimationPlayer = $CharacterRoot/AnimationPlayer
+@onready var chracter_animation_player: AnimationPlayer = $AnimationPlayer
 
 
 #
@@ -175,11 +176,18 @@ func interaction_attempt_to_talk() -> void:
 		
 		print("Start")
 		var objects_collide = [] 
-		while ray.is_colliding():
-			var obj = ray.get_collider() # get the next object that is colliding.
+		while ray_interactables.is_colliding():
+			var obj = ray_interactables.get_collider() # get the next object that is colliding.
+			print(obj)
+#			if obj is TileMap:
+#				objects_collide.append(obj) # add it to the array.
+#				ray.add_exception_rid(obj.tile_set) # add to ray's exception. That way it could detect something being behind it.
+#				ray.force_raycast_update() # update the ray's collision query.	
+#				continue
+			
 			objects_collide.append(obj) # add it to the array.
-			ray.add_exception(obj) # add to ray's exception. That way it could detect something being behind it.
-			ray.force_raycast_update() # update the ray's collision query.
+			ray_interactables.add_exception(obj) # add to ray's exception. That way it could detect something being behind it.
+			ray_interactables.force_raycast_update() # update the ray's collision query.
 
 		#after all is done, remove the objects from ray's exception.
 #		for obj in objects_collide:
@@ -215,24 +223,24 @@ func interaction_attempt_to_talk() -> void:
 #				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
 		
 		for obj in objects_collide:
-			ray.remove_exception(obj)
+			ray_interactables.remove_exception(obj)
 			
 		print("End\n")
 
 
 func interaction_attempt_to_search() -> void:
 	# if !Singleton_Game_GlobalCommonVariables.is_currently_in_battle_scene:
-	if ray.is_colliding():
+	if ray_interactables.is_colliding():
 		# TODO: probably should add a helper function to get the parent element
 		# where the custom logic will live instead of going up for build v0.0.2 its fine
 		# print(frontFacingRaycast.get_collider())
 		# print(frontFacingRaycast.get_collider().get_parent().get_name())
-		print(ray.get_collider().get_parent().get_parent(), ray.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
+		# print(ray.get_collider().get_parent().get_parent(), ray.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
 		
-		if ray.get_collider().get_parent().get_parent().has_method("attempt_to_interact_search"):
-			ray.get_collider().get_parent().get_parent().attempt_to_interact()
-		elif ray.get_collider().get_parent().has_method("attempt_to_interact_search"):
-			ray.get_collider().get_parent().attempt_to_interact()
+		if ray_interactables.get_collider().get_parent().get_parent().has_method("attempt_to_interact_search"):
+			ray_interactables.get_collider().get_parent().get_parent().attempt_to_interact()
+		elif ray_interactables.get_collider().get_parent().has_method("attempt_to_interact_search"):
+			ray_interactables.get_collider().get_parent().attempt_to_interact()
 
 
 func PlayerFacingDirection() -> String:
@@ -258,8 +266,10 @@ func get_actor_name() -> String:
 ### Movement
 
 func play_animation(animation_name: String) ->  void:
-	if chracter_animation_player.current_animation != animation_name:
-		chracter_animation_player.play(animation_name)
+	if chracter_animation_player != null:
+		if chracter_animation_player.current_animation != animation_name:
+			if chracter_animation_player.has_animation(animation_name):
+				chracter_animation_player.play(animation_name)
 
 
 enum e_directions {
@@ -285,8 +295,11 @@ const collision_cell_blocker_positions = {
 
 func attempt_to_move(new_position_target: Vector2, direction: e_directions) -> void:
 	ray.target_position = ray_target_positions[direction] # inputs[dir] * tile_size
+	ray_interactables.target_position = ray_target_positions[direction]
 	ray.force_raycast_update()
-	chracter_animation_player.speed_scale = 2
+	
+	if chracter_animation_player != null:
+		chracter_animation_player.speed_scale = 2
 	
 	if !ray.is_colliding():
 		collision_shape_cell_block.position = collision_cell_blocker_positions[direction]
@@ -301,7 +314,9 @@ func attempt_to_move(new_position_target: Vector2, direction: e_directions) -> v
 		is_currently_moving = true
 		await tween.finished
 		is_currently_moving = false
-		chracter_animation_player.speed_scale = 1
+		
+		if chracter_animation_player != null:
+			chracter_animation_player.speed_scale = 1
 		
 		collision_shape_cell_block.position = Vector2.ZERO
 

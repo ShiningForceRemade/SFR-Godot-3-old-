@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://ivo8m7pcgs1u"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_bhel5"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_sxb6p"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/ShortSword.tres" id="3_kn0ri"]
+[ext_resource type="Texture2D" uid="uid://cw8hey23aya3i" path="res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Map_Sprites.png" id="4_60xq4"]
+[ext_resource type="Texture2D" uid="uid://mei3gskgwgo4" path="res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Battle_Sprites.png" id="5_qpir3"]
+[ext_resource type="Texture2D" uid="uid://3lwa8lm0vjyj" path="res://Assets/SF1/PlayableCharacters/Gort/Unpromoted_Portraits.png" id="6_lu2ws"]
+
+[node name="Gort" type="Node2D"]
+script = ExtResource("1_bhel5")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_sxb6p")]
+character_name = "Gort"
+character_class = 2
+inventory_items_id = Array[Resource]([ExtResource("3_kn0ri")])
+is_item_equipped = Array[bool]([true])
+texture_sprite_overworld_unpromoted = ExtResource("4_60xq4")
+texture_sprite_battle_unpromoted = ExtResource("5_qpir3")
+texture_sprite_portrait_unpromoted = ExtResource("6_lu2ws")
+move = 6
+HP_Total = 9
+attack = 9
+defense = 7
+agility = 4
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("4_60xq4")
+hframes = 6
+
+[editable path="CharacterRoot"]

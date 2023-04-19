@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://i7npw20pbokw"]
+
+[ext_resource type="PackedScene" uid="uid://itpvlgqdm3kt" path="res://General/NPC/NPC.tscn" id="1_0mj3v"]
+[ext_resource type="Script" path="res://SF1/Characters/GenericHeadquartersNPC.gd" id="1_20mji"]
+[ext_resource type="Texture2D" uid="uid://dadpqgcpviiey" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Map_Sprites.png" id="3_e5wkk"]
+
+[sub_resource type="Animation" id="Animation_lhpui"]
+resource_name = "DownMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_yyqlm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0yprx"]
+resource_name = "UpMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_nosuh"]
+resource_name = "LeftMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_cin0a"]
+resource_name = "RightMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6xyb"]
+_data = {
+"DownMovement": SubResource("Animation_lhpui"),
+"LeftMovement": SubResource("Animation_nosuh"),
+"RESET": SubResource("Animation_yyqlm"),
+"RightMovement": SubResource("Animation_cin0a"),
+"UpMovement": SubResource("Animation_0yprx")
+}
+
+[node name="LukeNPC" type="Node2D"]
+script = ExtResource("1_20mji")
+
+[node name="NPCRoot" parent="." instance=ExtResource("1_0mj3v")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCRoot/AnimatableBody2D" index="0"]
+root_node = NodePath("../CharacterRoot")
+autoplay = "DownMovement"
+libraries = {
+"": SubResource("AnimationLibrary_c6xyb")
+}
+
+[node name="Sprite2D" parent="NPCRoot/AnimatableBody2D/CharacterRoot" index="0"]
+texture = ExtResource("3_e5wkk")
+hframes = 8
+
+[editable path="NPCRoot"]
+[editable path="NPCRoot/AnimatableBody2D/CharacterRoot"]

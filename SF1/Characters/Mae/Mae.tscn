@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgrv107uwsnvs"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_gavvx"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_4vesq"]
+[ext_resource type="Texture2D" uid="uid://d2rilnko1fb27" path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Map_Sprites.png" id="3_844rh"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/BronzeLance.tres" id="3_cjiq0"]
+[ext_resource type="Texture2D" uid="uid://cf1egmohxnwur" path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Battle_Sprites_Lance.png" id="4_75q1l"]
+[ext_resource type="Texture2D" uid="uid://6eynw8ha22l2" path="res://Assets/SF1/PlayableCharacters/Mae/Unpromoted_Portraits.png" id="5_hd153"]
+
+[node name="Mae" type="Node2D"]
+script = ExtResource("1_gavvx")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_4vesq")]
+character_name = "Mae"
+character_class = 1
+inventory_items_id = Array[Resource]([ExtResource("3_cjiq0")])
+is_item_equipped = Array[bool]([true])
+texture_sprite_overworld_unpromoted = ExtResource("3_844rh")
+texture_sprite_battle_unpromoted = ExtResource("4_75q1l")
+texture_sprite_portrait_unpromoted = ExtResource("5_hd153")
+move = 7
+movement_type = 1
+HP_Total = 8
+hp_growth = 1
+attack = 7
+defense = 6
+defense_growth = 2
+agility = 5
+critical_hit_chance = 3
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("3_844rh")
+hframes = 6
+
+[editable path="CharacterRoot"]

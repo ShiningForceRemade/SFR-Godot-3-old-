@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jdl4mocm5anp"]
+
+[ext_resource type="Script" path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationSpellResource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")

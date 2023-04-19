@@ -38,10 +38,12 @@ func _ready():
 		if fm.leader:
 			continue
 		
-		npc_fm = load(fm.character_npc_scene).instance()
-		npc_fm_chr = npc_fm.get_child(0)
+		npc_fm = load(fm.character_npc_scene).instantiate()
+		npc_fm_chr = npc_fm.get_child(0).get_child(0)
 		npc_fm_chr.stationary = true
 		
+		if fm.unlocked == false:
+			continue
 		
 		# TODO: when there's more than 12 characters in total need to add checks 
 		# to not overflow the active_pos
@@ -54,18 +56,18 @@ func _ready():
 			apn = inactive_pos[i].name
 			if "Facing-Down" in apn:
 				print("Down")
-				npc_fm_chr.default_facing_direction = 0
+				npc_fm_chr.set_facing_direction("Down")
 			elif "Facing-Left" in apn:
 				print("Left")
-				npc_fm_chr.default_facing_direction = 1
+				npc_fm_chr.set_facing_direction("Left")
 			elif "Facing-Right" in apn:
 				print("Right")
-				npc_fm_chr.default_facing_direction = 2
+				npc_fm_chr.set_facing_direction("Right")
 			elif "Facing-Up" in apn:
 				print("Up")
-				npc_fm_chr.default_facing_direction = 3
+				npc_fm_chr.set_facing_direction("Up")
 			
-			print(npc_fm_chr.default_facing_direction, " ", apn)
+			# print(npc_fm_chr.default_facing_direction, " ", apn)
 			
 			# npc_fm.default_facing_direction_setup()
 		
@@ -107,4 +109,7 @@ func _ready():
 #			TilemapSceneRoot.get_node("10").tile_set = ten_tres
 #
 #			using_original_tiles = true
+
+
+### ActionSpots Start
 

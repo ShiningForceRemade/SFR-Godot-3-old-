@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://d275lnfhg777l"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_3onul"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_5c7et"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/WoodenStaff.tres" id="3_ebr6a"]
+[ext_resource type="Texture2D" uid="uid://bi508n14n6sbp" path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Map_Sprites.png" id="3_xv5ux"]
+[ext_resource type="Resource" uid="uid://b7gg1uuja1jhl" path="res://SF1/Spells/Blaze/Blaze.tres" id="4_bdv84"]
+[ext_resource type="Texture2D" uid="uid://bo5bvsm6yi0no" path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" id="4_kk5l1"]
+[ext_resource type="Texture2D" uid="uid://de0u4jw3f0nvk" path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png" id="5_0f68a"]
+
+[node name="Tao" type="Node2D"]
+script = ExtResource("1_3onul")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_5c7et")]
+character_name = "Tao"
+ai_target_priority = 75
+character_class = 4
+inventory_items_id = Array[Resource]([ExtResource("3_ebr6a")])
+is_item_equipped = Array[bool]([true])
+spells_id = Array[Resource]([ExtResource("4_bdv84")])
+texture_sprite_overworld_unpromoted = ExtResource("3_xv5ux")
+texture_sprite_battle_unpromoted = ExtResource("4_kk5l1")
+texture_sprite_portrait_unpromoted = ExtResource("5_0f68a")
+move = 5
+HP_Total = 10
+MP_Total = 7
+mp_growth = 3
+attack = 4
+defense = 4
+agility = 6
+critical_hit_chance = 3
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("3_xv5ux")
+hframes = 8
+frame = 0
+
+[editable path="CharacterRoot"]

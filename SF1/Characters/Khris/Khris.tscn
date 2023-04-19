@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://bak0avkljl70a"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_oygmw"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_8fr7a"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/WoodenStaff.tres" id="3_2qynn"]
+[ext_resource type="Texture2D" uid="uid://d01y28t6wjw0r" path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Map_Sprites.png" id="3_d2b4s"]
+[ext_resource type="Texture2D" uid="uid://dr8wviwskr77b" path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Battle_Sprites.png" id="4_bsbyb"]
+[ext_resource type="Resource" uid="uid://ct5078lg71blj" path="res://SF1/Spells/Heal/Heal.tres" id="4_mu2jx"]
+[ext_resource type="Texture2D" uid="uid://bm0t0shmoukmc" path="res://Assets/SF1/PlayableCharacters/Khris/Unpromoted_Portraits.png" id="5_3cfr5"]
+
+[node name="Khris" type="Node2D"]
+script = ExtResource("1_oygmw")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_8fr7a")]
+character_name = "Khris"
+character_class = 6
+inventory_items_id = Array[Resource]([ExtResource("3_2qynn")])
+is_item_equipped = Array[bool]([true])
+spells_id = Array[Resource]([ExtResource("4_mu2jx")])
+texture_sprite_overworld_unpromoted = ExtResource("3_d2b4s")
+texture_sprite_battle_unpromoted = ExtResource("4_bsbyb")
+texture_sprite_portrait_unpromoted = ExtResource("5_3cfr5")
+move = 5
+HP_Total = 11
+MP_Total = 10
+mp_growth = 3
+attack = 6
+defense = 5
+agility = 5
+critical_hit_chance = 2
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("3_d2b4s")
+hframes = 6
+
+[editable path="CharacterRoot"]

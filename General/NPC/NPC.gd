@@ -17,8 +17,10 @@ enum EFacingDirection { DOWN, UP, LEFT, RIGHT }
 @onready var _timer: Timer = $Timer
 
 @onready var collision_shape_cell_block: CollisionShape2D = $CollisionShape2D2
-@onready var chracter_animation_player: AnimationPlayer = $CharacterRoot/AnimationPlayer
 
+# Not accurate Error - its okay when npcs scenes are built the animation player will be manually placed 
+# TODO: even though this works should see if godot will offer a better way to handle none shared animation players
+@onready var chracter_animation_player: AnimationPlayer = $AnimationPlayer
 
 #
 var GRID_BASED_MOVEMENT:bool = true
@@ -40,12 +42,13 @@ func _ready() -> void:
 	
 	if is_npc && !stationary:
 		npc_move()
-		
-	match FacingDirection:
-		EFacingDirection.DOWN:  play_animation("DownMovement")
-		EFacingDirection.UP:    play_animation("UpMovement")
-		EFacingDirection.LEFT:  play_animation("LeftMovement")
-		EFacingDirection.RIGHT: play_animation("RightMovement")
+	
+	if chracter_animation_player != null:
+		match FacingDirection:
+			EFacingDirection.DOWN:  play_animation("DownMovement")
+			EFacingDirection.UP:    play_animation("UpMovement")
+			EFacingDirection.LEFT:  play_animation("LeftMovement")
+			EFacingDirection.RIGHT: play_animation("RightMovement")
 	
 	pass
 
@@ -167,8 +170,10 @@ func _process(_delta: float) -> void:
 
 
 func play_animation(animation_name: String) ->  void:
-	if chracter_animation_player.current_animation != animation_name:
-		chracter_animation_player.play(animation_name)
+	if chracter_animation_player.current_animation != null:
+		if chracter_animation_player.current_animation != animation_name:
+			if chracter_animation_player.has_animation(animation_name):
+				chracter_animation_player.play(animation_name)
 
 
 ### Facing Direction Helpers
@@ -275,3 +280,14 @@ func MoveInDirection(move_direction_arg: String, ignore_collision: bool = false)
 			action_move(Vector2(position.x, position.y + 24))
 		else:
 			attempt_to_move(Vector2(position.x, position.y + 24), e_directions.DOWN)
+
+
+func set_facing_direction(move_direction_arg: String) -> void:
+	if move_direction_arg == "Right":
+		FacingDirection = EFacingDirection.RIGHT
+	elif move_direction_arg == "Left":
+		FacingDirection = EFacingDirection.LEFT
+	elif move_direction_arg == "Up":
+		FacingDirection = EFacingDirection.UP
+	elif move_direction_arg == "Down":
+		FacingDirection = EFacingDirection.DOWN

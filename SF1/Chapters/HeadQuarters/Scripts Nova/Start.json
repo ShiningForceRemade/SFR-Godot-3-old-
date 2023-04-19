@@ -1,7 +1,7 @@
 {
 	"script": [
 		{
-			"ShowPortrait": ""
+			"ShowPortrait": "res://Assets/SF1/NPC/Nova_Portraits.png"
 		},
 
 		{

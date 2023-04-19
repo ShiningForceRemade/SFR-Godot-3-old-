@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyyq3vq7o514"]
+[gd_scene load_steps=7 format=3 uid="uid://cyyq3vq7o514"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_8p3nx"]
 [ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="1_elaei"]
 [ext_resource type="Texture2D" uid="uid://dadpqgcpviiey" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Map_Sprites.png" id="3_b57vq"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/ShortSword.tres" id="3_oytjb"]
 [ext_resource type="Texture2D" uid="uid://cebtj3ojk2dr2" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Battle_Sprites.png" id="4_3uwkf"]
 [ext_resource type="Texture2D" uid="uid://7hw4uimbywqm" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png" id="5_pajop"]
 
@@ -11,6 +12,21 @@ script = ExtResource("1_8p3nx")
 
 [node name="CharacterRoot" parent="." instance=ExtResource("1_elaei")]
 character_name = "Luke"
-texture_sprite_map = ExtResource("3_b57vq")
-texture_sprite_battle = ExtResource("4_3uwkf")
-texture_protrait = ExtResource("5_pajop")
+inventory_items_id = Array[Resource]([ExtResource("3_oytjb")])
+is_item_equipped = Array[bool]([true])
+texture_sprite_overworld_unpromoted = ExtResource("3_b57vq")
+texture_sprite_battle_unpromoted = ExtResource("4_3uwkf")
+texture_sprite_portrait_unpromoted = ExtResource("5_pajop")
+move = 6
+HP_Total = 9
+hp_growth = 3
+attack = 9
+defense = 7
+agility = 4
+critical_hit_chance = 3
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("3_b57vq")
+hframes = 8
+
+[editable path="CharacterRoot"]

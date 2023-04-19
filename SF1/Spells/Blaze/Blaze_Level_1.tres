@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CN_SF1_Spell_Level" load_steps=4 format=3 uid="uid://d3jnhsvimeckd"]
+
+[ext_resource type="Script" path="res://SF1/Spells/SpellLevel.gd" id="1"]
+[ext_resource type="Script" path="res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd" id="2_4wcrw"]
+[ext_resource type="Script" path="res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1_to_2.gd" id="3_nc2d5"]
+
+[resource]
+script = ExtResource("1")
+level = 1
+usage_range = ExtResource("3_nc2d5")
+target_range = ExtResource("2_4wcrw")
+mp_usage_cost = 2
+attributes = 1
+min_range = 5
+max_range = 7

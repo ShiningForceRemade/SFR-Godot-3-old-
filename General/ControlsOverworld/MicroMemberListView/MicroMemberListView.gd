@@ -525,13 +525,15 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	
 	print(c.character_base_node)
 	cnode = load(c.character_base_node)
-	print(cnode)
 	cnode = cnode.instantiate()
-	print(cnode)
 	var cnode_actor = cnode.get_actor_root_node_internal()
 	
-	if cnode_actor.texture_protrait != null:
-		portrait_sprite.texture = cnode_actor.texture_protrait
+	if cnode_actor.promotion_stage == 0:
+		if cnode_actor.texture_sprite_portrait_unpromoted != null:
+			portrait_sprite.texture = cnode_actor.texture_sprite_portrait_unpromoted
+	elif cnode_actor.promotion_stage == 1:
+		if cnode_actor.texture_sprite_portrait_promoted != null:
+			portrait_sprite.texture = cnode_actor.texture_sprite_portrait_promoted
 
 
 func DisplayItemsFullInfo(force_member) -> void:

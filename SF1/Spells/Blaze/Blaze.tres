@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CN_SF1_Spell" load_steps=5 format=3 uid="uid://b7gg1uuja1jhl"]
+
+[ext_resource type="Script" path="res://SF1/Spells/Spell.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://kxnbl8dig88u" path="res://Assets/SFCD/Spells/Blaze.png" id="2"]
+[ext_resource type="Resource" uid="uid://d3jnhsvimeckd" path="res://SF1/Spells/Blaze/Blaze_Level_1.tres" id="3"]
+[ext_resource type="Resource" uid="uid://jdl4mocm5anp" path="res://SF1/Spells/Blaze/BlazeAnimation.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+name = "Blaze"
+spell_texture = ExtResource("2")
+usable_on_actor_type = 1
+levels = Array[Resource]([ExtResource("3")])
+element_type = 1
+spell_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1_to_2.gd"
+spell_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
+spell_animation_resource = ExtResource("4")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CN_SF1_Spell" load_steps=5 format=3 uid="uid://ct5078lg71blj"]
+
+[ext_resource type="Script" path="res://SF1/Spells/Spell.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bx05pm43s0cws" path="res://Assets/SFCD/Spells/Heal.png" id="2"]
+[ext_resource type="Resource" uid="uid://pi3fyjwrbj27" path="res://SF1/Spells/Heal/Heal_Level_1.tres" id="3"]
+[ext_resource type="Resource" path="res://SF1/Spells/Heal/HealAnimation.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+name = "Heal"
+spell_texture = ExtResource("2")
+usable_on_actor_type = 2
+levels = Array[Resource]([ExtResource("3")])
+element_type = 0
+spell_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1_plus_Self.gd"
+spell_use_target_path = "res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd"
+spell_animation_resource = ExtResource("4")

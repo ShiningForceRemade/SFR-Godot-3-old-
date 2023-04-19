@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://cfiu65gxm30i7"]
 
-[ext_resource type="Texture2D" uid="uid://c5uv45cpdmh7" path="res://Assets/SF1/Tilesets/0.png" id="0"]
-[ext_resource type="Texture2D" uid="uid://dycgrcgw74hqu" path="res://Assets/SF1/Tilesets/8.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://ct2dok38cvgmu" path="res://Assets/SF1/Tilesets/10.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://c5uv45cpdmh7" path="res://Assets/SF1/Tilesets/0.png" id="1_b0vqa"]
+[ext_resource type="Texture2D" uid="uid://ct2dok38cvgmu" path="res://Assets/SF1/Tilesets/10.png" id="2_cnpgm"]
+[ext_resource type="Texture2D" uid="uid://dycgrcgw74hqu" path="res://Assets/SF1/Tilesets/8.png" id="3_intjo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0"]
-texture = ExtResource("0")
+texture = ExtResource("1_b0vqa")
 texture_region_size = Vector2i(4, 4)
 0:0/next_alternative_id = 8
 0:0/0 = 0
@@ -21513,7 +21513,7 @@ texture_region_size = Vector2i(4, 4)
 31:31/7/transpose = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1"]
-texture = ExtResource("10")
+texture = ExtResource("2_cnpgm")
 texture_region_size = Vector2i(4, 4)
 0:0/next_alternative_id = 8
 0:0/0 = 0
@@ -43021,7 +43021,7 @@ texture_region_size = Vector2i(4, 4)
 31:31/7/transpose = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2"]
-texture = ExtResource("8")
+texture = ExtResource("3_intjo")
 texture_region_size = Vector2i(4, 4)
 0:0/next_alternative_id = 8
 0:0/0 = 0

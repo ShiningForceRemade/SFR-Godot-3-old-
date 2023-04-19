@@ -12,7 +12,7 @@ func _ready():
 # and modify its texture and position when targeting
 # default cursor node is the single select and can handle all basic needs
 # more thought needed
-func draw_cursor_and_get_targets(center_actor_target_selected):
+func draw_cursor_and_get_targets(_center_actor_target_selected):
 	pass
 
 # NOTE: very important to have a easy way to clean up the resources after turn ends

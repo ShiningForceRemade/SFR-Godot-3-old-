@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/SF1/Spells/Heal/Sparkles.png" type="Texture" id=1]
+[ext_resource path="res://Assets/SF1/Spells/Heal/Fairy.png" type="Texture" id=2]
+[ext_resource path="res://DevelopmentHelperScenes/BattleCharacterAndEnemeyAnimationCreator/BattleAnimationSpellResource.gd" type="Script" id=3]
+[ext_resource path="res://SF1/Spells/Heal/Heal.anim" type="Animation" id=4]
+
+[resource]
+script = ExtResource( 3 )
+primary_animation_texture = ExtResource( 2 )
+particle_animation_texture = ExtResource( 1 )
+hframes = 4
+vframes = 1
+use_sub_area = false
+rect_position_x_offset = 0
+rect_position_y_offset = 0
+rect_position_x_size = 0
+rect_position_y_size = 0
+animation_res = ExtResource( 4 )

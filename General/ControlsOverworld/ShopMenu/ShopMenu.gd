@@ -95,7 +95,7 @@ func _process(_delta):
 				Singleton_CommonVariables.dialogue_box_node.hide()
 				Singleton_CommonVariables.ui__gold_info_box.hide()
 				show()
-				
+				await Signal(get_tree().create_timer(0.02), "timeout")
 				is_menu_active = true
 		
 			return
@@ -158,7 +158,7 @@ func _process(_delta):
 				Singleton_CommonVariables.dialogue_box_node.hide()
 				Singleton_CommonVariables.ui__gold_info_box.hide()
 				show()
-				
+				await Signal(get_tree().create_timer(0.02), "timeout")
 				is_menu_active = true
 		
 			return

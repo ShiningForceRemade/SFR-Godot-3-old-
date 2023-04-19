@@ -4,17 +4,20 @@ extends Node2D
 # signal signal_check_defeat_done
 # signal signal_death_animation_complete
 
-## 
-@export var character_name: String
-
 @export_group("Meta")
-## Determines behaviour in battle - "character" or "enemey"
-@export var actor_type: String = "character"
-
-#@export var nickname = "Nick"
+## Determines behaviour in battle - Character is force members - Enemey self explanatory - NPCs are like Peter from SF2 auto controlled force members might be expanded on in the future
+@export_enum("character", "enemey", "npc") var actor_type: String = "character"
+## The default name for the actor ie - main character in SF1 is called Max if no nickname is entered.
+@export var character_name: String
+## This should be left blank - this value will be overwritten. Ex. an actor joins the shining force and the player has the chance to give them a nickname
+var nickname: String
+# Which status ailment the character currently has - ex. posioned - confused etc TODO: should be an array
+@export_enum("None") var status: int = 0
+# Determines how likely this actor is to be targeted in battle - 0 least likely 100 attack if possible
+@export var ai_target_priority: int
 
 #
-# todo make a dictionary with all of these in the format of
+# TODO: make a dictionary with all of these in the format of
 # {full: swordsman, short: sdmn
 const char_class_array = ["SDMN", "KNT",
 		"WARR", "SKNT", "MAGE",
@@ -40,70 +43,26 @@ const char_class_array = ["SDMN", "KNT",
 		"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
 		"MGCR") var character_class: int
 
-@export var is_promoted: bool = false
+## Promotion stage dictates where the character is in their promotion stage
+## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
+@export var promotion_stage: int = 0
 
 # const item_location_c
 
+# TODO: look to see if godot 4 has custom types or export dictionary support to simplifiy this
 ## Only the first 4 fields are valid everything after that is ignored!
 @export var inventory_items_id: Array[Resource]
+## Determines if the items above are equipped or not
 @export var is_item_equipped: Array[bool]
 
-## Only the first 4 fields are valid everything after that is ignored!
+## Only the first 4 fields are valid everything after that is ignored! Place 
 @export var spells_id: Array[Resource]
-
-# group - textures
-@export var texture_sprite_map: Texture
-@export var texture_sprite_battle: Texture
-# battle palette ? whats this
-@export var texture_protrait: Texture
-
-
 # @export_enum("Medical Herb") var magic_array: Array[int]
+## TODO: What is this for again?
 @export var magic_array: Array[int]
-@export_enum("None") var status: int = 0
 
-
-### Group - stats - start
-
-@export_group("Stats")
-
-@export var level: int
-@export var move: int
-
-@export_subgroup("HP")
-@export var HP_Current: int
-@export var HP_Total: int
-@export_enum("steady", "early", "late", "early-late") var hp_growth: int
-
-@export_subgroup("MP")
-@export var MP_Current: int
-@export var MP_Total: int
-@export_enum("steady", "early", "late", "early-late") var mp_growth: int
-
-@export_subgroup("Attack")
-@export var attack: int
-@export_enum("steady", "early", "late", "early-late") var attack_growth: int
-
-@export_subgroup("Defense")
-@export var defense: int
-@export_enum("steady", "early", "late", "early-late") var defense_growth: int
-
-@export_subgroup("Agility")
-@export var agility: int
-@export_enum("steady", "early", "late", "early-late") var agility_growth: int
-
-### Group - stats - end
-
-@export_range(0, 100) var critical_hit_chance: int = 10
-@export_enum("steady", "early", "late", "early-late") var critical_hit_growth: int
-
-@export_range(0, 100) var double_attack_chance: int = 10
-@export_range(0, 100) var dodge_chance: int = 10
-
-@export var ai_target_priority: int
 
 # group - behaviours
-@export_enum("Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
 # export var regeneration_rate: int = 0
 
 # NOTE: for characters this should be done on a per character basis like kiwi fire breath or other specials 
@@ -124,7 +83,62 @@ const char_class_array = ["SDMN", "KNT",
 #			"Sleep Chance 2", "Death Chance") var special_attack: int = 0 # "None
 #export(int, 0, 100) var special_attack_chance: int = 0
 
-# group - magic resistances
+
+@export_group("Sprites Textures Animations")
+@export_subgroup("Unpromoted")
+@export var texture_sprite_overworld_unpromoted: Texture
+@export var texture_sprite_battle_unpromoted: Texture
+@export var texture_sprite_portrait_unpromoted: Texture
+@export var animation_battle_resource_unpromoted: Resource
+@export_subgroup("Promoted")
+@export var texture_sprite_overworld_promoted: Texture
+@export var texture_sprite_battle_promoted: Texture
+@export var texture_sprite_portrait_promoted: Texture
+@export var animation_battle_resource_promoted: Resource
+
+### Group - stats - start
+
+@export_group("Stats Common")
+
+@export var level: int = 1
+@export var move: int
+@export_enum("Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
+@export_range(0, 100) var double_attack_chance: int = 10
+@export_range(0, 100) var dodge_chance: int = 10
+@export var experience_points: int = 0
+
+# TODO: need a way to have growth curves for different stages of promotion
+@export_subgroup("HP")
+var HP_Current: int
+@export var HP_Total: int
+@export_enum("steady", "early", "late", "early-late") var hp_growth: int
+
+@export_subgroup("MP")
+var MP_Current: int
+@export var MP_Total: int
+@export_enum("steady", "early", "late", "early-late") var mp_growth: int
+
+@export_subgroup("Attack")
+@export var attack: int
+@export_enum("steady", "early", "late", "early-late") var attack_growth: int
+
+@export_subgroup("Defense")
+@export var defense: int
+@export_enum("steady", "early", "late", "early-late") var defense_growth: int
+
+@export_subgroup("Agility")
+@export var agility: int
+@export_enum("steady", "early", "late", "early-late") var agility_growth: int
+
+@export_subgroup("Critical Hit Chance")
+@export_range(0, 100) var critical_hit_chance: int = 10
+@export_enum("steady", "early", "late", "early-late") var critical_hit_growth: int
+
+### Group - stats - end
+
+### Group - magic resistances - start
+
+@export_group("Magoc Resistances")
 # general
 @export_range(0, 100) var magic_resistance: int = 0
 # spell specific resistance
@@ -136,9 +150,7 @@ const char_class_array = ["SDMN", "KNT",
 @export_range(0, 100) var blaze_resistance: int = 0
 @export_range(0, 100) var freeze_resistance: int = 0
 
-@export var experience_points: int = 0
-
-@export var battle_animation_unpromoted_resource: Resource
+### Group - magic resistances - end
 
 # messy wait for native grouping support then subgroup
 #var test = "" # We will store the value here

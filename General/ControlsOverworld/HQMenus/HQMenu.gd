@@ -373,6 +373,8 @@ func CancelHQMenu() -> void:
 	
 	Singleton_CommonVariables.interaction_node_reference.interaction_completed()
 	
+	Singleton_CommonVariables.ui__portrait_popup.hide()
+	
 	# Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 	# get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
 	# TODO add animation
