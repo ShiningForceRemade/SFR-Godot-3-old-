@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cohtbojleyib1"]
+
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="1_t3eh6"]
+
+[node name="MemberItemLineControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="EquippedStaticLabel" type="Label" parent="."]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("1_t3eh6")
+text = "E"
+
+[node name="ItemLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 120.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1_t3eh6")
+text = "ITEM"

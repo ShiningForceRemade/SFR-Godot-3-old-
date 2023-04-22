@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bveb42b7eis3"]
+
+[ext_resource type="Script" path="res://General/ControlsBattle/ViewSelectedActorInfoPopup/MagicMicroView/MagicMicroView.gd" id="1_kabri"]
+[ext_resource type="Texture2D" uid="uid://duo737ik7pilg" path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" id="1_v6pfc"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="2_c7mp1"]
+[ext_resource type="PackedScene" uid="uid://cb84yyori6brf" path="res://General/ControlsBattle/ViewSelectedActorInfoPopup/MagicMicroView/SpellLevelBar.tscn" id="3_wfik8"]
+
+[node name="MagicMicroView" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_kabri")
+
+[node name="MagicTextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 24.0
+texture = ExtResource("1_v6pfc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 4.0
+offset_right = 120.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("2_c7mp1")
+text = "Medical Herb"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 120.0
+offset_bottom = 22.0
+theme_override_constants/separation = 16
+
+[node name="SpellLevelBar" parent="HBoxContainer" instance=ExtResource("3_wfik8")]
+visible = false
+layout_mode = 2

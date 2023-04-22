@@ -1,0 +1,814 @@
+[gd_scene load_steps=12 format=3 uid="uid://kqvcybrnvh8r"]
+
+[ext_resource type="Texture2D" uid="uid://cpydwxcj01iv1" path="res://Assets/SF1/ShiningForceMenuBorder.png" id="1"]
+[ext_resource type="Script" path="res://General/ControlsOverworld/MemberListView/MemberListView.gd" id="1_sf37m"]
+[ext_resource type="Texture2D" uid="uid://doky8w0iu55ih" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="3"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="5_3uefk"]
+[ext_resource type="Script" path="res://General/ControlsOverworld/MemberListView/ItemsViewControl.gd" id="6_m7bmv"]
+[ext_resource type="Texture2D" uid="uid://bexr4d3s2v782" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="7"]
+[ext_resource type="Script" path="res://General/ControlsOverworld/MemberListView/EquipItemsViewControl.gd" id="8_8y73f"]
+[ext_resource type="PackedScene" uid="uid://bvdpld8j7kgfr" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionLongBorder.tscn" id="8_hcp6x"]
+[ext_resource type="Texture2D" uid="uid://lh7rsgq46lcq" path="res://Assets/SFCD/Items/UnequipHand.png" id="9"]
+[ext_resource type="PackedScene" uid="uid://b451lgd0islao" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionBorder.tscn" id="11_3x4f5"]
+
+[node name="MemberListViewNodeRoot" type="Node2D"]
+script = ExtResource("1_sf37m")
+
+[node name="PortraitWrapperNode" type="Node2D" parent="."]
+position = Vector2(0, 1)
+metadata/_edit_lock_ = true
+
+[node name="PortraitSprite" type="Sprite2D" parent="PortraitWrapperNode"]
+position = Vector2(20.7908, 32.5002)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2")
+hframes = 4
+metadata/_edit_lock_ = true
+
+[node name="PortraitNinePatchRect" type="NinePatchRect" parent="PortraitWrapperNode"]
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 61.0
+texture = ExtResource("1")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="StatNinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 40.0
+offset_top = 5.0
+offset_right = 312.0
+offset_bottom = 80.0
+texture = ExtResource("3")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="StaticCharacterInfoControlNode" type="Control" parent="StatNinePatchRect"]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 8.0
+offset_bottom = 3.0
+metadata/_edit_lock_ = true
+
+[node name="NameLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 88.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "NAME"
+metadata/_edit_lock_ = true
+
+[node name="ClassLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 4.0
+offset_right = 192.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "CLASS"
+metadata/_edit_lock_ = true
+
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 4.0
+offset_right = 217.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "LV"
+metadata/_edit_lock_ = true
+
+[node name="LevelLabel" type="Label" parent="StatNinePatchRect/StaticCharacterInfoControlNode"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="OverviewMagicAndInventoryControlNode" type="Control" parent="StatNinePatchRect"]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 8.0
+offset_bottom = 11.0
+metadata/_edit_lock_ = true
+
+[node name="MagicStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "MAGIC"
+metadata/_edit_lock_ = true
+
+[node name="MagicNothingStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
+layout_mode = 0
+offset_top = 19.0
+offset_right = 44.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "NOTHING"
+metadata/_edit_lock_ = true
+
+[node name="SpellsVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
+layout_mode = 0
+offset_top = 23.0
+offset_bottom = 23.0
+theme_override_constants/separation = 10
+
+[node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer"]
+visible = false
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="SpellLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 32.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "MAGIC"
+
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -4.0
+offset_right = 73.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "LV"
+
+[node name="LevelLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/SpellsVBoxContainer/Test_DONT_USE_Control"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = -4.0
+offset_right = 91.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "1"
+
+[node name="ItemsStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 8.0
+offset_right = 124.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "ITEMS"
+metadata/_edit_lock_ = true
+
+[node name="ItemsNothingStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 19.0
+offset_right = 136.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "NOTHING"
+metadata/_edit_lock_ = true
+
+[node name="InventoryVBoxContainer" type="VBoxContainer" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 19.0
+offset_right = 92.0
+offset_bottom = 19.0
+theme_override_constants/separation = 10
+metadata/_edit_lock_ = true
+
+[node name="Test_DONT_USE_Control" type="Control" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="EquippedStaticLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer/Test_DONT_USE_Control"]
+layout_mode = 0
+offset_left = 68.0
+offset_right = 75.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "E"
+metadata/_edit_lock_ = true
+
+[node name="ItemLabel" type="Label" parent="StatNinePatchRect/OverviewMagicAndInventoryControlNode/InventoryVBoxContainer/Test_DONT_USE_Control"]
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "ITEM"
+metadata/_edit_lock_ = true
+
+[node name="ItemsViewControl" type="Control" parent="StatNinePatchRect"]
+visible = false
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 19.0
+offset_right = 8.0
+offset_bottom = 19.0
+script = ExtResource("6_m7bmv")
+
+[node name="ItemsDashStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl"]
+visible = false
+layout_mode = 0
+offset_right = 57.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "- ITEMS -"
+metadata/_edit_lock_ = true
+
+[node name="ItemIconsControlNode" type="Control" parent="StatNinePatchRect/ItemsViewControl"]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 20.0
+metadata/_edit_lock_ = true
+
+[node name="UpTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -20.0
+offset_bottom = 4.0
+texture = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="LeftTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -8.0
+offset_right = -16.0
+offset_bottom = 16.0
+texture = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="RightTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="DownTextureRect" type="TextureRect" parent="StatNinePatchRect/ItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 4.0
+offset_bottom = 28.0
+texture = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="ItemNameAndEquippedControlNode" type="Control" parent="StatNinePatchRect/ItemsViewControl"]
+anchors_preset = 0
+offset_left = 92.0
+offset_right = 92.0
+metadata/_edit_lock_ = true
+
+[node name="UpItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="UpItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/UpItemControl"]
+layout_mode = 0
+offset_left = -24.0
+offset_right = -17.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "E"
+metadata/_edit_lock_ = true
+
+[node name="UpItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/UpItemControl"]
+layout_mode = 0
+offset_left = -12.0
+offset_right = 63.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "Medical Herb Medical Herb "
+metadata/_edit_lock_ = true
+
+[node name="LeftItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="LeftItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/LeftItemControl"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 12.0
+offset_right = -17.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "E"
+metadata/_edit_lock_ = true
+
+[node name="LeftItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/LeftItemControl"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 12.0
+offset_right = 63.0
+offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "Medical Herb Medical Herb "
+metadata/_edit_lock_ = true
+
+[node name="RightItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="RightItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/RightItemControl"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 24.0
+offset_right = -17.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "E"
+metadata/_edit_lock_ = true
+
+[node name="RightItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/RightItemControl"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 24.0
+offset_right = 63.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "Medical Herb Medical Herb "
+metadata/_edit_lock_ = true
+
+[node name="DownItemControl" type="Control" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode"]
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="DownItemEquippedStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/DownItemControl"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 36.0
+offset_right = -17.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "E"
+metadata/_edit_lock_ = true
+
+[node name="DownItemNameStaticLabel" type="Label" parent="StatNinePatchRect/ItemsViewControl/ItemNameAndEquippedControlNode/DownItemControl"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 36.0
+offset_right = 63.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "Medical Herb Medical Herb "
+metadata/_edit_lock_ = true
+
+[node name="RedSelectionBorderRoot" parent="StatNinePatchRect/ItemsViewControl" instance=ExtResource("8_hcp6x")]
+position = Vector2(64, 33)
+scale = Vector2(1.95, 0.5)
+
+[node name="EquipItemsViewControl" type="Control" parent="StatNinePatchRect"]
+visible = false
+anchors_preset = 0
+offset_left = 168.0
+offset_top = 31.0
+offset_right = 168.0
+offset_bottom = 31.0
+script = ExtResource("8_8y73f")
+
+[node name="EquipmentStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl"]
+visible = false
+layout_mode = 0
+offset_left = -160.0
+offset_top = -16.0
+offset_right = -103.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "Equipment"
+
+[node name="ItemIconsControlNode" type="Control" parent="StatNinePatchRect/EquipItemsViewControl"]
+anchors_preset = 0
+offset_left = -160.0
+offset_top = -12.0
+offset_right = -160.0
+offset_bottom = -12.0
+
+[node name="UpTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 32.0
+offset_bottom = 24.0
+texture = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="LeftTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 16.0
+offset_bottom = 36.0
+texture = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="RightTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 36.0
+texture = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="DownTextureRect" type="TextureRect" parent="StatNinePatchRect/EquipItemsViewControl/ItemIconsControlNode"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 32.0
+offset_bottom = 48.0
+texture = ExtResource("9")
+metadata/_edit_lock_ = true
+
+[node name="SelectedItemLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl"]
+layout_mode = 0
+offset_left = -104.0
+offset_top = -12.0
+offset_right = -60.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "ITEM NAME"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CharacterStatsPreviewControlNode" type="Control" parent="StatNinePatchRect/EquipItemsViewControl"]
+anchors_preset = 0
+offset_left = -12.0
+offset_right = -12.0
+metadata/_edit_lock_ = true
+
+[node name="AttackControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+offset_top = 8.0
+offset_bottom = 8.0
+metadata/_edit_lock_ = true
+
+[node name="AttackStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AttackControl"]
+layout_mode = 0
+offset_left = -92.0
+offset_top = -4.0
+offset_right = -73.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "ATT"
+metadata/_edit_lock_ = true
+
+[node name="AttackLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AttackControl"]
+layout_mode = 0
+offset_left = -68.0
+offset_top = -4.0
+offset_right = -36.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DefenseControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+offset_top = 4.0
+offset_bottom = 4.0
+metadata/_edit_lock_ = true
+
+[node name="DefenseStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DefenseControl"]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 8.0
+offset_right = -73.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "DEF"
+metadata/_edit_lock_ = true
+
+[node name="DefenseLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DefenseControl"]
+layout_mode = 0
+offset_left = -68.0
+offset_top = 8.0
+offset_right = -36.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AgilityControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="AgilityStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AgilityControl"]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 20.0
+offset_right = -73.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "AGI"
+metadata/_edit_lock_ = true
+
+[node name="AgilityLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/AgilityControl"]
+layout_mode = 0
+offset_left = -68.0
+offset_top = 20.0
+offset_right = -36.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="MoveControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="MoveStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MoveControl"]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 28.0
+offset_right = -73.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "MOV"
+metadata/_edit_lock_ = true
+
+[node name="MoveLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MoveControl"]
+layout_mode = 0
+offset_left = -68.0
+offset_top = 28.0
+offset_right = -36.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+
+[node name="HPControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 12.0
+offset_right = -4.0
+offset_bottom = 12.0
+metadata/_edit_lock_ = true
+
+[node name="HPStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/HPControl"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -8.0
+offset_right = -3.0
+offset_bottom = 2.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "HP"
+metadata/_edit_lock_ = true
+
+[node name="HPLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/HPControl"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 2.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="MPControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 8.0
+offset_right = -4.0
+offset_bottom = 8.0
+metadata/_edit_lock_ = true
+
+[node name="MPStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MPControl"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 4.0
+offset_right = -3.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "MP"
+metadata/_edit_lock_ = true
+
+[node name="MPLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/MPControl"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="CriticalHitChanceAttackControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 4.0
+metadata/_edit_lock_ = true
+
+[node name="CriticalHitChanceStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/CriticalHitChanceAttackControl"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 16.0
+offset_right = 3.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "CRI"
+metadata/_edit_lock_ = true
+
+[node name="CriticalHitChanceLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/CriticalHitChanceAttackControl"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DoubleAttackChanceControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+offset_left = -4.0
+offset_right = -4.0
+metadata/_edit_lock_ = true
+
+[node name="DoubleAttackChanceStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DoubleAttackChanceControl"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 28.0
+offset_right = -3.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "DA"
+metadata/_edit_lock_ = true
+
+[node name="DoubleAttackChanceLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DoubleAttackChanceControl"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 28.0
+offset_right = 40.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DodgeControl" type="Control" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode"]
+anchors_preset = 0
+offset_left = 52.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 4.0
+metadata/_edit_lock_ = true
+
+[node name="DodgeStaticLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DodgeControl"]
+layout_mode = 0
+offset_right = 19.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "DOD"
+metadata/_edit_lock_ = true
+
+[node name="DodgeLabel" type="Label" parent="StatNinePatchRect/EquipItemsViewControl/CharacterStatsPreviewControlNode/DodgeControl"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 56.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="RedSelectionBorderRoot" parent="StatNinePatchRect/EquipItemsViewControl" instance=ExtResource("11_3x4f5")]
+position = Vector2(-144, 12)
+
+[node name="StatNinePatchRect2" type="NinePatchRect" parent="."]
+offset_top = 80.0
+offset_right = 312.0
+offset_bottom = 172.0
+texture = ExtResource("3")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="NameClassLevelWrapperNode" type="Node2D" parent="StatNinePatchRect2"]
+position = Vector2(8, 12)
+metadata/_edit_lock_ = true
+
+[node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
+offset_left = 16.0
+offset_top = -4.0
+offset_right = 41.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "NAME"
+metadata/_edit_lock_ = true
+
+[node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
+offset_left = 136.0
+offset_top = -4.0
+offset_right = 168.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "CLASS"
+metadata/_edit_lock_ = true
+
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/NameClassLevelWrapperNode"]
+offset_left = 276.0
+offset_top = -4.0
+offset_right = 289.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "LV"
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="StatNinePatchRect2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 304.0
+offset_bottom = 88.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatNinePatchRect2/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Test_NOT-USED_CharacterWrapperNode" type="Control" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ActiveForceStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "FW"
+
+[node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 41.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "NAME"
+
+[node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+offset_left = 136.0
+offset_right = 168.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "CLASS"
+
+[node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
+layout_mode = 0
+offset_left = 280.0
+offset_right = 293.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "LV"
+horizontal_alignment = 2
+
+[node name="StatNinePatchRect3" type="NinePatchRect" parent="."]
+visible = false
+offset_top = 56.0
+offset_right = 40.0
+offset_bottom = 80.0
+texture = ExtResource("3")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="NameStaticLabel" type="Label" parent="StatNinePatchRect3"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 38.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("5_3uefk")
+text = "SELECT"
+
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("8_hcp6x")]
+position = Vector2(20, 97)
+scale = Vector2(2.9, 0.484)

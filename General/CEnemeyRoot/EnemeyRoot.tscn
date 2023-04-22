@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://588imvwkbshk"]
+
+[ext_resource type="Script" path="res://General/CEnemeyRoot/EnemeyRoot.gd" id="1_k7gwe"]
+[ext_resource type="Texture2D" uid="uid://4xce1kvjnc66" path="res://Assets/SF1/EnemiesAndBosses/Goblin/Map_Sprites.png" id="1_vjk3j"]
+
+[node name="EnemeyRoot" type="Node2D"]
+script = ExtResource("1_k7gwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vjk3j")
+hframes = 6
+
+[node name="Node--NOTE-Add__AnimationPlayer__with_that_name" type="Node" parent="."]

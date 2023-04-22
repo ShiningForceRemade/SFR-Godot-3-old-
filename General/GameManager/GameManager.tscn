@@ -1,10 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://b3l0bfv248y4h"]
+[gd_scene load_steps=35 format=3 uid="uid://de7py8ig6qobv"]
 
 [ext_resource type="Script" path="res://General/GameManager/SceneManager.gd" id="1_fymdo"]
 [ext_resource type="Script" path="res://General/GameManager/SF1Node.gd" id="1_qrnep"]
 [ext_resource type="PackedScene" uid="uid://d22vywrt5rx3p" path="res://General/Controls/DialogueBox/DialogueBox.tscn" id="2_ly824"]
 [ext_resource type="Shader" path="res://General/GameManager/CRT.gdshader" id="2_ts544"]
-[ext_resource type="PackedScene" uid="uid://6pejosmxp380" path="res://SF1/Chapters/HeadQuarters/Default/HeadQuarters.tscn" id="3_ojtbe"]
+[ext_resource type="PackedScene" uid="uid://1nkv1emktps8" path="res://SF1/Chapters/1/AncientsGate/Battle1-AncientsGate.tscn" id="3_uil0n"]
 [ext_resource type="PackedScene" uid="uid://c4tkgq2olycub" path="res://DevTooling/InGameDeveloperConsole/DeveloperConsole.tscn" id="4_evtrf"]
 [ext_resource type="PackedScene" uid="uid://cqu54wxhekf6p" path="res://General/Controls/PortraitPopup/PortraitPopup.tscn" id="5_3em28"]
 [ext_resource type="PackedScene" uid="uid://b7n5mweny73gs" path="res://General/Menus/PriestMenu/PriestMenu.tscn" id="6_8cvy1"]
@@ -23,7 +23,12 @@
 [ext_resource type="PackedScene" uid="uid://by5ykniuq56un" path="res://General/ControlsOverworld/NoValidOptionWarningBox/NoValidOptionWarningBox.tscn" id="19_dggqp"]
 [ext_resource type="PackedScene" uid="uid://h4qib203h5ag" path="res://General/ControlsOverworld/HQMenus/HQMenu.tscn" id="20_i8ied"]
 [ext_resource type="PackedScene" uid="uid://hjiesgslomj1" path="res://General/ControlsOverworld/UseMenu/UseMenu.tscn" id="20_q0t0q"]
+[ext_resource type="PackedScene" uid="uid://dsabmddgh7hqp" path="res://General/ControlsBattle/LandEffectPopup/LandEffectPopup.tscn" id="22_l3bs6"]
+[ext_resource type="PackedScene" uid="uid://kqvcybrnvh8r" path="res://General/ControlsOverworld/MemberListView/MemberListView.tscn" id="22_n21ig"]
+[ext_resource type="PackedScene" uid="uid://t0dmsvrjq8g7" path="res://General/ControlsBattle/ViewSelectedActorInfoPopup/ViewSelectedActorInfoPopup.tscn" id="23_1o0t1"]
 [ext_resource type="Script" path="res://General/GameManager/TopLevelFade.gd" id="23_g0xgl"]
+[ext_resource type="PackedScene" uid="uid://d2rfk1jmulpj6" path="res://General/ControlsBattle/ActionsMenu/ActionsMenu.tscn" id="24_1n4me"]
+[ext_resource type="PackedScene" uid="uid://be7hxqx03mtqu" path="res://General/ControlsOverworld/MicroInventoryView/MicroInventoryView.tscn" id="25_vt5vf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n6h7e"]
 shader = ExtResource("2_ts544")
@@ -65,21 +70,6 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_3gpve"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BlackFade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_1tly1"]
 resource_name = "FadeOut"
 length = 0.5
@@ -94,6 +84,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3gpve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackFade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ragf"]
@@ -112,7 +117,7 @@ script = ExtResource("1_qrnep")
 process_mode = 3
 script = ExtResource("1_fymdo")
 
-[node name="HeadQuarters" parent="SceneManager" instance=ExtResource("3_ojtbe")]
+[node name="AncientsGate" parent="SceneManager" instance=ExtResource("3_uil0n")]
 
 [node name="MenusAndUICanvasLayer" type="CanvasLayer" parent="."]
 
@@ -140,13 +145,13 @@ scale = Vector2(0.8, 0.8)
 
 [node name="GoldInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("7_o0isl")]
 visible = false
-position = Vector2(7, 7)
+position = Vector2(8, 8)
 scale = Vector2(0.8, 0.8)
 metadata/_edit_lock_ = true
 
 [node name="ActorMicroInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("8_83orp")]
 visible = false
-position = Vector2(199, 7)
+position = Vector2(200, 8)
 scale = Vector2(0.8, 0.8)
 metadata/_edit_lock_ = true
 
@@ -226,6 +231,37 @@ metadata/_edit_lock_ = true
 [node name="UseEquipMenuRoot" parent="MenusAndUICanvasLayer" instance=ExtResource("20_q0t0q")]
 visible = false
 position = Vector2(140, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="MemberListViewNodeRoot" parent="MenusAndUICanvasLayer" instance=ExtResource("22_n21ig")]
+visible = false
+position = Vector2(4, 2)
+metadata/_edit_lock_ = true
+
+[node name="--------BattleControlsAndMenus" type="Node" parent="MenusAndUICanvasLayer"]
+
+[node name="LandEffectPopup" parent="MenusAndUICanvasLayer" instance=ExtResource("22_l3bs6")]
+visible = false
+position = Vector2(4, 4)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="ViewSelectedActorInfoPopup" parent="MenusAndUICanvasLayer" instance=ExtResource("23_1o0t1")]
+visible = false
+position = Vector2(48, 24)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="BattleActionsMenu" parent="MenusAndUICanvasLayer" instance=ExtResource("24_1n4me")]
+visible = false
+position = Vector2(131, 136)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="MicroInventoryView" parent="MenusAndUICanvasLayer" instance=ExtResource("25_vt5vf")]
+visible = false
+position = Vector2(276, 100)
 scale = Vector2(0.8, 0.8)
 metadata/_edit_lock_ = true
 

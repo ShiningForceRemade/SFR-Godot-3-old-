@@ -1,6 +1,7 @@
 extends Node2D
 
 const max_hp_mp_bar_width_size: int = 74
+var _tween: Tween
 
 @onready var name_label: Label = $NinePatchRect/NameLabel
 @onready var class_label: Label = $NinePatchRect/ClassLabel
@@ -149,3 +150,30 @@ func display_micro_info_for_actor(node_arg) -> void:
 		actor_root.HP_Total, 
 		actor_root.MP_Current, 
 		actor_root.MP_Total)
+
+
+## Show Hide Cust with tween
+
+const default_position: Vector2 = Vector2(200, 8)
+const hidden_position: Vector2 = Vector2(320, 8)
+
+func show_cust() -> void: 
+	position = hidden_position
+	show()
+	
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", default_position, Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+
+
+func hide_cust() -> void: 
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", hidden_position, Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+	_tween.tween_callback(hide)

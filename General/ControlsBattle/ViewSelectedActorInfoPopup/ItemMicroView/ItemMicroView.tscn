@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxgdtcnic5sv5"]
+
+[ext_resource type="Script" path="res://General/ControlsBattle/ViewSelectedActorInfoPopup/ItemMicroView/ItemMicroView.gd" id="1_fsi3p"]
+[ext_resource type="Texture2D" uid="uid://duo737ik7pilg" path="res://Assets/SFCD/Items/Usables/MedicalHerb.png" id="1_gj6bh"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="2_7eipj"]
+
+[node name="ItemMicroView" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fsi3p")
+
+[node name="ItemSprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 24.0
+texture = ExtResource("1_gj6bh")
+
+[node name="ItemNameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 4.0
+offset_right = 120.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("2_7eipj")
+text = "Medical Herb"
+vertical_alignment = 1
+
+[node name="EquippedStaticLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 120.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("2_7eipj")
+text = "Equipped"
+vertical_alignment = 1

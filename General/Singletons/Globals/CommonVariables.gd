@@ -1,5 +1,14 @@
 extends Node
 
+# meta
+
+## Controls how long menu tweens take
+var menu_tween_time = 0.1
+
+## TODO: probably should make this an enum
+## something like "in battle" "in cutscene" "overworld" "in battle cutscene" etc to smooth out behaviours and interactions
+var is_currently_in_battle_scene = false
+
 # Node refs
 var game_management_wrapper_node = null
 var menus_root_node = null
@@ -32,16 +41,21 @@ var ui__equip_menu: Node2D = null
 var ui__give_menu: Node2D = null
 var ui__use_menu: Node2D = null
 
+var ui__member_list_menu: Node2D = null
+
 var ui__overworld_action_menu: Node2D = null
 var ui__micro_member_list_view: Node2D = null
+
+var ui__battle_action_menu: Node2D = null
+
+# battle ui controls
+var land_effect_popup_node: Node2D = null
+var view_selected_actor_info_node: Node2D = null
 
 
 # TODO: refactor disgusting temp for demo
 # values null | "YES" | "NO"
 var interaction_yes_or_no_selection = null
-
-# TODO: move battle vars battle scene to enum for overworld battle and in battle scene instead
-var is_currently_in_battle_scene = false
 
 # TODO: for selectable main character and party leader
 var main_character_resource_pck = null

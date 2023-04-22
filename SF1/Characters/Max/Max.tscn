@@ -12,12 +12,11 @@
 script = ExtResource("1_4disg")
 
 [node name="CharacterRoot" parent="." instance=ExtResource("1_cqr13")]
-position = Vector2(8, -16)
 character_name = "Max"
 ai_target_priority = 100
 inventory_items_id = Array[Resource]([ExtResource("3_qdyi8")])
 is_item_equipped = Array[bool]([true])
-spells_id = Array[Resource]([ExtResource("4_jgb7e")])
+magic_array = Array[Resource]([ExtResource("4_jgb7e")])
 texture_sprite_overworld_unpromoted = ExtResource("3_j1dlq")
 texture_sprite_battle_unpromoted = ExtResource("4_gddva")
 texture_sprite_portrait_unpromoted = ExtResource("5_1v7pj")

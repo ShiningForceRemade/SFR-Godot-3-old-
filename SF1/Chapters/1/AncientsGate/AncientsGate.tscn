@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://ctkclixg2ar35"]
 
 [ext_resource type="PackedScene" uid="uid://cyw8ri3jdrriy" path="res://General/Camera/Camera2D_Cust.tscn" id="1_cuenl"]
 [ext_resource type="PackedScene" uid="uid://df3nib1po3fja" path="res://SF1/Chapters/1/AncientsGate/AncientsGateTilemap.tscn" id="1_t40oa"]
-[ext_resource type="PackedScene" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="3_dd6x2"]
+[ext_resource type="PackedScene" uid="uid://c8p1i3ikjaexe" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="3_dd6x2"]
 [ext_resource type="TileSet" uid="uid://bqdwc68vnfpg" path="res://General/CollisionTileset.tres" id="4_ts6rx"]
 
 [node name="AncientsGate" type="Node"]

@@ -48,10 +48,13 @@ func _ready():
 	pass
 
 
-func set_battle_equip_menu_active():
+func set_menu_active():
 	is_battle_equip_menu_active = true
 	
-	active_char_root = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+	if Singleton_CommonVariables.is_currently_in_battle_scene:
+		active_char_root = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+	else:
+		active_char_root = Singleton_CommonVariables.main_character_player_node.actor
 	
 	print("Equip Menu Current Char", active_char_root)
 	print("Equip Menu ", active_char_root.inventory_items_id)
@@ -117,10 +120,15 @@ func _input(event):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			update_weapon_equip()
 			
-			get_parent().get_parent().get_parent().s_hide_battle_equip_menu()
+			Singleton_CommonVariables.ui__equip_menu.hide()
+			# get_parent().get_parent().get_parent().s_hide_battle_equip_menu()
 			
 			await Signal(get_tree().create_timer(0.1), "timeout")
-			get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
+			
+			Singleton_CommonVariables.ui__inventory_menu.show()
+			Singleton_CommonVariables.ui__inventory_menu.set_menu_active()
+			
+			# get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
 			
 			#if currently_selected_option == e_menu_options.STAY_OPTION:
 			#	print("Currently Active Character Node - ", Singleton_Game_GlobalBattleVariables.currently_active_character)

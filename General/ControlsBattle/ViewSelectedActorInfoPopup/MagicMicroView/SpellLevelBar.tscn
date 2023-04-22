@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cb84yyori6brf"]
+
+[node name="SpellLevelBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 16.0
+offset_bottom = 7.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 15.0
+offset_bottom = 8.0
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 15.0
+offset_bottom = 7.0
+color = Color(0.858824, 0.564706, 0.184314, 1)

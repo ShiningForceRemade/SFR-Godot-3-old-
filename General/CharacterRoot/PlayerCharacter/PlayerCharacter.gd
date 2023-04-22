@@ -10,6 +10,7 @@ signal signal_action_finished
 @onready var collision_shape_cell_block: CollisionShape2D = $CollisionShape2D2
 @onready var chracter_animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var actor: Node2D = $CharacterRoot
 
 #
 var GRID_BASED_MOVEMENT:bool = true
@@ -71,8 +72,10 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("ui_a_key"):
 			is_active = false
 			Singleton_CommonVariables.ui__overworld_action_menu.show()
-			Singleton_CommonVariables.ui__gold_info_box.show()
-			Singleton_CommonVariables.ui__actor_micro_info_box.show()
+			Singleton_CommonVariables.ui__gold_info_box.show_cust()
+			Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
+			
+			Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
 			# Singleton_CommonVariables.menus_root_node.character_info_box_node().show()
 			
 			# TODO: add get character from player to help support different main character option

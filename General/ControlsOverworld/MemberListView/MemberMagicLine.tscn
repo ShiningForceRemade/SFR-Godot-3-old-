@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3s8vo0etn2hk"]
+
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="1"]
+
+[node name="MemberMagicLineControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpellLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 32.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("1")
+text = "MAGIC"
+
+[node name="LevelStaticLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -4.0
+offset_right = 79.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("1")
+text = "LV"
+
+[node name="LevelLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = -4.0
+offset_right = 86.0
+offset_bottom = 6.0
+theme_override_fonts/font = ExtResource("1")
+text = "1"
+horizontal_alignment = 2

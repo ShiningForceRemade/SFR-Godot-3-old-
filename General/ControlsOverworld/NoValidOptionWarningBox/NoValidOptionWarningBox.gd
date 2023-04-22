@@ -59,7 +59,8 @@ func s_internal_cleanup_timer_completed() -> void:
 	
 	is_no_valid_option_active = false
 	
-	get_parent().get_parent().get_parent().s_hide_no_valid_option_warning_box()
+	Singleton_CommonVariables.ui__not_valid_box.hide()
+	# get_parent().get_parent().get_parent().s_hide_no_valid_option_warning_box()
 	
 	# TODO: FIXME: Dirty hack waiting a tiny bit to prevent double b released from trigger here
 	# and in the battle action menu leading to a premature closing of the menu

@@ -56,11 +56,13 @@ const char_class_array = ["SDMN", "KNT",
 @export var is_item_equipped: Array[bool]
 
 ## Only the first 4 fields are valid everything after that is ignored! Place 
-@export var spells_id: Array[Resource]
-# @export_enum("Medical Herb") var magic_array: Array[int]
-## TODO: What is this for again?
-@export var magic_array: Array[int]
-
+@export var magic_array: Array[Resource]
+## TODO: IMPORTANT: this needs lot of work and much more thinking
+@export var magic_unlock_levels: Array[Dictionary]
+# should keep track of what level to unlock pre promoted and promoted
+# should also have a way to associate with the magic its tied to
+# 4 magics * 4 spell limits * 2 stages = 32 max sets should try to simplify this somehow when its more important
+# promotion_stage
 
 # group - behaviours
 # export var regeneration_rate: int = 0
@@ -256,17 +258,18 @@ func _ready():
 #func get_character_current_pos() -> Vector2:
 #	# print("here", kinematicBody)
 #	return kinematicBody.global_position
-#
-#func get_attack() -> int:
-#	var attack_attribute_bonus_total: int = 0
-#	for i in range(inventory_items_id.size()):
-#		if is_item_equipped[i]:
-#			for j in (inventory_items_id[i].attribute.size()):
-#				if inventory_items_id[i].attribute[j] == 1:
-#					attack_attribute_bonus_total += inventory_items_id[i].attribute_bonus[j]
-#
-#	return attack + attack_attribute_bonus_total
-#
+
+
+func get_attack() -> int:
+	var attack_attribute_bonus_total: int = 0
+	for i in range(inventory_items_id.size()):
+		if is_item_equipped[i]:
+			for j in (inventory_items_id[i].attribute_bonus.size()):
+				if inventory_items_id[i].attribute == 1: #TODO: should have a better way to refer to the attack attribute than if equal 1
+					attack_attribute_bonus_total += inventory_items_id[i].attribute_bonus[j]
+
+	return attack + attack_attribute_bonus_total
+
 #func _physics_process(_delta):
 #
 #	# Classic Genesis styled movement and battle movement

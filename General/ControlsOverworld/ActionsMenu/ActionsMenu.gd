@@ -49,14 +49,14 @@ func _process(_delta):
 		Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 		await Signal(get_tree().create_timer(0.02), "timeout")
 		
-		# Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
+		# Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 		# get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
 		# TODO add animation
 		hide()
 		
 		Singleton_CommonVariables.main_character_player_node.set_active_processing(true)
-		Singleton_CommonVariables.ui__gold_info_box.hide()
-		Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+		Singleton_CommonVariables.ui__gold_info_box.hide_cust()
+		Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 		#get_parent().get_parent().get_parent().s_hide_action_menu()
 		return
 			
@@ -71,8 +71,8 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
 			Singleton_CommonVariables.main_character_player_node.set_active_processing(true)
-			Singleton_CommonVariables.ui__gold_info_box.hide()
-			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+			Singleton_CommonVariables.ui__gold_info_box.hide_cust()
+			Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 			
 			Singleton_CommonVariables.main_character_player_node.interaction_attempt_to_search()
 			return
@@ -84,10 +84,12 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
-			Singleton_CommonVariables.ui__gold_info_box.hide()
-			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+			Singleton_CommonVariables.ui__gold_info_box.hide_cust()
+			Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 			
-			Singleton_CommonVariables.ui__magic_menu.show_with_tween()
+			# Singleton_CommonVariables.ui__magic_menu.show_with_tween()
+			Singleton_CommonVariables.ui__magic_menu.show_cust()
+			
 #			if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().spells_id.size() == 0:
 #				noValidOptionNode.re_show_action_menu = true
 #				noValidOptionNode.set_no_maigc_text()
@@ -105,8 +107,8 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
 			Singleton_CommonVariables.main_character_player_node.set_active_processing(true)
-			Singleton_CommonVariables.ui__gold_info_box.hide()
-			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+			Singleton_CommonVariables.ui__gold_info_box.hide_cust()
+			Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 			
 			Singleton_CommonVariables.main_character_player_node.interaction_attempt_to_talk()
 			return
@@ -141,8 +143,8 @@ func OpenInventoryMenu() -> void:
 	Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 	Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 	hide()
-	Singleton_CommonVariables.ui__gold_info_box.hide()
-	Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+	Singleton_CommonVariables.ui__gold_info_box.hide_cust()
+	Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 	
 	# disgusting remove these later but convertint to process instead of input with the just pressed action
 	await Signal(get_tree().create_timer(0.2), "timeout")

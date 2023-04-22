@@ -1,0 +1,304 @@
+[gd_scene load_steps=4 format=3 uid="uid://t0dmsvrjq8g7"]
+
+[ext_resource type="Script" path="res://General/ControlsBattle/ViewSelectedActorInfoPopup/ViewSelectedActorInfoPopup.gd" id="1_h5lu3"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="1_v2fkm"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="2_4kylk"]
+
+[node name="ViewSelectedActorInfoPopup" type="Node2D"]
+script = ExtResource("1_h5lu3")
+
+[node name="StatsNinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 56.0
+offset_right = 264.0
+offset_bottom = 164.0
+texture = ExtResource("1_v2fkm")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="ClassLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 36.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "CLSS"
+metadata/_edit_lock_ = true
+
+[node name="NameLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 8.0
+offset_right = 76.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "NAME"
+metadata/_edit_lock_ = true
+
+[node name="LevelStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 36.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "LV"
+metadata/_edit_lock_ = true
+
+[node name="LevelLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 20.0
+offset_right = 88.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "0"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AttackStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 152.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "ATTACK"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AttackLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 20.0
+offset_right = 192.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="HPStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 36.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "HP"
+metadata/_edit_lock_ = true
+
+[node name="HPLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 76.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "9999/9999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DefenseStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 32.0
+offset_right = 152.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "DEFENSE"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DefenseLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="MPStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 44.0
+offset_right = 36.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "MP"
+metadata/_edit_lock_ = true
+
+[node name="MPLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 44.0
+offset_right = 89.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "9999/9999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="MoveStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 44.0
+offset_right = 152.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "MOVE"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="MoveLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 44.0
+offset_right = 192.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="ExpStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 36.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "EXP"
+metadata/_edit_lock_ = true
+
+[node name="ExpLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 56.0
+offset_right = 88.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "100"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AgilityStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 56.0
+offset_right = 152.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "AGILITY"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AgilityLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 56.0
+offset_right = 192.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "99999"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="MagicStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 76.0
+offset_right = 36.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "MAGIC"
+metadata/_edit_lock_ = true
+
+[node name="ItemsStaticLabel" type="Label" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 76.0
+offset_right = 108.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "ITEMS"
+metadata/_edit_lock_ = true
+
+[node name="MagicVBoxContainer" type="VBoxContainer" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 84.0
+offset_right = 72.0
+offset_bottom = 156.0
+metadata/_edit_lock_ = true
+
+[node name="ItemsVBoxContainer" type="VBoxContainer" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 84.0
+offset_right = 140.0
+offset_bottom = 156.0
+metadata/_edit_lock_ = true
+
+[node name="KillsNinePatchRect" type="NinePatchRect" parent="."]
+offset_top = 72.0
+offset_right = 56.0
+offset_bottom = 144.0
+texture = ExtResource("1_v2fkm")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="OverworldActorSprite2D" type="Sprite2D" parent="KillsNinePatchRect"]
+position = Vector2(28, 20)
+metadata/_edit_lock_ = true
+
+[node name="KillsStaticLabel" type="Label" parent="KillsNinePatchRect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 28.0
+offset_right = 46.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "Kills"
+metadata/_edit_lock_ = true
+
+[node name="KillsLabel" type="Label" parent="KillsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 38.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "0"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DefeatsStaticLabel" type="Label" parent="KillsNinePatchRect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 48.0
+offset_right = 50.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "Defeats"
+metadata/_edit_lock_ = true
+
+[node name="DefeatsLabel" type="Label" parent="KillsNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 58.0
+offset_right = 48.0
+offset_bottom = 68.0
+theme_override_fonts/font = ExtResource("2_4kylk")
+text = "0"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true

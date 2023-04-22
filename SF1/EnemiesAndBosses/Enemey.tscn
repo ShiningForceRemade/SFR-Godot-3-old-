@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btfjxyfkv7bmm"]
+
+[ext_resource type="Script" path="res://SF1/EnemiesAndBosses/Enemey.gd" id="1_3hkn7"]
+
+[node name="Enemey" type="Node2D"]
+script = ExtResource("1_3hkn7")

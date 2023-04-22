@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8p1i3ikjaexe"]
+[gd_scene load_steps=12 format=3 uid="uid://c8p1i3ikjaexe"]
 
 [ext_resource type="Script" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.gd" id="1_4xly6"]
 [ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="1_sqfox"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/ShortSword.tres" id="3_hax57"]
+[ext_resource type="Resource" uid="uid://cek4vdtju5m0s" path="res://SF1/Spells/Egress/Egress.tres" id="3_k225m"]
 [ext_resource type="Shape2D" uid="uid://bh7uaaxfqc2lk" path="res://General/24x24_collision_shape.tres" id="3_vipec"]
 
 [sub_resource type="Animation" id="Animation_j1oh8"]
@@ -21,21 +23,6 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_h0tld"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterRoot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
 [sub_resource type="Animation" id="Animation_2ygm2"]
 resource_name = "LeftMovement"
 length = 0.80001
@@ -51,6 +38,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_h0tld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_nit1i"]
@@ -101,6 +103,10 @@ sync_to_physics = false
 script = ExtResource("1_4xly6")
 
 [node name="CharacterRoot" parent="." instance=ExtResource("1_sqfox")]
+inventory_items_id = Array[Resource]([ExtResource("3_hax57")])
+is_item_equipped = Array[bool]([true])
+magic_array = Array[Resource]([ExtResource("3_k225m")])
+MP_Total = 8
 
 [node name="Sprite2D" parent="CharacterRoot" index="0"]
 frame = 4

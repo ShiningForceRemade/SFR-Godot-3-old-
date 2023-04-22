@@ -33,6 +33,5 @@ critical_hit_chance = 3
 [node name="Sprite2D" parent="CharacterRoot" index="0"]
 texture = ExtResource("3_xv5ux")
 hframes = 8
-frame = 0
 
 [editable path="CharacterRoot"]

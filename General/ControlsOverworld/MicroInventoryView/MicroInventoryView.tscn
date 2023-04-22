@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://be7hxqx03mtqu"]
+
+[ext_resource type="Texture2D" uid="uid://bexr4d3s2v782" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="1_o2q2p"]
+
+[node name="MicroInventoryView" type="Node2D"]
+
+[node name="SlotUpSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 12)
+texture = ExtResource("1_o2q2p")
+
+[node name="SlotLeftSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("1_o2q2p")
+
+[node name="SlotRightSprite" type="Sprite2D" parent="."]
+position = Vector2(40, 24)
+texture = ExtResource("1_o2q2p")
+
+[node name="SlotDownSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 36)
+texture = ExtResource("1_o2q2p")

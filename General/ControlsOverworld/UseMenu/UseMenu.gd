@@ -63,7 +63,11 @@ func _ready():
 func set_battle_use_menu_active() -> void:
 	is_battle_use_menu_active = true
 	
-	var active_char_root = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+	var active_char_root
+	if Singleton_CommonVariables.is_currently_in_battle_scene:
+		active_char_root = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+	else:
+		active_char_root = Singleton_CommonVariables.main_character_player_node.actor
 	
 	print("Equip Menu Current Char", active_char_root)
 	print("Equip Menu ", active_char_root.inventory_items_id)
@@ -100,14 +104,20 @@ func _input(event):
 			
 			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
-			get_parent().get_parent().get_parent().s_hide_battle_use_menu()
+			
+			Singleton_CommonVariables.ui__use_menu.hide()
+			# get_parent().get_parent().get_parent().s_hide_battle_use_menu()
 			
 			noValidOptionNode.position = Vector2(-90, 100)
 			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
 			await Signal(get_tree().create_timer(0.1), "timeout")
-			get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
+			
+			Singleton_CommonVariables.ui__inventory_menu.show()
+			Singleton_CommonVariables.ui__inventory_menu.set_menu_active()
+			# get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
+			
 			# get_parent().get_parent().get_parent().s_show_battle_inventory_menu()
 			# get_parent().get_node("BattleInventoryMenuRoot").set_battle_inventory_menu_active()
 			return

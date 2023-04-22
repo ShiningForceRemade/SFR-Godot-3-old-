@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsabmddgh7hqp"]
+
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="1_5404a"]
+[ext_resource type="Script" path="res://General/ControlsBattle/LandEffectPopup/LandEffectPopup.gd" id="1_uya4n"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="2_62nx4"]
+
+[node name="LandEffectPopup" type="Node2D"]
+script = ExtResource("1_uya4n")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 84.0
+offset_bottom = 32.0
+texture = ExtResource("1_5404a")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="LandEffectStaticLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_62nx4")
+text = "Land Effect"
+autowrap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="LandEffectStaticLabel2" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 18.0
+offset_right = 75.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_62nx4")
+text = "100%"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true

@@ -1,5 +1,7 @@
 extends Node2D
 
+# TODO: merge use drop and give menus into one selection menu
+
 @onready var emptySlotTexture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
 
 signal signal_completed_item_give_action

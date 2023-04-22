@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://doloqd8132dis"]
+
+[ext_resource type="Texture2D" uid="uid://cpi7bdmgpjfpx" path="res://Assets/CustomTileStandInformation.png" id="1_10jes"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7qg7"]
+texture = ExtResource("1_10jes")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+
+[resource]
+tile_size = Vector2i(24, 24)
+sources/0 = SubResource("TileSetAtlasSource_k7qg7")

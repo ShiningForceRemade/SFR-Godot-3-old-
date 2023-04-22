@@ -1,0 +1,171 @@
+[gd_scene load_steps=12 format=3 uid="uid://yewrlh4275st"]
+
+[ext_resource type="PackedScene" uid="uid://588imvwkbshk" path="res://General/CEnemeyRoot/EnemeyRoot.tscn" id="1_8agjj"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/BronzeLance.tres" id="2_f6101"]
+[ext_resource type="Texture2D" uid="uid://bw8jgq8cyqbr3" path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Map_Sprites.png" id="2_sduhk"]
+[ext_resource type="Texture2D" uid="uid://kwfkn0ewhrpm" path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" id="4_idncd"]
+[ext_resource type="Shape2D" uid="uid://bh7uaaxfqc2lk" path="res://General/24x24_collision_shape.tres" id="5_84xys"]
+
+[sub_resource type="Animation" id="Animation_pr1li"]
+resource_name = "DownMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemeyRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_m615h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemeyRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemeyRoot/Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0d7f7"]
+resource_name = "UpMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemeyRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ojtqw"]
+resource_name = "LeftMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemeyRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemeyRoot/Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xc3v4"]
+resource_name = "RightMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemeyRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemeyRoot/Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1i0s"]
+_data = {
+"DownMovement": SubResource("Animation_pr1li"),
+"LeftMovement": SubResource("Animation_ojtqw"),
+"RESET": SubResource("Animation_m615h"),
+"RightMovement": SubResource("Animation_xc3v4"),
+"UpMovement": SubResource("Animation_0d7f7")
+}
+
+[node name="RuneKnight" type="AnimatableBody2D"]
+
+[node name="EnemeyRoot" parent="." instance=ExtResource("1_8agjj")]
+enemey_name = "Rune Knight"
+coins_min = 45
+coins_max = 45
+inventory_items_id = Array[Resource]([ExtResource("2_f6101")])
+is_item_equipped = Array[bool]([true])
+texture_sprite_overworld = ExtResource("2_sduhk")
+texture_sprite_battle = ExtResource("4_idncd")
+effective_level = 5
+move = 7
+movement_type = 1
+attack = 7
+defense = 7
+agility = 7
+HP_Current = 14
+HP_Total = 14
+
+[node name="Sprite2D" parent="EnemeyRoot" index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("2_sduhk")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("5_84xys")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "DownMovement"
+libraries = {
+"": SubResource("AnimationLibrary_l1i0s")
+}
+
+[editable path="EnemeyRoot"]

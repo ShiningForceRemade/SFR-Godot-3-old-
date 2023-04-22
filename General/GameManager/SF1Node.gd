@@ -86,7 +86,7 @@ enum E_SF1_ATTRIBUTES {
 # it might be best to have the characters use a resource for editor editability
 # then link the resource need here within the force that includes none character battle data
 # like rename, leader, unlocked, active_in_force etc, 
-# spells especially - need better handling 
+# magic especially - need better handling 
 # using ForceMembers for certain values then loading the node for character stats
 # then reusing forcemembers for latest is awful I nener should have allowed it to get to this point
 ###########
@@ -123,7 +123,7 @@ var ForceMembers = [
 		"name": "Max", # TODO: do nicknames
 		"race": "Human",
 		
-		"class": "Swordsman",
+		"class_full": "Swordsman",
 		"class_short": "SWDM",
 		"class_idx": E_SF1_CLASSES.SDMN,
 		
@@ -244,13 +244,14 @@ var ForceMembers = [
 			},
 		],
 		
-		"spells": [
+		"magic": [
 			{
 				# "name": "Egress",
 				# Egress
 				"resource": "res://SF1/Spells/Egress/Egress.tres",
 				"levels": [
-					1,
+					1, # TODO: IMPORTANT: need to handle pre promotion and promotion unlock levels
+					# probably also need an unlock state in the case of promoting prior to getting the spell but not being the promoted target level ex kazin from sf2 
 				]
 			},
 		]
@@ -264,14 +265,14 @@ var ForceMembers = [
 		"character_base_node": "res://SF1/Characters/Luke/Luke.tscn",
 		"character_npc_scene": "res://SF1/Characters/Luke/LukeNPC.tscn",
 		
-		"unlocked": false,
+		"unlocked": true,
 		"active_in_force": false,
 		"alive": true,
 		
 		"name": "Luke", # TODO: do nicknames
 		"race": "Dwarf",
 		
-		"class": "Warrior",
+		"class_full": "Warrior",
 		"class_short": "WARR",
 		"class_idx": E_SF1_CLASSES.WARR,
 		
@@ -381,7 +382,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": []
+		"magic": []
 	},
 	
 	# Ken
@@ -399,7 +400,7 @@ var ForceMembers = [
 		"name": "Ken", # TODO: do nicknames
 		"race": "Centaur",
 		
-		"class": "Knight",
+		"class_full": "Knight",
 		"class_short": "KNHT",
 		"class_idx": E_SF1_CLASSES.KNT,
 		
@@ -509,7 +510,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": []
+		"magic": []
 	},
 	
 	# Tao
@@ -527,7 +528,7 @@ var ForceMembers = [
 		"name": "Tao", # TODO: do nicknames
 		"race": "Elf",
 		
-		"class": "Mage",
+		"class_full": "Mage",
 		"class_short": "MAGE",
 		"class_idx": E_SF1_CLASSES.MAGE,
 		
@@ -636,7 +637,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": [
+		"magic": [
 			{
 				"name": "Blaze",
 				"levels": [
@@ -685,7 +686,7 @@ var ForceMembers = [
 		"name": "Hans", # TODO: do nicknames
 		"race": "Elf",
 		
-		"class": "Archer",
+		"class_full": "Archer",
 		"class_short": "ARCH",
 		"class_idx": E_SF1_CLASSES.ACHR,
 		
@@ -794,7 +795,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": []
+		"magic": []
 	},
 	
 	# Lowe
@@ -812,7 +813,7 @@ var ForceMembers = [
 		"name": "Lowe", # TODO: do nicknames
 		"race": "Halfling",
 		
-		"class": "Healer",
+		"class_full": "Healer",
 		"class_short": "HEAL",
 		"class_idx": E_SF1_CLASSES.HEAL,
 		
@@ -922,7 +923,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": [
+		"magic": [
 			{
 				"name": "Heal",
 				"levels": [
@@ -973,7 +974,7 @@ var ForceMembers = [
 		"name": "Gong", # TODO: do nicknames
 		"race": "Half Giant",
 		
-		"class": "Monk",
+		"class_full": "Monk",
 		"class_short": "MONK",
 		"class_idx": E_SF1_CLASSES.MONK,
 		
@@ -1079,7 +1080,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": [
+		"magic": [
 			{
 				"name": "Heal",
 				"levels": [
@@ -1114,7 +1115,7 @@ var ForceMembers = [
 		"name": "Gort", # TODO: do nicknames
 		"race": "Dwarf",
 		
-		"class": "Warrior",
+		"class_full": "Warrior",
 		"class_short": "WARR",
 		"class_idx": E_SF1_CLASSES.WARR,
 		
@@ -1223,7 +1224,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": []
+		"magic": []
 	},
 	
 	# Mae
@@ -1241,7 +1242,7 @@ var ForceMembers = [
 		"name": "Mae", # TODO: do nicknames
 		"race": "Centaur",
 		
-		"class": "Knight",
+		"class_full": "Knight",
 		"class_short": "KNTE",
 		"class_idx": E_SF1_CLASSES.KNT,
 		
@@ -1350,7 +1351,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": []
+		"magic": []
 	},
 	
 	# Khris
@@ -1368,7 +1369,7 @@ var ForceMembers = [
 		"name": "Khris", # TODO: do nicknames
 		"race": "Kyantol",
 		
-		"class": "Healer",
+		"class_full": "Healer",
 		"class_short": "HEAL",
 		"class_idx": E_SF1_CLASSES.HEAL,
 		
@@ -1478,7 +1479,7 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"spells": [
+		"magic": [
 			{
 				"name": "Heal",
 				"levels": [

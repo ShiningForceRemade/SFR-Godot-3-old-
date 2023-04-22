@@ -52,16 +52,21 @@ func _ready():
 	redSelection.position = rs_top_pos
 	magicLevelSelectorWrapper.hide()
 
-func show_with_tween() -> void:
+func show_cust() -> void:
 	show()
 	set_battle_magic_menu_active()
 
 func set_battle_magic_menu_active() -> void:
 	is_battle_magic_menu_active = true
 	
-	print("Magic Menu Current Char", Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot"))
-	print("Magic Menu Spells", Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot").spells_id)
-	character_spells = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot").spells_id
+	if Singleton_CommonVariables.is_currently_in_battle_scene:
+		print("Magic Menu Current Char", Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot"))
+		print("Magic Menu Spells", Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot").spells_id)
+		character_spells = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot").spells_id
+	else:
+		print("Magic Menu Current Char", Singleton_CommonVariables.main_character_player_node.actor)
+		print("Magic Menu Spells", Singleton_CommonVariables.main_character_player_node.actor.magic_array)
+		character_spells = Singleton_CommonVariables.main_character_player_node.actor.magic_array
 	
 	for idx in (character_spells.size()):
 		# print("Spell - ", spell)
@@ -84,13 +89,18 @@ func _input(event):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
-			get_parent().get_parent().get_parent().s_hide_battle_magic_menu()
-			get_parent().get_parent().get_parent().s_show_battle_action_menu("right")
+			
+			Singleton_CommonVariables.ui__magic_menu.hide()
+			# get_parent().get_parent().get_parent().s_hide_battle_magic_menu()			
+			Singleton_CommonVariables.ui__battle_action_menu.show()
+			# get_parent().get_parent().get_parent().s_show_battle_action_menu("right")
 			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
 			await Signal(get_tree().create_timer(0.1), "timeout")
-			get_parent().get_node("BattleActionsMenuRoot").set_menu_active()
+			
+			Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
+			# get_parent().get_node("BattleActionsMenuRoot").set_menu_active()
 			return
 			
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
@@ -104,10 +114,14 @@ func _input(event):
 			is_select_magic_level_active = true
 			is_battle_magic_menu_active = false
 			
-			var actor = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot")
+			var actor
+			if Singleton_CommonVariables.is_currently_in_battle_scene:
+				actor = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot")
+			else:
+				actor = Singleton_CommonVariables.main_character_player_node.actor
 			
 			magicLevelSelectorWrapper.show()
-			select_magic_level(actor.spells_id[currently_selected_option])
+			select_magic_level(actor.magic_array[currently_selected_option])
 			await Signal(self, "signal_completed_magic_level_selection_action")
 			
 			# todo if cancelled
@@ -141,9 +155,13 @@ func _input(event):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
-			var actor = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot")
+			var actor
+			if Singleton_CommonVariables.is_currently_in_battle_scene:
+				actor = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot")
+			else: 
+				actor = Singleton_CommonVariables.main_character_player_node.actor
 			
-			if Singleton_BattleVariables.currently_active_character.cget_mp_current() < actor.spells_id[currently_selected_option].levels[0].mp_usage_cost:
+			if actor.MP_Current < actor.magic_array[currently_selected_option].levels[0].mp_usage_cost:
 				noValidOptionNode.set_no_cant_use_text()
 				noValidOptionNode.position = Vector2(165, 100)
 				noValidOptionNode.start_self_clear_timer()
