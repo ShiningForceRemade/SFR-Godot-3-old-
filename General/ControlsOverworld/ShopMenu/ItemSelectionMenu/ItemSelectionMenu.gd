@@ -19,8 +19,9 @@ var current_item_selected: int = 0
 @onready var item_info_item_name_node = $ItemInfoStatNinePatchRect/ItemNameLabel
 @onready var item_info__gold_node = $ItemInfoStatNinePatchRect/GoldLabel
 
-@onready var selection_node = $SelectionControl
-
+@onready var selection_node = $RedSelectionBorderRoot
+const default_position_selection: Vector2 = Vector2(42, 6)
+const selection_x_offset: int = 24
 
 func _ready():
 	Singleton_CommonVariables.ui__shop_item_selection_menu = self
@@ -41,7 +42,7 @@ func set_menu_active():
 	is_menu_active = true
 	display_item_info(item_list[0])
 	current_item_selected = 0
-	selection_node.position = Vector2(0, selection_node.position.y)
+	selection_node.position = default_position_selection
 	move_info_box(current_item_selected, 21)
 
 
@@ -79,12 +80,15 @@ func _process(_delta):
 				print("\n Result - ", result, "\n")
 		
 				if result == "NO":
+					await Signal(get_tree().create_timer(0.02), "timeout")
 					is_menu_active = true
 				elif result == "YES":
 					hide()
 					Singleton_CommonVariables.dialogue_box_node.play_message_none_interactable("Who do you wish to have it?")
-					Singleton_CommonVariables.ui__micro_member_list_view.set_menu_active()
 					Singleton_CommonVariables.ui__micro_member_list_view.show()
+					# await Signal(get_tree().create_timer(0.02), "timeout")
+					Singleton_CommonVariables.ui__micro_member_list_view.set_menu_active()
+					
 			
 				print("Show New Menu")
 			
@@ -104,19 +108,19 @@ func _process(_delta):
 		print("Left")
 		
 		if check_if_next_or_prev_item_exists(current_item_selected - 1):
-			selection_node.position = Vector2(selection_node.position.x - 21, selection_node.position.y)
+			selection_node.position = Vector2(selection_node.position.x - selection_x_offset, selection_node.position.y)
 			current_item_selected -= 1
 			display_item_info(item_list[current_item_selected])
-			move_info_box(current_item_selected, -21)
+			move_info_box(current_item_selected, -selection_x_offset)
 		
 	elif Input.is_action_just_pressed("ui_right"):
 		print("Right")
 		
 		if check_if_next_or_prev_item_exists(current_item_selected + 1):
-			selection_node.position = Vector2(selection_node.position.x + 21, selection_node.position.y)
+			selection_node.position = Vector2(selection_node.position.x + selection_x_offset, selection_node.position.y)
 			current_item_selected += 1
 			display_item_info(item_list[current_item_selected])
-			move_info_box(current_item_selected, 21)
+			move_info_box(current_item_selected, selection_x_offset)
 
 
 func check_if_next_or_prev_item_exists(idx) -> bool:
@@ -134,9 +138,8 @@ func load_shop_items() -> void:
 	
 	for item in item_list:
 		var si = shop_item_scene.instantiate()
-		
+		# si.scale = Vector2(0.1, 0.1)
 		si.item_resource = item
-		
 		shop_items_container_node.add_child(si)
 
 

@@ -1,78 +1,50 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://djs82rr3fpk6r"]
 
-[ext_resource path="res://Assets/SF1/ShiningForceMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="1"]
 
 [node name="MemberSelectionLineControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ActiveForceStaticLabel" type="Label" parent="."]
-margin_left = 1.0
-margin_top = 4.0
-margin_right = 17.0
-margin_bottom = 12.0
-custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("1")
 text = "FW"
-valign = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="NameStaticLabel" type="Label" parent="."]
-margin_left = 24.6667
-margin_top = 4.00001
-margin_right = 56.6667
-margin_bottom = 12.0
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 0
+offset_left = 20.0
+offset_right = 45.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1")
 text = "NAME"
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="ClassStaticLabel" type="Label" parent="."]
-margin_left = 151.333
-margin_top = 3.66663
-margin_right = 239.333
-margin_bottom = 11.6666
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 0
+offset_left = 124.0
+offset_right = 156.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1")
 text = "CLASS"
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="LevelStaticLabel" type="Label" parent="."]
-margin_left = 223.0
-margin_top = 4.0
-margin_right = 264.0
-margin_bottom = 12.0
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 0
+offset_left = 202.0
+offset_right = 229.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1")
 text = "LV"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 2
 
 [node name="DeadStaticLabel" type="Label" parent="."]
-visible = false
-margin_left = 276.0
-margin_top = 4.0
-margin_right = 316.0
-margin_bottom = 12.0
-custom_colors/font_color = Color( 0.952941, 0.670588, 0.305882, 1 )
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 0
+offset_left = 236.0
+offset_right = 268.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1")
 text = "DEATH"
-valign = 1
-__meta__ = {
-"_edit_lock_": true
-}

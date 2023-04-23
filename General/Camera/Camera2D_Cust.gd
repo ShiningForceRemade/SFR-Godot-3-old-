@@ -5,7 +5,7 @@ extends Camera2D
 # onready var playerNode = get_parent().get_node("Characters/MaxRoot/CharacterRoot/KinematicBody2D")
 
 # @onready var playerNode = get_parent().get_parent().get_node("SubViewport/PlayerCharacterRoot")
-@onready var playerNode = get_parent().get_node("PlayerCharacterRoot")
+# @onready var playerNode = Singleton_CommonVariables.main_character_player_node # get_parent().get_node("PlayerCharacterRoot")
 
 # onready var playerNode = get_parent().get_node("Characters/MaxRoot")
 
@@ -39,8 +39,9 @@ func _process(_delta):
 	#playerNode = p
 	
 	# print(playerNode.position)
-	position.x = playerNode.position.x 
-	position.y = playerNode.position.y #  - 60# + (tile_size * 12)
+	if Singleton_CommonVariables.main_character_player_node != null:
+		position.x = Singleton_CommonVariables.main_character_player_node.position.x 
+		position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
 	
 	#displayInfoControl.rect_position.x = playerNode.position.x
 	#displayInfoControl.rect_position.y = playerNode.position.y

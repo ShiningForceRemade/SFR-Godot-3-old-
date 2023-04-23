@@ -5,12 +5,12 @@ signal signal_action_finished
 #
 @onready var ray: RayCast2D = $RayCast2D
 @onready var ray_interactables: RayCast2D = $InteractablesRayCast2D
-@onready var _timer: Timer = $Timer
+# @onready var _timer: Timer = $Timer
 
 @onready var collision_shape_cell_block: CollisionShape2D = $CollisionShape2D2
-@onready var chracter_animation_player: AnimationPlayer = $AnimationPlayer
 
-@onready var actor: Node2D = $CharacterRoot
+var chracter_animation_player: AnimationPlayer
+var actor: Node2D
 
 #
 var GRID_BASED_MOVEMENT:bool = true
@@ -28,24 +28,32 @@ func _ready() -> void:
 	Singleton_CommonVariables.main_character_active_kinematic_body_node = self
 	Singleton_CommonVariables.main_character_player_node = self
 	
+	actor = find_child("CharacterRoot")
+	if actor != null:
+		chracter_animation_player = actor.get_node("AnimationPlayer")
+	else:
+		actor = find_child("EnemeyRoot")
+		chracter_animation_player = actor.get_node("AnimationPlayer")
+		set_active_processing(false)
+	
 	pass
 
 
-func npc_move() -> void:
-	if !is_currently_moving:
-		rng.randomize()
-	
-		# animationPlayer.playback_speed = 1
-		_timer.set_wait_time(rng.randf_range(1.5, 4))
-		# _timer.set_wait_time(0.15)
-		_timer.start()
-		# random_move_direction(rng.randi_range(0, 3))
-		random_move_direction(rng.randi_range(0, 3))
-		# _timer.set_wait_time(1)
-		# _timer.set_one_shot(false) # Make sure it loops
-		_timer.start()
-		await _timer.timeout
-		npc_move()
+#func npc_move() -> void:
+#	if !is_currently_moving:
+#		rng.randomize()
+#
+#		# animationPlayer.playback_speed = 1
+#		_timer.set_wait_time(rng.randf_range(1.5, 4))
+#		# _timer.set_wait_time(0.15)
+#		_timer.start()
+#		# random_move_direction(rng.randi_range(0, 3))
+#		random_move_direction(rng.randi_range(0, 3))
+#		# _timer.set_wait_time(1)
+#		# _timer.set_one_shot(false) # Make sure it loops
+#		_timer.start()
+#		await _timer.timeout
+#		npc_move()
 
 
 func random_move_direction(n: int) -> void:
@@ -82,13 +90,13 @@ func _process(_delta: float) -> void:
 			# var mcan = Singleton_Game_GlobalCommonVariables.main_character_player_node
 			var mcan = Singleton_CommonVariables.sf_game_data_node.ForceMembers[0]
 			Singleton_CommonVariables.ui__actor_micro_info_box.update_active_info(
-				mcan.name, 
-				mcan.class_short, 
-				mcan.level, 
-				mcan.stats.hp, 
-				mcan.stats.hp, 
-				mcan.stats.mp, 
-				mcan.stats.mp
+					mcan.name, 
+					mcan.class_short, 
+					mcan.level, 
+					mcan.stats.hp, 
+					mcan.stats.hp, 
+					mcan.stats.mp, 
+					mcan.stats.mp
 				)
 			
 			await Signal(get_tree().create_timer(0.1), "timeout")
@@ -103,12 +111,40 @@ func _process(_delta: float) -> void:
 			# CutscenePlayerTemp.play("Opening")
 			return
 		
-		if Input.is_action_just_pressed("ui_x_key"):
+#		if Input.is_action_just_pressed("ui_x_key"):
+#			is_active = false
+#			Singleton_CommonVariables.menus_root_node.member_list_node().show()
+#			Singleton_CommonVariables.menus_root_node.member_list_node().set_overvview_view_active()
+#			Singleton_CommonVariables.menus_root_node.member_list_node().load_character_lines()
+#			Singleton_CommonVariables.menus_root_node.member_list_node().active = true
+#			return
+	else:
+		if Input.is_action_just_pressed("ui_a_key"):
 			is_active = false
-			Singleton_CommonVariables.menus_root_node.member_list_node().show()
-			Singleton_CommonVariables.menus_root_node.member_list_node().set_overvview_view_active()
-			Singleton_CommonVariables.menus_root_node.member_list_node().load_character_lines()
-			Singleton_CommonVariables.menus_root_node.member_list_node().active = true
+			Singleton_CommonVariables.ui__battle_action_menu.show()
+			Singleton_CommonVariables.ui__gold_info_box.show_cust()
+			Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
+			
+			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(false)
+			
+			# Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
+			# Singleton_CommonVariables.menus_root_node.character_info_box_node().show()
+			
+			# TODO: add get character from player to help support different main character option
+			# var mcan = Singleton_Game_GlobalCommonVariables.main_character_player_node
+#			var mcan = Singleton_CommonVariables.sf_game_data_node.ForceMembers[0]
+#			Singleton_CommonVariables.ui__actor_micro_info_box.update_active_info(
+#				mcan.name, 
+#				mcan.class_short, 
+#				mcan.level, 
+#				mcan.stats.hp, 
+#				mcan.stats.hp, 
+#				mcan.stats.mp, 
+#				mcan.stats.mp
+#				)
+			
+			await Signal(get_tree().create_timer(0.1), "timeout")
+			Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
 			return
 	
 	# Classic Genesis styled movement and battle movement

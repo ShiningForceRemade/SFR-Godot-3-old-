@@ -65,7 +65,7 @@ func set_battle_use_menu_active() -> void:
 	
 	var active_char_root
 	if Singleton_CommonVariables.is_currently_in_battle_scene:
-		active_char_root = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+		active_char_root = Singleton_CommonVariables.currently_active_character.actor # get_actor_root_node_internal()
 	else:
 		active_char_root = Singleton_CommonVariables.main_character_player_node.actor
 	

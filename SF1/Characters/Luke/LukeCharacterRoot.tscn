@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://cyyq3vq7o514"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_8p3nx"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="1_elaei"]
+[ext_resource type="Texture2D" uid="uid://dadpqgcpviiey" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Map_Sprites.png" id="3_b57vq"]
+[ext_resource type="Resource" path="res://SF1/Items/Weapons/ShortSword.tres" id="3_oytjb"]
+[ext_resource type="Texture2D" uid="uid://cebtj3ojk2dr2" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Battle_Sprites.png" id="4_3uwkf"]
+[ext_resource type="Texture2D" uid="uid://7hw4uimbywqm" path="res://Assets/SF1/PlayableCharacters/Luke/Unpromoted_Portraits.png" id="5_pajop"]
+
+[sub_resource type="Animation" id="Animation_jnoky"]
+resource_name = "DownMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_cs0ta"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2lf7a"]
+resource_name = "UpMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_77fpd"]
+resource_name = "LeftMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_mua3l"]
+resource_name = "RightMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8vs6"]
+_data = {
+"DownMovement": SubResource("Animation_jnoky"),
+"LeftMovement": SubResource("Animation_77fpd"),
+"RESET": SubResource("Animation_cs0ta"),
+"RightMovement": SubResource("Animation_mua3l"),
+"UpMovement": SubResource("Animation_2lf7a")
+}
+
+[node name="Luke" type="Node2D"]
+script = ExtResource("1_8p3nx")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("1_elaei")]
+character_name = "Luke"
+inventory_items_id = Array[Resource]([ExtResource("3_oytjb")])
+is_item_equipped = Array[bool]([true])
+texture_sprite_overworld_unpromoted = ExtResource("3_b57vq")
+texture_sprite_battle_unpromoted = ExtResource("4_3uwkf")
+texture_sprite_portrait_unpromoted = ExtResource("5_pajop")
+move = 6
+HP_Total = 9
+hp_growth = 3
+attack = 9
+defense = 7
+agility = 4
+critical_hit_chance = 3
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("3_b57vq")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterRoot"]
+autoplay = "DownMovement"
+libraries = {
+"": SubResource("AnimationLibrary_u8vs6")
+}
+
+[editable path="CharacterRoot"]

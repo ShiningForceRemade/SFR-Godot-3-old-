@@ -158,6 +158,11 @@ func ConfirmSellOfItem() -> void:
 		current_selection = E_ItemSelection.UP
 		RedSelectionBorderRoot.position = RedSelectionPositions[current_selection]
 		
+		display_str = "Anything else you want to sell?"
+		Singleton_CommonVariables.dialogue_box_node.play_message_none_interactable(display_str)
+		
+		await Signal(get_tree().create_timer(0.1), "timeout")
+		
 		active = true
 		return
 	

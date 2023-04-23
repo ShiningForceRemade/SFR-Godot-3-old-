@@ -1,8 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://udxjicsvp6qk"]
+[gd_scene load_steps=15 format=3 uid="uid://dk736jnat6pgq"]
 
-[ext_resource type="PackedScene" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="1_o5xma"]
+[ext_resource type="PackedScene" uid="uid://cyw8ri3jdrriy" path="res://General/Camera/Camera2D_Cust.tscn" id="1_vbwwo"]
 [ext_resource type="PackedScene" path="res://SF1/Chapters/1/Cabin/Gongs_House_G4.tscn" id="2_k71yx"]
-[ext_resource type="Script" path="res://SF1/Chapters/1/Cabin/Camera2D.gd" id="3_ybvr4"]
+[ext_resource type="PackedScene" uid="uid://bs8q0b4dilmvw" path="res://SF1/Characters/Luke/Luke.tscn" id="3_xg7ui"]
 [ext_resource type="TileSet" uid="uid://bqdwc68vnfpg" path="res://General/CollisionTileset.tres" id="4_tty83"]
 [ext_resource type="PackedScene" uid="uid://itpvlgqdm3kt" path="res://General/NPC/NPC.tscn" id="5_eybnu"]
 [ext_resource type="PackedScene" uid="uid://rtgchifxuvgx" path="res://General/OverworldInteractables/Door/Door.tscn" id="6_itjv4"]
@@ -15,147 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://diqhrgxad6pho" path="res://Assets/SF1/NPC/Man_Old_WhiteBeard.png" id="12_oppvi"]
 [ext_resource type="Script" path="res://SF1/Chapters/1/Cabin/OldMan.gd" id="13_f1fqp"]
 
-[sub_resource type="Animation" id="Animation_scqes"]
-resource_name = "DownMovement"
-length = 0.80001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_s78wr"]
-resource_name = "LeftMovement"
-length = 0.80001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ohc35"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_vmx57"]
-resource_name = "RightMovement"
-length = 0.80001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_at7ec"]
-resource_name = "UpMovement"
-length = 0.80001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 5]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l21jy"]
-_data = {
-"DownMovement": SubResource("Animation_scqes"),
-"LeftMovement": SubResource("Animation_s78wr"),
-"RESET": SubResource("Animation_ohc35"),
-"RightMovement": SubResource("Animation_vmx57"),
-"UpMovement": SubResource("Animation_at7ec")
-}
-
 [node name="Cabin" type="Node"]
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 0
-limit_top = 0
-limit_right = 680
-limit_bottom = 528
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 24.0
-rotation_smoothing_speed = 4.0
-editor_draw_limits = true
-script = ExtResource("3_ybvr4")
+[node name="Camera2D_Cust" parent="." instance=ExtResource("1_vbwwo")]
 
 [node name="Gongs_House_G4" parent="." instance=ExtResource("2_k71yx")]
 position = Vector2(224, 176)
@@ -176,18 +39,15 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 2
 metadata/_edit_lock_ = true
 
+[node name="LukeP" parent="." instance=ExtResource("3_xg7ui")]
+position = Vector2(252, 348)
+
 [node name="Doors" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
 [node name="Door" parent="Doors" instance=ExtResource("6_itjv4")]
 position = Vector2(276, 252)
 metadata/_edit_lock_ = true
-
-[node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_o5xma")]
-position = Vector2(252, 372)
-
-[node name="CharacterRoot" parent="PlayerCharacterRoot" index="0"]
-character_name = "Max"
 
 [node name="CollisionTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("4_tty83")
@@ -213,11 +73,7 @@ texture = ExtResource("7_y7gqb")
 hframes = 6
 frame = 2
 
-[node name="AnimationPlayer" parent="NPCs/Jogurt/AnimatableBody2D/CharacterRoot" index="1"]
-autoplay = "RightMovement"
-libraries = {
-"": SubResource("AnimationLibrary_l21jy")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/Jogurt/AnimatableBody2D" index="5"]
 
 [node name="Gong" parent="NPCs" instance=ExtResource("5_eybnu")]
 position = Vector2(148, 232)
@@ -233,6 +89,8 @@ FacingDirection = 2
 texture = ExtResource("9_7tipa")
 hframes = 6
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/Gong/AnimatableBody2D" index="5"]
+
 [node name="WomanWalkingAround" parent="NPCs" instance=ExtResource("5_eybnu")]
 position = Vector2(204, 180)
 script = ExtResource("11_yj0kq")
@@ -241,6 +99,8 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" parent="NPCs/WomanWalkingAround/AnimatableBody2D/CharacterRoot" index="0"]
 texture = ExtResource("11_lpgly")
 hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/WomanWalkingAround/AnimatableBody2D" index="5"]
 
 [node name="CollisionPolygon2D" parent="NPCs/WomanWalkingAround/Area2D" index="0"]
 polygon = PackedVector2Array(60, 12, 36, 12, 36, 36, 84, 36, 84, -60, 60, -60)
@@ -257,8 +117,8 @@ stationary = true
 texture = ExtResource("12_oppvi")
 hframes = 6
 
-[editable path="PlayerCharacterRoot"]
-[editable path="PlayerCharacterRoot/CharacterRoot"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/OldMan/AnimatableBody2D" index="5"]
+
 [editable path="NPCs/Jogurt"]
 [editable path="NPCs/Jogurt/AnimatableBody2D/CharacterRoot"]
 [editable path="NPCs/Gong"]

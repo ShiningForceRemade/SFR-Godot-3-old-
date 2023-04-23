@@ -87,7 +87,8 @@ func _process(_delta):
 			Singleton_CommonVariables.ui__gold_info_box.hide_cust()
 			Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 			
-			# Singleton_CommonVariables.ui__magic_menu.show_with_tween()
+			await Signal(get_tree().create_timer(0.1), "timeout")
+			
 			Singleton_CommonVariables.ui__magic_menu.show_cust()
 			
 #			if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().spells_id.size() == 0:
@@ -147,7 +148,7 @@ func OpenInventoryMenu() -> void:
 	Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 	
 	# disgusting remove these later but convertint to process instead of input with the just pressed action
-	await Signal(get_tree().create_timer(0.2), "timeout")
+	await Signal(get_tree().create_timer(0.1), "timeout")
 	
 	Singleton_CommonVariables.ui__inventory_menu.show_with_tween()
 	

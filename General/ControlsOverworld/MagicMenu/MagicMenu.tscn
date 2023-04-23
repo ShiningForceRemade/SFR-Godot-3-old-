@@ -90,6 +90,7 @@ color = Color(0.898039, 0.8, 0.0156863, 1)
 metadata/_edit_lock_ = true
 
 [node name="MagicLevelSelectorWrapperNode2D" type="Node2D" parent="NinePatchRect"]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="LeftColorRect" type="ColorRect" parent="NinePatchRect/MagicLevelSelectorWrapperNode2D"]

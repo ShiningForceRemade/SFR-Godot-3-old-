@@ -7,7 +7,7 @@ var menu_tween_time = 0.1
 
 ## TODO: probably should make this an enum
 ## something like "in battle" "in cutscene" "overworld" "in battle cutscene" etc to smooth out behaviours and interactions
-var is_currently_in_battle_scene = false
+var is_currently_in_battle_scene = true # false
 
 # Node refs
 var game_management_wrapper_node = null
@@ -49,7 +49,7 @@ var ui__micro_member_list_view: Node2D = null
 var ui__battle_action_menu: Node2D = null
 
 # battle ui controls
-var land_effect_popup_node: Node2D = null
+var ui__land_effect_popup_node: Node2D = null
 var view_selected_actor_info_node: Node2D = null
 
 
@@ -100,3 +100,23 @@ var sf_game_data_node = null
 
 # var E_SF_CHARACTERS = SF1ForceMemberList.E_SF1_FM
 # var SF_CHARACTERS = SF1ForceMemberList.ForceMembers
+
+### Battle Variables
+
+var battle__logic_node: Node
+var battle__turn_order_array: Array
+
+var battle__control_enemies: bool = true
+var battle__currently_active_actor
+
+var battle__tilemap_info_group__background: TileMap
+var battle__tilemap_info_group__foreground: TileMap
+var battle__tilemap_info_group__stand: TileMap
+var battle__tilemap_info_group__terrain: TileMap
+
+var battle__enemies: Node2D
+var battle__characters: Node2D
+
+# NOTE: not using this at the moment
+var active_actor_move_array_representation
+var active_actor_move_point_representation

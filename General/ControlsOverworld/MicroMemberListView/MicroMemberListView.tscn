@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://blhprxolo5vvq" path="res://General/ControlsOverworld/MicroMemberListView/InventoryPreview.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="7"]
-[ext_resource type="PackedScene" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionLongBorder.tscn" id="7_50skj"]
+[ext_resource type="PackedScene" uid="uid://bvdpld8j7kgfr" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionLongBorder.tscn" id="7_50skj"]
 [ext_resource type="Texture2D" uid="uid://doky8w0iu55ih" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://cpydwxcj01iv1" path="res://Assets/SF1/ShiningForceMenuBorder.png" id="10"]
 [ext_resource type="Script" path="res://General/ControlsOverworld/MicroMemberListView/MicroMemberListView.gd" id="11"]
@@ -69,9 +69,14 @@ vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StatNinePatchRect2"]
 layout_mode = 0
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 260.0
+offset_bottom = 88.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StatNinePatchRect2/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Test_NOT-USED_CharacterWrapperNode" type="Control" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer"]
 visible = false
@@ -79,21 +84,36 @@ layout_mode = 2
 
 [node name="ActiveForceStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
 layout_mode = 0
+theme_override_colors/font_color = Color(0.952941, 0.670588, 0.305882, 1)
+theme_override_fonts/font = ExtResource("1")
 text = "FW"
 
 [node name="NameStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
 layout_mode = 0
+offset_left = 20.0
+offset_right = 45.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1")
 text = "NAME"
 
 [node name="ClassStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
 layout_mode = 0
+offset_left = 124.0
+offset_right = 156.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1")
 text = "CLASS"
 
 [node name="LevelStaticLabel" type="Label" parent="StatNinePatchRect2/ScrollContainer/VBoxContainer/Test_NOT-USED_CharacterWrapperNode"]
 layout_mode = 0
+offset_left = 216.0
+offset_right = 229.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1")
 text = "LV"
 
 [node name="StatNinePatchRect3" type="NinePatchRect" parent="."]
+visible = false
 offset_top = 57.0
 offset_right = 44.0
 offset_bottom = 81.0
@@ -120,4 +140,5 @@ position = Vector2(4, 58)
 scale = Vector2(0.8, 0.8)
 
 [node name="RedSelectionBorderRoot" parent="." instance=ExtResource("7_50skj")]
-position = Vector2(64, 24)
+position = Vector2(68, 17)
+scale = Vector2(1.05, 0.5)

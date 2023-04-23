@@ -288,6 +288,10 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 		cnode.queue_free()
 	
 	cnode = load(c.character_base_node).instantiate();
+	
+	print("Premature return fixme later")
+	return
+	
 	var cnode_actor = cnode.get_actor_root_node_internal()
 	# print(cnode, cnode_actor)
 	

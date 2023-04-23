@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv43e0jmlifoi"]
+[gd_scene load_steps=12 format=3 uid="uid://bv43e0jmlifoi"]
 
 [ext_resource type="Script" path="res://General/ControlsOverworld/ShopMenu/ItemSelectionMenu/ItemSelectionMenu.gd" id="1_oghv3"]
 [ext_resource type="Resource" path="res://SF1/Items/Usables/MedicalHerb.tres" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://SF1/Items/Weapons/WoodenArrow.tres" id="8"]
 [ext_resource type="Resource" path="res://SF1/Items/Weapons/BronzeLance.tres" id="9"]
 [ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="9_j34us"]
+[ext_resource type="PackedScene" uid="uid://b451lgd0islao" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionBorder.tscn" id="11_0udcv"]
 
 [node name="ShopItemSelectionMenuNode" type="Node2D"]
 script = ExtResource("1_oghv3")
@@ -21,7 +22,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 32.0
 offset_right = 288.0
-offset_bottom = 32.0
+offset_bottom = 36.0
 grow_horizontal = 2
 texture = ExtResource("9_j34us")
 patch_margin_left = 12
@@ -48,10 +49,10 @@ metadata/_edit_lock_ = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 16.0
-offset_top = 28.0
+offset_left = 4.0
+offset_top = 36.0
 offset_right = 96.0
-offset_bottom = 56.0
+offset_bottom = 64.0
 grow_horizontal = 2
 texture = ExtResource("9_j34us")
 patch_margin_left = 12
@@ -65,9 +66,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_bottom = -14.0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4")
@@ -79,10 +81,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 16.0
-offset_right = -5.0
-offset_bottom = -2.0
+offset_left = 6.0
+offset_top = 15.0
+offset_right = -7.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4")
@@ -90,29 +92,5 @@ text = "100"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
-[node name="SelectionControl" type="Node2D" parent="."]
-position = Vector2(3.8147e-06, 0.31498)
-
-[node name="TopSegmentColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
-
-[node name="LeftSegmentColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
-
-[node name="RightSegmentColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
-
-[node name="BottomSegmentColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
-
-[node name="TopLeftColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
-
-[node name="TopRightColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
-
-[node name="BottomLeftColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
-
-[node name="BottomRightColorRect" type="ColorRect" parent="SelectionControl"]
-color = Color(0.741176, 0.0862745, 0.0862745, 1)
+[node name="RedSelectionBorderRoot" parent="." instance=ExtResource("11_0udcv")]
+position = Vector2(66, 6)

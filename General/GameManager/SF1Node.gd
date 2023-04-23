@@ -102,6 +102,10 @@ var ForceMembers = [
 		# REFACTOR: after finishing migration to Godot 4
 		"leader": true,
 		
+		# TODO: add order field so its possible to select the order of your units being placed
+		
+		# TODO: need to copy this to all other characters
+		"promotion_stage": 0,
 		# CRITICAL: IMPORTANT: FIXME: TODO: 
 		# is_promoted should be here for easy checking of with sprites to use
 		# espeically for overworld cutscenes and the like instead of needing to load the 
@@ -111,7 +115,7 @@ var ForceMembers = [
 		# TODO: create a base path for characters and use in a similar fashion to the soundback
 		# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
 		
-		# battle node?
+		# battle node? - TODO: this should be the generic playeractor node for both overworld battle and enemies 
 		"character_base_node": "res://SF1/Characters/Max/Max.tscn",
 		# HQ NPC node
 		"character_npc_scene": "res://SF1/Characters/Max/MaxNPC.tscn",
@@ -163,6 +167,7 @@ var ForceMembers = [
 			"move_boost": 0,
 			
 			"hp": 12,
+			"hp_current": 12,
 			"hp_boost": 0,
 			"hp_target_unpromoted": 23,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
@@ -170,6 +175,7 @@ var ForceMembers = [
 			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"mp": 8,
+			"mp_current": 8,
 			"mp_boost": 0,
 			"mp_target_unpromoted": 4,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
@@ -266,7 +272,7 @@ var ForceMembers = [
 		"character_npc_scene": "res://SF1/Characters/Luke/LukeNPC.tscn",
 		
 		"unlocked": true,
-		"active_in_force": false,
+		"active_in_force": true,
 		"alive": true,
 		
 		"name": "Luke", # TODO: do nicknames

@@ -56,7 +56,7 @@ func _process(_delta):
 		# TODO add animation
 		hide()
 		
-		Singleton_CommonVariables.main_character_player_node.set_active_processing(true)
+		Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
 		Singleton_CommonVariables.ui__gold_info_box.hide()
 		Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 		#get_parent().get_parent().get_parent().s_hide_action_menu()
@@ -72,11 +72,13 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
-			Singleton_CommonVariables.main_character_player_node.set_active_processing(true)
+			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
 			Singleton_CommonVariables.ui__gold_info_box.hide()
 			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 			
-			Singleton_CommonVariables.main_character_player_node.interaction_attempt_to_search()
+			Singleton_CommonVariables.battle__currently_active_actor.end_turn()
+			
+			# Singleton_CommonVariables.main_character_player_node.interaction_attempt_to_search()
 			return
 		elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
 			OpenInventoryMenu()
@@ -89,7 +91,7 @@ func _process(_delta):
 			Singleton_CommonVariables.ui__gold_info_box.hide()
 			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 			
-			Singleton_CommonVariables.ui__magic_menu.show_with_tween()
+			Singleton_CommonVariables.ui__magic_menu.show_cust()
 			
 #			if Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().spells_id.size() == 0:
 #				noValidOptionNode.re_show_action_menu = true
@@ -107,11 +109,11 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
-			Singleton_CommonVariables.main_character_player_node.set_active_processing(true)
+			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
 			Singleton_CommonVariables.ui__gold_info_box.hide()
 			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 			
-			Singleton_CommonVariables.main_character_player_node.interaction_attempt_to_talk()
+			# Singleton_CommonVariables.battle__currently_active_actor.get_child(0).interaction_attempt_to_talk()
 			return
 		
 	if Input.is_action_just_pressed("ui_down"):

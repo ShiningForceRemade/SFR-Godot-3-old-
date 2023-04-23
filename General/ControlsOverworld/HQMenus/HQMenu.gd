@@ -77,7 +77,7 @@ func _process(_delta):
 				Singleton_CommonVariables.dialogue_box_node.hide()
 				Singleton_CommonVariables.ui__gold_info_box.hide()
 				show()
-				
+				await Signal(get_tree().create_timer(0.1), "timeout")
 				is_menu_active = true
 			
 			return
@@ -105,7 +105,7 @@ func _process(_delta):
 				Singleton_CommonVariables.dialogue_box_node.hide()
 				Singleton_CommonVariables.ui__gold_info_box.hide()
 				show()
-				
+				await Signal(get_tree().create_timer(0.1), "timeout")
 				is_menu_active = true
 			return
 		elif currently_selected_option == e_menu_options.JOIN_OPTION:
@@ -148,7 +148,7 @@ func _process(_delta):
 				3: Singleton_CommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/HeadQuarters/Scripts Nova/Battle3_Advice.json"
 				4: Singleton_CommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/HeadQuarters/Scripts Nova/Battle4_Advice.json"
 				# 5: Singleton_CommonVariables.dialogue_box_node.external_file = "res://SF1/Chapters/HQ/Default/Scripts/ActiveForceQuotes/Tao.json"
-				_: pass
+				_: pass # TODO: create generic good luck in battle message to have as a fallback in case of no advice present
 			
 			# Singleton_Game_GlobalCommonVariables.dialogue_box_node.active = false
 			Singleton_CommonVariables.dialogue_box_node._process_new_resource_file()

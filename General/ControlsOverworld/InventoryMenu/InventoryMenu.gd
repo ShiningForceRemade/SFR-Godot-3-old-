@@ -47,7 +47,11 @@ func _input(event):
 			Singleton_CommonVariables.ui__inventory_menu.hide()
 			# Singleton_BattleVariables.battle_base.s_hide_battle_inventory_menu()
 			
-			Singleton_CommonVariables.ui__battle_action_menu.show()
+			if Singleton_CommonVariables.is_currently_in_battle_scene:
+				Singleton_CommonVariables.ui__battle_action_menu.show()
+			else: 
+				Singleton_CommonVariables.ui__overworld_action_menu.show()
+			
 			Singleton_CommonVariables.ui__gold_info_box.show_cust()
 			Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
 			
@@ -57,7 +61,11 @@ func _input(event):
 			# yield on signal seems busted sometimes gets double called or falls through?
 			await Signal(get_tree().create_timer(0.1), "timeout")
 			
-			Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
+			if Singleton_CommonVariables.is_currently_in_battle_scene:
+				Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
+			else: 
+				Singleton_CommonVariables.ui__overworld_action_menu.set_menu_active()
+			
 			# get_parent().get_node("BattleActionsMenuRoot").set_menu_active()
 			return
 			

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdkexl3twcqsr"]
+
+[ext_resource type="Script" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.gd" id="1_h8i6a"]
+[ext_resource type="Shape2D" uid="uid://bh7uaaxfqc2lk" path="res://General/24x24_collision_shape.tres" id="3_b6lvg"]
+
+[node name="PlayerCharacterRoot" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_h8i6a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("3_b6lvg")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = ExtResource("3_b6lvg")
+disabled = true
+metadata/_edit_lock_ = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 20)
+metadata/_edit_lock_ = true
+
+[node name="InteractablesRayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 20)
+collision_mask = 2

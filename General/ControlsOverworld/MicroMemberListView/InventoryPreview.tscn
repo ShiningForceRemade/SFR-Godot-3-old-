@@ -28,4 +28,5 @@ texture = ExtResource("1")
 metadata/_edit_lock_ = true
 
 [node name="RedSelectionBorderRoot" parent="." instance=ExtResource("3")]
+visible = false
 position = Vector2(16, 0)

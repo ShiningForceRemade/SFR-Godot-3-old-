@@ -37,5 +37,9 @@ class_name CN_SF1_Spell
 
 @export var spell_animation_resource: Resource
 
-func _ready():
-	pass
+## NOT CURRENTLY USED
+@export var overworld_use_effect: Resource
+# @export var overworld_use_effect: Resource
+
+#func _ready():
+#	pass

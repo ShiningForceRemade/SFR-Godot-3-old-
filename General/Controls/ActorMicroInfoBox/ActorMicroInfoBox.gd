@@ -152,6 +152,36 @@ func display_micro_info_for_actor(node_arg) -> void:
 		actor_root.MP_Total)
 
 
+func display_actor_info(node_arg) -> void:
+#	var wr = weakref(node_arg)
+#	if (!wr.get_ref()):
+#		return
+
+	var actor_root = node_arg.get_child(0).actor
+
+	print(node_arg)
+
+	if actor_root.name == "CharacterRoot":
+		update_active_info(actor_root.character_name, 
+		"FAKE CLASS", # actor_root.cget_class(), 
+		actor_root.level, 
+		actor_root.HP_Current, 
+		actor_root.HP_Total, 
+		actor_root.MP_Current, 
+		actor_root.MP_Total)
+	elif actor_root.name == "EnemeyRoot":
+		update_active_info(actor_root.enemey_name, 
+
+		"", # actor_root.monster_class, 
+		null, # actor_root.effective_level, 
+
+		actor_root.HP_Current, 
+		actor_root.HP_Total, 
+		actor_root.MP_Current, 
+		actor_root.MP_Total)
+	
+	pass
+
 ## Show Hide Cust with tween
 
 const default_position: Vector2 = Vector2(200, 8)

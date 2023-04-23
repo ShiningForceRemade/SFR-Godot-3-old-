@@ -175,8 +175,6 @@ script = ExtResource("7_i80tt")
 metadata/_edit_lock_ = true
 
 [node name="AnimatableBody2D" parent="NPCs/Nova" index="0"]
-collision_layer = 3
-collision_mask = 1
 stationary = true
 FacingDirection = 3
 

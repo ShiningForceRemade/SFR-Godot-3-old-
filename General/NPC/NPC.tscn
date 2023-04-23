@@ -7,7 +7,7 @@
 [node name="NPCRoot" type="Node2D"]
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-collision_mask = 3
+collision_layer = 3
 sync_to_physics = false
 script = ExtResource("1_ghay4")
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjjb3q3tvwpys"]
 
 [ext_resource type="PackedScene" uid="uid://cyw8ri3jdrriy" path="res://General/Camera/Camera2D_Cust.tscn" id="1_q0kr8"]
-[ext_resource type="PackedScene" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="2_w18x5"]
+[ext_resource type="PackedScene" uid="uid://c8p1i3ikjaexe" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacter.tscn" id="2_w18x5"]
 [ext_resource type="PackedScene" path="res://SF1/Chapters/1/Guardiana/PreInvasion/TownTilemap.tscn" id="2_ymcwi"]
 [ext_resource type="TileSet" uid="uid://bqdwc68vnfpg" path="res://General/CollisionTileset.tres" id="4_7457o"]
 [ext_resource type="PackedScene" uid="uid://itpvlgqdm3kt" path="res://General/NPC/NPC.tscn" id="5_mcsll"]
@@ -98,11 +98,15 @@ ITEM_LIST = Array[Resource]([ExtResource("7_sdr1b"), ExtResource("8_itv0u"), Ext
 [node name="AnimatableBody2D" parent="NPCs/WeaponSellerTesting" index="0"]
 stationary = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/WeaponSellerTesting/AnimatableBody2D" index="5"]
+
 [node name="NPCRoot2" parent="NPCs" instance=ExtResource("5_mcsll")]
 position = Vector2(828, 612)
 
 [node name="AnimatableBody2D" parent="NPCs/NPCRoot2" index="0"]
 stationary = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/NPCRoot2/AnimatableBody2D" index="5"]
 
 [editable path="NPCs/WeaponSellerTesting"]
 [editable path="NPCs/WeaponSellerTesting/AnimatableBody2D/CharacterRoot"]

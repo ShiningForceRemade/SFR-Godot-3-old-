@@ -52,9 +52,11 @@ func _ready():
 	redSelection.position = rs_top_pos
 	magicLevelSelectorWrapper.hide()
 
+
 func show_cust() -> void:
 	show()
 	set_battle_magic_menu_active()
+
 
 func set_battle_magic_menu_active() -> void:
 	is_battle_magic_menu_active = true
@@ -81,6 +83,7 @@ func set_battle_magic_menu_active() -> void:
 		elif idx == 3:
 			spell_down_slot_spirte.texture = character_spells[idx].spell_texture
 
+
 func _input(event):
 	if is_battle_magic_menu_active:
 		if event.is_action_released("ui_b_key"):
@@ -91,16 +94,23 @@ func _input(event):
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
 			
 			Singleton_CommonVariables.ui__magic_menu.hide()
-			# get_parent().get_parent().get_parent().s_hide_battle_magic_menu()			
-			Singleton_CommonVariables.ui__battle_action_menu.show()
+			
+			if Singleton_CommonVariables.is_currently_in_battle_scene:
+				Singleton_CommonVariables.ui__battle_action_menu.show()
+			else: 
+				Singleton_CommonVariables.ui__overworld_action_menu.show()
+				
 			# get_parent().get_parent().get_parent().s_show_battle_action_menu("right")
 			
 			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
 			# yield on signal seems busted sometimes gets double called or falls through?
 			await Signal(get_tree().create_timer(0.1), "timeout")
 			
-			Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
-			# get_parent().get_node("BattleActionsMenuRoot").set_menu_active()
+			if Singleton_CommonVariables.is_currently_in_battle_scene:
+				Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
+			else: 
+				Singleton_CommonVariables.ui__overworld_action_menu.set_menu_active()
+			
 			return
 			
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
@@ -159,8 +169,11 @@ func _input(event):
 			if Singleton_CommonVariables.is_currently_in_battle_scene:
 				actor = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot")
 			else: 
+				# actor = Singleton_CommonVariables.sf_game_data_node.ForceMembers[0] # main_character_player_node.actor # Singleton_CommonVariables.main_character_player_node.actor
 				actor = Singleton_CommonVariables.main_character_player_node.actor
+				actor.MP_Current = actor.MP_Total
 			
+			# print(actor.MP_Current, actor.magic_array[currently_selected_option].levels[0].mp_usage_cost)
 			if actor.MP_Current < actor.magic_array[currently_selected_option].levels[0].mp_usage_cost:
 				noValidOptionNode.set_no_cant_use_text()
 				noValidOptionNode.position = Vector2(165, 100)
@@ -168,7 +181,9 @@ func _input(event):
 				noValidOptionNode.re_show_action_menu = false
 				return
 			
-			if actor.spells_id[currently_selected_option].name == "Egress":
+			print(actor.magic_array[currently_selected_option].name)
+			if actor.magic_array[currently_selected_option].name == "Egress":
+				print("Egress selected")
 				return
 			# if actor.spells_id[currently_selected_option].name == "Heal":
 				# Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()

@@ -45,7 +45,7 @@ func s_show_priest_menu():
 func _ready():
 	Singleton_CommonVariables.ui__priest_menu = self
 	set_sprites_to_zero_frame()
-	animationPlayer.speed_scale = 2
+	# animationPlayer.speed_scale = 2
 	animationPlayer.play("Save")
 	label.text = "Save"
 
