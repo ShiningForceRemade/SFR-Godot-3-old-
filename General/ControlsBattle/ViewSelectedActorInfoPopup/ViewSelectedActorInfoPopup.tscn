@@ -50,9 +50,9 @@ metadata/_edit_lock_ = true
 
 [node name="LevelLabel" type="Label" parent="StatsNinePatchRect"]
 layout_mode = 0
-offset_left = 32.0
+offset_left = 34.0
 offset_top = 20.0
-offset_right = 88.0
+offset_right = 90.0
 offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("2_4kylk")
 text = "0"
@@ -95,7 +95,7 @@ metadata/_edit_lock_ = true
 layout_mode = 0
 offset_left = 32.0
 offset_top = 32.0
-offset_right = 76.0
+offset_right = 89.0
 offset_bottom = 42.0
 theme_override_fonts/font = ExtResource("2_4kylk")
 text = "9999/9999"
@@ -179,9 +179,9 @@ metadata/_edit_lock_ = true
 
 [node name="ExpLabel" type="Label" parent="StatsNinePatchRect"]
 layout_mode = 0
-offset_left = 32.0
+offset_left = 34.0
 offset_top = 56.0
-offset_right = 88.0
+offset_right = 90.0
 offset_bottom = 66.0
 theme_override_fonts/font = ExtResource("2_4kylk")
 text = "100"

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="1_ic55j"]
 [ext_resource type="PackedScene" uid="uid://12nby2m8fegb" path="res://SF1/Characters/Max/MaxCharacterRoot.tscn" id="2_vic6b"]
 
-[node name="Max" type="Node"]
+[node name="Max" type="Node2D"]
 script = ExtResource("1_0nguh")
 
 [node name="PlayableActorRoot" parent="." instance=ExtResource("1_ic55j")]

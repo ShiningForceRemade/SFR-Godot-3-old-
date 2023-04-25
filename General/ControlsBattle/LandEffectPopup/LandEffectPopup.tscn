@@ -28,7 +28,7 @@ text = "Land Effect"
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="LandEffectStaticLabel2" type="Label" parent="NinePatchRect"]
+[node name="LandEffectValueLabel" type="Label" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 18.0

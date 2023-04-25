@@ -39,10 +39,26 @@ func _process(_delta):
 	#playerNode = p
 	
 	# print(playerNode.position)
-	if Singleton_CommonVariables.main_character_player_node != null:
-		position.x = Singleton_CommonVariables.main_character_player_node.position.x 
-		position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
 	
+	if Singleton_CommonVariables.is_currently_in_battle_scene:
+		position.x = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.x
+		position.y = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.y
+	else:
+		if Singleton_CommonVariables.main_character_player_node != null:
+			position.x = Singleton_CommonVariables.main_character_player_node.position.x 
+			position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
+	
+	
+#	if Singleton_CommonVariables.is_currently_in_battle_scene:
+#		if Singleton_CommonVariables.battle__currently_active_actor != null:
+#			position.x = Singleton_CommonVariables.battle__currently_active_actor.position.x 
+#			position.y = Singleton_CommonVariables.battle__currently_active_actor.position.y #  - 60# + (tile_size * 12)
+#	else:
+#		if Singleton_CommonVariables.main_character_player_node != null:
+#			position.x = Singleton_CommonVariables.main_character_player_node.position.x 
+#			position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
+
+
 	#displayInfoControl.rect_position.x = playerNode.position.x
 	#displayInfoControl.rect_position.y = playerNode.position.y
 	

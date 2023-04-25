@@ -260,7 +260,21 @@ var ForceMembers = [
 					# probably also need an unlock state in the case of promoting prior to getting the spell but not being the promoted target level ex kazin from sf2 
 				]
 			},
-		]
+		],
+		
+		# TODO: need to copy these over to all other characters
+		"actor_meta_stats": {
+			# battles gone through ? maybe
+			# maybe track each magic spell used
+			"kills": 0,
+			"defeats": 0,
+			"dodges": 0,
+			"misses": 0,
+			"critical_hits": 0,
+			"double_attacks": 0,
+			"special_attacks": 0,
+			"counter_attacks": 0
+		}
 	},
 	
 	# Luke
@@ -271,8 +285,8 @@ var ForceMembers = [
 		"character_base_node": "res://SF1/Characters/Luke/Luke.tscn",
 		"character_npc_scene": "res://SF1/Characters/Luke/LukeNPC.tscn",
 		
-		"unlocked": true,
-		"active_in_force": true,
+		"unlocked": false,
+		"active_in_force": false,
 		"alive": true,
 		
 		"name": "Luke", # TODO: do nicknames
@@ -527,8 +541,8 @@ var ForceMembers = [
 		"character_base_node": "res://SF1/Characters/Tao/Tao.tscn",
 		"character_npc_scene": "res://SF1/Characters/Tao/TaoNPC.tscn",
 		
-		"unlocked": false,
-		"active_in_force": false,
+		"unlocked": true,
+		"active_in_force": true,
 		"alive": true,
 		
 		"name": "Tao", # TODO: do nicknames

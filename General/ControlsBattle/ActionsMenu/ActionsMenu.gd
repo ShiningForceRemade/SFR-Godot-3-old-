@@ -1,6 +1,11 @@
 extends Node2D
 
 var is_menu_active: bool =  false
+var _tween: Tween
+
+# TODO: look into something better - hard coding position values doesnt seem like the best that can be done
+const default_position: Vector2 = Vector2(131, 136)
+const hidden_position: Vector2 = Vector2(131, 184)
 
 enum e_menu_options {
 	ATTACK_OPTION,
@@ -39,6 +44,31 @@ func set_menu_active() -> void:
 	animationPlayer.play("Attack")
 	label.text = "Attack"
 
+## Show Hide Normal Position
+
+func show_cust() -> void: 
+	position = hidden_position
+	show()
+	
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", default_position, Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+
+
+func hide_cust() -> void: 
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", hidden_position, Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+	_tween.tween_callback(hide)
+
+##
+
 # TODO: convert  to input when updateing to use process on and off states 
 # refactor after migration
 func _process(_delta):
@@ -51,14 +81,12 @@ func _process(_delta):
 		Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 		await Signal(get_tree().create_timer(0.02), "timeout")
 		
-		# Singleton_Game_GlobalBattleVariables.currently_active_character.get_actor_root_node_internal().active = true
 		# get_parent().get_parent().get_parent().s_show_battle_action_menu("down")
-		# TODO add animation
-		hide()
+		hide_cust()
 		
 		Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
-		Singleton_CommonVariables.ui__gold_info_box.hide()
-		Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+		# Singleton_CommonVariables.ui__gold_info_box.hide()
+		# Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 		#get_parent().get_parent().get_parent().s_hide_action_menu()
 		return
 			
@@ -73,8 +101,8 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
 			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
-			Singleton_CommonVariables.ui__gold_info_box.hide()
-			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+			# Singleton_CommonVariables.ui__gold_info_box.hide()
+			# Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 			
 			Singleton_CommonVariables.battle__currently_active_actor.end_turn()
 			
@@ -88,8 +116,8 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
-			Singleton_CommonVariables.ui__gold_info_box.hide()
-			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+			# Singleton_CommonVariables.ui__gold_info_box.hide()
+			# Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 			
 			Singleton_CommonVariables.ui__magic_menu.show_cust()
 			
@@ -109,9 +137,14 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
-			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
-			Singleton_CommonVariables.ui__gold_info_box.hide()
-			Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+			
+			Singleton_CommonVariables.battle__logic__target_selection_node.set_attack_target_selection()
+			
+			# Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
+			
+			
+			# Singleton_CommonVariables.ui__gold_info_box.hide()
+			# Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 			
 			# Singleton_CommonVariables.battle__currently_active_actor.get_child(0).interaction_attempt_to_talk()
 			return

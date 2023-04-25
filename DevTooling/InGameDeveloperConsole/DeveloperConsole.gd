@@ -77,7 +77,7 @@ func changeScene(new_text_internal) -> void:
 			
 		elif splstr[2] == "2":
 			print("Change Scene to Battle 2")
-			sceneManagerNode.change_scene("res://General/BattleBase/BattleBase-B2.tscn")
+			sceneManagerNode.change_scene("res://SF1/Chapters/1/Overworld/Battle2/Battle2-Overworld.tscn")
 			# sceneManagerNode.get_child(1).change_battle_scene("res://SF1/Chapters/1/Battle2/Battle2.tscn")
 		elif splstr[2] == "3":
 			print("Change Scene to Battle 3")

@@ -1,15 +1,16 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="CN_SF1_Item_Usable" load_steps=3 format=3 uid="uid://5pp71m0e17gl"]
 
-[ext_resource path="res://SF1/Items/Usable.gd" type="Script" id=1]
-[ext_resource path="res://Assets/SFCD/Items/Usables/AngelWing.png" type="Texture" id=2]
+[ext_resource type="Script" path="res://SF1/Items/Usable.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ljl8mod0jlfl" path="res://Assets/SFCD/Items/Usables/AngelWing.png" id="2"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 item_name = "Angel Wing"
-texture = ExtResource( 2 )
+texture = ExtResource("2")
+item_type = "USABLE"
 target_actor_type = 1
-attribute = [  ]
-attribute_bonus = [  ]
+attribute = 0
+attribute_bonus = Array[int]([])
 key_item = false
 price_buy = 100
 price_sell = 50

@@ -7,6 +7,7 @@
 script = ExtResource("1")
 chance_to_crack = false
 equippable_by = 0
+item_type = "WEAPON"
 item_name = "Hand Axe"
 texture = ExtResource("2")
 target_actor_type = 2

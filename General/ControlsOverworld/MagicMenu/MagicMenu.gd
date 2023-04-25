@@ -62,9 +62,9 @@ func set_battle_magic_menu_active() -> void:
 	is_battle_magic_menu_active = true
 	
 	if Singleton_CommonVariables.is_currently_in_battle_scene:
-		print("Magic Menu Current Char", Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot"))
-		print("Magic Menu Spells", Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot").spells_id)
-		character_spells = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot").spells_id
+		print("Magic Menu Current Char", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot"))
+		print("Magic Menu Spells", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot").magic_array)
+		character_spells = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot").magic_array
 	else:
 		print("Magic Menu Current Char", Singleton_CommonVariables.main_character_player_node.actor)
 		print("Magic Menu Spells", Singleton_CommonVariables.main_character_player_node.actor.magic_array)
@@ -126,7 +126,7 @@ func _input(event):
 			
 			var actor
 			if Singleton_CommonVariables.is_currently_in_battle_scene:
-				actor = Singleton_BattleVariables.currently_active_character.get_node("CharacterRoot")
+				actor = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
 			else:
 				actor = Singleton_CommonVariables.main_character_player_node.actor
 			

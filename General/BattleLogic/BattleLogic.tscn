@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3jwmtbmk6vai"]
+
+[ext_resource type="Script" path="res://General/BattleLogic/BattleLogic.gd" id="1_ri34r"]
+[ext_resource type="Script" path="res://General/BattleLogic/TurnLogic.gd" id="2_6huta"]
+[ext_resource type="Script" path="res://General/BattleLogic/MovementLogic.gd" id="3_j12mi"]
+[ext_resource type="Script" path="res://General/BattleLogic/TargetSelectionLogic.gd" id="4_me10v"]
+[ext_resource type="PackedScene" uid="uid://d0ntm67m6na08" path="res://General/BattleLogic/Cursor/Cursor.tscn" id="5_4q7qq"]
+
+[sub_resource type="Animation" id="Animation_glrx3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovementWrapper:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_03roy"]
+resource_name = "TileFlashing"
+length = 1.20001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovementWrapper:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.647059), Color(0.25098, 0.25098, 0.25098, 0.87451), Color(0, 0, 0, 0.741176), Color(0.580392, 0.580392, 0.580392, 0.25098)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ch4y"]
+_data = {
+"RESET": SubResource("Animation_glrx3"),
+"TileFlashing": SubResource("Animation_03roy")
+}
+
+[sub_resource type="Animation" id="Animation_m85wl"]
+resource_name = "TilesFlashing"
+length = 1.20001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetSelectionWrapper:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.647059), Color(0.25098, 0.25098, 0.25098, 0.87451), Color(0, 0, 0, 0.741176), Color(0.580392, 0.580392, 0.580392, 0.25098)]
+}
+
+[sub_resource type="Animation" id="Animation_usjcn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetSelectionWrapper:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b1jfu"]
+_data = {
+"RESET": SubResource("Animation_usjcn"),
+"TilesFlashing": SubResource("Animation_m85wl")
+}
+
+[node name="BattleLogic" type="Node"]
+script = ExtResource("1_ri34r")
+
+[node name="TurnLogic" type="Node" parent="."]
+script = ExtResource("2_6huta")
+
+[node name="MovementLogic" type="Node" parent="."]
+script = ExtResource("3_j12mi")
+
+[node name="MovementWrapper" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1ch4y")
+}
+
+[node name="TargetSelectionLogic" type="Node" parent="."]
+script = ExtResource("4_me10v")
+
+[node name="TargetSelectionWrapper" type="Node2D" parent="TargetSelectionLogic"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TargetSelectionLogic"]
+libraries = {
+"": SubResource("AnimationLibrary_b1jfu")
+}
+
+[node name="Cursor" parent="." instance=ExtResource("5_4q7qq")]

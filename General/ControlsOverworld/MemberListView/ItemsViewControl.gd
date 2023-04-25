@@ -107,7 +107,7 @@ func _process(_delta):
 #		Singleton_Game_GlobalCommonVariables.main_character_player_node.active = true
 #		hide()
 # 		active = false
-	
+
 
 func DropItemFromCharacter() -> void:
 	# print(Singleton_Game_GlobalCommonVariables.selected_character.inventory, selected_item)

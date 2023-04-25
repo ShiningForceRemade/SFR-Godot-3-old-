@@ -22,105 +22,135 @@ func draw_use_range() -> void:
 
 
 func draw_use_range_tiles(move_array) -> void:
+	print("\n\nDrawing use range\n\n")
 	# print("\n\nBase Class Test Draw Call with Array Rep \n\n")
 	# for a in move_array:
 	# 	print(a)
 	
-	var uttwn = Singleton_BattleVariables.field_logic_node.get_node("UseTargetTilesWrapperNode")
+	var uttwn = Singleton_CommonVariables.battle__logic__target_selection_wrapper_node
 	
 	for n in uttwn.get_children():
 		uttwn.remove_child(n)
 		n.queue_free()
 	
-	var actor_cur_pos = Singleton_BattleVariables.currently_active_character.global_position
+	var actor_cur_pos = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position
 	var movement = move_array.size() / 2
+	
+	Singleton_CommonVariables.battle__target_use_range_array_representation = []
+	for i in range(move_array.size()):
+		Singleton_CommonVariables.battle__target_use_range_array_representation.append([])
+		Singleton_CommonVariables.battle__target_use_range_array_representation[i].resize(move_array.size())
 	
 	# TOP LEFT QUADRANT
 	for row in range(movement):
 		for col in range(movement):
 			if move_array[row][col] == 1:
-				Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x - ((movement - col) * tile_size) - half_tile,
-				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile,
-				uttwn
+				Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+					row, 
+					col,
+					Vector2(
+						actor_cur_pos.x - ((movement - col) * tile_size),
+						actor_cur_pos.y - ((movement - row) * tile_size)
+					)
 				)
 	
 	# TOP RIGHT QUADRANT
 	for row in range(movement):
 		for col in range(movement):
 			if move_array[row][col + movement + 1] == 1:
-				Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile,
-				actor_cur_pos.y - ((movement - row) * tile_size) - half_tile,
-				uttwn
+				Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+					row, 
+					col + movement + 1,
+					Vector2(
+						actor_cur_pos.x + ((col + 1) * tile_size),
+						actor_cur_pos.y - ((movement - row) * tile_size)
+					)
 				)
 	
 	# BOTTOM LEFT QUADRANT
 	for row in range(movement):
 		for col in range(movement):
 			if move_array[row + movement + 1][col] == 1:
-				Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x - ((movement - col) * tile_size) - half_tile,
-				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile,
-				uttwn
+				Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+					row + movement + 1, 
+					col,
+					Vector2(
+						actor_cur_pos.x - ((movement - col) * tile_size),
+						actor_cur_pos.y + ((row + 1) * tile_size)
+					)
 				)
-				pass
 	
 	# BOTTOM RIGHT QUADRANT
 	for row in range(movement):
 		for col in range(movement):
 			if move_array[row + movement + 1][col + movement + 1] == 1:
-				Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-				actor_cur_pos.x + ((col + 1) * tile_size) - half_tile,
-				actor_cur_pos.y + ((row + 1) * tile_size) - half_tile,
-				uttwn
+				Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+					row + movement + 1, 
+					col + movement + 1,
+					Vector2(
+						actor_cur_pos.x + ((col + 1) * tile_size),
+						actor_cur_pos.y + ((row + 1) * tile_size)
+					)
 				)
 	
 	# Straight Down Top Porition
 	for row in range(movement):
 		if move_array[row][movement] == 1:
-			Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - half_tile,
-			actor_cur_pos.y - ((movement - row) * tile_size) - half_tile,
-			uttwn
+			Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+				row, 
+				movement,
+				Vector2(
+					actor_cur_pos.x,
+					actor_cur_pos.y - ((movement - row) * tile_size)
+				)
 			)
 	
 	# Straight Down Top Porition
 	for row in range(movement):
 		if move_array[row + movement + 1][movement] == 1:
-			Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - half_tile,
-			actor_cur_pos.y + ((row + 1) * tile_size) - half_tile,
-			uttwn
+			Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+				row + movement + 1, 
+				movement,
+				Vector2(
+					actor_cur_pos.x,
+					actor_cur_pos.y + ((row + 1) * tile_size)
+				)
 			)
 	
 	# Straight Across Right Porition
 	for col in range(movement):
 		if move_array[movement][col] == 1:
-			Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x - ((movement - col) * tile_size) - half_tile,
-			actor_cur_pos.y - half_tile,
-			uttwn
+			Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+				movement, 
+				col,
+				Vector2(
+					actor_cur_pos.x - ((movement - col) * tile_size),
+					actor_cur_pos.y
+				)
 			)
 	
 	# Straight Across Right Porition
 	for col in range(movement):
 		if move_array[movement][col + movement + 1] == 1:
-			Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment,
-			actor_cur_pos.x + ((col + 1) * tile_size) - half_tile,
-			actor_cur_pos.y - half_tile,
-			uttwn
+			Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+				movement, 
+				col + movement + 1,
+				Vector2(
+					actor_cur_pos.x + ((col + 1) * tile_size),
+					actor_cur_pos.y
+				)
 			)
 	
 	# Center Self Tile
 	if move_array[movement][movement] == 1:
-		Singleton_BattleVariables.field_logic_node.draw_flashing_movement_square(center_segment, 
-		actor_cur_pos.x - half_tile, 
-		actor_cur_pos.y - half_tile,
-		uttwn
+		Singleton_CommonVariables.battle__logic__target_selection_node.draw_and_populate_cell_info(
+			movement, 
+			movement,
+			Vector2(
+				actor_cur_pos.x, 
+				actor_cur_pos.y
+			)
 		)
-	
-	pass
 
 
 # TODO: probably should add a helper func that just calls these two funcs together

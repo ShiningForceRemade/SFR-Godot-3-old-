@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_2ln1y"]
 [ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_jjht6"]
-[ext_resource type="Resource" path="res://SF1/Items/Weapons/ShortSword.tres" id="3_x3j6j"]
+[ext_resource type="Resource" uid="uid://bmmv68np23pvb" path="res://SF1/Items/Weapons/ShortSword.tres" id="3_x3j6j"]
 [ext_resource type="Resource" uid="uid://cek4vdtju5m0s" path="res://SF1/Spells/Egress/Egress.tres" id="4_wb7mh"]
 [ext_resource type="Texture2D" uid="uid://c5k05u34xnnts" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Map_Sprites.png" id="5_h0861"]
 [ext_resource type="Texture2D" uid="uid://dbcenl20q6pns" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Battle_Sprites.png" id="6_ph8jh"]

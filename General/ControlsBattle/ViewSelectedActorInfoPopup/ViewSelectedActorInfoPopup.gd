@@ -11,6 +11,7 @@ var battle_view_selected_actor_info_menu_active: bool = false
 @onready var level_label: Label = $StatsNinePatchRect/LevelLabel
 @onready var exp_label: Label = $StatsNinePatchRect/ExpLabel
 
+@onready var sprite: Sprite2D = $KillsNinePatchRect/OverworldActorSprite2D
 @onready var kills_label: Label = $KillsNinePatchRect/KillsLabel
 @onready var defeats_label: Label = $KillsNinePatchRect/DefeatsLabel
 
@@ -42,17 +43,18 @@ const char_class_array = ["SDMN", "KNT",
 
 
 func _ready() -> void:
-	Singleton_CommonVariables.view_selected_actor_info_node = self
+	Singleton_CommonVariables.ui__view_selected_actor_info_node = self
 
 
 func set_battle_view_selected_actor_info_menu_active() -> void:
 	battle_view_selected_actor_info_menu_active = true
+	show()
 	
 	# $GoldNinePatchRect/GoldAmountLabel.text = str(Singleton_Game_GlobalOverworldVariables.coins)
 	
-	if Singleton_BattleVariables.selected_actor_type == "Character":
+	if Singleton_CommonVariables.battle__selected_actor_type == "Character":
 		display_character_info()
-	elif Singleton_BattleVariables.selected_actor_type == "Enemey":
+	elif Singleton_CommonVariables.battle__selected_actor_type == "Enemey":
 		display_enemey_info()
 	else:
 		print("BUG")
@@ -66,25 +68,21 @@ func _input(event):
 				n.queue_free()
 			
 			battle_view_selected_actor_info_menu_active = false
-			Singleton_BattleVariables.selected_actor = null
-			Singleton_BattleVariables.selected_actor_type = null
 			
-			get_parent().get_parent().s_hide_battle_view_selected_actor_info_menu()
+			Singleton_CommonVariables.battle__selected_actor = null
+			Singleton_CommonVariables.battle__selected_actor_type = null
+			hide()
 			
 			await Signal(get_tree().create_timer(0.1), "timeout")
 			# re-act cursor through global ref to it
-			Singleton_BattleVariables.cursor_root_ref.active = true
+			Singleton_CommonVariables.battle__cursor_node.set_active()
 			
 
 func display_character_info() -> void:
-	var actor = Singleton_BattleVariables.selected_actor.get_node("CharacterRoot")
+	var actor = Singleton_CommonVariables.battle__selected_actor.find_child("CharacterRoot", true)
 	
-	# $PortraitSprite.show()
-	# TODO: create protrait get function that checks if unpromtoed or promoted or other
-	# $PortraitSprite.texture = actor.texture_protrait
-	
-	# $PortraitNinePatchRect.show()
-	# $GoldNinePatchRect.show()
+	# TODO: check promotion stage to determine which sprites to use
+	# sprite.texture = actor.texture_sprite_overworld_unpromoted
 	
 	class_label.text = char_class_array[actor.character_class]
 	name_label.text = str(actor.character_name)
@@ -92,23 +90,21 @@ func display_character_info() -> void:
 	level_label.text = str(actor.level)
 	exp_label.text = str(actor.experience_points)
 	
-	kills_label.text = str(actor.aps_enemey_kills)
-	defeats_label.text = str(actor.aps_times_defeated)
+#	kills_label.text = str(actor.aps_enemey_kills)
+#	defeats_label.text = str(actor.aps_times_defeated)
+	kills_label.text = "N/A" # str(actor.enemey_kills)
+	defeats_label.text = "N/A" # str(actor.times_defeated)
 	
 	display_actor_info(actor)
 
 
 
 func display_enemey_info() -> void:
-	var actor = Singleton_BattleVariables.selected_actor.get_node("EnemeyRoot")
+	var actor = Singleton_CommonVariables.battle__selected_actor.find_child("EnemeyRoot", true)
 	
-	# TODO: when adding boss enemeies with sprites add a check to hide or display similar to character info minus gold display
-	# $PortraitSprite.hide()
+	# sprite.texture = actor.texture_sprite_overworld
 	
-	# $GoldNinePatchRect.hide()
-	# $PortraitNinePatchRect.hide()
-	
-	class_label.text = "N/A" # char_class_array[actor.character_class]
+	class_label.text = "" # char_class_array[actor.character_class]
 	name_label.text = str(actor.enemey_name)
 	
 	level_label.text = str(actor.effective_level)
@@ -120,13 +116,20 @@ func display_enemey_info() -> void:
 	display_actor_info(actor)
 
 
-func display_actor_info(actor) -> void:
+func display_actor_info(actor: Node2D) -> void:
+		# $PortraitSprite.show()
+	# TODO: create protrait get function that checks if unpromtoed or promoted or other
+	# $PortraitSprite.texture = actor.texture_protrait
+		# TODO: when adding boss enemeies with sprites add a check to hide or display similar to character info minus gold display
+	# $PortraitSprite.hide()
+	
 	# Stats
 	hp_label.text = str(actor.HP_Current) + "/" + str(actor.HP_Total)
 	mp_label.text = str(actor.MP_Current) + "/" + str(actor.MP_Total)
 	
-	attack_label.text = str(actor.get_attack()) # str(actor.attack)
-	defeats_label.text = str(actor.defense)
+	# TODO: need functions to get the actual attack weapon equips and other bonuses
+	attack_label.text = str(actor.attack) # "FIXME" # str(actor.get_attack()) # str(actor.attack)
+	defense_label.text = str(actor.defense)
 	move_label.text = str(actor.move)
 	agility_label.text = str(actor.agility)
 	
@@ -142,13 +145,19 @@ func display_actor_info(actor) -> void:
 		# $StatNinePatchRect/ItemsNothingStaticLabel.hide()
 		item_vbox.show()
 		
+		for n in item_vbox.get_children():
+			n.queue_free()
+		
 		for n in range(inventory_item_size):
-			var itemInfoN = itemInfoNode.instance()
-			itemInfoN.init_item_micro_info(actor.inventory_items_id[n].texture, actor.inventory_items_id[n].item_name, actor.is_item_equipped[n])
+			var itemInfoN = itemInfoNode.instantiate()
+			itemInfoN.cust_scale = Vector2(0.8, 0.8)
+			itemInfoN.texture = actor.inventory_items_id[n].texture
+			itemInfoN.item_name = actor.inventory_items_id[n].item_name
+			itemInfoN.is_equipped = actor.is_item_equipped[n]
 			item_vbox.add_child(itemInfoN)
 	
 	# Spells
-	var spells_size = actor.spells_id.size()
+	var spells_size = actor.magic_array.size()
 	print(spells_size)
 	
 	if spells_size == 0:
@@ -158,7 +167,11 @@ func display_actor_info(actor) -> void:
 		# $StatNinePatchRect/MagicNothingStaticLabel.hide()
 		magic_vbox.show()
 		
+		for n in magic_vbox.get_children():
+			n.queue_free()
+		
 		for n in range(spells_size):
-			var spellInfoN = spellInfoNode.instance()
-			spellInfoN.init_spell_micro_info(actor.spells_id[n])
+			var spellInfoN = spellInfoNode.instantiate()
+			spellInfoN.spell_obj = actor.magic_array[n]
+			spellInfoN.cust_scale = Vector2(0.8, 0.8)
 			magic_vbox.add_child(spellInfoN)

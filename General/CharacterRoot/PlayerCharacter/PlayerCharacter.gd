@@ -25,6 +25,8 @@ var rng = RandomNumberGenerator.new()
 #
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# TODO: do something smarter for this setup
+	# maybe make leader a export and then check if set and then set this
 	Singleton_CommonVariables.main_character_active_kinematic_body_node = self
 	Singleton_CommonVariables.main_character_player_node = self
 	
@@ -119,11 +121,27 @@ func _process(_delta: float) -> void:
 #			Singleton_CommonVariables.menus_root_node.member_list_node().active = true
 #			return
 	else:
+		if Input.is_action_just_pressed("ui_b_key"):
+			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(false)
+			await Signal(get_tree().create_timer(0.1), "timeout")
+			Singleton_CommonVariables.battle__cursor_node.set_active()
 		if Input.is_action_just_pressed("ui_a_key"):
+			# print(Singleton_CommonVariables.battle__currently_active_actor.get_child(0).position)
+			# print(Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position)
+			var x = Singleton_CommonVariables.battle__logic_node.movement_logic_node.check_if_character_or_enemey_is_on_tile_excluding_current_actor(
+				Singleton_CommonVariables.battle__currently_active_actor.get_child(0).position,
+				Singleton_CommonVariables.battle__currently_active_actor.get_instance_id()
+			)
+			if x != null:
+				# print("Actor underneath - ", x)
+				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+				return
+			
 			is_active = false
-			Singleton_CommonVariables.ui__battle_action_menu.show()
-			Singleton_CommonVariables.ui__gold_info_box.show_cust()
-			Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
+			Singleton_CommonVariables.ui__battle_action_menu.show_cust()
+			
+			# Singleton_CommonVariables.ui__gold_info_box.show_cust()
+			# Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
 			
 			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(false)
 			
@@ -149,18 +167,44 @@ func _process(_delta: float) -> void:
 	
 	# Classic Genesis styled movement and battle movement
 	if GRID_BASED_MOVEMENT:
-		if Input.is_action_pressed("ui_right"):
-			play_animation("RightMovement")
-			attempt_to_move(Vector2(position.x + 24, position.y), e_directions.RIGHT)
-		elif Input.is_action_pressed("ui_left"):
-			play_animation("LeftMovement")
-			attempt_to_move(Vector2(position.x - 24, position.y), e_directions.LEFT)
-		elif Input.is_action_pressed("ui_up"):
-			play_animation("UpMovement")
-			attempt_to_move(Vector2(position.x, position.y - 24), e_directions.UP)
-		elif Input.is_action_pressed("ui_down"):
-			play_animation("DownMovement")
-			attempt_to_move(Vector2(position.x, position.y + 24), e_directions.DOWN)
+		if Singleton_CommonVariables.is_currently_in_battle_scene:
+			if Input.is_action_pressed("ui_right"):
+				play_animation("RightMovement")
+				
+				if check_if_move_is_possible(Vector2(position.x + 24, position.y)):
+					update_land_effect_with_tile_at_pos(Vector2(position.x + 24, position.y))
+					attempt_to_move(Vector2(position.x + 24, position.y), e_directions.RIGHT)
+			elif Input.is_action_pressed("ui_left"):
+				play_animation("LeftMovement")
+				
+				if check_if_move_is_possible(Vector2(position.x - 24, position.y)):
+					update_land_effect_with_tile_at_pos(Vector2(position.x - 24, position.y))
+					attempt_to_move(Vector2(position.x - 24, position.y), e_directions.LEFT)
+			elif Input.is_action_pressed("ui_up"):
+				play_animation("UpMovement")
+				
+				if check_if_move_is_possible(Vector2(position.x, position.y - 24)):
+					update_land_effect_with_tile_at_pos(Vector2(position.x, position.y - 24))
+					attempt_to_move(Vector2(position.x, position.y - 24), e_directions.UP)
+			elif Input.is_action_pressed("ui_down"):
+				play_animation("DownMovement")
+				
+				if check_if_move_is_possible(Vector2(position.x, position.y + 24)):
+					update_land_effect_with_tile_at_pos(Vector2(position.x, position.y + 24))
+					attempt_to_move(Vector2(position.x, position.y + 24), e_directions.DOWN)
+		else:
+			if Input.is_action_pressed("ui_right"):
+				play_animation("RightMovement")
+				attempt_to_move(Vector2(position.x + 24, position.y), e_directions.RIGHT)
+			elif Input.is_action_pressed("ui_left"):
+				play_animation("LeftMovement")
+				attempt_to_move(Vector2(position.x - 24, position.y), e_directions.LEFT)
+			elif Input.is_action_pressed("ui_up"):
+				play_animation("UpMovement")
+				attempt_to_move(Vector2(position.x, position.y - 24), e_directions.UP)
+			elif Input.is_action_pressed("ui_down"):
+				play_animation("DownMovement")
+				attempt_to_move(Vector2(position.x, position.y + 24), e_directions.DOWN)
 	
 	
 	# TODO: ROTDD styled movement
@@ -190,6 +234,24 @@ func _process(_delta: float) -> void:
 #		velocity = kinematicBody.move_and_slide(velocity)
 #		colsh.disabled = true
 
+
+func check_if_move_is_possible(new_pos_arg: Vector2) -> bool:
+#	var enemey_children = Singleton_CommonVariables.enemey_nodes.get_children()
+#	for enemey in enemey_children:
+#		# print(new_pos_arg,  enemey.global_position)
+#		if new_pos_arg == enemey.global_position:
+#			return false
+
+	for sub_array in Singleton_CommonVariables.active_actor_move_point_representation:
+		for move_pos in sub_array:
+			if move_pos != null:
+				# print(new_pos_arg, " ", move_pos.position)
+				if new_pos_arg == move_pos.position && move_pos.walkable == "YES":
+					return true
+	
+	return false
+
+
 ### Helpers
 
 func set_active(active_arg: bool) -> void:
@@ -199,6 +261,10 @@ func set_active(active_arg: bool) -> void:
 func set_active_processing(active_arg: bool) -> void:
 	is_active = !active_arg
 	set_process(active_arg)
+
+
+func set_collision_shape_disabled_state(arg: bool) -> void:
+	$CollisionShape2D.disabled = arg
 
 
 ### Interactions
@@ -377,3 +443,23 @@ func MoveInDirection(move_direction_arg: String) -> void:
 	elif move_direction_arg == "Down":
 		play_animation("DownMovement")
 		attempt_to_move(Vector2(position.x, position.y + 24), e_directions.DOWN)
+
+
+func play_facing_direction(move_direction_arg: String) -> void:
+	if move_direction_arg == "Right":
+		play_animation("RightMovement")
+	elif move_direction_arg == "Left":
+		play_animation("LeftMovement")
+	elif move_direction_arg == "Up":
+		play_animation("UpMovement")
+	elif move_direction_arg == "Down":
+		play_animation("DownMovement")
+
+
+func update_land_effect_with_tile_at_pos(pos_arg: Vector2) -> void:
+	var tile_info = Singleton_CommonVariables.battle__logic_node.movement_logic_node.get_land_effect_value_at_pos(pos_arg)
+	
+	if tile_info != null:
+		Singleton_CommonVariables.ui__land_effect_popup_node.set_land_effect_value_text(str(tile_info.value) + "%")
+	else:
+		Singleton_CommonVariables.ui__land_effect_popup_node.set_land_effect_value_text("BUG")

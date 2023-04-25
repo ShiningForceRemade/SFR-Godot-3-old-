@@ -50,8 +50,7 @@ var ui__battle_action_menu: Node2D = null
 
 # battle ui controls
 var ui__land_effect_popup_node: Node2D = null
-var view_selected_actor_info_node: Node2D = null
-
+var ui__view_selected_actor_info_node: Node2D = null
 
 # TODO: refactor disgusting temp for demo
 # values null | "YES" | "NO"
@@ -103,20 +102,37 @@ var sf_game_data_node = null
 
 ### Battle Variables
 
+var battle_scene_node: Node2D
+
 var battle__logic_node: Node
+
+var battle__logic__target_selection_node: Node
+var battle__logic__target_selection_wrapper_node: Node2D
+var battle__target_use_range_array_representation
+var battle__target_selector_array_representation
+var battle__target_selection_actor
+var battle__target_selection_type # item -- spell -- normal attack -- etc..
+
 var battle__turn_order_array: Array
+var battle__turn_number: int
 
 var battle__control_enemies: bool = true
 var battle__currently_active_actor
+
+var battle__cursor_node: Node2D
+var battle__selected_actor = null # Node2D or null
+var battle__selected_actor_type # : String or null 
+
+var active_actor_move_array_representation
+# TODO: NOTE: collapsed into move_array but still being used somewhere need to clean fully
+var active_actor_move_point_representation
 
 var battle__tilemap_info_group__background: TileMap
 var battle__tilemap_info_group__foreground: TileMap
 var battle__tilemap_info_group__stand: TileMap
 var battle__tilemap_info_group__terrain: TileMap
-
+var battle__movement_tiles_wrapper_node: Node2D
 var battle__enemies: Node2D
 var battle__characters: Node2D
 
-# NOTE: not using this at the moment
-var active_actor_move_array_representation
-var active_actor_move_point_representation
+

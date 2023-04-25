@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://bqlv8gotjyg2c"]
 
 [ext_resource type="PackedScene" uid="uid://cyw8ri3jdrriy" path="res://General/Camera/Camera2D_Cust.tscn" id="1_vfg0p"]
 [ext_resource type="PackedScene" uid="uid://crun86j0ciw20" path="res://SF1/Chapters/1/Overworld/OverworldTilemap.tscn" id="1_xo6ue"]
@@ -14,11 +14,6 @@ limit_smoothed = true
 
 [node name="OverworldTilemap" parent="." instance=ExtResource("1_xo6ue")]
 position = Vector2(232, 504)
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource("2_g53k7")]
 position = Vector2(204, 564)

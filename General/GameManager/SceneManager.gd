@@ -15,6 +15,8 @@ func _ready():
 	# call_deferred("_deferred_change_scene", "res://SF1/Chapters/HeadQuarters/Default/HeadQuarters.tscn")
 	# call_deferred("_deferred_change_scene", "res://SF1/Chapters/1/Cabin/Cabin.tscn")
 	
+	# call_deferred("_deferred_change_scene", "res://DeveloperTestScenes/MovementAndTerrains/AllSandMap.tscn")
+	
 	pass
 
 # Naive
