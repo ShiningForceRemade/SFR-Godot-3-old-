@@ -6,15 +6,26 @@
 texture = ExtResource("1_10jes")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
+0:0/0/custom_data_0 = "SF1_Bridge"
 1:0/0 = 0
+1:0/0/custom_data_0 = "SF1_Building"
 2:0/0 = 0
+2:0/0/custom_data_0 = "SF1_Gravel"
 3:0/0 = 0
+3:0/0/custom_data_0 = "SF1_Dirt"
 0:1/0 = 0
+0:1/0/custom_data_0 = "SF1_Grass"
 1:1/0 = 0
+1:1/0/custom_data_0 = "SF1_Mountain"
 2:1/0 = 0
+2:1/0/custom_data_0 = "SF1_Desert"
 3:1/0 = 0
+3:1/0/custom_data_0 = "SF1_DirtAndRocks"
 0:2/0 = 0
+0:2/0/custom_data_0 = "SF1_Blue"
 
 [resource]
 tile_size = Vector2i(24, 24)
+custom_data_layer_0/name = "name"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_k7qg7")

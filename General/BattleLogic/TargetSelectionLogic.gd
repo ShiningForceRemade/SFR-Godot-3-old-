@@ -6,6 +6,7 @@ var is_target_selection_active: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var actor_root
+var target_range_array_representation
 
 func _ready():
 	Singleton_CommonVariables.battle__logic__target_selection_node = self
@@ -84,35 +85,67 @@ func set_attack_target_selection() -> void:
 	# cleanup later
 	Singleton_CommonVariables.battle__target_selection_type = "normal_attack"
 	
-	for i in range(actor_root.inventory_items_id.size()):
-		print(actor_root.inventory_items_id[i])
+	if actor_root.actor_type == "character":
+		var inventory = actor_root.get_inventory()
+		for i in range(inventory.size()):
+			print(inventory[i])
+			
+			var item_res = load(inventory[i].resource)
+			
+			if item_res.item_type == "WEAPON":
+				if inventory[i].is_equipped == true:
+					print("get use range and target selector type")
+				
+					draw_use_range_from_script(item_res.item_use_range_path)
+					attempt_to_find_first_target_or_display_warning(load(item_res.item_use_target_path).new())
+				
+					return
+	elif actor_root.actor_type == "enemey":
+		for i in range(actor_root.inventory_items_id.size()):
+			print(actor_root.inventory_items_id[i])
 		
-		if actor_root.inventory_items_id[i].item_type == "WEAPON":
-			if actor_root.is_item_equipped[i] == true:
-				print("get use range and target selector type")
+			if actor_root.inventory_items_id[i].item_type == "WEAPON":
+				if actor_root.is_item_equipped[i] == true:
+					print("get use range and target selector type")
 				
-				draw_use_range_from_script(actor_root.inventory_items_id[i].item_use_range_path)
-				is_target_selection_active = true
-				
-				return
+					draw_use_range_from_script(actor_root.inventory_items_id[i].item_use_range_path)
+					attempt_to_find_first_target_or_display_warning(load(actor_root.inventory_items_id[i].item_use_target_path).new())
+					
+					return
 	
 	# TODO: should make it possible that characters and enemies can have different 
 	# default use targets ranges and selectors
 	
 	draw_use_range_from_script("res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd")
-	is_target_selection_active = true
+	attempt_to_find_first_target_or_display_warning(load("res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd").new())
+
+
+func attempt_to_find_first_target_or_display_warning(target_range_arg) -> void:
+	if attempt_to_find_first_target(target_range_arg):
+		is_target_selection_active = true
+	else:
+		print("TODO: make ui Warning no target appear")
+		
+		await get_tree().create_timer(0.3).timeout
+		
+		cancel_target_selection()
 
 
 func draw_use_range_from_script(script_path: String) -> void:
-	var use_range_script = load("res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1.gd").new()
+	var use_range_script = load(script_path).new()
 	use_range_script.draw_use_range()
 	hide_movement_tiles()
 	target_selection_wrapper.show()
 	animation_player.play("TilesFlashing")
-	attempt_to_find_first_target()
 
+func draw_use_range_from_script_object(script_obj) -> void:
+	var use_range_script = script_obj
+	use_range_script.draw_use_range()
+	hide_movement_tiles()
+	target_selection_wrapper.show()
+	animation_player.play("TilesFlashing")
 
-func attempt_to_find_first_target() -> void:
+func attempt_to_find_first_target(target_range_obj: CN_SF_TargetRange = null) -> bool:
 	for i in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size()):
 		for j in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size()):
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] != null && Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile != "empty":
@@ -121,24 +154,48 @@ func attempt_to_find_first_target() -> void:
 				if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node == null:
 					continue
 				
-				# show cursor at first target
-				Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 				print(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node)
-				Singleton_CommonVariables.battle__cursor_node.show()
+				# show cursor at first target
+				if target_range_obj == null:
+					target_range_array_representation = [1]
+					Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
+					Singleton_CommonVariables.battle__cursor_node.show()
+				else:
+					target_range_array_representation = target_range_obj.array_representation()
+					target_range_obj.draw_cursor_at_position(
+						Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
+					)
 				
-				return
+				return true
 			
-	print("No target")
-	return
-
-
-func set_magic_target_selection() -> void:
-	pass
+	# print("No target")
+	return false
 
 
 func set_item_target_selection() -> void:
 	pass
+
+
+func cancel_target_selection() -> void:
+	is_target_selection_active = false
+	
+	Singleton_CommonVariables.battle__target_selection_actor = null
+	
+	# Singleton_CommonVariables.battle_base.s_hide_target_actor_micro()
+	
+	# Singleton_CommonVariables.battle__target_selection_cursor.queue_free()
+	
+	Singleton_CommonVariables.battle__cursor_node.hide()
+	show_movement_tiles()
+	target_selection_wrapper.hide()
+	
+	if Singleton_CommonVariables.battle__target_selection_type == "magic":
+		# Singleton_CommonVariables.battle_base.s_show_battle_magic_menu()
+		pass
+	else:
+		Singleton_CommonVariables.ui__battle_action_menu.show_cust()
+		Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
 
 
 func _process(_delta: float) -> void:
@@ -146,29 +203,46 @@ func _process(_delta: float) -> void:
 		return
 	
 	if Input.is_action_just_released("ui_b_key"):
-		is_target_selection_active = false
-		
-		Singleton_CommonVariables.battle__target_selection_actor = null
-		
-		# Singleton_CommonVariables.battle_base.s_hide_target_actor_micro()
-		
-		Singleton_CommonVariables.battle__cursor_node.hide()
-		show_movement_tiles()
-		target_selection_wrapper.hide()
-		
-		if Singleton_CommonVariables.battle__target_selection_type == "magic":
-			# Singleton_CommonVariables.battle_base.s_show_battle_magic_menu()
-			pass
-		else:
-			Singleton_CommonVariables.ui__battle_action_menu.show_cust()
-			Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
+		cancel_target_selection()
 	
 	if Input.is_action_just_released("ui_a_key"):
 		if Singleton_CommonVariables.battle__target_selection_actor != null:
 			pass
 			# is_target_selection_active = false
 			
-#			Singleton_CommonVariables.battle_base.s_hide_target_actor_micro()
+#			print(Singleton_CommonVariables.battle__cursor_node.position)
+#
+#			for e in Singleton_CommonVariables.battle__enemies.get_children():
+#				if e.get_child(0).global_position == Singleton_CommonVariables.battle__cursor_node.position:
+#					print(e)
+#
+#			print(Singleton_CommonVariables.battle__selected_actor)
+			
+			Singleton_CommonVariables.ui__land_effect_popup_node.hide_cust()
+			Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
+			
+			if target_range_array_representation.size() == 1:
+				# print("One target")
+				get_single_actor_at_cursor(
+					Singleton_CommonVariables.battle__target_selection_cursor.position
+				)
+			else:
+				find_actors_from_center_position(
+					target_range_array_representation,
+					Singleton_CommonVariables.battle__target_selection_cursor.position
+				)
+			
+			# all actors that are in the target selection
+			print("target array - ", Singleton_CommonVariables.battle__target_array)
+			
+			Singleton_CommonVariables.battle__cursor_node.hide()
+			
+			Singleton_CommonVariables.battle__scene_node.show()
+			Singleton_CommonVariables.battle__scene_node.activate_battle()
+			
+			
+			# Singleton_CommonVariables.battle__target_selection_cursor = null
+			
 #			Singleton_CommonVariables.field_logic_node.show_movement_tiles()
 #			Singleton_CommonVariables.field_logic_node.hide_use_target_tiles()
 ##			target_range.cleanup_cursor()
@@ -181,7 +255,6 @@ func _process(_delta: float) -> void:
 #			Singleton_CommonVariables.camera_node.position_camera_for_battle_scene()
 #
 #			Singleton_CommonVariables.battle_base.s_hide_target_actor_micro()
-#			Singleton_CommonVariables.battle_base.s_hide_land_effect()
 #			Singleton_CommonVariables.battle_base.s_show_target_actor_micro_in_battle()
 #			if spell_name_selected == "Heal":
 #				Singleton_CommonVariables.battle_base.s_hide_target_actor_micro_in_battle()
@@ -189,20 +262,7 @@ func _process(_delta: float) -> void:
 #			Singleton_CommonVariables.battle_scene_node.setup_character_and_enemey_sprites_idle()
 #			get_background_foreground_and_stand_for_active_character_and_target(Singleton_CommonVariables.currently_selected_actor.position)
 #
-#			Singleton_AudioManager.stop_music_n()
-#
-#			if using_spell:
-#				Singleton_CommonVariables.battle_scene_node.setup_spell_usage()
-#			else:
-#				if Singleton_CommonVariables.currently_active_character.get_actor_root_node_internal().actor_type == "character":
-#					Singleton_CommonVariables.battle_scene_node.setup_actor_attacking()
-#				elif Singleton_CommonVariables.currently_active_character.get_actor_root_node_internal().actor_type == "enemey":
-#					Singleton_CommonVariables.battle_scene_node.setup_enemey_actor_attacking()
-#
 #			await Signal(Singleton_CommonVariables.battle_scene_node, "signal_battle_scene_complete")
-#
-#			print("Complete")
-#
 #			Singleton_CommonVariables.camera_node.reset_camera_for_map()
 #			Singleton_CommonVariables.top_level_fader_node.black_fade_anim_out()
 #
@@ -211,13 +271,9 @@ func _process(_delta: float) -> void:
 #			Singleton_CommonVariables.battle_base.s_show_land_effect()
 #			target_range.cleanup_cursor()
 #
-#			await Signal(get_tree().create_timer(0.25), "timeout")
-#
 #			Singleton_CommonVariables.currently_active_character.s_complete_turn()
 #
 #			Singleton_AudioManager.play_music_n(Singleton_DevToolingManager.base_path + "Assets/SF1/SoundBank/Battle 1 (Standard).mp3")
-#
-			# Singleton_Game_GlobalBattleVariables.camera_node.reset_camera_for_map()
 	
 	
 	if Input.is_action_just_released("ui_down") or Input.is_action_just_released("ui_left"):
@@ -253,6 +309,7 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 				continue
 			
 			if found_current:
+				Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 				Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 				return
@@ -266,6 +323,7 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
 				continue
 			
+			Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 			Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 			Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 			return
@@ -279,12 +337,13 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 	
 	for i in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size() - 1, -1, -1):
 		for j in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size() - 1, -1, -1):
-			print("i ", i, "j ", j)
+			# print("i ", i, "j ", j)
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
 				continue
 			
 			if found_current:
-				print("found")
+				# print("found")
+				Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 				Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 				return
@@ -295,10 +354,11 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 	# not found so loop back around to last target
 	for i in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size() - 1, -1, -1):
 		for j in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size() - 1, -1, -1):
-			print("i ", i, "j ", j)
+			# print("i ", i, "j ", j)
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
 				continue
 			
+			Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 			Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 			Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 			return
@@ -312,96 +372,343 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 
 
 
+### Magic Selection
 
 
-#const tile_size: int = 24
-#
-#
-#var is_target_selection_active: bool = false
-#
-#var target_node_children
-#
-## very messy clean this up later 
-## TODO: redo global battle vars to track more of this state internally
-## so there isn't so much repatition in various nodes that are mostly similar
-#var target_range
-#
-#var item_use_range
-#
-#var spell_name_selected: String
-#
-## var spell_use_range
-#
-#var using_spell: bool = false
-#
-#var current_selection_vec2
-#
-#
-## var active_char_root = Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot")
-#
-#
-#var use_range_array_rep
-#var ac_pos
-#
-## total rows and columns
-#var t_rows
-#var t_cols
-#
-## center column and row
-#var c_col
-#var c_row
-#
-#var row_tiles_movement
-#var col_tiles_movement
-#
-#var check_pos = Vector2(0, 0)
-#
-#
-#
-#
-#
-#func get_background_foreground_and_stand_for_active_character_and_target(new_pos: Vector2):
-#	var f = Singleton_CommonVariables.tilemap_foreground
-#	var tile_id = f.get_cellv(f.world_to_map(new_pos))
-#	if tile_id == -1:
-#		print("Bug: no foreground tile underneath")
-#		return
-#
-#	var foreground_tile_name = f.tile_set.tile_get_name(tile_id)
-#	print(foreground_tile_name)
-#
-#	var b = Singleton_CommonVariables.tilemap_background
-#	tile_id = b.get_cellv(b.world_to_map(new_pos))
-#	if tile_id == -1:
-#		print("Bug: no background tile underneath")
-#		return
-#
-#	var background_tile_name = b.tile_set.tile_get_name(tile_id)
-#	print(background_tile_name)
-#
-#	var s = Singleton_CommonVariables.tilemap_stand
-#	tile_id = s.get_cellv(s.world_to_map(new_pos))
-#	if tile_id == -1:
-#		print("Bug: no stand tile underneath")
-#		return
-#
-#	var stand_tile_name = s.tile_set.tile_get_name(tile_id)
-#	print(stand_tile_name)
-#
-#	Singleton_CommonVariables.battle_scene_node.setup_foreground_background_and_stand(foreground_tile_name, background_tile_name, stand_tile_name)
-#
-#	print("")
-##	if "30" in tile_name:
-##		emit_signal("signal_land_effect_under_tile", 30)
-##	elif "15" in tile_name:
-##		emit_signal("signal_land_effect_under_tile", 15)
-##	elif "0" in tile_name:
-##		emit_signal("signal_land_effect_under_tile", 0)
-##	else:
-##		# print("Bug: No Info Report")
-##		emit_signal("signal_land_effect_under_tile", "Bug: No Info Report")
-#
-#
+func set_magic_target_selection(spell_lvl_resource: CN_SF1_Spell_Level) -> void:
+	get_actor_root()
+	
+	var spell__lv_use_range = spell_lvl_resource.usage_range.new() #  ).new()
+	var spell_lv_target_range = spell_lvl_resource.target_range.new() # ).new()
+	
+#	print(spell__lv_use_range, spell_lv_target_range)
+#	var x = spell__lv_use_range.get_use_range_array_representation()
+#	for a in x:
+#		print(a)
+	
+	# spell__lv_use_range.draw_use_range()
+	
+#	var y = spell_lv_target_range.array_representation()
+#	for a in y:
+#		print(a)
+			
+	# spell_lv_target_range.draw_cursor_and_get_targets("test")
+	
+	# TODO: move these normal_attack strings to an enum or something in the global common vars
+	# cleanup later
+	Singleton_CommonVariables.battle__target_selection_type = "normal_attack"
+	
+	draw_use_range_from_script_object(spell__lv_use_range)
+	
+	attempt_to_find_first_target_or_display_warning(spell_lv_target_range)
+	# attempt_to_find_first_target(spell_lv_target_range)
+	# is_target_selection_active = true
+
+
+func find_actors_from_center_position(
+		tarr, # target_range_array_representation,
+		position_arg# Singleton_CommonVariables.battle__target_selection_cursor.position
+	) -> void:
+	Singleton_CommonVariables.battle__target_array = []
+	var mid_point = floori(tarr.size() / 2)
+	
+	for i in tarr.size():
+		Singleton_CommonVariables.battle__target_array.append([])
+		Singleton_CommonVariables.battle__target_array[i].resize(tarr.size())
+	
+	for i in Singleton_CommonVariables.battle__target_array.size():
+		for j in Singleton_CommonVariables.battle__target_array.size():
+			Singleton_CommonVariables.battle__target_array[i][j] = {
+				"check_cell": tarr[i][j],
+				"actor_type": "na",
+				"position": Vector2(0, 0),
+				"node": null,
+				#
+				"background": null,
+				"foreground": null,
+				"stand": null,
+				#
+				"land_type": null,
+				"land_effect_value": null
+				}
+	
+	# "actor_type": "na",
+	Singleton_CommonVariables.battle__target_array[mid_point][mid_point].position = position_arg
+	# target_array[mid_point][mid_point].node  = position_arg
+	
+#	 = {
+#		"actor_type": "na",
+#		"position": Vector2(0, 0),
+#		"node": null
+#	}
+	
+	find_actors_in_target_range(position_arg)
+	
+#	for x in target_array:
+#		print(x)
+	
+	
+	pass
+
+
+var actors_array = []
+func find_actors_in_target_range(actor_cur_pos: Vector2) -> void:
+	actors_array = []
+	find_all_enemey_actors_and_append_to_actors_array()
+	find_all_character_actors_and_append_to_actors_array()
+	
+	var movement = Singleton_CommonVariables.battle__target_array.size() / 2
+	
+	# TOP LEFT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			if Singleton_CommonVariables.battle__target_array[row][col].check_cell == 1:
+				check_if_actor_exists_at_position(
+					row, 
+					col,
+					Vector2(
+						actor_cur_pos.x - ((movement - col) * tile_size),
+						actor_cur_pos.y - ((movement - row) * tile_size)
+					)
+				)
+	
+	# TOP RIGHT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			if Singleton_CommonVariables.battle__target_array[row][col + movement + 1].check_cell == 1:
+				check_if_actor_exists_at_position(
+					row, 
+					col + movement + 1,
+					Vector2(
+						actor_cur_pos.x + ((col + 1) * tile_size),
+						actor_cur_pos.y - ((movement - row) * tile_size)
+					)
+				)
+	
+	# BOTTOM LEFT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			if Singleton_CommonVariables.battle__target_array[row + movement + 1][col].check_cell == 1:
+				check_if_actor_exists_at_position(
+					row + movement + 1, 
+					col,
+					Vector2(
+						actor_cur_pos.x - ((movement - col) * tile_size),
+						actor_cur_pos.y + ((row + 1) * tile_size)
+					)
+				)
+	
+	# BOTTOM RIGHT QUADRANT
+	for row in range(movement):
+		for col in range(movement):
+			if Singleton_CommonVariables.battle__target_array[row + movement + 1][col + movement + 1].check_cell == 1:
+				check_if_actor_exists_at_position(
+					row + movement + 1, 
+					col + movement + 1,
+					Vector2(
+						actor_cur_pos.x + ((col + 1) * tile_size),
+						actor_cur_pos.y + ((row + 1) * tile_size)
+					)
+				)
+	
+	# Straight Down Top Porition
+	for row in range(movement):
+		if Singleton_CommonVariables.battle__target_array[row][movement].check_cell == 1:
+			check_if_actor_exists_at_position(
+				row, 
+				movement,
+				Vector2(
+					actor_cur_pos.x,
+					actor_cur_pos.y - ((movement - row) * tile_size)
+				)
+			)
+	
+	# Straight Down Top Porition
+	for row in range(movement):
+		if Singleton_CommonVariables.battle__target_array[row + movement + 1][movement].check_cell == 1:
+			check_if_actor_exists_at_position(
+				row + movement + 1, 
+				movement,
+				Vector2(
+					actor_cur_pos.x,
+					actor_cur_pos.y + ((row + 1) * tile_size)
+				)
+			)
+	
+	# Straight Across Right Porition
+	for col in range(movement):
+		if Singleton_CommonVariables.battle__target_array[movement][col].check_cell == 1:
+			check_if_actor_exists_at_position(
+				movement, 
+				col,
+				Vector2(
+					actor_cur_pos.x - ((movement - col) * tile_size),
+					actor_cur_pos.y
+				)
+			)
+	
+	# Straight Across Right Porition
+	for col in range(movement):
+		if Singleton_CommonVariables.battle__target_array[movement][col + movement + 1].check_cell == 1:
+			check_if_actor_exists_at_position(
+				movement, 
+				col + movement + 1,
+				Vector2(
+					actor_cur_pos.x + ((col + 1) * tile_size),
+					actor_cur_pos.y
+				)
+			)
+	
+	# Center Self Tile
+	if Singleton_CommonVariables.battle__target_array[movement][movement].check_cell == 1:
+		check_if_actor_exists_at_position(
+			movement, 
+			movement,
+			Vector2(
+				actor_cur_pos.x, 
+				actor_cur_pos.y
+			)
+		)
+
+
+func check_if_actor_exists_at_position(i: int, j: int, pos_arg: Vector2) -> void:
+	for a in actors_array:
+		if a.position == pos_arg:
+			Singleton_CommonVariables.battle__target_array[i][j].actor_type = a.type 
+			Singleton_CommonVariables.battle__target_array[i][j].position = a.position
+			Singleton_CommonVariables.battle__target_array[i][j].node = a.node
+			# 
+			Singleton_CommonVariables.battle__target_array[i][j].background = a.background
+			Singleton_CommonVariables.battle__target_array[i][j].foreground = a.foreground
+			Singleton_CommonVariables.battle__target_array[i][j].stand = a.stand
+			# 
+			Singleton_CommonVariables.battle__target_array[i][j].land_type = a.land_type
+			Singleton_CommonVariables.battle__target_array[i][j].land_effect_value = a.land_effect_value
+			return
+
+
+func get_single_actor_at_cursor(cursor_pos: Vector2) -> void:
+	Singleton_CommonVariables.battle__target_array = []
+	Singleton_CommonVariables.battle__target_array.append([])
+	Singleton_CommonVariables.battle__target_array[0].append({
+		"check_cell": 1,  # tarr[i][j],
+		"actor_type": "na",
+		"position": Vector2(0, 0),
+		"node": null,
+		#
+		"background": null,
+		"foreground": null,
+		"stand": null,
+		#
+		"land_type": null,
+		"land_effect_value": null
+	})
+	
+	actors_array = []
+	find_all_enemey_actors_and_append_to_actors_array()
+	find_all_character_actors_and_append_to_actors_array()
+	
+	check_if_actor_exists_at_position(0, 0, cursor_pos)
+
+
+func find_all_enemey_actors_and_append_to_actors_array() -> void:
+	var tile_land_effect_data
+	var background_name
+	var foreground_name
+	var stand_name
+	var g_pos
+	
+	# print("Enemey")
+	for e in Singleton_CommonVariables.battle__enemies.get_children():
+		g_pos = e.get_child(0).global_position
+		tile_land_effect_data = get_land_effect_value_at_pos(g_pos)
+		background_name = get_background_value_at_cell_at_pos(g_pos)
+		foreground_name = get_foreground_value_at_cell_at_pos(g_pos)
+		stand_name = get_stand_value_at_cell_at_pos(g_pos)
+		
+		actors_array.append({
+			"type": "enemey",
+			"node": e,
+			"position": g_pos,
+			# 
+			"background": background_name,
+			"foreground": foreground_name,
+			"stand": stand_name,
+			# 
+			"land_type": tile_land_effect_data.type,
+			"land_effect_value": tile_land_effect_data.value
+		})
+
+func find_all_character_actors_and_append_to_actors_array() -> void:
+	var tile_land_effect_data
+	var background_name
+	var foreground_name
+	var stand_name
+	var g_pos
+	
+	# print("Character")
+	for e in Singleton_CommonVariables.battle__characters.get_children():
+		g_pos = e.get_child(0).global_position
+		tile_land_effect_data = get_land_effect_value_at_pos(g_pos)
+		background_name = get_background_value_at_cell_at_pos(g_pos)
+		foreground_name = get_foreground_value_at_cell_at_pos(g_pos)
+		stand_name = get_stand_value_at_cell_at_pos(g_pos)
+		
+		actors_array.append({
+			"type": "character",
+			"node": e,
+			"position": g_pos,
+			# 
+			"background": background_name,
+			"foreground": foreground_name,
+			"stand": stand_name,
+			# 
+			"land_type": tile_land_effect_data.type,
+			"land_effect_value": tile_land_effect_data.value
+		})
+
+func get_land_effect_value_at_pos(pos_arg: Vector2):
+	var local_pos = Singleton_CommonVariables.battle__tilemap_info_group__terrain.local_to_map(pos_arg)
+	var current_tile_posx = Singleton_CommonVariables.battle__tilemap_info_group__terrain.get_cell_tile_data(0, local_pos)
+	
+	if current_tile_posx != null:
+		return {
+			"type": current_tile_posx.custom_data_0,
+			"value": current_tile_posx.custom_data_1
+		}
+	
+	return null
+
+# TODO: make TilesInformationGroup its own scene and move a lot of this logic into it directly 
+func get_background_value_at_cell_at_pos(pos_arg: Vector2):
+	var local_pos = Singleton_CommonVariables.battle__tilemap_info_group__background.local_to_map(pos_arg)
+	var current_tile_posx = Singleton_CommonVariables.battle__tilemap_info_group__background.get_cell_tile_data(0, local_pos)
+	
+	if current_tile_posx != null:
+		return current_tile_posx.custom_data_0
+	
+	return null
+
+func get_foreground_value_at_cell_at_pos(pos_arg: Vector2):
+	var local_pos = Singleton_CommonVariables.battle__tilemap_info_group__foreground.local_to_map(pos_arg)
+	var current_tile_posx = Singleton_CommonVariables.battle__tilemap_info_group__foreground.get_cell_tile_data(0, local_pos)
+	
+	if current_tile_posx != null:
+		return current_tile_posx.custom_data_0
+	
+	return null
+
+func get_stand_value_at_cell_at_pos(pos_arg: Vector2):
+	var local_pos = Singleton_CommonVariables.battle__tilemap_info_group__stand.local_to_map(pos_arg)
+	var current_tile_posx = Singleton_CommonVariables.battle__tilemap_info_group__stand.get_cell_tile_data(0, local_pos)
+	
+	if current_tile_posx != null:
+		return current_tile_posx.custom_data_0
+	
+	return null
+
+
+
 #func setup_use_range_and_target_range_selection(item_arg, actor_target_type = "enemey") -> void:
 #	spell_name_selected = ""
 #
@@ -564,116 +871,6 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 ## have a ui popup update as well so its clear so style is being used
 ## might be nice to have a skull identifer to clearly show next target 
 ## 
-#
-#func target_selection_clockwise__style_naive_pass_forward():
-#	# print("Clockwise")
-#	setup_quadrant_vars()
-#	# TODO: FIXME above when doing auto target selection and no target if not found
-#	if current_selection_vec2 == null:
-#		current_selection_vec2 = Vector2(0, 0)
-#
-#	# print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
-#
-#	if forward_pass_naive(current_selection_vec2.x, current_selection_vec2.y):
-#		return
-#	if forward_pass_naive(0, 0):
-#		return
-#
-#	# print("End nothing found")
-#	pass
-#
-#func target_selection_counter_clockwise__style_naive_pass_forward():
-#	# print("Clockwise")
-#	setup_quadrant_vars()
-#
-#	# TODO: FIXME above when doing auto target selection and no target if not found
-#	if current_selection_vec2 == null:
-#		current_selection_vec2 = Vector2(0, 0)
-#
-#	# print(c_row, current_selection_vec2.x, c_col, current_selection_vec2.y)
-#
-#	if backwards_pass_naive(current_selection_vec2.x, current_selection_vec2.y):
-#		return
-#	if backwards_pass_naive(t_rows - 1, t_cols - 1):
-#		return
-#
-#	# print("End nothing found")
-#	pass
-#
-#func forward_pass_naive(start_row, start_col) -> bool:
-#	setup_quadrant_vars()
-#
-#	var r = start_row
-#	var c = start_col
-#
-#	# print(use_range_array_rep, "\n")
-#	var check_pos_internal
-#
-#	while r < t_rows:
-#		while c < t_cols:
-#			if use_range_array_rep[r][c] == 1:
-#				if current_selection_vec2 == Vector2(r, c):
-#					# print("Currently Selected - Skip - ", current_selection_vec2)
-#					c += 1
-#					continue
-#
-#				# print("row ", r, " col ",  c)
-#
-#				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
-#				# print(check_pos)
-#
-#				for child in target_node_children:
-#					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-#					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
-#						set_and_save_new_target_selection(r, c, child)
-#						return true
-#
-#			c += 1
-#
-#		c = 0
-#		r += 1
-#
-#	# print("escape")
-#	return false
-#
-#func backwards_pass_naive(start_row, start_col) -> bool:
-#	setup_quadrant_vars()
-#
-#	var r = start_row
-#	var c = start_col
-#
-#	# print(use_range_array_rep, "\n")
-#	var check_pos_internal
-#
-#	while r >= 0:
-#		while c >= 0:
-#			if use_range_array_rep[r][c] == 1:
-#				if current_selection_vec2 == Vector2(r, c):
-#					# print("Currently Selected - Skip - ", current_selection_vec2)
-#					c -= 1
-#					continue
-#
-#				# print("row ", r, " col ",  c)
-#
-#				check_pos_internal = get_tile_adjustment(r, c_row, c, c_col)
-#				# print(check_pos)
-#
-#				for child in target_node_children:
-#					# print(check_pos, " ", Vector2(ac_pos.x + check_pos.x, ac_pos.y + check_pos.y), " ", child.position)
-#					if Vector2(ac_pos.x + check_pos_internal.x, ac_pos.y + check_pos_internal.y) == child.global_position:
-#						set_and_save_new_target_selection(r, c, child)
-#						return true
-#
-#			c -= 1
-#
-#		c = t_cols - 1
-#		r -= 1
-#
-#	# print("escape")
-#	return false
-#
-#
-#
 #
 #
 #func enemey_actor_attack_setup():

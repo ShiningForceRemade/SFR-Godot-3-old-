@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvfponwyqgknq"]
+[gd_scene load_steps=8 format=3 uid="uid://cvfponwyqgknq"]
 
 [ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="1_gqdo1"]
-[ext_resource type="Resource" uid="uid://dp75hglt5xcrf" path="res://SF1/Items/Weapons/WoodenStaff.tres" id="2_uycb5"]
 [ext_resource type="Texture2D" uid="uid://bi508n14n6sbp" path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Map_Sprites.png" id="3_fe2t0"]
 [ext_resource type="Texture2D" uid="uid://bo5bvsm6yi0no" path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" id="4_s308p"]
 [ext_resource type="Texture2D" uid="uid://de0u4jw3f0nvk" path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Portraits.png" id="5_54gx1"]
@@ -47,22 +46,10 @@ _data = {
 [node name="TaoCharacterRoot" type="Node2D"]
 
 [node name="CharacterRoot" parent="." instance=ExtResource("1_gqdo1")]
-character_name = "Tao"
-ai_target_priority = 75
-character_class = 4
-inventory_items_id = Array[Resource]([ExtResource("2_uycb5")])
-is_item_equipped = Array[bool]([true])
+SF1_MEMBER_INDEX = 3
 texture_sprite_overworld_unpromoted = ExtResource("3_fe2t0")
 texture_sprite_battle_unpromoted = ExtResource("4_s308p")
 texture_sprite_portrait_unpromoted = ExtResource("5_54gx1")
-move = 5
-HP_Total = 10
-MP_Total = 7
-mp_growth = 3
-attack = 4
-defense = 4
-agility = 6
-critical_hit_chance = 3
 
 [node name="Sprite2D" parent="CharacterRoot" index="0"]
 texture = ExtResource("3_fe2t0")

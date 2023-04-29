@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfc2uaihg6k78"]
+
+[ext_resource type="Texture2D" uid="uid://b0osmd76jafwq" path="res://Assets/SF1/ShiningForceCursorCross.png" id="1_ey1qw"]
+
+[node name="CrossCursor" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ey1qw")

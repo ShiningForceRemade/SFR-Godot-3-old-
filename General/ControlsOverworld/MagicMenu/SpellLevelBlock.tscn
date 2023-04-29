@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddw8pnto0x58q"]
+
+[ext_resource type="Script" path="res://General/ControlsOverworld/MagicMenu/SpellLevelBlock.gd" id="1_6qiqg"]
+
+[node name="SpellLevelBlock" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6qiqg")
+metadata/_edit_lock_ = true
+
+[node name="LeftColorRect" type="ColorRect" parent="."]
+offset_top = 0.999998
+offset_right = 1.0
+offset_bottom = 9.0
+metadata/_edit_lock_ = true
+
+[node name="RightColorRect" type="ColorRect" parent="."]
+offset_left = 17.0
+offset_top = 0.999998
+offset_right = 18.0
+offset_bottom = 9.0
+metadata/_edit_lock_ = true
+
+[node name="BottomColorRect" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_top = 9.0
+offset_right = 17.0
+offset_bottom = 10.0
+metadata/_edit_lock_ = true
+
+[node name="TopColorRect" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_right = 17.0
+offset_bottom = 0.999998
+metadata/_edit_lock_ = true
+
+[node name="BackgroundColorRect" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_top = 0.999998
+offset_right = 17.0
+offset_bottom = 9.0
+color = Color(0.898039, 0.8, 0.0156863, 1)
+metadata/_edit_lock_ = true

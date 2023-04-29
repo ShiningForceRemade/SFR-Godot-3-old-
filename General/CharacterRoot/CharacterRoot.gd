@@ -1,71 +1,16 @@
 extends Node2D
 
-
-# signal signal_check_defeat_done
-# signal signal_death_animation_complete
+## Index for the SF1NODE.gd forcemembers array TOOD: clean abd better document these things
+@export var SF1_MEMBER_INDEX: int
 
 @export_group("Meta")
 ## Determines behaviour in battle - Character is force members - Enemey self explanatory - NPCs are like Peter from SF2 auto controlled force members might be expanded on in the future
 @export_enum("character", "enemey", "npc") var actor_type: String = "character"
-## The default name for the actor ie - main character in SF1 is called Max if no nickname is entered.
-@export var character_name: String
-## This should be left blank - this value will be overwritten. Ex. an actor joins the shining force and the player has the chance to give them a nickname
-var nickname: String
-# Which status ailment the character currently has - ex. posioned - confused etc TODO: should be an array
-@export_enum("None") var status: int = 0
-# Determines how likely this actor is to be targeted in battle - 0 least likely 100 attack if possible
-@export var ai_target_priority: int
 
-#
-# TODO: make a dictionary with all of these in the format of
-# {full: swordsman, short: sdmn
-const char_class_array = ["SDMN", "KNT",
-		"WARR", "SKNT", "MAGE",
-		"MONK", "HEAL", "ACHR", "ASKT",
-		"BDMN", "WKNT", "DRGN", 
-		"RBT", "WRWF", "SMR", 
-		"NINJ", "HERO", "PLDN", 
-		"GLDR", "SBRN", "WIZD", 
-		"MSMK", "VICR", "BWMS", 
-		"SKNT", "SKYW", "SKYL",
-		"GRDR", "CYBG", "WFBN", "YGRT",
-		"MGCR"]
+# signal signal_check_defeat_done
+# signal signal_death_animation_complete
 
-@export_enum("Swordsman - SDMN", "Knight - KNT",
-		"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
-		"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
-		"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 
-		"Robot - RBT", "Werewolf - WRWF", "Samurai - SMR", 
-		"Ninja - NINJ", "Hero - HERO", "Paladin - PLDN", 
-		"Galaditor - GLDR", "SBRN", "Wizard - WIZD", 
-		"Master Monk - MSMK", "Vicar - VICR", "BWMS", 
-		"Sky Knight - SKNT", "Sky Warrior - SKYW", "SKYL",
-		"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
-		"MGCR") var character_class: int
 
-## Promotion stage dictates where the character is in their promotion stage
-## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
-@export var promotion_stage: int = 0
-
-# const item_location_c
-
-# TODO: look to see if godot 4 has custom types or export dictionary support to simplifiy this
-## Only the first 4 fields are valid everything after that is ignored!
-@export var inventory_items_id: Array[Resource]
-## Determines if the items above are equipped or not
-@export var is_item_equipped: Array[bool]
-
-## Only the first 4 fields are valid everything after that is ignored! Place 
-@export var magic_array: Array[Resource]
-## TODO: IMPORTANT: this needs lot of work and much more thinking
-@export var magic_unlock_levels: Array[Dictionary]
-# should keep track of what level to unlock pre promoted and promoted
-# should also have a way to associate with the magic its tied to
-# 4 magics * 4 spell limits * 2 stages = 32 max sets should try to simplify this somehow when its more important
-# promotion_stage
-
-# group - behaviours
-# export var regeneration_rate: int = 0
 
 # NOTE: for characters this should be done on a per character basis like kiwi fire breath or other specials 
 # within the character scene and script itself
@@ -87,289 +32,133 @@ const char_class_array = ["SDMN", "KNT",
 
 
 @export_group("Sprites Textures Animations")
-@export_subgroup("Unpromoted")
+# @export_subgroup("Unpromoted")
 @export var texture_sprite_overworld_unpromoted: Texture
 @export var texture_sprite_battle_unpromoted: Texture
 @export var texture_sprite_portrait_unpromoted: Texture
 @export var animation_battle_resource_unpromoted: Resource
-@export_subgroup("Promoted")
+# @export_subgroup("Promoted")
 @export var texture_sprite_overworld_promoted: Texture
 @export var texture_sprite_battle_promoted: Texture
 @export var texture_sprite_portrait_promoted: Texture
 @export var animation_battle_resource_promoted: Resource
 
-### Group - stats - start
-
-@export_group("Stats Common")
-
-@export var level: int = 1
-@export var move: int
-@export_enum("Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
-@export_range(0, 100) var double_attack_chance: int = 10
-@export_range(0, 100) var dodge_chance: int = 10
-@export var experience_points: int = 0
-
-# TODO: need a way to have growth curves for different stages of promotion
-@export_subgroup("HP")
-var HP_Current: int
-@export var HP_Total: int
-@export_enum("steady", "early", "late", "early-late") var hp_growth: int
-
-@export_subgroup("MP")
-var MP_Current: int
-@export var MP_Total: int
-@export_enum("steady", "early", "late", "early-late") var mp_growth: int
-
-@export_subgroup("Attack")
-@export var attack: int
-@export_enum("steady", "early", "late", "early-late") var attack_growth: int
-
-@export_subgroup("Defense")
-@export var defense: int
-@export_enum("steady", "early", "late", "early-late") var defense_growth: int
-
-@export_subgroup("Agility")
-@export var agility: int
-@export_enum("steady", "early", "late", "early-late") var agility_growth: int
-
-@export_subgroup("Critical Hit Chance")
-@export_range(0, 100) var critical_hit_chance: int = 10
-@export_enum("steady", "early", "late", "early-late") var critical_hit_growth: int
-
-### Group - stats - end
-
-### Group - magic resistances - start
-
-@export_group("Magoc Resistances")
-# general
-@export_range(0, 100) var magic_resistance: int = 0
-# spell specific resistance
-# NOTE: shining force editor v3.4.4 has one other resistance type that hasn't been solved yet
-@export_range(0, 100) var slow_resistance: int = 0
-@export_range(0, 100) var muddle_resistance: int = 0
-@export_range(0, 100) var sleep_and_desoul_resistance: int = 0
-@export_range(0, 100) var bolt_resistance: int = 0
-@export_range(0, 100) var blaze_resistance: int = 0
-@export_range(0, 100) var freeze_resistance: int = 0
-
-### Group - magic resistances - end
-
-# messy wait for native grouping support then subgroup
-#var test = "" # We will store the value here
-#func _get(property):
-#	if property == "test/test":
-#		return test # One can implement custom getter logic here
-#
-#func _set(property, value):
-#	if property == "test/test":
-#		test = value # One can implement custom setter logic here
-#		return true
-#
-#func _get_property_list():
-#	return [
-#		{
-#			"hint": PROPERTY_HINT_NONE,
-#			"usage": PROPERTY_USAGE_DEFAULT,
-#			"name": "test/test",
-#			"type": TYPE_STRING
-#		}
-#	]
-
-## Actor (unit) Performance Statistics
-var aps_enemey_kills: int = 0
-var aps_times_defeated: int = 0 # unit deaths
-var aps_dodges: int = 0 # enemey missed
-var aps_misses: int = 0 # missed enemey
-var aps_double_attacks: int = 0
-var aps_special_attack: int = 0
-var aps_critical_hits: int = 0
-##
+@export var battle__scene_unpromoted: PackedScene
+@export var battle__scene_promoted: PackedScene
 
 
+var sfnode_data
 
 # @var movement_tween_speed = 0.1625
 # var movement_tween_speed = 0.2
 
 func _ready():
+	sfnode_data = Singleton_CommonVariables.sf_game_data_node.ForceMembers[SF1_MEMBER_INDEX]
+	# print("\n", sfnode_data, "\n")
 	# $AnimationPlayer.play("DownMovement")
-	pass
 
 
-#
-#
-# TODO clean up code below and integrate with character base script proper
-#
-#
+func get_magic_array():
+	if 0 == sfnode_data.magic.size():
+		return null
+	
+	return sfnode_data.magic
 
 
-#signal signal_completed_turn
-#signal signal_character_moved(new_pos)
-#
-#signal signal_show_character_action_menu
-#
-#signal signal_switch_focus_to_cursor
-#
-#var active: bool = false
-#
-#
-## play_turn
-#func play_turn():
-#	print("Inner Play turn called")
-#
-#	if active:
-#		active = !active
-#		emit_signal("signal_completed_turn")
-#	else:
-#		active = !active
-#
-#	# self.connect("signal_completed_turn", self, "play_turn")
-#	# yield(self, "signal_completed_turn")
-#
-#
-## Getters
-#func cget_agility() -> int: return agility
-#func cget_actor_name() -> String: return character_name
-#func cget_level() -> int: return level
-#func cget_hp_total() -> int: return HP_Total
-#func cget_hp_current() -> int: return HP_Current
-#func cget_mp_total() -> int: return MP_Total
-#func cget_mp_current() -> int: return MP_Current
-#func cget_class() -> String: return char_class_array[character_class]
-#
-## signal CharacterMoved(value, other_value)
-#
-#onready var characterRoot = self
-#onready var kinematicBody = $KinematicBody2D
-#onready var animationPlayer = $AnimationPlayer
-#onready var animationTree = $AnimationTree
-#onready var animationTreeState = animationTree.get("parameters/playback")
-#onready var tween = $KinematicBody2D/Tween
-#
-#var velocity: Vector2 = Vector2.ZERO
-#
-#const TILE_SIZE: int = 24
-#
-#func char_moved(new_pos):
-#	emit_signal("signal_character_moved", new_pos)
-#
-#func get_character_movement():
-#	return characterRoot.move
-#
-#func get_character_current_pos() -> Vector2:
-#	# print("here", kinematicBody)
-#	return kinematicBody.global_position
+func get_actor_name() -> String:
+	if sfnode_data.nickname != null:
+		return sfnode_data.nickname
+		
+	return sfnode_data.name
 
+
+func get_class_full() -> String:
+	return sfnode_data.class_full
+
+func get_class_short() -> String:
+	return sfnode_data.class_short
+
+
+func get_level() -> int:
+	return sfnode_data.level
+
+
+func get_hp_total() -> int:
+	return sfnode_data.stats.hp + sfnode_data.stats.hp_boost + sfnode_data.stats.hp_permanent_increase
+
+func get_hp_current() -> int:
+	return sfnode_data.stats.hp_current
+
+func set_hp_current(new_hp_target: int) -> void:
+	Singleton_CommonVariables.sf_game_data_node.ForceMembers[SF1_MEMBER_INDEX].stats.hp_current = new_hp_target
+
+func get_mp_total() -> int:
+	return sfnode_data.stats.mp + sfnode_data.stats.mp_boost + sfnode_data.stats.mp_permanent_increase
+
+func get_mp_current() -> int:
+	return sfnode_data.stats.mp_current
+
+func set_mp_current(new_mp_target: int) -> void:
+	Singleton_CommonVariables.sf_game_data_node.ForceMembers[SF1_MEMBER_INDEX].stats.mp_current = new_mp_target
+
+
+func get_movement_type() -> int:
+	return sfnode_data.movement_type
+#	for mt in Singleton_CommonVariables.sf_game_data_node.movement_types.size():
+#		if Singleton_CommonVariables.sf_game_data_node.movement_types[mt] == sfnode_data.movement_type:
+#			return mt
+
+#func get_movement_type_string() -> String:
+#	return sfnode_data.movement_type
+
+func get_movement() -> int:
+	return sfnode_data.stats.move + sfnode_data.stats.move_boost + sfnode_data.stats.move_permanent_increase
+
+
+func get_exp() -> int:
+	return sfnode_data.experience
+
+func set_exp(exp_arg: int) -> void:
+	Singleton_CommonVariables.sf_game_data_node.ForceMembers[SF1_MEMBER_INDEX].experience = exp_arg
+
+
+func get_ai_target_priority() -> int:
+	return sfnode_data.ai_target_priority
+
+
+func get_attack_base() -> int:
+	return sfnode_data.stats.attack
 
 func get_attack() -> int:
 	var attack_attribute_bonus_total: int = 0
-	for i in range(inventory_items_id.size()):
-		if is_item_equipped[i]:
-			for j in (inventory_items_id[i].attribute_bonus.size()):
-				if inventory_items_id[i].attribute == 1: #TODO: should have a better way to refer to the attack attribute than if equal 1
-					attack_attribute_bonus_total += inventory_items_id[i].attribute_bonus[j]
+	for i in range(sfnode_data.inventory.size()):
+		if sfnode_data.inventory[i].is_equipped:
+			var item_res = load(sfnode_data.inventory[i].resource)
+			for j in (item_res.attribute_bonus.size()):
+				if item_res.attribute == 0: #TODO: should have a better way to refer to the attack attribute than if equal 0
+					attack_attribute_bonus_total += item_res.attribute_bonus[j]
+	
+	return sfnode_data.stats.attack + attack_attribute_bonus_total
 
-	return attack + attack_attribute_bonus_total
 
-#func _physics_process(_delta):
-#
-#	# Classic Genesis styled movement and battle movement
-#	if active:
-#		if tween.is_active():
-#			return
-#
-#		animationPlayer.playback_speed = 1
-#
-#		if Input.is_action_just_released("ui_a_key"):
-#			if is_character_actor_underneath():
-#				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
-#				return
-#
-#			active = !active
-#			yield(get_tree().create_timer(0.03), "timeout")
-#
-#			# emit_signal("signal_completed_turn")
-#			# print("Emit signal player turn end")
-#			# emit_signal("signal_completed_turn")
-#
-#			emit_signal("signal_show_character_action_menu")
-#
-#		if Input.is_action_just_released("ui_b_key"):
-#			active = !active
-#			yield(get_tree().create_timer(0.03), "timeout")
-#			emit_signal("signal_switch_focus_to_cursor")
-#
-#		# animationPlayer.playback_speed = 4
-#
-#		if Input.is_action_pressed("ui_right"):
-#			animationPlayer.play("RightMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x + TILE_SIZE, pnode.global_position.y)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
-#		elif Input.is_action_pressed("ui_left"):
-#			animationPlayer.play("LeftMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x - TILE_SIZE, pnode.global_position.y)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
-#		elif Input.is_action_pressed("ui_up"):
-#			animationPlayer.play("UpMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x, pnode.global_position.y - TILE_SIZE)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
-#		elif Input.is_action_pressed("ui_down"):
-#			animationPlayer.play("DownMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x, pnode.global_position.y + TILE_SIZE)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
-#
-#
-#		tween.start()
-#
-#func check_if_move_is_possible(new_pos_arg) -> bool:
-#	var enemey_children = Singleton_Game_GlobalBattleVariables.enemey_nodes.get_children()
-#	for enemey in enemey_children:
-#		# print(new_pos_arg,  enemey.global_position)
-#		if new_pos_arg == enemey.global_position:
-#			return false
-#
-#	var check_pos = new_pos_arg
-#	check_pos.x -= 12
-#	check_pos.y -= 12
-#	for sub_array in Singleton_Game_GlobalBattleVariables.active_actor_movement_array:
-#		# print("Sub_array", sub_array)
-#		for move_pos in sub_array:
-#			if move_pos != null:
-#
-#				# print("move pos ", move_pos, check_pos)
-#
-#				# print(new_pos_arg, " ", check_pos, " ", move_pos)
-#				if check_pos == move_pos:
-#					return true
-#
-#	# print("False")
-#	return false
-#
-#func is_character_actor_underneath() -> bool:
-#	var character_children = Singleton_Game_GlobalBattleVariables.character_nodes.get_children()
-#	for character in character_children:
-#		if pnode == character:
-#			continue
-#
-#		if pnode.global_position == character.global_position:
-#			return true
-#
-#	return false
+func get_defense() -> int:
+	# TODO: support for items to increase this like attack
+	return sfnode_data.stats.defense + sfnode_data.stats.defense_boost + sfnode_data.stats.defense_permanent_increase
+
+
+func get_agility() -> int:
+	# TODO: support for items to increase this like attack
+	return sfnode_data.stats.agility + sfnode_data.stats.agility_boost + sfnode_data.stats.agility_permanent_increase
+
+
+func get_inventory():
+	return sfnode_data.inventory
+
+
+func get_magic():
+	return sfnode_data.magic
+
+
 #
 #
 #func check_if_defeated() -> void:
@@ -410,13 +199,3 @@ func get_attack() -> int:
 #	emit_signal("signal_death_animation_complete")
 #	# TODO: check order array and remove if found by name
 #
-#
-#func change_facing_direction(direction) -> void:
-#	if direction == "Left":
-#		animationPlayer.play("LeftMovement")
-#	if direction == "Right":
-#		animationPlayer.play("RightMovement")
-#	if direction == "Up":
-#		animationPlayer.play("UpMovement")
-#	if direction == "Down":
-#		animationPlayer.play("DownMovement")

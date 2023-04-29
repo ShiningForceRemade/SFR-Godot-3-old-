@@ -102,7 +102,7 @@ var sf_game_data_node = null
 
 ### Battle Variables
 
-var battle_scene_node: Node2D
+var battle__scene_node: Node2D
 
 var battle__logic_node: Node
 
@@ -112,6 +112,8 @@ var battle__target_use_range_array_representation
 var battle__target_selector_array_representation
 var battle__target_selection_actor
 var battle__target_selection_type # item -- spell -- normal attack -- etc..
+var battle__target_selection_cursor
+var battle__target_array
 
 var battle__turn_order_array: Array
 var battle__turn_number: int

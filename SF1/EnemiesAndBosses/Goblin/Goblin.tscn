@@ -1,15 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0mhy6i67ijm3"]
+[gd_scene load_steps=5 format=3 uid="uid://c0mhy6i67ijm3"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericPlayableActor.gd" id="1_3y7yl"]
 [ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="1_u7q6q"]
 [ext_resource type="PackedScene" uid="uid://bp5c8nvyck0mv" path="res://SF1/EnemiesAndBosses/Goblin/GoblinEnemeyRoot.tscn" id="2_ku2rg"]
+[ext_resource type="PackedScene" uid="uid://blrx17j73t1f3" path="res://SF1/EnemiesAndBosses/Goblin/GoblinBattleScene.tscn" id="4_fshca"]
 
 [node name="Goblin" type="Node2D"]
 script = ExtResource("1_3y7yl")
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_u7q6q")]
+actor_type = 2
 
 [node name="Goblin" parent="PlayerCharacterRoot" instance=ExtResource("2_ku2rg")]
+
+[node name="EnemeyRoot" parent="PlayerCharacterRoot/Goblin" index="0"]
+enemey_battle_scene = ExtResource("4_fshca")
 
 [editable path="PlayerCharacterRoot"]
 [editable path="PlayerCharacterRoot/Goblin"]

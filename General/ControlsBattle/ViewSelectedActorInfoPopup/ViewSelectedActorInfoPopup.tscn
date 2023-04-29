@@ -244,6 +244,7 @@ offset_left = 76.0
 offset_top = 84.0
 offset_right = 140.0
 offset_bottom = 156.0
+theme_override_constants/separation = 24
 metadata/_edit_lock_ = true
 
 [node name="KillsNinePatchRect" type="NinePatchRect" parent="."]

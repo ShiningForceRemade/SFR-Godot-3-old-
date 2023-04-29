@@ -7,5 +7,3 @@ extends Node
 
 func _ready() -> void:
 	Singleton_CommonVariables.battle__logic_node = self
-	pass
-

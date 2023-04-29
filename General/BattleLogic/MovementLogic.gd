@@ -132,9 +132,9 @@ func generate_movement_array_representation():
 	
 	# TODO: fix
 	# probably should have funcs in enemeyroot and characterroot that fetches the info instead of using direct
-	actor_move = actor_info_root.move # Singleton_CommonVariables.battle__currently_active_actor
+	actor_move = actor_info_root.get_movement() # Singleton_CommonVariables.battle__currently_active_actor
 	var movement = actor_move
-	actor_move_type = actor_info_root.movement_type
+	actor_move_type = actor_info_root.get_movement_type()
 	var sfmt = Singleton_CommonVariables.sf_game_data_node.sf_movement_types
 	print("Movement        - ", movement)
 	print("Movement Type   - ", actor_move_type)

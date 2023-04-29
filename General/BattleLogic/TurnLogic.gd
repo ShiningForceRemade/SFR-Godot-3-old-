@@ -50,7 +50,7 @@ func generate_and_launch_new_turn_order():
 		
 		if actor.alive == false:
 			print("Dead Shouldn't be in tree")
-			print(Singleton_CommonVariables.character_nodes.get_children())
+			# print(Singleton_CommonVariables.character_nodes.get_children())
 			continue
 		
 		# print("PREVIOUS ACTOR POS - ", previous_actor_pos, " ", a.node.position)
@@ -98,8 +98,10 @@ func generate_and_launch_new_turn_order():
 		print(actor.type, " Turn End")
 		
 		Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(false)
-		Singleton_CommonVariables.battle__currently_active_actor.get_child(0).play_facing_direction("Down")
 		
+		play_death_animation_for_all_defeated_actors()
+		
+		Singleton_CommonVariables.battle__currently_active_actor.get_child(0).play_facing_direction("Down")
 		
 		Singleton_CommonVariables.battle__logic_node.movement_logic_node.hide_movement_tiles()
 		Singleton_CommonVariables.ui__land_effect_popup_node.hide_cust()
@@ -141,3 +143,11 @@ func generate_and_launch_new_turn_order():
 #	print("\n\n\nTurn " + str(turn_number) + " Completed\n\n\n")
 	Singleton_CommonVariables.battle__turn_number += 1
 	generate_and_launch_new_turn_order()
+
+
+func play_death_animation_for_all_defeated_actors() -> void:
+	for b_idx in Singleton_CommonVariables.battle__turn_order_array.size():
+		if Singleton_CommonVariables.battle__turn_order_array[b_idx].alive == false:
+			# play death animations then delete them when complete
+			Singleton_CommonVariables.battle__turn_order_array[b_idx].node.queue_free()
+			Singleton_CommonVariables.battle__turn_order_array.remove_at(b_idx)

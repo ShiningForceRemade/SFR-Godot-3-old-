@@ -63,35 +63,57 @@ func _ready():
 func set_battle_use_menu_active() -> void:
 	is_battle_use_menu_active = true
 	
+	var char_or_enemey = "char"
+	
 	var active_char_root
 	if Singleton_CommonVariables.is_currently_in_battle_scene:
-		active_char_root = Singleton_CommonVariables.currently_active_character.actor # get_actor_root_node_internal()
+		if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # character
+			active_char_root = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
+		elif Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 2: # Enemey
+			active_char_root = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot")
+			char_or_enemey = "enemey"
 	else:
 		active_char_root = Singleton_CommonVariables.main_character_player_node.actor
 	
 	print("Equip Menu Current Char", active_char_root)
-	print("Equip Menu ", active_char_root.inventory_items_id)
+	print("Equip Menu ", active_char_root.get_inventory()) # inventory_items_id)
 	
 	## TODO: FIXME: temp setting inventroy to equipped idea while migrating to new structure and github
 	
-	inventory_items = active_char_root.inventory_items_id # active_char_root.is_item_equipped
+	inventory_items = active_char_root.get_inventory() # inventory_items_id # active_char_root.is_item_equipped
 	
 	if inventory_items.size() == 0:
 		print("No inventory items probably should print the no items skip actions imilar to magic")
 		# return
 	
-	for i in range(inventory_items.size()):
-		print(inventory_items[i])
-		if i == 0:
-			up_slot_spirte.texture = inventory_items[i].texture
-			nameLabel.text = inventory_items[i].item_name
-			typeLabel.text = inventory_items[i].get_item_type()
-		if i == 1:
-			left_slot_spirte.texture = inventory_items[i].texture
-		if i == 2:
-			right_slot_spirte.texture = inventory_items[i].texture
-		if i == 3:
-			down_slot_spirte.texture = inventory_items[i].texture
+	# TODO: collapse enemey inventory insto the same structure as characters
+	if char_or_enemey == "enemey":
+		for i in range(inventory_items.size()):
+			print(inventory_items[i])
+			if i == 0:
+				up_slot_spirte.texture = inventory_items[i].texture
+				nameLabel.text = inventory_items[i].item_name
+				typeLabel.text = inventory_items[i].get_item_type()
+			if i == 1:
+				left_slot_spirte.texture = inventory_items[i].texture
+			if i == 2:
+				right_slot_spirte.texture = inventory_items[i].texture
+			if i == 3:
+				down_slot_spirte.texture = inventory_items[i].texture
+	elif char_or_enemey == "char":
+		for i in range(inventory_items.size()):
+			print(inventory_items[i])
+			var item_res = load(inventory_items[i].resource)
+			if i == 0:
+				up_slot_spirte.texture = item_res.texture
+				nameLabel.text = item_res.item_name
+				typeLabel.text = item_res.get_item_type()
+			if i == 1:
+				left_slot_spirte.texture = item_res.texture
+			if i == 2:
+				right_slot_spirte.texture = item_res.texture
+			if i == 3:
+				down_slot_spirte.texture = item_res.texture
 	
 
 func _input(event):

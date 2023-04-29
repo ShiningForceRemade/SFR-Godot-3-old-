@@ -105,7 +105,8 @@ func _input(event):
 				cleanup_for_sub_menu_navigation()
 				
 				if Singleton_CommonVariables.is_currently_in_battle_scene:
-					Singleton_BattleVariables.battle_base.s_show_battle_drop_menu()
+					# TODO: Singleton_CommonVariables.ui__drop_menu.show_cust()
+					Singleton_CommonVariables.ui__drop_menu.show()
 				else:
 					Singleton_CommonVariables.action_type = "DROP"
 					Singleton_CommonVariables.ui__member_list_menu.show()

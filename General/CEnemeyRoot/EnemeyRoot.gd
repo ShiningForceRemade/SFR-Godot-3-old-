@@ -1,6 +1,8 @@
 # @tool
 extends Node2D
 
+@export var enemey_battle_scene: PackedScene #  = "res://SF1/EnemiesAndBosses/RuneKnight/RuneKnightBattleScene.tscn"
+
 signal signal_check_defeat_done
 signal signal_death_animation_complete
 signal signal_completed_turn
@@ -57,6 +59,8 @@ var active: bool = false
 @export_group("Stats Common")
 @export var effective_level: int
 @export var move: int
+var move_boost: int
+
 @export_enum("Standard", "Mounted", "Aquatic", "Forest", "Mechanical", "Flying", "Hovering") var movement_type: int = 0 # "Standard"
 @export_range(0, 100) var critical_hit_chance: int = 10
 @export_range(0, 100) var double_attack_chance: int = 10
@@ -110,183 +114,91 @@ func _ready():
 	# $AnimationPlayer.play("DownMovement")
 	pass
 
-#
-#func get_attack() -> int:
-#	var attack_attribute_bonus_total: int = 0
-#	for i in range(inventory_items_id.size()):
-#		if is_item_equipped[i]:
-#			for j in (inventory_items_id[i].attribute.size()):
-#				if inventory_items_id[i].attribute[j] == 1:
-#					attack_attribute_bonus_total += inventory_items_id[i].attribute_bonus[j]
-#
-#	return attack + attack_attribute_bonus_total
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-## func _process(delta):
-##	pass
-#
-#func check_if_defeated() -> void:
-#	if HP_Current == 0:
-#		print("\n\n\n\nI was defeated play death animation and update turn order array\n\n\n\n")
-#
-#		# yield(get_tree().create_timer(1), "timeout")
-#		pseudo_death_animation(0.1)
-#		await Signal(self, "signal_death_animation_complete")
-#		pseudo_death_animation(0.05)
-#		await Signal(self, "signal_death_animation_complete")
-#		# yield(get_tree().create_timer(1), "timeout")
-#
-#		Singleton_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
-#		get_parent().hide()
-#
-#		await Signal(get_tree().create_timer(0.05), "timeout")
-#		emit_signal("signal_check_defeat_done")
-#
-#		get_parent().queue_free()
-#		return
-#
-#	await Signal(get_tree().create_timer(0.05), "timeout")
-#	emit_signal("signal_check_defeat_done")
-#	return
-#
-#func pseudo_death_animation(time_arg: float) -> void:
-#	$AnimationPlayer.play("RightMovement")
-#	await Signal(get_tree().create_timer(time_arg), "timeout")
-#	$AnimationPlayer.play("UpMovement")
-#	await Signal(get_tree().create_timer(time_arg), "timeout")
-#	$AnimationPlayer.play("LeftMovement")
-#	await Signal(get_tree().create_timer(time_arg), "timeout")
-#	$AnimationPlayer.play("DownMovement")
-#	await Signal(get_tree().create_timer(time_arg), "timeout")
-#
-#
-#	emit_signal("signal_death_animation_complete")
-#	# TODO: check order array and remove if found by name
-#
-#
-#
-#func cget_actor_name() -> String:
-#	return enemey_name
-#
-#
-#
-#
-#func check_if_move_is_possible(new_pos_arg) -> bool:
-#	var character_children = Singleton_BattleVariables.character_nodes.get_children()
-#	for character in character_children:
-#		if new_pos_arg == character.global_position:
-#			return false
-#
-#	var check_pos = new_pos_arg
-#	check_pos.x -= 12 # FIXME why is this now +11 off?
-#	check_pos.y -= 12
-#	for sub_array in Singleton_BattleVariables.active_actor_movement_array:
-#		for move_pos in sub_array:
-#			if move_pos != null:
-#				# print(new_pos_arg, " ", check_pos, " ", move_pos)
-#				if check_pos == move_pos:
-#					return true
-#
-#	return false
-#
-#
-#
-#func play_turn():
-#	print("Inner Play turn called")
-#
-#	if active:
-#		active = !active
-#		emit_signal("signal_completed_turn")
-#	else:
-#		active = !active
-#
-#
-#
-#func _physics_process(_delta):
-#
-#	# Classic Genesis styled movement and battle movement
-#	if active:
-#		if tween.is_active():
-#			return
-#
-#		animationPlayer.playback_speed = 1
-#
-#		if Input.is_action_just_released("ui_a_key"):
-#			if is_character_actor_underneath():
-#				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
-#				return
-#
-#			active = !active
-#			await Signal(get_tree().create_timer(0.03), "timeout")
-#
-#			# emit_signal("signal_completed_turn")
-#			# print("Emit signal player turn end")
-#			# emit_signal("signal_completed_turn")
-#
-#			emit_signal("signal_show_character_action_menu")
-#
-#		if Input.is_action_just_released("ui_b_key"):
-#			active = !active
-#			await Signal(get_tree().create_timer(0.03), "timeout")
-#			emit_signal("signal_switch_focus_to_cursor")
-#
-#		# animationPlayer.playback_speed = 4
-#
-#		if Input.is_action_pressed("ui_right"):
-#			animationPlayer.play("RightMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x + TILE_SIZE, pnode.global_position.y)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x + TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x + TILE_SIZE, pnode.position.y))
-#		elif Input.is_action_pressed("ui_left"):
-#			animationPlayer.play("LeftMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x - TILE_SIZE, pnode.global_position.y)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x - TILE_SIZE, pnode.position.y), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x - TILE_SIZE, pnode.position.y))
-#		elif Input.is_action_pressed("ui_up"):
-#			animationPlayer.play("UpMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x, pnode.global_position.y - TILE_SIZE)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y - TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y - TILE_SIZE))
-#		elif Input.is_action_pressed("ui_down"):
-#			animationPlayer.play("DownMovement")
-#
-#			if check_if_move_is_possible(Vector2(pnode.global_position.x, pnode.global_position.y + TILE_SIZE)):
-#				animationPlayer.playback_speed = 2
-#				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Walk.wav")
-#				tween.interpolate_property(pnode, 'position', pnode.position, Vector2(pnode.position.x, pnode.position.y + TILE_SIZE), movement_tween_speed, Tween.TRANS_LINEAR)
-#				emit_signal("signal_character_moved", Vector2(pnode.position.x, pnode.position.y + TILE_SIZE))
-#
-#
-#		tween.start()
-#
-#
-#func is_character_actor_underneath() -> bool:
-#	var character_children = Singleton_BattleVariables.enemey_nodes.get_children()
-#	for character in character_children:
-#		if pnode == character:
-#			continue
-#
-#		if pnode.global_position == character.global_position:
-#			return true
-#
-#	return false
-#
-#
-#func change_facing_direction(direction) -> void:
-#	if direction == "Left":
-#		animationPlayer.play("LeftMovement")
-#	if direction == "Right":
-#		animationPlayer.play("RightMovement")
-#	if direction == "Up":
-#		animationPlayer.play("UpMovement")
-#	if direction == "Down":
-#		animationPlayer.play("DownMovement")
+
+func get_actor_name() -> String:
+	return enemey_name
+
+
+func get_class_full() -> String:
+	return ""
+
+func get_class_short() -> String:
+	return ""
+
+
+func get_level() -> int:
+	return effective_level
+
+
+func get_hp_total() -> int:
+	return HP_Total # sfnode_data.stats.hp + sfnode_data.stats.hp_boost + sfnode_data.stats.hp_permanent_increase
+
+func get_hp_current() -> int:
+	return HP_Current
+
+func set_hp_current(new_hp_target: int) -> void:
+	HP_Current = new_hp_target
+
+
+func get_mp_total() -> int:
+	return MP_Total # sfnode_data.stats.mp + sfnode_data.stats.mp_boost + sfnode_data.stats.mp_permanent_increase
+
+func get_mp_current() -> int:
+	return MP_Current # sfnode_data.stats.mp_current
+
+func set_mp_current(new_mp_target: int) -> void:
+	MP_Current = new_mp_target
+
+
+func get_movement_type() -> int:
+	return movement_type
+
+func get_movement() -> int:
+	return move + move_boost
+
+
+func get_exp() -> int:
+	return 0
+
+
+#func get_attack_base() -> int:
+#	return sfnode_data.stats.attack
+
+func get_attack() -> int:
+	var attack_attribute_bonus_total: int = 0
+	for i in range(inventory_items_id.size()):
+		if is_item_equipped[i]:
+			var item_res = inventory_items_id[i]
+			for j in (item_res.attribute_bonus.size()):
+				if item_res.attribute == 0: #TODO: should have a better way to refer to the attack attribute than if equal 0
+					attack_attribute_bonus_total += item_res.attribute_bonus[j]
+	
+	return attack + attack_attribute_bonus_total
+
+
+func get_defense() -> int:
+	# TODO: support for items to increase this like attack
+	return defense # + sfnode_data.stats.defense_boost + sfnode_data.stats.defense_permanent_increase
+
+
+func get_agility() -> int:
+	# TODO: support for items to increase this like attack
+	return agility # + sfnode_data.stats.agility_boost + sfnode_data.stats.agility_permanent_increase
+
+
+func get_inventory():
+	return inventory_items_id
+
+
+func get_magic():
+	return magic_array
+
+func get_magic_array():
+	if 0 == magic_array.size():
+		return null
+	
+	return magic_array
+
+
+func get_coins() -> int:
+	return coins_min

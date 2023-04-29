@@ -84,11 +84,11 @@ func display_character_info() -> void:
 	# TODO: check promotion stage to determine which sprites to use
 	# sprite.texture = actor.texture_sprite_overworld_unpromoted
 	
-	class_label.text = char_class_array[actor.character_class]
-	name_label.text = str(actor.character_name)
+	class_label.text = actor.get_class_short() #  char_class_array[actor.character_class]
+	name_label.text = actor.get_name() # str(actor.character_name)
 	
-	level_label.text = str(actor.level)
-	exp_label.text = str(actor.experience_points)
+	level_label.text = str(actor.get_level()) # str(actor.level)
+	exp_label.text = str(actor.get_exp())  # str(actor.experience_points)
 	
 #	kills_label.text = str(actor.aps_enemey_kills)
 #	defeats_label.text = str(actor.aps_times_defeated)
@@ -124,19 +124,21 @@ func display_actor_info(actor: Node2D) -> void:
 	# $PortraitSprite.hide()
 	
 	# Stats
-	hp_label.text = str(actor.HP_Current) + "/" + str(actor.HP_Total)
-	mp_label.text = str(actor.MP_Current) + "/" + str(actor.MP_Total)
+	hp_label.text = str(actor.get_hp_current()) + "/" + str(actor.get_hp_total())
+	mp_label.text = str(actor.get_mp_current()) + "/" + str(actor.get_mp_total())
 	
 	# TODO: need functions to get the actual attack weapon equips and other bonuses
-	attack_label.text = str(actor.attack) # "FIXME" # str(actor.get_attack()) # str(actor.attack)
-	defense_label.text = str(actor.defense)
-	move_label.text = str(actor.move)
-	agility_label.text = str(actor.agility)
+	attack_label.text = str(actor.get_attack()) # "FIXME" # str(actor.get_attack()) # str(actor.attack)
+	defense_label.text = str(actor.get_defense())
+	move_label.text = str(actor.get_movement())
+	agility_label.text = str(actor.get_agility())
 	
 	# Inventory
 	print(actor)
-	var inventory_item_size = actor.inventory_items_id.size()
+	var inventory = actor.get_inventory()
+	var inventory_item_size = inventory.size()
 	print(inventory_item_size)
+	
 	
 	if inventory_item_size == 0:
 		# $StatNinePatchRect/ItemsNothingStaticLabel.show()
@@ -148,16 +150,28 @@ func display_actor_info(actor: Node2D) -> void:
 		for n in item_vbox.get_children():
 			n.queue_free()
 		
-		for n in range(inventory_item_size):
-			var itemInfoN = itemInfoNode.instantiate()
-			itemInfoN.cust_scale = Vector2(0.8, 0.8)
-			itemInfoN.texture = actor.inventory_items_id[n].texture
-			itemInfoN.item_name = actor.inventory_items_id[n].item_name
-			itemInfoN.is_equipped = actor.is_item_equipped[n]
-			item_vbox.add_child(itemInfoN)
+		if actor.actor_type == "character": # character
+			for n in range(inventory_item_size):
+				var itemInfoN = itemInfoNode.instantiate()
+				itemInfoN.cust_scale = Vector2(0.8, 0.8)
+				var item_res = load(inventory[n].resource)
+				itemInfoN.texture = item_res.texture
+				itemInfoN.item_name = item_res.item_name
+				itemInfoN.is_equipped = inventory[n].is_equipped
+				item_vbox.add_child(itemInfoN)
+		elif actor.actor_type == "enemey": # enemey
+			for n in range(inventory_item_size):
+				var itemInfoN = itemInfoNode.instantiate()
+				itemInfoN.cust_scale = Vector2(0.8, 0.8)
+				var item_res = inventory[n]
+				itemInfoN.texture = item_res.texture
+				itemInfoN.item_name = item_res.item_name
+				itemInfoN.is_equipped = actor.is_item_equipped[n]
+				item_vbox.add_child(itemInfoN)
 	
 	# Spells
-	var spells_size = actor.magic_array.size()
+	var magic = actor.get_magic()
+	var spells_size = magic.size()
 	print(spells_size)
 	
 	if spells_size == 0:
@@ -172,6 +186,6 @@ func display_actor_info(actor: Node2D) -> void:
 		
 		for n in range(spells_size):
 			var spellInfoN = spellInfoNode.instantiate()
-			spellInfoN.spell_obj = actor.magic_array[n]
+			spellInfoN.spell_obj = load(magic[n].resource)
 			spellInfoN.cust_scale = Vector2(0.8, 0.8)
 			magic_vbox.add_child(spellInfoN)

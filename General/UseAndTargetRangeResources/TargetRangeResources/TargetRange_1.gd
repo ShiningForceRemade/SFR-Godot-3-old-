@@ -3,25 +3,21 @@ extends CN_SF_TargetRange
 func _ready():
 	pass
 
-func draw_cursor_and_get_targets(center_actor_target_selected):
-	print(center_actor_target_selected)
+func draw_cursor_at_position(position_arg: Vector2):
+	print(position_arg)
 	
-	bc_cursor_ref = Sprite2D.new()
-	bc_cursor_ref.texture = load("res://Assets/SF1/ShiningForceCursor.png")
-	bc_cursor_ref.position = Singleton_BattleVariables.currently_active_character.global_position
-	#sprite.position.x -= 12
-	#sprite.position.y -= 12
+	bc_cursor_ref = load("res://General/BattleLogic/Cursor/Cursor.tscn").instantiate()
+	bc_cursor_ref.position = position_arg # Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position
 	
-	bc_cursor_ref.position.x -= 24
-	# bc_cursor_ref.z_index = 1
-	
-	Singleton_BattleVariables.field_logic_node.add_child(bc_cursor_ref)	
-	
-	pass
-
-func draw_cursor_at_position(new_pos_arg: Vector2) -> void:
-	bc_cursor_ref.position = new_pos_arg
+	Singleton_CommonVariables.battle__target_selection_cursor = bc_cursor_ref
+	Singleton_CommonVariables.battle__logic_node.add_child(bc_cursor_ref)
 
 func cleanup_cursor() -> void:
 	# if bc_cursor_ref.get_ref():
 	bc_cursor_ref.queue_free()
+
+
+func array_representation():
+	return [
+		1
+	]

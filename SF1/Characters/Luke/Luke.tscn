@@ -8,6 +8,7 @@
 script = ExtResource("1_iuqi0")
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_yh2kf")]
+actor_type = 1
 
 [node name="Luke" parent="PlayerCharacterRoot" instance=ExtResource("2_tde6k")]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://de7py8ig6qobv"]
+[gd_scene load_steps=36 format=3 uid="uid://de7py8ig6qobv"]
 
 [ext_resource type="Script" path="res://General/GameManager/SceneManager.gd" id="1_fymdo"]
 [ext_resource type="Script" path="res://General/GameManager/SF1Node.gd" id="1_qrnep"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://t0dmsvrjq8g7" path="res://General/ControlsBattle/ViewSelectedActorInfoPopup/ViewSelectedActorInfoPopup.tscn" id="23_1o0t1"]
 [ext_resource type="Script" path="res://General/GameManager/TopLevelFade.gd" id="23_g0xgl"]
 [ext_resource type="PackedScene" uid="uid://d2rfk1jmulpj6" path="res://General/ControlsBattle/ActionsMenu/ActionsMenu.tscn" id="24_1n4me"]
+[ext_resource type="PackedScene" uid="uid://cb1wai5uq2yyg" path="res://General/BattleScene/BattleScene.tscn" id="25_dhvsu"]
 [ext_resource type="PackedScene" uid="uid://be7hxqx03mtqu" path="res://General/ControlsOverworld/MicroInventoryView/MicroInventoryView.tscn" id="25_vt5vf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n6h7e"]
@@ -117,15 +118,6 @@ script = ExtResource("1_qrnep")
 
 [node name="---------ControlsCommon" type="Node" parent="MenusAndUICanvasLayer"]
 
-[node name="DialogueBox" parent="MenusAndUICanvasLayer" instance=ExtResource("2_ly824")]
-visible = false
-offset_left = 48.0
-offset_top = 119.0
-offset_right = 16.0
-offset_bottom = 11.0
-scale = Vector2(0.8, 0.8)
-metadata/_edit_lock_ = true
-
 [node name="PortraitPopup" parent="MenusAndUICanvasLayer" instance=ExtResource("5_3em28")]
 visible = false
 position = Vector2(72, 35)
@@ -140,12 +132,6 @@ scale = Vector2(0.8, 0.8)
 [node name="GoldInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("7_o0isl")]
 visible = false
 position = Vector2(8, 8)
-scale = Vector2(0.8, 0.8)
-metadata/_edit_lock_ = true
-
-[node name="ActorMicroInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("8_83orp")]
-visible = false
-position = Vector2(200, 8)
 scale = Vector2(0.8, 0.8)
 metadata/_edit_lock_ = true
 
@@ -256,6 +242,25 @@ metadata/_edit_lock_ = true
 [node name="MicroInventoryView" parent="MenusAndUICanvasLayer" instance=ExtResource("25_vt5vf")]
 visible = false
 position = Vector2(276, 100)
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="BattleScene" parent="MenusAndUICanvasLayer" instance=ExtResource("25_dhvsu")]
+visible = false
+
+[node name="Node" type="Node" parent="MenusAndUICanvasLayer"]
+
+[node name="DialogueBox" parent="MenusAndUICanvasLayer" instance=ExtResource("2_ly824")]
+visible = false
+offset_left = 48.0
+offset_top = 119.0
+offset_right = 16.0
+offset_bottom = 11.0
+scale = Vector2(0.8, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="ActorMicroInfoBox" parent="MenusAndUICanvasLayer" instance=ExtResource("8_83orp")]
+position = Vector2(200, 8)
 scale = Vector2(0.8, 0.8)
 metadata/_edit_lock_ = true
 

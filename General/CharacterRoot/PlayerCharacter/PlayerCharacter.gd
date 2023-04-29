@@ -9,6 +9,9 @@ signal signal_action_finished
 
 @onready var collision_shape_cell_block: CollisionShape2D = $CollisionShape2D2
 
+# think about this more
+@export_enum("NOT SET", "Character", "Enemey") var actor_type: int
+
 var chracter_animation_player: AnimationPlayer
 var actor: Node2D
 
@@ -365,7 +368,7 @@ func GetOppositePlayerFacingDirection() -> String:
 
 func get_actor_name() -> String:
 	# TODO: FIXME: IMPL later
-	return "MAX"
+	return "FIXME ALT FUNC"
 
 
 ### Movement

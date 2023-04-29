@@ -1,9 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://12nby2m8fegb"]
+[gd_scene load_steps=12 format=3 uid="uid://12nby2m8fegb"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_2ln1y"]
 [ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_jjht6"]
-[ext_resource type="Resource" uid="uid://bmmv68np23pvb" path="res://SF1/Items/Weapons/ShortSword.tres" id="3_x3j6j"]
-[ext_resource type="Resource" uid="uid://cek4vdtju5m0s" path="res://SF1/Spells/Egress/Egress.tres" id="4_wb7mh"]
 [ext_resource type="Texture2D" uid="uid://c5k05u34xnnts" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Map_Sprites.png" id="5_h0861"]
 [ext_resource type="Texture2D" uid="uid://dbcenl20q6pns" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Battle_Sprites.png" id="6_ph8jh"]
 [ext_resource type="Texture2D" uid="uid://be8wx6cawojlj" path="res://Assets/SF1/PlayableCharacters/Max/Unpromoted_Portraits.png" id="7_mde6q"]
@@ -104,25 +102,9 @@ _data = {
 script = ExtResource("1_2ln1y")
 
 [node name="CharacterRoot" parent="." instance=ExtResource("2_jjht6")]
-character_name = "Max"
-ai_target_priority = 100
-inventory_items_id = Array[Resource]([ExtResource("3_x3j6j")])
-is_item_equipped = Array[bool]([true])
-magic_array = Array[Resource]([ExtResource("4_wb7mh")])
 texture_sprite_overworld_unpromoted = ExtResource("5_h0861")
 texture_sprite_battle_unpromoted = ExtResource("6_ph8jh")
 texture_sprite_portrait_unpromoted = ExtResource("7_mde6q")
-move = 6
-HP_Total = 12
-MP_Total = 8
-mp_growth = 3
-attack = 6
-attack_growth = 3
-defense = 4
-defense_growth = 3
-agility = 4
-agility_growth = 3
-critical_hit_chance = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterRoot"]
 autoplay = "DownMovement"

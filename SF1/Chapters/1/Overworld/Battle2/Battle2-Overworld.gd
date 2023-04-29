@@ -41,7 +41,7 @@ func end_battle() -> void:
 func place_leader() -> void:
 	for c in Singleton_CommonVariables.sf_game_data_node.ForceMembers:
 		if c.leader:
-			var x = load(c.character_base_node).instantiate()
+			var x = load(c.textures_and_scenes[c.promotion_stage].player_scene).instantiate()
 			# x.position = char_positions.get_child(0).position
 			x.get_child(0).position = char_positions.get_child(0).position
 			x.get_child(0).set_active_processing(false)
@@ -57,7 +57,7 @@ func start_battle() -> void:
 	var cp_idx: int = 1
 	for c in Singleton_CommonVariables.sf_game_data_node.ForceMembers:
 		if c.active_in_force && !c.leader:
-			var x = load(c.character_base_node).instantiate()
+			var x = load(c.textures_and_scenes[c.promotion_stage].player_scene).instantiate()
 			# x.position = char_positions.get_child(cp_idx).position
 			x.get_child(0).position = char_positions.get_child(cp_idx).position
 			x.get_child(0).set_active_processing(false)

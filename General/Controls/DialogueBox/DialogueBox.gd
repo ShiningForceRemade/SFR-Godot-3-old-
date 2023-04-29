@@ -24,31 +24,26 @@ func _ready():
 
 #	pass
 
-#
-#func battle_message_play(str_arg = "") -> void:
-#	dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
-#	Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
-#	dialogueRichTextLabel.percent_visible = 0
-#	dialogueRichTextLabel.show()
-#
-#	dialogueRichTextLabel.bbcode_text = str_arg
-#
-#	dialogueTween.interpolate_property(dialogueRichTextLabel, "percent_visible",
-#	0, 1, 
-#	GetTweenTimeForText(str_arg), 
-#	Tween.TRANS_LINEAR, Tween.EASE_IN)
-#
-#	dialogueTween.start()
 
-
-func s_battle_message_complete(_node_arg, _property_arg) -> void: 
-	# dialogueTween.connect("tween_completed", self, "s_battle_message_complete")
-	# print("Tween completed ", node_arg, " ", property_arg)
-	# yield(get_tree().create_timer(1.5), "timeout")
+func battle_message_play(str_arg = "") -> void:
+	dialogueRichTextLabel.bbcode_text = str_arg
+	dialogueRichTextLabel.show()
+	# position = Vector2(72, 160)
+	show()
 	
-	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 262)
-	# dialogueRichTextLabel.hide()
+	var dialogueTween = create_tween()
+	dialogueTween.tween_method(dialogueRichTextLabel.set_visible_characters, 0, dialogueRichTextLabel.get_parsed_text().length(), GetTweenTimeForText(str_arg))
+	dialogueTween.set_ease(Tween.EASE_IN)
+	dialogueTween.set_trans(Tween.TRANS_LINEAR)
+	# dialogueTween.connect("tween_completed", Callable(self, "battle_message_play__completed"))
 	
+	await dialogueTween.finished
+	await get_tree().create_timer(1.0).timeout
+	
+	# Singleton_Game_GlobalBattleVariables.dialogue_box_node.rect_position = Vector2(72, 160)
+	dialogueRichTextLabel.set_visible_characters(0)
+	
+	hide()
 	emit_signal("signal_dialogue_completed")
 
 #

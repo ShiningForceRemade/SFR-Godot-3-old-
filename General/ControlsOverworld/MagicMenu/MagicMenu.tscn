@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8ebym4vluj2q"]
+[gd_scene load_steps=7 format=3 uid="uid://b8ebym4vluj2q"]
 
 [ext_resource type="Script" path="res://General/ControlsOverworld/MagicMenu/MagicMenu.gd" id="1_vyimn"]
 [ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bexr4d3s2v782" path="res://Assets/SFCD/Items/EmptyItemSlot.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://b451lgd0islao" path="res://General/ControlsSelectors/RedSelectionBorder/RedSelectionBorder.tscn" id="5_7fev1"]
+[ext_resource type="PackedScene" uid="uid://ddw8pnto0x58q" path="res://General/ControlsOverworld/MagicMenu/SpellLevelBlock.tscn" id="5_whxvh"]
 [ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="6"]
 
 [node name="MagicMenu" type="Node2D"]
@@ -54,43 +55,30 @@ theme_override_fonts/font = ExtResource("6")
 text = "Name"
 metadata/_edit_lock_ = true
 
-[node name="SpellLevelWrapper" type="Node2D" parent="NinePatchRect"]
-position = Vector2(8, 20)
-metadata/_edit_lock_ = true
+[node name="SpellLevelWrapper" type="ScrollContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 19.0
+offset_right = 88.0
+offset_bottom = 55.0
 
-[node name="LeftColorRect" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
-offset_right = 1.0
-offset_bottom = 8.0
-metadata/_edit_lock_ = true
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/SpellLevelWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 18
 
-[node name="RightColorRect" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
-offset_left = 17.0
-offset_right = 18.0
-offset_bottom = 8.0
-metadata/_edit_lock_ = true
+[node name="SpellLevelBlock" parent="NinePatchRect/SpellLevelWrapper/HBoxContainer" instance=ExtResource("5_whxvh")]
+layout_mode = 2
 
-[node name="BottomColorRect" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
-offset_left = 1.0
-offset_top = 8.0
-offset_right = 17.0
-offset_bottom = 9.0
-metadata/_edit_lock_ = true
+[node name="SpellLevelBlock2" parent="NinePatchRect/SpellLevelWrapper/HBoxContainer" instance=ExtResource("5_whxvh")]
+layout_mode = 2
 
-[node name="TopColorRect" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
-offset_left = 1.0
-offset_top = -0.999998
-offset_right = 17.0
-metadata/_edit_lock_ = true
+[node name="SpellLevelBlock3" parent="NinePatchRect/SpellLevelWrapper/HBoxContainer" instance=ExtResource("5_whxvh")]
+layout_mode = 2
 
-[node name="BackgroundColorRect" type="ColorRect" parent="NinePatchRect/SpellLevelWrapper"]
-offset_left = 1.0
-offset_right = 17.0
-offset_bottom = 8.0
-color = Color(0.898039, 0.8, 0.0156863, 1)
-metadata/_edit_lock_ = true
+[node name="SpellLevelBlock4" parent="NinePatchRect/SpellLevelWrapper/HBoxContainer" instance=ExtResource("5_whxvh")]
+layout_mode = 2
 
 [node name="MagicLevelSelectorWrapperNode2D" type="Node2D" parent="NinePatchRect"]
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="LeftColorRect" type="ColorRect" parent="NinePatchRect/MagicLevelSelectorWrapperNode2D"]

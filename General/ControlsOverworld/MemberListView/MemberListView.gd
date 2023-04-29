@@ -287,12 +287,14 @@ func DisplayNewlySelectedCharacterInfo(force_member) -> void:
 	if cnode != null:
 		cnode.queue_free()
 	
-	cnode = load(c.character_base_node).instantiate();
+	
+	cnode = load(c.textures_and_scenes[c.promotion_stage].player_scene).instantiate();
 	
 	print("Premature return fixme later")
 	return
 	
 	var cnode_actor = cnode.get_actor_root_node_internal()
+	
 	# print(cnode, cnode_actor)
 	
 	if cnode_actor.promotion_stage == 0:

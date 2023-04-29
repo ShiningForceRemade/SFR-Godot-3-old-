@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cntxewkn1fuk6" path="res://Assets/CustomTileTerrainInformation.png" id="7_24luf"]
 [ext_resource type="PackedScene" uid="uid://bp5c8nvyck0mv" path="res://SF1/EnemiesAndBosses/Goblin/GoblinEnemeyRoot.tscn" id="8_np6ia"]
 [ext_resource type="PackedScene" uid="uid://cdklynul2msnf" path="res://SF1/EnemiesAndBosses/DarkDwarf/DarkDwarf.tscn" id="9_ivxop"]
-[ext_resource type="PackedScene" uid="uid://yewrlh4275st" path="res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn" id="10_2n217"]
+[ext_resource type="PackedScene" uid="uid://c4e3kdw3vi0bn" path="res://SF1/EnemiesAndBosses/RuneKnight/RuneKnight.tscn" id="10_2n217"]
 [ext_resource type="PackedScene" uid="uid://c0mhy6i67ijm3" path="res://SF1/EnemiesAndBosses/Goblin/Goblin.tscn" id="10_le41u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bo1ud"]
@@ -207,6 +207,21 @@ position = Vector2(348, 252)
 
 [node name="Goblin__MiddleTop" parent="Enemies" instance=ExtResource("10_le41u")]
 position = Vector2(300, 204)
+
+[node name="RuneKnight" parent="Enemies" instance=ExtResource("10_2n217")]
+position = Vector2(300, 396)
+
+[node name="RuneKnight2" parent="Enemies" instance=ExtResource("10_2n217")]
+position = Vector2(300, 420)
+
+[node name="Goblin" parent="Enemies" instance=ExtResource("10_le41u")]
+position = Vector2(300, 372)
+
+[node name="Goblin2" parent="Enemies" instance=ExtResource("10_le41u")]
+position = Vector2(276, 396)
+
+[node name="Goblin3" parent="Enemies" instance=ExtResource("10_le41u")]
+position = Vector2(324, 396)
 
 [node name="Enemies2" type="Node2D" parent="."]
 position = Vector2(192, -96)

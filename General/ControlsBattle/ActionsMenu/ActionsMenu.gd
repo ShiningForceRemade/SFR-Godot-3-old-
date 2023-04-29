@@ -75,7 +75,7 @@ func _process(_delta):
 	if !is_menu_active:
 		return
 		
-	if Input.is_action_just_pressed("ui_b_key"):
+	if Input.is_action_just_released("ui_b_key"):
 		print("Cancel Battle Action Menu")
 		is_menu_active = false
 		Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
@@ -90,7 +90,7 @@ func _process(_delta):
 		#get_parent().get_parent().get_parent().s_hide_action_menu()
 		return
 			
-	if Input.is_action_just_pressed("ui_a_key"):
+	if Input.is_action_just_released("ui_a_key"):
 		await Signal(get_tree().create_timer(0.02), "timeout")
 		# event.is_action_released("ui_accept"):
 		print("Accept Action - ", currently_selected_option)
@@ -100,6 +100,7 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
+			
 			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
 			# Singleton_CommonVariables.ui__gold_info_box.hide()
 			# Singleton_CommonVariables.ui__actor_micro_info_box.hide()
@@ -109,6 +110,8 @@ func _process(_delta):
 			# Singleton_CommonVariables.main_character_player_node.interaction_attempt_to_search()
 			return
 		elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
+			await get_tree().create_timer(0.1).timeout
+			
 			OpenInventoryMenu()
 			return
 		elif currently_selected_option == e_menu_options.MAGIC_OPTION:
@@ -118,6 +121,8 @@ func _process(_delta):
 			hide()
 			# Singleton_CommonVariables.ui__gold_info_box.hide()
 			# Singleton_CommonVariables.ui__actor_micro_info_box.hide()
+			
+			await get_tree().create_timer(0.1).timeout
 			
 			Singleton_CommonVariables.ui__magic_menu.show_cust()
 			
@@ -138,6 +143,8 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
 			
+			await get_tree().create_timer(0.1).timeout
+			
 			Singleton_CommonVariables.battle__logic__target_selection_node.set_attack_target_selection()
 			
 			# Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
@@ -149,14 +156,14 @@ func _process(_delta):
 			# Singleton_CommonVariables.battle__currently_active_actor.get_child(0).interaction_attempt_to_talk()
 			return
 		
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_released("ui_down"):
 		# menu_option_selected(e_menu_options.SEARCH_OPTION, "Search", "Search")
 		menu_option_selected(e_menu_options.STAY_OPTION, "Stay", "Stay")
-	elif Input.is_action_just_pressed("ui_up"):
+	elif Input.is_action_just_released("ui_up"):
 		menu_option_selected(e_menu_options.ATTACK_OPTION, "Attack", "Attack")
-	elif Input.is_action_just_pressed("ui_right"):
+	elif Input.is_action_just_released("ui_right"):
 		menu_option_selected(e_menu_options.INVENTORY_OPTION, "Inventory", "Inventory")
-	elif Input.is_action_just_pressed("ui_left"):
+	elif Input.is_action_just_released("ui_left"):
 		menu_option_selected(e_menu_options.MAGIC_OPTION, "Magic", "Magic")
 
 

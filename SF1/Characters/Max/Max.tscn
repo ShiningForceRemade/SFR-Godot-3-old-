@@ -1,15 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddps03i7re3p8"]
+[gd_scene load_steps=5 format=3 uid="uid://ddps03i7re3p8"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericPlayableActor.gd" id="1_0nguh"]
 [ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="1_ic55j"]
 [ext_resource type="PackedScene" uid="uid://12nby2m8fegb" path="res://SF1/Characters/Max/MaxCharacterRoot.tscn" id="2_vic6b"]
+[ext_resource type="PackedScene" uid="uid://b34mgxksjxyqf" path="res://SF1/Characters/Max/MaxUnpromotedBattleScene.tscn" id="4_0drb5"]
 
 [node name="Max" type="Node2D"]
 script = ExtResource("1_0nguh")
 
 [node name="PlayableActorRoot" parent="." instance=ExtResource("1_ic55j")]
+actor_type = 1
 
 [node name="Max" parent="PlayableActorRoot" instance=ExtResource("2_vic6b")]
+
+[node name="CharacterRoot" parent="PlayableActorRoot/Max" index="0"]
+battle__scene_unpromoted = ExtResource("4_0drb5")
 
 [editable path="PlayableActorRoot"]
 [editable path="PlayableActorRoot/Max"]

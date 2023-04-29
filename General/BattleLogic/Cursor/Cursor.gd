@@ -51,7 +51,7 @@ func _process(_delta) -> void:
 				await move_to_new_position(Vector2(self.position.x + x_tile_move, self.position.y + y_tile_move), tile_move_time)
 
 
-func _input(event) -> void:
+func _input(_event: InputEvent) -> void:
 	if active:
 		if Input.is_action_just_pressed("ui_b_key"):
 			if position == actor_g_pos:

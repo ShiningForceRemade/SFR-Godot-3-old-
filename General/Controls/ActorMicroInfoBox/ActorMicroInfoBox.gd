@@ -162,13 +162,15 @@ func display_actor_info(node_arg) -> void:
 	print(node_arg)
 
 	if actor_root.name == "CharacterRoot":
-		update_active_info(actor_root.character_name, 
-		"FAKE CLASS", # actor_root.cget_class(), 
-		actor_root.level, 
-		actor_root.HP_Current, 
-		actor_root.HP_Total, 
-		actor_root.MP_Current, 
-		actor_root.MP_Total)
+		update_active_info(
+			actor_root.get_actor_name(), 
+			actor_root.get_class_short(),
+			actor_root.get_level(), 
+			actor_root.get_hp_current(), 
+			actor_root.get_hp_total(), 
+			actor_root.get_mp_current(),
+			actor_root.get_mp_total()
+		)
 	elif actor_root.name == "EnemeyRoot":
 		update_active_info(actor_root.enemey_name, 
 

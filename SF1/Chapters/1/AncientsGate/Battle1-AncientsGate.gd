@@ -41,7 +41,7 @@ func end_battle() -> void:
 func place_leader() -> void:
 	for c in Singleton_CommonVariables.sf_game_data_node.ForceMembers:
 		if c.leader:
-			var x = load(c.character_base_node).instantiate()
+			var x = load(c.textures_and_scenes[c.promotion_stage].player_scene).instantiate()
 			# x.position = char_positions.get_child(0).position
 			x.get_child(0).position = char_positions.get_child(0).position
 			x.get_child(0).set_active_processing(false)
@@ -57,7 +57,7 @@ func start_battle() -> void:
 	var cp_idx: int = 1
 	for c in Singleton_CommonVariables.sf_game_data_node.ForceMembers:
 		if c.active_in_force && !c.leader:
-			var x = load(c.character_base_node).instantiate()
+			var x = load(c.textures_and_scenes[c.promotion_stage].player_scene).instantiate()
 			# x.position = char_positions.get_child(cp_idx).position
 			x.get_child(0).position = char_positions.get_child(cp_idx).position
 			x.get_child(0).set_active_processing(false)
@@ -96,9 +96,10 @@ func fill_turn_order_array_with_all_actors():
 		Singleton_CommonVariables.battle__turn_order_array.append({
 			# "name": enemey.get_name(), 
 			"type": "enemey", 
-			"speed": 5, # enemey.cget_agility(), 
+			"speed": enemey.get_child(0).find_child("EnemeyRoot").get_agility(), # enemey.cget_agility(), 
 			"node": enemey, 
-			"alive": true
+			"alive": true,
+			"id": enemey.get_instance_id()
 		})
 		
 	#print("\nCharacters - ",characters)
@@ -108,9 +109,10 @@ func fill_turn_order_array_with_all_actors():
 		Singleton_CommonVariables.battle__turn_order_array.append({
 			# "name": character.get_name(), 
 			"type": "character", 
-			"speed": 6, # character.cget_agility(), 
+			"speed": character.get_child(0).find_child("CharacterRoot").get_agility(), # character.cget_agility(), 
 			"node": character, 
-			"alive": true
+			"alive": true,
+			"id": character.get_instance_id()
 		})
 	
 	#print(turn_order_array)

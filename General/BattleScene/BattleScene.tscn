@@ -1,122 +1,60 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb1wai5uq2yyg"]
+[gd_scene load_steps=6 format=3 uid="uid://cb1wai5uq2yyg"]
 
-[ext_resource type="Texture2D" uid="uid://yh38q8nh2lns" path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Backgrounds.png" id="1_6d2a5"]
 [ext_resource type="Script" path="res://General/BattleScene/BattleScene.gd" id="1_mmtnn"]
-[ext_resource type="Texture2D" uid="uid://cewhakxr2u6i1" path="res://Assets/SF1/EnemiesAndBosses/Dark Mage/Battle_Sprites.png" id="2_ymayu"]
-[ext_resource type="Texture2D" uid="uid://obn7lftu7567" path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" id="3_n64ex"]
-[ext_resource type="Texture2D" uid="uid://d0xfrqovmknjr" path="res://Assets/SF1/Weapons/Wooden_Rod.png" id="4_7qgyg"]
+[ext_resource type="PackedScene" uid="uid://bcp6q8yok2yo3" path="res://General/BattleScene/BackgroundScene/BackgroundBattleScene.tscn" id="3_7dhk1"]
 [ext_resource type="Texture2D" uid="uid://2mk4yx4adk6b" path="res://Assets/BattleSceneTransitionTemp.png" id="4_r527i"]
-[ext_resource type="Texture2D" uid="uid://bo5bvsm6yi0no" path="res://Assets/SF1/PlayableCharacters/Tao/Unpromoted_Battle_Sprites.png" id="5_hmb53"]
+[ext_resource type="PackedScene" uid="uid://dli5v0yr835dl" path="res://General/BattleScene/CharacterScene/CharacterScene.tscn" id="8_pklxd"]
+[ext_resource type="PackedScene" uid="uid://obvgsw5adehj" path="res://General/BattleScene/EnemeyScene/EnemeyScene.tscn" id="8_waxw2"]
 
 [node name="BattleScene" type="Node2D"]
-scale = Vector2(1.25, 1.25)
 script = ExtResource("1_mmtnn")
 metadata/_edit_lock_ = true
 
 [node name="StaticBlackBackgroundColorRect" type="ColorRect" parent="."]
-offset_right = 256.0
-offset_bottom = 144.0
+offset_right = 320.0
+offset_bottom = 180.0
 color = Color(0, 0, 0, 1)
-
-[node name="TransitionBackgroundWrapper" type="Node2D" parent="."]
-position = Vector2(0, -3.40001)
 metadata/_edit_lock_ = true
-
-[node name="BackgroundWrapper" type="Node2D" parent="."]
-position = Vector2(0, -3.40001)
-metadata/_edit_lock_ = true
-
-[node name="LeftSprite2D" type="Sprite2D" parent="BackgroundWrapper"]
-position = Vector2(-128, 73.6)
-texture = ExtResource("1_6d2a5")
-hframes = 2
-vframes = 16
-frame = 17
-metadata/_edit_lock_ = true
-
-[node name="CenterSprite2D" type="Sprite2D" parent="BackgroundWrapper"]
-position = Vector2(128, 73.6)
-texture = ExtResource("1_6d2a5")
-hframes = 2
-vframes = 16
-frame = 17
-metadata/_edit_lock_ = true
-
-[node name="RightSprite2D" type="Sprite2D" parent="BackgroundWrapper"]
-position = Vector2(384, 73.6)
-texture = ExtResource("1_6d2a5")
-hframes = 2
-vframes = 16
-frame = 17
-metadata/_edit_lock_ = true
-
-[node name="ForegroundWrapper" type="Node2D" parent="."]
-position = Vector2(0, -3.40001)
-metadata/_edit_lock_ = true
-
-[node name="LeftSprite2D" type="Sprite2D" parent="ForegroundWrapper"]
-position = Vector2(-128, 73.6)
-texture = ExtResource("1_6d2a5")
-hframes = 2
-vframes = 16
-frame = 15
-metadata/_edit_lock_ = true
-
-[node name="CenterSprite2D" type="Sprite2D" parent="ForegroundWrapper"]
-position = Vector2(128, 73.6)
-texture = ExtResource("1_6d2a5")
-hframes = 2
-vframes = 16
-frame = 15
-metadata/_edit_lock_ = true
-
-[node name="RightSprite2D" type="Sprite2D" parent="ForegroundWrapper"]
-position = Vector2(384, 73.6)
-texture = ExtResource("1_6d2a5")
-hframes = 2
-vframes = 16
-frame = 15
-metadata/_edit_lock_ = true
-
-[node name="EnemeyWrapper" type="Node2D" parent="."]
-position = Vector2(0, -3.40001)
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="EnemeyWrapper"]
-position = Vector2(38.4, 73.6)
-texture = ExtResource("2_ymayu")
-hframes = 4
-metadata/_edit_lock_ = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemeyWrapper"]
 
 [node name="BattleSceneTransitionTemp" type="Sprite2D" parent="."]
-position = Vector2(380.8, -38.6)
-scale = Vector2(0.218421, 0.218421)
+position = Vector2(434, 89)
+scale = Vector2(0.140741, 0.123684)
 texture = ExtResource("4_r527i")
+
+[node name="BackgroundWrapper" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="CharacterWrapperMaybeMakethistsownScene" type="Node2D" parent="."]
-position = Vector2(0, -3.40001)
+[node name="BackgroundBattleScene" parent="BackgroundWrapper" instance=ExtResource("3_7dhk1")]
+
+[node name="EnemeyWrapper" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="GroundSprite2D" type="Sprite2D" parent="CharacterWrapperMaybeMakethistsownScene"]
-position = Vector2(195.2, 118.4)
-texture = ExtResource("3_n64ex")
-vframes = 9
-frame = 5
+[node name="EnemeyScene" parent="EnemeyWrapper" instance=ExtResource("8_waxw2")]
+
+[node name="CharacterWrapper" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="WeaponSprite2D" type="Sprite2D" parent="CharacterWrapperMaybeMakethistsownScene"]
-position = Vector2(153.6, 64)
-scale = Vector2(1, 1)
-texture = ExtResource("4_7qgyg")
+[node name="CharacterScene" parent="CharacterWrapper" instance=ExtResource("8_pklxd")]
+position = Vector2(206, 160)
+
+[node name="BackgroundStaticColorsControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
 metadata/_edit_lock_ = true
 
-[node name="CharacterSprite2D" type="Sprite2D" parent="CharacterWrapperMaybeMakethistsownScene"]
-position = Vector2(195.2, 70.4)
-texture = ExtResource("5_hmb53")
-hframes = 3
+[node name="LeftStaticBlackBackgroundColorRect" type="ColorRect" parent="BackgroundStaticColorsControl"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterWrapperMaybeMakethistsownScene"]
+[node name="RightStaticBlackBackgroundColorRect" type="ColorRect" parent="BackgroundStaticColorsControl"]
+layout_mode = 0
+offset_left = 288.0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true

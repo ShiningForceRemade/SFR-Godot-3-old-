@@ -71,6 +71,18 @@ enum E_SF1_ATTRIBUTES {
 	YGRT
 }
 
+enum E_MOVEMENT_TYPES {
+	STANDARD, 
+	MOUNTED, 
+	AQUATIC, 
+	FOREST, 
+	MECHANICAL, 
+	FLYING, 
+	HOVERING
+}
+
+# @export_enum() var movement_type: int = 0 # "Standard"
+
 
 # TODO: copy over the base stats 
 # https://sf1.shiningforcecentral.com/characters/shining-force/
@@ -91,40 +103,58 @@ enum E_SF1_ATTRIBUTES {
 # then reusing forcemembers for latest is awful I nener should have allowed it to get to this point
 ###########
 
+#
+# TODO: make a dictionary with all of these in the format of
+# use this new dictionary to set the values for the characters down below MEDIUM PRIORITY
+# {full: swordsman, short: sdmn
+const char_class_array = ["SDMN", "KNT",
+		"WARR", "SKNT", "MAGE",
+		"MONK", "HEAL", "ACHR", "ASKT",
+		"BDMN", "WKNT", "DRGN", 
+		"RBT", "WRWF", "SMR", 
+		"NINJ", "HERO", "PLDN", 
+		"GLDR", "SBRN", "WIZD", 
+		"MSMK", "VICR", "BWMS", 
+		"SKNT", "SKYW", "SKYL",
+		"GRDR", "CYBG", "WFBN", "YGRT",
+		"MGCR"]
+
+const char_class_full_array = ["Swordsman - SDMN", "Knight - KNT",
+		"Warrior - WARR", "Sky Knight - SKNT", "Mage - MAGE",
+		"Monk - MONK", "Healer - HEAL", "Archer - ACHR", "ASKT",
+		"Birdman - BDMN", "Winged Knight - WKNT", "Dragon - DRGN", 
+		"Robot - RBT", "Werewolf - WRWF", "Samurai - SMR", 
+		"Ninja - NINJ", "Hero - HERO", "Paladin - PLDN", 
+		"Galaditor - GLDR", "SBRN", "Wizard - WIZD", 
+		"Master Monk - MSMK", "Vicar - VICR", "BWMS", 
+		"Sky Knight - SKNT", "Sky Warrior - SKYW", "SKYL",
+		"GRDR", "Cyborg - CYBG", "Wolf Barron - WFBN", "Yogurt - YGRT",
+		"MGCR"]
 
 var ForceMembers = [
 	# Max
 	{
 		"character": E_SF1_FM.MAX,
 		
-		# TODO: this shouldn't be part of the forceMembers dictionary
+		# TODO: LOW PRIORITY this shouldn't be part of the forceMembers dictionary
 		# should be separate var outside and track the force member enum value
 		# REFACTOR: after finishing migration to Godot 4
 		"leader": true,
 		
 		# TODO: add order field so its possible to select the order of your units being placed
+		# will need to be unique values think on this later very LOW PRIORITY
+		"order": 0,
 		
-		# TODO: need to copy this to all other characters
+		## Promotion stage dictates where the character is in their promotion stage
+		## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
 		"promotion_stage": 0,
-		# CRITICAL: IMPORTANT: FIXME: TODO: 
-		# is_promoted should be here for easy checking of with sprites to use
-		# espeically for overworld cutscenes and the like instead of needing to load the 
-		# node or the character resource file
-		# "is_promoted"
-		
-		# TODO: create a base path for characters and use in a similar fashion to the soundback
-		# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
-		
-		# battle node? - TODO: this should be the generic playeractor node for both overworld battle and enemies 
-		"character_base_node": "res://SF1/Characters/Max/Max.tscn",
-		# HQ NPC node
-		"character_npc_scene": "res://SF1/Characters/Max/MaxNPC.tscn",
 		
 		"unlocked": true,
 		"active_in_force": true,
 		"alive": true,
 		
 		"name": "Max", # TODO: do nicknames
+		"nickname": null,
 		"race": "Human",
 		
 		"class_full": "Swordsman",
@@ -133,17 +163,36 @@ var ForceMembers = [
 		
 		"level": 1,
 		
-		"status_effects": [
-			
+		"textures_and_scenes": [
+			# unpromoted
+			{
+				# textures
+				"overworld_texture": "",
+				"battle_texture": "",
+				"portrait_texture": "",
+				# scenes
+				"battle_scene": "",
+				"player_scene": "res://SF1/Characters/Max/Max.tscn",
+				# TODO: create a base path for characters and use in a similar fashion to the soundback
+				# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
+				# HQ NPC node
+				"npc_scene": "res://SF1/Characters/Max/MaxNPC.tscn",
+			}
 		],
 		
+		"status_effects": [
+			# { type, resource, scripts for effect lots to do here TODO: for chapter 2 }
+		],
+		
+		## Determines how likely this actor is to be targeted in battle - 0 least likely 100 attack if possible
 		"ai_target_priority": 100,
 		
-		"movement_type": "Standard",
+		"movement_type": E_MOVEMENT_TYPES.STANDARD,
 		
 		"stats": {
 			"attack": 6,
 			"attack_boost": 0,
+			"attack_permanent_increase": 0,
 			"attack_target_unpromoted": 17,
 			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"attack_target_promoted": 23,
@@ -151,6 +200,7 @@ var ForceMembers = [
 			
 			"defense": 4,
 			"defense_boost": 0,
+			"defense_permanent_increase": 0,
 			"defense_target_unpromoted": 16,
 			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"defense_target_promoted": 48,
@@ -158,17 +208,20 @@ var ForceMembers = [
 			
 			"agility": 4,
 			"agility_boost": 0,
+			"agility_permanent_increase": 0,
 			"agility_target_unpromoted": 14,
 			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"agility_target_promoted": 35,
 			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY],
 			
 			"move": 6,
+			"move_permanent_increase": 0,
 			"move_boost": 0,
 			
 			"hp": 12,
 			"hp_current": 12,
 			"hp_boost": 0,
+			"hp_permanent_increase": 0,
 			"hp_target_unpromoted": 23,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"hp_target_promoted": 46,
@@ -177,6 +230,7 @@ var ForceMembers = [
 			"mp": 8,
 			"mp_current": 8,
 			"mp_boost": 0,
+			"mp_permanent_increase": 0,
 			"mp_target_unpromoted": 4,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"mp_target_promoted": 2,
@@ -184,6 +238,7 @@ var ForceMembers = [
 			
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_permanent_increase": 0,
 			"critical_hit_chance_target_unpromoted": 4,
 			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"critical_hit_chance_target_promoted": 8,
@@ -191,11 +246,14 @@ var ForceMembers = [
 			
 			"double_attack_chance": 7,
 			"double_attack_chance_boost": 0,
+			# "double_attack_permanent_increase": 0,
 			
 			"dodge_chance": 10,
 			"dodge_chance_boost": 0,
+			# "dodge_permanent_increase": 0,
 		},
 		
+		# NOTE: shining force editor v3.4.4 has one other resistance type that hasn't been solved yet
 		"resistances": {
 			"magic": 0,
 			"magic_boost": 0,
@@ -256,8 +314,13 @@ var ForceMembers = [
 				# Egress
 				"resource": "res://SF1/Spells/Egress/Egress.tres",
 				"levels": [
-					1, # TODO: IMPORTANT: need to handle pre promotion and promotion unlock levels
-					# probably also need an unlock state in the case of promoting prior to getting the spell but not being the promoted target level ex kazin from sf2 
+					{ # 1
+						"unlocked": true,
+						"unlock_levels": {
+							"unpromoted": 1,
+							"promoted": 1
+						}
+					},
 				]
 			},
 		],
@@ -536,16 +599,26 @@ var ForceMembers = [
 	# Tao
 	{
 		"character": E_SF1_FM.TAO,
+		
+		# TODO: LOW PRIORITY this shouldn't be part of the forceMembers dictionary
+		# should be separate var outside and track the force member enum value
+		# REFACTOR: after finishing migration to Godot 4
 		"leader": false,
 		
-		"character_base_node": "res://SF1/Characters/Tao/Tao.tscn",
-		"character_npc_scene": "res://SF1/Characters/Tao/TaoNPC.tscn",
+		# TODO: add order field so its possible to select the order of your units being placed
+		# will need to be unique values think on this later very LOW PRIORITY
+		"order": 4,
+		
+		## Promotion stage dictates where the character is in their promotion stage
+		## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
+		"promotion_stage": 0,
 		
 		"unlocked": true,
 		"active_in_force": true,
 		"alive": true,
 		
-		"name": "Tao", # TODO: do nicknames
+		"name": "Tao",
+		"nickname": null,
 		"race": "Elf",
 		
 		"class_full": "Mage",
@@ -554,17 +627,35 @@ var ForceMembers = [
 		
 		"level": 1,
 		
-		"status_effects": [
-			
-		],
-		
 		"ai_target_priority": 75,
 		
-		"movement_type": "Standard",
+		"movement_type": E_MOVEMENT_TYPES.STANDARD,
+		
+		"textures_and_scenes": [
+			# unpromoted
+			{
+				# textures
+				"overworld_texture": "",
+				"battle_texture": "",
+				"portrait_texture": "",
+				# scenes
+				"battle_scene": "",
+				"player_scene": "res://SF1/Characters/Tao/Tao.tscn",
+				# TODO: create a base path for characters and use in a similar fashion to the soundback
+				# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
+				# HQ NPC node
+				"npc_scene": "res://SF1/Characters/Tao/TaoNPC.tscn",
+			}
+		],
+		
+		"status_effects": [
+			# { type, resource, scripts for effect lots to do here TODO: for chapter 2 }
+		],
 		
 		"stats": {
 			"attack": 4,
 			"attack_boost": 0,
+			"attack_permanent_increase": 0,
 			"attack_target_unpromoted": 7,
 			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"attack_target_promoted": 12,
@@ -572,6 +663,7 @@ var ForceMembers = [
 			
 			"defense": 4,
 			"defense_boost": 0,
+			"defense_permanent_increase": 0,
 			"defense_target_unpromoted": 11,
 			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"defense_target_promoted": 29,
@@ -579,23 +671,29 @@ var ForceMembers = [
 			
 			"agility": 6,
 			"agility_boost": 0,
+			"agility_permanent_increase": 0,
 			"agility_target_unpromoted": 18,
 			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"agility_target_promoted": 46,
 			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY],
 			
 			"move": 5,
+			"move_permanent_increase": 0,
 			"move_boost": 0,
 			
 			"hp": 10,
+			"hp_current": 10,
 			"hp_boost": 0,
+			"hp_permanent_increase": 0,
 			"hp_target_unpromoted": 12,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"hp_target_promoted": 38,
 			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LATE],
 			
 			"mp": 7,
+			"mp_current": 7,
 			"mp_boost": 0,
+			"mp_permanent_increase": 0,
 			"mp_target_unpromoted": 34,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"mp_target_promoted": 47,
@@ -603,6 +701,7 @@ var ForceMembers = [
 			
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_permanent_increase": 0,
 			"critical_hit_chance_target_unpromoted": 1,
 			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"critical_hit_chance_target_promoted": 2,
@@ -610,11 +709,15 @@ var ForceMembers = [
 			
 			"double_attack_chance": 7,
 			"double_attack_chance_boost": 0,
+			# "double_attack_permanent_increase": 0,
 			
 			"dodge_chance": 10,
 			"dodge_chance_boost": 0,
+			# "dodge_permanent_increase": 0,
 		},
 		
+		
+		# NOTE: shining force editor v3.4.4 has one other resistance type that hasn't been solved yet
 		"resistances": {
 			"magic": 0,
 			"magic_boost": 0,
@@ -659,36 +762,62 @@ var ForceMembers = [
 		
 		"magic": [
 			{
-				"name": "Blaze",
+				# "name": "Blaze",
+				"resource": "res://SF1/Spells/Blaze/Blaze.tres",
 				"levels": [
-					1,
-					4,
-					12,
-					20
+					{ # 1
+						"unlocked": true,
+						"unlock_levels": {
+							"unpromoted": 1,
+							# promoted
+						}
+					},
+					
+					{ # 2
+						"unlocked": true,
+						"unlock_levels": {
+							"unpromoted": 4
+							# promoted
+						}
+					}
 				]
 			},
 			
-			{
-				"name": "Sleep",
-				"levels": [
-					8
-				]
-			},
-			
-			{
-				"name": "Dispel",
-				"levels": [
-					16
-				]
-			},
-			
-			{
-				"name": "Boost",
-				"levels": [
-					27
-				]
-			},
-		]
+#			{
+#				"name": "Sleep",
+#				"levels": [
+#					8
+#				]
+#			},
+#
+#			{
+#				"name": "Dispel",
+#				"levels": [
+#					16
+#				]
+#			},
+#
+#			{
+#				"name": "Boost",
+#				"levels": [
+#					27
+#				]
+#			},
+		],
+		
+		# TODO: need to copy these over to all other characters
+		"actor_meta_stats": {
+			# battles gone through ? maybe
+			# maybe track each magic spell used
+			"kills": 0,
+			"defeats": 0,
+			"dodges": 0,
+			"misses": 0,
+			"critical_hits": 0,
+			"double_attacks": 0,
+			"special_attacks": 0,
+			"counter_attacks": 0
+		}
 	},
 	
 	# Hans

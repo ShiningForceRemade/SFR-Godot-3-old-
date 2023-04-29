@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://04nhrsg8ktt7"]
+
+[ext_resource type="PackedScene" uid="uid://588imvwkbshk" path="res://General/CEnemeyRoot/EnemeyRoot.tscn" id="1_gvlnj"]
+[ext_resource type="Resource" uid="uid://bnmg707g7yfeo" path="res://SF1/Items/Weapons/BronzeLance.tres" id="2_ko0a2"]
+[ext_resource type="Texture2D" uid="uid://bw8jgq8cyqbr3" path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Map_Sprites.png" id="3_er605"]
+[ext_resource type="Texture2D" uid="uid://kwfkn0ewhrpm" path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" id="4_lgmbb"]
+
+[sub_resource type="Animation" id="Animation_bxfv0"]
+resource_name = "DownMovement"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wkfu7"]
+_data = {
+"DownMovement": SubResource("Animation_bxfv0")
+}
+
+[node name="RuneKnightEnemeyRoot" type="Node2D"]
+
+[node name="EnemeyRoot" parent="." instance=ExtResource("1_gvlnj")]
+enemey_name = "Rune Knight"
+coins_min = 45
+coins_max = 45
+inventory_items_id = Array[Resource]([ExtResource("2_ko0a2")])
+is_item_equipped = Array[bool]([true])
+texture_sprite_overworld = ExtResource("3_er605")
+texture_sprite_battle = ExtResource("4_lgmbb")
+effective_level = 5
+move = 7
+movement_type = 1
+attack = 7
+defense = 7
+agility = 7
+HP_Current = 14
+HP_Total = 14
+
+[node name="Sprite2D" parent="EnemeyRoot" index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("3_er605")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemeyRoot"]
+libraries = {
+"": SubResource("AnimationLibrary_wkfu7")
+}
+
+[editable path="EnemeyRoot"]
