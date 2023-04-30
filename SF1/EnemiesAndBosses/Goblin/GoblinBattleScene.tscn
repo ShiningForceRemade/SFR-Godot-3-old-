@@ -1,10 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://blrx17j73t1f3"]
+[gd_scene load_steps=12 format=3 uid="uid://blrx17j73t1f3"]
 
 [ext_resource type="Script" path="res://SF1/EnemiesAndBosses/GenericEnemeyBattleScene.gd" id="1_kgqih"]
 [ext_resource type="Texture2D" uid="uid://bclgppdnyrbn8" path="res://Assets/SF1/EnemiesAndBosses/Goblin/Battle_Sprites.png" id="2_6syd1"]
-[ext_resource type="Material" uid="uid://ckxk0pjhqodck" path="res://SF1/EnemiesAndBosses/DeathShaderMaterialForBattleScene.tres" id="2_jhch0"]
+[ext_resource type="Shader" path="res://Shaders/Dissolve.gdshader" id="2_j7kts"]
+[ext_resource type="Texture2D" uid="uid://bg7u6slhfkm6g" path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" id="3_g44mp"]
 [ext_resource type="Animation" uid="uid://skmgdy4gvcda" path="res://SF1/EnemiesAndBosses/Death.res" id="4_308pj"]
 [ext_resource type="Animation" uid="uid://bvq6yk607d7a5" path="res://SF1/EnemiesAndBosses/Shake.res" id="5_c7aaq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qswjq"]
+shader = ExtResource("2_j7kts")
+shader_parameter/dissolve_effect_amount = 0.0
+shader_parameter/noise_texture = ExtResource("3_g44mp")
 
 [sub_resource type="Animation" id="Animation_xd71m"]
 resource_name = "Attack"
@@ -28,9 +34,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"emit_attack_anticapation_frame_reached"
+}, {
 "args": [],
 "method": &"emit_attack_frame_reached"
 }]
@@ -70,26 +79,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/dissolve_effect_amount")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(96, 100)]
+"update": 1,
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:material:shader_parameter/dissolve_effect_amount")
+tracks/2/path = NodePath("Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(116, 92)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6b8o4"]
@@ -105,8 +114,8 @@ _data = {
 script = ExtResource("1_kgqih")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("2_jhch0")
-position = Vector2(96, 100)
+material = SubResource("ShaderMaterial_qswjq")
+position = Vector2(116, 92)
 texture = ExtResource("2_6syd1")
 hframes = 4
 

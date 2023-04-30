@@ -9,7 +9,7 @@
 script = ExtResource("1")
 name = "Heal"
 spell_texture = ExtResource("2")
-usable_on_actor_type = 2
+usable_on_actor_type = "Allies"
 levels = Array[Resource]([ExtResource("3")])
 element_type = 0
 spell_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1_plus_Self.gd"

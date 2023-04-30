@@ -268,6 +268,7 @@ func activate_battle() -> void:
 				
 				print("attack normal")
 				caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
+				caa_bs.connect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
 				caa_bs.play_attack_normal()
 				# await Signal(caa_bs, "battle__animation_completed")
 				await Signal(self, "signal__current_actor_exchange_completed")
@@ -349,6 +350,7 @@ func activate_battle() -> void:
 			
 			print("attack normal")
 			caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
+			caa_bs.connect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
 			caa_bs.play_attack_normal()
 			await Signal(self, "signal__current_actor_exchange_completed")
 			# await Signal(caa_bs, "battle__animation_completed")
@@ -400,7 +402,7 @@ func activate_battle() -> void:
 	
 	print("Disconnect attack frame reached")
 	caa_bs.disconnect("attack_frame_reached", Callable(attack_frame_reached))
-	
+	caa_bs.disconnect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
 	# TODO: fade in
 	hide()
 	
@@ -459,6 +461,25 @@ func print_spell_usage() -> void:
 		active_actor.cget_actor_name() + " casts " + active_actor.spells_id[0].name + " level 1."
 		)
 
+var is_critical_hit = false
+func attack_anticapation_frame_reached() -> void:
+	is_critical_hit = false
+	
+	rng.randomize()
+	
+	# if rng.randi_range(0, 99) < 99:
+	if rng.randi_range(0, 99) < 10:
+		current_initiator_actor_battle_scene_node.pause_animation()
+		
+		Singleton_AudioManager.play_sfx("res://Assets/Sounds/CriticalSound.wav")
+		
+		is_critical_hit = true
+		
+		await get_tree().create_timer(0.5).timeout
+		
+		current_initiator_actor_battle_scene_node.resume_animation()
+
+
 func attack_frame_reached() -> void:
 	print("attack frame reached ahh yaa")
 	
@@ -494,7 +515,7 @@ func calculate_damage_step() -> void:
 	
 	var using_spell = false
 	var attack_missed = false
-	var is_critical_hit = false
+	
 	
 	var damage = 0
 	
@@ -513,14 +534,6 @@ func calculate_damage_step() -> void:
 		initator_actor.set_mp_current(initator_actor.get_mp_current() - mp_cost)
 		Singleton_CommonVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_CommonVariables.currently_active_character)
 	else:
-		rng.randomize()
-		if rng.randi_range(0, 99) < 10:
-			Singleton_AudioManager.play_sfx("res://Assets/Sounds/CriticalSound.wav")
-			is_critical_hit = true
-			# char_animationPlayer.stop(false)
-			# yield(get_tree().create_timer(1), "timeout")
-			# char_animationPlayer.play()
-		
 		# max attack value
 		var max_damage = initator_actor.get_attack() - targeted_actor.get_defense()
 		if max_damage <= 0:

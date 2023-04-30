@@ -111,6 +111,8 @@ func _input(event):
 			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
 			
+			Singleton_CommonVariables.battle__target_actor_types = null
+			
 			Singleton_CommonVariables.battle__resource_animation_scene_path = null
 			
 			Singleton_CommonVariables.ui__magic_menu.hide()
@@ -203,6 +205,8 @@ func _input(event):
 			var spell_res_l = load(actor.get_magic_array()[spell_idx].resource)
 			
 			Singleton_CommonVariables.battle__resource_animation_scene_path = spell_res_l.levels[spell_level_selected].battle_scene_spell_animation_scene
+			
+			Singleton_CommonVariables.battle__target_actor_types = spell_res_l.usable_on_actor_type
 			
 			if actor.get_mp_current() < spell_res_l.levels[spell_level_selected].mp_usage_cost:
 				print("No Use")

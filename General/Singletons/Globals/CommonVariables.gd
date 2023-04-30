@@ -115,6 +115,7 @@ var battle__target_selection_actor
 
 var battle__target_selection_type # item -- spell -- normal attack -- etc..
 var battle__resource_animation_scene_path # ex. path to blaze lvl 1 battle scene or heal assumes target selection type is spell or item
+var battle__target_actor_types # Self, Allies, Opposing, All
 
 var battle__target_selection_cursor
 var battle__target_array

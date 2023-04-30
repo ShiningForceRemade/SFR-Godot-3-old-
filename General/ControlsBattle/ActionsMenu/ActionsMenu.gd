@@ -144,6 +144,8 @@ func _process(_delta):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			hide()
 			
+			Singleton_CommonVariables.battle__target_actor_types = "Opposing" # TODO: clean this up later with an enum or something
+			
 			await get_tree().create_timer(0.1).timeout
 			
 			Singleton_CommonVariables.battle__logic__target_selection_node.set_attack_target_selection()

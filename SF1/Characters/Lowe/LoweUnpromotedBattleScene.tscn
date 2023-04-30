@@ -1,9 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://e7n2gb682327"]
+[gd_scene load_steps=15 format=3 uid="uid://e7n2gb682327"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericBattleScene.gd" id="1_v3qkk"]
 [ext_resource type="Texture2D" uid="uid://obn7lftu7567" path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" id="2_rkmc5"]
 [ext_resource type="Texture2D" uid="uid://d0xfrqovmknjr" path="res://Assets/SF1/Weapons/Wooden_Rod.png" id="3_21n3q"]
+[ext_resource type="Shader" path="res://Shaders/Dissolve.gdshader" id="3_gyh2l"]
+[ext_resource type="Texture2D" uid="uid://bg7u6slhfkm6g" path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" id="4_1rgss"]
 [ext_resource type="Texture2D" uid="uid://bkoi0o21fd446" path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" id="4_ukjc6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j1qvt"]
+shader = ExtResource("3_gyh2l")
+shader_parameter/dissolve_effect_amount = 0.0
+shader_parameter/noise_texture = ExtResource("4_1rgss")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81e0k"]
+shader = ExtResource("3_gyh2l")
+shader_parameter/dissolve_effect_amount = 0.0
+shader_parameter/noise_texture = ExtResource("4_1rgss")
 
 [sub_resource type="Animation" id="Animation_f5igr"]
 resource_name = "Attack"
@@ -11,7 +23,7 @@ length = 1.20001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/path = NodePath("CharacterWrapper/CharacterSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -23,7 +35,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:rotation")
+tracks/1/path = NodePath("CharacterWrapper/WeaponSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +47,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:position")
+tracks/2/path = NodePath("CharacterWrapper/WeaponSprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -51,12 +63,43 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"emit_attack_anticapation_frame_reached"
+}, {
 "args": [],
 "method": &"emit_attack_frame_reached"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_ohk7x"]
+resource_name = "Death"
+length = 0.20001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterWrapper/CharacterSprite2D:material:shader_parameter/dissolve_effect_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterWrapper/WeaponSprite2D:material:shader_parameter/dissolve_effect_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_sf84d"]
@@ -66,7 +109,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/path = NodePath("CharacterWrapper/CharacterSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -78,7 +121,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:rotation")
+tracks/1/path = NodePath("CharacterWrapper/WeaponSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -90,7 +133,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:position")
+tracks/2/path = NodePath("CharacterWrapper/WeaponSprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -105,7 +148,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/path = NodePath("CharacterWrapper/CharacterSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -117,7 +160,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:rotation")
+tracks/1/path = NodePath("CharacterWrapper/WeaponSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -129,7 +172,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:position")
+tracks/2/path = NodePath("CharacterWrapper/WeaponSprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -141,14 +184,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CharacterSprite2D:position")
+tracks/3/path = NodePath("CharacterWrapper/CharacterSprite2D:material:shader_parameter/dissolve_effect_amount")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -68)]
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CharacterWrapper:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CharacterWrapper/WeaponSprite2D:material:shader_parameter/dissolve_effect_amount")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_kxsye"]
@@ -158,19 +225,20 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite2D:position")
+tracks/0/path = NodePath("CharacterWrapper:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(0, -68), Vector2(-12, -64), Vector2(8, -64), Vector2(-8, -72), Vector2(16, -60), Vector2(4, -64), Vector2(0, -68)]
+"values": [Vector2(0, 0), Vector2(-20, 0), Vector2(4, 8), Vector2(12, -4), Vector2(-7.995, -4), Vector2(8, 4), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0my03"]
 _data = {
 "Attack": SubResource("Animation_f5igr"),
+"Death": SubResource("Animation_ohk7x"),
 "Idle": SubResource("Animation_sf84d"),
 "RESET": SubResource("Animation_wihvo"),
 "Shake": SubResource("Animation_kxsye")
@@ -185,12 +253,16 @@ texture = ExtResource("2_rkmc5")
 vframes = 9
 metadata/_edit_lock_ = true
 
-[node name="WeaponSprite2D" type="Sprite2D" parent="."]
+[node name="CharacterWrapper" type="Node2D" parent="."]
+
+[node name="WeaponSprite2D" type="Sprite2D" parent="CharacterWrapper"]
+material = SubResource("ShaderMaterial_j1qvt")
 position = Vector2(16, -56)
 rotation = -4.35285
 texture = ExtResource("3_21n3q")
 
-[node name="CharacterSprite2D" type="Sprite2D" parent="."]
+[node name="CharacterSprite2D" type="Sprite2D" parent="CharacterWrapper"]
+material = SubResource("ShaderMaterial_81e0k")
 position = Vector2(0, -68)
 texture = ExtResource("4_ukjc6")
 hframes = 4

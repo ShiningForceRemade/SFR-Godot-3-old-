@@ -7,11 +7,11 @@ class_name CN_SF1_Spell
 ## The image icon that will be used for this spell (Drag in an image directly)
 @export var spell_texture: Texture
 
-## Self - means no selection ex. egress as an example
-## Enemeies - means only enemies can be targeted ex. blaze
-## Characters - only allied force members ex. heal
+## Self - means used only on self ex. Max casting egress
+## Allies - means only friendly units (includes self) ex. heal lowe can heal max or a dark priest can heal a golbin 
+## Opposing - only the oppositie unit actors can be selected ex. tao using blaze can only target enemies like golbins dwarfs and rune knights
 ## All - targets everything within the range - not implemented currently does nothing
-@export_enum("Self", "Enemeies", "Characters", "All") var usable_on_actor_type: int
+@export_enum("Self", "Allies", "Opposing", "All") var usable_on_actor_type: String
 
 #export(Array, SpellLevelInfo) var test
 # Make this a resource and have an array track it instead 

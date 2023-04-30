@@ -77,9 +77,17 @@ func check_if_actor_on_tile_at_pos(chk_pos_arg: Vector2):
 	
 	return { "type": "empty", "node": null }
 
-
+var allies
+var targetables 
 func set_attack_target_selection() -> void:
 	get_actor_root()
+	
+	if actor_root.actor_type == "character":
+		allies = "character"
+		targetables = "enemey"
+	elif actor_root.actor_type == "enemey":
+		allies = "enemey"
+		targetables = "character"
 	
 	# TODO: move these normal_attack strings to an enum or something in the global common vars
 	# cleanup later
@@ -108,6 +116,22 @@ func set_attack_target_selection() -> void:
 	attempt_to_find_first_target_or_display_warning(load("res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd").new())
 
 
+func is_actor_type_targetable(actor_type_to_check: String) -> bool:
+	# print(Singleton_CommonVariables.battle__target_actor_types, " ", target_type, " ", actor_type_to_check, " ", actor_root.actor_type)
+	
+	if Singleton_CommonVariables.battle__target_actor_types == "Allies":
+		if allies == actor_type_to_check:
+			return true
+	elif Singleton_CommonVariables.battle__target_actor_types == "Opposing":
+		if targetables == actor_type_to_check: 
+			return true
+	if Singleton_CommonVariables.battle__target_actor_types == "Self":
+		if allies == actor_type_to_check:
+			return true
+	
+	return false
+
+
 func attempt_to_find_first_target_or_display_warning(target_range_arg) -> void:
 	if attempt_to_find_first_target(target_range_arg):
 		is_target_selection_active = true
@@ -133,13 +157,21 @@ func draw_use_range_from_script_object(script_obj) -> void:
 	target_selection_wrapper.show()
 	animation_player.play("TilesFlashing")
 
+
 func attempt_to_find_first_target(target_range_obj: CN_SF_TargetRange = null) -> bool:
+	print(actor_root.actor_type) # character # enemey
+	
 	for i in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size()):
 		for j in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size()):
+			print(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j])
+			
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] != null && Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile != "empty":
 				print("First none empty tile target")
 				
 				if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node == null:
+					continue
+				
+				if !is_actor_type_targetable(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile):
 					continue
 				
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
@@ -172,7 +204,9 @@ func cancel_target_selection() -> void:
 	
 	# Singleton_CommonVariables.battle_base.s_hide_target_actor_micro()
 	
-	Singleton_CommonVariables.battle__target_selection_cursor.queue_free()
+	if Singleton_CommonVariables.battle__target_selection_cursor != null:
+		Singleton_CommonVariables.battle__target_selection_cursor.queue_free()
+	
 	Singleton_CommonVariables.battle__cursor_node.hide()
 	
 	show_movement_tiles()
@@ -295,6 +329,9 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
 				continue
 			
+			if !is_actor_type_targetable(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile):
+				continue
+			
 			if found_current:
 				tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
@@ -307,6 +344,9 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 	for i in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size()):
 		for j in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size()):
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
+				continue
+			
+			if !is_actor_type_targetable(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile):
 				continue
 			
 			tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
@@ -326,6 +366,9 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
 				continue
 			
+			if !is_actor_type_targetable(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile):
+				continue
+			
 			if found_current:
 				tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
@@ -339,6 +382,9 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 		for j in range(Singleton_CommonVariables.battle__target_use_range_array_representation.size() - 1, -1, -1):
 			# print("i ", i, "j ", j)
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
+				continue
+			
+			if !is_actor_type_targetable(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile):
 				continue
 			
 			tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)

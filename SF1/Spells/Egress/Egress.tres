@@ -8,7 +8,7 @@
 script = ExtResource("1")
 name = "Egress"
 spell_texture = ExtResource("2")
-usable_on_actor_type = 0
+usable_on_actor_type = "Self"
 levels = Array[Resource]([ExtResource("3")])
 element_type = 0
 spell_use_range_path = ""

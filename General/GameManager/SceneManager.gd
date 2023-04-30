@@ -13,6 +13,8 @@ func _ready():
 	Singleton_CommonVariables.scene_manager_node = self
 	# call_deferred("_deferred_change_scene", "res://SF1/Chapters/1/Guardiana/PreInvasion/Guardiana.tscn")
 	# call_deferred("_deferred_change_scene", "res://SF1/Chapters/HeadQuarters/Default/HeadQuarters.tscn")
+	
+	# Singleton_CommonVariables.is_currently_in_battle_scene = false
 	# call_deferred("_deferred_change_scene", "res://SF1/Chapters/1/Cabin/Cabin.tscn")
 	
 	# call_deferred("_deferred_change_scene", "res://DeveloperTestScenes/MovementAndTerrains/AllSandMap.tscn")

@@ -63,4 +63,3 @@ metadata/_edit_lock_ = true
 [node name="SpellsWrapper" type="Node2D" parent="."]
 
 [node name="Blaze_Level_1" parent="SpellsWrapper" instance=ExtResource("6_i6eyo")]
-position = Vector2(80, 132)

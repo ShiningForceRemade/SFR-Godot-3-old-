@@ -1,8 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bx7ggq3ugurnh"]
+[gd_scene load_steps=12 format=3 uid="uid://bx7ggq3ugurnh"]
 
-[ext_resource type="Material" uid="uid://ckxk0pjhqodck" path="res://SF1/EnemiesAndBosses/DeathShaderMaterialForBattleScene.tres" id="1_61aqe"]
 [ext_resource type="Script" path="res://SF1/EnemiesAndBosses/GenericEnemeyBattleScene.gd" id="1_sf3se"]
 [ext_resource type="Texture2D" uid="uid://kwfkn0ewhrpm" path="res://Assets/SF1/EnemiesAndBosses/Rune Knight/Battle_Sprites.png" id="2_akom0"]
+[ext_resource type="Shader" path="res://Shaders/Dissolve.gdshader" id="2_s8tsx"]
+[ext_resource type="Texture2D" uid="uid://bg7u6slhfkm6g" path="res://Shaders/ShaderTextureImages/NoisePixelated.jpg" id="3_quys3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0n35e"]
+shader = ExtResource("2_s8tsx")
+shader_parameter/dissolve_effect_amount = 0.0
+shader_parameter/noise_texture = ExtResource("3_quys3")
 
 [sub_resource type="Animation" id="Animation_xd71m"]
 resource_name = "Attack"
@@ -26,9 +32,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"emit_attack_anticapation_frame_reached"
+}, {
 "args": [],
 "method": &"emit_attack_frame_reached"
 }]
@@ -90,7 +99,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0.0]
 }
 tracks/2/type = "value"
@@ -103,7 +112,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(80, 92)]
+"values": [Vector2(116, 92)]
 }
 
 [sub_resource type="Animation" id="Animation_1xnyx"]
@@ -120,7 +129,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(80, 92), Vector2(68, 84), Vector2(88, 88), Vector2(88, 84), Vector2(80, 88), Vector2(88, 92), Vector2(80, 92)]
+"values": [Vector2(116, 92), Vector2(100, 92), Vector2(108, 88), Vector2(116, 96), Vector2(104, 92), Vector2(120, 100), Vector2(116, 92)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6b8o4"]
@@ -134,10 +143,11 @@ _data = {
 
 [node name="RuneKnightBattleScene" type="Node2D"]
 script = ExtResource("1_sf3se")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("1_61aqe")
-position = Vector2(80, 92)
+material = SubResource("ShaderMaterial_0n35e")
+position = Vector2(116, 92)
 texture = ExtResource("2_akom0")
 hframes = 4
 

@@ -10,7 +10,7 @@
 script = ExtResource("1")
 name = "Blaze"
 spell_texture = ExtResource("2")
-usable_on_actor_type = 1
+usable_on_actor_type = "Opposing"
 levels = Array[Resource]([ExtResource("3"), ExtResource("2_uxrep")])
 element_type = 1
 spell_use_range_path = "res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_1_to_2.gd"

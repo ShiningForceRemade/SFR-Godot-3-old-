@@ -47,9 +47,9 @@ func _process(_delta):
 			position.x = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.x
 			position.y = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.y
 		else:
-			if Singleton_CommonVariables.main_character_player_node != null:
-				position.x = Singleton_CommonVariables.main_character_player_node.position.x 
-				position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
+			# if Singleton_CommonVariables.main_character_player_node != null:
+			position.x = Singleton_CommonVariables.main_character_player_node.position.x 
+			position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
 	
 	
 #	if Singleton_CommonVariables.is_currently_in_battle_scene:
