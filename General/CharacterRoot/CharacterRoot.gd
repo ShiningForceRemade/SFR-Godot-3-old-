@@ -151,13 +151,19 @@ func get_agility() -> int:
 	return sfnode_data.stats.agility + sfnode_data.stats.agility_boost + sfnode_data.stats.agility_permanent_increase
 
 
+func get_magic():
+	return sfnode_data.magic
+
+
 func get_inventory():
 	return sfnode_data.inventory
 
 
-func get_magic():
-	return sfnode_data.magic
+func remove_inventory_item_at_idx(currently_selected_option: int) -> void:
+	Singleton_CommonVariables.sf_game_data_node.ForceMembers[SF1_MEMBER_INDEX].inventory.remove_at(currently_selected_option)
 
+func set_equip_state_inventory_item_at_idx(item_idx: int, equip_state: bool) -> void:
+	Singleton_CommonVariables.sf_game_data_node.ForceMembers[SF1_MEMBER_INDEX].inventory[item_idx].is_equipped = equip_state
 
 #
 #

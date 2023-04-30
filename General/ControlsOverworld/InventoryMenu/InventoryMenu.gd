@@ -80,10 +80,12 @@ func _input(event):
 				
 				if Singleton_CommonVariables.is_currently_in_battle_scene:
 					Singleton_CommonVariables.ui__equip_menu.show()
+					await get_tree().create_timer(0.1).timeout
 					Singleton_CommonVariables.ui__equip_menu.set_menu_active()
 				else:
 					Singleton_CommonVariables.action_type = "EQUIP"
 					Singleton_CommonVariables.ui__member_list_menu.show()
+					# await get_tree().create_timer(0.1).timeout
 					Singleton_CommonVariables.ui__member_list_menu.set_overvview_view_active()
 					Singleton_CommonVariables.ui__member_list_menu.set_menu_active()
 				
@@ -93,10 +95,12 @@ func _input(event):
 				
 				if Singleton_CommonVariables.is_currently_in_battle_scene:
 					Singleton_CommonVariables.ui__use_menu.show()
+					# await get_tree().create_timer(0.1).timeout
 					Singleton_CommonVariables.ui__use_menu.set_battle_use_menu_active()
 				else:
 					Singleton_CommonVariables.action_type = "USE"
 					Singleton_CommonVariables.ui__member_list_menu.show()
+					# await get_tree().create_timer(0.1).timeout
 					Singleton_CommonVariables.ui__member_list_menu.set_overvview_view_active()
 					Singleton_CommonVariables.ui__member_list_menu.set_menu_active()
 				
@@ -107,9 +111,12 @@ func _input(event):
 				if Singleton_CommonVariables.is_currently_in_battle_scene:
 					# TODO: Singleton_CommonVariables.ui__drop_menu.show_cust()
 					Singleton_CommonVariables.ui__drop_menu.show()
+					await get_tree().create_timer(0.1).timeout
+					Singleton_CommonVariables.ui__drop_menu.set_battle_drop_menu_active()
 				else:
 					Singleton_CommonVariables.action_type = "DROP"
 					Singleton_CommonVariables.ui__member_list_menu.show()
+					await get_tree().create_timer(0.1).timeout
 					Singleton_CommonVariables.ui__member_list_menu.set_overvview_view_active()
 					Singleton_CommonVariables.ui__member_list_menu.set_menu_active()
 				
@@ -118,10 +125,13 @@ func _input(event):
 				cleanup_for_sub_menu_navigation()
 				
 				if Singleton_CommonVariables.is_currently_in_battle_scene:
-					Singleton_BattleVariables.battle_base.s_show_battle_give_menu()
+					Singleton_CommonVariables.ui__give_menu.show()
+					await get_tree().create_timer(0.03).timeout
+					Singleton_CommonVariables.ui__give_menu.set_battle_give_menu_active()
 				else:
 					Singleton_CommonVariables.action_type = "GIVE"
 					Singleton_CommonVariables.ui__member_list_menu.show()
+					# await get_tree().create_timer(0.1).timeout
 					Singleton_CommonVariables.ui__member_list_menu.set_overvview_view_active()
 					Singleton_CommonVariables.ui__member_list_menu.set_menu_active()
 				

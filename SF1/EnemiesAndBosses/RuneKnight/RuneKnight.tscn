@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4e3kdw3vi0bn"]
+[gd_scene load_steps=7 format=3 uid="uid://c4e3kdw3vi0bn"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericPlayableActor.gd" id="1_fi60p"]
 [ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="2_8yg6w"]
 [ext_resource type="PackedScene" uid="uid://04nhrsg8ktt7" path="res://SF1/EnemiesAndBosses/RuneKnight/RuneKnightEnemeyRoot.tscn" id="3_gnviv"]
 [ext_resource type="PackedScene" uid="uid://bx7ggq3ugurnh" path="res://SF1/EnemiesAndBosses/RuneKnight/RuneKnightBattleScene.tscn" id="3_tytpi"]
+[ext_resource type="Script" path="res://General/Actor_Helpers/Inventory.gd" id="5_niuey"]
+
+[sub_resource type="Resource" id="Resource_hpjdk"]
+script = ExtResource("5_niuey")
+resource = "res://SF1/Items/Weapons/BronzeLance.tres"
+is_equipped = true
 
 [node name="RuneKnight" type="Node2D"]
 script = ExtResource("1_fi60p")
@@ -15,6 +21,10 @@ actor_type = 2
 
 [node name="EnemeyRoot" parent="PlayerCharacterRoot/RuneKnightEnemeyRoot" index="0"]
 enemey_battle_scene = ExtResource("3_tytpi")
+inventory = Array[ExtResource("5_niuey")]([SubResource("Resource_hpjdk")])
+
+[node name="AnimationPlayer" parent="PlayerCharacterRoot/RuneKnightEnemeyRoot/EnemeyRoot" index="2"]
+autoplay = "DownMovement"
 
 [editable path="PlayerCharacterRoot"]
 [editable path="PlayerCharacterRoot/RuneKnightEnemeyRoot"]

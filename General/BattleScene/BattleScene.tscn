@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb1wai5uq2yyg"]
+[gd_scene load_steps=7 format=3 uid="uid://cb1wai5uq2yyg"]
 
 [ext_resource type="Script" path="res://General/BattleScene/BattleScene.gd" id="1_mmtnn"]
 [ext_resource type="PackedScene" uid="uid://bcp6q8yok2yo3" path="res://General/BattleScene/BackgroundScene/BackgroundBattleScene.tscn" id="3_7dhk1"]
 [ext_resource type="Texture2D" uid="uid://2mk4yx4adk6b" path="res://Assets/BattleSceneTransitionTemp.png" id="4_r527i"]
+[ext_resource type="PackedScene" uid="uid://b6k3kv4hgim0" path="res://SF1/Spells/Blaze/Blaze_Level_1.tscn" id="6_i6eyo"]
 [ext_resource type="PackedScene" uid="uid://dli5v0yr835dl" path="res://General/BattleScene/CharacterScene/CharacterScene.tscn" id="8_pklxd"]
 [ext_resource type="PackedScene" uid="uid://obvgsw5adehj" path="res://General/BattleScene/EnemeyScene/EnemeyScene.tscn" id="8_waxw2"]
 
@@ -58,3 +59,8 @@ offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="SpellsWrapper" type="Node2D" parent="."]
+
+[node name="Blaze_Level_1" parent="SpellsWrapper" instance=ExtResource("6_i6eyo")]
+position = Vector2(80, 132)

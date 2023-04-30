@@ -18,6 +18,7 @@ const shader_texture__noise_pixelated = preload("res://Shaders/ShaderTextureImag
 @onready var characterWrapper = $CharacterWrapper
 @onready var enemeyWrapper = $EnemeyWrapper
 @onready var scene_transition = $BattleSceneTransitionTemp
+@onready var spells_wrapper = $SpellsWrapper
 
 const transition_screen_default_position = Vector2(448, 90)
 
@@ -31,13 +32,8 @@ var current_target_actor_battle_scene_node
 var experience_points_gain: int
 var coins_gain: int 
 
-# @onready var blackFadeTween = $CanvasLayer/BlackFadeTween
-
 # var using_spell: bool = false
 # var attack_missed = false
-
-# TODO: CLEAN: TEMP FOR DEMO
-# var heal_amount = 0
 
 # TODO: clean move this somewhere else thats easier to use across scenes
 var tile_name_to_frame_mapping_dictionary = {
@@ -110,6 +106,10 @@ func cleanup_wrappers() -> void:
 		e.queue_free()
 	for c in characterWrapper.get_children(): 
 		c.queue_free()
+	
+	# Remove any remaining spells battle animations
+	for s in spells_wrapper.get_children():
+		s.queue_free()
 
 func activate_battle() -> void:
 	# fade in
@@ -179,6 +179,7 @@ func activate_battle() -> void:
 	# find_child("EnemeyRoot")
 	
 	var is_first_actor = true
+	var first_cast = true
 	
 	var battle__target_array_flattened = []
 	for i in Singleton_CommonVariables.battle__target_array.size():
@@ -256,20 +257,37 @@ func activate_battle() -> void:
 			
 			# Do Battle Scene for current actors
 			await get_tree().create_timer(0.2).timeout
-			await display_battle_message(cur_actor_node.get_actor_name() + " Attacks!")
-			# await Signal(self, "signal__function_completed")
-			await get_tree().create_timer(0.2).timeout
 			
-			# play animation for attack or spell or use item here
-			# await 
-			
-			print("attack normal")
-			caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
-			caa_bs.play_attack_normal()
-			# await Signal(caa_bs, "battle__animation_completed")
-			await Signal(self, "signal__current_actor_exchange_completed")
-			print("play Idle")
-			caa_bs.play_idle()
+			if Singleton_CommonVariables.battle__resource_animation_scene_path == null:
+				await display_battle_message(cur_actor_node.get_actor_name() + " Attacks!")
+				# await Signal(self, "signal__function_completed")
+				await get_tree().create_timer(0.2).timeout
+				
+				# play animation for attack or spell or use item here
+				# await 
+				
+				print("attack normal")
+				caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
+				caa_bs.play_attack_normal()
+				# await Signal(caa_bs, "battle__animation_completed")
+				await Signal(self, "signal__current_actor_exchange_completed")
+				print("play Idle")
+				caa_bs.play_idle()
+			else:
+				print("spell animation")
+				
+				if first_cast:
+					first_cast = false
+					await display_battle_message(cur_actor_node.get_actor_name() + " casts!")
+					# await Signal(self, "signal__function_completed")
+					await get_tree().create_timer(0.2).timeout
+					
+					var spell_bs = load(Singleton_CommonVariables.battle__resource_animation_scene_path).instantiate()
+					spells_wrapper.add_child(spell_bs)
+				
+				await get_tree().create_timer(0.5).timeout
+				attack_frame_reached()
+				await Signal(self, "signal__current_actor_exchange_completed")
 			
 			await get_tree().create_timer(0.5).timeout
 			
@@ -353,6 +371,9 @@ func activate_battle() -> void:
 	# print("TODO: generate stat gain and print based on character stat curves")
 	# print(Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type)
 	if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # character
+		if experience_points_gain > 48:
+			experience_points_gain = 48 # limit exp gain main to 48 for cases like blaze 2
+		
 		current_initiator_actor_node.set_exp(current_initiator_actor_node.get_exp() + experience_points_gain)
 		print("Current EXP - ", current_initiator_actor_node.get_exp())
 		
@@ -619,74 +640,6 @@ func accumulate_exp_gain(damage_arg: int) -> void:
 	experience_points_gain += exp_gain
 	
 	# print("EXP Gain numbers ", x, " ", y, " ", exp_gain)
-
-
-#func setup_spell_usage() -> void:
-#	using_spell = true
-#
-#	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.remove_animation("Character Spell")
-#
-#	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.position = Vector2(-180, -180)
-#
-#	Singleton_CommonVariables.is_currently_in_battle_scene = true
-#
-#	Singleton_CommonVariables.currently_active_character.z_index = 0
-#	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0)
-#	enemeySprite.show()
-#	characterSprite.material.set_shader_param("dissolve_effect_amount", 0)
-#	characterSprite.show()
-#	characterWrapper.show()
-#
-#	setup_sprite_textures()
-#	move_wrappers_into_position()
-#
-#	await Signal(get_tree().create_timer(0.1), "timeout")
-#
-#	Singleton_CommonVariables.top_level_fader_node.black_fade_anim_out()
-#
-#	await Signal(get_tree().create_timer(0.325), "timeout")
-#
-#	Singleton_AudioManager.play_alt_music_n(Singleton_DevToolingManager.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
-#
-#	# Singleton_Game_AudioManager.play_music("res://Assets/SF1/SoundBank/Battle Encounter.mp3")
-#	await Signal(get_tree().create_timer(1), "timeout")
-#	# load text box saying x is attacking or doing y to z
-#	# print_who_is_attacking()
-#
-#	print_spell_usage()
-#
-#	await Signal(get_tree().create_timer(1.5), "timeout")
-#	Singleton_CommonVariables.dialogue_box_node.hide()
-#	setup_spell_animation()
-
-#
-#func enemey_defeated_play_dissolve_animation() -> void:
-#	enemeySprite.material.shader = shader_dissolve 
-#	enemeySprite.material.set_shader_param("dissolve_effect_amount", 0.3)
-#	enemeySprite.material.set_shader_param("noise_texture", shader_texture__noise_pixelated)
-#
-#	enemeySpriteTween.interpolate_property(enemeySprite.material, "shader_param/dissolve_effect_amount",
-#	0, 1, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-#
-#	enemeySpriteTween.start()
-#
-#	await Signal(get_tree().create_timer(0.55), "timeout")
-
-#
-#func setup_spell_animation() -> void:
-#	var characterRoot = Singleton_CommonVariables.currently_active_character.get_node("CharacterRoot")
-#	var sar = characterRoot.spells_id[0].spell_animation_resource
-#
-#	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.texture = sar.primary_animation_texture
-#	$CanvasLayerSpellWrapper/SpellWrapper/Sprite.hframes = sar.hframes
-#	$CanvasLayerSpellWrapper/SpellWrapper.show()
-#
-#	char_animationPlayer.add_animation(ani_name_character_attack_normal, characterRoot.battle_animation_unpromoted_resource.animation_res_attack)
-#	char_animationPlayer.play(ani_name_character_attack_normal)
-#
-#	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.add_animation("Character Spell", sar.animation_res)
-#	$CanvasLayerSpellWrapper/SpellWrapper/AnimationPlayer.play("Character Spell")
-#
 
 
 #func internal_signal_print_recover_amount() -> void:

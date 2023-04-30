@@ -1,0 +1,196 @@
+[gd_scene load_steps=4 format=3 uid="uid://s6xwcdfkvrkt"]
+
+[ext_resource type="Script" path="res://General/Controls/ActorMicroInfoBox/TargetActorMicroInfoBox.gd" id="1_fd551"]
+[ext_resource type="Texture2D" uid="uid://cjy1pwbnlhjbu" path="res://Assets/SF1/ShiningForceTextBackground.png" id="2_bxhpe"]
+[ext_resource type="FontFile" uid="uid://dsvjkkfpt1rqd" path="res://Assets/SF1/ShiningForceMenuFont.tres" id="3_m77lp"]
+
+[node name="TargetActorMicroInfoBox" type="Node2D"]
+script = ExtResource("1_fd551")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 144.0
+offset_bottom = 48.0
+texture = ExtResource("2_bxhpe")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+metadata/_edit_lock_ = true
+
+[node name="NameLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 72.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_m77lp")
+text = "Name"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ClassLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 4.0
+offset_right = 116.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("3_m77lp")
+text = "CLSS"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="LevelLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 4.0
+offset_right = 136.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("3_m77lp")
+text = "LV"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HPStaticLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 17.0
+offset_right = 48.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("3_m77lp")
+text = "HP"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="MPStaticLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 28.0
+offset_right = 48.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("3_m77lp")
+text = "MP"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CurrentHPLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 19.0
+offset_right = 137.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("3_m77lp")
+text = "29/41"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="CurrentMPLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("3_m77lp")
+text = "9/10"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HPBarWrapperControl" type="Control" parent="NinePatchRect"]
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 15.0
+offset_right = 91.0
+offset_bottom = 31.0
+metadata/_edit_lock_ = true
+
+[node name="StaticLeftEdgeColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
+layout_mode = 0
+offset_top = 6.0
+offset_right = 1.0
+offset_bottom = 12.0
+metadata/_edit_lock_ = true
+
+[node name="StaticRightEdgeColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 12.0
+metadata/_edit_lock_ = true
+
+[node name="StaticCenterWrapColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 2.0
+offset_bottom = 13.0
+metadata/_edit_lock_ = true
+
+[node name="BackgroundColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 12.0
+color = Color(1, 0.00784314, 0.00784314, 1)
+metadata/_edit_lock_ = true
+
+[node name="ForegroundColorRect" type="ColorRect" parent="NinePatchRect/HPBarWrapperControl"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 12.0
+color = Color(1, 0.835294, 0.0941176, 1)
+metadata/_edit_lock_ = true
+
+[node name="MPBarWrapperControl" type="Control" parent="NinePatchRect"]
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 26.0
+offset_right = 95.0
+offset_bottom = 34.0
+metadata/_edit_lock_ = true
+
+[node name="StaticLeftEdgeColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
+offset_top = 6.0
+offset_right = 1.0
+offset_bottom = 12.0
+metadata/_edit_lock_ = true
+
+[node name="StaticRightEdgeColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 12.0
+metadata/_edit_lock_ = true
+
+[node name="StaticCenterWrapColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 2.0
+offset_bottom = 13.0
+metadata/_edit_lock_ = true
+
+[node name="BackgroundColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 12.0
+color = Color(1, 0.00784314, 0.00784314, 1)
+metadata/_edit_lock_ = true
+
+[node name="ForegroundColorRect" type="ColorRect" parent="NinePatchRect/MPBarWrapperControl"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 12.0
+color = Color(1, 0.835294, 0.0941176, 1)
+metadata/_edit_lock_ = true

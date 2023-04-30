@@ -27,5 +27,7 @@ class_name CN_SF1_Spell_Level
 # What is the highest amount not including resistances this spell level should reach
 @export var max_range: int
 
+@export var battle_scene_spell_animation_scene: String
+
 func _ready():
 	pass

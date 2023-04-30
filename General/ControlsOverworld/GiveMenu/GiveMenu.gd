@@ -46,7 +46,7 @@ var use_range = [
 	[null, 1, null],
 	[1,    1,    1],
 	[null, 1, null]
-	]
+]
 
 # very messy clean this up later 
 # TODO: redo global battle vars to track more of this state internally
@@ -72,33 +72,38 @@ func set_battle_give_menu_active() -> void:
 	
 	set_sprites_to_zero_frame()
 	
-	var active_char_root = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+	var active_char_root
+	# TODO: HIGH PRIORITY need to add helper to get the actor root and need to collapse the way inventory and magic are handled
+	# so these separate paths aren't needed
+	if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: #char
+		active_char_root = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
+	elif Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 2: #enemey
+		active_char_root = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot")
 	
 	print("Equip Menu Current Char", active_char_root)
-	print("Equip Menu ", active_char_root.inventory_items_id)
+	print("Equip Menu ", active_char_root.get_inventory())
 	
-	## TODO: FIXME: temp setting inventroy to equipped idea while migrating to new structure and github
-	
-	inventory_items = active_char_root.inventory_items_id # active_char_root.is_item_equipped
+	inventory_items = active_char_root.get_inventory() 
 	
 	if inventory_items.size() == 0:
 		print("No inventory items probably should print the no items skip actions imilar to magic")
-		# return
+		return
 	
 	for i in range(inventory_items.size()):
 		print(inventory_items[i])
+		var item_res = load(inventory_items[i].resource)
 		if i == 0:
-			up_slot_spirte.texture = inventory_items[i].texture
-			nameLabel.text = inventory_items[i].item_name
-			typeLabel.text = inventory_items[i].get_item_type()
-		if i == 1:
-			left_slot_spirte.texture = inventory_items[i].texture
-		if i == 2:
-			right_slot_spirte.texture = inventory_items[i].texture
-		if i == 3:
-			down_slot_spirte.texture = inventory_items[i].texture
+			up_slot_spirte.texture = item_res.texture
+			nameLabel.text = item_res.item_name
+			typeLabel.text = item_res.get_item_type()
+		elif i == 1:
+			left_slot_spirte.texture = item_res.texture
+		elif i == 2:
+			right_slot_spirte.texture = item_res.texture
+		elif i == 3:
+			down_slot_spirte.texture = item_res.texture
 		# up_slot_spirte.texture = item.texture
-		# item__info__weapon_name_label.text = item.item_name
+
 
 func _input(event):
 	if is_battle_give_menu_active:

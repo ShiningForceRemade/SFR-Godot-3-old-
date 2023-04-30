@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs8q0b4dilmvw"]
+[gd_scene load_steps=5 format=3 uid="uid://bs8q0b4dilmvw"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericPlayableActor.gd" id="1_iuqi0"]
 [ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="1_yh2kf"]
 [ext_resource type="PackedScene" uid="uid://cyyq3vq7o514" path="res://SF1/Characters/Luke/LukeCharacterRoot.tscn" id="2_tde6k"]
+[ext_resource type="PackedScene" uid="uid://buomolryqhok5" path="res://SF1/Characters/Luke/LukeUnpromotedBattleScene.tscn" id="4_3ekct"]
 
 [node name="Luke" type="Node2D"]
 script = ExtResource("1_iuqi0")
@@ -11,6 +12,13 @@ script = ExtResource("1_iuqi0")
 actor_type = 1
 
 [node name="Luke" parent="PlayerCharacterRoot" instance=ExtResource("2_tde6k")]
+
+[node name="CharacterRoot" parent="PlayerCharacterRoot/Luke" index="0"]
+SF1_MEMBER_INDEX = 1
+battle__scene_unpromoted = ExtResource("4_3ekct")
+
+[node name="Sprite2D" parent="PlayerCharacterRoot/Luke/CharacterRoot" index="0"]
+frame = 0
 
 [editable path="PlayerCharacterRoot"]
 [editable path="PlayerCharacterRoot/Luke"]

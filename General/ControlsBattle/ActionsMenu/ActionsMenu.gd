@@ -102,6 +102,7 @@ func _process(_delta):
 			hide()
 			
 			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
+			
 			# Singleton_CommonVariables.ui__gold_info_box.hide()
 			# Singleton_CommonVariables.ui__actor_micro_info_box.hide()
 			
@@ -110,7 +111,7 @@ func _process(_delta):
 			# Singleton_CommonVariables.main_character_player_node.interaction_attempt_to_search()
 			return
 		elif currently_selected_option == e_menu_options.INVENTORY_OPTION:
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.03).timeout
 			
 			OpenInventoryMenu()
 			return

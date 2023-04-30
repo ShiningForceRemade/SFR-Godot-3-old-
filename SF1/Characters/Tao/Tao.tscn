@@ -16,6 +16,9 @@ actor_type = 1
 [node name="CharacterRoot" parent="PlayerCharacterRoot/TaoCharacterRoot" index="0"]
 battle__scene_unpromoted = ExtResource("4_fk33w")
 
+[node name="Sprite2D" parent="PlayerCharacterRoot/TaoCharacterRoot/CharacterRoot" index="0"]
+frame = 0
+
 [editable path="PlayerCharacterRoot"]
 [editable path="PlayerCharacterRoot/TaoCharacterRoot"]
 [editable path="PlayerCharacterRoot/TaoCharacterRoot/CharacterRoot"]

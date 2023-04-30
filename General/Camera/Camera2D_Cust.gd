@@ -23,12 +23,12 @@ const tile_size: int = 24
 #var old_zoom
 
 var camera_active_follow: bool = true
+var is_following_cursor: bool = false
 
 
 func _ready():
-	# Singleton_Game_GlobalBattleVariables.camera_node = self
+	Singleton_CommonVariables.camera_node = self
 	# zoom = Singleton_Game_GlobalCommonVariables.sf_game_data_node.camera_zoom
-	pass
 
 func _process(_delta):
 	# return 
@@ -40,13 +40,16 @@ func _process(_delta):
 	
 	# print(playerNode.position)
 	
-	if Singleton_CommonVariables.is_currently_in_battle_scene:
-		position.x = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.x
-		position.y = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.y
+	if is_following_cursor:
+		position = Singleton_CommonVariables.battle__cursor_node.position
 	else:
-		if Singleton_CommonVariables.main_character_player_node != null:
-			position.x = Singleton_CommonVariables.main_character_player_node.position.x 
-			position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
+		if Singleton_CommonVariables.is_currently_in_battle_scene:
+			position.x = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.x
+			position.y = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position.y
+		else:
+			if Singleton_CommonVariables.main_character_player_node != null:
+				position.x = Singleton_CommonVariables.main_character_player_node.position.x 
+				position.y = Singleton_CommonVariables.main_character_player_node.position.y #  - 60# + (tile_size * 12)
 	
 	
 #	if Singleton_CommonVariables.is_currently_in_battle_scene:
@@ -84,6 +87,14 @@ func _process(_delta):
 	# align()
 	# force_update_scroll()
 	pass
+
+
+func follow_cursor() -> void:
+	is_following_cursor = true
+	# Singleton_CommonVariables.battle__cursor_node
+	
+func follow_actor() -> void:
+	is_following_cursor = false
 
 
 #

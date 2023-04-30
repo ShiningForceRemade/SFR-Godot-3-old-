@@ -15,18 +15,17 @@ var actor_g_pos: Vector2
 
 func _ready() -> void:
 	Singleton_CommonVariables.battle__cursor_node = self
-	hide()
-	pass
+	# hide()
 
 
 func set_active() -> void:
-	# print("Cursor is active")
+	Singleton_CommonVariables.camera_node.follow_cursor()
+	
 	actor_g_pos = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position
 	position = actor_g_pos
 	
 	show()
 	active = true
-	# Singleton_CommonVariables.camera_node.playerNode = self
 
 
 func _process(_delta) -> void:
@@ -53,11 +52,13 @@ func _process(_delta) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if active:
-		if Input.is_action_just_pressed("ui_b_key"):
-			if position == actor_g_pos:
-				# print("Same Pos")
-				# Why did I have this in the godot 3 version again?
-				pass
+		if Input.is_action_just_released("ui_b_key"):
+#			if position == actor_g_pos:
+#				# print("Same Pos")
+#				# Why did I have this in the godot 3 version again?
+#				pass
+			
+			Singleton_CommonVariables.camera_node.follow_actor()
 			
 			var distance = actor_g_pos.distance_to(position)
 			
@@ -70,7 +71,6 @@ func _input(_event: InputEvent) -> void:
 			active = false
 			hide()
 			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(true)
-			# Singleton_CommonVariables.camera_node.playerNode = Singleton_CommonVariables.battle__currently_active_actor
 		
 		
 		
@@ -79,7 +79,7 @@ func _input(_event: InputEvent) -> void:
 		## a should bring up the menu
 		## while c should give the land effect and character info box
 		## for demo just have both go to the same place
-		elif Input.is_action_just_pressed("ui_c_key") || Input.is_action_just_pressed("ui_a_key"):
+		elif Input.is_action_just_released("ui_c_key") || Input.is_action_just_released("ui_a_key"):
 			for enemey in Singleton_CommonVariables.battle__enemies.get_children():
 				if position == enemey.get_child(0).global_position:
 					active = false
@@ -96,15 +96,6 @@ func _input(_event: InputEvent) -> void:
 					Singleton_CommonVariables.battle__selected_actor = character
 					
 					Singleton_CommonVariables.ui__view_selected_actor_info_node.set_battle_view_selected_actor_info_menu_active()
-
-#		if event.is_action_pressed("ui_left"):
-#			position.x -= tile_size
-#		elif event.is_action_pressed("ui_right"):
-#			position.x += tile_size
-#		elif event.is_action_pressed("ui_up"):
-#			position.y -= tile_size
-#		elif event.is_action_pressed("ui_down"):
-#			position.y += tile_size
 
 
 func move_to_new_position(new_pos: Vector2, t: float = 0.025) -> void:

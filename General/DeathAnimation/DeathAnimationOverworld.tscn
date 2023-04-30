@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://dimj14bhmn0gn"]
+
+[ext_resource type="Texture2D" uid="uid://ievpejeju22v" path="res://Assets/Internal_SFR_Cust/Battle_Sprite_Death.png" id="1_kjekx"]
+[ext_resource type="Script" path="res://General/DeathAnimation/DeathAnimationOverworld.gd" id="1_msj83"]
+
+[sub_resource type="Animation" id="Animation_2o3av"]
+resource_name = "Default"
+length = 0.60001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BattleSpriteDeath:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattleSpriteDeath:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_br05l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BattleSpriteDeath:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattleSpriteDeath:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ev54d"]
+_data = {
+"Default": SubResource("Animation_2o3av"),
+"RESET": SubResource("Animation_br05l")
+}
+
+[node name="DeathAnimationOverworld" type="Node2D"]
+script = ExtResource("1_msj83")
+
+[node name="BattleSpriteDeath" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+texture = ExtResource("1_kjekx")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Default"
+libraries = {
+"": SubResource("AnimationLibrary_ev54d")
+}

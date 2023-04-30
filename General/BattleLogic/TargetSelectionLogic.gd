@@ -85,33 +85,21 @@ func set_attack_target_selection() -> void:
 	# cleanup later
 	Singleton_CommonVariables.battle__target_selection_type = "normal_attack"
 	
-	if actor_root.actor_type == "character":
-		var inventory = actor_root.get_inventory()
-		for i in range(inventory.size()):
-			print(inventory[i])
-			
-			var item_res = load(inventory[i].resource)
-			
-			if item_res.item_type == "WEAPON":
-				if inventory[i].is_equipped == true:
-					print("get use range and target selector type")
-				
-					draw_use_range_from_script(item_res.item_use_range_path)
-					attempt_to_find_first_target_or_display_warning(load(item_res.item_use_target_path).new())
-				
-					return
-	elif actor_root.actor_type == "enemey":
-		for i in range(actor_root.inventory_items_id.size()):
-			print(actor_root.inventory_items_id[i])
+	
+	var inventory = actor_root.get_inventory()
+	for i in range(inventory.size()):
+		print(inventory[i])
 		
-			if actor_root.inventory_items_id[i].item_type == "WEAPON":
-				if actor_root.is_item_equipped[i] == true:
-					print("get use range and target selector type")
-				
-					draw_use_range_from_script(actor_root.inventory_items_id[i].item_use_range_path)
-					attempt_to_find_first_target_or_display_warning(load(actor_root.inventory_items_id[i].item_use_target_path).new())
-					
-					return
+		var item_res = load(inventory[i].resource)
+		
+		if item_res.item_type == "WEAPON":
+			if inventory[i].is_equipped == true:
+				print("get use range and target selector type")
+			
+				draw_use_range_from_script(item_res.item_use_range_path)
+				attempt_to_find_first_target_or_display_warning(load(item_res.item_use_target_path).new())
+			
+				return
 	
 	# TODO: should make it possible that characters and enemies can have different 
 	# default use targets ranges and selectors
@@ -184,15 +172,14 @@ func cancel_target_selection() -> void:
 	
 	# Singleton_CommonVariables.battle_base.s_hide_target_actor_micro()
 	
-	# Singleton_CommonVariables.battle__target_selection_cursor.queue_free()
-	
+	Singleton_CommonVariables.battle__target_selection_cursor.queue_free()
 	Singleton_CommonVariables.battle__cursor_node.hide()
+	
 	show_movement_tiles()
 	target_selection_wrapper.hide()
 	
 	if Singleton_CommonVariables.battle__target_selection_type == "magic":
-		# Singleton_CommonVariables.battle_base.s_show_battle_magic_menu()
-		pass
+		Singleton_CommonVariables.ui__magic_menu.show_cust() 
 	else:
 		Singleton_CommonVariables.ui__battle_action_menu.show_cust()
 		Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
@@ -309,8 +296,7 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 				continue
 			
 			if found_current:
-				Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
-				Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
+				tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 				return
 			
@@ -323,8 +309,7 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
 				continue
 			
-			Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
-			Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
+			tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 			Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 			return
 
@@ -342,9 +327,7 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 				continue
 			
 			if found_current:
-				# print("found")
-				Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
-				Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
+				tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 				return
 			
@@ -358,10 +341,17 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j] == null || Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile == "empty":
 				continue
 			
-			Singleton_CommonVariables.battle__target_selection_cursor.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
-			Singleton_CommonVariables.battle__cursor_node.position = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
+			tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 			Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
 			return
+
+
+func tween_battle_cursor_position(pos_arg: Vector2) -> void:
+	var _t = create_tween().set_parallel(true)
+	_t.tween_property(Singleton_CommonVariables.battle__cursor_node, "position", pos_arg, 0.03)
+	_t.tween_property(Singleton_CommonVariables.battle__target_selection_cursor, "position", pos_arg, 0.03)
+	_t.set_trans(Tween.TRANS_LINEAR)
+	# _t.set_ease(Tween.EASE_IN_OUT)
 
 
 #func _input(event):
@@ -396,7 +386,7 @@ func set_magic_target_selection(spell_lvl_resource: CN_SF1_Spell_Level) -> void:
 	
 	# TODO: move these normal_attack strings to an enum or something in the global common vars
 	# cleanup later
-	Singleton_CommonVariables.battle__target_selection_type = "normal_attack"
+	Singleton_CommonVariables.battle__target_selection_type = "magic"
 	
 	draw_use_range_from_script_object(spell__lv_use_range)
 	
@@ -680,6 +670,7 @@ func get_land_effect_value_at_pos(pos_arg: Vector2):
 	return null
 
 # TODO: make TilesInformationGroup its own scene and move a lot of this logic into it directly 
+# TODO: copied over in one other place remember to global replace
 func get_background_value_at_cell_at_pos(pos_arg: Vector2):
 	var local_pos = Singleton_CommonVariables.battle__tilemap_info_group__background.local_to_map(pos_arg)
 	var current_tile_posx = Singleton_CommonVariables.battle__tilemap_info_group__background.get_cell_tile_data(0, local_pos)

@@ -132,7 +132,7 @@ const char_class_full_array = ["Swordsman - SDMN", "Knight - KNT",
 		"MGCR"]
 
 var ForceMembers = [
-	# Max
+	# Max - 0 idx
 	{
 		"character": E_SF1_FM.MAX,
 		
@@ -340,19 +340,25 @@ var ForceMembers = [
 		}
 	},
 	
-	# Luke
+	# Luke - 1 idx
 	{
 		"character": E_SF1_FM.LUKE,
 		"leader": false,
 		
-		"character_base_node": "res://SF1/Characters/Luke/Luke.tscn",
-		"character_npc_scene": "res://SF1/Characters/Luke/LukeNPC.tscn",
+		# TODO: add order field so its possible to select the order of your units being placed
+		# will need to be unique values think on this later very LOW PRIORITY
+		"order": 0,
+		
+		## Promotion stage dictates where the character is in their promotion stage
+		## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
+		"promotion_stage": 0,
 		
 		"unlocked": false,
 		"active_in_force": false,
 		"alive": true,
 		
-		"name": "Luke", # TODO: do nicknames
+		"name": "Luke",
+		"nickname": null,
 		"race": "Dwarf",
 		
 		"class_full": "Warrior",
@@ -361,17 +367,35 @@ var ForceMembers = [
 		
 		"level": 1,
 		
+		"textures_and_scenes": [
+			# unpromoted
+			{
+				# textures
+				"overworld_texture": "",
+				"battle_texture": "",
+				"portrait_texture": "",
+				# scenes
+				"battle_scene": "",
+				"player_scene": "res://SF1/Characters/Luke/Luke.tscn",
+				# TODO: create a base path for characters and use in a similar fashion to the soundback
+				# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
+				# HQ NPC node
+				"npc_scene": "res://SF1/Characters/Luke/LukeNPC.tscn",
+			}
+		],
+		
 		"status_effects": [
 			
 		],
 		
 		"ai_target_priority": 0,
 		
-		"movement_type": "Standard",
+		"movement_type": E_MOVEMENT_TYPES.STANDARD,
 		
 		"stats": {
 			"attack": 9,
 			"attack_boost": 0,
+			"attack_permanent_increase": 0,
 			"attack_target_unpromoted": 14,
 			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"attack_target_promoted": 26,
@@ -379,6 +403,7 @@ var ForceMembers = [
 			
 			"defense": 7,
 			"defense_boost": 0,
+			"defense_permanent_increase": 0,
 			"defense_target_unpromoted": 19,
 			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"defense_target_promoted": 53,
@@ -386,23 +411,29 @@ var ForceMembers = [
 			
 			"agility": 4,
 			"agility_boost": 0,
+			"agility_permanent_increase": 0,
 			"agility_target_unpromoted": 12,
 			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"agility_target_promoted": 35,
 			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			
 			"move": 6,
+			"move_permanent_increase": 0,
 			"move_boost": 0,
 			
 			"hp": 9,
+			"hp_current": 9,
 			"hp_boost": 0,
+			"hp_permanent_increase": 0,
 			"hp_target_unpromoted": 16,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"hp_target_promoted": 40,
 			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"mp": 0,
+			"mp_current": 0,
 			"mp_boost": 0,
+			"mp_permanent_increase": 0,
 			"mp_target_unpromoted": 0,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"mp_target_promoted": 0,
@@ -410,6 +441,7 @@ var ForceMembers = [
 						
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_permanent_increase": 0,
 			"critical_hit_chance_target_unpromoted": 4,
 			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"critical_hit_chance_target_promoted": 8,
@@ -450,7 +482,6 @@ var ForceMembers = [
 		
 		"experience": 0,
 		
-		
 		"inventory": [
 			# Up
 			{
@@ -465,22 +496,42 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"magic": []
+		"magic": [],
+		
+		# TODO: need to copy these over to all other characters
+		"actor_meta_stats": {
+			# battles gone through ? maybe
+			# maybe track each magic spell used
+			"kills": 0,
+			"defeats": 0,
+			"dodges": 0,
+			"misses": 0,
+			"critical_hits": 0,
+			"double_attacks": 0,
+			"special_attacks": 0,
+			"counter_attacks": 0
+		}
 	},
 	
-	# Ken
+	# Ken - 2 idx
 	{
 		"character": E_SF1_FM.KEN,
 		"leader": false,
 		
-		"character_base_node": "res://SF1/Characters/Ken/Ken.tscn",
-		"character_npc_scene": "res://SF1/Characters/Ken/KenNPC.tscn",
+		# TODO: add order field so its possible to select the order of your units being placed
+		# will need to be unique values think on this later very LOW PRIORITY
+		"order": 0,
+		
+		## Promotion stage dictates where the character is in their promotion stage
+		## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
+		"promotion_stage": 0,
 		
 		"unlocked": false,
 		"active_in_force": false,
 		"alive": true,
 		
-		"name": "Ken", # TODO: do nicknames
+		"name": "Ken",
+		"nickname": null,
 		"race": "Centaur",
 		
 		"class_full": "Knight",
@@ -489,17 +540,35 @@ var ForceMembers = [
 		
 		"level": 1,
 		
+		"textures_and_scenes": [
+			# unpromoted
+			{
+				# textures
+				"overworld_texture": "",
+				"battle_texture": "",
+				"portrait_texture": "",
+				# scenes
+				"battle_scene": "",
+				"player_scene": "res://SF1/Characters/Ken/Ken.tscn",
+				# TODO: create a base path for characters and use in a similar fashion to the soundback
+				# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
+				# HQ NPC node
+				"npc_scene": "res://SF1/Characters/Ken/KenNPC.tscn",
+			}
+		],
+		
 		"status_effects": [
 			
 		],
 		
 		"ai_target_priority": 0,
 		
-		"movement_type": "Mounted",
+		"movement_type": E_MOVEMENT_TYPES.MOUNTED,
 		
 		"stats": {
 			"attack": 7,
 			"attack_boost": 0,
+			"attack_permanent_increase": 0,
 			"attack_target_unpromoted": 14,
 			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"attack_target_promoted": 21,
@@ -507,6 +576,7 @@ var ForceMembers = [
 			
 			"defense": 6,
 			"defense_boost": 0,
+			"defense_permanent_increase": 0,
 			"defense_target_unpromoted": 15,
 			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LATE],
 			"defense_target_promoted": 37,
@@ -514,23 +584,29 @@ var ForceMembers = [
 			
 			"agility": 5,
 			"agility_boost": 0,
+			"agility_permanent_increase": 0,
 			"agility_target_unpromoted": 14,
 			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"agility_target_promoted": 40,
 			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"move": 7,
+			"move_permanent_increase": 0,
 			"move_boost": 0,
 			
 			"hp": 8,
+			"hp_current": 8,
 			"hp_boost": 0,
+			"hp_permanent_increase": 0,
 			"hp_target_unpromoted": 23,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY],
 			"hp_target_promoted": 42,
 			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"mp": 0,
+			"mp_current": 0,
 			"mp_boost": 0,
+			"mp_permanent_increase": 0,
 			"mp_target_unpromoted": 0,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"mp_target_promoted": 0,
@@ -538,6 +614,7 @@ var ForceMembers = [
 			
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_permanent_increase": 0,
 			"critical_hit_chance_target_unpromoted": 1,
 			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"critical_hit_chance_target_promoted": 5,
@@ -578,7 +655,6 @@ var ForceMembers = [
 		
 		"experience": 0,
 		
-		
 		"inventory": [
 			# Up
 			{
@@ -593,16 +669,26 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"magic": []
+		"magic": [],
+		
+		# TODO: need to copy these over to all other characters
+		"actor_meta_stats": {
+			# battles gone through ? maybe
+			# maybe track each magic spell used
+			"kills": 0,
+			"defeats": 0,
+			"dodges": 0,
+			"misses": 0,
+			"critical_hits": 0,
+			"double_attacks": 0,
+			"special_attacks": 0,
+			"counter_attacks": 0
+		}
 	},
 	
-	# Tao
+	# Tao - 3 idx
 	{
 		"character": E_SF1_FM.TAO,
-		
-		# TODO: LOW PRIORITY this shouldn't be part of the forceMembers dictionary
-		# should be separate var outside and track the force member enum value
-		# REFACTOR: after finishing migration to Godot 4
 		"leader": false,
 		
 		# TODO: add order field so its possible to select the order of your units being placed
@@ -820,19 +906,25 @@ var ForceMembers = [
 		}
 	},
 	
-	# Hans
+	# Hans - 4 idx
 	{
 		"character": E_SF1_FM.HANS,
 		"leader": false,
 		
-		"character_base_node": "res://SF1/Characters/Hans/Hans.tscn",
-		"character_npc_scene": "res://SF1/Characters/Hans/HansNPC.tscn",
+		# TODO: add order field so its possible to select the order of your units being placed
+		# will need to be unique values think on this later very LOW PRIORITY
+		"order": 0,
+		
+		## Promotion stage dictates where the character is in their promotion stage
+		## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
+		"promotion_stage": 0,
 		
 		"unlocked": false,
 		"active_in_force": false,
 		"alive": true,
 		
-		"name": "Hans", # TODO: do nicknames
+		"name": "Hans",
+		"nickname": null,
 		"race": "Elf",
 		
 		"class_full": "Archer",
@@ -841,17 +933,35 @@ var ForceMembers = [
 		
 		"level": 1,
 		
+		"textures_and_scenes": [
+			# unpromoted
+			{
+				# textures
+				"overworld_texture": "",
+				"battle_texture": "",
+				"portrait_texture": "",
+				# scenes
+				"battle_scene": "",
+				"player_scene": "res://SF1/Characters/Hans/Hans.tscn",
+				# TODO: create a base path for characters and use in a similar fashion to the soundback
+				# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
+				# HQ NPC node
+				"npc_scene": "res://SF1/Characters/Hans/HansNPC.tscn",
+			}
+		],
+		
 		"status_effects": [
 			
 		],
 		
 		"ai_target_priority": 25,
 		
-		"movement_type": "Forest",
+		"movement_type": E_MOVEMENT_TYPES.FOREST,
 		
 		"stats": {
 			"attack": 6,
 			"attack_boost": 0,
+			"attack_permanent_increase": 0,
 			"attack_target_unpromoted": 12,
 			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LATE],
 			"attack_target_promoted": 14,
@@ -859,6 +969,7 @@ var ForceMembers = [
 			
 			"defense": 5,
 			"defense_boost": 0,
+			"defense_permanent_increase": 0,
 			"defense_target_unpromoted": 13,
 			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LATE],
 			"defense_target_promoted": 31,
@@ -866,23 +977,29 @@ var ForceMembers = [
 			
 			"agility": 6,
 			"agility_boost": 0,
+			"agility_permanent_increase": 0,
 			"agility_target_unpromoted": 12,
 			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"agility_target_promoted": 41,
 			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"move": 5,
+			"move_permanent_increase": 0,
 			"move_boost": 0,
 			
 			"hp": 12,
+			"hp_current": 12,
 			"hp_boost": 0,
+			"hp_permanent_increase": 0,
 			"hp_target_unpromoted": 18,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LATE],
 			"hp_target_promoted": 39,
 			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LATE],
 			
 			"mp": 0,
+			"mp_current": 0,
 			"mp_boost": 0,
+			"mp_permanent_increase": 0,
 			"mp_target_unpromoted": 0,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"mp_target_promoted": 0,
@@ -890,6 +1007,7 @@ var ForceMembers = [
 			
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_permanent_increase": 0,
 			"critical_hit_chance_target_unpromoted": 4,
 			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"critical_hit_chance_target_promoted": 9,
@@ -944,22 +1062,42 @@ var ForceMembers = [
 			# Down
 		],
 		
-		"magic": []
+		"magic": [],
+		
+		# TODO: need to copy these over to all other characters
+		"actor_meta_stats": {
+			# battles gone through ? maybe
+			# maybe track each magic spell used
+			"kills": 0,
+			"defeats": 0,
+			"dodges": 0,
+			"misses": 0,
+			"critical_hits": 0,
+			"double_attacks": 0,
+			"special_attacks": 0,
+			"counter_attacks": 0
+		}
 	},
 	
-	# Lowe
+	# Lowe - 5 idx
 	{
 		"character": E_SF1_FM.LOWE,
 		"leader": false,
 		
-		"character_base_node": "res://SF1/Characters/Lowe/Lowe.tscn",
-		"character_npc_scene": "res://SF1/Characters/Lowe/LoweNPC.tscn",
+		# TODO: add order field so its possible to select the order of your units being placed
+		# will need to be unique values think on this later very LOW PRIORITY
+		"order": 4,
 		
-		"unlocked": false,
-		"active_in_force": false,
+		## Promotion stage dictates where the character is in their promotion stage
+		## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
+		"promotion_stage": 0,
+		
+		"unlocked": true,
+		"active_in_force": true,
 		"alive": true,
 		
-		"name": "Lowe", # TODO: do nicknames
+		"name": "Lowe",
+		"nickname": null,
 		"race": "Halfling",
 		
 		"class_full": "Healer",
@@ -968,17 +1106,35 @@ var ForceMembers = [
 		
 		"level": 1,
 		
+		"ai_target_priority": 25,
+		
+		"movement_type": E_MOVEMENT_TYPES.STANDARD,
+		
+		"textures_and_scenes": [
+			# unpromoted
+			{
+				# textures
+				"overworld_texture": "",
+				"battle_texture": "",
+				"portrait_texture": "",
+				# scenes
+				"battle_scene": "",
+				"player_scene": "res://SF1/Characters/Lowe/Lowe.tscn",
+				# TODO: create a base path for characters and use in a similar fashion to the soundback
+				# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
+				# HQ NPC node
+				"npc_scene": "res://SF1/Characters/Lowe/LoweNPC.tscn",
+			}
+		],
+		
 		"status_effects": [
 			
 		],
 		
-		"ai_target_priority": 25,
-		
-		"movement_type": "Standard",
-		
 		"stats": {
 			"attack": 6,
 			"attack_boost": 0,
+			"attack_permanent_increase": 0,
 			"attack_target_unpromoted": 10,
 			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"attack_target_promoted": 13,
@@ -986,6 +1142,7 @@ var ForceMembers = [
 			
 			"defense": 5,
 			"defense_boost": 0,
+			"defense_permanent_increase": 0,
 			"defense_target_unpromoted": 10,
 			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"defense_target_promoted": 30,
@@ -993,23 +1150,29 @@ var ForceMembers = [
 			
 			"agility": 5,
 			"agility_boost": 0,
+			"agility_permanent_increase": 0,
 			"agility_target_unpromoted": 13,
 			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"agility_target_promoted": 40,
 			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY],
 			
 			"move": 5,
+			"move_permanent_increase": 0,
 			"move_boost": 0,
 			
 			"hp": 11,
+			"hp_current": 11,
 			"hp_boost": 0,
+			"hp_permanent_increase": 0,
 			"hp_target_unpromoted": 15,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"hp_target_promoted": 40,
 			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"mp": 10,
+			"mp_current": 10,
 			"mp_boost": 0,
+			"mp_permanent_increase": 0,
 			"mp_target_unpromoted": 25,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"mp_target_promoted": 38,
@@ -1017,6 +1180,7 @@ var ForceMembers = [
 			
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_permanent_increase": 0,
 			"critical_hit_chance_target_unpromoted": 2,
 			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"critical_hit_chance_target_promoted": 6,
@@ -1057,7 +1221,6 @@ var ForceMembers = [
 		
 		"experience": 0,
 		
-		
 		"inventory": [
 			# Up
 			{
@@ -1074,53 +1237,99 @@ var ForceMembers = [
 		
 		"magic": [
 			{
-				"name": "Heal",
+				"resource": "res://SF1/Spells/Heal/Heal.tres",
 				"levels": [
-					1,
-					7,
-					16,
-					22
+					{ # 1
+						"unlocked": true,
+						"unlock_levels": {
+							"unpromoted": 1,
+							# promoted
+						}
+					},
+					
+					{ # 2
+						"unlocked": false,
+						"unlock_levels": {
+							"unpromoted": 7
+							# promoted
+						}
+					},
+					
+					{ # 3
+						"unlocked": false,
+						"unlock_levels": {
+							"unpromoted": 16
+							# promoted
+						}
+					},
+					
+					{ # 4
+						"unlocked": false,
+						"unlock_levels": {
+							"unpromoted": 22
+							# promoted
+						}
+					},
 				]
 			},
 			
-			{
-				"name": "Detox",
-				"levels": [
-					4
-				]
-			},
-			
-			{
-				"name": "Slow",
-				"levels": [
-					10,
-					19
-				]
-			},
-			
-			{
-				"name": "Quick",
-				"levels": [
-					13,
-					25
-				]
-			},
-		]
+#			{
+#				"name": "Detox",
+#				"levels": [
+#					4
+#				]
+#			},
+#
+#			{
+#				"name": "Slow",
+#				"levels": [
+#					10,
+#					19
+#				]
+#			},
+#
+#			{
+#				"name": "Quick",
+#				"levels": [
+#					13,
+#					25
+#				]
+#			},
+		],
+		
+		"actor_meta_stats": {
+			# battles gone through ? maybe
+			# maybe track each magic spell used
+			"kills": 0,
+			"defeats": 0,
+			"dodges": 0,
+			"misses": 0,
+			"critical_hits": 0,
+			"double_attacks": 0,
+			"special_attacks": 0,
+			"counter_attacks": 0
+		}
 	},
 	
-	# Gong
+	# Gong - 6 idx
 	{
 		"character": E_SF1_FM.GONG,
 		"leader": false,
 		
-		"character_base_node": "res://SF1/Characters/Gong/Gong.tscn",
-		"character_npc_scene": "res://SF1/Characters/Gong/GongNPC.tscn",
+		# TODO: add order field so its possible to select the order of your units being placed
+		# will need to be unique values think on this later very LOW PRIORITY
+		"order": 0,
+		
+		## Promotion stage dictates where the character is in their promotion stage
+		## 0 unpromoted - 1 promoted - 2 or higher as possible options for different stages
+		"promotion_stage": 0,
 		
 		"unlocked": false,
 		"active_in_force": false,
 		"alive": true,
 		
-		"name": "Gong", # TODO: do nicknames
+		"name": "Gong",
+		"nickname": null,
 		"race": "Half Giant",
 		
 		"class_full": "Monk",
@@ -1129,17 +1338,35 @@ var ForceMembers = [
 		
 		"level": 1,
 		
+		"textures_and_scenes": [
+			# unpromoted
+			{
+				# textures
+				"overworld_texture": "",
+				"battle_texture": "",
+				"portrait_texture": "",
+				# scenes
+				"battle_scene": "",
+				"player_scene": "res://SF1/Characters/Gong/Gong.tscn",
+				# TODO: create a base path for characters and use in a similar fashion to the soundback
+				# of - ex. base + "Max.tscn" || "MaxNPC.tscn" etc
+				# HQ NPC node
+				"npc_scene": "res://SF1/Characters/Gong/GongNPC.tscn",
+			}
+		],
+		
 		"status_effects": [
 			
 		],
 		
 		"ai_target_priority": 0,
 		
-		"movement_type": "Standard",
+		"movement_type": E_MOVEMENT_TYPES.STANDARD,
 		
 		"stats": {
 			"attack": 11,
 			"attack_boost": 0,
+			"attack_permanent_increase": 0,
 			"attack_target_unpromoted": 29,
 			"attack_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"attack_target_promoted": 26, # TODO: CHECK: is this right?
@@ -1147,6 +1374,7 @@ var ForceMembers = [
 			
 			"defense": 4,
 			"defense_boost": 0,
+			"defense_permanent_increase": 0,
 			"defense_target_unpromoted": 16,
 			"defense_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"defense_target_promoted": 31,
@@ -1154,23 +1382,29 @@ var ForceMembers = [
 			
 			"agility": 6,
 			"agility_boost": 0,
+			"agility_permanent_increase": 0,
 			"agility_target_unpromoted": 11,
 			"agility_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.EARLY_AND_LATE],
 			"agility_target_promoted": 39,
 			"agility_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"move": 5,
+			"move_permanent_increase": 0,
 			"move_boost": 0,
 			
 			"hp": 11,
+			"hp_current": 11,
 			"hp_boost": 0,
+			"hp_permanent_increase": 0,
 			"hp_target_unpromoted": 19,
 			"hp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"hp_target_promoted": 42,
 			"hp_promoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			
 			"mp": 8,
+			"mp_current": 8,
 			"mp_boost": 0,
+			"mp_permanent_increase": 0,
 			"mp_target_unpromoted": 16,
 			"mp_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"mp_target_promoted": 28,
@@ -1178,6 +1412,7 @@ var ForceMembers = [
 			
 			"critical_hit_chance": 3,
 			"critical_hit_chance_boost": 0,
+			"critical_hit_permanent_increase": 0,
 			"critical_hit_chance_target_unpromoted": 4,
 			"critical_hit_chance_unpromoted_growth_curve": CN_SF1_StatGrowthCurves.CURVES[CN_SF1_StatGrowthCurves.E_CURVE.LINEAR],
 			"critical_hit_chance_target_promoted": 20,
@@ -1218,7 +1453,6 @@ var ForceMembers = [
 		
 		"experience": 0,
 		
-		
 		"inventory": [
 			# Up
 			
@@ -1231,22 +1465,63 @@ var ForceMembers = [
 		
 		"magic": [
 			{
-				"name": "Heal",
+				"resource": "res://SF1/Spells/Heal/Heal.tres",
 				"levels": [
-					1,
-					8,
-					16,
-					24
+					{ # 1
+						"unlocked": true,
+						"unlock_levels": {
+							"unpromoted": 1,
+							"promoted": 1
+						}
+					},
+					
+					{ # 2
+						"unlocked": false,
+						"unlock_levels": {
+							"unpromoted": 8,
+							"promoted": 1
+						}
+					},
+					
+					{ # 3
+						"unlocked": false,
+						"unlock_levels": {
+							"unpromoted": 16,
+							"promoted": 6
+						}
+					},
+					
+					{ # 4
+						"unlocked": false,
+						"unlock_levels": {
+							"unpromoted": 24,
+							"promoted": 14
+						}
+					},
 				]
 			},
 			
-			{
-				"name": "Aura",
-				"levels": [
-					30
-				]
-			}
-		]
+#			{
+#				"name": "Aura",
+#				"levels": [
+#					30
+#				]
+#			}
+		],
+		
+		# TODO: need to copy these over to all other characters
+		"actor_meta_stats": {
+			# battles gone through ? maybe
+			# maybe track each magic spell used
+			"kills": 0,
+			"defeats": 0,
+			"dodges": 0,
+			"misses": 0,
+			"critical_hits": 0,
+			"double_attacks": 0,
+			"special_attacks": 0,
+			"counter_attacks": 0
+		}
 	},
 	
 	# Gort

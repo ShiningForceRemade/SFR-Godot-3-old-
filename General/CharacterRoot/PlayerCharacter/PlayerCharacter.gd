@@ -75,14 +75,13 @@ func _process(_delta: float) -> void:
 		# if actively moving don't allow for any additional processing until complete
 		return
 	
-	
 #	# if Input.is_action_just_pressed("ui_c_key"):
 #	#	GRID_BASED_MOVEMENT = !GRID_BASED_MOVEMENT
 #	#	setup_animations_types_depending_on_movement()	
 	
 	
 	if !Singleton_CommonVariables.is_currently_in_battle_scene:
-		if Input.is_action_just_pressed("ui_a_key"):
+		if Input.is_action_just_released("ui_a_key"):
 			is_active = false
 			Singleton_CommonVariables.ui__overworld_action_menu.show()
 			Singleton_CommonVariables.ui__gold_info_box.show_cust()
@@ -103,34 +102,25 @@ func _process(_delta: float) -> void:
 					mcan.stats.mp, 
 					mcan.stats.mp
 				)
-			
-			await Signal(get_tree().create_timer(0.1), "timeout")
+				
+			await get_tree().create_timer(0.1).timeout
+				
 			Singleton_CommonVariables.ui__overworld_action_menu.set_menu_active()
 			return
 			
-		if Input.is_action_just_pressed("ui_c_key"):
+		if Input.is_action_just_released("ui_c_key"):
 			interaction_attempt_to_talk()
 			return
 		
-		if Input.is_action_just_pressed("ui_z_key"):
+		if Input.is_action_just_released("ui_z_key"):
 			# CutscenePlayerTemp.play("Opening")
 			return
-		
-#		if Input.is_action_just_pressed("ui_x_key"):
-#			is_active = false
-#			Singleton_CommonVariables.menus_root_node.member_list_node().show()
-#			Singleton_CommonVariables.menus_root_node.member_list_node().set_overvview_view_active()
-#			Singleton_CommonVariables.menus_root_node.member_list_node().load_character_lines()
-#			Singleton_CommonVariables.menus_root_node.member_list_node().active = true
-#			return
 	else:
-		if Input.is_action_just_pressed("ui_b_key"):
+		if Input.is_action_just_released("ui_b_key"):
 			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(false)
 			await Signal(get_tree().create_timer(0.1), "timeout")
 			Singleton_CommonVariables.battle__cursor_node.set_active()
-		if Input.is_action_just_pressed("ui_a_key"):
-			# print(Singleton_CommonVariables.battle__currently_active_actor.get_child(0).position)
-			# print(Singleton_CommonVariables.battle__currently_active_actor.get_child(0).global_position)
+		if Input.is_action_just_released("ui_a_key"):
 			var x = Singleton_CommonVariables.battle__logic_node.movement_logic_node.check_if_character_or_enemey_is_on_tile_excluding_current_actor(
 				Singleton_CommonVariables.battle__currently_active_actor.get_child(0).position,
 				Singleton_CommonVariables.battle__currently_active_actor.get_instance_id()
@@ -141,30 +131,10 @@ func _process(_delta: float) -> void:
 				return
 			
 			is_active = false
-			Singleton_CommonVariables.ui__battle_action_menu.show_cust()
-			
-			# Singleton_CommonVariables.ui__gold_info_box.show_cust()
-			# Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
-			
 			Singleton_CommonVariables.battle__currently_active_actor.get_child(0).set_active_processing(false)
 			
-			# Singleton_CommonVariables.main_character_player_node.set_active_processing(false)
-			# Singleton_CommonVariables.menus_root_node.character_info_box_node().show()
-			
-			# TODO: add get character from player to help support different main character option
-			# var mcan = Singleton_Game_GlobalCommonVariables.main_character_player_node
-#			var mcan = Singleton_CommonVariables.sf_game_data_node.ForceMembers[0]
-#			Singleton_CommonVariables.ui__actor_micro_info_box.update_active_info(
-#				mcan.name, 
-#				mcan.class_short, 
-#				mcan.level, 
-#				mcan.stats.hp, 
-#				mcan.stats.hp, 
-#				mcan.stats.mp, 
-#				mcan.stats.mp
-#				)
-			
-			await Signal(get_tree().create_timer(0.1), "timeout")
+			Singleton_CommonVariables.ui__battle_action_menu.show_cust()
+			await get_tree().create_timer(0.05).timeout
 			Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
 			return
 	
@@ -271,69 +241,30 @@ func set_collision_shape_disabled_state(arg: bool) -> void:
 
 
 ### Interactions
-
-
-# TEMP: for demo
-# TODO: IMPORTANT:
-# Originally I used raycasts and kinematic bodys since I started with using the rotdd movement style
-# but since I've disabled that behind a flag in the dev console and there's no immediate plans to change this
-# it might be better to migrate to a tilemap based collision.
-# Think about this more and clean this up and refine it much more
 func interaction_attempt_to_talk() -> void:
 	if !Singleton_CommonVariables.is_currently_in_battle_scene:
 		
-		print("Start")
+		# print("Start")
 		var objects_collide = [] 
 		while ray_interactables.is_colliding():
-			var obj = ray_interactables.get_collider() # get the next object that is colliding.
-			print(obj)
-#			if obj is TileMap:
-#				objects_collide.append(obj) # add it to the array.
-#				ray.add_exception_rid(obj.tile_set) # add to ray's exception. That way it could detect something being behind it.
-#				ray.force_raycast_update() # update the ray's collision query.	
-#				continue
+			var obj = ray_interactables.get_collider() 
+			# print(obj)
 			
 			objects_collide.append(obj) # add it to the array.
 			ray_interactables.add_exception(obj) # add to ray's exception. That way it could detect something being behind it.
 			ray_interactables.force_raycast_update() # update the ray's collision query.
-
-		#after all is done, remove the objects from ray's exception.
-#		for obj in objects_collide:
-#			# print(obj)
-#			# print(obj.get_parent().get_parent().has_method("attempt_to_interact"))
-#			frontFacingRaycast.remove_exception( obj )
-		# print("End")
-	
+		
+		
 		for obj in objects_collide:
-			# print(obj.get_parent().get_parent().has_method("attempt_to_interact"))
-			
 			if obj.get_parent().get_parent().has_method("attempt_to_interact"):
 				obj.get_parent().get_parent().attempt_to_interact()
 			elif obj.get_parent().has_method("attempt_to_interact"):
 				obj.get_parent().attempt_to_interact()
 		
-		# if frontFacingRaycast.is_colliding():
-			
-			# print(frontFacingRaycast.collide_with_bodies())
-			
-			# TODO: probably should add a helper function to get the parent element
-			# where the custom logic will live instead of going up for build v0.0.2 its fine
-			# print(frontFacingRaycast.get_collider())
-			# print(frontFacingRaycast.get_collider().get_parent().get_name())
-			# print(frontFacingRaycast.get_collider().get_parent().get_parent(), frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
-			# print(frontFacingRaycast.get_collider().get_parent().get_parent())
-			# print(frontFacingRaycast.get_collider().get_parent().get_name())
-			# print("\n")
-		# if frontFacingRaycast.is_colliding():
-#			if frontFacingRaycast.get_collider().get_parent().get_parent().has_method("attempt_to_interact"):
-#				frontFacingRaycast.get_collider().get_parent().get_parent().attempt_to_interact()
-#			elif frontFacingRaycast.get_collider().get_parent().has_method("attempt_to_interact"):
-#				frontFacingRaycast.get_collider().get_parent().attempt_to_interact()
-		
 		for obj in objects_collide:
 			ray_interactables.remove_exception(obj)
 			
-		print("End\n")
+		# print("End\n")
 
 
 func interaction_attempt_to_search() -> void:
@@ -341,10 +272,6 @@ func interaction_attempt_to_search() -> void:
 	if ray_interactables.is_colliding():
 		# TODO: probably should add a helper function to get the parent element
 		# where the custom logic will live instead of going up for build v0.0.2 its fine
-		# print(frontFacingRaycast.get_collider())
-		# print(frontFacingRaycast.get_collider().get_parent().get_name())
-		# print(ray.get_collider().get_parent().get_parent(), ray.get_collider().get_parent().get_parent().has_method("attempt_to_interact"))
-		
 		if ray_interactables.get_collider().get_parent().get_parent().has_method("attempt_to_interact_search"):
 			ray_interactables.get_collider().get_parent().get_parent().attempt_to_interact()
 		elif ray_interactables.get_collider().get_parent().has_method("attempt_to_interact_search"):

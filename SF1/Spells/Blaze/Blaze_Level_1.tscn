@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6k3kv4hgim0"]
+
+[ext_resource type="Texture2D" uid="uid://25wg6ni322qw" path="res://Assets/SF1/Spells/Blaze/BaseFlame.png" id="1_qd0wu"]
+[ext_resource type="Script" path="res://SF1/Spells/Blaze/Blaze_Level_2.gd" id="1_rm3v7"]
+
+[sub_resource type="Animation" id="Animation_e722h"]
+resource_name = "Default"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BaseFlame:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_3kpiw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BaseFlame:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnwwn"]
+_data = {
+"Default": SubResource("Animation_e722h"),
+"RESET": SubResource("Animation_3kpiw")
+}
+
+[node name="Blaze_Level_2" type="Node2D"]
+script = ExtResource("1_rm3v7")
+
+[node name="BaseFlame" type="Sprite2D" parent="."]
+position = Vector2(108, 92)
+texture = ExtResource("1_qd0wu")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Default"
+libraries = {
+"": SubResource("AnimationLibrary_rnwwn")
+}

@@ -1,36 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://6esp6v55rdf8"]
+[gd_scene load_steps=5 format=3 uid="uid://eqokcgot3xrj"]
 
-[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_ltl56"]
-[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_xeslm"]
-[ext_resource type="Texture2D" uid="uid://bkbn0vvo53svu" path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Map_Sprites.png" id="3_6hryy"]
-[ext_resource type="Resource" path="res://SF1/Items/Weapons/WoodenStaff.tres" id="3_g1pig"]
-[ext_resource type="Texture2D" uid="uid://bkoi0o21fd446" path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" id="4_7yhqv"]
-[ext_resource type="Resource" uid="uid://ct5078lg71blj" path="res://SF1/Spells/Heal/Heal.tres" id="4_x02ur"]
-[ext_resource type="Texture2D" uid="uid://7pj0cag61h8f" path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png" id="5_luiv6"]
+[ext_resource type="Script" path="res://SF1/Characters/GenericPlayableActor.gd" id="1_8b7r1"]
+[ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="1_rin1p"]
+[ext_resource type="PackedScene" uid="uid://6esp6v55rdf8" path="res://SF1/Characters/Lowe/LoweCharacterRoot.tscn" id="2_42kc6"]
+[ext_resource type="PackedScene" uid="uid://e7n2gb682327" path="res://SF1/Characters/Lowe/LoweUnpromotedBattleScene.tscn" id="4_roucb"]
 
 [node name="Lowe" type="Node2D"]
-script = ExtResource("1_ltl56")
+script = ExtResource("1_8b7r1")
 
-[node name="CharacterRoot" parent="." instance=ExtResource("2_xeslm")]
-character_name = "Lowe"
-character_class = 6
-inventory_items_id = Array[Resource]([ExtResource("3_g1pig")])
-is_item_equipped = Array[bool]([true])
-spells_id = Array[Resource]([ExtResource("4_x02ur")])
-texture_sprite_overworld_unpromoted = ExtResource("3_6hryy")
-texture_sprite_battle_unpromoted = ExtResource("4_7yhqv")
-texture_sprite_portrait_unpromoted = ExtResource("5_luiv6")
-move = 5
-HP_Total = 11
-MP_Total = 10
-mp_growth = 3
-attack = 6
-defense = 5
-agility = 5
-critical_hit_chance = 2
+[node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_rin1p")]
+actor_type = 1
 
-[node name="Sprite2D" parent="CharacterRoot" index="0"]
-texture = ExtResource("3_6hryy")
-hframes = 8
+[node name="Lowe" parent="PlayerCharacterRoot" instance=ExtResource("2_42kc6")]
 
-[editable path="CharacterRoot"]
+[node name="CharacterRoot" parent="PlayerCharacterRoot/Lowe" index="0"]
+SF1_MEMBER_INDEX = 5
+battle__scene_unpromoted = ExtResource("4_roucb")
+
+[editable path="PlayerCharacterRoot"]
+[editable path="PlayerCharacterRoot/Lowe"]
+[editable path="PlayerCharacterRoot/Lowe/CharacterRoot"]

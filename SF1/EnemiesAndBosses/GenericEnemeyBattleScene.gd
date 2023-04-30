@@ -29,6 +29,7 @@ func play_idle() -> void:
 func play_attack_normal() -> void:
 	animation_player.play("Attack")
 	await animation_player.animation_finished
+	play_idle()
 	emit_signal("battle__animation_completed")
 
 

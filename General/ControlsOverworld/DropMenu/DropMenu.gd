@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var redSelection = $RedSelectionBorderRoot
 
+@onready var empty_slot_texture = preload("res://Assets/SFCD/Items/EmptyItemSlot.png")
+
 const rs_top_pos    = Vector2(16, 0)
 const rs_left_pos   = Vector2(0, 12)
 const rs_right_pos  = Vector2(32, 12)
@@ -20,8 +22,6 @@ var currently_selected_option: int = e_drop_menu_options.UP_OPTION
 @onready var typeLabel = $ItemInfoNinePatchRect/TypeNameLabel
 @onready var nameLabel = $ItemInfoNinePatchRect/WeaponNameLabel
 
-# onready var animationPlayer = $AnimationPlayer
-
 @onready var up_slot_spirte = $SlotUpSprite
 @onready var down_slot_spirte = $SlotDownSprite
 @onready var left_slot_spirte = $SlotLeftSprite
@@ -39,32 +39,50 @@ func _ready():
 func set_battle_drop_menu_active():
 	is_battle_drop_menu_active = true
 	
-	var active_char_root = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+	set_sprites_to_zero_frame()
+	
+	left_slot_spirte.texture = empty_slot_texture
+	right_slot_spirte.texture = empty_slot_texture
+	up_slot_spirte.texture = empty_slot_texture
+	down_slot_spirte.texture = empty_slot_texture
+	
+	redSelection.position = rs_top_pos
+	currently_selected_option = e_drop_menu_options.UP_OPTION
+	
+	var active_char_root
+	
+	# TODO: HIGH PRIORITY need to add helper to get the actor root and need to collapse the way inventory and magic are handled
+	# so these separate paths aren't needed
+	if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: #char
+		active_char_root = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
+	elif Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 2: #enemey
+		active_char_root = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot")
 	
 	print("Equip Menu Current Char", active_char_root)
-	print("Equip Menu ", active_char_root.inventory_items_id)
+	print("Equip Menu ", active_char_root.get_inventory())
 	
-	## TODO: FIXME: temp setting inventroy to equipped idea while migrating to new structure and github
-	
-	inventory_items = active_char_root.inventory_items_id # active_char_root.is_item_equipped
+	inventory_items = active_char_root.get_inventory() 
 	
 	if inventory_items.size() == 0:
 		print("No inventory items probably should print the no items skip actions imilar to magic")
-		# return
+		up_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
+		nameLabel.text = "Empty"
+		typeLabel.text = ""
+		return
 	
 	for i in range(inventory_items.size()):
 		print(inventory_items[i])
+		var item_res = load(inventory_items[i].resource)
 		if i == 0:
-			up_slot_spirte.texture = inventory_items[i].texture
-			nameLabel.text = inventory_items[i].item_name
-			typeLabel.text = inventory_items[i].get_item_type()
+			up_slot_spirte.texture = item_res.texture
+			nameLabel.text = item_res.item_name
+			typeLabel.text = item_res.get_item_type()
 		elif i == 1:
-			left_slot_spirte.texture = inventory_items[i].texture
+			left_slot_spirte.texture = item_res.texture
 		elif i == 2:
-			right_slot_spirte.texture = inventory_items[i].texture
+			right_slot_spirte.texture = item_res.texture
 		elif i == 3:
-			down_slot_spirte.texture = inventory_items[i].texture
-		# up_slot_spirte.texture = item.texture
+			down_slot_spirte.texture = item_res.texture
 
 
 func _input(event):
@@ -73,52 +91,37 @@ func _input(event):
 			print("Cancel Use Inventory Menu")
 			is_battle_drop_menu_active = false
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
-			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
-			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
-			get_parent().get_parent().get_parent().s_hide_battle_drop_menu()
 			
-			# TODO: HACK: FIXME: Dirty hack need a better way to gurantee when action is completed to prevent retrigger
-			# yield on signal seems busted sometimes gets double called or falls through?
-			await Signal(get_tree().create_timer(0.1), "timeout")
-			get_parent().get_parent().get_parent().s_show_battle_inventory_menu("right")
-			# get_parent().get_parent().get_parent().s_show_battle_inventory_menu()
-			# get_parent().get_node("BattleInventoryMenuRoot").set_battle_inventory_menu_active()
+			hide()
+			
+			Singleton_CommonVariables.ui__battle_action_menu.show()
+			
+			await get_tree().create_timer(0.1).timeout
+			
+			if Singleton_CommonVariables.is_currently_in_battle_scene:
+				Singleton_CommonVariables.ui__battle_action_menu.set_menu_active()
+			else: 
+				Singleton_CommonVariables.ui__overworld_action_menu.set_menu_active()
+			
 			return
-			
+		
 		if event.is_action_released("ui_a_key"): # event.is_action_released("ui_accept"):
 			print("Accept Action - ", currently_selected_option)
 			
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
 			
-			var actor = Singleton_BattleVariables.currently_active_character.get_actor_root_node_internal()
+			var actor
+			if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: #char
+				actor = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
+			elif Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 2: #enemey
+				actor = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot")
 			
-			actor.inventory_items_id.remove(currently_selected_option)
-			actor.is_item_equipped.remove(currently_selected_option)
+			actor.remove_inventory_item_at_idx(currently_selected_option)
 			
-			if currently_selected_option == 1:
-				left_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
-			elif currently_selected_option == 2:
-				right_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
-			elif currently_selected_option == 3:
-				down_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
-				
-			redSelection.position = rs_top_pos
-			set_sprites_to_zero_frame()
-			currently_selected_option = e_drop_menu_options.UP_OPTION
+			set_battle_drop_menu_active()
 			
-			if 0 <= inventory_items.size() - 1:
-				up_slot_spirte.texture = actor.inventory_items_id[0].texture
-				nameLabel.text = actor.inventory_items_id[0].item_name
-				typeLabel.text = actor.inventory_items_id[0].get_item_type()
-			else:
-				up_slot_spirte.texture = load("res://Assets/SFCD/Items/EmptyItemSlot.png")
-				nameLabel.text = "Empty"
-				typeLabel.text = ""
-				
-				#	get_parent().get_parent().s_hide_action_menu()
-				#	return
-				
-			
+			return
+		
 		if event.is_action_pressed("ui_down"):
 			select_item(3, rs_bottom_pos, e_drop_menu_options.DOWN_OPTION)
 		elif event.is_action_pressed("ui_up"):
@@ -134,8 +137,9 @@ func select_item(item_select_idx, rs_pos, drop_menu_option) -> void:
 		redSelection.position = rs_pos
 		set_sprites_to_zero_frame()
 		currently_selected_option = drop_menu_option
-		nameLabel.text = inventory_items[item_select_idx].item_name
-		typeLabel.text = inventory_items[item_select_idx].get_item_type()
+		var item_res = load(inventory_items[item_select_idx].resource)
+		nameLabel.text = item_res.item_name
+		typeLabel.text = item_res.get_item_type()
 
 
 func set_sprites_to_zero_frame() -> void:

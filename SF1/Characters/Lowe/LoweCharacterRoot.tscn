@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://6esp6v55rdf8"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_in78h"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_mbt44"]
+[ext_resource type="Texture2D" uid="uid://bkbn0vvo53svu" path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Map_Sprites.png" id="3_y0t36"]
+[ext_resource type="Texture2D" uid="uid://bkoi0o21fd446" path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Battle_Sprites.png" id="4_bu0tq"]
+[ext_resource type="Texture2D" uid="uid://7pj0cag61h8f" path="res://Assets/SF1/PlayableCharacters/Lowe/Unpromoted_Portraits.png" id="5_xmsi0"]
+
+[sub_resource type="Animation" id="Animation_cxr2c"]
+resource_name = "DownMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ivcbg"]
+resource_name = "LeftMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xxtse"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rdbsm"]
+resource_name = "RightMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_ehmfx"]
+resource_name = "UpMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ndtq"]
+_data = {
+"DownMovement": SubResource("Animation_cxr2c"),
+"LeftMovement": SubResource("Animation_ivcbg"),
+"RESET": SubResource("Animation_xxtse"),
+"RightMovement": SubResource("Animation_rdbsm"),
+"UpMovement": SubResource("Animation_ehmfx")
+}
+
+[node name="Lowe" type="Node2D"]
+script = ExtResource("1_in78h")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_mbt44")]
+texture_sprite_overworld_unpromoted = ExtResource("3_y0t36")
+texture_sprite_battle_unpromoted = ExtResource("4_bu0tq")
+texture_sprite_portrait_unpromoted = ExtResource("5_xmsi0")
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("3_y0t36")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterRoot"]
+autoplay = "DownMovement"
+libraries = {
+"": SubResource("AnimationLibrary_3ndtq")
+}
+
+[editable path="CharacterRoot"]

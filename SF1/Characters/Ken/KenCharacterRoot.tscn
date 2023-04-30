@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://ukgydxdq01m1"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_j4ci7"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_evldt"]
+[ext_resource type="Texture2D" uid="uid://ck1228fea8ju3" path="res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Map_Sprites.png" id="4_2ukvj"]
+[ext_resource type="Texture2D" uid="uid://b6j8gs4m5fbun" path="res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Battle_Spear_Sprites.png" id="5_2qoxb"]
+[ext_resource type="Texture2D" uid="uid://bg2wmuoimgdi0" path="res://Assets/SF1/PlayableCharacters/Ken/Unpromoted_Portraits.png" id="6_10u0d"]
+
+[node name="Ken" type="Node2D"]
+script = ExtResource("1_j4ci7")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_evldt")]
+texture_sprite_overworld_unpromoted = ExtResource("4_2ukvj")
+texture_sprite_battle_unpromoted = ExtResource("5_2qoxb")
+texture_sprite_portrait_unpromoted = ExtResource("6_10u0d")
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("4_2ukvj")
+
+[editable path="CharacterRoot"]

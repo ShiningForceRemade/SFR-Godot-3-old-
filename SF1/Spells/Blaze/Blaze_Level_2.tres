@@ -13,3 +13,4 @@ mp_usage_cost = 5
 attributes = 1
 min_range = 6
 max_range = 11
+battle_scene_spell_animation_scene = "res://SF1/Spells/Blaze/Blaze_Level_2.tscn"

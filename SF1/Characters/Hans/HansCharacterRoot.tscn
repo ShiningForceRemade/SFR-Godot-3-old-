@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://edbd6dkvyt7c"]
+
+[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_xpbdm"]
+[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_34eu0"]
+[ext_resource type="Texture2D" uid="uid://dbxxhir1wluh8" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Map_Sprites.png" id="3_75go2"]
+[ext_resource type="Texture2D" uid="uid://1uunmkn3yoko" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Battle_Sprites.png" id="4_0st8l"]
+[ext_resource type="Texture2D" uid="uid://doky8w0iu55ih" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" id="5_gqn0p"]
+[ext_resource type="Texture2D" uid="uid://c66ex7xj2x26x" path="res://Assets/SF1/PlayableCharacters/Hans/Promoted_Map_Sprites.png" id="6_3meh1"]
+
+[node name="Hans" type="Node2D"]
+script = ExtResource("1_xpbdm")
+
+[node name="CharacterRoot" parent="." instance=ExtResource("2_34eu0")]
+texture_sprite_overworld_unpromoted = ExtResource("3_75go2")
+texture_sprite_battle_unpromoted = ExtResource("4_0st8l")
+texture_sprite_portrait_unpromoted = ExtResource("5_gqn0p")
+texture_sprite_overworld_promoted = ExtResource("6_3meh1")
+
+[node name="Sprite2D" parent="CharacterRoot" index="0"]
+texture = ExtResource("3_75go2")
+hframes = 8
+
+[editable path="CharacterRoot"]

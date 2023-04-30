@@ -1,39 +1,124 @@
-[gd_scene load_steps=8 format=3 uid="uid://edbd6dkvyt7c"]
+[gd_scene load_steps=11 format=3 uid="uid://fd6l1hs70q4g"]
 
-[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_xpbdm"]
-[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_34eu0"]
-[ext_resource type="Texture2D" uid="uid://dbxxhir1wluh8" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Map_Sprites.png" id="3_75go2"]
-[ext_resource type="Resource" path="res://SF1/Items/Weapons/WoodenArrow.tres" id="3_ilqto"]
-[ext_resource type="Texture2D" uid="uid://1uunmkn3yoko" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Battle_Sprites.png" id="4_0st8l"]
-[ext_resource type="Texture2D" uid="uid://doky8w0iu55ih" path="res://Assets/SF1/PlayableCharacters/Hans/Unpromoted_Portraits.png" id="5_gqn0p"]
-[ext_resource type="Texture2D" uid="uid://c66ex7xj2x26x" path="res://Assets/SF1/PlayableCharacters/Hans/Promoted_Map_Sprites.png" id="6_3meh1"]
+[ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="1_tx4xr"]
+[ext_resource type="Script" path="res://SF1/Characters/GenericPlayableActor.gd" id="1_xmig8"]
+[ext_resource type="PackedScene" uid="uid://edbd6dkvyt7c" path="res://SF1/Characters/Hans/HansCharacterRoot.tscn" id="2_vjlb0"]
+[ext_resource type="PackedScene" uid="uid://b4aqf15doac0h" path="res://SF1/Characters/Hans/HansUnpromotedBattleScene.tscn" id="4_0w1i5"]
+
+[sub_resource type="Animation" id="Animation_dcpdn"]
+resource_name = "DownMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hans/CharacterRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ki70n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hans/CharacterRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x7y8a"]
+resource_name = "UpMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hans/CharacterRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_hwqui"]
+resource_name = "LeftMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hans/CharacterRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_xo2xu"]
+resource_name = "RightMovement"
+length = 0.80001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hans/CharacterRoot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gvmp7"]
+_data = {
+"DownMovement": SubResource("Animation_dcpdn"),
+"LeftMovement": SubResource("Animation_hwqui"),
+"RESET": SubResource("Animation_ki70n"),
+"RightMovement": SubResource("Animation_xo2xu"),
+"UpMovement": SubResource("Animation_x7y8a")
+}
 
 [node name="Hans" type="Node2D"]
-script = ExtResource("1_xpbdm")
+script = ExtResource("1_xmig8")
 
-[node name="CharacterRoot" parent="." instance=ExtResource("2_34eu0")]
-character_name = "Hans"
-character_class = 7
-inventory_items_id = Array[Resource]([ExtResource("3_ilqto")])
-is_item_equipped = Array[bool]([true])
-texture_sprite_overworld_unpromoted = ExtResource("3_75go2")
-texture_sprite_battle_unpromoted = ExtResource("4_0st8l")
-texture_sprite_portrait_unpromoted = ExtResource("5_gqn0p")
-texture_sprite_overworld_promoted = ExtResource("6_3meh1")
-move = 5
-movement_type = 3
-HP_Total = 12
-hp_growth = 2
-attack = 6
-attack_growth = 2
-defense = 5
-defense_growth = 2
-agility = 6
-agility_growth = 3
-critical_hit_chance = 3
+[node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_tx4xr")]
+actor_type = 1
 
-[node name="Sprite2D" parent="CharacterRoot" index="0"]
-texture = ExtResource("3_75go2")
-hframes = 8
+[node name="Hans" parent="PlayerCharacterRoot" instance=ExtResource("2_vjlb0")]
 
-[editable path="CharacterRoot"]
+[node name="CharacterRoot" parent="PlayerCharacterRoot/Hans" index="0"]
+SF1_MEMBER_INDEX = 4
+battle__scene_unpromoted = ExtResource("4_0w1i5")
+
+[node name="Sprite2D" parent="PlayerCharacterRoot/Hans/CharacterRoot" index="0"]
+frame = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacterRoot/Hans/CharacterRoot" index="2"]
+root_node = NodePath("../../..")
+autoplay = "DownMovement"
+libraries = {
+"": SubResource("AnimationLibrary_gvmp7")
+}
+
+[editable path="PlayerCharacterRoot"]
+[editable path="PlayerCharacterRoot/Hans"]
+[editable path="PlayerCharacterRoot/Hans/CharacterRoot"]

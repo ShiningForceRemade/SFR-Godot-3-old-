@@ -1,10 +1,10 @@
+AnimationPlayer
 Node2D
 Node
 Sprite2D
 Control
 HBoxContainer
 ScrollContainer
-AnimationPlayer
 ColorRect
 Marker2D
 VBoxContainer

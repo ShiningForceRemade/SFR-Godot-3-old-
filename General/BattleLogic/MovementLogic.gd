@@ -3,7 +3,7 @@ extends Node
 @onready var animation_player: AnimationPlayer = get_parent().get_node("AnimationPlayer")
 
 const tile_size: int = 24 # 24 by 24
-const half_tile_size: int = tile_size / 2 # tile_size / 2 = 12 by 12
+const half_tile_size: int = 12 # tile_size / 2 # tile_size / 2 = 12 by 12
 
 const center_segment = Color("7de1e1e1") # default tile color when not debugging
 const white_segment = Color("FFFFFF") # actor

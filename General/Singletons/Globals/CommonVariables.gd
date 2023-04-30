@@ -3,7 +3,7 @@ extends Node
 # meta
 
 ## Controls how long menu tweens take
-var menu_tween_time = 0.1
+var menu_tween_time = 0.05
 
 ## TODO: probably should make this an enum
 ## something like "in battle" "in cutscene" "overworld" "in battle cutscene" etc to smooth out behaviours and interactions
@@ -25,6 +25,7 @@ var top_level_fader_node = null
 var ui__portrait_popup: Node2D = null
 var ui__gold_info_box: Node2D = null
 var ui__actor_micro_info_box: Node2D = null
+var ui__target_actor_micro_info_box: Node2D = null # only really used in battle
 var ui__yes_or_no_prompt: Node2D = null
 var ui__not_valid_box: Node2D = null
 
@@ -111,7 +112,10 @@ var battle__logic__target_selection_wrapper_node: Node2D
 var battle__target_use_range_array_representation
 var battle__target_selector_array_representation
 var battle__target_selection_actor
+
 var battle__target_selection_type # item -- spell -- normal attack -- etc..
+var battle__resource_animation_scene_path # ex. path to blaze lvl 1 battle scene or heal assumes target selection type is spell or item
+
 var battle__target_selection_cursor
 var battle__target_array
 

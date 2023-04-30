@@ -79,13 +79,13 @@ func _input(event):
 			
 
 func display_character_info() -> void:
-	var actor = Singleton_CommonVariables.battle__selected_actor.find_child("CharacterRoot", true)
+	var actor = Singleton_CommonVariables.battle__selected_actor.get_child(0).find_child("CharacterRoot", true)
 	
 	# TODO: check promotion stage to determine which sprites to use
 	# sprite.texture = actor.texture_sprite_overworld_unpromoted
 	
 	class_label.text = actor.get_class_short() #  char_class_array[actor.character_class]
-	name_label.text = actor.get_name() # str(actor.character_name)
+	name_label.text = actor.get_actor_name() # str(actor.character_name)
 	
 	level_label.text = str(actor.get_level()) # str(actor.level)
 	exp_label.text = str(actor.get_exp())  # str(actor.experience_points)
@@ -117,7 +117,7 @@ func display_enemey_info() -> void:
 
 
 func display_actor_info(actor: Node2D) -> void:
-		# $PortraitSprite.show()
+	# $PortraitSprite.show()
 	# TODO: create protrait get function that checks if unpromtoed or promoted or other
 	# $PortraitSprite.texture = actor.texture_protrait
 		# TODO: when adding boss enemeies with sprites add a check to hide or display similar to character info minus gold display
@@ -150,24 +150,14 @@ func display_actor_info(actor: Node2D) -> void:
 		for n in item_vbox.get_children():
 			n.queue_free()
 		
-		if actor.actor_type == "character": # character
-			for n in range(inventory_item_size):
-				var itemInfoN = itemInfoNode.instantiate()
-				itemInfoN.cust_scale = Vector2(0.8, 0.8)
-				var item_res = load(inventory[n].resource)
-				itemInfoN.texture = item_res.texture
-				itemInfoN.item_name = item_res.item_name
-				itemInfoN.is_equipped = inventory[n].is_equipped
-				item_vbox.add_child(itemInfoN)
-		elif actor.actor_type == "enemey": # enemey
-			for n in range(inventory_item_size):
-				var itemInfoN = itemInfoNode.instantiate()
-				itemInfoN.cust_scale = Vector2(0.8, 0.8)
-				var item_res = inventory[n]
-				itemInfoN.texture = item_res.texture
-				itemInfoN.item_name = item_res.item_name
-				itemInfoN.is_equipped = actor.is_item_equipped[n]
-				item_vbox.add_child(itemInfoN)
+		for n in range(inventory_item_size):
+			var itemInfoN = itemInfoNode.instantiate()
+			itemInfoN.cust_scale = Vector2(0.8, 0.8)
+			var item_res = load(inventory[n].resource)
+			itemInfoN.texture = item_res.texture
+			itemInfoN.item_name = item_res.item_name
+			itemInfoN.is_equipped = inventory[n].is_equipped
+			item_vbox.add_child(itemInfoN)
 	
 	# Spells
 	var magic = actor.get_magic()

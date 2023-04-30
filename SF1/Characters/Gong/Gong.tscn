@@ -1,27 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl8pyk8h011n3"]
+[gd_scene load_steps=5 format=3 uid="uid://xp2t18e3numq"]
 
-[ext_resource type="Script" path="res://SF1/Characters/GenericCharacter.gd" id="1_g2rf3"]
-[ext_resource type="PackedScene" uid="uid://dhunrlyvi8mod" path="res://General/CharacterRoot/CharacterRoot.tscn" id="2_2f2q2"]
-[ext_resource type="Resource" uid="uid://ct5078lg71blj" path="res://SF1/Spells/Heal/Heal.tres" id="3_ntftn"]
-[ext_resource type="Texture2D" uid="uid://c6xdmbyy3ssey" path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Map_Sprites.png" id="4_sw74h"]
-[ext_resource type="Texture2D" uid="uid://dh6ucis8t4ev1" path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Battle_Sprites.png" id="5_612yl"]
-[ext_resource type="Texture2D" uid="uid://b2lv1nufy5i4s" path="res://Assets/SF1/PlayableCharacters/Gong/Unpromoted_Portraits.png" id="6_6tiln"]
+[ext_resource type="Script" path="res://SF1/Characters/GenericPlayableActor.gd" id="1_2u8ih"]
+[ext_resource type="PackedScene" uid="uid://bdkexl3twcqsr" path="res://General/CharacterRoot/PlayerCharacter/PlayerCharacterV2.tscn" id="1_k1va0"]
+[ext_resource type="PackedScene" uid="uid://bl8pyk8h011n3" path="res://SF1/Characters/Gong/GongCharacterRoot.tscn" id="2_iy16n"]
+[ext_resource type="PackedScene" uid="uid://d4jf6o5cochxe" path="res://SF1/Characters/Gong/GongUnpromotedBattleScene.tscn" id="4_m8klj"]
 
 [node name="Gong" type="Node2D"]
-script = ExtResource("1_g2rf3")
+script = ExtResource("1_2u8ih")
 
-[node name="CharacterRoot" parent="." instance=ExtResource("2_2f2q2")]
-character_name = "Gong"
-character_class = 5
-spells_id = Array[Resource]([ExtResource("3_ntftn")])
-texture_sprite_overworld_unpromoted = ExtResource("4_sw74h")
-texture_sprite_battle_unpromoted = ExtResource("5_612yl")
-texture_sprite_portrait_unpromoted = ExtResource("6_6tiln")
-move = 5
-HP_Total = 11
-MP_Total = 10
-mp_growth = 3
-attack = 6
-defense = 5
-agility = 5
-critical_hit_chance = 2
+[node name="PlayerCharacterRoot" parent="." instance=ExtResource("1_k1va0")]
+actor_type = 1
+
+[node name="Gong" parent="PlayerCharacterRoot" instance=ExtResource("2_iy16n")]
+
+[node name="CharacterRoot" parent="PlayerCharacterRoot/Gong" index="0"]
+SF1_MEMBER_INDEX = 6
+battle__scene_unpromoted = ExtResource("4_m8klj")
+
+[editable path="PlayerCharacterRoot"]
+[editable path="PlayerCharacterRoot/Gong"]
+[editable path="PlayerCharacterRoot/Gong/CharacterRoot"]

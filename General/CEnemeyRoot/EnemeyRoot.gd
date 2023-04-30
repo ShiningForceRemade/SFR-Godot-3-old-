@@ -1,6 +1,11 @@
 # @tool
 extends Node2D
 
+# IMPORTANT
+# Add this to docs / wiki when setting it up
+# NOTE: when adding items to inventory must make them unique
+# otherwise all instances of the enemy will share their inventory
+
 @export var enemey_battle_scene: PackedScene #  = "res://SF1/EnemiesAndBosses/RuneKnight/RuneKnightBattleScene.tscn"
 
 signal signal_check_defeat_done
@@ -39,13 +44,14 @@ var active: bool = false
 
 ## Only the first 4 fields are valid everything after that is ignored!
 @export var magic_array: Array[Resource]
-## Only the first 4 fields are valid everything after that is ignored!
-@export var inventory_items_id: Array[Resource]
-## Only the first 4 fields are valid everything after that is ignored!
-@export var is_item_equipped: Array[bool]
+
 ## TODO: clean me up item id and drop chance object array type
+## TODO: move this into CN_SF1_Inventory_Item
+## TODO: look into using this class type in the sf1node characters for consistency
 @export var droppable_items_id: Dictionary
 
+## Only the first 4 fields are valid everything after that is ignored!
+@export var inventory: Array[CN_SF1_Inventory_Item]
 
 @export_group("Sprites Textures Animations")
 @export var texture_sprite_overworld: Texture
@@ -66,7 +72,7 @@ var move_boost: int
 @export_range(0, 100) var double_attack_chance: int = 10
 @export_range(0, 100) var dodge_chance: int = 10
 ## TODO: why does this exist again if dodge exists?
-@export var evasion_chance: float = 1/32 * 100
+@export var evasion_chance: float = (1 / 32) * 100
 
 @export var attack: int
 @export var defense: int
@@ -111,6 +117,7 @@ var move_boost: int
 
 
 func _ready():
+	inventory = inventory.duplicate(true)
 	# $AnimationPlayer.play("DownMovement")
 	pass
 
@@ -164,11 +171,14 @@ func get_exp() -> int:
 #func get_attack_base() -> int:
 #	return sfnode_data.stats.attack
 
+func get_attack_base() -> int:
+	return attack
+
 func get_attack() -> int:
 	var attack_attribute_bonus_total: int = 0
-	for i in range(inventory_items_id.size()):
-		if is_item_equipped[i]:
-			var item_res = inventory_items_id[i]
+	for i in range(inventory.size()):
+		if inventory[i].is_equipped:
+			var item_res = load(inventory[i].resource)
 			for j in (item_res.attribute_bonus.size()):
 				if item_res.attribute == 0: #TODO: should have a better way to refer to the attack attribute than if equal 0
 					attack_attribute_bonus_total += item_res.attribute_bonus[j]
@@ -187,8 +197,13 @@ func get_agility() -> int:
 
 
 func get_inventory():
-	return inventory_items_id
+	return inventory
 
+func remove_inventory_item_at_idx(currently_selected_option: int) -> void:
+	inventory.remove_at(currently_selected_option)
+
+func set_equip_state_inventory_item_at_idx(item_idx: int, equip_state: bool) -> void:
+	inventory[item_idx].is_equipped = equip_state
 
 func get_magic():
 	return magic_array

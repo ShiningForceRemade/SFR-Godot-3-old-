@@ -71,10 +71,17 @@ func show_cust() -> void:
 func set_battle_magic_menu_active() -> void:
 	is_battle_magic_menu_active = true
 	
+	Singleton_CommonVariables.battle__resource_animation_scene_path = null
+	
 	if Singleton_CommonVariables.is_currently_in_battle_scene:
-		print("Magic Menu Current Char", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot"))
-		print("Magic Menu Spells", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot").get_magic())
-		character_spells = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot").get_magic()
+		if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # character
+			print("Magic Menu Current Char", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot"))
+			print("Magic Menu Spells", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot").get_magic())
+			character_spells = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot").get_magic()
+		elif  Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 2: # enemey
+			print("Magic Menu Current Char", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot"))
+			print("Magic Menu Spells", Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot").get_magic())
+			character_spells = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot").get_magic()
 	else:
 		print("Magic Menu Current Char", Singleton_CommonVariables.main_character_player_node.actor)
 		print("Magic Menu Spells", Singleton_CommonVariables.main_character_player_node.actor.magic_array)
@@ -103,6 +110,8 @@ func _input(event):
 			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			# Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").active = true
 			# get_parent().get_parent().get_parent().s_hide_battle_inventory_menu()
+			
+			Singleton_CommonVariables.battle__resource_animation_scene_path = null
 			
 			Singleton_CommonVariables.ui__magic_menu.hide()
 			
@@ -142,7 +151,9 @@ func _input(event):
 			
 			magicLevelSelectorWrapper.show()
 			
+			# print(actor.get_magic())
 			print(actor.get_magic_array())
+			
 			display_magic_from_magic_array(actor.get_magic_array())
 			
 			# await Signal(get_tree().create_timer(0.1), "timeout")
@@ -190,6 +201,8 @@ func _input(event):
 			
 			print(actor.get_mp_current(), " ", actor.get_magic_array(), " ",  spell_idx, " ",  spell_level_selected)
 			var spell_res_l = load(actor.get_magic_array()[spell_idx].resource)
+			
+			Singleton_CommonVariables.battle__resource_animation_scene_path = spell_res_l.levels[spell_level_selected].battle_scene_spell_animation_scene
 			
 			if actor.get_mp_current() < spell_res_l.levels[spell_level_selected].mp_usage_cost:
 				print("No Use")

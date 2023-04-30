@@ -16,6 +16,9 @@ actor_type = 1
 [node name="CharacterRoot" parent="PlayableActorRoot/Max" index="0"]
 battle__scene_unpromoted = ExtResource("4_0drb5")
 
+[node name="Sprite2D" parent="PlayableActorRoot/Max/CharacterRoot" index="0"]
+frame = 0
+
 [editable path="PlayableActorRoot"]
 [editable path="PlayableActorRoot/Max"]
 [editable path="PlayableActorRoot/Max/CharacterRoot"]
