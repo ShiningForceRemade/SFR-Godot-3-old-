@@ -187,6 +187,11 @@ func attempt_to_find_first_target(target_range_obj: CN_SF_TargetRange = null) ->
 						Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position
 					)
 				
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(
+					Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+				)
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.show_cust_target()
+				
 				return true
 			
 	# print("No target")
@@ -201,6 +206,8 @@ func cancel_target_selection() -> void:
 	is_target_selection_active = false
 	
 	Singleton_CommonVariables.battle__target_selection_actor = null
+	
+	Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target()
 	
 	# Singleton_CommonVariables.battle_base.s_hide_target_actor_micro()
 	
@@ -258,7 +265,6 @@ func _process(_delta: float) -> void:
 			
 			Singleton_CommonVariables.battle__cursor_node.hide()
 			
-			Singleton_CommonVariables.battle__scene_node.show()
 			Singleton_CommonVariables.battle__scene_node.activate_battle()
 			
 			
@@ -333,8 +339,14 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 				continue
 			
 			if found_current:
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target()
 				tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+				
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(
+					Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+				)
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.show_cust_target()
 				return
 			
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position == sgpos:
@@ -349,8 +361,13 @@ func target_selection_counter_clockwise__style_naive_pass_forward() -> void:
 			if !is_actor_type_targetable(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile):
 				continue
 			
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target()
 			tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 			Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(
+				Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+			)
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.show_cust_target()
 			return
 
 
@@ -370,8 +387,14 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 				continue
 			
 			if found_current:
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target()
 				tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 				Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+				
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(
+					Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+				)
+				Singleton_CommonVariables.ui__target_actor_micro_info_box.show_cust_target()
 				return
 			
 			if Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position == sgpos:
@@ -387,8 +410,14 @@ func target_selection_clockwise__style_naive_pass_forward() -> void:
 			if !is_actor_type_targetable(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].on_tile):
 				continue
 			
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target()
 			tween_battle_cursor_position(Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].position)
 			Singleton_CommonVariables.battle__target_selection_actor = Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+			
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(
+				Singleton_CommonVariables.battle__target_use_range_array_representation[i][j].node
+			)
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.show_cust_target()
 			return
 
 

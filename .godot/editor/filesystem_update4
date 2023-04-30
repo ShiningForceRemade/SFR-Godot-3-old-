@@ -41,3 +41,6 @@ res://General/ControlsOverworld/MagicMenu/MagicMenu.gd
 res://General/ControlsBattle/ActionsMenu/ActionsMenu.gd
 res://General/UseAndTargetRangeResources/UseRangeResources/UseRange_Self.gd
 res://SF1/Spells/Egress/Egress_Level_1.tres
+res://General/Controls/ActorMicroInfoBox/TargetActorMicroInfoBox.tscn
+res://General/Controls/ActorMicroInfoBox/TargetActorMicroInfoBox.gd
+res://General/GameManager/TopLevelFade.gd

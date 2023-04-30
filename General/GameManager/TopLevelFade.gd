@@ -18,3 +18,15 @@ func play_fade_out() -> void:
 	animationPlayer.play("FadeOut")
 	await animationPlayer.animation_finished
 	emit_signal("top_level_fade_animation_finished")
+
+
+func play_fade_in_quick() -> void:
+	animationPlayer.play("FadeInQuick")
+	await animationPlayer.animation_finished
+	emit_signal("top_level_fade_animation_finished")
+
+
+func play_fade_out_quick() -> void:
+	animationPlayer.play("FadeOutQuick")
+	await animationPlayer.animation_finished
+	emit_signal("top_level_fade_animation_finished")

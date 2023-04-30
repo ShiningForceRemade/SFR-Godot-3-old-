@@ -22,8 +22,10 @@ const shader_texture__noise_pixelated = preload("res://Shaders/ShaderTextureImag
 
 const transition_screen_default_position = Vector2(448, 90)
 
+var current_initiator_actor_parent_node
 var current_initiator_actor_node
 var current_initiator_actor_id
+var current_target_actor_parent_node
 var current_target_actor_node
 var current_target_actor_id
 var current_initiator_actor_battle_scene_node
@@ -111,9 +113,78 @@ func cleanup_wrappers() -> void:
 	for s in spells_wrapper.get_children():
 		s.queue_free()
 
+
+
+var allies
+var targetables 
+func set_attack_target_selection(actor_type: int) -> void:
+	if actor_type == 1: #  "character":
+		allies = "character"
+		targetables = "enemey"
+	elif actor_type == 2: # "enemey":
+		allies = "enemey"
+		targetables = "character"
+
+func is_actor_type_targetable(actor_type_to_check: String) -> bool:
+	# print(Singleton_CommonVariables.battle__target_actor_types, " ", target_type, " ", actor_type_to_check, " ", actor_root.actor_type)
+	
+	if Singleton_CommonVariables.battle__target_actor_types == "Allies":
+		if allies == actor_type_to_check:
+			return true
+	elif Singleton_CommonVariables.battle__target_actor_types == "Opposing":
+		if targetables == actor_type_to_check: 
+			return true
+	if Singleton_CommonVariables.battle__target_actor_types == "Self":
+		if allies == actor_type_to_check:
+			return true
+	
+	return false
+
+
 func activate_battle() -> void:
 	# fade in
-	#	# Singleton_Game_GlobalCommonVariables.top_level_fader_node.black_fade_anim_in()
+	# Singleton_CommonVariables.top_level_fader_node.black_fade_anim_in()
+	
+	Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
+	Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target()
+	
+	set_attack_target_selection(Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type)
+	
+	var battle__target_array_flattened = []
+	for i in Singleton_CommonVariables.battle__target_array.size():
+		for j in Singleton_CommonVariables.battle__target_array.size():
+			if Singleton_CommonVariables.battle__target_array[i][j].actor_type != "na":
+				battle__target_array_flattened.append(Singleton_CommonVariables.battle__target_array[i][j])
+	
+	var a_node = null
+	for i in battle__target_array_flattened.size():
+		if battle__target_array_flattened[i].actor_type == "na":
+			continue
+		
+		if battle__target_array_flattened[i].actor_type == targetables:
+			a_node = battle__target_array_flattened[i].node
+	
+	# setup above
+	
+	# fade in
+	await Singleton_CommonVariables.top_level_fader_node.play_fade_in_quick()
+	Singleton_CommonVariables.battle__scene_node.show()
+	
+	# display
+	if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # character
+		Singleton_CommonVariables.ui__actor_micro_info_box.display_actor_info(Singleton_CommonVariables.battle__currently_active_actor)
+		if a_node != null:
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(a_node)
+			Singleton_CommonVariables.ui__target_actor_micro_info_box.show_cust_target_battle_scene()
+		
+		Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
+		
+	if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 2: # enemey
+		if a_node != null:
+			Singleton_CommonVariables.ui__actor_micro_info_box.display_actor_info(a_node)
+			Singleton_CommonVariables.ui__actor_micro_info_box.show_cust()
+		Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(Singleton_CommonVariables.battle__currently_active_actor)
+		Singleton_CommonVariables.ui__target_actor_micro_info_box.show_cust_target_battle_scene()
 	
 	print("Battle Target Selection Type - ", Singleton_CommonVariables.battle__target_selection_type)
 	
@@ -136,6 +207,7 @@ func activate_battle() -> void:
 	if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 2: # enemey
 		var a = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("EnemeyRoot")
 		current_initiator_actor_node = a
+		current_initiator_actor_parent_node = Singleton_CommonVariables.battle__currently_active_actor
 		cur_actor_node = a
 		caa_bs = a.enemey_battle_scene.instantiate()
 		# caa_bs.position = Vector2(216, 152) # spot where all actor stands should reach to
@@ -158,6 +230,7 @@ func activate_battle() -> void:
 	elif Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # character
 		var a = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
 		current_initiator_actor_node = a
+		current_initiator_actor_parent_node = Singleton_CommonVariables.battle__currently_active_actor
 		cur_actor_node = a
 		caa_bs = a.battle__scene_unpromoted.instantiate()
 		caa_bs.position = character_position # spot where all actor stands should reach to
@@ -178,15 +251,11 @@ func activate_battle() -> void:
 	
 	# find_child("EnemeyRoot")
 	
+	await Singleton_CommonVariables.top_level_fader_node.play_fade_out_quick()
+	
 	var is_first_actor = true
 	var first_cast = true
-	
-	var battle__target_array_flattened = []
-	for i in Singleton_CommonVariables.battle__target_array.size():
-		for j in Singleton_CommonVariables.battle__target_array.size():
-			if Singleton_CommonVariables.battle__target_array[i][j].actor_type != "na":
-				battle__target_array_flattened.append(Singleton_CommonVariables.battle__target_array[i][j])
-	
+
 	# var btaf_size = battle__target_array_flattened.size()
 	
 	# setup first target
@@ -200,6 +269,8 @@ func activate_battle() -> void:
 			
 			var a = battle__target_array_flattened[i].node.get_child(0).find_child("EnemeyRoot")
 			current_target_actor_id = battle__target_array_flattened[i].node.get_instance_id()
+			
+			current_target_actor_parent_node = battle__target_array_flattened[i].node
 			
 			var ebs = a.enemey_battle_scene.instantiate()
 			current_target_actor_battle_scene_node = ebs
@@ -297,6 +368,7 @@ func activate_battle() -> void:
 		elif battle__target_array_flattened[i].actor_type == "character":
 			var a = battle__target_array_flattened[i].node.get_child(0).find_child("CharacterRoot")
 			current_target_actor_id = battle__target_array_flattened[i].node.get_instance_id()
+			current_target_actor_parent_node = battle__target_array_flattened[i].node
 			
 			var a_bs = a.battle__scene_unpromoted.instantiate()
 			a_bs.position = character_position
@@ -404,6 +476,10 @@ func activate_battle() -> void:
 	caa_bs.disconnect("attack_frame_reached", Callable(attack_frame_reached))
 	caa_bs.disconnect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
 	# TODO: fade in
+	
+	Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
+	Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target_battle_scene()
+	
 	hide()
 	
 	pass
@@ -565,6 +641,13 @@ func calculate_damage_step() -> void:
 # 	TODO: update micro actors boxes after attack hp current set
 #	Singleton_CommonVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_CommonVariables.currently_active_character)
 #	Singleton_CommonVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_CommonVariables.currently_selected_actor)
+	
+	if current_initiator_actor_parent_node.get_child(0).actor_type == 1: # character
+		Singleton_CommonVariables.ui__actor_micro_info_box.display_actor_info(current_initiator_actor_parent_node)
+		Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(current_target_actor_parent_node)
+	if current_initiator_actor_parent_node.get_child(0).actor_type == 2: # enemey
+		Singleton_CommonVariables.ui__actor_micro_info_box.display_actor_info(current_target_actor_parent_node)
+		Singleton_CommonVariables.ui__target_actor_micro_info_box.display_actor_info(current_initiator_actor_parent_node)
 	
 #
 #	# enemeySprite.material.shader = shader_color_blend

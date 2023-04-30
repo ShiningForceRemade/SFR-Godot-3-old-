@@ -218,3 +218,53 @@ func hide_cust() -> void:
 	_tween.tween_property(self, "position", hidden_position, Singleton_CommonVariables.menu_tween_time)
 	_tween.set_trans(Tween.TRANS_LINEAR)
 	_tween.tween_callback(hide)
+
+
+# const hidden_target_position: Vector2 = Vector2(320, 134)
+# const target_actor_bottom_left_pos: Vector2 = Vector2(8, 134)
+# const target_actor_bottom_right_pos: Vector2 = Vector2(200, 134)
+
+func show_cust_target() -> void: 
+	position = Vector2(320, 134) # hidden_position
+	show()
+	
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", target_actor_bottom_right_pos, Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+
+
+func hide_cust_target() -> void: 
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", Vector2(320, 134), Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+	_tween.tween_callback(hide)
+
+
+const hidden_target_battle_scene = Vector2(-120, 134)
+const target_battle_scene = Vector2(8, 134)
+
+func show_cust_target_battle_scene() -> void: 
+	position = hidden_target_battle_scene
+	show()
+	
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", target_battle_scene, Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+
+func hide_cust_target_battle_scene() -> void: 
+	if _tween:
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property(self, "position", hidden_target_battle_scene, Singleton_CommonVariables.menu_tween_time)
+	_tween.set_trans(Tween.TRANS_LINEAR)
+	_tween.tween_callback(hide)
