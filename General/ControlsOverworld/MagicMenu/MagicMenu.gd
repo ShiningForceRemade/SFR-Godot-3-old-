@@ -94,6 +94,8 @@ func set_battle_magic_menu_active() -> void:
 			spell_up_slot_spirte.texture = spell_res.spell_texture
 			spell_name_label.text = spell_res.name
 			spell_cost_label.text = str(spell_res.levels[0].mp_usage_cost)
+			
+			display_spell_levels(character_spells[idx])
 		elif idx == 1:
 			spell_left_slot_spirte.texture = spell_res.spell_texture
 		elif idx == 2:
@@ -101,7 +103,7 @@ func set_battle_magic_menu_active() -> void:
 		elif idx == 3:
 			spell_down_slot_spirte.texture = spell_res.spell_texture
 
-
+var actor
 func _input(event):
 	if is_battle_magic_menu_active:
 		if event.is_action_released("ui_b_key"):
@@ -188,10 +190,8 @@ func _input(event):
 			
 			await Signal(get_tree().create_timer(0.001), "timeout")
 			
-			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
-			Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
-			var actor
+			
 			if Singleton_CommonVariables.is_currently_in_battle_scene:
 				if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # Character
 					actor = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
@@ -207,25 +207,31 @@ func _input(event):
 			Singleton_CommonVariables.battle__resource_animation_scene_path = spell_res_l.levels[spell_level_selected].battle_scene_spell_animation_scene
 			
 			Singleton_CommonVariables.battle__target_actor_types = spell_res_l.usable_on_actor_type
+			Singleton_CommonVariables.battle__magic_spell_level_selected = spell_level_selected
 			
 			if actor.get_mp_current() < spell_res_l.levels[spell_level_selected].mp_usage_cost:
 				print("No Use")
-				# TODO: play error sound and return
-				
+				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+				# Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuMoveSoundCut.wav")
+				# TODO: display not enough mana warning box
 #				noValidOptionNode.set_no_cant_use_text()
 #				noValidOptionNode.position = Vector2(165, 100)
 #				noValidOptionNode.start_self_clear_timer()
 #				noValidOptionNode.re_show_action_menu = false
-				# return
+				return
+			else:
+				Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuSelectSoundModif.wav")
+				Singleton_AudioManager.play_sfx("res://Assets/Sounds/MenuPanSoundCut.wav")
 			
 #			print(actor.magic_array[currently_selected_option].name)
-#			if actor.magic_array[currently_selected_option].name == "Egress":
-#				print("Egress selected")
-#				return
-				
-			# if actor.spells_id[currently_selected_option].name == "Heal":
-				# Singleton_Game_GlobalBattleVariables.battle_base.s_hide_target_actor_micro_in_battle()
-				# return
+			if spell_res_l.name == "Egress":
+				print("Egress selected")
+				return
+			
+			if spell_res_l.name == "Heal":
+				print("Heal selected")
+				Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Error.wav")
+				return
 			
 			is_battle_magic_menu_active = false
 			is_select_magic_level_active = false
@@ -272,7 +278,7 @@ func display_magic_from_magic_array(magic_arr) -> void:
 				spell_up_slot_spirte.texture = spell_resource.spell_texture
 				spell_name_label.text = spell_resource.name
 				spell_cost_label.text = str(spell_resource.levels[0].mp_usage_cost)
-				display_spell_levels(spell_resource.levels, magic_arr[spell_idx_local])
+				display_spell_levels(magic_arr[spell_idx_local])
 			1:
 				spell_left_slot_spirte.texture = spell_resource.spell_texture
 			2:
@@ -280,13 +286,11 @@ func display_magic_from_magic_array(magic_arr) -> void:
 			3:
 				spell_down_slot_spirte.texture = spell_resource.spell_texture
 
-func display_spell_levels(spell_levels, magic_char_levels) -> void:
+func display_spell_levels(magic_char_levels) -> void:
 	spell_level_1.hide()
 	spell_level_2.hide()
 	spell_level_3.hide()
 	spell_level_4.hide()
-	
-	print(spell_levels, magic_char_levels)
 	
 	for idx in magic_char_levels.levels.size():
 		print("LEVEL -- ", magic_char_levels.levels[idx])
@@ -311,6 +315,31 @@ func display_spell_levels(spell_levels, magic_char_levels) -> void:
 
 
 func display_spell_level_selection(spell_level_selected_arg: int) -> void:
+	var internal_actor
+	if Singleton_CommonVariables.is_currently_in_battle_scene:
+		if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # Character
+			internal_actor = Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot")
+		else: 
+			# actor = Singleton_CommonVariables.sf_game_data_node.ForceMembers[0] # main_character_player_node.actor # Singleton_CommonVariables.main_character_player_node.actor
+			internal_actor = Singleton_CommonVariables.main_character_player_node.actor
+	
+	var spell_res_l = internal_actor.get_magic_array()[spell_idx]
+	
+	var levelss = spell_res_l.levels.size()
+	if spell_level_selected_arg < levelss:
+		if spell_res_l.levels[spell_level_selected_arg].unlocked == true:
+			pass
+		else:
+			spell_level_selected -= 1
+			if spell_level_selected < 0:
+				spell_level_selected = 0
+			return
+	else:
+		spell_level_selected -= 1
+		if spell_level_selected < 0:
+			spell_level_selected = 0
+		return
+	
 	spell_cost_label.text = str(current_spell_res.levels[spell_level_selected_arg].mp_usage_cost)
 	
 	if spell_level_selected_arg == 0:

@@ -116,6 +116,44 @@ func set_attack_target_selection() -> void:
 	attempt_to_find_first_target_or_display_warning(load("res://General/UseAndTargetRangeResources/TargetRangeResources/TargetRange_1.gd").new())
 
 
+func set_magic_target_selection(spell_lvl_resource: CN_SF1_Spell_Level) -> void:
+	get_actor_root()
+	
+	var spell__lv_use_range = spell_lvl_resource.usage_range.new()
+	var spell_lv_target_range = spell_lvl_resource.target_range.new()
+	
+	if actor_root.actor_type == "character":
+		allies = "character"
+		targetables = "enemey"
+	elif actor_root.actor_type == "enemey":
+		allies = "enemey"
+		targetables = "character"
+	
+#	print(spell__lv_use_range, spell_lv_target_range)
+#	var x = spell__lv_use_range.get_use_range_array_representation()
+#	for a in x:
+#		print(a)
+	
+	# spell__lv_use_range.draw_use_range()
+	
+#	var y = spell_lv_target_range.array_representation()
+#	for a in y:
+#		print(a)
+			
+	# spell_lv_target_range.draw_cursor_and_get_targets("test")
+	
+	# TODO: move these normal_attack strings to an enum or something in the global common vars
+	# cleanup later
+	Singleton_CommonVariables.battle__target_selection_type = "magic"
+	
+	draw_use_range_from_script_object(spell__lv_use_range)
+	
+	attempt_to_find_first_target_or_display_warning(spell_lv_target_range)
+	# attempt_to_find_first_target(spell_lv_target_range)
+	# is_target_selection_active = true
+
+
+
 func is_actor_type_targetable(actor_type_to_check: String) -> bool:
 	# print(Singleton_CommonVariables.battle__target_actor_types, " ", target_type, " ", actor_type_to_check, " ", actor_root.actor_type)
 	
@@ -438,36 +476,6 @@ func tween_battle_cursor_position(pos_arg: Vector2) -> void:
 
 
 ### Magic Selection
-
-
-func set_magic_target_selection(spell_lvl_resource: CN_SF1_Spell_Level) -> void:
-	get_actor_root()
-	
-	var spell__lv_use_range = spell_lvl_resource.usage_range.new() #  ).new()
-	var spell_lv_target_range = spell_lvl_resource.target_range.new() # ).new()
-	
-#	print(spell__lv_use_range, spell_lv_target_range)
-#	var x = spell__lv_use_range.get_use_range_array_representation()
-#	for a in x:
-#		print(a)
-	
-	# spell__lv_use_range.draw_use_range()
-	
-#	var y = spell_lv_target_range.array_representation()
-#	for a in y:
-#		print(a)
-			
-	# spell_lv_target_range.draw_cursor_and_get_targets("test")
-	
-	# TODO: move these normal_attack strings to an enum or something in the global common vars
-	# cleanup later
-	Singleton_CommonVariables.battle__target_selection_type = "magic"
-	
-	draw_use_range_from_script_object(spell__lv_use_range)
-	
-	attempt_to_find_first_target_or_display_warning(spell_lv_target_range)
-	# attempt_to_find_first_target(spell_lv_target_range)
-	# is_target_selection_active = true
 
 
 func find_actors_from_center_position(

@@ -44,3 +44,6 @@ res://SF1/Spells/Egress/Egress_Level_1.tres
 res://General/Controls/ActorMicroInfoBox/TargetActorMicroInfoBox.tscn
 res://General/Controls/ActorMicroInfoBox/TargetActorMicroInfoBox.gd
 res://General/GameManager/TopLevelFade.gd
+res://SF1/Spells/Blaze/BlazeFireballSmall.tscn
+res://SF1/Spells/Blaze/Blaze_Level_2.tscn
+res://General/ControlsOverworld/MagicMenu/MagicMenu.tscn

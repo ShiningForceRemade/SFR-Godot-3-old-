@@ -85,6 +85,7 @@ var tile_name_stand_to_frame_mapping_dictionary = {
 	"SF1_Blue": 8,
 }
 
+var first_time_mp_cost = true
 
 func _ready():
 	Singleton_CommonVariables.battle__scene_node = self
@@ -140,23 +141,34 @@ func is_actor_type_targetable(actor_type_to_check: String) -> bool:
 	
 	return false
 
-
-func activate_battle() -> void:
-	# fade in
-	# Singleton_CommonVariables.top_level_fader_node.black_fade_anim_in()
+var battle__target_array_flattened = []
+var a_node = null
+func pre_activate_battle_setup() -> void:
+	## reset all battle scene logic variables to defaults on new active battle start
+	current_target_actor_node = null
+	experience_points_gain = 0
+	coins_gain = 0
+	
+	current_initiator_actor_battle_scene_node = null
+	current_target_actor_battle_scene_node = null
+	
+	current_initiator_actor_id = -1
+	current_target_actor_id = -1
+	first_time_mp_cost = true
+	##
 	
 	Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 	Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target()
 	
 	set_attack_target_selection(Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type)
 	
-	var battle__target_array_flattened = []
+	battle__target_array_flattened = []
 	for i in Singleton_CommonVariables.battle__target_array.size():
 		for j in Singleton_CommonVariables.battle__target_array.size():
 			if Singleton_CommonVariables.battle__target_array[i][j].actor_type != "na":
 				battle__target_array_flattened.append(Singleton_CommonVariables.battle__target_array[i][j])
 	
-	var a_node = null
+	a_node = null
 	for i in battle__target_array_flattened.size():
 		if battle__target_array_flattened[i].actor_type == "na":
 			continue
@@ -164,11 +176,15 @@ func activate_battle() -> void:
 		if battle__target_array_flattened[i].actor_type == targetables:
 			a_node = battle__target_array_flattened[i].node
 	
-	# setup above
+
+
+func activate_battle() -> void:
+	pre_activate_battle_setup()
 	
-	# fade in
 	await Singleton_CommonVariables.top_level_fader_node.play_fade_in_quick()
+	
 	Singleton_CommonVariables.battle__scene_node.show()
+	
 	
 	# display
 	if Singleton_CommonVariables.battle__currently_active_actor.get_child(0).actor_type == 1: # character
@@ -190,15 +206,7 @@ func activate_battle() -> void:
 	
 	# Singleton_AudioManager.play_alt_music_n(Singleton_DevToolingManager.base_path + "Assets/SF1/SoundBank/Battle Encounter.mp3")
 	
-	current_target_actor_node = null
-	experience_points_gain = 0
-	coins_gain = 0
-	
-	current_initiator_actor_battle_scene_node = null
-	current_target_actor_battle_scene_node = null
-	
-	current_initiator_actor_id = -1
-	current_target_actor_id = -1
+
 	
 	var cur_actor_node
 	var caa_bs
@@ -249,17 +257,153 @@ func activate_battle() -> void:
 		characterWrapper.add_child(caa_bs)
 		current_initiator_actor_battle_scene_node = caa_bs
 	
-	# find_child("EnemeyRoot")
+	var cur_idx = -1 
+	var first_cast = true
+	for i in battle__target_array_flattened.size():
+		# if enemey actor
+		if battle__target_array_flattened[i].actor_type == "na":
+			continue
+		
+		if battle__target_array_flattened[i].actor_type == "enemey":
+			cur_idx = i
+			var bs = background_scene.instantiate()
+			
+			var a = battle__target_array_flattened[i].node.get_child(0).find_child("EnemeyRoot")
+			current_target_actor_id = battle__target_array_flattened[i].node.get_instance_id()
+			
+			current_target_actor_parent_node = battle__target_array_flattened[i].node
+			
+			var ebs = a.enemey_battle_scene.instantiate()
+			current_target_actor_battle_scene_node = ebs
+			
+			current_target_actor_node = a
+			
+			background_wrapper.add_child(bs)
+			bs.set_foreground_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].foreground])
+			bs.set_background_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].background])
+			# after tween hide
+			bs.hide_extra_backgrounds()
+			
+			enemeyWrapper.add_child(ebs)
+			break
+		elif battle__target_array_flattened[i].actor_type == "character":
+			cur_idx = i
+			var a = battle__target_array_flattened[i].node.get_child(0).find_child("CharacterRoot")
+			current_target_actor_id = battle__target_array_flattened[i].node.get_instance_id()
+			current_target_actor_parent_node = battle__target_array_flattened[i].node
+			
+			var a_bs = a.battle__scene_unpromoted.instantiate()
+			a_bs.position = character_position
+			
+			current_target_actor_battle_scene_node = a_bs
+			
+			a_bs.get_child(0).frame = tile_name_stand_to_frame_mapping_dictionary[
+				get_stand_value_at_cell_at_pos(
+					a.global_position
+				)
+			]
+			
+			#	# TODO: create function in chracter base to automatically pass back the equipped item
+			#	var weapon_res = char_actor_rn.inventory_items_id[0] 
+			#	# load("res://SF1/Items/Weapons/WoodenArrow.tres") # Singleton_Game_GlobalBattleVariables.currently_active_character.get_node("CharacterRoot").inventory_items_id[0]
+			#	internal_init_weapon_for_actor(weaponSprite, weapon_res)
+			
+			current_target_actor_node = a
+			
+			characterWrapper.add_child(a_bs)
+			
+			break
 	
+	
+	# as fade out is playing should also tween background character and enemey
 	await Singleton_CommonVariables.top_level_fader_node.play_fade_out_quick()
 	
-	var is_first_actor = true
-	var first_cast = true
-
+	if battle__target_array_flattened[cur_idx].actor_type == "enemey":
+		# Do Battle Scene for current actors
+		await get_tree().create_timer(0.5).timeout
+		
+		if Singleton_CommonVariables.battle__resource_animation_scene_path == null:
+			await display_battle_message(cur_actor_node.get_actor_name() + " Attacks!")
+			# await Signal(self, "signal__function_completed")
+			await get_tree().create_timer(0.2).timeout
+			
+		# play animation for attack or spell or use item here
+			# await 
+			
+			print("attack normal")
+			caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
+			caa_bs.connect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
+			caa_bs.connect("spell_cast_frame_reached", Callable(cast_anticapation_frame_reached))
+			
+			if Singleton_CommonVariables.battle__target_selection_type == "magic":
+				caa_bs.play_cast()
+			else:
+				caa_bs.play_attack_normal()
+			
+			# await Signal(caa_bs, "battle__animation_completed")
+			await Signal(self, "signal__current_actor_exchange_completed")
+			print("play Idle")
+			caa_bs.play_idle()
+		else:
+			print("spell animation")
+			
+			
+			if first_cast:
+				first_cast = false
+				await display_battle_message(cur_actor_node.get_actor_name() + " casts!")
+				
+				caa_bs.connect("spell_cast_frame_reached", Callable(cast_anticapation_frame_reached))
+				caa_bs.play_cast()
+				await get_tree().create_timer(0.5).timeout
+				
+				# await Signal(self, "signal__function_completed")
+				await get_tree().create_timer(0.2).timeout
+				
+				var spell_bs = load(Singleton_CommonVariables.battle__resource_animation_scene_path).instantiate()
+				spells_wrapper.add_child(spell_bs)
+			
+			
+			
+			await get_tree().create_timer(0.5).timeout
+			attack_frame_reached()
+			await Signal(self, "signal__current_actor_exchange_completed")
+		
+		await get_tree().create_timer(0.5).timeout
+		
+	elif battle__target_array_flattened[cur_idx].actor_type == "character":
+			# Do Battle Scene for current actors
+			await get_tree().create_timer(0.5).timeout
+			await display_battle_message(cur_actor_node.get_actor_name() + " Attacks!") # print_who_is_attacking
+			# await Signal(self, "signal__function_completed")
+			await get_tree().create_timer(0.2).timeout
+			
+			# play animation for attack or spell or use item here
+			# await 
+			
+			print("attack normal")
+			caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
+			caa_bs.connect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
+			caa_bs.connect("spell_cast_frame_reached", Callable(cast_anticapation_frame_reached))
+				
+			if Singleton_CommonVariables.battle__target_selection_type == "magic":
+				caa_bs.play_cast()
+			else:
+				caa_bs.play_attack_normal()
+			
+			await Signal(self, "signal__current_actor_exchange_completed")
+			# await Signal(caa_bs, "battle__animation_completed")
+			print("play Idle")
+			caa_bs.play_idle()
+			
+			await get_tree().create_timer(0.5).timeout
+			
+			print("Next Actor")
+			
+	
 	# var btaf_size = battle__target_array_flattened.size()
 	
 	# setup first target
-	for i in battle__target_array_flattened.size():
+	for i in range(cur_idx + 1, battle__target_array_flattened.size()):
 		# if enemey actor
 		if battle__target_array_flattened[i].actor_type == "na":
 			continue
@@ -277,57 +421,45 @@ func activate_battle() -> void:
 			
 			current_target_actor_node = a
 			
-			if !is_first_actor:
-				# do transition
-				bs.position = Vector2(640, 0)
-				ebs.position = Vector2(640, 0)
-				
-				var bc = background_wrapper.get_child(0)
-				var ec = enemeyWrapper.get_child(0)
-				
-				scene_transition.position = transition_screen_default_position
-				
-				background_wrapper.add_child(bs)
-				bs.set_foreground_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].foreground])
-				bs.set_background_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].background])
-				# after tween hide
-				bs.hide_extra_backgrounds()
-				
-				enemeyWrapper.add_child(ebs)
-				
-				var tween_tim = 0.25
-				var _t = create_tween().set_parallel(true)
-				_t.tween_property(bc, "position", Vector2(bc.position.x -320, bc.position.y), tween_tim)
-				_t.tween_property(ec, "position", Vector2(ec.position.x -320, ec.position.y), tween_tim)
-				_t.tween_property(scene_transition, "position", Vector2(transition_screen_default_position.x - 448, transition_screen_default_position.y), tween_tim)
-				_t.tween_property(bs, "position", Vector2(bs.position.x -640, bs.position.y), tween_tim)
-				_t.tween_property(ebs, "position", Vector2(ebs.position.x -640, ebs.position.y), tween_tim)
-				
-				await _t.finished
-				bc.queue_free()
-				ec.queue_free()
-				
-				# await get_tree().create_timer(5.0).timeout
-				bs.position = Vector2(0, 0)
-				ebs.position = Vector2(0, 0)
-				
-				pass
-			else:
-				is_first_actor = false
-				
-				background_wrapper.add_child(bs)
-				bs.set_foreground_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].foreground])
-				bs.set_background_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].background])
-				# after tween hide
-				bs.hide_extra_backgrounds()
-				
-				enemeyWrapper.add_child(ebs)
+			
+			# do transition
+			bs.position = Vector2(640, 0)
+			ebs.position = Vector2(640, 0)
+			
+			var bc = background_wrapper.get_child(0)
+			var ec = enemeyWrapper.get_child(0)
+			
+			scene_transition.position = transition_screen_default_position
+			
+			background_wrapper.add_child(bs)
+			bs.set_foreground_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].foreground])
+			bs.set_background_frame(tile_name_to_frame_mapping_dictionary[battle__target_array_flattened[i].background])
+			# after tween hide
+			bs.hide_extra_backgrounds()
+			
+			enemeyWrapper.add_child(ebs)
+			
+			var tween_tim = 0.25
+			var _t = create_tween().set_parallel(true)
+			_t.tween_property(bc, "position", Vector2(bc.position.x -320, bc.position.y), tween_tim)
+			_t.tween_property(ec, "position", Vector2(ec.position.x -320, ec.position.y), tween_tim)
+			_t.tween_property(scene_transition, "position", Vector2(transition_screen_default_position.x - 448, transition_screen_default_position.y), tween_tim)
+			_t.tween_property(bs, "position", Vector2(bs.position.x -640, bs.position.y), tween_tim)
+			_t.tween_property(ebs, "position", Vector2(ebs.position.x -640, ebs.position.y), tween_tim)
+			
+			await _t.finished
+			bc.queue_free()
+			ec.queue_free()
+			
+			# await get_tree().create_timer(5.0).timeout
+			bs.position = Vector2(0, 0)
+			ebs.position = Vector2(0, 0)
 			
 			
 			# check if spell or something
 			
 			# Do Battle Scene for current actors
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.5).timeout
 			
 			if Singleton_CommonVariables.battle__resource_animation_scene_path == null:
 				await display_battle_message(cur_actor_node.get_actor_name() + " Attacks!")
@@ -340,7 +472,13 @@ func activate_battle() -> void:
 				print("attack normal")
 				caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
 				caa_bs.connect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
-				caa_bs.play_attack_normal()
+				caa_bs.connect("spell_cast_frame_reached", Callable(cast_anticapation_frame_reached))
+				
+				if Singleton_CommonVariables.battle__target_selection_type == "magic":
+					caa_bs.play_cast()
+				else:
+					caa_bs.play_attack_normal()
+				
 				# await Signal(caa_bs, "battle__animation_completed")
 				await Signal(self, "signal__current_actor_exchange_completed")
 				print("play Idle")
@@ -348,14 +486,14 @@ func activate_battle() -> void:
 			else:
 				print("spell animation")
 				
-				if first_cast:
-					first_cast = false
-					await display_battle_message(cur_actor_node.get_actor_name() + " casts!")
-					# await Signal(self, "signal__function_completed")
-					await get_tree().create_timer(0.2).timeout
-					
-					var spell_bs = load(Singleton_CommonVariables.battle__resource_animation_scene_path).instantiate()
-					spells_wrapper.add_child(spell_bs)
+#				if first_cast:
+#					first_cast = false
+#					await display_battle_message(cur_actor_node.get_actor_name() + " casts!")
+#					# await Signal(self, "signal__function_completed")
+#					await get_tree().create_timer(0.2).timeout
+#
+#					var spell_bs = load(Singleton_CommonVariables.battle__resource_animation_scene_path).instantiate()
+#					spells_wrapper.add_child(spell_bs)
 				
 				await get_tree().create_timer(0.5).timeout
 				attack_frame_reached()
@@ -388,31 +526,28 @@ func activate_battle() -> void:
 			
 			current_target_actor_node = a
 			
-			if !is_first_actor:
-				# do transition
-				a_bs.position = Vector2(640, 0)
-				
-				var cc = characterWrapper.get_child(0)
-				scene_transition.position = transition_screen_default_position
-				characterWrapper.add_child(a_bs)
-				
-				var tween_tim = 0.25
-				var _t = create_tween().set_parallel(true)
-				_t.tween_property(cc, "position", Vector2(cc.position.x -320, cc.position.y), tween_tim)
-				_t.tween_property(scene_transition, "position", Vector2(transition_screen_default_position.x - 448, transition_screen_default_position.y), tween_tim)
-				_t.tween_property(a_bs, "position", character_position, tween_tim)
-				
-				await _t.finished
-				cc.queue_free()
-			else:
-				is_first_actor = false
-				characterWrapper.add_child(a_bs)
+			
+			# do transition
+			a_bs.position = Vector2(640, 0)
+			
+			var cc = characterWrapper.get_child(0)
+			scene_transition.position = transition_screen_default_position
+			characterWrapper.add_child(a_bs)
+			
+			var tween_tim = 0.25
+			var _t = create_tween().set_parallel(true)
+			_t.tween_property(cc, "position", Vector2(cc.position.x -320, cc.position.y), tween_tim)
+			_t.tween_property(scene_transition, "position", Vector2(transition_screen_default_position.x - 448, transition_screen_default_position.y), tween_tim)
+			_t.tween_property(a_bs, "position", character_position, tween_tim)
+			
+			await _t.finished
+			cc.queue_free()
 			
 			
 			# check if spell or something
 			
 			# Do Battle Scene for current actors
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.5).timeout
 			await display_battle_message(cur_actor_node.get_actor_name() + " Attacks!") # print_who_is_attacking
 			# await Signal(self, "signal__function_completed")
 			await get_tree().create_timer(0.2).timeout
@@ -423,7 +558,13 @@ func activate_battle() -> void:
 			print("attack normal")
 			caa_bs.connect("attack_frame_reached", Callable(attack_frame_reached))
 			caa_bs.connect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
-			caa_bs.play_attack_normal()
+			caa_bs.connect("spell_cast_frame_reached", Callable(cast_anticapation_frame_reached))
+			
+			if Singleton_CommonVariables.battle__target_selection_type == "magic":
+				caa_bs.play_cast()
+			else:
+				caa_bs.play_attack_normal()
+			
 			await Signal(self, "signal__current_actor_exchange_completed")
 			# await Signal(caa_bs, "battle__animation_completed")
 			print("play Idle")
@@ -470,19 +611,14 @@ func activate_battle() -> void:
 	
 	# cleanup
 	
+	await Singleton_CommonVariables.top_level_fader_node.play_fade_in_quick()
 	cleanup_wrappers()
-	
-	print("Disconnect attack frame reached")
-	caa_bs.disconnect("attack_frame_reached", Callable(attack_frame_reached))
-	caa_bs.disconnect("attack_anticapation_frame_reached", Callable(attack_anticapation_frame_reached))
-	# TODO: fade in
 	
 	Singleton_CommonVariables.ui__actor_micro_info_box.hide_cust()
 	Singleton_CommonVariables.ui__target_actor_micro_info_box.hide_cust_target_battle_scene()
 	
 	hide()
-	
-	pass
+	await Singleton_CommonVariables.top_level_fader_node.play_fade_out_quick()
 
 ### 
 
@@ -560,17 +696,9 @@ func attack_frame_reached() -> void:
 	print("attack frame reached ahh yaa")
 	
 #	if using_spell:
-#		# Singleton_Game_AudioManager.play_sfx("res://Assets/Sounds/HitSoundCut.wav")
-#	#	Singleton_Game_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
 #		Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
 #		char_animationPlayer.stop(false)
 #	else:
-#		rng.randomize()
-#		if rng.randi_range(0, 99) < 5:
-#			attack_missed = true
-#		else:
-#			attack_missed = false
-#
 #		if attack_missed:
 #			Singleton_AudioManager.play_sfx("res://Assets/Sounds/DodgeSound.wav")
 #			emit_signal("signal_attack_frame_reached")
@@ -580,6 +708,17 @@ func attack_frame_reached() -> void:
 	
 	calculate_damage_step()
 
+func cast_anticapation_frame_reached() -> void:
+	current_initiator_actor_battle_scene_node.pause_animation()
+	
+	Singleton_AudioManager.play_sfx("res://Assets/SF2/Sounds/SFX/sfx_Cast_Spell.wav")
+	
+	await get_tree().create_timer(0.3).timeout
+	
+	current_initiator_actor_battle_scene_node.resume_animation()
+	
+	# TODO: clean up called after play_cast is called
+	# calculate_damage_step()
 
 func calculate_damage_step() -> void:
 	var initator_actor = current_initiator_actor_node # Singleton_CommonVariables.battle__currently_active_actor.get_child(0).find_child("CharacterRoot") # current_target_actor_node
@@ -589,26 +728,36 @@ func calculate_damage_step() -> void:
 	#	# Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
 	#	# Singleton_Game_GlobalBattleVariables.battle_base.targetActorMicroInfoRoot.display_micro_info_for_actor(Singleton_Game_GlobalBattleVariables.currently_active_character)
 	
-	var using_spell = false
+	# var using_spell = false
 	var attack_missed = false
-	
 	
 	var damage = 0
 	
-	if using_spell:
+	if Singleton_CommonVariables.battle__target_selection_type == "magic":
 		# TODO: redo this entire section
-		var damage_min = initator_actor.spells_id[0].levels[0].min_range
-		var damage_max = initator_actor.spells_id[0].levels[0].max_range
-		var mp_cost = initator_actor.spells_id[0].levels[0].mp_usage_cost
+		# print(initator_actor.get_magic())
+		
+		var spell_res = load(initator_actor.get_magic()[0].resource)
+		
+		var damage_min = spell_res.levels[Singleton_CommonVariables.battle__magic_spell_level_selected].min_range
+		var damage_max = spell_res.levels[Singleton_CommonVariables.battle__magic_spell_level_selected].max_range
+		var mp_cost = spell_res.levels[Singleton_CommonVariables.battle__magic_spell_level_selected].mp_usage_cost
 		
 		rng.randomize()
 		
+		# TODO: probably should do something like 60% chance of hitting a 6 and 20% for a 5 or 7 for blaze
+		# that seems to be closer to the actual odds vs a blind random chance of 5-7
 		damage = rng.randi_range(damage_max, damage_min)
 		if damage <= 0:
 			damage = 1
 		
-		initator_actor.set_mp_current(initator_actor.get_mp_current() - mp_cost)
-		Singleton_CommonVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_CommonVariables.currently_active_character)
+		# TODO: only detract mg once
+		if first_time_mp_cost:
+			initator_actor.set_mp_current(initator_actor.get_mp_current() - mp_cost)
+			first_time_mp_cost = false
+		
+		Singleton_CommonVariables.ui__actor_micro_info_box.display_actor_info(current_target_actor_parent_node)
+		# Singleton_CommonVariables.battle_base.activeActorMicroInfoRoot.display_micro_info_for_actor(Singleton_CommonVariables.currently_active_character)
 	else:
 		# max attack value
 		var max_damage = initator_actor.get_attack() - targeted_actor.get_defense()

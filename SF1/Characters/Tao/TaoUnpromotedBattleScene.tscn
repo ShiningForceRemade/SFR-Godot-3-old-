@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0nqjtv756usi"]
+[gd_scene load_steps=16 format=3 uid="uid://b0nqjtv756usi"]
 
 [ext_resource type="Script" path="res://SF1/Characters/GenericBattleScene.gd" id="1_1c2gi"]
 [ext_resource type="Texture2D" uid="uid://obn7lftu7567" path="res://Assets/SF1/Genesis 32X SCD - Shining Force - Battle Foregrounds.png" id="1_liw3r"]
@@ -235,9 +235,64 @@ tracks/0/keys = {
 "values": [Vector2(-1.90735e-06, 0), Vector2(-12, 4), Vector2(8, 4), Vector2(4, 0), Vector2(-8, 0), Vector2(8, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_d6760"]
+resource_name = "Cast"
+length = 0.80001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterWrapper/CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterWrapper/WeaponSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-4.35285, -4.08232]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterWrapper/WeaponSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(16, -56), Vector2(7, -92)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_spell_cast_frame_reached"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0my03"]
 _data = {
 "Attack": SubResource("Animation_f5igr"),
+"Cast": SubResource("Animation_d6760"),
 "Death": SubResource("Animation_vo3yv"),
 "Idle": SubResource("Animation_sf84d"),
 "RESET": SubResource("Animation_wihvo"),

@@ -41,7 +41,7 @@ func play_attack_special() -> void:
 
 
 func play_cast() -> void:
-	animation_player.play("Attack")
+	animation_player.play("Cast")
 	await animation_player.animation_finished
 	emit_signal("battle__animation_completed")
 

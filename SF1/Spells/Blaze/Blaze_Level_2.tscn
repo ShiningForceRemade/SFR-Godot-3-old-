@@ -57,22 +57,22 @@ libraries = {
 }
 
 [node name="BlazeFireballSmall3" parent="." instance=ExtResource("3_o4amu")]
-position = Vector2(260, -36)
+position = Vector2(148, -12)
 
 [node name="BlazeFireballSmall4" parent="." instance=ExtResource("3_o4amu")]
-position = Vector2(168, -48)
+position = Vector2(96, -36)
 
 [node name="BlazeFireballSmall5" parent="." instance=ExtResource("3_o4amu")]
-position = Vector2(224, 12)
+position = Vector2(184, -28)
 
 [node name="BlazeFireballSmall6" parent="." instance=ExtResource("3_o4amu")]
-position = Vector2(272, -4)
+position = Vector2(204, -16)
 
 [node name="BlazeFireballSmall7" parent="." instance=ExtResource("3_o4amu")]
-position = Vector2(200, -36)
+position = Vector2(160, -44)
 
 [node name="BlazeFireballSmall8" parent="." instance=ExtResource("3_o4amu")]
-position = Vector2(168, 4)
+position = Vector2(124, -12)
 
 [node name="BlazeFireballSmall9" parent="." instance=ExtResource("3_o4amu")]
-position = Vector2(184, -24)
+position = Vector2(140, -36)
