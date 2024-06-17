@@ -1,5 +1,7 @@
 # Shining Force Remade (SFR-Godot)
 
+NOTE: This version of the project began development on the Godot 3.X.X series of the engine and has been archived. The new project will be built on Godot 4 at https://github.com/ShiningForceRemade/SFR-Godot
+
 ## Prerequisites
 ### Godot
 [Godot version - 3.5.1](https://godotengine.org/download)
